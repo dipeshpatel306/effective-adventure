@@ -1,0 +1,7 @@
+#header .login{
+	float: right
+}
+#header .login a:link, #header .login a:visited{
+	color: #ffffff;
+	
+}

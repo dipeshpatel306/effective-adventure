@@ -9,6 +9,7 @@ class UsersController extends AppController {
 
 	public function beforeFilter() {
 	    parent::beforeFilter();
+    	$this->Auth->allow('login', 'logout');		
 	    //$this->Auth->allow('*');
 	   // $this->Auth->allow('initDB'); // temp
 	}
@@ -50,14 +51,17 @@ class UsersController extends AppController {
 	    }
 		if ($this->Session->read('Auth.User')) {
         	$this->Session->setFlash('You are logged in!');
+			//$this->Session->write('User.id', $userId);
         	$this->redirect('/', null, false);
     	}
+
 	}
 /**
  * Logout Method
  */
 	public function logout() {
 		$this->Session->setFlash('Good-Bye');
+		$this->Session->destroy();
 		$this->redirect($this->Auth->logout());   
 	}
 
