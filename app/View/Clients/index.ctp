@@ -1,8 +1,7 @@
 <div class="clients index">
 	<h2><?php echo __('Clients'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('body'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
@@ -12,7 +11,6 @@
 	<?php
 	foreach ($clients as $client): ?>
 	<tr>
-		<td><?php echo h($client['Client']['id']); ?>&nbsp;</td>
 		<td><?php echo h($client['Client']['name']); ?>&nbsp;</td>
 		<td><?php echo h($client['Client']['body']); ?>&nbsp;</td>
 		<td><?php echo h($client['Client']['created']); ?>&nbsp;</td>

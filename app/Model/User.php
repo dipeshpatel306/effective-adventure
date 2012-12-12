@@ -26,7 +26,7 @@ class User extends AppModel {
 		'username' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'You forgot the Username.',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -36,7 +36,27 @@ class User extends AppModel {
 		'password' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Your forgot the Password.',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'first_name' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'You forgot your First Name.',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'last_name' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'You forgot your Last Name',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -44,9 +64,9 @@ class User extends AppModel {
 			),
 		),
 		'email' => array(
-			'email' => array(
-				'rule' => array('email'),
-				//'message' => 'Your custom message here',
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'You forgot your Email.',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -74,6 +94,7 @@ class User extends AppModel {
 			),
 		),
 	);
+
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

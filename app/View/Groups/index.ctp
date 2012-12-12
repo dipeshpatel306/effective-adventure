@@ -1,8 +1,7 @@
 <div class="groups index">
 	<h2><?php echo __('Groups'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -11,7 +10,6 @@
 	<?php
 	foreach ($groups as $group): ?>
 	<tr>
-		<td><?php echo h($group['Group']['id']); ?>&nbsp;</td>
 		<td><?php echo h($group['Group']['name']); ?>&nbsp;</td>
 		<td><?php echo h($group['Group']['created']); ?>&nbsp;</td>
 		<td><?php echo h($group['Group']['modified']); ?>&nbsp;</td>

@@ -11,9 +11,15 @@ class UsersController extends AppController {
 	    parent::beforeFilter();
     	$this->Auth->allow('login', 'logout');		
 	    //$this->Auth->allow('*');
-	   // $this->Auth->allow('initDB'); // temp
+	    
+	    // Runs ACL Permission Setup. Disable whennot in use
+	    //$this->Auth->allow('initDB'); 
 	}
 	
+/**
+ * Acl Setup Permissions. Comment out when not is use.
+ * 
+ */	
 	/*public function initDB() {
 	    $group = $this->User->Group;
 	    //Allow admins to everything
@@ -23,12 +29,15 @@ class UsersController extends AppController {
 	    //allow managers to posts and widgets
 	    $group->id = 2;
 	    $this->Acl->deny($group, 'controllers');
+		$this->Acl->allow($group, 'controllers/Dashboard');
 	    $this->Acl->allow($group, 'controllers/Posts');
 	    $this->Acl->allow($group, 'controllers/Modules');
+		$this->Acl->allow($group, 'controllers/Users');
 	
 	    //allow users to only add and edit on posts and widgets
 	    $group->id = 3;
 	    $this->Acl->deny($group, 'controllers');
+		$this->Acl->allow($group, 'controllers/Dashboard');
 	    $this->Acl->allow($group, 'controllers/Posts/add');
 	    $this->Acl->allow($group, 'controllers/Posts/edit');
 	    $this->Acl->allow($group, 'controllers/Modules/add');
@@ -71,8 +80,27 @@ class UsersController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->User->recursive = 0;
-		$this->set('users', $this->paginate());
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+		
+		if($group == 1){
+			// If Hipaa Admin then show all users 
+			$this->User->recursive = 0;
+			$this->paginate = array('order' => array('User.client_id' => 'ASC'));
+			$this->set('users', $this->paginate());
+			
+		} elseif ($group == 2){
+			// If Manager display only users from that client
+			$this->paginate = array(
+				'conditions' => array('User.client_id' => $client),
+				'order' => array('User.username' => 'ASC')
+			);
+			$this->set('users', $this->paginate());
+		} else {
+			// Else Banned!
+			$this->Session->setFlash('You are not authorized to view that!');
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+		}
 	}
 
 /**
@@ -83,11 +111,43 @@ class UsersController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		$this->User->id = $id;
-		if (!$this->User->exists()) {
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+		
+		$this->User->id = $id; // get id
+		if (!$this->User->exists()) { // if id doesn't exist then ban
+			$this->Session->setFlash("That User Doesn't Exist!");
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 			throw new NotFoundException(__('Invalid user'));
 		}
-		$this->set('user', $this->User->read(null, $id));
+			
+		if($group == 1){
+			// If Hipaa Admin then allow User View
+			$this->set('user', $this->User->read(null, $id));
+		
+		} elseif($group == 2) {
+			// Check if Manager and same client
+			$is_authorized = $this->User->find('first', array(
+				'conditions' => array(
+					'User.id' => $id,
+					'AND' => array('User.client_id' => $client)
+				)
+			));
+			
+			if($is_authorized){
+				$this->set('user', $this->User->read(null, $id));
+			} else {
+				// Else Banned!
+				$this->Session->setFlash('You are not authorized to view that!');
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+			}
+			
+		} else {
+			// Else Banned	
+			$this->Session->setFlash('You are not authorized to view that!');
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+		}
+
 	}
 
 /**
@@ -95,19 +155,52 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function add() {
-		if ($this->request->is('post')) {
-			$this->User->create();
-			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved'));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+	public function add() { //TODO Add more validation
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		$client = $this->Session->read('Auth.User.Client.name');  // Test Client. 
+		
+		if($group == 1){
+			// If HIPAA Admin allo add user
+			if ($this->request->is('post')) {
+				$this->User->create();
+				if ($this->User->save($this->request->data)) {
+					$this->Session->setFlash(__('The user has been saved'));
+					$this->redirect(array('action' => 'index'));
+				} else {
+					$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+				}
 			}
+			$groups = $this->User->Group->find('list');
+			$clients = $this->User->Client->find('list');
+			$this->set(compact('groups', 'clients'));
+			
+		} elseif($group == 2){ 
+			// If Manager allow only for client			
+			if ($this->request->is('post')) {
+				$this->User->create();
+				if ($this->User->save($this->request->data)) {
+					$this->Session->setFlash(__('The user has been saved'));
+					$this->redirect(array('action' => 'index'));
+				} else {
+					$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+				}
+			}
+			
+			$client_list = $this->User->Client->find('list');
+			$client_key =  array_search($client, $client_list);
+			$clients = array($client_key => $client);
+
+			$groups = array(2 => 'Managers', 3 => 'Users');
+			
+			$this->set(compact('groups', 'clients'));
+			print_r($this->data);
+		
+		} else {
+			// Else Banned	
+			$this->Session->setFlash('You are not authorized to do that!');
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 		}
-		$groups = $this->User->Group->find('list');
-		$clients = $this->User->Client->find('list');
-		$this->set(compact('groups', 'clients'));
+		
 	}
 
 /**
