@@ -11,8 +11,7 @@ class UsersController extends AppController {
 	    parent::beforeFilter();
     	$this->Auth->allow('login', 'logout');		
 	    //$this->Auth->allow('*');
-	    
-	    // Runs ACL Permission Setup. Disable whennot in use
+	    // Runs ACL Permission Setup. Disable when not in use
 	    //$this->Auth->allow('initDB'); 
 	}
 	
@@ -38,10 +37,9 @@ class UsersController extends AppController {
 	    $group->id = 3;
 	    $this->Acl->deny($group, 'controllers');
 		$this->Acl->allow($group, 'controllers/Dashboard');
-	    $this->Acl->allow($group, 'controllers/Posts/add');
-	    $this->Acl->allow($group, 'controllers/Posts/edit');
-	    $this->Acl->allow($group, 'controllers/Modules/add');
-	    $this->Acl->allow($group, 'controllers/Modules/edit');
+		$this->Acl->allow($group, 'controllers/Posts');
+	    $this->Acl->allow($group, 'controllers/Modules');
+	    //$this->Acl->allow($group, 'controllers/Modules/edit');
 	    //we add an exit to avoid an ugly "missing views" error message
 	    echo "all done";
 	    exit;
@@ -73,7 +71,6 @@ class UsersController extends AppController {
 		$this->Session->destroy();
 		$this->redirect($this->Auth->logout());   
 	}
-
 /**
  * index method
  *
@@ -82,7 +79,7 @@ class UsersController extends AppController {
 	public function index() {
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
-		
+
 		if($group == 1){
 			// If Hipaa Admin then show all users 
 			$this->User->recursive = 0;
@@ -155,52 +152,64 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function add() { //TODO Add more validation
+	public function add() { // TODO fix and consolidate function
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-		$client = $this->Session->read('Auth.User.Client.name');  // Test Client. 
-		
-		if($group == 1){
-			// If HIPAA Admin allo add user
-			if ($this->request->is('post')) {
-				$this->User->create();
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+			
+		if ($this->request->is('post')) {
+			$this->User->create();
+			
+			if($group == 1){ // if admin allow add
+				
 				if ($this->User->save($this->request->data)) {
 					$this->Session->setFlash(__('The user has been saved'));
 					$this->redirect(array('action' => 'index'));
 				} else {
 					$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 				}
-			}
-			$groups = $this->User->Group->find('list');
-			$clients = $this->User->Client->find('list');
-			$this->set(compact('groups', 'clients'));
 			
-		} elseif($group == 2){ 
-			// If Manager allow only for client			
-			if ($this->request->is('post')) {
-				$this->User->create();
-				if ($this->User->save($this->request->data)) {
-					$this->Session->setFlash(__('The user has been saved'));
-					$this->redirect(array('action' => 'index'));
+			} elseif($group == 2){ // manager allow only add to same client and not add as administrator group
+				if(($this->request->data['User']['client_id'] == $client )){ // same client
+					
+					if(($this->request->data['User']['group_id'] != 1)){ // not saving group_id as administrator
+						
+						if ($this->User->save($this->request->data)) {
+							$this->Session->setFlash(__('The user has been saved'));
+							$this->redirect(array('action' => 'index'));
+						} else {
+							$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+						}	
+					} else {
+						// Else Banned	
+						$this->Session->setFlash('You are not authorized to do that!');
+						$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+					}
+	
 				} else {
-					$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+					// Else Banned	
+					$this->Session->setFlash('You are not authorized to do that!');
+					$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 				}
+			
+			} else {
+				// Else Banned	
+				$this->Session->setFlash('You are not authorized to do that!');
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 			}
-			
-			$client_list = $this->User->Client->find('list');
-			$client_key =  array_search($client, $client_list);
-			$clients = array($client_key => $client);
-
-			$groups = array(2 => 'Managers', 3 => 'Users');
-			
-			$this->set(compact('groups', 'clients'));
-			print_r($this->data);
-		
-		} else {
-			// Else Banned	
-			$this->Session->setFlash('You are not authorized to do that!');
-			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 		}
+		/*if ($this->request->is('post')) {
+			$this->User->create();
+			if ($this->User->save($this->request->data)) {
+				$this->Session->setFlash(__('The user has been saved'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+			}
+		}*/
 		
+		$groups = $this->User->Group->find('list');
+		$clients = $this->User->Client->find('list');
+		$this->set(compact('groups', 'clients'));
 	}
 
 /**
@@ -228,6 +237,7 @@ class UsersController extends AppController {
 		$groups = $this->User->Group->find('list');
 		$clients = $this->User->Client->find('list');
 		$this->set(compact('groups', 'clients'));
+		unset($this->request->data['User']['password']); // todo implement better password handling for edit
 	}
 
 /**

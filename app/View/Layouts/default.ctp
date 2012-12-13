@@ -46,12 +46,12 @@
 		<div id="content">
 			<?php echo $this->Session->flash(); ?>
 			
-			<!--<?php // Temp debug code
+			<?php // Temp debug code
 				$auth = $this->Session->read('Auth.User');
 				print "<pre>";
 				print_r($auth);
 				print "</pre>";
-			?>-->
+			?>
 			
 			<?php echo $this->fetch('content'); ?>
 		</div>

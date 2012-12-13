@@ -39,7 +39,8 @@ class AppController extends Controller {
                 'Actions' => array('actionPath' => 'controllers')
             )
         ),
-        'Session'
+        'Session',
+        'Security'
     );
     public $helpers = array('Html', 'Form', 'Session');
 
