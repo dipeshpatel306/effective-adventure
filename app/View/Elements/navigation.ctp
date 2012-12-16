@@ -28,15 +28,38 @@
 				<li><?php echo $this->Html->link('ePHI Recieved', array('controller' => '/', 'action' => '')); ?></li>
 			</ul>
 		</li>		
-
-		<li><?php echo $this->Html->link('Education Center', array('controller' => '/', 'action' => ''));?>
+		
+		<li><?php echo $this->Html->link('Social Center', array('controller' => '/', 'action' => ''));?>
 			<ul>
-				<li><?php echo $this->Html->link('HIPAA Security Training', array('controller' => '/', 'action' => '')); ?></li>
+				<li><?php echo $this->Html->link('Facebook', array('controller' => '/', 'action' => '')); ?></li>
+				<li><?php echo $this->Html->link('Twitter', array('controller' => '/', 'action' => '')); ?></li>
+				<li><?php echo $this->Html->link('Blog', 'http://www.hipaasecurenow.com/index.php/blog/', array('target' => '_blank')); ?></li>
+			</ul>
+		</li>
+
+		<li><?php echo $this->Html->link('Education Center', array('controller' => '/', 'action' => ''));?> <!-- TODO Add Videos -->
+			<ul>
+				<li><?php echo $this->Html->link('HIPAA Security Training', 'https://www.hipaasecurenow.com/portal/', array('target' => '_blank')); ?></li>
 				<li><?php echo $this->Html->link('What is HIPAA? (Part 1)', array('controller' => '/', 'action' => '')); ?></li>
 				<li><?php echo $this->Html->link('What is HIPAA? (Part 2)', array('controller' => '/', 'action' => '')); ?></li>
 				<li><?php echo $this->Html->link('10 Things You Can Do To Protect Patient Data', array('controller' => '/', 'action' => '')); ?></li>
-				<li><?php echo $this->Html->link('HIPAA Security Tips and Reminders', array('controller' => '/', 'action' => '')); ?></li>
+				<li><?php echo $this->Html->link('HIPAA Security Tips and Reminders', 
+					'http://www.hipaasecurenow.com/index.php/security-tips-and-reminders/', array('target' => '_blank')); ?></li>
 				<li><?php echo $this->Html->link('HIPAA Secure Now!', array('controller' => '/', 'action' => '')); ?></li>
+			</ul>
+		</li>
+
+		<li><?php echo $this->Html->link('Information Center', array('controller' => '/', 'action' => ''));?>
+			<ul>
+				<li><?php echo $this->Html->link('Policies & Procedures', 'http://www.hipaasecurenow.com/?cat=10', array('target' => '_blank')); ?></li>
+				<li><?php echo $this->Html->link('Risk Assessments', 'http://www.hipaasecurenow.com/?cat=8', array('target' => '_blank')); ?></li>
+				<li><?php echo $this->Html->link('Security Training', 'http://www.hipaasecurenow.com/?cat=9', array('target' => '_blank')); ?></li>
+				<li><?php echo $this->Html->link('HIPAA Audits', 'http://www.hipaasecurenow.com/?s=HIPAA+Audits', array('target' => '_blank')); ?></li>
+				<li><?php echo $this->Html->link('What to Do If You Get Audited', 				'http://www.hipaasecurenow.com/index.php/you-received-a-hipaa-audit-notification-now-what/', array('target' => '_blank')); ?></li>
+				<li><?php echo $this->Html->link('Practice Administrators Role w/HIPAA', 				'http://www.hipaasecurenow.com/index.php/practice-administrators-are-the-key-to-hipaa-security/', array('target' => '_blank')); ?></li>
+				<li><?php echo $this->Html->link('Breach Notification', 
+				'http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/index.html', array('target' => '_blank')); ?></li>
+				<li><?php echo $this->Html->link('Service Overview', 'http://www.hipaasecurenow.com/index.php/service/', array('target' => '_blank')); ?></li>
 			</ul>
 		</li>
 
@@ -50,27 +73,7 @@
 			</ul>
 		</li>
 
-		<li><?php echo $this->Html->link('Social Center', array('controller' => '/', 'action' => ''));?>
-			<ul>
-				<li><?php echo $this->Html->link('Facebook', array('controller' => '/', 'action' => '')); ?></li>
-				<li><?php echo $this->Html->link('Twitter', array('controller' => '/', 'action' => '')); ?></li>
-				<li><?php echo $this->Html->link('Blog', array('controller' => '/', 'action' => '')); ?></li>
-			</ul>
-		</li>
 
-		<li><?php echo $this->Html->link('Information Center', array('controller' => '/', 'action' => ''));?>
-			<ul>
-				<li><?php echo $this->Html->link('Policies & Procedures', array('controller' => '/', 'action' => '')); ?></li>
-				<li><?php echo $this->Html->link('Risk Assessments', array('controller' => '/', 'action' => '')); ?></li>
-				<li><?php echo $this->Html->link('Security Training', array('controller' => '/', 'action' => '')); ?></li>
-				<li><?php echo $this->Html->link('HIPAA Audits', array('controller' => '/', 'action' => '')); ?></li>
-				<li><?php echo $this->Html->link('What to Do If You Get Audited', array('controller' => '/', 'action' => '')); ?></li>
-				<li><?php echo $this->Html->link('Practice Administrators Role w/HIPAA', array('controller' => '/', 'action' => '')); ?></li>
-				<li><?php echo $this->Html->link('Security Training', array('controller' => '/', 'action' => '')); ?></li>
-				<li><?php echo $this->Html->link('Breach Notification', array('controller' => '/', 'action' => '')); ?></li>
-				<li><?php echo $this->Html->link('Service Overview', array('controller' => '/', 'action' => '')); ?></li>
-			</ul>
-		</li>
 		
 		<!--<li><?php echo $this->Html->link('What You Can Do With The HIPAA Secure Now! Compliance Portal', array('controller' => 'dashboard', 'action' => ''))?></li>-->
 		<li><?php echo $this->Html->link('Contact', array('controller' => 'dashboard', 'action' => ''))?></li>
