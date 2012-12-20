@@ -11,9 +11,9 @@
 			<?php echo h($client['Client']['name']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Body'); ?></dt>
+		<dt><?php echo __('Details'); ?></dt>
 		<dd>
-			<?php echo h($client['Client']['body']); ?>
+			<?php echo h($client['Client']['details']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>

@@ -3,7 +3,7 @@
 	<table>
 	<tr>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('body'); ?></th>
+			<!--<th><?php echo $this->Paginator->sort('body'); ?></th>-->
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -12,7 +12,7 @@
 	foreach ($clients as $client): ?>
 	<tr>
 		<td><?php echo h($client['Client']['name']); ?>&nbsp;</td>
-		<td><?php echo h($client['Client']['body']); ?>&nbsp;</td>
+		<!--<td><?php echo h($client['Client']['details']); ?>&nbsp;</td>-->
 		<td><?php echo h($client['Client']['created']); ?>&nbsp;</td>
 		<td><?php echo h($client['Client']['modified']); ?>&nbsp;</td>
 		<td class="actions">

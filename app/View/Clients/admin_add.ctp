@@ -4,7 +4,7 @@
 		<legend><?php echo __('Admin Add Client'); ?></legend>
 	<?php
 		echo $this->Form->input('name');
-		echo $this->Form->input('body');
+		echo $this->Form->input('details');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

@@ -1,3 +1,7 @@
+<?php 
+	ini_set('date.timezone', 'America/New_York');
+	$year = date('Y');
+?>
 <!doctype html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
@@ -22,7 +26,7 @@
 </head>
 <body>
 	<div id="container">
-	
+		<div id="wrapper">
 		<div id="header">
 			<?php echo $this->Html->image('hsn_logo.gif', array(
 					'alt' => 'HIPAA',
@@ -30,13 +34,12 @@
 					'class' => 'logo'
 					))
 			?>
-			<?php // Show Admin Nav if Administrator 
-				if(($this->Session->read('Auth.User.group_id') == 1)){
-					echo $this->element('admin_nav');	
-				}
+
+			<?php // Load User Box if logged in
+			if ($logged_in){
+				echo $this->element('userBox');
+			}
 			?>
-				
-			<?php echo $this->element('userBox'); ?>
 		</div>
 		<div class='navWrap'>
 			<?php echo $this->element('navigation'); ?>
@@ -47,27 +50,24 @@
 			<?php echo $this->Session->flash(); ?>
 			
 			<?php // Temp debug code
-				$auth = $this->Session->read('Auth.User');
+				/*$auth = $this->Session->read('Auth.User');
 				print "<pre>";
 				print_r($auth);
-				print "</pre>";
+				print "</pre>";*/
 			?>
-			
 			<?php echo $this->fetch('content'); ?>
 		</div>
-		
+		</div><!--wrapper -->
 		<div id="footer">
-		<?php 
-			ini_set('date.timezone', 'America/New_York');
-			$year = date('Y');
-		?>
-		Copyright &copy; <?php echo $year; ?> HIPAA Secure Now! All Rights Reserved
+			<div class='footerContent'>
+				HIPAA Secure Now! Copyright &copy; <?php echo $year; ?>
+			</div>
 		</div>
 	
 	</div>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
   	<script>window.jQuery || document.write('<script src="../js/jquery-1.8.3.min.js"><\/script>')</script>
-	
-	<?php  echo $this->element('sql_dump'); ?>
+	<?php echo $this->Html->script(array('ckeditor/ckeditor.js', 'scripts')); ?>
+	<?php // echo $this->element('sql_dump'); ?>
 </body>
 </html>
