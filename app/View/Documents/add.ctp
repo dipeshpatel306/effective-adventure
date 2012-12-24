@@ -7,7 +7,7 @@
 ?>
 
 <div class="documents form">
-<?php echo $this->Form->create('Document'); ?>
+<?php echo $this->Form->create('Document', array('type' => 'file')); ?>
 	<fieldset>
 		<legend><?php echo __('Add Contracts & Documents'); ?></legend>
 	<?php
@@ -15,7 +15,7 @@
 		echo $this->Form->input('document_type', array('options' => $document_types));
 		echo $this->Form->input('description');
 		echo $this->Form->input('details', array('id' => 'textEdit'));
-		echo $this->Form->input('attachment');
+		echo $this->Form->input('attachment', array('type' => 'file'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

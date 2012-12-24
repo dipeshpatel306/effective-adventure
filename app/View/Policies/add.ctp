@@ -3,7 +3,7 @@
 ?>
 
 <div class="policies form">
-<?php echo $this->Form->create('Policy'); ?>
+<?php echo $this->Form->create('Policy', array('type' => 'file')); ?>
 	<fieldset>
 		<legend><?php echo __('Add Policies & Procedures'); ?></legend>
 	<?php
@@ -11,7 +11,7 @@
 		echo $this->Form->input('policy_type', array('options' => $policy_types));		
 		echo $this->Form->input('description');
 		echo $this->Form->input('details', array('id' => 'textEdit'));
-		echo $this->Form->input('attachment');
+		echo $this->Form->input('attachment', array('type' => 'file'));
 		echo $this->Form->input('media');
 	?>
 	</fieldset>
