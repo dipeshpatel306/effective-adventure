@@ -53,6 +53,19 @@ class Client extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
+		'BusinessAssociateAgreement' => array(
+			'className' => 'BusinessAssociateAgreement',
+			'foreignKey' => 'client_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'SecurityIncident' => array(
 			'className' => 'SecurityIncident',
 			'foreignKey' => 'client_id',
@@ -94,6 +107,19 @@ class Client extends AppModel {
 		),
 		'EphiRemoved' => array(
 			'className' => 'EphiRemoved',
+			'foreignKey' => 'client_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'SirtTeam' => array(
+			'className' => 'SirtTeam',
 			'foreignKey' => 'client_id',
 			'dependent' => false,
 			'conditions' => '',

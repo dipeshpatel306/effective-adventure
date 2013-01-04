@@ -18,6 +18,7 @@
 	<?php echo $this->Html->link('Contracts & Documents', array('controller' => 'documents', 'action' => 'index'));?>
 	<ul>
 		<li><?php echo $this->Html->link('Risk Assessment Documents', array('controller' => 'documents', 'action' => 'risk_assessment_documents')); ?></li>				
+		<li><?php echo $this->Html->link('Business Associate Agreements', array('controller' => 'business_associate_agreements', 'action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link('Disaster Recovery Plans', array('controller' => 'documents', 'action' => 'disaster_recovery_plans')); ?></li>
 		<li><?php echo $this->Html->link('Other Contracts & Documents', array('controller' => 'documents', 'action' => 'other_contracts_and_documents')); ?></li>
 	</ul>
@@ -58,6 +59,13 @@
 			<li><?php echo $this->Html->link('Service Overview', 'http://www.hipaasecurenow.com/index.php/service/', array('target' => '_blank')); ?></li>
 		</ul><br />
 
+	<b>SIRP</b>
+	<ul>
+		<li>
+		<?php echo $this->Html->link('SIRT', array('controller' => 'sirt_teams', 'action' => 'index'));?>	
+		</li>
+	</ul><br />
+	
 	<b>Contact</b>
 	<ul>
 		<li>
