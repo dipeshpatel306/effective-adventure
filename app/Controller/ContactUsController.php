@@ -39,12 +39,12 @@ class ContactUsController extends AppController {
  * @return void
  */
 	public function contact() {  // TODO create template and test email
-		$email = new CakeEmail();
+		/*$email = new CakeEmail();
 		$email->config('default');
 		$email->from(array('test@test.com' => 'testing'));
 		$email->to('test@test.com');
 		//$email->subject('');
-		$email->send('Message Sent!');
+		$email->send('Message Sent!');*/
 		
 		
 		if ($this->request->is('post')) {

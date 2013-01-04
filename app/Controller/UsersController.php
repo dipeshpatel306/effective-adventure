@@ -32,11 +32,19 @@ class UsersController extends AppController {
 	    $this->Acl->allow($group, 'controllers/Posts');
 	    $this->Acl->allow($group, 'controllers/Modules');
 		$this->Acl->allow($group, 'controllers/Users');
+		
 		$this->Acl->allow($group, 'controllers/Policies/policies_and_procedures');
 		$this->Acl->allow($group, 'controllers/Policies/other_policies_and_procedures');
+		
 		$this->Acl->allow($group, 'controllers/Documents/risk_assessment_documents');
 		$this->Acl->allow($group, 'controllers/Documents/disaster_recovery_plans');
 		$this->Acl->allow($group, 'controllers/Documents/other_contracts_and_documents');
+		
+		$this->Acl->allow($group, 'controllers/SecurityIncidents');
+		$this->Acl->allow($group, 'controllers/ServerRoomAccess');
+		$this->Acl->allow($group, 'controllers/EphiRecieved');
+		$this->Acl->allow($group, 'controllers/EphiRemoved');
+		
 		$this->Acl->allow($group, 'controllers/ContactUs/contact');	
 	
 	    //allow users to only add and edit on posts and widgets
@@ -45,12 +53,20 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Dashboard');
 		$this->Acl->allow($group, 'controllers/Posts');
 	    $this->Acl->allow($group, 'controllers/Modules');
+		
 		$this->Acl->allow($group, 'controllers/Policies');
 		$this->Acl->allow($group, 'controllers/Policies/policies_and_procedures');
 		$this->Acl->allow($group, 'controllers/Policies/other_policies_and_procedures');
+		
 		$this->Acl->allow($group, 'controllers/Documents/risk_assessment_documents');
 		$this->Acl->allow($group, 'controllers/Documents/disaster_recovery_plans');
 		$this->Acl->allow($group, 'controllers/Documents/other_contracts_and_documents');
+		
+		$this->Acl->allow($group, 'controllers/SecurityIncidents');
+		$this->Acl->allow($group, 'controllers/ServerRoomAccess');
+		$this->Acl->allow($group, 'controllers/EphiRecieved');
+		$this->Acl->allow($group, 'controllers/EphiRemoved');
+		
 		$this->Acl->allow($group, 'controllers/ContactUs/contact');	
 	    //$this->Acl->allow($group, 'controllers/Modules/edit');
 	    //we add an exit to avoid an ugly "missing views" error message

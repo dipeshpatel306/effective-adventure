@@ -52,7 +52,60 @@ class Client extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
+		),
+		'SecurityIncident' => array(
+			'className' => 'SecurityIncident',
+			'foreignKey' => 'client_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'ServerRoomAccess' => array(
+			'className' => 'ServerRoomAccess',
+			'foreignKey' => 'client_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'EphiRecieved' => array(
+			'className' => 'EphiRecieved',
+			'foreignKey' => 'client_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'EphiRemoved' => array(
+			'className' => 'EphiRemoved',
+			'foreignKey' => 'client_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
 		)
 	);
+	
 
 }

@@ -22,10 +22,10 @@
 
 		<li><?php echo $this->Html->link('Track & Document', array('controller' => '/', 'action' => ''));?>
 			<ul>
-				<li><?php echo $this->Html->link('Server Room Access', array('controller' => '/', 'action' => '')); ?></li>
-				<li><?php echo $this->Html->link('Security Incidents', array('controller' => '/', 'action' => '')); ?></li>
-				<li><?php echo $this->Html->link('ePHI Removed', array('controller' => '/', 'action' => '')); ?></li>
-				<li><?php echo $this->Html->link('ePHI Recieved', array('controller' => '/', 'action' => '')); ?></li>
+				<li><?php echo $this->Html->link('Security Incidents', array('controller' => 'security_incidents', 'action' => 'index')); ?></li>
+				<li><?php echo $this->Html->link('Server Room Access', array('controller' => 'server_room_access', 'action' => 'index')); ?></li>
+				<li><?php echo $this->Html->link('ePHI Removed', array('controller' => 'ephi_removed', 'action' => 'index')); ?></li>
+				<li><?php echo $this->Html->link('ePHI Recieved', array('controller' => 'ephi_recieved', 'action' => 'index')); ?></li>
 			</ul>
 		</li>		
 		
@@ -66,17 +66,16 @@
 		<li><?php echo $this->Html->link('SIRP', array('controller' => '/', 'action' => ''));?>
 			<ul>
 				<li><?php echo $this->Html->link('SIRT', array('controller' => '/', 'action' => '')); ?></li>
-				<li><?php echo $this->Html->link('Security Incidents', array('controller' => '/', 'action' => '')); ?></li>
-				<li><?php echo $this->Html->link('Background Incidents', array('controller' => '/', 'action' => '')); ?></li>
-				<li><?php echo $this->Html->link('Background Information', array('controller' => '/', 'action' => '')); ?></li>
 				<li><?php echo $this->Html->link('IRP', array('controller' => '/', 'action' => '')); ?></li>
+				<li><?php echo $this->Html->link('Security Incidents', array('controller' => '/', 'action' => '')); ?></li>
+				<li><?php echo $this->Html->link('Background Information', array('controller' => '/', 'action' => '')); ?></li>
 			</ul>
 		</li>
 
 
 		
 		<!--<li><?php echo $this->Html->link('What You Can Do With The HIPAA Secure Now! Compliance Portal', array('controller' => 'dashboard', 'action' => ''))?></li>-->
-		<li><?php echo $this->Html->link('Contact', array('controller' => '/', 'action' => ''))?></li>
+		<li><?php echo $this->Html->link('Contact', array('controller' => 'contact_us', 'action' => 'contact'))?></li>
 		
 		<?php  // Allow Managers to see users from their own client. TODO set restriction in controller 
 			if($this->Session->read('Auth.User.group_id') == 2): 

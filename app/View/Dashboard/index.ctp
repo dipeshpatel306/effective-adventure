@@ -14,6 +14,7 @@
 		<li><?php echo $this->Html->link('Other Policies & Procedures', array('controller' => 'policies', 'action' => 'other_policies_and_procedures')); ?></li>
 		</ul>
 	<br />	
+
 	<?php echo $this->Html->link('Contracts & Documents', array('controller' => 'documents', 'action' => 'index'));?>
 	<ul>
 		<li><?php echo $this->Html->link('Risk Assessment Documents', array('controller' => 'documents', 'action' => 'risk_assessment_documents')); ?></li>				
@@ -21,7 +22,16 @@
 		<li><?php echo $this->Html->link('Other Contracts & Documents', array('controller' => 'documents', 'action' => 'other_contracts_and_documents')); ?></li>
 	</ul>
 	<br />
-	
+
+	<?php echo $this->Html->link('Track & Document', array('controller' => '/', 'action' => ''));?>
+	<ul>
+		<li><?php echo $this->Html->link('Security Incidents', array('controller' => 'security_incidents', 'action' => 'index')); ?></li>				
+		<li><?php echo $this->Html->link('Server Room Access', array('controller' => 'server_room_access', 'action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link('ePHI Removed', array('controller' => 'ephi_removed', 'action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link('ePHI Recieved', array('controller' => 'ephi_recieved', 'action' => 'index')); ?></li>
+	</ul>
+	<br />
+		
 	<b>Social Center</b>
 	<ul>
 		<li><?php echo $this->Html->link('Blog', 'http://www.hipaasecurenow.com/index.php/blog/', array('target' => '_blank')); ?></li>
@@ -46,7 +56,15 @@
 			<li><?php echo $this->Html->link('Breach Notification', 
 				'http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/index.html', array('target' => '_blank')); ?></li>
 			<li><?php echo $this->Html->link('Service Overview', 'http://www.hipaasecurenow.com/index.php/service/', array('target' => '_blank')); ?></li>
-		</ul>
+		</ul><br />
+
+	<b>Contact</b>
+	<ul>
+		<li>
+		<?php echo $this->Html->link('Contact Us', array('controller' => 'contactUs', 'action' => 'contact'));?>	
+		</li>
+	</ul>
+	
 	<!--<table>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
