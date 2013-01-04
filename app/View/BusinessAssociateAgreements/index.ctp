@@ -7,7 +7,7 @@
 			<th><?php echo $this->Paginator->sort('email'); ?></th>
 			<th><?php echo $this->Paginator->sort('phone'); ?></th>
 			<th><?php echo $this->Paginator->sort('contract_date'); ?></th>
-			<th><?php echo $this->Paginator->sort('document'); ?></th>
+			<th><?php echo $this->Paginator->sort('attachment'); ?></th>
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -21,7 +21,7 @@
 		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['email']); ?>&nbsp;</td>
 		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['phone']); ?>&nbsp;</td>
 		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['contract_date']); ?>&nbsp;</td>
-		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['document']); ?>&nbsp;</td>
+		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['attachment']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($businessAssociateAgreement['Client']['name'], array('controller' => 'clients', 'action' => 'view', $businessAssociateAgreement['Client']['id'])); ?>
 		</td>

@@ -28,7 +28,7 @@
 		</dd>
 		<dt><?php echo __('Document'); ?></dt>
 		<dd>
-			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['document']); ?>
+			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['attachment']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Client'); ?></dt>

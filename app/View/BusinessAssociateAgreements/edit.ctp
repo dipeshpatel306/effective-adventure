@@ -1,5 +1,5 @@
 <div class="businessAssociateAgreements form">
-<?php echo $this->Form->create('BusinessAssociateAgreement'); ?>
+<?php echo $this->Form->create('BusinessAssociateAgreement', array('type' => 'file')); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Business Associate Agreement'); ?></legend>
 	<?php
@@ -8,7 +8,7 @@
 		echo $this->Form->input('email');
 		echo $this->Form->input('phone');
 		echo $this->Form->input('contract_date');
-		echo $this->Form->input('document');
+		echo $this->Form->input('attachment', array('type' => 'file'));
 		echo $this->Form->input('client_id');
 	?>
 	</fieldset>
