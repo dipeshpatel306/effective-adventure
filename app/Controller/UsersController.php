@@ -37,6 +37,7 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Documents/risk_assessment_documents');
 		$this->Acl->allow($group, 'controllers/Documents/disaster_recovery_plans');
 		$this->Acl->allow($group, 'controllers/Documents/other_contracts_and_documents');
+		$this->Acl->allow($group, 'controllers/ContactUs/contact');	
 	
 	    //allow users to only add and edit on posts and widgets
 	    $group->id = 3;
@@ -50,6 +51,7 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Documents/risk_assessment_documents');
 		$this->Acl->allow($group, 'controllers/Documents/disaster_recovery_plans');
 		$this->Acl->allow($group, 'controllers/Documents/other_contracts_and_documents');
+		$this->Acl->allow($group, 'controllers/ContactUs/contact');	
 	    //$this->Acl->allow($group, 'controllers/Modules/edit');
 	    //we add an exit to avoid an ugly "missing views" error message
 	    echo "all done";
