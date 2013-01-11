@@ -119,6 +119,7 @@ class User extends AppModel {
 			'order' => ''
 		)
 	);
+
 /**
  * Associate users and groups to Acl table
  */
@@ -141,25 +142,12 @@ class User extends AppModel {
     }
 
 /**
- * hasMany associations
- *
- * @var array
- */
-	public $hasMany = array(
-		'Post' => array(
-			'className' => 'Post',
-			'foreignKey' => 'user_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		)
-	);
+ * Check Client Owner
+ */	
+	public function isOwnedBy($id, $user){
+		return $this->field('id', array($id, 'client_id' => $user)) === $userId;
+	}
+
 /**
  * Hash password before storing in the database
  * 

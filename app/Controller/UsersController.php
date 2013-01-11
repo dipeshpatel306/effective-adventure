@@ -14,7 +14,7 @@ class UsersController extends AppController {
 	    // Runs ACL Permission Setup. Disable when not in use
 	    $this->Auth->allow('initDB'); 
 	}
-	
+
 /**
  * Acl Setup Permissions. Comment out when not is use.
  * 
@@ -29,7 +29,6 @@ class UsersController extends AppController {
 	    $group->id = 2;
 	    $this->Acl->deny($group, 'controllers');
 		$this->Acl->allow($group, 'controllers/Dashboard');
-	    $this->Acl->allow($group, 'controllers/Posts');
 	    $this->Acl->allow($group, 'controllers/Modules');
 		$this->Acl->allow($group, 'controllers/Users');
 		
@@ -56,7 +55,6 @@ class UsersController extends AppController {
 	    $group->id = 3;
 	    $this->Acl->deny($group, 'controllers');
 		$this->Acl->allow($group, 'controllers/Dashboard');
-		$this->Acl->allow($group, 'controllers/Posts');
 	    $this->Acl->allow($group, 'controllers/Modules');
 		
 		$this->Acl->allow($group, 'controllers/Policies');
@@ -109,6 +107,65 @@ class UsersController extends AppController {
 		$this->Session->destroy();
 		$this->redirect($this->Auth->logout());   
 	}
+
+/**
+ * isAuthorized Method
+ * Allows Hippa Admin to Add, Edit, Delete Everything
+ * Client Managers can only Add Edit Delete to their own group
+ * Users can only see View and Index
+ * @return void
+ */
+ 	public function isAuthorized($user){
+ 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+
+ 		//print_r($group);
+ 		if ($group == 1){ // is admin allow all
+ 			return true;
+ 		}
+		
+		if ($group == 2){ //allow managers to add, edit, delete their own data
+
+			if(!empty($this->request->params['pass'][0])){ // see if parameter is passed
+				$id = $this->request->params['pass'][0];
+			}
+			
+			if(in_array($this->action, array('index', 'view'))){  // admin allow all
+					return true;
+			}
+			
+			if(in_array($this->action, array('add', 'edit', 'delete'))){
+				if(empty($id)){ // If no id
+					$this->Session->setFlash('You are not authorized to view that!');
+					$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+					return false;
+				}
+				
+				if($this->User->isOwnedBy($id, $client)){ // Check if allowed
+					return true;
+				} else { //deny if not
+					$this->Session->setFlash('You are not authorized to view that!');
+					$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+					return false;
+				}
+				
+				$this->Session->setFlash('You are not authorized to view that!');  // Deny all other cases
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+				return false;
+			}
+			
+		}
+		
+		if($group == 3){ // Deny users from viewing
+				$this->Session->setFlash('You are not authorized to view that!');
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+				return false;
+		}
+		
+		return parent::isAuthorized($user);
+ 	}
+
+
 /**
  * index method
  *
@@ -190,52 +247,8 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function add() { // TODO fix and consolidate function
-		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
-			
+	public function add() { // TODO Secure Add Method
 		if ($this->request->is('post')) {
-			$this->User->create();
-			
-			if($group == 1){ // if admin allow add
-				
-				if ($this->User->save($this->request->data)) {
-					$this->Session->setFlash(__('The user has been saved'));
-					$this->redirect(array('action' => 'index'));
-				} else {
-					$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-				}
-			
-			} elseif($group == 2){ // manager allow only add to same client and not add as administrator group
-				if(($this->request->data['User']['client_id'] == $client )){ // same client
-					
-					if(($this->request->data['User']['group_id'] != 1)){ // not saving group_id as administrator
-						
-						if ($this->User->save($this->request->data)) {
-							$this->Session->setFlash(__('The user has been saved'));
-							$this->redirect(array('action' => 'index'));
-						} else {
-							$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-						}	
-					} else {
-						// Else Banned	
-						$this->Session->setFlash('You are not authorized to do that!');
-						$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
-					}
-	
-				} else {
-					// Else Banned	
-					$this->Session->setFlash('You are not authorized to do that!');
-					$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
-				}
-			
-			} else {
-				// Else Banned	
-				$this->Session->setFlash('You are not authorized to do that!');
-				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
-			}
-		}
-		/*if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved'));
@@ -243,8 +256,7 @@ class UsersController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
-		}*/
-		
+		}
 		$groups = $this->User->Group->find('list');
 		$clients = $this->User->Client->find('list');
 		$this->set(compact('groups', 'clients'));
@@ -257,7 +269,7 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit($id = null) { // TODO Secure Edit Method
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
@@ -286,7 +298,7 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+	public function delete($id = null) {  // TODO Secure Delete method
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}

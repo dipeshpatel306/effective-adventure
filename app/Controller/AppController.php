@@ -35,9 +35,10 @@ class AppController extends Controller {
     public $components = array(
         'Acl',
         'Auth' => array(
-            'authorize' => array(
-                'Actions' => array('actionPath' => 'controllers')
-            )
+            'authorize' => array('Controller'),
+            /*array(
+            	//'Actions' => array('actionPath' => 'controllers')
+            )*/
         ),
         'Session',
         'Security'
@@ -50,9 +51,11 @@ class AppController extends Controller {
 		$this->set('current_user', $this->Auth->user());
 		
         //Configure AuthComponent
+		//$this->Auth->authorize = array('controller');
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
         $this->Auth->loginRedirect = array('controller' => 'Dashboard', 'action' => 'index');
 		//$this->Auth->allow('display');
     }	
+	
 }

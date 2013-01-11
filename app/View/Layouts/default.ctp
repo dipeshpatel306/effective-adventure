@@ -50,10 +50,11 @@
 			<?php echo $this->Session->flash(); ?>
 			
 			<?php // Temp debug code
-				/*$auth = $this->Session->read('Auth.User');
+				$auth = $this->Session->read('Auth');
 				print "<pre>";
-				print_r($auth);
-				print "</pre>";*/
+				//print_r($auth);
+				print "</pre>";
+
 			?>
 			<?php echo $this->fetch('content'); ?>
 		</div>
@@ -68,6 +69,6 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
   	<script>window.jQuery || document.write('<script src="../js/jquery-1.8.3.min.js"><\/script>')</script>
 	<?php echo $this->Html->script(array('ckeditor/ckeditor.js', 'scripts')); ?>
-	<?php // echo $this->element('sql_dump'); ?>
+	<?php  echo $this->element('sql_dump'); ?>
 </body>
 </html>
