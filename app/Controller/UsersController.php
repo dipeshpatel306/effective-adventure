@@ -12,7 +12,7 @@ class UsersController extends AppController {
     	$this->Auth->allow('login', 'logout');		
 	    //$this->Auth->allow('*');
 	    // Runs ACL Permission Setup. Disable when not in use
-	    $this->Auth->allow('initDB'); 
+	    //$this->Auth->allow('initDB'); 
 	}
 
 /**
@@ -119,7 +119,6 @@ class UsersController extends AppController {
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
 
- 		//print_r($group);
  		if ($group == 1){ // is admin allow all
  			return true;
  		}
@@ -130,7 +129,7 @@ class UsersController extends AppController {
 				$id = $this->request->params['pass'][0];
 			}
 			
-			if(in_array($this->action, array('index', 'view'))){  // admin allow all
+			if(in_array($this->action, array('index', 'view'))){  // allow managers to index and view
 					return true;
 			}
 			
@@ -153,7 +152,6 @@ class UsersController extends AppController {
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 				return false;
 			}
-			
 		}
 		
 		if($group == 3){ // Deny users from viewing
@@ -175,21 +173,18 @@ class UsersController extends AppController {
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
 
-		if($group == 1){
-			// If Hipaa Admin then show all users 
+		if($group == 1){ // If Hipaa Admin then show all users 
 			$this->User->recursive = 0;
 			$this->paginate = array('order' => array('User.client_id' => 'ASC'));
 			$this->set('users', $this->paginate());
 			
-		} elseif ($group == 2){
-			// If Manager display only users from that client
+		} elseif ($group == 2){ // If Manager display only users from that client
 			$this->paginate = array(
 				'conditions' => array('User.client_id' => $client),
 				'order' => array('User.username' => 'ASC')
 			);
 			$this->set('users', $this->paginate());
-		} else {
-			// Else Banned!
+		} else { // Else Banned!
 			$this->Session->setFlash('You are not authorized to view that!');
 			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 		}
@@ -213,12 +208,10 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid user'));
 		}
 			
-		if($group == 1){
-			// If Hipaa Admin then allow User View
+		if($group == 1){ // If Hipaa Admin then allow User View
 			$this->set('user', $this->User->read(null, $id));
 		
-		} elseif($group == 2) {
-			// Check if Manager and same client
+		} elseif($group == 2) { // Check if Manager and same client
 			$is_authorized = $this->User->find('first', array(
 				'conditions' => array(
 					'User.id' => $id,
@@ -228,14 +221,12 @@ class UsersController extends AppController {
 			
 			if($is_authorized){
 				$this->set('user', $this->User->read(null, $id));
-			} else {
-				// Else Banned!
+			} else { // Else Banned!
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 			}
 			
-		} else {
-			// Else Banned	
+		} else { // Else Banned	
 			$this->Session->setFlash('You are not authorized to view that!');
 			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 		}

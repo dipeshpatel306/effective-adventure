@@ -8,6 +8,30 @@ App::uses('AppController', 'Controller');
 class DashboardController extends AppController {
 
 /**
+ * isAuthorized Method
+ * Allows Hippa access to dashboard
+ * @return void
+ */
+ 	public function isAuthorized($user){
+ 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+
+ 		if ($group == 1){ // is admin allow all
+ 			return true;
+ 		}
+		
+		if ($group == 2){ 
+			return true;
+		}
+		
+		if($group == 3){ 
+ 			return true;
+		}
+		
+		return parent::isAuthorized($user);
+ 	}
+
+
+/**
  * index method
  *
  * @return void

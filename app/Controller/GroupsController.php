@@ -7,10 +7,20 @@ App::uses('AppController', 'Controller');
  */
 class GroupsController extends AppController {
 
-public function beforeFilter() {
+    public function beforeFilter() {
     parent::beforeFilter();
-    //$this->Auth->allow('*');
-}
+			$this->Auth->authorize = array('controller');
+    }
+/**
+ * isAuthorized Method
+ * Only Allow Hipaa Admin to add groups
+ * @return void
+ */
+ 	public function isAuthorized($user){
+
+		
+		return parent::isAuthorized($user);
+ 	}
 
 /**
  * index method
