@@ -10,6 +10,7 @@ class UsersController extends AppController {
 	public function beforeFilter() {
 	    parent::beforeFilter();
     	$this->Auth->allow('login', 'logout');		
+		 $this->Auth->authorize = array('controller');
 	    //$this->Auth->allow('*');
 	    // Runs ACL Permission Setup. Disable when not in use
 	    //$this->Auth->allow('initDB'); 
@@ -29,7 +30,6 @@ class UsersController extends AppController {
 	    $group->id = 2;
 	    $this->Acl->deny($group, 'controllers');
 		$this->Acl->allow($group, 'controllers/Dashboard');
-	    $this->Acl->allow($group, 'controllers/Modules');
 		$this->Acl->allow($group, 'controllers/Users');
 		
 		$this->Acl->allow($group, 'controllers/Policies/policies_and_procedures');
@@ -55,7 +55,6 @@ class UsersController extends AppController {
 	    $group->id = 3;
 	    $this->Acl->deny($group, 'controllers');
 		$this->Acl->allow($group, 'controllers/Dashboard');
-	    $this->Acl->allow($group, 'controllers/Modules');
 		
 		$this->Acl->allow($group, 'controllers/Policies');
 		$this->Acl->allow($group, 'controllers/Policies/policies_and_procedures');
@@ -129,11 +128,11 @@ class UsersController extends AppController {
 				$id = $this->request->params['pass'][0];
 			}
 			
-			if(in_array($this->action, array('index', 'view'))){  // allow managers to index and view
+			if(in_array($this->action, array('index', 'view', 'add'))){  // allow managers to index and view
 					return true;
 			}
 			
-			if(in_array($this->action, array('add', 'edit', 'delete'))){
+			if(in_array($this->action, array('edit', 'delete'))){
 				if(empty($id)){ // If no id
 					$this->Session->setFlash('You are not authorized to view that!');
 					$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
@@ -240,6 +239,9 @@ class UsersController extends AppController {
  */
 	public function add() { // TODO Secure Add Method
 		if ($this->request->is('post')) {
+			
+			$this->request->data['User']['client_id'] = $this->Auth->User('client_id');
+			
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved'));

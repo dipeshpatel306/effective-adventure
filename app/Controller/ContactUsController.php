@@ -8,6 +8,11 @@ App::uses('CakeEmail', 'Network/Email');
  */
 class ContactUsController extends AppController {
 
+ public function beforeFilter(){
+	parent::beforeFilter();
+ 	$this->Auth->authorize = array('controller');
+ }
+
 /**
  * isAuthorized Method
  * Allows Hipaa Admin to index, view and delete messages

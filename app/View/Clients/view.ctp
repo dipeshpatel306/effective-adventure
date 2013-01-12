@@ -11,6 +11,11 @@
 			<?php echo h($client['Client']['name']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Account Type'); ?></dt>
+		<dd>
+			<?php echo h($client['Client']['account_type']); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Details'); ?></dt>
 		<dd>
 			<?php echo h($client['Client']['details']); ?>

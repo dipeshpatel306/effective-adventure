@@ -7,6 +7,11 @@ App::uses('AppController', 'Controller');
  */
 class EphiRecievedController extends AppController {
 
+ public function beforeFilter(){
+	parent::beforeFilter();
+ 	$this->Auth->authorize = array('controller');
+ }
+
 /**
  * index method
  *
@@ -39,6 +44,7 @@ class EphiRecievedController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+			$this->request->data['Policy']['client_id'] = $this->Auth->User('client_id');
 			$this->EphiRecieved->create();
 			if ($this->EphiRecieved->save($this->request->data)) {
 				$this->Session->setFlash(__('The ephi recieved has been saved'));

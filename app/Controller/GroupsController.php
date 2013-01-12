@@ -7,17 +7,36 @@ App::uses('AppController', 'Controller');
  */
 class GroupsController extends AppController {
 
-    public function beforeFilter() {
-    parent::beforeFilter();
-			$this->Auth->authorize = array('controller');
-    }
+ public function beforeFilter(){
+	parent::beforeFilter();
+ 	$this->Auth->authorize = array('controller');
+ }
+
 /**
  * isAuthorized Method
  * Only Allow Hipaa Admin to add groups
  * @return void
  */
  	public function isAuthorized($user){
+ 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 
+
+ 		if ($group == 1){ // is admin allow all
+ 			return true;
+ 		}
+		
+		if ($group == 2){ //deny
+
+				$this->Session->setFlash('You are not authorized to view that!');
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+				return false;
+		}
+		
+		if($group == 3){ // Deny
+				$this->Session->setFlash('You are not authorized to view that!');
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+				return false;
+		}
 		
 		return parent::isAuthorized($user);
  	}

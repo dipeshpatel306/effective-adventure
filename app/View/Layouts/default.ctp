@@ -52,9 +52,8 @@
 			<?php // Temp debug code
 				$auth = $this->Session->read('Auth');
 				print "<pre>";
-				//print_r($auth);
+				print_r($auth);
 				print "</pre>";
-
 			?>
 			<?php echo $this->fetch('content'); ?>
 		</div>

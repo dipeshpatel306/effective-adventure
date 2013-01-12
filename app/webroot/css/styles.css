@@ -113,7 +113,8 @@ body{
 	width:100%;
 	height:60px;			/* Height of the footer */
 	
-	background:#6B6B6B;
+	/*background:#6B6B6B;*/
+	background:#33454E;
 	padding: 0;
 	text-align: left;
 }
@@ -130,7 +131,8 @@ table{
 /* ### Navigation ### */
 .navWrap{clear: both;
 	/*background-color: #a1a1a1;*/
-	background: #5199B5;
+	/*background: #5199B5;*/
+	background: #4C8AB0;
 	height: 40px;
 	/*border-top: 2px solid #767676;
 	border-bottom: 2px solid #767676;*/
@@ -138,7 +140,7 @@ table{
 	border-bottom: 2px solid #e6e6e6;
 }
 .nav{
-	background: #5199B5;
+	/*background: #5199B5;*/
 	height: 40px;
 	width: 1100px;
 	/*width: 1024px;*/
@@ -164,7 +166,7 @@ table{
 	padding: 0;
 }
 .nav li a{
-	background: #5199B5;
+	/*background: #5199B5;*/
 	color: #ffffff;
 	display: block;
 	font-weight: bold;
@@ -176,12 +178,13 @@ table{
 	text-decoration: none;
 }
 .nav li a:hover, .nav ul li:hover a{
-	background: #83B1C6;
+	/*background: #83B1C6;*/
+	background: #407EA4;
 	color: #ffffff;
 	text-decoration: none;
 }
 .nav li ul{
-	background: #5199B5;
+	background: #4C8AB0;
 	display: none;
 	height: auto;
 	padding: 0;
@@ -214,7 +217,7 @@ table{
 	text-align: left;
 }
 .nav li ul a:hover, .nav li ul li:hover a{
-	background: #83B1C6;
+	background: #407EA4;
 	border: 0;
 	color: #ffffff;
 	text-decoration: none;

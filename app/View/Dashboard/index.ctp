@@ -3,19 +3,18 @@
 	
 	<p>Dashboard under Construction!</p>
 	
-	<h4>Currently Working Modules:</h4>
-	
 	<?php echo $this->Html->link('Home/Dashboard', array('controller' => 'dashboard', 'action' => 'index'))?><br /><br />
 	
 	
-	<?php echo $this->Html->link('Policies & Procedures', array('controller' => 'policies', 'action' => 'index'));?>
+	<?php echo $this->Html->link('Policies & Procedures', array('controller' => '#'));?>
 		<ul>
+		<li> Does everyone get the same documents or their own individual instances?</li>
 		<li><?php echo $this->Html->link('HIPAA Policies & Procedures', array('controller' => 'policies', 'action' => 'policies_and_procedures')); ?></li>
 		<li><?php echo $this->Html->link('Other Policies & Procedures', array('controller' => 'policies', 'action' => 'other_policies_and_procedures')); ?></li>
 		</ul>
 	<br />	
 
-	<?php echo $this->Html->link('Contracts & Documents', array('controller' => 'documents', 'action' => 'index'));?>
+	<?php echo $this->Html->link('Contracts & Documents', array('controller' => '#'));?>
 	<ul>
 		<li><?php echo $this->Html->link('Risk Assessment Documents', array('controller' => 'documents', 'action' => 'risk_assessment_documents')); ?></li>				
 		<li><?php echo $this->Html->link('Business Associate Agreements', array('controller' => 'business_associate_agreements', 'action' => 'index')); ?></li>
@@ -24,7 +23,7 @@
 	</ul>
 	<br />
 
-	<?php echo $this->Html->link('Track & Document', array('controller' => '/', 'action' => ''));?>
+	<?php echo $this->Html->link('Track & Document', array('controller' => '#'));?>
 	<ul>
 		<li><?php echo $this->Html->link('Security Incidents', array('controller' => 'security_incidents', 'action' => 'index')); ?></li>				
 		<li><?php echo $this->Html->link('Server Room Access', array('controller' => 'server_room_access', 'action' => 'index')); ?></li>
@@ -35,18 +34,26 @@
 		
 	<b>Social Center</b>
 	<ul>
-		<li><?php echo $this->Html->link('Blog', 'http://www.hipaasecurenow.com/index.php/blog/', array('target' => '_blank')); ?></li>
+		<li><?php echo $this->Html->link('Blog', 'http://www.hipaasecurenow.com/index.php/blog/', array('target' => '_blank')); ?>
+			- External Link
+		</li>
+		<li>Facebook and Twitter feed - TODO</li>
 	</ul>	
 	<br />
 	
 	<b>Education Center</b>
 	<ul>
 		<li><?php echo $this->Html->link('HIPAA Security Tips and Reminders', 
-					'http://www.hipaasecurenow.com/index.php/security-tips-and-reminders/', array('target' => '_blank')); ?></li>
+					'http://www.hipaasecurenow.com/index.php/security-tips-and-reminders/', array('target' => '_blank')); ?>
+		- External Link
+		</li>
+		<li>
+			Education Videos TODO
+		</li>
 	</ul>
 	<br />
 	
-	<b>Information Center</b>
+	<b>Information Center (All external Links)</b>
 		<ul>
 			<li><?php echo $this->Html->link('Policies & Procedures', 'http://www.hipaasecurenow.com/?cat=10', array('target' => '_blank')); ?></li>
 			<li><?php echo $this->Html->link('Risk Assessments', 'http://www.hipaasecurenow.com/?cat=8', array('target' => '_blank')); ?></li>
@@ -64,12 +71,31 @@
 		<li>
 		<?php echo $this->Html->link('SIRT', array('controller' => 'sirt_teams', 'action' => 'index'));?>	
 		</li>
+		<li>
+			<?php echo $this->Html->link('IRP', array('controller' => '#', 'action' => '/'));?>
+			- Link is dead 	
+		</li>
+		<li>
+			<?php echo $this->Html->link('IRP', array('controller' => '#', 'action' => '/'));?>
+			- Same link as Track & Document / Security Incidents	
+		</li>
+		<li>
+			<?php echo $this->Html->link('Background Incidents', array('controller' => '#', 'action' => '/'));?>
+			- Link is dead	
+		</li>
 	</ul><br />
 	
 	<b>Contact</b>
 	<ul>
 		<li>
 		<?php echo $this->Html->link('Contact Us', array('controller' => 'contactUs', 'action' => 'contact'));?>	
+		</li>
+	</ul><br />
+	
+		<b>What can you do now with the HIPAA Secure Now! COmpliance Portal</b> - static page TODO
+	<ul>
+		<li>
+		<?php echo $this->Html->link('What you can do now!', array('controller' => '#', 'action' => '/'));?>	
 		</li>
 	</ul>
 	

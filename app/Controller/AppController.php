@@ -35,8 +35,12 @@ class AppController extends Controller {
     public $components = array(
         'Acl',
         'Auth' => array(
-            'authorize' => array('Controller'),
-            /*array(
+        	'authorize' => array(
+			'Actions' => array('actionPath' => 'controllers/'), 
+			'Controller'
+			)
+            /*'authorize' => array('Controller'),
+            array(
             	//'Actions' => array('actionPath' => 'controllers')
             )*/
         ),
@@ -58,6 +62,11 @@ class AppController extends Controller {
 		//$this->Auth->allow('display');
     }	
 	
+	/*public function beforeRender(){
+		$this->set('groupId', $this->Session->read('Auth.User.group_id'));
+		$this->set('clientId', $this->Session->read('Auth.User.group_id'));
+		$this->set('clientType', $this->Session->read('Auth.User.Client.account_type'));
+	}*/
 
 	
 	

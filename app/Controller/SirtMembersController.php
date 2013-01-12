@@ -6,6 +6,11 @@ App::uses('AppController', 'Controller');
  * @property SirtMember $SirtMember
  */
 class SirtMembersController extends AppController {
+	
+ public function beforeFilter(){
+	parent::beforeFilter();
+ 	$this->Auth->authorize = array('controller');
+ }
 
 /**
  * index method
@@ -39,6 +44,7 @@ class SirtMembersController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+			$this->request->data['Policy']['client_id'] = $this->Auth->User('client_id');
 			$this->SirtMember->create();
 			if ($this->SirtMember->save($this->request->data)) {
 				$this->Session->setFlash(__('The sirt member has been saved'));

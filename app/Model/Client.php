@@ -53,6 +53,32 @@ class Client extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
+		'DocumentAgreement' => array(
+			'className' => 'Document',
+			'foreignKey' => 'client_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'PolicyAgreement' => array(
+			'className' => 'Policy',
+			'foreignKey' => 'client_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'BusinessAssociateAgreement' => array(
 			'className' => 'BusinessAssociateAgreement',
 			'foreignKey' => 'client_id',

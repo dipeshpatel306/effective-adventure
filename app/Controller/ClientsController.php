@@ -7,6 +7,11 @@ App::uses('AppController', 'Controller');
  */
 class ClientsController extends AppController {
 
+ public function beforeFilter(){
+	parent::beforeFilter();
+ 	$this->Auth->authorize = array('controller');
+ }
+
 /**
  * isAuthorized Method
  * Allows Hippa Admin to Add, Edit, Delete Everything

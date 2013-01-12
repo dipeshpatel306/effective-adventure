@@ -7,6 +7,10 @@ App::uses('AppController', 'Controller');
  */
 class BusinessAssociateAgreementsController extends AppController {
 
+ public function beforeFilter(){
+	parent::beforeFilter();
+ 	$this->Auth->authorize = array('controller');
+ }
 /**
  * index method
  *
@@ -39,6 +43,7 @@ class BusinessAssociateAgreementsController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+			$this->request->data['Policy']['client_id'] = $this->Auth->User('client_id');
 			$this->BusinessAssociateAgreement->create();
 			if ($this->BusinessAssociateAgreement->save($this->request->data)) {
 				$this->Session->setFlash(__('The business associate agreement has been saved'));

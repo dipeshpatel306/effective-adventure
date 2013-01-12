@@ -4,6 +4,8 @@
 		<legend><?php echo __('Add Client'); ?></legend>
 	<?php
 		echo $this->Form->input('name');
+		echo $this->Form->input('account_type', array('options' => 
+						array('' => '', 'Subscription' => 'Subscription', 'Meaningful Use' => 'Meaningful Use')));
 		echo $this->Form->input('details');
 	?>
 	</fieldset>

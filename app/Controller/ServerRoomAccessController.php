@@ -7,6 +7,11 @@ App::uses('AppController', 'Controller');
  */
 class ServerRoomAccessController extends AppController {
 
+ public function beforeFilter(){
+	parent::beforeFilter();
+ 	$this->Auth->authorize = array('controller');
+ }
+
 /**
  * index method
  *
@@ -39,6 +44,7 @@ class ServerRoomAccessController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+			$this->request->data['Policy']['client_id'] = $this->Auth->User('client_id');
 			$this->ServerRoomAccess->create();
 			if ($this->ServerRoomAccess->save($this->request->data)) {
 				$this->Session->setFlash(__('The server room access has been saved'));

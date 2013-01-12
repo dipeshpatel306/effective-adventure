@@ -4,14 +4,14 @@
 	<ul>
 		<li><?php echo $this->Html->link('Home', array('controller' => 'dashboard', 'action' => 'index'))?></li>
 		
-		<li><?php echo $this->Html->link('Policies & Procedures', array('controller' => 'policies', 'action' => 'index'));?>
+		<li><?php echo $this->Html->link('Policies & Procedures', array('controller' => '#', 'action' => '/'));?>
 			<ul>
 				<li><?php echo $this->Html->link('HIPAA Policies & Procedures', array('controller' => 'policies', 'action' => 'policies_and_procedures')); ?></li>
 				<li><?php echo $this->Html->link('Other Policies & Procedures', array('controller' => 'policies', 'action' => 'other_policies_and_procedures')); ?></li>
 			</ul>
 		</li>
 		
-		<li><?php echo $this->Html->link('Contracts & Documents', array('controller' => 'documents', 'action' => 'index'));?>
+		<li><?php echo $this->Html->link('Contracts & Documents', array('controller' => '#', 'action' => '/'));?>
 			<ul>
 				<li><?php echo $this->Html->link('Risk Assessment Documents', array('controller' => 'documents', 'action' => 'risk_assessment_documents')); ?></li>				
 				<li><?php echo $this->Html->link('Business Associate Agreements', array('controller' => 'business_associate_agreements', 'action' => 'index')); ?></li>
@@ -20,7 +20,7 @@
 			</ul>
 		</li>		
 
-		<li><?php echo $this->Html->link('Track & Document', array('controller' => '/', 'action' => ''));?>
+		<li><?php echo $this->Html->link('Track & Document', array('controller' => '#', 'action' => '/'));?>
 			<ul>
 				<li><?php echo $this->Html->link('Security Incidents', array('controller' => 'security_incidents', 'action' => 'index')); ?></li>
 				<li><?php echo $this->Html->link('Server Room Access', array('controller' => 'server_room_access', 'action' => 'index')); ?></li>

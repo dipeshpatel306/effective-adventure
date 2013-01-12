@@ -7,6 +7,11 @@ App::uses('AppController', 'Controller');
  */
 class DashboardController extends AppController {
 
+ public function beforeFilter(){
+	parent::beforeFilter();
+ 	$this->Auth->authorize = array('controller');
+ }
+
 /**
  * isAuthorized Method
  * Allows Hippa access to dashboard
