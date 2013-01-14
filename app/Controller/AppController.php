@@ -36,9 +36,10 @@ class AppController extends Controller {
         'Acl',
         'Auth' => array(
         	'authorize' => array(
-			'Actions' => array('actionPath' => 'controllers/'), 
+			'Actions' => array('actionPath' => 'controllers/'),
 			'Controller'
-			)
+			),
+
             /*'authorize' => array('Controller'),
             array(
             	//'Actions' => array('actionPath' => 'controllers')
@@ -53,21 +54,22 @@ class AppController extends Controller {
     	// Login information
     	$this->set('logged_in', $this->Auth->loggedIn());
 		$this->set('current_user', $this->Auth->user());
-		
+
         //Configure AuthComponent
-		//$this->Auth->authorize = array('controller');
+		$this->Auth->authorize = array('controller');
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
+		$this->Auth->loginRedirect = array('controller' => 'Dashboard', 'action' => 'index');
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
-        $this->Auth->loginRedirect = array('controller' => 'Dashboard', 'action' => 'index');
 		//$this->Auth->allow('display');
     }	
 	
-	/*public function beforeRender(){
-		$this->set('groupId', $this->Session->read('Auth.User.group_id'));
-		$this->set('clientId', $this->Session->read('Auth.User.group_id'));
-		$this->set('clientType', $this->Session->read('Auth.User.Client.account_type'));
-	}*/
-
-	
-	
+	public function isAuthorized($user){
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		if (isset($group) && $group == 1){ // is admin allow all
+ 			return true;
+ 		}
+		$this->Session->setFlash('You are not authorized to view that!');
+		$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+		return false;
+	}
 }

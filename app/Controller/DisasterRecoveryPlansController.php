@@ -1,0 +1,187 @@
+<?php
+App::uses('AppController', 'Controller');
+/**
+ * DisasterRecoveryPlans Controller
+ *
+ * @property DisasterRecoveryPlan $DisasterRecoveryPlan
+ */
+class DisasterRecoveryPlansController extends AppController {
+
+ public function beforeFilter(){
+	parent::beforeFilter();
+ }
+
+/**
+ * isAuthorized Method
+ * Allows Hippa Admin to Add, Edit, Delete Everything
+ * Client Managers & MU MAnagers can only Add Edit Delete to their own group
+ * Users cannot see
+ * @return void
+ */
+ 	public function isAuthorized($user){
+ 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+		$clientId = $this->Session->read('Auth.User.Client.account_type');
+		
+		if($group == 2){
+			if($clientId == 'Meaningful Use'){
+				$this->Session->setFlash('You are not authorized to view that!');
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+				return false;
+			}
+			if(in_array($this->action, array('index', 'view','add'))){  // Allow Managers to Add 
+				return true;
+			}
+				
+			if(in_array($this->action, array('edit', 'delete'))){ // Allow Managers to Edit, delete their own
+				$id = $this->request->params['pass'][0];
+				if($this->DisasterRecoveryPlan->isOwnedBy($id, $client)){
+					return true;
+				}
+			}
+		}
+		
+		if($group == 3){
+				$this->Session->setFlash('You are not authorized to view that!');
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+				return false;
+		}
+
+		return parent::isAuthorized($user);
+ 	}
+
+/**
+ * index method
+ *
+ * @return void
+ */
+ 
+ 	public function index() {
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+
+		if($group == 1){
+			$this->DisasterRecoveryPlan->recursive = 0;
+			$this->paginate = array('order' => array('DisasterRecoveryPlan.client_id' => 'ASC'));			
+			$this->set('disasterRecoveryPlans', $this->paginate());			
+		}elseif($group == 2) {
+			$this->paginate = array(
+				'conditions' => array('DisasterRecoveryPlan.client_id' => $client),
+				'order' => array('DisasterRecoveryPlan.name' => 'ASC')
+			);
+			$this->set('disasterRecoveryPlans', $this->paginate());
+		} else {
+			$this->Session->setFlash('You are not authorized to view that!');
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+		}
+	}
+
+
+/**
+ * view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function view($id = null) {
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+		
+		$this->DisasterRecoveryPlan->id = $id;
+		if (!$this->DisasterRecoveryPlan->exists()) {
+			throw new NotFoundException(__('Invalid Disaster Recovery Plan'));
+		}
+
+		if($group == 1){
+			$this->set('disasterRecoveryPlan', $this->DisasterRecoveryPlan->read(null, $id));
+		} elseif($group == 2){
+				$is_authorized = $this->DisasterRecoveryPlan->find('first', array(
+				'conditions' => array(
+					'DisasterRecoveryPlan.id' => $id,
+					'AND' => array('DisasterRecoveryPlan.client_id' => $client)
+				)
+			));
+			
+			if($is_authorized){
+				$this->set('disasterRecoveryPlan', $this->DisasterRecoveryPlan->read(null, $id));
+			} else { // Else Banned!
+				$this->Session->setFlash('You are not authorized to view that!');
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+			} 
+		} else { 
+			$this->Session->setFlash('You are not authorized to view that!');
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+		}
+		
+	}
+
+/**
+ * add method
+ *
+ * @return void
+ */
+	public function add() {
+		if ($this->request->is('post')) {
+			$this->DisasterRecoveryPlan->create();
+			if ($this->DisasterRecoveryPlan->save($this->request->data)) {
+				$this->Session->setFlash(__('The disaster recovery plan has been saved'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The disaster recovery plan could not be saved. Please, try again.'));
+			}
+		}
+		$clients = $this->DisasterRecoveryPlan->Client->find('list');
+		$this->set(compact('clients'));
+	}
+
+/**
+ * edit method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function edit($id = null) {
+		$this->DisasterRecoveryPlan->id = $id;
+		if (!$this->DisasterRecoveryPlan->exists()) {
+			throw new NotFoundException(__('Invalid disaster recovery plan'));
+		}
+		if ($this->request->is('post') || $this->request->is('put')) {
+			if ($this->DisasterRecoveryPlan->save($this->request->data)) {
+				$this->Session->setFlash(__('The disaster recovery plan has been saved'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The disaster recovery plan could not be saved. Please, try again.'));
+			}
+		} else {
+			$this->request->data = $this->DisasterRecoveryPlan->read(null, $id);
+		}
+		$clients = $this->DisasterRecoveryPlan->Client->find('list');
+		$this->set(compact('clients'));
+	}
+
+/**
+ * delete method
+ *
+ * @throws MethodNotAllowedException
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function delete($id = null) {
+		if (!$this->request->is('post')) {
+			throw new MethodNotAllowedException();
+		}
+		$this->DisasterRecoveryPlan->id = $id;
+		if (!$this->DisasterRecoveryPlan->exists()) {
+			throw new NotFoundException(__('Invalid disaster recovery plan'));
+		}
+		if ($this->DisasterRecoveryPlan->delete()) {
+			$this->Session->setFlash(__('Disaster recovery plan deleted'));
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->Session->setFlash(__('Disaster recovery plan was not deleted'));
+		$this->redirect(array('action' => 'index'));
+	}
+}

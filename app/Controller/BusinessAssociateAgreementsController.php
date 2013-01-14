@@ -9,16 +9,65 @@ class BusinessAssociateAgreementsController extends AppController {
 
  public function beforeFilter(){
 	parent::beforeFilter();
- 	$this->Auth->authorize = array('controller');
  }
+ 
+/**
+ * isAuthorized Method
+ * Allows Hippa Admin to Add, Edit, Delete Everything
+ * Client Managers & MU MAnagers can only Add Edit Delete to their own group
+ * Users cannot see
+ * @return void
+ */
+ 	public function isAuthorized($user){
+ 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+		$clientId = $this->Session->read('Auth.User.Client.account_type');
+		
+		if($group == 2){
+			if(in_array($this->action, array('index', 'view','add'))){  // Allow Managers to Add 
+				return true;
+			}
+				
+			if(in_array($this->action, array('edit', 'delete'))){ // Allow Managers to Edit, delete their own
+				$id = $this->request->params['pass'][0];
+				if($this->BusinessAssociateAgreement->isOwnedBy($id, $client)){
+					return true;
+				}
+			}
+		}
+		
+		if($group == 3){
+				$this->Session->setFlash('You are not authorized to view that!');
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+				return false;
+		}
+
+		return parent::isAuthorized($user);
+ 	}
+
 /**
  * index method
  *
  * @return void
  */
 	public function index() {
-		$this->BusinessAssociateAgreement->recursive = 0;
-		$this->set('businessAssociateAgreements', $this->paginate());
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+ 
+		if($group == 1){
+			$this->BusinessAssociateAgreement->recursive = 0;
+			$this->paginate = array('order' => array('BusinessAssociateAgreement.client_id' => 'ASC'));			
+			$this->set('businessAssociateAgreements', $this->paginate());			
+		}elseif($group == 2) {
+			$this->paginate = array(
+				'conditions' => array('BusinessAssociateAgreement.client_id' => $client),
+				'order' => array('BusinessAssociateAgreement.name' => 'ASC')
+			);
+			$this->set('businessAssociateAgreements', $this->paginate());
+		} else {
+			$this->Session->setFlash('You are not authorized to view that!');
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+		}
 	}
 
 /**
@@ -29,12 +78,37 @@ class BusinessAssociateAgreementsController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+		
 		$this->BusinessAssociateAgreement->id = $id;
 		if (!$this->BusinessAssociateAgreement->exists()) {
-			throw new NotFoundException(__('Invalid business associate agreement'));
+			throw new NotFoundException(__('Invalid Business Associate Agreement'));
 		}
-		$this->set('businessAssociateAgreement', $this->BusinessAssociateAgreement->read(null, $id));
+
+		if($group == 1){
+			$this->set('businessAssociateAgreement', $this->BusinessAssociateAgreement->read(null, $id));
+		} elseif($group == 2){
+				$is_authorized = $this->BusinessAssociateAgreement->find('first', array(
+				'conditions' => array(
+					'BusinessAssociateAgreement.id' => $id,
+					'AND' => array('BusinessAssociateAgreement.client_id' => $client)
+				)
+			));
+			
+			if($is_authorized){
+				$this->set('businessAssociateAgreement', $this->BusinessAssociateAgreement->read(null, $id));
+			} else { // Else Banned!
+				$this->Session->setFlash('You are not authorized to view that!');
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+			} 
+		} else { 
+			$this->Session->setFlash('You are not authorized to view that!');
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+		}
+		
 	}
+
 
 /**
  * add method
@@ -43,7 +117,7 @@ class BusinessAssociateAgreementsController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->request->data['Policy']['client_id'] = $this->Auth->User('client_id');
+			$this->request->data['BusinessAssociateAgreement']['client_id'] = $this->Auth->User('client_id');
 			$this->BusinessAssociateAgreement->create();
 			if ($this->BusinessAssociateAgreement->save($this->request->data)) {
 				$this->Session->setFlash(__('The business associate agreement has been saved'));

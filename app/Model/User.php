@@ -145,7 +145,7 @@ class User extends AppModel {
  * Check Client Owner
  */	
 	public function isOwnedBy($id, $user){
-		return $this->field('id', array($id, 'client_id' => $user)) === $userId;
+		return $this->field('id', array($id, 'client_id' => $user)) === $id;
 	}
 
 /**

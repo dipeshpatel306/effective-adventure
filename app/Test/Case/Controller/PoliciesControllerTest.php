@@ -13,7 +13,18 @@ class PoliciesControllerTest extends ControllerTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.policy'
+		'app.policy',
+		'app.client',
+		'app.user',
+		'app.group',
+		'app.document',
+		'app.business_associate_agreement',
+		'app.security_incident',
+		'app.server_room_access',
+		'app.ephi_recieved',
+		'app.ephi_removed',
+		'app.sirt_team',
+		'app.sirt_member'
 	);
 
 /**
@@ -54,46 +65,6 @@ class PoliciesControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testDelete() {
-	}
-
-/**
- * testAdminIndex method
- *
- * @return void
- */
-	public function testAdminIndex() {
-	}
-
-/**
- * testAdminView method
- *
- * @return void
- */
-	public function testAdminView() {
-	}
-
-/**
- * testAdminAdd method
- *
- * @return void
- */
-	public function testAdminAdd() {
-	}
-
-/**
- * testAdminEdit method
- *
- * @return void
- */
-	public function testAdminEdit() {
-	}
-
-/**
- * testAdminDelete method
- *
- * @return void
- */
-	public function testAdminDelete() {
 	}
 
 }

@@ -6,17 +6,17 @@
 		
 		<li><?php echo $this->Html->link('Policies & Procedures', array('controller' => '#', 'action' => '/'));?>
 			<ul>
-				<li><?php echo $this->Html->link('HIPAA Policies & Procedures', array('controller' => 'policies', 'action' => 'policies_and_procedures')); ?></li>
-				<li><?php echo $this->Html->link('Other Policies & Procedures', array('controller' => 'policies', 'action' => 'other_policies_and_procedures')); ?></li>
+				<li><?php echo $this->Html->link('HIPAA Policies & Procedures', array('controller' => 'policies', 'action' => 'index')); ?></li>
+				<li><?php echo $this->Html->link('Other Policies & Procedures', array('controller' => 'other_policies', 'action' => 'index')); ?></li>
 			</ul>
 		</li>
 		
 		<li><?php echo $this->Html->link('Contracts & Documents', array('controller' => '#', 'action' => '/'));?>
 			<ul>
-				<li><?php echo $this->Html->link('Risk Assessment Documents', array('controller' => 'documents', 'action' => 'risk_assessment_documents')); ?></li>				
+				<li><?php echo $this->Html->link('Risk Assessment Documents', array('controller' => 'risk_assessment_documents', 'action' => 'index')); ?></li>				
 				<li><?php echo $this->Html->link('Business Associate Agreements', array('controller' => 'business_associate_agreements', 'action' => 'index')); ?></li>
-				<li><?php echo $this->Html->link('Disaster Recovery Plans', array('controller' => 'documents', 'action' => 'disaster_recovery_plans')); ?></li>
-				<li><?php echo $this->Html->link('Other Contracts & Documents', array('controller' => 'documents', 'action' => 'other_contracts_and_documents')); ?></li>
+				<li><?php echo $this->Html->link('Disaster Recovery Plans', array('controller' => 'disaster_recovery_plans', 'action' => 'index')); ?></li>
+				<li><?php echo $this->Html->link('Other Contracts & Documents', array('controller' => 'other_contracts_and_documents', 'action' => 'index')); ?></li>
 			</ul>
 		</li>		
 

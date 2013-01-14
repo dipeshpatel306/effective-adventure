@@ -9,7 +9,6 @@ class ClientsController extends AppController {
 
  public function beforeFilter(){
 	parent::beforeFilter();
- 	$this->Auth->authorize = array('controller');
  }
 
 /**
@@ -21,18 +20,8 @@ class ClientsController extends AppController {
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 
- 		if ($group == 1){ // is admin allow all
- 			return true;
- 		}
-		
-		if ($group == 2){ // Deny Managers and Users
+		if ($group == 2 || $group == 3){ // Deny Managers and Users
 
-				$this->Session->setFlash('You are not authorized to view that!');
-				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
-				return false;
-		}
-		
-		if($group == 3){ // Deny users 
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 				return false;

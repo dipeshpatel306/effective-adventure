@@ -9,18 +9,72 @@ class EphiRemovedController extends AppController {
 
  public function beforeFilter(){
 	parent::beforeFilter();
- 	$this->Auth->authorize = array('controller');
  }
 
+/**
+ * isAuthorized Method
+ * Allows Hippa Admin to Add, Edit, Delete Everything
+ * Client Managers & MU MAnagers can only Add Edit Delete to their own group
+ * Users cannot see
+ * @return void
+ */
+ 	public function isAuthorized($user){
+ 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+		$clientId = $this->Session->read('Auth.User.Client.account_type');
+		
+		if($group == 2){
+			if($clientId == 'Meaningful Use'){
+				$this->Session->setFlash('You are not authorized to view that!');
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+				return false;				
+			}
+			if(in_array($this->action, array('index', 'view','add'))){  // Allow Managers to Add 
+				return true;
+			}
+				
+			if(in_array($this->action, array('edit', 'delete'))){ // Allow Managers to Edit, delete their own
+				$id = $this->request->params['pass'][0];
+				if($this->EphiRemoved->isOwnedBy($id, $client)){
+					return true;
+				}
+			}
+		}
+		
+		if($group == 3){
+				$this->Session->setFlash('You are not authorized to view that!');
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+				return false;
+		}
+
+		return parent::isAuthorized($user);
+ 	}
+	
 /**
  * index method
  *
  * @return void
  */
 	public function index() {
-		$this->EphiRemoved->recursive = 0;
-		$this->set('ephiRemoved', $this->paginate());
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+
+		if($group == 1){
+			$this->EphiRemoved->recursive = 0;
+			$this->paginate = array('order' => array('EphiRemoved.client_id' => 'ASC'));			
+			$this->set('ephiRemoved', $this->paginate());			
+		}elseif($group == 2) {
+			$this->paginate = array(
+				'conditions' => array('EphiRemoved.client_id' => $client),
+				'order' => array('EphiRemoved.name' => 'ASC')
+			);
+			$this->set('ephiRemoved', $this->paginate());
+		} else {
+			$this->Session->setFlash('You are not authorized to view that!');
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+		}
 	}
+
 
 /**
  * view method
@@ -30,12 +84,37 @@ class EphiRemovedController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+		
 		$this->EphiRemoved->id = $id;
 		if (!$this->EphiRemoved->exists()) {
-			throw new NotFoundException(__('Invalid ephi removed'));
+			throw new NotFoundException(__('Invalid Ephi Removed'));
 		}
-		$this->set('ephiRemoved', $this->EphiRemoved->read(null, $id));
+
+		if($group == 1){
+			$this->set('ephiRemoved', $this->EphiRemoved->read(null, $id));
+		} elseif($group == 2){
+				$is_authorized = $this->EphiRemoved->find('first', array(
+				'conditions' => array(
+					'EphiRemoved.id' => $id,
+					'AND' => array('EphiRemoved.client_id' => $client)
+				)
+			));
+			
+			if($is_authorized){
+				$this->set('ephiRemoved', $this->EphiRemoved->read(null, $id));
+			} else { // Else Banned!
+				$this->Session->setFlash('You are not authorized to view that!');
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+			} 
+		} else { 
+			$this->Session->setFlash('You are not authorized to view that!');
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+		}
+		
 	}
+
 
 /**
  * add method

@@ -13,7 +13,18 @@ class PolicyTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.policy'
+		'app.policy',
+		'app.client',
+		'app.user',
+		'app.group',
+		'app.document',
+		'app.business_associate_agreement',
+		'app.security_incident',
+		'app.server_room_access',
+		'app.ephi_recieved',
+		'app.ephi_removed',
+		'app.sirt_team',
+		'app.sirt_member'
 	);
 
 /**

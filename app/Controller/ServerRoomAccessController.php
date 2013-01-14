@@ -9,17 +9,69 @@ class ServerRoomAccessController extends AppController {
 
  public function beforeFilter(){
 	parent::beforeFilter();
- 	$this->Auth->authorize = array('controller');
  }
 
+/**
+ * isAuthorized Method
+ * Allows Hippa Admin to Add, Edit, Delete Everything
+ * Client Managers & MU MAnagers can only Add Edit Delete to their own group
+ * Users cannot see
+ * @return void
+ */
+ 	public function isAuthorized($user){
+ 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+		$clientId = $this->Session->read('Auth.User.Client.account_type');
+		
+		if($group == 2){
+			if($clientId == 'Meaningful Use'){
+				$this->Session->setFlash('You are not authorized to view that!');
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+				return false;
+			} 
+			if(in_array($this->action, array('index', 'view','add'))){  // Allow Managers to Add 
+				return true;
+			}
+				
+			if(in_array($this->action, array('edit', 'delete'))){ // Allow Managers to Edit, delete their own
+				$id = $this->request->params['pass'][0];
+				if($this->ServerRoomAccess->isOwnedBy($id, $client)){
+					return true;
+				}
+			}
+		}
+		
+		if($group == 3){
+				$this->Session->setFlash('You are not authorized to view that!');
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+				return false;
+		}		
+		return parent::isAuthorized($user);
+ 	}
 /**
  * index method
  *
  * @return void
  */
+
 	public function index() {
-		$this->ServerRoomAccess->recursive = 0;
-		$this->set('serverRoomAccess', $this->paginate());
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+
+		if($group == 1){
+			$this->ServerRoomAccess->recursive = 0;
+			$this->paginate = array('order' => array('ServerRoomAccess.client_id' => 'ASC'));			
+			$this->set('serverRoomAccess', $this->paginate());			
+		}elseif($group == 2 ) {
+			$this->paginate = array(
+				'conditions' => array('ServerRoomAccess.client_id' => $client),
+				'order' => array('ServerRoomAccess.name' => 'ASC')
+			);
+			$this->set('serverRoomAccess', $this->paginate());
+		} else {
+			$this->Session->setFlash('You are not authorized to view that!');
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+		}
 	}
 
 /**
@@ -30,12 +82,37 @@ class ServerRoomAccessController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+		
 		$this->ServerRoomAccess->id = $id;
 		if (!$this->ServerRoomAccess->exists()) {
-			throw new NotFoundException(__('Invalid server room access'));
+			throw new NotFoundException(__('Invalid Server Room Access'));
 		}
-		$this->set('serverRoomAccess', $this->ServerRoomAccess->read(null, $id));
+
+		if($group == 1){
+			$this->set('serverRoomAccess', $this->ServerRoomAccess->read(null, $id));
+		} elseif($group == 2){
+				$is_authorized = $this->ServerRoomAccess->find('first', array(
+				'conditions' => array(
+					'ServerRoomAccess.id' => $id,
+					'AND' => array('ServerRoomAccess.client_id' => $client)
+				)
+			));
+			
+			if($is_authorized){
+				$this->set('serverRoomAccess', $this->ServerRoomAccess->read(null, $id));
+			} else { // Else Banned!
+				$this->Session->setFlash('You are not authorized to view that!');
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+			} 
+		} else { 
+			$this->Session->setFlash('You are not authorized to view that!');
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+		}
+		
 	}
+
 
 /**
  * add method

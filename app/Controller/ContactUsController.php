@@ -10,7 +10,6 @@ class ContactUsController extends AppController {
 
  public function beforeFilter(){
 	parent::beforeFilter();
- 	$this->Auth->authorize = array('controller');
  }
 
 /**
@@ -22,39 +21,13 @@ class ContactUsController extends AppController {
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
-
- 		if ($group == 1){ // is admin allow all
- 			return true;
- 		}
 		
-		if ($group == 2){ //managers to send message
+		if ($group ==  2 || $group == 3){ //managers to send message
 			
 			if(in_array($this->action, array('contact'))){  // allow contact form
 					return true;
-			}
-			
-			if(in_array($this->action, array('add', 'edit', 'delete', 'index', 'view'))){
-							
-				$this->Session->setFlash('You are not authorized to view that!');  // Deny all other cases
-				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
-				return false;
-			}
-			
+			} 
 		}
-		
-		if($group == 3){ // Deny users from viewing
-			if(in_array($this->action, array('contact'))){  // allow contact form
-				return true;
-			}
-			
-			if(in_array($this->action, array('add', 'edit', 'delete', 'index', 'view'))){
-											
-				$this->Session->setFlash('You are not authorized to view that!');  // Deny all other cases
-				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
-				return false;
-			}
-		}
-		
 		return parent::isAuthorized($user);
  	}
 

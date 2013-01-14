@@ -10,10 +10,9 @@ class UsersController extends AppController {
 	public function beforeFilter() {
 	    parent::beforeFilter();
     	$this->Auth->allow('login', 'logout');		
-		 $this->Auth->authorize = array('controller');
 	    //$this->Auth->allow('*');
 	    // Runs ACL Permission Setup. Disable when not in use
-	    //$this->Auth->allow('initDB'); 
+	    $this->Auth->allow('initDB'); 
 	}
 
 /**
@@ -32,14 +31,13 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Dashboard');
 		$this->Acl->allow($group, 'controllers/Users');
 		
-		$this->Acl->allow($group, 'controllers/Policies/policies_and_procedures');
-		$this->Acl->allow($group, 'controllers/Policies/other_policies_and_procedures');
-		$this->Acl->allow($group, 'controllers/Policies/other_policies_and_procedures');
+		$this->Acl->allow($group, 'controllers/Policies');
+		$this->Acl->allow($group, 'controllers/OtherPolicies');
 		
-		$this->Acl->allow($group, 'controllers/Documents/risk_assessment_documents');
+		$this->Acl->allow($group, 'controllers/RiskAssessmentDocuments');
 		$this->Acl->allow($group, 'controllers/BusinessAssociateAgreements');
-		$this->Acl->allow($group, 'controllers/Documents/disaster_recovery_plans');
-		$this->Acl->allow($group, 'controllers/Documents/other_contracts_and_documents');
+		$this->Acl->allow($group, 'controllers/DisasterRecoveryPlans');
+		$this->Acl->allow($group, 'controllers/OtherContractsAndDocuments');
 		
 		$this->Acl->allow($group, 'controllers/SecurityIncidents');
 		$this->Acl->allow($group, 'controllers/ServerRoomAccess');
@@ -57,13 +55,12 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Dashboard');
 		
 		$this->Acl->allow($group, 'controllers/Policies');
-		$this->Acl->allow($group, 'controllers/Policies/policies_and_procedures');
-		$this->Acl->allow($group, 'controllers/Policies/other_policies_and_procedures');
+		$this->Acl->allow($group, 'controllers/OtherPolicies');
 		
-		$this->Acl->allow($group, 'controllers/Documents/risk_assessment_documents');
+		$this->Acl->allow($group, 'controllers/RiskAssessmentDocuments');
 		$this->Acl->allow($group, 'controllers/BusinessAssociateAgreements');
-		$this->Acl->allow($group, 'controllers/Documents/disaster_recovery_plans');
-		$this->Acl->allow($group, 'controllers/Documents/other_contracts_and_documents');
+		$this->Acl->allow($group, 'controllers/DisasterRecoveryPlans');
+		$this->Acl->allow($group, 'controllers/OtherContractsAndDocuments');
 		
 		$this->Acl->allow($group, 'controllers/SecurityIncidents');
 		$this->Acl->allow($group, 'controllers/ServerRoomAccess');
@@ -116,47 +113,24 @@ class UsersController extends AppController {
  */
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
-
- 		if ($group == 1){ // is admin allow all
- 			return true;
- 		}
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		
-		if ($group == 2){ //allow managers to add, edit, delete their own data
-
-			if(!empty($this->request->params['pass'][0])){ // see if parameter is passed
+		if($group == 2){ // Allow Managers to add/edit/delete their own data
+			
+			if(in_array($this->action, array('index', 'view', 'add'))){  // Allow Managers to Add 
+				return true;
+			}
+			
+			if(in_array($this->action, array('edit', 'delete'))){ // Allow Managers to Edit, delete their own
 				$id = $this->request->params['pass'][0];
-			}
-			
-			if(in_array($this->action, array('index', 'view', 'add'))){  // allow managers to index and view
+				if($this->User->isOwnedBy($id, $client)){
 					return true;
-			}
-			
-			if(in_array($this->action, array('edit', 'delete'))){
-				if(empty($id)){ // If no id
-					$this->Session->setFlash('You are not authorized to view that!');
-					$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
-					return false;
 				}
-				
-				if($this->User->isOwnedBy($id, $client)){ // Check if allowed
-					return true;
-				} else { //deny if not
-					$this->Session->setFlash('You are not authorized to view that!');
-					$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
-					return false;
-				}
-				
-				$this->Session->setFlash('You are not authorized to view that!');  // Deny all other cases
-				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
-				return false;
-			}
+			}	
 		}
 		
-		if($group == 3){ // Deny users from viewing
-				$this->Session->setFlash('You are not authorized to view that!');
-				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
-				return false;
+		if($group == 3){ // Deny Users
+			return false;
 		}
 		
 		return parent::isAuthorized($user);
@@ -171,7 +145,7 @@ class UsersController extends AppController {
 	public function index() {
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
-
+		
 		if($group == 1){ // If Hipaa Admin then show all users 
 			$this->User->recursive = 0;
 			$this->paginate = array('order' => array('User.client_id' => 'ASC'));

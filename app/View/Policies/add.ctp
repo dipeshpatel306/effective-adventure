@@ -1,16 +1,12 @@
-<?php
-	$policy_types = array('Policies & Procedures' => 'Policies & Procedures', 'Other Policies & Procedures' => 'Other Policies & Procedures');
-?>
-
 <div class="policies form">
 <?php echo $this->Form->create('Policy', array('type' => 'file')); ?>
 	<fieldset>
 		<legend><?php echo __('Add Policies & Procedures'); ?></legend>
 	<?php
-		echo $this->Form->input('name', array('label' => 'Policy Name'));
-		echo $this->Form->input('policy_type', array('options' => $policy_types));		
+		echo $this->Form->input('name');
 		echo $this->Form->input('description');
 		echo $this->Form->input('details', array('id' => 'textEdit'));
+		echo $this->Form->input('client_id');
 		echo $this->Form->input('attachment', array('type' => 'file'));
 		echo $this->Form->input('media');
 	?>
@@ -22,5 +18,7 @@
 	<ul>
 
 		<li><?php echo $this->Html->link(__('List Policies'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

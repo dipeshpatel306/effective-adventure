@@ -130,4 +130,12 @@ class BusinessAssociateAgreement extends AppModel {
 			)
 		)
 	);
+
+/**
+ * Check Client Owner
+ */	
+	public function isOwnedBy($id, $user){
+		return $this->field('id', array($id, 'client_id' => $user)) === $id;
+	}
+
 }

@@ -9,7 +9,6 @@ class DashboardController extends AppController {
 
  public function beforeFilter(){
 	parent::beforeFilter();
- 	$this->Auth->authorize = array('controller');
  }
 
 /**
@@ -20,16 +19,8 @@ class DashboardController extends AppController {
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 
- 		if ($group == 1){ // is admin allow all
- 			return true;
- 		}
-		
-		if ($group == 2){ 
+		if ($group == 2  || $group == 3){ // Allow managers and Users to view dashboard
 			return true;
-		}
-		
-		if($group == 3){ 
- 			return true;
 		}
 		
 		return parent::isAuthorized($user);

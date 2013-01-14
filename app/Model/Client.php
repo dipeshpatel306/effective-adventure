@@ -53,19 +53,6 @@ class Client extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'DocumentAgreement' => array(
-			'className' => 'Document',
-			'foreignKey' => 'client_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
 		'PolicyAgreement' => array(
 			'className' => 'Policy',
 			'foreignKey' => 'client_id',
@@ -79,8 +66,60 @@ class Client extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
+		'OtherPolicyAgreement' => array(
+			'className' => 'OtherPolicy',
+			'foreignKey' => 'client_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'RiskAssessmentDocumentAgreement' => array(
+			'className' => 'RiskAssessmentDocument',
+			'foreignKey' => 'client_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'BusinessAssociateAgreement' => array(
 			'className' => 'BusinessAssociateAgreement',
+			'foreignKey' => 'client_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'DisasterRecoveryPlan' => array(
+			'className' => 'DisasterRecoveryPlan',
+			'foreignKey' => 'client_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'OtherContractsAndDocument' => array(
+			'className' => 'OtherContractsAndDocument',
 			'foreignKey' => 'client_id',
 			'dependent' => false,
 			'conditions' => '',

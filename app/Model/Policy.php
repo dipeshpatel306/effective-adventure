@@ -3,6 +3,7 @@ App::uses('AppModel', 'Model');
 /**
  * Policy Model
  *
+ * @property Client $Client
  */
 class Policy extends AppModel {
 
@@ -12,7 +13,6 @@ class Policy extends AppModel {
  * @var string
  */
 	public $displayField = 'name';
-	
 
 /**
  * Validation rules
@@ -30,9 +30,9 @@ class Policy extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'policy_type' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
+		'client_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -41,7 +41,7 @@ class Policy extends AppModel {
 			),
 		),
 	);
-
+	
 /*
  * Upload behavior
  * 
@@ -73,7 +73,7 @@ class Policy extends AppModel {
 			)
 		)
 	);
-	
+
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
@@ -95,7 +95,6 @@ class Policy extends AppModel {
  * Check Client Owner
  */	
 	public function isOwnedBy($id, $user){
-		return $this->field('id', array($id, 'client_id' => $user)) === $userId;
-	}
-
+		return $this->field('id', array($id, 'client_id' => $user)) === $id;
+	} 
 }

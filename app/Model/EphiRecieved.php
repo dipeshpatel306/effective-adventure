@@ -113,4 +113,10 @@ class EphiRecieved extends AppModel {
 			'order' => ''
 		)
 	);
+/**
+ * Check Client Owner
+ */	
+	public function isOwnedBy($id, $user){
+		return $this->field('id', array($id, 'client_id' => $user)) === $id;
+	}
 }
