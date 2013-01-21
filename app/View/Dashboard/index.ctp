@@ -16,10 +16,10 @@
 
 	<?php echo $this->Html->link('Contracts & Documents', array('controller' => '#'));?>
 	<ul>
-		<li><?php echo $this->Html->link('Risk Assessment Documents', array('controller' => 'risk_assesssment_documents', 'action' => 'index')); ?></li>				
+		<li><?php echo $this->Html->link('Risk Assessment Documents', array('controller' => 'risk_assessment_documents', 'action' => 'index')); ?></li>				
 		<li><?php echo $this->Html->link('Business Associate Agreements', array('controller' => 'business_associate_agreements', 'action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link('Disaster Recovery Plans', array('controller' => 'disaster_recovery_plans', 'action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link('Other Contracts & Documents', array('controller' => 'other_documents_and_contracts', 'action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link('Other Contracts & Documents', array('controller' => 'other_contracts_and_documents', 'action' => 'index')); ?></li>
 	</ul>
 	<br />
 
