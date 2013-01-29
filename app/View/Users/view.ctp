@@ -33,12 +33,12 @@
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
-			<?php echo h($user['User']['created']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $user['User']['created']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Modified'); ?></dt>
 		<dd>
-			<?php echo h($user['User']['modified']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $user['User']['modified']); ?>
 			&nbsp;
 		</dd>
 	</dl>

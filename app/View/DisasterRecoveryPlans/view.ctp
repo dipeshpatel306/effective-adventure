@@ -28,12 +28,12 @@
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
-			<?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['created']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $disasterRecoveryPlan['DisasterRecoveryPlan']['created']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Modified'); ?></dt>
 		<dd>
-			<?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['modified']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $disasterRecoveryPlan['DisasterRecoveryPlan']['modified']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Attachment'); ?></dt>

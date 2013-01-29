@@ -24,7 +24,7 @@
 		<td><?php echo h($contactUs['ContactUs']['last_name']); ?>&nbsp;</td>
 		<td><?php echo h($contactUs['ContactUs']['company']); ?>&nbsp;</td>
 		<td><?php echo h($contactUs['ContactUs']['phone']); ?>&nbsp;</td>
-		<td><?php echo h($contactUs['ContactUs']['created']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $contactUs['ContactUs']['created']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $contactUs['ContactUs']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $contactUs['ContactUs']['id'])); ?>

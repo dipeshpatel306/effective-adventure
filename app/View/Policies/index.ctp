@@ -21,8 +21,8 @@
 		<td>
 			<?php echo $this->Html->link($policy['Client']['name'], array('controller' => 'clients', 'action' => 'view', $policy['Client']['id'])); ?>
 		</td>
-		<td><?php echo h($policy['Policy']['created']); ?>&nbsp;</td>
-		<td><?php echo h($policy['Policy']['modified']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $policy['Policy']['created']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $policy['Policy']['modified']); ?>&nbsp;</td>
 		<td><?php echo h($policy['Policy']['attachment']); ?>&nbsp;</td>
 		<td><?php echo h($policy['Policy']['media']); ?>&nbsp;</td>
 		<td class="actions">

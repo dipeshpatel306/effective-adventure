@@ -232,7 +232,16 @@ table{
 
 	background-color: #D2E6EF;
 }
-
+div.box{
+	float: left;
+	border: 1px solid #888888;
+	width: 300px;
+	height: 200px;
+	margin: 8px;
+	padding: 8px;	
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
 /* ###### Cake CSS Overrides ##### */
 h1, h2, h3, h4, h5, fieldset legend{
 	font-family: 'Open Sans', Helvetica, Arial, "Lucida Grande", sans-serif;

@@ -12,9 +12,8 @@ class UsersController extends AppController {
     	$this->Auth->allow('login', 'logout');		
 	    //$this->Auth->allow('*');
 	    // Runs ACL Permission Setup. Disable when not in use
-	    $this->Auth->allow('initDB'); 
+	    //$this->Auth->allow('initDB'); 
 	}
-
 /**
  * Acl Setup Permissions. Comment out when not is use.
  * 
@@ -71,7 +70,6 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/SirtMembers');
 		
 		$this->Acl->allow($group, 'controllers/ContactUs/contact');	
-	    //$this->Acl->allow($group, 'controllers/Modules/edit');
 	    //we add an exit to avoid an ugly "missing views" error message
 	    echo "all done";
 	    exit;
@@ -83,7 +81,15 @@ class UsersController extends AppController {
 	public function login() {
 	    if ($this->request->is('post')) {
 	        if ($this->Auth->login()) {
-	            $this->redirect($this->Auth->redirect());
+	        	
+	        		$dateTime = date('Y-m-d H:i:s'); // Get DateTime
+					
+					$this->User->Client->id = $this->Session->read('Auth.User.client_id');  // Get correct Client
+					$this->User->Client->saveField('last_login', $dateTime);  // Save date into DB
+					$this->Session->write('Auth.User.Client.last_login', $dateTime);  // rewrite session login datetime
+				
+				$this->redirect($this->Auth->redirect());
+
 	        } else {
 	            $this->Session->setFlash('Your username or password was incorrect.');
 	        }

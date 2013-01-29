@@ -8,12 +8,12 @@
 		</dd>
 		<dt><?php echo __('Date Of Incident'); ?></dt>
 		<dd>
-			<?php echo h($securityIncident['SecurityIncident']['date_of_incident']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['date_of_incident']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Discovery Date'); ?></dt>
 		<dd>
-			<?php echo h($securityIncident['SecurityIncident']['discovery_date']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['discovery_date']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Reported By'); ?></dt>
@@ -38,12 +38,12 @@
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
-			<?php echo h($securityIncident['SecurityIncident']['created']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['created']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Modified'); ?></dt>
 		<dd>
-			<?php echo h($securityIncident['SecurityIncident']['modified']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['modified']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Client'); ?></dt>

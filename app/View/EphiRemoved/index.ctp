@@ -16,15 +16,15 @@
 	foreach ($ephiRemoved as $ephiRemoved): ?>
 	<tr>
 		<td><?php echo h($ephiRemoved['EphiRemoved']['id']); ?>&nbsp;</td>
-		<td><?php echo h($ephiRemoved['EphiRemoved']['date']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemoved']['date']); ?>&nbsp;</td>
 		<td><?php echo h($ephiRemoved['EphiRemoved']['description']); ?>&nbsp;</td>
 		<td><?php echo h($ephiRemoved['EphiRemoved']['removed_by']); ?>&nbsp;</td>
 		<td><?php echo h($ephiRemoved['EphiRemoved']['returned_by']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($ephiRemoved['Client']['name'], array('controller' => 'clients', 'action' => 'view', $ephiRemoved['Client']['id'])); ?>
 		</td>
-		<td><?php echo h($ephiRemoved['EphiRemoved']['created']); ?>&nbsp;</td>
-		<td><?php echo h($ephiRemoved['EphiRemoved']['modified']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemoved']['created']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemoved']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $ephiRemoved['EphiRemoved']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $ephiRemoved['EphiRemoved']['id'])); ?>

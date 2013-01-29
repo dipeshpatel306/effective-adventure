@@ -18,14 +18,14 @@
 	foreach ($securityIncidents as $securityIncident): ?>
 	<tr>
 		<td><?php echo h($securityIncident['SecurityIncident']['id']); ?>&nbsp;</td>
-		<td><?php echo h($securityIncident['SecurityIncident']['date_of_incident']); ?>&nbsp;</td>
-		<td><?php echo h($securityIncident['SecurityIncident']['discovery_date']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['date_of_incident']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['discovery_date']); ?>&nbsp;</td>
 		<td><?php echo h($securityIncident['SecurityIncident']['reported_by']); ?>&nbsp;</td>
 		<td><?php echo h($securityIncident['SecurityIncident']['description_of_incident']); ?>&nbsp;</td>
 		<td><?php echo h($securityIncident['SecurityIncident']['cause_of_incident']); ?>&nbsp;</td>
 		<td><?php echo h($securityIncident['SecurityIncident']['assets_involved']); ?>&nbsp;</td>
-		<td><?php echo h($securityIncident['SecurityIncident']['created']); ?>&nbsp;</td>
-		<td><?php echo h($securityIncident['SecurityIncident']['modified']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['created']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['modified']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($securityIncident['Client']['name'], array('controller' => 'clients', 'action' => 'view', $securityIncident['Client']['id'])); ?>
 		</td>

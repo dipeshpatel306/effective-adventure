@@ -17,16 +17,16 @@
 	foreach ($ephiRecieved as $ephiRecieved): ?>
 	<tr>
 		<td><?php echo h($ephiRecieved['EphiRecieved']['id']); ?>&nbsp;</td>
-		<td><?php echo h($ephiRecieved['EphiRecieved']['date_recieved']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $ephiRecieved['EphiRecieved']['date_recieved']); ?>&nbsp;</td>
 		<td><?php echo h($ephiRecieved['EphiRecieved']['description']); ?>&nbsp;</td>
 		<td><?php echo h($ephiRecieved['EphiRecieved']['patient_name']); ?>&nbsp;</td>
 		<td><?php echo h($ephiRecieved['EphiRecieved']['recieved_by']); ?>&nbsp;</td>
-		<td><?php echo h($ephiRecieved['EphiRecieved']['date_returned']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $ephiRecieved['EphiRecieved']['date_returned']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($ephiRecieved['Client']['name'], array('controller' => 'clients', 'action' => 'view', $ephiRecieved['Client']['id'])); ?>
 		</td>
-		<td><?php echo h($ephiRecieved['EphiRecieved']['created']); ?>&nbsp;</td>
-		<td><?php echo h($ephiRecieved['EphiRecieved']['modified']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $ephiRecieved['EphiRecieved']['created']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $ephiRecieved['EphiRecieved']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $ephiRecieved['EphiRecieved']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $ephiRecieved['EphiRecieved']['id'])); ?>

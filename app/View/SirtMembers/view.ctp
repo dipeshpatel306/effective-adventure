@@ -33,12 +33,12 @@
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
-			<?php echo h($sirtMember['SirtMember']['created']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $sirtMember['SirtMember']['created']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Modified'); ?></dt>
 		<dd>
-			<?php echo h($sirtMember['SirtMember']['modified']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $sirtMember['SirtMember']['modified']); ?>
 			&nbsp;
 		</dd>
 	</dl>

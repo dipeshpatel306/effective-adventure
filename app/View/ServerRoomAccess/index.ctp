@@ -17,7 +17,7 @@
 	foreach ($serverRoomAccess as $serverRoomAccess): ?>
 	<tr>
 		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['id']); ?>&nbsp;</td>
-		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['date']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $serverRoomAccess['ServerRoomAccess']['date']); ?>&nbsp;</td>
 		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['person']); ?>&nbsp;</td>
 		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['company']); ?>&nbsp;</td>
 		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['reason']); ?>&nbsp;</td>
@@ -25,8 +25,8 @@
 		<td>
 			<?php echo $this->Html->link($serverRoomAccess['Client']['name'], array('controller' => 'clients', 'action' => 'view', $serverRoomAccess['Client']['id'])); ?>
 		</td>
-		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['created']); ?>&nbsp;</td>
-		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['modified']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $serverRoomAccess['ServerRoomAccess']['created']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $serverRoomAccess['ServerRoomAccess']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $serverRoomAccess['ServerRoomAccess']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $serverRoomAccess['ServerRoomAccess']['id'])); ?>

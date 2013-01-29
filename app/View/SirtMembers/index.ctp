@@ -23,8 +23,8 @@
 		<td>
 			<?php echo $this->Html->link($sirtMember['SirtTeam']['company_name'], array('controller' => 'sirt_teams', 'action' => 'view', $sirtMember['SirtTeam']['id'])); ?>
 		</td>
-		<td><?php echo h($sirtMember['SirtMember']['created']); ?>&nbsp;</td>
-		<td><?php echo h($sirtMember['SirtMember']['modified']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $sirtMember['SirtMember']['created']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $sirtMember['SirtMember']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $sirtMember['SirtMember']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $sirtMember['SirtMember']['id'])); ?>

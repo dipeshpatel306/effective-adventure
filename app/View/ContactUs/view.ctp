@@ -43,7 +43,7 @@
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
-			<?php echo h($contactUs['ContactUs']['created']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $contactUs['ContactUs']['created']); ?>
 			&nbsp;
 		</dd>
 	</dl>

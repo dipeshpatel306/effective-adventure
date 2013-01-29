@@ -23,12 +23,12 @@
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
-			<?php echo h($otherPolicy['OtherPolicy']['created']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $otherPolicy['OtherPolicy']['created']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Modified'); ?></dt>
 		<dd>
-			<?php echo h($otherPolicy['OtherPolicy']['modified']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $otherPolicy['OtherPolicy']['modified']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Attachment'); ?></dt>

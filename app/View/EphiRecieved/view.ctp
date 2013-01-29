@@ -8,7 +8,7 @@
 		</dd>
 		<dt><?php echo __('Date Recieved'); ?></dt>
 		<dd>
-			<?php echo h($ephiRecieved['EphiRecieved']['date_recieved']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $ephiRecieved['EphiRecieved']['date_recieved']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Description'); ?></dt>
@@ -38,12 +38,12 @@
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
-			<?php echo h($ephiRecieved['EphiRecieved']['created']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $ephiRecieved['EphiRecieved']['created']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Modified'); ?></dt>
 		<dd>
-			<?php echo h($ephiRecieved['EphiRecieved']['modified']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $ephiRecieved['EphiRecieved']['modified']); ?>
 			&nbsp;
 		</dd>
 	</dl>

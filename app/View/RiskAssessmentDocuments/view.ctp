@@ -28,12 +28,12 @@
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
-			<?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['created']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $riskAssessmentDocument['RiskAssessmentDocument']['created']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Modified'); ?></dt>
 		<dd>
-			<?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['modified']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $riskAssessmentDocument['RiskAssessmentDocument']['modified']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Attachment'); ?></dt>

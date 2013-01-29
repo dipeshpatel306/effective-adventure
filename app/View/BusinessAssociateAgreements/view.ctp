@@ -23,7 +23,7 @@
 		</dd>
 		<dt><?php echo __('Contract Date'); ?></dt>
 		<dd>
-			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['contract_date']); ?>
+			<?php echo $this->Time->format('m/d/y', $businessAssociateAgreement['BusinessAssociateAgreement']['contract_date']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Document'); ?></dt>
@@ -38,12 +38,12 @@
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
-			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['created']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $businessAssociateAgreement['BusinessAssociateAgreement']['created']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Modified'); ?></dt>
 		<dd>
-			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['modified']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $businessAssociateAgreement['BusinessAssociateAgreement']['modified']); ?>
 			&nbsp;
 		</dd>
 	</dl>

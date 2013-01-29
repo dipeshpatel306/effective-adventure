@@ -8,7 +8,7 @@
 		</dd>
 		<dt><?php echo __('Date'); ?></dt>
 		<dd>
-			<?php echo h($serverRoomAccess['ServerRoomAccess']['date']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $serverRoomAccess['ServerRoomAccess']['date']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Person'); ?></dt>
@@ -38,12 +38,12 @@
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
-			<?php echo h($serverRoomAccess['ServerRoomAccess']['created']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $serverRoomAccess['ServerRoomAccess']['created']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Modified'); ?></dt>
 		<dd>
-			<?php echo h($serverRoomAccess['ServerRoomAccess']['modified']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $serverRoomAccess['ServerRoomAccess']['modified']); ?>
 			&nbsp;
 		</dd>
 	</dl>

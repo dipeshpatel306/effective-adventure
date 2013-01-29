@@ -22,8 +22,8 @@
 		<td>
 			<?php echo $this->Html->link($riskAssessmentDocument['Client']['name'], array('controller' => 'clients', 'action' => 'view', $riskAssessmentDocument['Client']['id'])); ?>
 		</td>
-		<td><?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['created']); ?>&nbsp;</td>
-		<td><?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['modified']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $riskAssessmentDocument['RiskAssessmentDocument']['created']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $riskAssessmentDocument['RiskAssessmentDocument']['modified']); ?>&nbsp;</td>
 		<td><?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['attachment']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?>

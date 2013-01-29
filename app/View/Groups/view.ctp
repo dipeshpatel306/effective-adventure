@@ -59,8 +59,8 @@
 			<td><?php echo $user['email']; ?></td>
 			<td><?php echo $user['group_id']; ?></td>
 			<td><?php echo $user['client_id']; ?></td>
-			<td><?php echo $user['created']; ?></td>
-			<td><?php echo $user['modified']; ?></td>
+			<td><?php echo $this->Time->format('m/d/y g:i a', $user['created']); ?></td>
+			<td><?php echo $this->Time->format('m/d/y g:i a', $user['modified']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'users', 'action' => 'view', $user['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'users', 'action' => 'edit', $user['id'])); ?>

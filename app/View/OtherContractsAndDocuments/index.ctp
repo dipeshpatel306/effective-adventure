@@ -22,8 +22,8 @@
 		<td>
 			<?php echo $this->Html->link($otherContractsAndDocument['Client']['name'], array('controller' => 'clients', 'action' => 'view', $otherContractsAndDocument['Client']['id'])); ?>
 		</td>
-		<td><?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['created']); ?>&nbsp;</td>
-		<td><?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['modified']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $otherContractsAndDocument['OtherContractsAndDocument']['created']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $otherContractsAndDocument['OtherContractsAndDocument']['modified']); ?>&nbsp;</td>
 		<td><?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['attachment']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $otherContractsAndDocument['OtherContractsAndDocument']['id'])); ?>

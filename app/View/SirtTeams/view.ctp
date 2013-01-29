@@ -53,12 +53,12 @@
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
-			<?php echo h($sirtTeam['SirtTeam']['created']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $sirtTeam['SirtTeam']['created']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Modified'); ?></dt>
 		<dd>
-			<?php echo h($sirtTeam['SirtTeam']['modified']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $sirtTeam['SirtTeam']['modified']); ?>
 			&nbsp;
 		</dd>
 	</dl>

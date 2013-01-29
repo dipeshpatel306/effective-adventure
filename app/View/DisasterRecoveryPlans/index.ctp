@@ -22,8 +22,8 @@
 		<td>
 			<?php echo $this->Html->link($disasterRecoveryPlan['Client']['name'], array('controller' => 'clients', 'action' => 'view', $disasterRecoveryPlan['Client']['id'])); ?>
 		</td>
-		<td><?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['created']); ?>&nbsp;</td>
-		<td><?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['modified']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $disasterRecoveryPlan['DisasterRecoveryPlan']['created']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $disasterRecoveryPlan['DisasterRecoveryPlan']['modified']); ?>&nbsp;</td>
 		<td><?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['attachment']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $disasterRecoveryPlan['DisasterRecoveryPlan']['id'])); ?>

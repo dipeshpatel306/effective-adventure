@@ -20,13 +20,13 @@
 		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['name']); ?>&nbsp;</td>
 		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['email']); ?>&nbsp;</td>
 		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['phone']); ?>&nbsp;</td>
-		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['contract_date']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y', $businessAssociateAgreement['BusinessAssociateAgreement']['contract_date']); ?>&nbsp;</td>
 		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['attachment']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($businessAssociateAgreement['Client']['name'], array('controller' => 'clients', 'action' => 'view', $businessAssociateAgreement['Client']['id'])); ?>
 		</td>
-		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['created']); ?>&nbsp;</td>
-		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['modified']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $businessAssociateAgreement['BusinessAssociateAgreement']['created']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $businessAssociateAgreement['BusinessAssociateAgreement']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $businessAssociateAgreement['BusinessAssociateAgreement']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $businessAssociateAgreement['BusinessAssociateAgreement']['id'])); ?>
