@@ -64,12 +64,41 @@ class ClientsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Client->create();
 			if ($this->Client->save($this->request->data)) {
+					
+				// Call method to generate user Strings
+				$adminString = $this->accountCode();  // admin
+				$this->Client->saveField('admin_account', $adminString);
+				
+				$userString = $this->accountCode(); // user
+				$this->Client->saveField('user_account', $userString);
+				
 				$this->Session->setFlash(__('The client has been saved'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The client could not be saved. Please, try again.'));
 			}
 		}
+	}
+
+/**
+ * Generate admin and user codes
+ * @return string  
+ */
+ 
+	public function accountCode(){
+		$chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$string = ''; // initialize string
+		$userString = '';
+		
+		$size = strlen($chars)-1; 
+		$length = 10; // length of string
+		
+		for($i = 0; $i < $length; $i++){
+			$string .= $chars[ mt_rand(0, $size) ];
+		}
+		
+		return $string;
+		
 	}
 
 /**

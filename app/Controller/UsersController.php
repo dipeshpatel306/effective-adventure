@@ -82,11 +82,11 @@ class UsersController extends AppController {
 	    if ($this->request->is('post')) {
 	        if ($this->Auth->login()) {
 	        	
-	        		$dateTime = date('Y-m-d H:i:s'); // Get DateTime
+	        	$dateTime = date('Y-m-d H:i:s'); // Get DateTime
 					
-					$this->User->Client->id = $this->Session->read('Auth.User.client_id');  // Get correct Client
-					$this->User->Client->saveField('last_login', $dateTime);  // Save date into DB
-					$this->Session->write('Auth.User.Client.last_login', $dateTime);  // rewrite session login datetime
+				$this->User->Client->id = $this->Session->read('Auth.User.client_id');  // Get correct Client
+				$this->User->Client->saveField('last_login', $dateTime);  // Save datetime into DB
+				$this->Session->write('Auth.User.Client.last_login', $dateTime);  // write login datetime into session
 				
 				$this->redirect($this->Auth->redirect());
 
@@ -99,7 +99,6 @@ class UsersController extends AppController {
 			//$this->Session->write('User.id', $userId);
         	$this->redirect('/', null, false);
     	}
-
 	}
 /**
  * Logout Method

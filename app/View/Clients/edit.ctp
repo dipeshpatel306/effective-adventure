@@ -7,6 +7,8 @@
 		echo $this->Form->input('name');
 		echo $this->Form->input('account_type', array('options' => 
 						array('' => '', 'Subscription' => 'Subscription', 'Meaningful Use' => 'Meaningful Use')));		
+		echo $this->Form->input('admin_account');
+		echo $this->Form->input('user_account');
 		echo $this->Form->input('details');
 	?>
 	</fieldset>
