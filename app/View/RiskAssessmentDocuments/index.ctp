@@ -1,8 +1,7 @@
 <div class="riskAssessmentDocuments index">
 	<h2><?php echo __('Risk Assessment Documents'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th><?php echo $this->Paginator->sort('details'); ?></th>
@@ -15,7 +14,6 @@
 	<?php
 	foreach ($riskAssessmentDocuments as $riskAssessmentDocument): ?>
 	<tr>
-		<td><?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['id']); ?>&nbsp;</td>
 		<td><?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['name']); ?>&nbsp;</td>
 		<td><?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['description']); ?>&nbsp;</td>
 		<td><?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['details']); ?>&nbsp;</td>

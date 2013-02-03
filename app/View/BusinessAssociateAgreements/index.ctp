@@ -1,8 +1,7 @@
 <div class="businessAssociateAgreements index">
 	<h2><?php echo __('Business Associate Agreements'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('email'); ?></th>
 			<th><?php echo $this->Paginator->sort('phone'); ?></th>
@@ -16,7 +15,6 @@
 	<?php
 	foreach ($businessAssociateAgreements as $businessAssociateAgreement): ?>
 	<tr>
-		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['id']); ?>&nbsp;</td>
 		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['name']); ?>&nbsp;</td>
 		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['email']); ?>&nbsp;</td>
 		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['phone']); ?>&nbsp;</td>

@@ -1,8 +1,7 @@
 <div class="securityIncidents index">
 	<h2><?php echo __('Security Incidents'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('date_of_incident'); ?></th>
 			<th><?php echo $this->Paginator->sort('discovery_date'); ?></th>
 			<th><?php echo $this->Paginator->sort('reported_by'); ?></th>
@@ -17,7 +16,6 @@
 	<?php
 	foreach ($securityIncidents as $securityIncident): ?>
 	<tr>
-		<td><?php echo h($securityIncident['SecurityIncident']['id']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['date_of_incident']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['discovery_date']); ?>&nbsp;</td>
 		<td><?php echo h($securityIncident['SecurityIncident']['reported_by']); ?>&nbsp;</td>

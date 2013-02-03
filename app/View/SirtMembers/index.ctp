@@ -1,8 +1,7 @@
 <div class="sirtMembers index">
 	<h2><?php echo __('Sirt Members'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('first_name'); ?></th>
 			<th><?php echo $this->Paginator->sort('last_name'); ?></th>
 			<th><?php echo $this->Paginator->sort('company'); ?></th>

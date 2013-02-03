@@ -8,7 +8,7 @@
 		echo $this->Form->input('person');
 		echo $this->Form->input('company');
 		echo $this->Form->input('reason');
-		echo $this->Form->input('notes');
+		echo $this->Form->input('notes', array('class' => 'ckeditor'));
 		echo $this->Form->input('client_id');
 	?>
 	</fieldset>

@@ -4,7 +4,7 @@
 		<legend><?php echo __('Add Ephi Recieved'); ?></legend>
 	<?php
 		echo $this->Form->input('date_recieved');
-		echo $this->Form->input('description');
+		echo $this->Form->input('description', array('class' => 'ckeditor'));
 		echo $this->Form->input('patient_name');
 		echo $this->Form->input('recieved_by');
 		echo $this->Form->input('date_returned');

@@ -1,11 +1,7 @@
 <div class="sirtTeams view">
 <h2><?php  echo __('Sirt Team'); ?></h2>
 	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($sirtTeam['SirtTeam']['id']); ?>
-			&nbsp;
-		</dd>
+
 		<dt><?php echo __('Company Name'); ?></dt>
 		<dd>
 			<?php echo h($sirtTeam['SirtTeam']['company_name']); ?>

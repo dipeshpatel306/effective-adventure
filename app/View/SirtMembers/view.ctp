@@ -1,11 +1,6 @@
 <div class="sirtMembers view">
 <h2><?php  echo __('Sirt Member'); ?></h2>
 	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($sirtMember['SirtMember']['id']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('First Name'); ?></dt>
 		<dd>
 			<?php echo h($sirtMember['SirtMember']['first_name']); ?>

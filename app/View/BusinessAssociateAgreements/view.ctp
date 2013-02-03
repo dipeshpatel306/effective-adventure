@@ -1,11 +1,6 @@
 <div class="businessAssociateAgreements view">
 <h2><?php  echo __('Business Associate Agreement'); ?></h2>
 	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['id']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
 			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['name']); ?>

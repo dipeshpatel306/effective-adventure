@@ -1,11 +1,6 @@
 <div class="securityIncidents view">
 <h2><?php  echo __('Security Incident'); ?></h2>
 	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($securityIncident['SecurityIncident']['id']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Date Of Incident'); ?></dt>
 		<dd>
 			<?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['date_of_incident']); ?>

@@ -1,8 +1,7 @@
 <div class="sirtTeams index">
 	<h2><?php echo __('Sirt Teams'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('company_name'); ?></th>
 			<th><?php echo $this->Paginator->sort('address_1'); ?></th>
 			<th><?php echo $this->Paginator->sort('address_2'); ?></th>
@@ -19,7 +18,6 @@
 	<?php
 	foreach ($sirtTeams as $sirtTeam): ?>
 	<tr>
-		<td><?php echo h($sirtTeam['SirtTeam']['id']); ?>&nbsp;</td>
 		<td><?php echo h($sirtTeam['SirtTeam']['company_name']); ?>&nbsp;</td>
 		<td><?php echo h($sirtTeam['SirtTeam']['address_1']); ?>&nbsp;</td>
 		<td><?php echo h($sirtTeam['SirtTeam']['address_2']); ?>&nbsp;</td>

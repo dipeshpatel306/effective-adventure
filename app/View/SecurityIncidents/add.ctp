@@ -6,7 +6,7 @@
 		echo $this->Form->input('date_of_incident');
 		echo $this->Form->input('discovery_date');
 		echo $this->Form->input('reported_by');
-		echo $this->Form->input('description_of_incident');
+		echo $this->Form->input('description_of_incident', array('class' => 'ckeditor'));
 		echo $this->Form->input('cause_of_incident');
 		echo $this->Form->input('assets_involved');
 		echo $this->Form->input('client_id');

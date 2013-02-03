@@ -1,11 +1,6 @@
 <div class="otherContractsAndDocuments view">
 <h2><?php  echo __('Other Contracts And Document'); ?></h2>
 	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['id']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
 			<?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['name']); ?>

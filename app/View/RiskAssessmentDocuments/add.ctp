@@ -4,8 +4,8 @@
 		<legend><?php echo __('Add Risk Assessment Document'); ?></legend>
 	<?php
 		echo $this->Form->input('name');
-		echo $this->Form->input('description');
-		echo $this->Form->input('details');
+		echo $this->Form->input('description', array('class' => 'ckeditor'));
+		echo $this->Form->input('details', array('class' => 'ckeditor'));
 		echo $this->Form->input('client_id');
 		echo $this->Form->input('attachment');
 	?>

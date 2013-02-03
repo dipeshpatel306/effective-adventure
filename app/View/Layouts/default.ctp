@@ -21,6 +21,7 @@
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
+		echo '<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />';
 		echo $this->fetch('script');
 	?>
 </head>
@@ -50,10 +51,10 @@
 			<?php echo $this->Session->flash(); ?>
 			
 			<?php // Temp debug code
-				$auth = $this->Session->read('Auth');
+				/*$auth = $this->Session->read('Auth');
 				echo "<pre>";
 				print_r($auth);
-				echo "</pre>";
+				echo "</pre>";*/
 			?>
 			<?php echo $this->fetch('content'); ?>
 		</div>
@@ -65,9 +66,11 @@
 		</div>
 	
 	</div>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-  	<script>window.jQuery || document.write('<script src="../js/jquery-1.8.3.min.js"><\/script>')</script>
-	<?php echo $this->Html->script(array('ckeditor/ckeditor.js', 'scripts')); ?>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  	<script>window.jQuery || document.write('<script src="../js/jquery-1.9.0.min.js"><\/script>')</script>
+	<?php echo $this->Html->script(array('ckeditor/ckeditor.js', 
+										 '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js',
+										 'scripts')); ?>
 	<?php  echo $this->element('sql_dump'); ?>
 </body>
 </html>

@@ -6,7 +6,7 @@
 		echo $this->Form->input('name');
 		echo $this->Form->input('account_type', array('options' => 
 						array('' => '', 'Subscription' => 'Subscription', 'Meaningful Use' => 'Meaningful Use')));
-		echo $this->Form->input('details');
+		echo $this->Form->input('details', array('class' => 'ckeditor'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

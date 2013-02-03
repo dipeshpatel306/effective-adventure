@@ -9,7 +9,7 @@ class UsersController extends AppController {
 
 	public function beforeFilter() {
 	    parent::beforeFilter();
-    	$this->Auth->allow('login', 'logout');		
+    	$this->Auth->allow('login', 'new_user', 'logout');		
 	    //$this->Auth->allow('*');
 	    // Runs ACL Permission Setup. Disable when not in use
 	    //$this->Auth->allow('initDB'); 
@@ -25,10 +25,11 @@ class UsersController extends AppController {
 	    $this->Acl->allow($group, 'controllers');
 	
 	    //allow managers to posts and widgets
-	    $group->id = 2;
+	    $group->id = 2; 
 	    $this->Acl->deny($group, 'controllers');
 		$this->Acl->allow($group, 'controllers/Dashboard');
 		$this->Acl->allow($group, 'controllers/Users');
+		$this->Acl->allow($group, 'controllers/Users/new_user');
 		
 		$this->Acl->allow($group, 'controllers/Policies');
 		$this->Acl->allow($group, 'controllers/OtherPolicies');
@@ -52,6 +53,7 @@ class UsersController extends AppController {
 	    $group->id = 3;
 	    $this->Acl->deny($group, 'controllers');
 		$this->Acl->allow($group, 'controllers/Dashboard');
+		$this->Acl->allow($group, 'controllers/Users/new_user');
 		
 		$this->Acl->allow($group, 'controllers/Policies');
 		$this->Acl->allow($group, 'controllers/OtherPolicies');
@@ -218,8 +220,9 @@ class UsersController extends AppController {
  */
 	public function add() { // TODO Secure Add Method
 		if ($this->request->is('post')) {
-			
-			$this->request->data['User']['client_id'] = $this->Auth->User('client_id');
+				
+			// check id of user before allowiing add. TODO loosen privs when 'Partner' role
+			$this->request->data['User']['client_id'] = $this->Auth->User('client_id'); 
 			
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
@@ -233,6 +236,53 @@ class UsersController extends AppController {
 		$clients = $this->User->Client->find('list');
 		$this->set(compact('groups', 'clients'));
 	}
+
+/**
+ * New user method
+ *
+ * @return void
+ */
+	public function new_user() {
+
+		if ($this->request->is('post')) {
+				
+			$this->loadModel('Client');  // load client Model
+			$authCode = $this->request->data['User']['authCode']; // get authCode sent from form
+			
+
+			$userCode = $this->Client->find('first', array('conditions' => array('Client.user_account' => $authCode)));// check if user code exists
+			$adminCode = $this->Client->find('first', array('conditions' => array('Client.admin_account' => $authCode))); // check if admin code exists		
+			
+			if(isset($userCode) && !empty($userCode)){  // if user set client and role
+				
+					
+			} elseif(isset($adminCode) && !empty($adminCode)){ // if admin set client and role
+				
+			} else {
+				$this->Session->setFlash(__('No Corresponding Client Found.'));
+				$this->redirect(array('controller' => 'user', 'action' => 'new_user'));
+			}
+			
+				
+			//pr($this->data['userCode']);
+
+			//$this->request->data['User']['client_id'] = $this->Auth->User('client_id');
+			
+			$this->User->create();
+			
+			
+			if ($this->User->save($this->request->data)) {
+				$this->Session->setFlash(__('The user has been saved'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+			}
+		}
+		$groups = $this->User->Group->find('list');
+		$clients = $this->User->Client->find('list');
+		$this->set(compact('groups', 'clients'));
+	}
+
 
 /**
  * edit method

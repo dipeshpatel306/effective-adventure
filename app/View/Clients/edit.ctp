@@ -9,7 +9,7 @@
 						array('' => '', 'Subscription' => 'Subscription', 'Meaningful Use' => 'Meaningful Use')));		
 		echo $this->Form->input('admin_account');
 		echo $this->Form->input('user_account');
-		echo $this->Form->input('details');
+		echo $this->Form->input('details', array('class' => 'ckeditor'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

@@ -1,8 +1,7 @@
 <div class="contactUs index">
 	<h2><?php echo __('Contact Us'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('email'); ?></th>
 			<th><?php echo $this->Paginator->sort('subject'); ?></th>
 			<th><?php echo $this->Paginator->sort('feedback'); ?></th>
@@ -16,7 +15,6 @@
 	<?php
 	foreach ($contactUs as $contactUs): ?>
 	<tr>
-		<td><?php echo h($contactUs['ContactUs']['id']); ?>&nbsp;</td>
 		<td><?php echo h($contactUs['ContactUs']['email']); ?>&nbsp;</td>
 		<td><?php echo h($contactUs['ContactUs']['subject']); ?>&nbsp;</td>
 		<td><?php echo h($contactUs['ContactUs']['feedback']); ?>&nbsp;</td>

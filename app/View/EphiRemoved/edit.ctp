@@ -5,7 +5,7 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('date');
-		echo $this->Form->input('description');
+		echo $this->Form->input('description', array('class' => 'ckeditor'));
 		echo $this->Form->input('removed_by');
 		echo $this->Form->input('returned_by');
 		echo $this->Form->input('client_id');

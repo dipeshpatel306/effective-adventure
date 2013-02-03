@@ -1,11 +1,6 @@
 <div class="clients view">
 <h2><?php  echo __('Client'); ?></h2>
 	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($client['Client']['id']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
 			<?php echo h($client['Client']['name']); ?>

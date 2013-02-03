@@ -1,11 +1,7 @@
 <div class="contactUs view">
 <h2><?php  echo __('Contact Us'); ?></h2>
 	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($contactUs['ContactUs']['id']); ?>
-			&nbsp;
-		</dd>
+
 		<dt><?php echo __('Email'); ?></dt>
 		<dd>
 			<?php echo h($contactUs['ContactUs']['email']); ?>

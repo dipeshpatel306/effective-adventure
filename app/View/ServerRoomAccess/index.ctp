@@ -1,8 +1,7 @@
 <div class="serverRoomAccess index">
 	<h2><?php echo __('Server Room Access'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('date'); ?></th>
 			<th><?php echo $this->Paginator->sort('person'); ?></th>
 			<th><?php echo $this->Paginator->sort('company'); ?></th>
@@ -16,7 +15,6 @@
 	<?php
 	foreach ($serverRoomAccess as $serverRoomAccess): ?>
 	<tr>
-		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['id']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $serverRoomAccess['ServerRoomAccess']['date']); ?>&nbsp;</td>
 		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['person']); ?>&nbsp;</td>
 		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['company']); ?>&nbsp;</td>

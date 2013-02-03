@@ -1,8 +1,7 @@
 <div class="disasterRecoveryPlans index">
 	<h2><?php echo __('Disaster Recovery Plans'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th><?php echo $this->Paginator->sort('details'); ?></th>
@@ -15,7 +14,6 @@
 	<?php
 	foreach ($disasterRecoveryPlans as $disasterRecoveryPlan): ?>
 	<tr>
-		<td><?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['id']); ?>&nbsp;</td>
 		<td><?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['name']); ?>&nbsp;</td>
 		<td><?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['description']); ?>&nbsp;</td>
 		<td><?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['details']); ?>&nbsp;</td>

@@ -1,11 +1,7 @@
 <div class="riskAssessmentDocuments view">
 <h2><?php  echo __('Risk Assessment Document'); ?></h2>
 	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['id']); ?>
-			&nbsp;
-		</dd>
+
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
 			<?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['name']); ?>

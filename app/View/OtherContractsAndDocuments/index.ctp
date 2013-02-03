@@ -1,8 +1,7 @@
 <div class="otherContractsAndDocuments index">
 	<h2><?php echo __('Other Contracts And Documents'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th><?php echo $this->Paginator->sort('details'); ?></th>
@@ -15,7 +14,6 @@
 	<?php
 	foreach ($otherContractsAndDocuments as $otherContractsAndDocument): ?>
 	<tr>
-		<td><?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['id']); ?>&nbsp;</td>
 		<td><?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['name']); ?>&nbsp;</td>
 		<td><?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['description']); ?>&nbsp;</td>
 		<td><?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['details']); ?>&nbsp;</td>

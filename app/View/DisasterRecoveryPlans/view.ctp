@@ -1,11 +1,6 @@
 <div class="disasterRecoveryPlans view">
 <h2><?php  echo __('Disaster Recovery Plan'); ?></h2>
 	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['id']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
 			<?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['name']); ?>
