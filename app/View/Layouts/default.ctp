@@ -51,7 +51,7 @@
 			<?php echo $this->Session->flash(); ?>
 			
 			<?php // Temp debug code
-				/*$auth = $this->Session->read('Auth');
+			/*	$auth = $this->Session->read('Auth');
 				echo "<pre>";
 				print_r($auth);
 				echo "</pre>";*/
@@ -70,6 +70,7 @@
   	<script>window.jQuery || document.write('<script src="../js/jquery-1.9.0.min.js"><\/script>')</script>
 	<?php echo $this->Html->script(array('ckeditor/ckeditor.js', 
 										 '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js',
+										 'jquery-navigator/jquery.sectionnavigator.js',
 										 'scripts')); ?>
 	<?php  echo $this->element('sql_dump'); ?>
 </body>

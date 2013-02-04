@@ -54,7 +54,11 @@ class AppController extends Controller {
     	// Login information
     	$this->set('logged_in', $this->Auth->loggedIn());
 		$this->set('current_user', $this->Auth->user());
-
+		$this->Auth->authenticate = array( // Use email as the login username
+    		'Form' => array(
+        	'fields' => array('username' => 'email', 'password' => 'password'),
+    		),
+		);
         //Configure AuthComponent
 		$this->Auth->authorize = array('controller');
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');

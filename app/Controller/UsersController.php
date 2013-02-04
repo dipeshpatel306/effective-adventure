@@ -48,6 +48,8 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/SirtMembers');
 		
 		$this->Acl->allow($group, 'controllers/ContactUs/contact');	
+		
+		$this->Acl->allow($group, 'controllers/RiskAssessments/get_assessed');
 	
 	    //allow users to only add and edit on posts and widgets
 	    $group->id = 3;
@@ -72,6 +74,8 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/SirtMembers');
 		
 		$this->Acl->allow($group, 'controllers/ContactUs/contact');	
+		
+		$this->Acl->allow($group, 'controllers/RiskAssessments/get_assessed');
 	    //we add an exit to avoid an ugly "missing views" error message
 	    echo "all done";
 	    exit;
@@ -238,7 +242,7 @@ class UsersController extends AppController {
 	}
 
 /**
- * New user method
+ * New user account method
  *
  * @return void
  */
@@ -254,33 +258,29 @@ class UsersController extends AppController {
 			$adminCode = $this->Client->find('first', array('conditions' => array('Client.admin_account' => $authCode))); // check if admin code exists		
 			
 			if(isset($userCode) && !empty($userCode)){  // if user set client and role
-				
+				$this->request->data['User']['group_id'] = 3; // set Group Id to to User
+				$this->request->data['User']['client_id'] = $userCode['Client']['id'];  // set Client id  
 					
 			} elseif(isset($adminCode) && !empty($adminCode)){ // if admin set client and role
-				
+				$this->request->data['User']['group_id'] = 2; // set Group Id to User
+				$this->request->data['User']['client_id'] = $adminCode['Client']['id']; // set client id
 			} else {
-				$this->Session->setFlash(__('No Corresponding Client Found.'));
-				$this->redirect(array('controller' => 'user', 'action' => 'new_user'));
+				$this->request->data['User']['group_id'] = 4; // Set to Pending
+				$this->request->data['User']['client_id'] = '';
 			}
-			
-				
-			//pr($this->data['userCode']);
 
-			//$this->request->data['User']['client_id'] = $this->Auth->User('client_id');
-			
 			$this->User->create();
-			
-			
+						
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved'));
+				$this->Session->setFlash(__('Your Account has been successfully created'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('Your new account could not be created. Please, try again.'));
 			}
 		}
-		$groups = $this->User->Group->find('list');
+		/*$groups = $this->User->Group->find('list');
 		$clients = $this->User->Client->find('list');
-		$this->set(compact('groups', 'clients'));
+		$this->set(compact('groups', 'clients'));*/
 	}
 
 

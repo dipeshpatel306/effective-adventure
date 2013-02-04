@@ -15,7 +15,7 @@ class User extends AppModel {
  *
  * @var string
  */
-	public $displayField = 'username';
+	public $displayField = 'email';
 
 /**
  * Validation rules
@@ -74,6 +74,10 @@ class User extends AppModel {
 			),
 		),
 		'email' => array(
+			'isUnique' => array(
+				'rule' => 'isUnique',
+				'message' => 'That email address is already taken',
+			),
 			'notempty' => array(
 				'rule' => array('notempty'),
 				'message' => 'You forgot your Email.',
@@ -82,6 +86,7 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			
 		),
 		'group_id' => array(
 			'numeric' => array(
