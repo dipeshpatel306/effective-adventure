@@ -196,19 +196,7 @@ class Client extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'RaAnswer' => array(
-			'className' => 'RaAnswer',
-			'foreignKey' => 'client_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		)		
+		
 	);
 	
 

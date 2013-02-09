@@ -55,6 +55,7 @@
 				echo "<pre>";
 				print_r($auth);
 				echo "</pre>";*/
+				//echo Configure::version();
 			?>
 			<?php echo $this->fetch('content'); ?>
 		</div>
