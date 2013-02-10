@@ -6,7 +6,7 @@
 	<?php echo $this->Html->link('Home/Dashboard', array('controller' => 'dashboard', 'action' => 'index'))?><br /><br />
 	
 		
-	<?php echo $this->Html->link('Risk Assessment Questionnaire', array('controller' => 'riskassessments', 'action' => 'get_assessed'))?><br /><br />
+	<?php echo $this->Html->link('Risk Assessment Questionnaire', array('controller' => 'riskassessments', 'action' => 'take_risk_assessment'))?><br /><br />
 	
 	<div class="box">
 	<?php echo $this->Html->link('Policies & Procedures', array('controller' => '#'));?>

@@ -55,7 +55,7 @@ class RiskAssessmentsController extends AppController {
  *
  * @return void
  */
-	public function get_assessed() {
+	public function take_risk_assessment() {
 		$this->loadModel('RiskAssessmentQuestion');
 		$RaQ = $this->RiskAssessmentQuestion->find('all');
 		$this->set('RaQ', $RaQ);	

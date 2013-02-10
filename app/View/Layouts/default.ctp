@@ -76,10 +76,10 @@
 	</div>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
   	<script>window.jQuery || document.write('<script src="../js/jquery-1.9.0.min.js"><\/script>')</script>
-	<?php echo $this->Html->script(array('ckeditor/ckeditor.js', 
-										 '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js',
-										 'jquery-navigator/jquery.sectionnavigator.js',
-										 'scripts')); ?>
+	<?php echo $this->Html->script(array('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js',
+										 'ckeditor/ckeditor.js',
+										 'scripts', 
+										 )); ?>
 	<?php  echo $this->element('sql_dump'); ?>
 </body>
 </html>
