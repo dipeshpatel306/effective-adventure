@@ -31,8 +31,11 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Users');
 		$this->Acl->allow($group, 'controllers/Users/new_user');
 		
-		$this->Acl->allow($group, 'controllers/Policies');
-		$this->Acl->allow($group, 'controllers/OtherPolicies');
+		$this->Acl->allow($group, 'controllers/PoliciesAndProcedures');
+		$this->Acl->allow($group, 'controllers/OtherPoliciesAndProcedures');
+		
+		//$this->Acl->allow($group, 'controllers/Policies');
+		//$this->Acl->allow($group, 'controllers/OtherPolicies');
 		
 		$this->Acl->allow($group, 'controllers/RiskAssessmentDocuments');
 		$this->Acl->allow($group, 'controllers/BusinessAssociateAgreements');

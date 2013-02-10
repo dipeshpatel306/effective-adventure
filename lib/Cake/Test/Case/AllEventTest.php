@@ -37,3 +37,4 @@ class AllEventTest extends PHPUnit_Framework_TestSuite {
 		return $suite;
 	}
 }
+

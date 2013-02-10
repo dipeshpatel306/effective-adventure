@@ -1,3 +1,6 @@
+<?php
+$this->Html->addCrumb('Messages');
+?>
 <div class="contactUs index">
 	<h2><?php echo __('Contact Us'); ?></h2>
 	<table>

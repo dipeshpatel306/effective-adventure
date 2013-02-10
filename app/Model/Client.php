@@ -53,7 +53,33 @@ class Client extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'PolicyAgreement' => array(
+		'PoliciesAndProcedure' => array(
+			'className' => 'PoliciesAndProcedure',
+			'foreignKey' => 'client_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'OtherPoliciesAndProcedure' => array( 
+			'className' => 'OtherPoliciesAndProcedure',
+			'foreignKey' => 'client_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),		
+/*		'Policy' => array( 
 			'className' => 'Policy',
 			'foreignKey' => 'client_id',
 			'dependent' => false,
@@ -66,7 +92,7 @@ class Client extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'OtherPolicyAgreement' => array(
+		'OtherPolicy' => array( 
 			'className' => 'OtherPolicy',
 			'foreignKey' => 'client_id',
 			'dependent' => false,
@@ -78,8 +104,8 @@ class Client extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		),
-		'RiskAssessmentDocumentAgreement' => array(
+		),*/
+		'RiskAssessmentDocument' => array(
 			'className' => 'RiskAssessmentDocument',
 			'foreignKey' => 'client_id',
 			'dependent' => false,

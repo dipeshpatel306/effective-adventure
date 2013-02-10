@@ -1,15 +1,18 @@
+<?php
+$this->Html->addCrumb('SIRT Teams');
+?>
 <div class="sirtTeams index">
 	<h2><?php echo __('Sirt Teams'); ?></h2>
 	<table>
 	<tr>
 			<th><?php echo $this->Paginator->sort('company_name'); ?></th>
-			<th><?php echo $this->Paginator->sort('address_1'); ?></th>
+			<!--<th><?php echo $this->Paginator->sort('address_1'); ?></th>
 			<th><?php echo $this->Paginator->sort('address_2'); ?></th>
 			<th><?php echo $this->Paginator->sort('city'); ?></th>
 			<th><?php echo $this->Paginator->sort('state'); ?></th>
 			<th><?php echo $this->Paginator->sort('zip'); ?></th>
 			<th><?php echo $this->Paginator->sort('phone'); ?></th>
-			<th><?php echo $this->Paginator->sort('website'); ?></th>
+			<th><?php echo $this->Paginator->sort('website'); ?></th>-->
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -19,13 +22,13 @@
 	foreach ($sirtTeams as $sirtTeam): ?>
 	<tr>
 		<td><?php echo h($sirtTeam['SirtTeam']['company_name']); ?>&nbsp;</td>
-		<td><?php echo h($sirtTeam['SirtTeam']['address_1']); ?>&nbsp;</td>
+		<!--<td><?php echo h($sirtTeam['SirtTeam']['address_1']); ?>&nbsp;</td>
 		<td><?php echo h($sirtTeam['SirtTeam']['address_2']); ?>&nbsp;</td>
 		<td><?php echo h($sirtTeam['SirtTeam']['city']); ?>&nbsp;</td>
 		<td><?php echo h($sirtTeam['SirtTeam']['state']); ?>&nbsp;</td>
 		<td><?php echo h($sirtTeam['SirtTeam']['zip']); ?>&nbsp;</td>
 		<td><?php echo h($sirtTeam['SirtTeam']['phone']); ?>&nbsp;</td>
-		<td><?php echo h($sirtTeam['SirtTeam']['website']); ?>&nbsp;</td>
+		<td><?php echo h($sirtTeam['SirtTeam']['website']); ?>&nbsp;</td>-->
 		<td>
 			<?php echo $this->Html->link($sirtTeam['Client']['name'], array('controller' => 'clients', 'action' => 'view', $sirtTeam['Client']['id'])); ?>
 		</td>

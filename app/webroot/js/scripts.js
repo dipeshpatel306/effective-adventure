@@ -1,5 +1,5 @@
 $(function() {
  	//CKEDITOR.replace( 'textEdit'); // initialize WYSIWYG Editor
-	//$('.datePick').datepicker({ dateFormat: 'DD m/d', minDate: +0 });
+	$('.datePick').datepicker({ dateFormat: 'mm/dd/yy'});
 	//$('#form1').sectionnavigator();
 });

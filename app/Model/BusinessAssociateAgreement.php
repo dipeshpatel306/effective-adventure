@@ -51,8 +51,8 @@ class BusinessAssociateAgreement extends AppModel {
 			),
 		),
 		'contract_date' => array(
-			'date' => array(
-				'rule' => array('date'),
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

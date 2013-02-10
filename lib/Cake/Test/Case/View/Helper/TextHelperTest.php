@@ -334,3 +334,4 @@ class TextHelperTest extends CakeTestCase {
 	}
 
 }
+

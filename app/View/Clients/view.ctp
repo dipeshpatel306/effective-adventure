@@ -1,3 +1,7 @@
+<?php
+$this->Html->addCrumb('Clients', '/clients');
+$this->Html->addCrumb($client['Client']['name']);
+?>
 <div class="clients view">
 <h2><?php  echo __('Client'); ?></h2>
 	<dl>

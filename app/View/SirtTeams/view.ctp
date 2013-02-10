@@ -1,3 +1,8 @@
+<?php
+$this->Html->addCrumb('sirt_teams', '/sirt_teams');
+$this->Html->addCrumb($sirtTeam['SirtTeam']['company_name']);
+?>
+
 <div class="sirtTeams view">
 <h2><?php  echo __('Sirt Team'); ?></h2>
 	<dl>

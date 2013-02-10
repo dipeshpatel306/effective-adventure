@@ -25,3 +25,4 @@
 </div>
 <?php
 include dirname(__FILE__) . DS . 'footer.php';
+

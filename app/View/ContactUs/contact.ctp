@@ -1,3 +1,6 @@
+<?php
+$this->Html->addCrumb('Contact Us');
+?>
 <div class="contactUs form">
 <?php echo $this->Form->create('ContactUs'); ?>
 	<fieldset>

@@ -155,6 +155,7 @@ class CrudAuthorizeTest extends CakeTestCase {
 			'create' => 'create',
 			'read' => 'read',
 			'index' => 'read',
+			'add' => 'create',
 			'edit' => 'update',
 			'view' => 'read',
 			'delete' => 'delete',

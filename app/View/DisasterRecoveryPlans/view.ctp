@@ -1,3 +1,7 @@
+<?php
+$this->Html->addCrumb('Diaster Recovery Plans', '/disaster_recovery_plans');
+$this->Html->addCrumb($disasterRecoveryPlan['DisasterRecoveryPlan']['name']);
+?>
 <div class="disasterRecoveryPlans view">
 <h2><?php  echo __('Disaster Recovery Plan'); ?></h2>
 	<dl>

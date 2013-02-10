@@ -1,10 +1,15 @@
+<?php
+$this->Html->addCrumb('ePHI Removed', '/ephi_removed');
+$this->Html->addCrumb('Edit ePHI Removed');
+?>
 <div class="ephiRemoved form">
 <?php echo $this->Form->create('EphiRemoved'); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Ephi Removed'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('date');
+		echo $this->Form->input('date', array('class' => 'datePick'));
+		echo $this->Form->input('time');
 		echo $this->Form->input('description', array('class' => 'ckeditor'));
 		echo $this->Form->input('removed_by');
 		echo $this->Form->input('returned_by');

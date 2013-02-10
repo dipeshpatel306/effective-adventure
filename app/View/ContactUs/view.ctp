@@ -1,3 +1,8 @@
+<?php
+$this->Html->addCrumb('Contact Us', '/contact_us');
+$this->Html->addCrumb('From: ' . $contactUs['ContactUs']['email'] . ' - ' . $this->Time->format('m/d/y g:i a', $contactUs['ContactUs']['created']));
+?>
+
 <div class="contactUs view">
 <h2><?php  echo __('Contact Us'); ?></h2>
 	<dl>

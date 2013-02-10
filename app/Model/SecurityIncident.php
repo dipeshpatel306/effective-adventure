@@ -21,8 +21,8 @@ class SecurityIncident extends AppModel {
  */
 	public $validate = array(
 		'date_of_incident' => array(
-			'datetime' => array(
-				'rule' => array('datetime'),
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -31,14 +31,6 @@ class SecurityIncident extends AppModel {
 			),
 		),
 		'discovery_date' => array(
-			'datetime' => array(
-				'rule' => array('datetime'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',

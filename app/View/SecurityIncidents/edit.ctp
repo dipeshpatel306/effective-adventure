@@ -1,11 +1,18 @@
+<?php
+$this->Html->addCrumb('Security Incidents', '/security_incidents');
+$this->Html->addCrumb('Edit Security Incident');
+?>
+
 <div class="securityIncidents form">
 <?php echo $this->Form->create('SecurityIncident'); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Security Incident'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('date_of_incident');
-		echo $this->Form->input('discovery_date');
+		echo $this->Form->input('date_of_incident', array('class' => 'datePick'));
+		echo $this->Form->input('time_of_incident');
+		echo $this->Form->input('discovery_date', array('class' =>'datePick'));
+		echo $this->Form->input('discovery_time');
 		echo $this->Form->input('reported_by');
 		echo $this->Form->input('description_of_incident', array('class' => 'ckeditor'));
 		echo $this->Form->input('cause_of_incident');

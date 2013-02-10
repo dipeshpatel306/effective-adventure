@@ -1,3 +1,7 @@
+<?php
+$this->Html->addCrumb('Users', '/users');
+$this->Html->addCrumb($user['User']['email']);
+?>
 <div class="users view">
 <h2><?php  echo __('User'); ?></h2>
 	<dl>

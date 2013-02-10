@@ -1,12 +1,16 @@
+<?php
+$this->Html->addCrumb('Server Room Access');
+?>
 <div class="serverRoomAccess index">
 	<h2><?php echo __('Server Room Access'); ?></h2>
 	<table>
 	<tr>
 			<th><?php echo $this->Paginator->sort('date'); ?></th>
+			<th><?php echo $this->Paginator->sort('time'); ?></th>
 			<th><?php echo $this->Paginator->sort('person'); ?></th>
 			<th><?php echo $this->Paginator->sort('company'); ?></th>
-			<th><?php echo $this->Paginator->sort('reason'); ?></th>
-			<th><?php echo $this->Paginator->sort('notes'); ?></th>
+			<!--<th><?php echo $this->Paginator->sort('reason'); ?></th>
+			<th><?php echo $this->Paginator->sort('notes'); ?></th>-->
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -15,11 +19,12 @@
 	<?php
 	foreach ($serverRoomAccess as $serverRoomAccess): ?>
 	<tr>
-		<td><?php echo $this->Time->format('m/d/y g:i a', $serverRoomAccess['ServerRoomAccess']['date']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y', $serverRoomAccess['ServerRoomAccess']['date']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('g:i a', $serverRoomAccess['ServerRoomAccess']['time']); ?>&nbsp;</td>
 		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['person']); ?>&nbsp;</td>
 		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['company']); ?>&nbsp;</td>
-		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['reason']); ?>&nbsp;</td>
-		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['notes']); ?>&nbsp;</td>
+		<!--<td><?php echo h($serverRoomAccess['ServerRoomAccess']['reason']); ?>&nbsp;</td>
+		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['notes']); ?>&nbsp;</td>-->
 		<td>
 			<?php echo $this->Html->link($serverRoomAccess['Client']['name'], array('controller' => 'clients', 'action' => 'view', $serverRoomAccess['Client']['id'])); ?>
 		</td>

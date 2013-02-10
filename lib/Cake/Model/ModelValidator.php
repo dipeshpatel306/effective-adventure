@@ -90,7 +90,7 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
  * Returns true if all fields pass validation. Will validate hasAndBelongsToMany associations
  * that use the 'with' key as well. Since `Model::_saveMulti` is incapable of exiting a save operation.
  *
- * Will validate the currently set data. Use `Model::set()` or `Model::create()` to set the active data.
+ * Will validate the currently set data.  Use `Model::set()` or `Model::create()` to set the active data.
  *
  * @param array $options An optional array of custom options to be made available in the beforeValidate callback
  * @return boolean True if there are no errors
@@ -130,10 +130,11 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
 		$options = array_merge(array('atomic' => true, 'deep' => false), $options);
 		$model->validationErrors = $validationErrors = $return = array();
 		$model->create(null);
-		$return[$model->alias] = true;
 		if (!($model->set($data) && $model->validates($options))) {
 			$validationErrors[$model->alias] = $model->validationErrors;
 			$return[$model->alias] = false;
+		} else {
+			$return[$model->alias] = true;
 		}
 		$data = $model->data;
 		if (!empty($options['deep']) && isset($data[$model->alias])) {
@@ -155,7 +156,11 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
 						$data[$association] = $model->{$association}->data[$model->{$association}->alias];
 					}
 					if (is_array($validates)) {
-						$validates = !in_array(false, Hash::flatten($validates), true);
+						if (in_array(false, Hash::flatten($validates), true)) {
+							$validates = false;
+						} else {
+							$validates = true;
+						}
 					}
 					$return[$association] = $validates;
 				} elseif ($associations[$association] === 'hasMany') {
@@ -198,6 +203,7 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
  *
  * @param array $data Record data to validate. This should be a numerically-indexed array
  * @param array $options Options to use when validating record data (see above), See also $options of validates().
+ * @return boolean True on success, or false on failure.
  * @return mixed If atomic: True on success, or false on failure.
  *    Otherwise: array similar to the $data array passed, but values are set to true/false
  *    depending on whether each record validated successfully.
@@ -226,7 +232,10 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
 		if (!$options['atomic']) {
 			return $return;
 		}
-		return empty($model->validationErrors);
+		if (empty($model->validationErrors)) {
+			return true;
+		}
+		return false;
 	}
 
 /**
@@ -314,10 +323,9 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
  */
 	public function getField($name = null) {
 		$this->_parseRules();
-		if ($name !== null) {
-			if (!empty($this->_fields[$name])) {
-				return $this->_fields[$name];
-			}
+		if ($name !== null && !empty($this->_fields[$name])) {
+			return $this->_fields[$name];
+		} elseif ($name !== null) {
 			return null;
 		}
 		return $this->_fields;
@@ -394,15 +402,16 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
 		unset($fieldList);
 
 		$validateList = array();
-		if (empty($whitelist)) {
-			return $this->_fields;
-		}
+		if (!empty($whitelist)) {
+			$this->validationErrors = array();
 
-		$this->validationErrors = array();
-		foreach ((array)$whitelist as $f) {
-			if (!empty($this->_fields[$f])) {
-				$validateList[$f] = $this->_fields[$f];
+			foreach ((array)$whitelist as $f) {
+				if (!empty($this->_fields[$f])) {
+					$validateList[$f] = $this->_fields[$f];
+				}
 			}
+		} else {
+			return $this->_fields;
 		}
 
 		return $validateList;
@@ -435,6 +444,9 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
 					$newData[] = $row[$join];
 				}
 			}
+			if (empty($newData)) {
+				continue;
+			}
 			foreach ($newData as $data) {
 				$data[$model->hasAndBelongsToMany[$assoc]['foreignKey']] = $model->id;
 				$model->{$join}->create($data);
@@ -466,7 +478,7 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
  *
  * @param string $field name of the field to check
  * @return boolean
- */
+ **/
 	public function offsetExists($field) {
 		$this->_parseRules();
 		return isset($this->_fields[$field]);
@@ -477,7 +489,7 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
  *
  * @param string $field name of the field to check
  * @return CakeValidationSet
- */
+ **/
 	public function offsetGet($field) {
 		$this->_parseRules();
 		return $this->_fields[$field];
@@ -489,7 +501,7 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
  * @param string $field name of the field to set
  * @param array|CakeValidationSet $rules set of rules to apply to field
  * @return void
- */
+ **/
 	public function offsetSet($field, $rules) {
 		$this->_parseRules();
 		if (!$rules instanceof CakeValidationSet) {
@@ -505,7 +517,7 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
  *
  * @param string $field name of the field to unset
  * @return void
- */
+ **/
 	public function offsetUnset($field) {
 		$this->_parseRules();
 		unset($this->_fields[$field]);
@@ -515,7 +527,7 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
  * Returns an iterator for each of the fields to be validated
  *
  * @return ArrayIterator
- */
+ **/
 	public function getIterator() {
 		$this->_parseRules();
 		return new ArrayIterator($this->_fields);
@@ -525,7 +537,7 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
  * Returns the number of fields having validation rules
  *
  * @return int
- */
+ **/
 	public function count() {
 		$this->_parseRules();
 		return count($this->_fields);
@@ -553,7 +565,7 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
  * @param string|array|CakeValidationSet $name name of the rule to be added or list of rules for the field
  * @param array|CakeValidationRule $rule or list of rules to be added to the field's rule set
  * @return ModelValidator this instance
- */
+ **/
 	public function add($field, $name, $rule = null) {
 		$this->_parseRules();
 		if ($name instanceof CakeValidationSet) {
@@ -592,7 +604,7 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
  * @param string $field The name of the field from wich the rule will be removed
  * @param string $rule the name of the rule to be removed
  * @return ModelValidator this instance
- */
+ **/
 	public function remove($field, $rule = null) {
 		$this->_parseRules();
 		if ($rule === null) {

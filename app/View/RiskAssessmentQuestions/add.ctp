@@ -1,3 +1,7 @@
+<?php
+$this->Html->addCrumb('Risk Assessment Questions', '/risk_assessment_questions');
+$this->Html->addCrumb('Add Risk Assessment Question');
+?>
 <div class="riskAssessmentQuestions form">
 <?php echo $this->Form->create('RiskAssessmentQuestion'); ?>
 	<fieldset>

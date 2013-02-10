@@ -303,7 +303,7 @@ class TestShell extends Shell {
 		$this->out($title);
 		$i = 1;
 		$cases = array();
-		foreach ($testCases as $testCase) {
+		foreach ($testCases as $testCaseFile => $testCase) {
 			$case = str_replace('Test.php', '', $testCase);
 			$this->out("[$i] $case");
 			$cases[$i] = $case;
@@ -338,7 +338,7 @@ class TestShell extends Shell {
  * @param string $category
  * @param boolean $throwOnMissingFile
  * @access protected
- * @return array array(type, case)
+ * @return array(type, case)
  * @throws Exception
  */
 	protected function _mapFileToCase($file, $category, $throwOnMissingFile = true) {

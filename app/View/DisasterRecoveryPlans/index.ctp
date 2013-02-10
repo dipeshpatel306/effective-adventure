@@ -1,10 +1,11 @@
+<?php
+$this->Html->addCrumb('Disaster Recovery Plans');
+?>
 <div class="disasterRecoveryPlans index">
 	<h2><?php echo __('Disaster Recovery Plans'); ?></h2>
 	<table>
 	<tr>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('description'); ?></th>
-			<th><?php echo $this->Paginator->sort('details'); ?></th>
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -15,8 +16,6 @@
 	foreach ($disasterRecoveryPlans as $disasterRecoveryPlan): ?>
 	<tr>
 		<td><?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['name']); ?>&nbsp;</td>
-		<td><?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['description']); ?>&nbsp;</td>
-		<td><?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['details']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($disasterRecoveryPlan['Client']['name'], array('controller' => 'clients', 'action' => 'view', $disasterRecoveryPlan['Client']['id'])); ?>
 		</td>

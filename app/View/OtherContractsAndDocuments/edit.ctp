@@ -1,3 +1,7 @@
+<?php
+$this->Html->addCrumb('Other Contracts & Documents', '/other_contracts_and_documents');
+$this->Html->addCrumb('Edit Other Contract & Document');
+?>
 <div class="otherContractsAndDocuments form">
 <?php echo $this->Form->create('OtherContractsAndDocument'); ?>
 	<fieldset>

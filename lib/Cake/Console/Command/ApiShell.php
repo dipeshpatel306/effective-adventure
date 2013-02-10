@@ -73,13 +73,12 @@ class ApiShell extends AppShell {
 			$path = $this->paths['core'];
 		}
 
-		$count = count($this->args);
-		if ($count > 1) {
-			$file = Inflector::underscore($this->args[1]);
-			$class = Inflector::camelize($this->args[1]);
-		} elseif ($count) {
+		if (count($this->args) == 1) {
 			$file = $type;
 			$class = Inflector::camelize($type);
+		} elseif (count($this->args) > 1) {
+			$file = Inflector::underscore($this->args[1]);
+			$class = Inflector::camelize($this->args[1]);
 		}
 		$objects = App::objects('class', $path);
 		if (in_array($class, $objects)) {
@@ -161,7 +160,7 @@ class ApiShell extends AppShell {
  * @return void
  */
 	public function help() {
-		$head = "Usage: cake api [<type>] <className> [-m <method>]\n";
+		$head  = "Usage: cake api [<type>] <className> [-m <method>]\n";
 		$head .= "-----------------------------------------------\n";
 		$head .= "Parameters:\n\n";
 

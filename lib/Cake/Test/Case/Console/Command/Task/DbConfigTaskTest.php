@@ -128,6 +128,6 @@ class DbConfigTaskTest extends CakeTestCase {
 				)
 			));
 
-		$this->Task->execute();
+		$result = $this->Task->execute();
 	}
 }

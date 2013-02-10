@@ -1,3 +1,7 @@
+<?php
+$this->Html->addCrumb('Business Associate Agreements', '/business_associate_agreements');
+$this->Html->addCrumb($businessAssociateAgreement['BusinessAssociateAgreement']['name']);
+?>
 <div class="businessAssociateAgreements view">
 <h2><?php  echo __('Business Associate Agreement'); ?></h2>
 	<dl>

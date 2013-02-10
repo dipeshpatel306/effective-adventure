@@ -1,12 +1,16 @@
+<?php
+$this->Html->addCrumb('Business Associate Agreements', '/business_associate_agreements');
+$this->Html->addCrumb('Add Business Associate Agreement');
+?>
 <div class="businessAssociateAgreements form">
 <?php echo $this->Form->create('BusinessAssociateAgreement', array('type' => 'file')); ?>
 	<fieldset>
 		<legend><?php echo __('Add Business Associate Agreement'); ?></legend>
 	<?php
+		echo $this->Form->input('contract_date', array('class' => 'datePick'));	
 		echo $this->Form->input('name');
 		echo $this->Form->input('email');
 		echo $this->Form->input('phone');
-		echo $this->Form->input('contract_date');
 		echo $this->Form->input('attachment', array('type' => 'file'));
 		echo $this->Form->input('client_id');
 	?>

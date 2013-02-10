@@ -1,3 +1,6 @@
+<?php
+$this->Html->addCrumb('Clients');
+?>
 <div class="clients index">
 	<h2><?php echo __('Clients'); ?></h2>
 	<table>

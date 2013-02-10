@@ -36,7 +36,6 @@ abstract class BaseLog implements CakeLogInterface {
 /**
  * __construct method
  *
- * @param array $config Configuration array
  * @return void
  */
 	public function __construct($config = array()) {
@@ -44,7 +43,7 @@ abstract class BaseLog implements CakeLogInterface {
 	}
 
 /**
- * Sets instance config. When $config is null, returns config array
+ * Sets instance config.  When $config is null, returns config array
  *
  * Config
  *

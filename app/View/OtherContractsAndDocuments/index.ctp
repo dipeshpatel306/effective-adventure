@@ -1,10 +1,12 @@
+<?php
+$this->Html->addCrumb('Other Contracts & Documents');
+?>
+
 <div class="otherContractsAndDocuments index">
 	<h2><?php echo __('Other Contracts And Documents'); ?></h2>
 	<table>
 	<tr>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('description'); ?></th>
-			<th><?php echo $this->Paginator->sort('details'); ?></th>
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -15,8 +17,6 @@
 	foreach ($otherContractsAndDocuments as $otherContractsAndDocument): ?>
 	<tr>
 		<td><?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['name']); ?>&nbsp;</td>
-		<td><?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['description']); ?>&nbsp;</td>
-		<td><?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['details']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($otherContractsAndDocument['Client']['name'], array('controller' => 'clients', 'action' => 'view', $otherContractsAndDocument['Client']['id'])); ?>
 		</td>

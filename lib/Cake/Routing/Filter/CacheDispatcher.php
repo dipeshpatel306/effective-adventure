@@ -36,18 +36,14 @@ class CacheDispatcher extends DispatcherFilter {
  * @param CakeEvent $event containing the request and response object
  * @return CakeResponse with cached content if found, null otherwise
  */
-	public function beforeDispatch(CakeEvent $event) {
+	public function beforeDispatch($event) {
 		if (Configure::read('Cache.check') !== true) {
 			return;
 		}
 
 		$path = $event->data['request']->here();
-		if ($path === '/') {
+		if ($path == '/') {
 			$path = 'home';
-		}
-		$prefix = Configure::read('Cache.viewPrefix');
-		if ($prefix) {
-			$path = $prefix . '_' . $path;
 		}
 		$path = strtolower(Inflector::slug($path));
 

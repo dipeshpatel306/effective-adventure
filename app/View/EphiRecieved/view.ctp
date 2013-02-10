@@ -1,14 +1,19 @@
+<?php
+$this->Html->addCrumb('ePHI Recieved', '/ephi_recieved');
+$this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiRecieved['EphiRecieved']['date_recieved']));
+?>
 <div class="ephiRecieved view">
 <h2><?php  echo __('Ephi Recieved'); ?></h2>
 	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($ephiRecieved['EphiRecieved']['id']); ?>
-			&nbsp;
-		</dd>
+
 		<dt><?php echo __('Date Recieved'); ?></dt>
 		<dd>
-			<?php echo $this->Time->format('m/d/y g:i a', $ephiRecieved['EphiRecieved']['date_recieved']); ?>
+			<?php echo $this->Time->format('m/d/y', $ephiRecieved['EphiRecieved']['date_recieved']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Time Recieved'); ?></dt>
+		<dd>
+			<?php echo $this->Time->format('g:i a', $ephiRecieved['EphiRecieved']['time_recieved']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Description'); ?></dt>
@@ -28,7 +33,12 @@
 		</dd>
 		<dt><?php echo __('Date Returned'); ?></dt>
 		<dd>
-			<?php echo h($ephiRecieved['EphiRecieved']['date_returned']); ?>
+			<?php echo $this->Time->format('m/d/y', $ephiRecieved['EphiRecieved']['date_returned']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Time Returned'); ?></dt>
+		<dd>
+			<?php echo $this->Time->format('g:i a', $ephiRecieved['EphiRecieved']['time_returned']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Client'); ?></dt>

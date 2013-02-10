@@ -122,10 +122,6 @@ HTML;
 /**
  * Renders the html for a single line in the html diff.
  *
- * @param string $line
- * @param integer $linenumber
- * @param string $class
- * @param array $coveringTests
  * @return void
  */
 	protected function _paintLine($line, $linenumber, $class, $coveringTests) {
@@ -174,8 +170,6 @@ HTML;
 /**
  * Generate an HTML snippet for coverage headers
  *
- * @param string $filename
- * @param string $percent
  * @return void
  */
 	public function coverageHeader($filename, $percent) {

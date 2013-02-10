@@ -1,14 +1,18 @@
+<?php
+$this->Html->addCrumb('ePHI Removed', '/ephi_removed');
+$this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemoved']['date']));
+?>
 <div class="ephiRemoved view">
 <h2><?php  echo __('Ephi Removed'); ?></h2>
 	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($ephiRemoved['EphiRemoved']['id']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Date'); ?></dt>
 		<dd>
-			<?php echo $this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemoved']['date']); ?>
+			<?php echo $this->Time->format('m/d/y', $ephiRemoved['EphiRemoved']['date']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Time'); ?></dt>
+		<dd>
+			<?php echo $this->Time->format('g:i a', $ephiRemoved['EphiRemoved']['time']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Description'); ?></dt>

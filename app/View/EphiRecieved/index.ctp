@@ -1,13 +1,17 @@
+<?php
+$this->Html->addCrumb('ePHI Recieved');
+?>
 <div class="ephiRecieved index">
 	<h2><?php echo __('Ephi Recieved'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('date_recieved'); ?></th>
+			<th><?php echo $this->Paginator->sort('time_recieved'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th><?php echo $this->Paginator->sort('patient_name'); ?></th>
 			<th><?php echo $this->Paginator->sort('recieved_by'); ?></th>
 			<th><?php echo $this->Paginator->sort('date_returned'); ?></th>
+			<th><?php echo $this->Paginator->sort('time_returned'); ?></th>
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -16,12 +20,13 @@
 	<?php
 	foreach ($ephiRecieved as $ephiRecieved): ?>
 	<tr>
-		<td><?php echo h($ephiRecieved['EphiRecieved']['id']); ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('m/d/y g:i a', $ephiRecieved['EphiRecieved']['date_recieved']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y', $ephiRecieved['EphiRecieved']['date_recieved']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('g:i a', $ephiRecieved['EphiRecieved']['time_recieved']); ?>&nbsp;</td>
 		<td><?php echo h($ephiRecieved['EphiRecieved']['description']); ?>&nbsp;</td>
 		<td><?php echo h($ephiRecieved['EphiRecieved']['patient_name']); ?>&nbsp;</td>
 		<td><?php echo h($ephiRecieved['EphiRecieved']['recieved_by']); ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('m/d/y g:i a', $ephiRecieved['EphiRecieved']['date_returned']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y', $ephiRecieved['EphiRecieved']['date_returned']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('g:i a', $ephiRecieved['EphiRecieved']['time_returned']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($ephiRecieved['Client']['name'], array('controller' => 'clients', 'action' => 'view', $ephiRecieved['Client']['id'])); ?>
 		</td>

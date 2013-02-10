@@ -1,3 +1,7 @@
+<?php
+$this->Html->addCrumb('Risk Assessment Documents', '/risk_assessment_documents');
+$this->Html->addCrumb($riskAssessmentDocument['RiskAssessmentDocument']['name']);
+?>
 <div class="riskAssessmentDocuments view">
 <h2><?php  echo __('Risk Assessment Document'); ?></h2>
 	<dl>

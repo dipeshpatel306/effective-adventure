@@ -18,10 +18,9 @@
  */
 
 App::uses('BaseLog', 'Log/Engine');
-App::uses('Hash', 'Utility');
 
 /**
- * File Storage stream for Logging. Writes logs to different files
+ * File Storage stream for Logging.  Writes logs to different files
  * based on the type of log it is.
  *
  * @package       Cake.Log.Engine

@@ -1,3 +1,7 @@
+<?php
+$this->Html->addCrumb('Server Room Access', '/serevr_room_access');
+$this->Html->addCrumb($this->Time->format('m/d/y g:i a', $serverRoomAccess['ServerRoomAccess']['date']));
+?>
 <div class="serverRoomAccess view">
 <h2><?php  echo __('Server Room Access'); ?></h2>
 	<dl>
@@ -8,7 +12,12 @@
 		</dd>
 		<dt><?php echo __('Date'); ?></dt>
 		<dd>
-			<?php echo $this->Time->format('m/d/y g:i a', $serverRoomAccess['ServerRoomAccess']['date']); ?>
+			<?php echo $this->Time->format('m/d/y', $serverRoomAccess['ServerRoomAccess']['date']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Date'); ?></dt>
+		<dd>
+			<?php echo $this->Time->format('g:i a', $serverRoomAccess['ServerRoomAccess']['time']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Person'); ?></dt>

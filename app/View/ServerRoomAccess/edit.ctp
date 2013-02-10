@@ -1,10 +1,15 @@
+<?php
+$this->Html->addCrumb('Server Room Access', '/server_room_access');
+$this->Html->addCrumb('Edit Server Room Access');
+?>
 <div class="serverRoomAccess form">
 <?php echo $this->Form->create('ServerRoomAccess'); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Server Room Access'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('date');
+		echo $this->Form->input('date', array('class' => 'datePick'));
+		echo $this->Form->input('time');
 		echo $this->Form->input('person');
 		echo $this->Form->input('company');
 		echo $this->Form->input('reason');

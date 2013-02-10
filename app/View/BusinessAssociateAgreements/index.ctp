@@ -1,3 +1,6 @@
+<?php
+$this->Html->addCrumb('Business Associate Agreements');
+?>
 <div class="businessAssociateAgreements index">
 	<h2><?php echo __('Business Associate Agreements'); ?></h2>
 	<table>

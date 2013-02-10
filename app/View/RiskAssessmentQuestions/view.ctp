@@ -1,3 +1,6 @@
+<?php
+$this->Html->addCrumb('View Risk Assessment Questions');
+?>
 <div class="riskAssessmentQuestions view">
 <h2><?php  echo __('Risk Assessment Question'); ?></h2>
 	<dl>

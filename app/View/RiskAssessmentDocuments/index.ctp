@@ -1,10 +1,11 @@
+<?php
+$this->Html->addCrumb('Risk Assessment Documents');
+?>
 <div class="riskAssessmentDocuments index">
 	<h2><?php echo __('Risk Assessment Documents'); ?></h2>
 	<table>
 	<tr>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('description'); ?></th>
-			<th><?php echo $this->Paginator->sort('details'); ?></th>
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -15,8 +16,6 @@
 	foreach ($riskAssessmentDocuments as $riskAssessmentDocument): ?>
 	<tr>
 		<td><?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['name']); ?>&nbsp;</td>
-		<td><?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['description']); ?>&nbsp;</td>
-		<td><?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['details']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($riskAssessmentDocument['Client']['name'], array('controller' => 'clients', 'action' => 'view', $riskAssessmentDocument['Client']['id'])); ?>
 		</td>

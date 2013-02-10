@@ -11,8 +11,8 @@
 	<div class="box">
 	<?php echo $this->Html->link('Policies & Procedures', array('controller' => '#'));?>
 	<ul>
-		<li><?php echo $this->Html->link('HIPAA Policies & Procedures', array('controller' => 'policies', 'action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link('Other Policies & Procedures', array('controller' => 'other_policies', 'action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link('HIPAA Policies & Procedures', array('controller' => 'policies_and_procedures', 'action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link('Other Policies & Procedures', array('controller' => 'other_policies_and_procedures', 'action' => 'index')); ?></li>
 	</ul>	
 	</div>
 

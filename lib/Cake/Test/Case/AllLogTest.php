@@ -38,3 +38,4 @@ class AllLogTest extends PHPUnit_Framework_TestSuite {
 		return $suite;
 	}
 }
+

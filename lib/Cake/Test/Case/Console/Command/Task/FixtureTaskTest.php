@@ -381,7 +381,7 @@ class FixtureTaskTest extends CakeTestCase {
 		$this->Task->expects($this->at(0))->method('createFile')
 			->with($filename, $this->stringContains('class Article'));
 
-		$this->Task->generateFixtureFile('Article', array());
+		$result = $this->Task->generateFixtureFile('Article', array());
 		CakePlugin::unload();
 	}
 

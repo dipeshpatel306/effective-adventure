@@ -1,4 +1,5 @@
 <?php
+$this->Html->addCrumb('Take Risk Assessment');
 	$options = array('No' => 'No', 'Yes' => 'Yes', 'N/A');
 	
 	// format Risk Assessment Question
@@ -13,7 +14,6 @@
 		echo '<p><b>How to Answer Question</b><br />' . $RaQ[$id]['RiskAssessmentQuestion']['how_to_answer_question'] . '</p>';
 	}
 
-	
 ?>
 
 <div class="riskAssessments form">

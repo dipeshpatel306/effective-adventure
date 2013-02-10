@@ -1,3 +1,6 @@
+<?php
+$this->Html->addCrumb('Risk Assessments');
+?>
 <div class="riskAssessments index">
 	<h2><?php echo __('Risk Assessments'); ?></h2>
 	<table cellpadding="0" cellspacing="0">

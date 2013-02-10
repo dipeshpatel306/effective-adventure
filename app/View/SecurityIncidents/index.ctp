@@ -1,13 +1,18 @@
+<?php
+$this->Html->addCrumb('Security Incidents');
+?>
 <div class="securityIncidents index">
 	<h2><?php echo __('Security Incidents'); ?></h2>
 	<table>
 	<tr>
 			<th><?php echo $this->Paginator->sort('date_of_incident'); ?></th>
+			<th><?php echo $this->Paginator->sort('time_of_incident'); ?></th>
 			<th><?php echo $this->Paginator->sort('discovery_date'); ?></th>
+			<th><?php echo $this->Paginator->sort('discovery_time'); ?></th>
 			<th><?php echo $this->Paginator->sort('reported_by'); ?></th>
 			<th><?php echo $this->Paginator->sort('description_of_incident'); ?></th>
-			<th><?php echo $this->Paginator->sort('cause_of_incident'); ?></th>
-			<th><?php echo $this->Paginator->sort('assets_involved'); ?></th>
+			<!--<th><?php echo $this->Paginator->sort('cause_of_incident'); ?></th>
+			<th><?php echo $this->Paginator->sort('assets_involved'); ?></th>-->
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
@@ -16,11 +21,13 @@
 	<?php
 	foreach ($securityIncidents as $securityIncident): ?>
 	<tr>
-		<td><?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['date_of_incident']); ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['discovery_date']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y', $securityIncident['SecurityIncident']['date_of_incident']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('g:i a', $securityIncident['SecurityIncident']['time_of_incident']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y', $securityIncident['SecurityIncident']['discovery_date']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('g:i a', $securityIncident['SecurityIncident']['discovery_time']); ?>&nbsp;</td>
 		<td><?php echo h($securityIncident['SecurityIncident']['reported_by']); ?>&nbsp;</td>
-		<td><?php echo h($securityIncident['SecurityIncident']['description_of_incident']); ?>&nbsp;</td>
-		<td><?php echo h($securityIncident['SecurityIncident']['cause_of_incident']); ?>&nbsp;</td>
+		<!--<td><?php echo h($securityIncident['SecurityIncident']['description_of_incident']); ?>&nbsp;</td>
+		<td><?php echo h($securityIncident['SecurityIncident']['cause_of_incident']); ?>&nbsp;</td>-->
 		<td><?php echo h($securityIncident['SecurityIncident']['assets_involved']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['modified']); ?>&nbsp;</td>

@@ -99,7 +99,7 @@ class CakeHtmlReporter extends CakeBaseReporter {
 			$buffer .= "<strong>EMPTY</strong>";
 		}
 
-		foreach ($testCases as $testCase) {
+		foreach ($testCases as $testCaseFile => $testCase) {
 			$title = explode(DS, str_replace('.test.php', '', $testCase));
 			$title[count($title) - 1] = Inflector::camelize($title[count($title) - 1]);
 			$title = implode(' / ', $title);
@@ -169,7 +169,6 @@ class CakeHtmlReporter extends CakeBaseReporter {
 /**
  * Paints a code coverage report.
  *
- * @param array $coverage
  * @return void
  */
 	public function paintCoverage(array $coverage) {
@@ -243,7 +242,6 @@ class CakeHtmlReporter extends CakeBaseReporter {
  *
  * @param PHPUnit_Framework_AssertionFailedError $message Failure object displayed in
  *   the context of the other tests.
- * @param mixed $test
  * @return void
  */
 	public function paintFail($message, $test) {
@@ -251,12 +249,10 @@ class CakeHtmlReporter extends CakeBaseReporter {
 		$testName = get_class($test) . '(' . $test->getName() . ')';
 
 		$actualMsg = $expectedMsg = null;
-		if (method_exists($message, 'getComparisonFailure')) {
-			$failure = $message->getComparisonFailure();
-			if (is_object($failure)) {
-				$actualMsg = $failure->getActualAsString();
-				$expectedMsg = $failure->getExpectedAsString();
-			}
+		$failure = $message->getComparisonFailure();
+		if (is_object($failure)) {
+			$actualMsg = $message->getComparisonFailure()->getActualAsString();
+			$expectedMsg = $message->getComparisonFailure()->getExpectedAsString();
 		}
 
 		echo "<li class='fail'>\n";
@@ -296,7 +292,6 @@ class CakeHtmlReporter extends CakeBaseReporter {
  * Paints a PHP exception.
  *
  * @param Exception $exception Exception to display.
- * @param mixed $test
  * @return void
  */
 	public function paintException($message, $test) {

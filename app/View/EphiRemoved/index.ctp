@@ -1,9 +1,12 @@
+<?php
+$this->Html->addCrumb('ePHI Removed');
+?>
 <div class="ephiRemoved index">
 	<h2><?php echo __('Ephi Removed'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('date'); ?></th>
+			<th><?php echo $this->Paginator->sort('time'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th><?php echo $this->Paginator->sort('removed_by'); ?></th>
 			<th><?php echo $this->Paginator->sort('returned_by'); ?></th>
@@ -15,8 +18,8 @@
 	<?php
 	foreach ($ephiRemoved as $ephiRemoved): ?>
 	<tr>
-		<td><?php echo h($ephiRemoved['EphiRemoved']['id']); ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemoved']['date']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y', $ephiRemoved['EphiRemoved']['date']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('g:i a', $ephiRemoved['EphiRemoved']['time']); ?>&nbsp;</td>
 		<td><?php echo h($ephiRemoved['EphiRemoved']['description']); ?>&nbsp;</td>
 		<td><?php echo h($ephiRemoved['EphiRemoved']['removed_by']); ?>&nbsp;</td>
 		<td><?php echo h($ephiRemoved['EphiRemoved']['returned_by']); ?>&nbsp;</td>

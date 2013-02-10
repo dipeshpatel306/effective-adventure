@@ -39,3 +39,4 @@ class AllTasksTest extends PHPUnit_Framework_TestSuite {
 		return $suite;
 	}
 }
+

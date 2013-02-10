@@ -1,4 +1,7 @@
 <?php
+$this->Html->addCrumb('Risk Assessments', '/risk_assessments');
+$this->Html->addCrumb('Add Risk Assessment');
+
 	$options = array('No' => 'No', 'Yes' => 'Yes', 'N/A');
 ?>
 

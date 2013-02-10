@@ -1,3 +1,7 @@
+<?php
+$this->Html->addCrumb('Clients', '/clients');
+$this->Html->addCrumb('Edit Client');
+?>
 <div class="clients form">
 <?php echo $this->Form->create('Client'); ?>
 	<fieldset>

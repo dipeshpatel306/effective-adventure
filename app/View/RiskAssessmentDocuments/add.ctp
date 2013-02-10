@@ -1,3 +1,7 @@
+<?php
+$this->Html->addCrumb('Risk Assessment Documents', '/risk_assessment_documents');
+$this->Html->addCrumb('Add Risk Assessment Document');
+?>
 <div class="riskAssessmentDocuments form">
 <?php echo $this->Form->create('RiskAssessmentDocument'); ?>
 	<fieldset>

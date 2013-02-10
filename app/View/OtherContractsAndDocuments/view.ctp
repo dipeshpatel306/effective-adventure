@@ -1,3 +1,8 @@
+<?php
+$this->Html->addCrumb('Other Contracts & Documents', '/other_contracts_and_documents');
+$this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['name']);
+?>
+
 <div class="otherContractsAndDocuments view">
 <h2><?php  echo __('Other Contracts And Document'); ?></h2>
 	<dl>

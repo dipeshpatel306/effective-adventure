@@ -65,17 +65,6 @@ class CacheTest extends CakeTestCase {
 	}
 
 /**
- * testConfigInvalidEngine method
- *
- * @expectedException CacheException
- * @return void
- */
-	public function testConfigInvalidEngine() {
-		$settings = array('engine' => 'Imaginary');
-		Cache::config('imaginary', $settings);
-	}
-
-/**
  * Check that no fatal errors are issued doing normal things when Cache.disable is true.
  *
  * @return void
@@ -136,7 +125,7 @@ class CacheTest extends CakeTestCase {
 			'serialize' => true,
 			'random' => 'wii'
 		));
-		Cache::read('Test', 'invalid');
+		$read = Cache::read('Test', 'invalid');
 	}
 
 /**
@@ -402,7 +391,7 @@ class CacheTest extends CakeTestCase {
 
 		Cache::delete('test_cache');
 
-		Cache::settings();
+		$global = Cache::settings();
 
 		Cache::set($_cacheSet);
 	}

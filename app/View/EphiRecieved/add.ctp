@@ -1,13 +1,19 @@
+<?php
+$this->Html->addCrumb('ePHI Recieved', '/ephi_recieved');
+$this->Html->addCrumb('Add ePHI Recieved');
+?>
 <div class="ephiRecieved form">
 <?php echo $this->Form->create('EphiRecieved'); ?>
 	<fieldset>
 		<legend><?php echo __('Add Ephi Recieved'); ?></legend>
 	<?php
-		echo $this->Form->input('date_recieved');
+		echo $this->Form->input('date_recieved', array('class' => 'datePick'));
+		echo $this->Form->input('time_recieved');
 		echo $this->Form->input('description', array('class' => 'ckeditor'));
 		echo $this->Form->input('patient_name');
 		echo $this->Form->input('recieved_by');
-		echo $this->Form->input('date_returned');
+		echo $this->Form->input('date_returned', array('class' => 'datePick'));
+		echo $this->Form->input('time_returned');
 		echo $this->Form->input('client_id');
 	?>
 	</fieldset>

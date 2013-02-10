@@ -1,3 +1,6 @@
+<?php
+$this->Html->addCrumb('SIRT Members');
+?>
 <div class="sirtMembers index">
 	<h2><?php echo __('Sirt Members'); ?></h2>
 	<table>

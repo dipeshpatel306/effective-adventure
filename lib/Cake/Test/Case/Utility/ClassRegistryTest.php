@@ -223,7 +223,7 @@ class ClassRegistryTest extends CakeTestCase {
  * @return void
  */
 	public function testClassRegistryFlush() {
-		ClassRegistry::init('RegisterArticleTag');
+		$Tag = ClassRegistry::init('RegisterArticleTag');
 
 		$ArticleTag = ClassRegistry::getObject('RegisterArticleTag');
 		$this->assertTrue(is_a($ArticleTag, 'RegisterArticleTag'));

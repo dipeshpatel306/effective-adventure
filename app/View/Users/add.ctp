@@ -1,3 +1,7 @@
+<?php
+$this->Html->addCrumb('Users', '/users');
+$this->Html->addCrumb('Add User');
+?>
 <div class="users form">
 <?php echo $this->Form->create('User'); ?>
 	<fieldset>

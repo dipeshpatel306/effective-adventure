@@ -34,7 +34,7 @@ abstract class AbstractTransport {
 /**
  * Send mail
  *
- * @param CakeEmail $email
+ * @params CakeEmail $email
  * @return array
  */
 	abstract public function send(CakeEmail $email);

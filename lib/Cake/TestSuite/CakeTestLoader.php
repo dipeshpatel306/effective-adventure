@@ -43,8 +43,6 @@ class CakeTestLoader extends PHPUnit_Runner_StandardTestSuiteLoader {
 /**
  * Convert path fragments used by Cake's test runner to absolute paths that can be fed to PHPUnit.
  *
- * @param string $filePath
- * @param string $params
  * @return void
  */
 	protected function _resolveTestFile($filePath, $params) {
@@ -82,8 +80,7 @@ class CakeTestLoader extends PHPUnit_Runner_StandardTestSuiteLoader {
 /**
  * Get the list of files for the test listing.
  *
- * @param string $params
- * @return array
+ * @return void
  */
 	public static function generateTestList($params) {
 		$directory = self::_basePath($params);
@@ -104,7 +101,7 @@ class CakeTestLoader extends PHPUnit_Runner_StandardTestSuiteLoader {
  * a given fileTestFunction, like isTestCaseFile()
  *
  * @param string $directory The directory to scan for files.
- * @return array
+ * @param mixed $fileTestFunction
  */
 	protected static function _getRecursiveFileList($directory = '.') {
 		$fileList = array();

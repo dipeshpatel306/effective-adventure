@@ -1,3 +1,7 @@
+<?php
+$this->Html->addCrumb('Risk Assessment Questions');
+?>
+
 <div class="riskAssessmentQuestions index">
 	<h2><?php echo __('Risk Assessment Questions'); ?></h2>
 	<table>

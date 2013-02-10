@@ -1,14 +1,28 @@
+<?php
+$this->Html->addCrumb('security_incidents', '/security_incidents');
+$this->Html->addCrumb($this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['date_of_incident']));
+?>
 <div class="securityIncidents view">
 <h2><?php  echo __('Security Incident'); ?></h2>
 	<dl>
 		<dt><?php echo __('Date Of Incident'); ?></dt>
 		<dd>
-			<?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['date_of_incident']); ?>
+			<?php echo $this->Time->format('m/d/y', $securityIncident['SecurityIncident']['date_of_incident']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Time Of Incident'); ?></dt>
+		<dd>
+			<?php echo $this->Time->format('g:i a', $securityIncident['SecurityIncident']['time_of_incident']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Discovery Date'); ?></dt>
 		<dd>
-			<?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['discovery_date']); ?>
+			<?php echo $this->Time->format('m/d/y', $securityIncident['SecurityIncident']['discovery_date']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Discovery Time'); ?></dt>
+		<dd>
+			<?php echo $this->Time->format('g:i a', $securityIncident['SecurityIncident']['discovery_time']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Reported By'); ?></dt>

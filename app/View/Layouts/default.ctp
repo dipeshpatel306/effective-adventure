@@ -43,7 +43,14 @@
 			?>
 		</div>
 		<div class='navWrap'>
-			<?php echo $this->element('navigation'); ?>
+			<?php // echo $this->element('navigation'); ?>
+			
+			<?php // Breadcrumbs
+				if($this->here != ('/hipaa/users/login') ){ // TODO fix link for production
+					echo $this->Html->getCrumbs(' > ', 'Home'); 
+				}
+			?>
+			
 		</div>
 		
 	
