@@ -1,4 +1,5 @@
 <?php
+$this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
 $this->Html->addCrumb('Business Associate Agreements', '/business_associate_agreements');
 $this->Html->addCrumb($businessAssociateAgreement['BusinessAssociateAgreement']['name']);
 ?>

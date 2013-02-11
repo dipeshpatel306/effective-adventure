@@ -1,4 +1,5 @@
 <?php
+$this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
 $this->Html->addCrumb('Security Incidents');
 ?>
 <div class="securityIncidents index">

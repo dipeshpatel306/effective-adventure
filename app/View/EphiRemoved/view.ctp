@@ -1,4 +1,5 @@
 <?php
+$this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
 $this->Html->addCrumb('ePHI Removed', '/ephi_removed');
 $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemoved']['date']));
 ?>

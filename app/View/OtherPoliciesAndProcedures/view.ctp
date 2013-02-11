@@ -1,4 +1,5 @@
 <?php
+$this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
 $this->Html->addCrumb('Other Policies & Procedures', '/other_policies_and_procedures');
 $this->Html->addCrumb($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['name']);
 ?>

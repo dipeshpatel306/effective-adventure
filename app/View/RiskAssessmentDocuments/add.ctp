@@ -1,4 +1,5 @@
 <?php
+$this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
 $this->Html->addCrumb('Risk Assessment Documents', '/risk_assessment_documents');
 $this->Html->addCrumb('Add Risk Assessment Document');
 ?>

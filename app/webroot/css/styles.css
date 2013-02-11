@@ -25,6 +25,9 @@ body{
 	color: #666666;
 	font-family: 'Open Sans', Helvetica, Arial, "Lucida Grande", sans-serif;
 }
+a{
+	font-weight: normal;
+}
 #container{
 	min-height:100%;
 	position:relative;
@@ -139,6 +142,47 @@ table{
 	border-top: 2px solid #e6e6e6;
 	border-bottom: 2px solid #e6e6e6;
 }
+.navBar{
+	/*width: 95%;
+	margin-left: auto;
+	margin-right: auto;*/
+	height: 30px;
+	margin: 10px 0px 0 25px;
+
+}
+.navBar, .navBar a:link, .navBar a:visited{
+	color: #ffffff;
+}
+.navBar a:hover{
+	color: #666666;
+}
+.subMenu{
+	float: right;
+	margin-right: 30px;
+}
+img.homeIcon{
+	position: relative;
+	top: 3px;
+	width: 16px;
+	height: 16px;
+	margin-right: 4px;
+}
+/* transparency */
+img.homeIcon:hover{
+	opacity:0.5;
+	filter:alpha(opacity=0.5);
+}
+.clickBtn{
+	width: 200px;
+	height: 50px;
+	background-color: #d7d7d7;
+	border: 5px solid #a6a6a6;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+
+/* Navigation - Not used */
 .nav{
 	/*background: #5199B5;*/
 	height: 40px;
@@ -232,34 +276,106 @@ table{
 
 	background-color: #D2E6EF;
 }
-div.box{
+
+/* ##### Dashboard ##### */
+div.dashBox{
 	float: left;
-	border: 1px solid #888888;
+	/*border: 1px solid #888888;*/
+	border: 1px solid #e6e6e6;
 	width: 300px;
 	height: 200px;
 	margin: 8px;
 	padding: 8px;	
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+	
+	-moz-box-shadow: 3px 3px 4px #e6e6e6;
+	-webkit-box-shadow: 3px 3px 4px #e6e6e6;
+	box-shadow: 3px 3px 4px #e6e6e6;
 }
+
+.triangle{
+	width: 0;
+	height: 0;
+	border-left: 30px solid #A0C75C;
+	border-top: 15px solid transparent;
+	border-bottom: 15px solid transparent;
+}
+.dashBox:hover{
+	opacity:0.7;
+	filter:alpha(opacity=0.7);
+}
+.dashHead{
+	height: 65px;
+	margin-bottom: 20px;
+}
+.dashBox h3 {
+	padding-top: 15px;
+	font-size: 1.3em
+}
+.dashTile{
+	float: left;
+	margin-right: 15px;
+}
+.dashSum{
+	width: 250px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+
+.shadow {
+	-moz-box-shadow: 3px 3px 4px #e6e6e6;
+	-webkit-box-shadow: 3px 3px 4px #e6e6e6;
+	box-shadow: 3px 3px 4px #e6e6e6;
+}
+
 /* ###### Cake CSS Overrides ##### */
 h1, h2, h3, h4, h5, fieldset legend{
 	font-family: 'Open Sans', Helvetica, Arial, "Lucida Grande", sans-serif;
 	color: #777777;
 }
+
 .index, .view, .form{
 	background-color: #ffffff;
 	min-height: 500px;
 }
 div.form, div.index, div.view{
 	/*border-left: 1px solid #e6e6e6;*/
+	margin-bottom: 4px; /* fixes missing frop shadow */
 	border: 1px solid #e6e6e6;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+	-moz-box-shadow: 3px 3px 4px #e6e6e6;
+	-webkit-box-shadow: 3px 3px 4px #e6e6e6;
+	box-shadow: 3px 3px 4px #e6e6e6;
 }
-div.actions{
+div.actions, div.login, div.loginBox{
 	background-color: #ffffff;
 	border: 1px solid #e6e6e6;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+	margin-bottom: 4px;
+	
+	-moz-box-shadow: 3px 3px 4px #e6e6e6;
+	-webkit-box-shadow: 3px 3px 4px #e6e6e6;
+	box-shadow: 3px 3px 4px #e6e6e6;
 }
+
+/* Tables */
+table tr td{
+}
+th{
+	background-color: #4C8AB0;
+	border-bottom: none;
+	border-right: 1px solid #e6e6e6;
+	color: #ffffff;
+}
+th a:link, th a:visited{
+	color: #ffffff;
+}
+th a:hover{
+	color: #e6e6e6;
+}
+

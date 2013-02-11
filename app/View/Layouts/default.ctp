@@ -43,13 +43,8 @@
 			?>
 		</div>
 		<div class='navWrap'>
-			<?php // echo $this->element('navigation'); ?>
-			
-			<?php // Breadcrumbs
-				if($this->here != ('/hipaa/users/login') ){ // TODO fix link for production
-					echo $this->Html->getCrumbs(' > ', 'Home'); 
-				}
-			?>
+			<?php  //echo $this->element('navigation'); ?>
+			<?php echo $this->element('navBar'); ?>	
 			
 		</div>
 		
@@ -76,10 +71,12 @@
 	</div>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
   	<script>window.jQuery || document.write('<script src="../js/jquery-1.9.0.min.js"><\/script>')</script>
-	<?php echo $this->Html->script(array('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js',
+	<?php echo $this->Html->script(array(
+										 '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js',
+										 //'jquery-ui-1.10.0.custom/js/jquery-ui-1.10.0.custom.min.js',
 										 'ckeditor/ckeditor.js',
 										 'scripts', 
-										 )); ?>
-	<?php  echo $this->element('sql_dump'); ?>
+	)); ?>
+	<?php  // echo $this->element('sql_dump'); ?>
 </body>
 </html>

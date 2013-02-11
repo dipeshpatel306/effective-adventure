@@ -1,4 +1,5 @@
 <?php
+$this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
 $this->Html->addCrumb('Server Room Access', '/server_room_access');
 $this->Html->addCrumb('Add Server Room Access');
 ?>

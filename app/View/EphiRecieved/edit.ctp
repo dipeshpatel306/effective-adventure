@@ -1,4 +1,5 @@
 <?php
+$this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
 $this->Html->addCrumb('ePHI Recieved', '/ephi_recieved');
 $this->Html->addCrumb('Edit ePHI Recieved');
 ?>

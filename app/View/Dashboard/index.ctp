@@ -1,22 +1,205 @@
 <div class="dashboard index">
-	<h2><?php echo __('Dashboard'); ?></h2>
+	<h2><?php echo __('Compliance Portal Dashboard'); ?></h2>
 	
-	<p>Dashboard under Construction!</p>
-	
-	<?php echo $this->Html->link('Home/Dashboard', array('controller' => 'dashboard', 'action' => 'index'))?><br /><br />
-	
-		
 	<?php echo $this->Html->link('Risk Assessment Questionnaire', array('controller' => 'riskassessments', 'action' => 'take_risk_assessment'))?><br /><br />
+
+	<?php 
+		echo $this->Html->link( // policies & procedures
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('pnp_tile.jpg', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Policies & Procedures'
+								)) .
+					'<h3>Policies & Procedures</h3>' .
+					'</div>' .
+					'<div class="dashSum">HIPAA and Other Policies and Procedures</div>' .
+						//'<div class="clickBtn">Click Here!   
+						//	<div class="triangle"></div>
+						//</div>' .
+					'</div>',
+					array('controller' => 'dashboard', 'action' => 'policies_and_procedures'),
+					array('escape' => false)
+			);
+			
+			
+		echo $this->Html->link( // contracts and documents
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('cnd_tile.jpg', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Contracts and Documents'
+								)) .
+					'<h3>Contracts & Documents</h3>' .
+					'</div>' .
+					'<div class="dashSum">Risk Assessment, Business Associates, Disaster Recovery</div>' .
+						//'<div class="clickBtn">Click Here!   
+						//	<div class="triangle"></div>
+						//</div>' .
+					'</div>',
+					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
+					array('escape' => false)
+			);
+			
+		echo $this->Html->link( // Track and Document
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('tnd_tile.jpg', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Track and Document'
+								)) .
+					'<h3>Track and Document</h3>' .
+					'</div>' .
+					'<div class="dashSum">Security Incidents and ePHI Received and Removed</div>' .
+						//'<div class="clickBtn">Click Here!   
+						//	<div class="triangle"></div>
+						//</div>' .
+					'</div>',
+					array('controller' => 'dashboard', 'action' => 'track_and_document'),
+					array('escape' => false)
+			);
+			
+		echo $this->Html->link( // Social Center
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('social.png', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Social Center'
+								)) .
+					'<h3>Social Center</h3>' .
+					'</div>' .
+					'<div class="dashSum">Facebook and Twitter</div>' .
+						//'<div class="clickBtn">Click Here!   
+						//	<div class="triangle"></div>
+						//</div>' .
+					'</div>',
+					array('controller' => 'dashboard', 'action' => 'social_center'),
+					array('escape' => false)
+			);
+
+		echo $this->Html->link( // Education Center
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('edcenter.png', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Education Center'
+								)) .
+					'<h3>Education Center</h3>' .
+					'</div>' .
+					'<div class="dashSum">Videos and Training</div>' .
+						//'<div class="clickBtn">Click Here!   
+						//	<div class="triangle"></div>
+						//</div>' .
+					'</div>',
+					array('controller' => 'dashboard', 'action' => 'education_center'),
+					array('escape' => false)
+			);
+
+		echo $this->Html->link( // Information Center
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('infocenter.png', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Information Center'
+								)) .
+					'<h3>Information Center</h3>' .
+					'</div>' .
+					'<div class="dashSum">Articles and Blog</div>' .
+						//'<div class="clickBtn">Click Here!   
+						//	<div class="triangle"></div>
+						//</div>' .
+					'</div>',
+					array('controller' => 'dashboard', 'action' => 'information_center'),
+					array('escape' => false)
+			);
+			
+		echo $this->Html->link( // SIRP
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('sirp.png', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA SIRP'
+								)) .
+					'<h3>SIRP</h3>' .
+					'</div>' .
+					'<div class="dashSum">Security Incident Response Plan</div>' .
+						//'<div class="clickBtn">Click Here!   
+						//	<div class="triangle"></div>
+						//</div>' .
+					'</div>',
+					array('controller' => 'dashboard', 'action' => 'sirp'),
+					array('escape' => false)
+			);
+			
+		echo $this->Html->link( // What you can do with HIPAA Secure Now
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('question_tile.jpg', array(
+								'class' => 'dashTile', 
+								'alt' => 'What you can do now with the HIPAA Secure Now! Compliance Portal'
+								)) .
+					'<h3></h3>' .
+					'</div>' .
+					'<div class="dashSum">What can you do now with the HIPAA Secure Now! Compliance Portal </div>' .
+						//'<div class="clickBtn">Click Here!   
+						//	<div class="triangle"></div>
+						//</div>' .
+					'</div>',
+					array('controller' => 'dashboard', 'action' => 'what_can_you_do_now'),
+					array('escape' => false)
+			);
+			
+	/*	echo $this->Html->link( // Contact
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('infocenter.png', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA - Contact Us'
+								)) .
+					'<h3>Contact Us</h3>' .
+					'</div>' .
+					'<div class="dashSum"></div>' .
+						//'<div class="clickBtn">Click Here!   
+						//	<div class="triangle"></div>
+						//</div>' .
+					'</div>',
+					array('controller' => 'contact_us', 'action' => 'index'),
+					array('escape' => false)
+			);			*/	
+	?>
+
+
+
+
 	
-	<div class="box">
+	<!--<div class="dashBox">
+	<?php 
+		echo $this->Html->image('pnp_tile.jpg', array(
+			'class' => 'dashTile',
+			'alt' => 'HIPAA Secure Compliance Portal Home',
+			'url' => array('controller' => 'dashboard', 'action' => 'index')
+		));
+	?>		
+		
 	<?php echo $this->Html->link('Policies & Procedures', array('controller' => '#'));?>
+
+	
+	<div class='triangle'></div>
 	<ul>
 		<li><?php echo $this->Html->link('HIPAA Policies & Procedures', array('controller' => 'policies_and_procedures', 'action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link('Other Policies & Procedures', array('controller' => 'other_policies_and_procedures', 'action' => 'index')); ?></li>
 	</ul>	
-	</div>
+	</div>-->
+	
 
-	<div class="box">
+	<!--<div class="dashBox">
+	<?php 
+		echo $this->Html->image('cnd_tile.jpg', array(
+			'class' => 'dashTile',
+			'alt' => 'HIPAA Secure Compliance Portal Home',
+			'url' => array('controller' => 'dashboard', 'action' => 'index')
+		));
+	?>		
 	<?php echo $this->Html->link('Contracts & Documents', array('controller' => '#'));?>
 	<ul>
 		<li><?php echo $this->Html->link('Risk Assessment Documents', array('controller' => 'risk_assessment_documents', 'action' => 'index')); ?></li>				
@@ -24,9 +207,16 @@
 		<li><?php echo $this->Html->link('Disaster Recovery Plans', array('controller' => 'disaster_recovery_plans', 'action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link('Other Contracts & Documents', array('controller' => 'other_contracts_and_documents', 'action' => 'index')); ?></li>
 	</ul>
-	</div>
+	</div>-->
 
-	<div class="box">
+	<!--<div class="dashBox">
+	<?php 
+		echo $this->Html->image('tnd_tile.jpg', array(
+			'class' => 'dashTile',
+			'alt' => 'HIPAA Secure Compliance Portal Home',
+			'url' => array('controller' => 'dashboard', 'action' => 'index')
+		));
+	?>	
 	<?php echo $this->Html->link('Track & Document', array('controller' => '#'));?>
 	<ul>
 		<li><?php echo $this->Html->link('Security Incidents', array('controller' => 'security_incidents', 'action' => 'index')); ?></li>				
@@ -35,9 +225,16 @@
 		<li><?php echo $this->Html->link('ePHI Recieved', array('controller' => 'ephi_recieved', 'action' => 'index')); ?></li>
 	</ul>
 	<br />
-	</div>
+	</div>-->
 
-	<div class="box">
+	<!--<div class="dashBox">
+	<?php 
+		echo $this->Html->image('social.png', array(
+			'class' => 'dashTile',
+			'alt' => 'HIPAA Secure Compliance Portal Home',
+			'url' => array('controller' => 'dashboard', 'action' => 'index')
+		));
+	?>	
 	<b>Social Center</b>
 	<ul>
 		<li><?php echo $this->Html->link('Blog', 'http://www.hipaasecurenow.com/index.php/blog/', array('target' => '_blank')); ?>
@@ -45,9 +242,16 @@
 		</li>
 		<li>Facebook and Twitter feed - TODO</li>
 	</ul>		
-	</div>		
+	</div>		-->
 	
-	<div class="box">
+	<!--<div class="dashBox">
+	<?php 
+		echo $this->Html->image('edcenter.png', array(
+			'class' => 'dashTile',
+			'alt' => 'HIPAA Secure Compliance Portal Home',
+			'url' => array('controller' => 'dashboard', 'action' => 'index')
+		));
+	?>	
 	<b>Education Center</b>
 	<ul>
 		<li><?php echo $this->Html->link('HIPAA Security Tips and Reminders', 
@@ -58,9 +262,16 @@
 			Education Videos TODO
 		</li>
 	</ul>		
-	</div>
+	</div>-->
 
-	<div class="box">
+	<!--<div class="dashBox">
+	<?php 
+		echo $this->Html->image('infocenter.png', array(
+			'class' => 'dashTile',
+			'alt' => 'HIPAA Secure Compliance Portal Home',
+			'url' => array('controller' => 'dashboard', 'action' => 'index')
+		));
+	?>	
 	<b>Information Center (All external Links)</b>
 		<ul>
 			<li><?php echo $this->Html->link('Policies & Procedures', 'http://www.hipaasecurenow.com/?cat=10', array('target' => '_blank')); ?></li>
@@ -73,9 +284,16 @@
 				'http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/index.html', array('target' => '_blank')); ?></li>
 			<li><?php echo $this->Html->link('Service Overview', 'http://www.hipaasecurenow.com/index.php/service/', array('target' => '_blank')); ?></li>
 		</ul>		
-	</div>
+	</div>-->
 
-<div class="box">
+<!--<div class="dashBox">
+	<?php 
+		echo $this->Html->image('sirp.png', array(
+			'class' => 'dashTile',
+			'alt' => 'HIPAA Secure Compliance Portal Home',
+			'url' => array('controller' => 'dashboard', 'action' => 'index')
+		));
+	?>	
 	<b>SIRP</b>
 	<ul>
 		<li>
@@ -94,25 +312,32 @@
 			- Link is dead	
 		</li>
 	</ul>	
-</div>
+</div>-->
 
-<div class="box">
+<!--<div class="dashBox">	
 	<b>Contact</b>
 	<ul>
 		<li>
 		<?php echo $this->Html->link('Contact Us', array('controller' => 'contactUs', 'action' => 'contact'));?>	
 		</li>
 	</ul>
-</div>
+</div>-->
 
-<div class="box">
-		<b>What can you do now with the HIPAA Secure Now! COmpliance Portal</b> - static page TODO
+<!--<div class="dashBox">
+	<?php 
+		echo $this->Html->image('question_tile.jpg', array(
+			'class' => 'dashTile',
+			'alt' => 'HIPAA Secure Compliance Portal Home',
+			'url' => array('controller' => 'dashboard', 'action' => 'index')
+		));
+	?>
+		<b>What can you do now with the HIPAA Secure Now! Compliance Portal</b> - static page TODO
 	<ul>
 		<li>
 		<?php echo $this->Html->link('What you can do now!', array('controller' => '#', 'action' => '/'));?>	
 		</li>
 	</ul>	
-</div>
+</div>-->
 
 	
 	<!--<table>

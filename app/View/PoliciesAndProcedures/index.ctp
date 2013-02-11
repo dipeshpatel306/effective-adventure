@@ -1,4 +1,5 @@
 <?php
+$this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
 $this->Html->addCrumb('Policies & Procedures');
 ?>
 <div class="policiesAndProcedures index">
@@ -10,7 +11,7 @@ $this->Html->addCrumb('Policies & Procedures');
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th><?php echo $this->Paginator->sort('attachment'); ?></th>
-			<th><?php echo $this->Paginator->sort('media'); ?></th>
+			<!--<th><?php echo $this->Paginator->sort('media'); ?></th>-->
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php
@@ -23,7 +24,7 @@ $this->Html->addCrumb('Policies & Procedures');
 		<td><?php echo $this->Time->format('m/d/y g:i a',$policiesAndProcedure['PoliciesAndProcedure']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a',$policiesAndProcedure['PoliciesAndProcedure']['modified']); ?>&nbsp;</td>
 		<td><?php echo h($policiesAndProcedure['PoliciesAndProcedure']['attachment']); ?>&nbsp;</td>
-		<td><?php echo h($policiesAndProcedure['PoliciesAndProcedure']['media']); ?>&nbsp;</td>
+		<!--<td><?php echo h($policiesAndProcedure['PoliciesAndProcedure']['media']); ?>&nbsp;</td>-->
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?>

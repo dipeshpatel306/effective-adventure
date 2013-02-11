@@ -33,9 +33,84 @@ class DashboardController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Dashboard->recursive = 0;
-		$this->set('dashboard', $this->paginate());
+		//$this->Dashboard->recursive = 0;
+		//$this->set('dashboard', $this->paginate());
 	}
+/**
+ * Policies_and_procedures method
+ *
+ * @return void
+ */
+	public function policies_and_procedures() {
+		//$this->Dashboard->recursive = 0;
+		//$this->set('dashboard', $this->paginate());
+	}
+
+/**
+ * Contracts_and_documents method
+ *
+ * @return void
+ */
+	public function contracts_and_documents() {
+		//$this->Dashboard->recursive = 0;
+		//$this->set('dashboard', $this->paginate());
+	}
+/**
+ * Track and Document method
+ *
+ * @return void
+ */
+	public function track_and_document() {
+		//$this->Dashboard->recursive = 0;
+		//$this->set('dashboard', $this->paginate());
+	}
+/**
+ * Social Center method
+ *
+ * @return void
+ */
+	public function social_center() {
+		//$this->Dashboard->recursive = 0;
+		//$this->set('dashboard', $this->paginate());
+	}	
+/**
+ * Education Center method
+ *
+ * @return void
+ */
+	public function education_center() {
+		//$this->Dashboard->recursive = 0;
+		//$this->set('dashboard', $this->paginate());
+	}		
+/**
+ * Information Center method
+ *
+ * @return void
+ */
+	public function information_center() {
+		//$this->Dashboard->recursive = 0;
+		//$this->set('dashboard', $this->paginate());
+	}		
+/**
+ * SIRP method
+ *
+ * @return void
+ */
+	public function sirp() {
+		//$this->Dashboard->recursive = 0;
+		//$this->set('dashboard', $this->paginate());
+	}
+/**
+ * What can you do now  method
+ *
+ * @return void
+ */
+	public function what_can_you_do_now() {
+		//$this->Dashboard->recursive = 0;
+		//$this->set('dashboard', $this->paginate());
+	}
+
+
 
 /**
  * view method
@@ -44,20 +119,20 @@ class DashboardController extends AppController {
  * @param string $id
  * @return void
  */
-	public function view($id = null) {
+/*	public function view($id = null) {
 		$this->Dashboard->id = $id;
 		if (!$this->Dashboard->exists()) {
 			throw new NotFoundException(__('Invalid dashboard'));
 		}
 		$this->set('dashboard', $this->Dashboard->read(null, $id));
-	}
+	}*/
 
 /**
  * add method
  *
  * @return void
  */
-	public function add() {
+/*	public function add() {
 		if ($this->request->is('post')) {
 			$this->Dashboard->create();
 			if ($this->Dashboard->save($this->request->data)) {
@@ -67,7 +142,7 @@ class DashboardController extends AppController {
 				$this->Session->setFlash(__('The dashboard could not be saved. Please, try again.'));
 			}
 		}
-	}
+	}*/
 
 /**
  * edit method
@@ -76,7 +151,7 @@ class DashboardController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+/*	public function edit($id = null) {
 		$this->Dashboard->id = $id;
 		if (!$this->Dashboard->exists()) {
 			throw new NotFoundException(__('Invalid dashboard'));
@@ -91,7 +166,7 @@ class DashboardController extends AppController {
 		} else {
 			$this->request->data = $this->Dashboard->read(null, $id);
 		}
-	}
+	}*/
 
 /**
  * delete method
@@ -101,7 +176,7 @@ class DashboardController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+/*	public function delete($id = null) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}
@@ -115,6 +190,6 @@ class DashboardController extends AppController {
 		}
 		$this->Session->setFlash(__('Dashboard was not deleted'));
 		$this->redirect(array('action' => 'index'));
-	}
+	}*/
 
 }
