@@ -23,16 +23,31 @@ class User extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'username' => array(
+		'authCode' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'You forgot the Username.',
+				'message' => 'You forgot the Authorization Code.',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),		
+		),
+		'email' => array(
+			'isUnique' => array(
+				'rule' => 'isUnique',
+				'message' => 'That email address is already taken',
+			),
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'You forgot your Email.',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
+			
+		),		
 		'password' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -42,15 +57,23 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			array(
+				'rule' => array('passCompare'),
+				'message' => 'The Passwords do not match.'
+			),			
 		),
-		'authCode' => array(
+		'password2' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'Your forgot the Authorization Code.',
+				'message' => 'Your forgot to verify your password.',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			array(
+				'rule' => array('passCompare'),
+				'message' => 'The Passwords do not match.'
 			),
 		),
 		'first_name' => array(
@@ -72,21 +95,6 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
-		'email' => array(
-			'isUnique' => array(
-				'rule' => 'isUnique',
-				'message' => 'That email address is already taken',
-			),
-			'notempty' => array(
-				'rule' => array('notempty'),
-				'message' => 'You forgot your Email.',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			
 		),
 		'group_id' => array(
 			'numeric' => array(
@@ -162,6 +170,13 @@ class User extends AppModel {
 	public function isOwnedBy($id, $user){
 		return $this->field('id', array($id, 'client_id' => $user)) === $id;
 	}
+ 
+/** 
+ * Compare and Verify Password
+ */
+ public function passCompare(){
+ 	return $this->data['User']['password'] === $this->data['User']['password2'];
+ }
 
 /**
  * Hash password before storing in the database

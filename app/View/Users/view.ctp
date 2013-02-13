@@ -25,6 +25,16 @@ $this->Html->addCrumb($user['User']['email']);
 			<?php echo h($user['User']['email']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Phone Number'); ?></dt>
+		<dd>
+			<?php echo h($user['User']['phone_number']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Cell Number'); ?></dt>
+		<dd>
+			<?php echo h($user['User']['cell_number']); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Group'); ?></dt>
 		<dd>
 			<?php echo $this->Html->link($user['Group']['name'], array('controller' => 'groups', 'action' => 'view', $user['Group']['id'])); ?>
@@ -35,6 +45,11 @@ $this->Html->addCrumb($user['User']['email']);
 			<?php echo $this->Html->link($user['Client']['name'], array('controller' => 'clients', 'action' => 'view', $user['Client']['id'])); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Last Login'); ?></dt>
+		<dd>
+			<?php echo $this->Time->format('m/d/y g:i a', $user['User']['last_login']); ?>
+			&nbsp;
+		</dd>		
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
 			<?php echo $this->Time->format('m/d/y g:i a', $user['User']['created']); ?>

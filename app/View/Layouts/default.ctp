@@ -53,7 +53,7 @@
 			<?php echo $this->Session->flash(); ?>
 			
 			<?php // Temp debug code
-			/*	$auth = $this->Session->read('Auth');
+				/*$auth = $this->Session->read('Auth');
 				echo "<pre>";
 				print_r($auth);
 				echo "</pre>";*/

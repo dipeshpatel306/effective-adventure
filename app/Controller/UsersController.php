@@ -94,8 +94,12 @@ class UsersController extends AppController {
 	        	$dateTime = date('Y-m-d H:i:s'); // Get DateTime
 					
 				$this->User->Client->id = $this->Session->read('Auth.User.client_id');  // Get correct Client
-				$this->User->Client->saveField('last_login', $dateTime);  // Save datetime into DB
-				$this->Session->write('Auth.User.Client.last_login', $dateTime);  // write login datetime into session
+				$this->User->Client->saveField('last_login', $dateTime);  // Save last login to Client DB
+				$this->Session->write('Auth.User.Client.last_login', $dateTime);  // write client login into session
+				
+				$this->User->id = $this->Session->read('Auth.User.id');  // Get User id
+				$this->User->saveField('last_login', $dateTime);  // Save last login to user DB
+				$this->Session->write('Auth.User.last_login', $dateTime);  // write user login into user session
 				
 				$this->redirect($this->Auth->redirect());
 
@@ -253,37 +257,37 @@ class UsersController extends AppController {
 
 		if ($this->request->is('post')) {
 				
-			$this->loadModel('Client');  // load client Model
-			$authCode = $this->request->data['User']['authCode']; // get authCode sent from form
-			
+			$this->loadModel('Client');  // load client Model			
+			$authCode = $this->request->data['User']['authCode'];  // get submited authCode
 
 			$userCode = $this->Client->find('first', array('conditions' => array('Client.user_account' => $authCode)));// check if user code exists
-			$adminCode = $this->Client->find('first', array('conditions' => array('Client.admin_account' => $authCode))); // check if admin code exists		
+			$adminCode = $this->Client->find('first', array('conditions' => array('Client.admin_account' => $authCode))); // check if admin code exists	
+			
 			
 			if(isset($userCode) && !empty($userCode)){  // if user set client and role
 				$this->request->data['User']['group_id'] = 3; // set Group Id to to User
-				$this->request->data['User']['client_id'] = $userCode['Client']['id'];  // set Client id  
-					
+				$this->request->data['User']['client_id'] = $userCode['Client']['id'];  // set Client id  	
 			} elseif(isset($adminCode) && !empty($adminCode)){ // if admin set client and role
 				$this->request->data['User']['group_id'] = 2; // set Group Id to User
 				$this->request->data['User']['client_id'] = $adminCode['Client']['id']; // set client id
 			} else {
-				$this->request->data['User']['group_id'] = 4; // Set to Pending
-				$this->request->data['User']['client_id'] = '';
+				$this->User->invalidate('authCode', 'Incorrect Authorization Code.', true); // auth Code doesnt exist so deny.
 			}
 
-			$this->User->create();
-						
-			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('Your Account has been successfully created'));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('Your new account could not be created. Please, try again.'));
+			if($this->User->validates()){ // check if invalidations exist
+				$this->User->create();	
+				if ($this->User->save($this->request->data)) {
+					$this->Session->setFlash(__('Your Account has been successfully created'));
+					$this->redirect(array('action' => 'index'));
+				} else {
+					$this->Session->setFlash(__('Your new account could not be created. Please, try again.'));
+				}
+			} else { // deny
+					$errors = $this->User->validationErrors;
+					$this->Session->setFlash(__('Your new account could not be created. Please, try again.'));
 			}
+
 		}
-		/*$groups = $this->User->Group->find('list');
-		$clients = $this->User->Client->find('list');
-		$this->set(compact('groups', 'clients'));*/
 	}
 
 
