@@ -44,7 +44,7 @@ class UsersController extends AppController {
 		
 		$this->Acl->allow($group, 'controllers/SecurityIncidents');
 		$this->Acl->allow($group, 'controllers/ServerRoomAccess');
-		$this->Acl->allow($group, 'controllers/EphiRecieved');
+		$this->Acl->allow($group, 'controllers/EphiReceived');
 		$this->Acl->allow($group, 'controllers/EphiRemoved');
 		
 		$this->Acl->allow($group, 'controllers/SirtTeams');
@@ -52,7 +52,7 @@ class UsersController extends AppController {
 		
 		$this->Acl->allow($group, 'controllers/ContactUs/contact');	
 		
-		$this->Acl->allow($group, 'controllers/RiskAssessments/get_assessed');
+		$this->Acl->allow($group, 'controllers/RiskAssessments/take_risk_assessment');
 	
 	    //allow users to only add and edit on posts and widgets
 	    $group->id = 3;
@@ -60,8 +60,8 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Dashboard');
 		$this->Acl->allow($group, 'controllers/Users/new_user');
 		
-		$this->Acl->allow($group, 'controllers/Policies');
-		$this->Acl->allow($group, 'controllers/OtherPolicies');
+		$this->Acl->allow($group, 'controllers/PoliciesAndProcedures');
+		$this->Acl->allow($group, 'controllers/OtherPoliciesAndProcedures');
 		
 		$this->Acl->allow($group, 'controllers/RiskAssessmentDocuments');
 		$this->Acl->allow($group, 'controllers/BusinessAssociateAgreements');
@@ -70,7 +70,7 @@ class UsersController extends AppController {
 		
 		$this->Acl->allow($group, 'controllers/SecurityIncidents');
 		$this->Acl->allow($group, 'controllers/ServerRoomAccess');
-		$this->Acl->allow($group, 'controllers/EphiRecieved');
+		$this->Acl->allow($group, 'controllers/EphiReceived');
 		$this->Acl->allow($group, 'controllers/EphiRemoved');
 
 		$this->Acl->allow($group, 'controllers/SirtTeams');
@@ -78,7 +78,7 @@ class UsersController extends AppController {
 		
 		$this->Acl->allow($group, 'controllers/ContactUs/contact');	
 		
-		$this->Acl->allow($group, 'controllers/RiskAssessments/get_assessed');
+		$this->Acl->allow($group, 'controllers/RiskAssessments/take_risk_assessment');
 	    //we add an exit to avoid an ugly "missing views" error message
 	    echo "all done";
 	    exit;

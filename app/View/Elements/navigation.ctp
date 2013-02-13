@@ -25,7 +25,7 @@
 				<li><?php echo $this->Html->link('Security Incidents', array('controller' => 'security_incidents', 'action' => 'index')); ?></li>
 				<li><?php echo $this->Html->link('Server Room Access', array('controller' => 'server_room_access', 'action' => 'index')); ?></li>
 				<li><?php echo $this->Html->link('ePHI Removed', array('controller' => 'ephi_removed', 'action' => 'index')); ?></li>
-				<li><?php echo $this->Html->link('ePHI Recieved', array('controller' => 'ephi_recieved', 'action' => 'index')); ?></li>
+				<li><?php echo $this->Html->link('ePHI Received', array('controller' => 'ephi_received', 'action' => 'index')); ?></li>
 			</ul>
 		</li>		
 		

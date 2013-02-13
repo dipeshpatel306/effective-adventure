@@ -1,11 +1,11 @@
 <?php
-App::uses('EphiRecievedController', 'Controller');
+App::uses('EphiReceivedController', 'Controller');
 
 /**
- * EphiRecievedController Test Case
+ * EphiReceivedController Test Case
  *
  */
-class EphiRecievedControllerTest extends ControllerTestCase {
+class EphiReceivedControllerTest extends ControllerTestCase {
 
 /**
  * Fixtures
@@ -13,7 +13,7 @@ class EphiRecievedControllerTest extends ControllerTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.ephi_recieved',
+		'app.ephi_received',
 		'app.client',
 		'app.user',
 		'app.group',

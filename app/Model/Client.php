@@ -79,32 +79,6 @@ class Client extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),		
-/*		'Policy' => array( 
-			'className' => 'Policy',
-			'foreignKey' => 'client_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'OtherPolicy' => array( 
-			'className' => 'OtherPolicy',
-			'foreignKey' => 'client_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),*/
 		'RiskAssessmentDocument' => array(
 			'className' => 'RiskAssessmentDocument',
 			'foreignKey' => 'client_id',

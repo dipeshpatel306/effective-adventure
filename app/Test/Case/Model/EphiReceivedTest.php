@@ -1,11 +1,11 @@
 <?php
-App::uses('EphiRecieved', 'Model');
+App::uses('EphiReceived', 'Model');
 
 /**
- * EphiRecieved Test Case
+ * EphiReceived Test Case
  *
  */
-class EphiRecievedTest extends CakeTestCase {
+class EphiReceivedTest extends CakeTestCase {
 
 /**
  * Fixtures
@@ -13,7 +13,7 @@ class EphiRecievedTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.ephi_recieved',
+		'app.ephi_received',
 		'app.client',
 		'app.user',
 		'app.group',
@@ -29,7 +29,7 @@ class EphiRecievedTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->EphiRecieved = ClassRegistry::init('EphiRecieved');
+		$this->EphiReceived = ClassRegistry::init('EphiReceived');
 	}
 
 /**
@@ -38,7 +38,7 @@ class EphiRecievedTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->EphiRecieved);
+		unset($this->EphiReceived);
 
 		parent::tearDown();
 	}
