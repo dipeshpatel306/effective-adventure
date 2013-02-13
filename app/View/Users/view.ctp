@@ -5,26 +5,21 @@ $this->Html->addCrumb($user['User']['email']);
 <div class="users view">
 <h2><?php  echo __('User'); ?></h2>
 	<dl>
-		<dt><?php echo __('Username'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['username']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('First Name'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['first_name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Last Name'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['last_name']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Email'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['email']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Name'); ?></dt>
+		<dd>
+			<?php echo ($user['User']['first_name'] . ' ' . $user['User']['last_name']); ?>
+			&nbsp;
+		</dd>
+		<!--<dt><?php echo __('Last Name'); ?></dt>
+		<dd>
+			<?php echo h($user['User']['last_name']); ?>
+			&nbsp;
+		</dd>-->		
 		<dt><?php echo __('Phone Number'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['phone_number']); ?>

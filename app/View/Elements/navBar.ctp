@@ -9,11 +9,6 @@
 		));
 		
 		echo $this->Html->getCrumbs(' > ', 'Home');
-		/*echo $this->Html->getCrumbs(' > ', array(
-			'text' => $this->Html->image('home.gif'),
-			'url' => array('controller' =>  'dashboard', 'action' => 'index', 'home'),
-			'escape' => false
-		));*/ 
 	}
 ?>
 

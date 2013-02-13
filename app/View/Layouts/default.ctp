@@ -57,6 +57,7 @@
 				echo "<pre>";
 				print_r($auth);
 				echo "</pre>";*/
+				//pr($client)
 				//echo Configure::version();
 			?>
 			<?php echo $this->fetch('content'); ?>
@@ -77,6 +78,6 @@
 										 'ckeditor/ckeditor.js',
 										 'scripts', 
 	)); ?>
-	<?php  // echo $this->element('sql_dump'); ?>
+	// <?php //  echo $this->element('sql_dump'); ?>
 </body>
 </html>

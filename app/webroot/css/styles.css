@@ -379,3 +379,14 @@ th a:hover{
 	color: #e6e6e6;
 }
 
+/* Related */
+div.related {
+	background-color: #ffffff;
+}
+div.related div.actions{
+	background: none;
+	border: none;
+	border-radius: none;
+	box-shadow: none;
+	margin-bottom: 20px;
+}

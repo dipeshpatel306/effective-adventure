@@ -1,19 +1,19 @@
 <?php
 $this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
-$this->Html->addCrumb('ePHI Recieved', '/ephi_recieved');
-$this->Html->addCrumb('Edit ePHI Recieved');
+$this->Html->addCrumb('ePHI Received', '/ephi_received');
+$this->Html->addCrumb('Edit ePHI Received');
 ?>
-<div class="ephiRecieved form">
-<?php echo $this->Form->create('EphiRecieved'); ?>
+<div class="ephiReceived form">
+<?php echo $this->Form->create('EphiReceived'); ?>
 	<fieldset>
-		<legend><?php echo __('Edit Ephi Recieved'); ?></legend>
+		<legend><?php echo __('Edit Ephi Received'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('date_recieved', array('class' => 'datePick'));
-		echo $this->Form->input('time_recieved');
+		echo $this->Form->input('date_received', array('class' => 'datePick'));
+		echo $this->Form->input('time_received');
 		echo $this->Form->input('description', array('class' => 'ckeditor'));
 		echo $this->Form->input('patient_name');
-		echo $this->Form->input('recieved_by');
+		echo $this->Form->input('received_by');
 		echo $this->Form->input('date_returned', array('class' => 'datePick'));
 		echo $this->Form->input('time_returned');
 		echo $this->Form->input('client_id');
@@ -25,8 +25,8 @@ $this->Html->addCrumb('Edit ePHI Recieved');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('EphiRecieved.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('EphiRecieved.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Ephi Recieved'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('EphiReceived.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('EphiReceived.id'))); ?></li>
+		<li><?php echo $this->Html->link(__('List Ephi Received'), array('action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
 	</ul>

@@ -1,18 +1,18 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * EphiRecieved Model
+ * EphiReceived Model
  *
  * @property Client $Client
  */
-class EphiRecieved extends AppModel {
+class EphiReceived extends AppModel {
 
 /**
  * Use table
  *
  * @var mixed False or table name
  */
-	public $useTable = 'ephi_recieved';
+	public $useTable = 'ephi_received';
 
 /**
  * Display field
@@ -27,7 +27,7 @@ class EphiRecieved extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'date_recieved' => array(
+		'date_received' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -57,7 +57,7 @@ class EphiRecieved extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'recieved_by' => array(
+		'received_by' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',

@@ -6,8 +6,8 @@ $this->Html->addCrumb('Users');
 	<table>
 	<tr>
 			<th><?php echo $this->Paginator->sort('email'); ?></th>		
-			<th><?php echo $this->Paginator->sort('first_name'); ?></th>
-			<th><?php echo $this->Paginator->sort('last_name'); ?></th>
+			<!--<th><?php echo $this->Paginator->sort('first_name'); ?></th>-->
+			<th><?php echo $this->Paginator->sort('last_name', 'Name'); ?></th>
 			<th><?php echo $this->Paginator->sort('phone_number'); ?></th>
 			<th><?php echo $this->Paginator->sort('cell_number'); ?></th>
 			<th><?php echo $this->Paginator->sort('group_id'); ?></th>
@@ -21,8 +21,8 @@ $this->Html->addCrumb('Users');
 	foreach ($users as $user): ?>
 	<tr>
 		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['first_name']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['last_name']); ?>&nbsp;</td>
+		<!--<td><?php echo h($user['User']['first_name']); ?>&nbsp;</td>-->
+		<td><?php echo $user['User']['last_name'] . ', ' . $user['User']['first_name']; ?>&nbsp;</td>
 		<td><?php echo h($user['User']['phone_number']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['cell_number']); ?>&nbsp;</td>		
 		<td>

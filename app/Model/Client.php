@@ -183,8 +183,8 @@ class Client extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'EphiRecieved' => array(
-			'className' => 'EphiRecieved',
+		'EphiReceived' => array(
+			'className' => 'EphiReceived',
 			'foreignKey' => 'client_id',
 			'dependent' => false,
 			'conditions' => '',

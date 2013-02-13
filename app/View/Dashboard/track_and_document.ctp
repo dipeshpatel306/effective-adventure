@@ -47,11 +47,11 @@ $this->Html->addCrumb('Track & Document');
 					'<div class="dashHead">' .
 					$this->Html->image('ephirem_tile.jpg', array(
 								'class' => 'dashTile', 
-								'alt' => 'HIPAA // ePHI Removed'
+								'alt' => 'HIPAA ePHI Removed'
 								)) .
-					'<h3>// ePHI Removed</h3>' .
+					'<h3>ePHI Removed</h3>' .
 					'</div>' .
-					'<div class="dashSum">// ePHI Removed</div>' .
+					'<div class="dashSum">ePHI Removed</div>' .
 						//'<div class="clickBtn">Click Here!   
 						//	<div class="triangle"></div>
 						//</div>' .
@@ -67,14 +67,14 @@ $this->Html->addCrumb('Track & Document');
 								'class' => 'dashTile', 
 								'alt' => 'HIPAA ePHI Recieved'
 								)) .
-					'<h3>ePHI Recieved</h3>' .
+					'<h3>ePHI Received</h3>' .
 					'</div>' .
-					'<div class="dashSum">ePHI Recieved</div>' .
+					'<div class="dashSum">ePHI Received</div>' .
 						//'<div class="clickBtn">Click Here!   
 						//	<div class="triangle"></div>
 						//</div>' .
 					'</div>',
-					array('controller' => 'ephi_recieved', 'action' => 'index'),
+					array('controller' => 'ephi_received', 'action' => 'index'),
 					array('escape' => false)
 			);
 

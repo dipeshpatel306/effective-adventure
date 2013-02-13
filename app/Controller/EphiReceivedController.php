@@ -1,11 +1,11 @@
 <?php
 App::uses('AppController', 'Controller');
 /**
- * EphiRecieved Controller
+ * EphiReceived Controller
  *
- * @property EphiRecieved $EphiRecieved
+ * @property EphiReceived $EphiReceived
  */
-class EphiRecievedController extends AppController {
+class EphiReceivedController extends AppController {
 
  public function beforeFilter(){
 	parent::beforeFilter();
@@ -35,7 +35,7 @@ class EphiRecievedController extends AppController {
 				
 			if(in_array($this->action, array('edit', 'delete'))){ // Allow Managers to Edit, delete their own
 				$id = $this->request->params['pass'][0];
-				if($this->EphiRecieved->isOwnedBy($id, $client)){
+				if($this->EphiReceived->isOwnedBy($id, $client)){
 					return true;
 				}
 			}
@@ -60,15 +60,15 @@ class EphiRecievedController extends AppController {
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
 
 		if($group == 1){
-			$this->EphiRecieved->recursive = 0;
-			$this->paginate = array('order' => array('EphiRecieved.client_id' => 'ASC'));			
-			$this->set('ephiRecieved', $this->paginate());			
+			$this->EphiReceived->recursive = 0;
+			$this->paginate = array('order' => array('EphiReceived.client_id' => 'ASC'));			
+			$this->set('ephiReceived', $this->paginate());			
 		}elseif($group == 2) {
 			$this->paginate = array(
-				'conditions' => array('EphiRecieved.client_id' => $client),
-				'order' => array('EphiRecieved.name' => 'ASC')
+				'conditions' => array('EphiReceived.client_id' => $client),
+				'order' => array('EphiReceived.name' => 'ASC')
 			);
-			$this->set('ephiRecieved', $this->paginate());
+			$this->set('ephiReceived', $this->paginate());
 		} else {
 			$this->Session->setFlash('You are not authorized to view that!');
 			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
@@ -86,23 +86,23 @@ class EphiRecievedController extends AppController {
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
 		
-		$this->EphiRecieved->id = $id;
-		if (!$this->EphiRecieved->exists()) {
-			throw new NotFoundException(__('Invalid Ephi Recieved'));
+		$this->EphiReceived->id = $id;
+		if (!$this->EphiReceived->exists()) {
+			throw new NotFoundException(__('Invalid Ephi Received'));
 		}
 
 		if($group == 1){
-			$this->set('ephiRecieved', $this->EphiRecieved->read(null, $id));
+			$this->set('ephiReceived', $this->EphiReceived->read(null, $id));
 		} elseif($group == 2){
-				$is_authorized = $this->EphiRecieved->find('first', array(
+				$is_authorized = $this->EphiReceived->find('first', array(
 				'conditions' => array(
-					'EphiRecieved.id' => $id,
-					'AND' => array('EphiRecieved.client_id' => $client)
+					'EphiReceived.id' => $id,
+					'AND' => array('EphiReceived.client_id' => $client)
 				)
 			));
 			
 			if($is_authorized){
-				$this->set('ephiRecieved', $this->EphiRecieved->read(null, $id));
+				$this->set('ephiReceived', $this->EphiReceived->read(null, $id));
 			} else { // Else Banned!
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
@@ -122,15 +122,15 @@ class EphiRecievedController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->request->data['Policy']['client_id'] = $this->Auth->User('client_id');
-			$this->EphiRecieved->create();
-			if ($this->EphiRecieved->save($this->request->data)) {
-				$this->Session->setFlash(__('The ephi recieved has been saved'));
+			$this->EphiReceived->create();
+			if ($this->EphiReceived->save($this->request->data)) {
+				$this->Session->setFlash(__('The ephi received has been saved'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The ephi recieved could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The ephi received could not be saved. Please, try again.'));
 			}
 		}
-		$clients = $this->EphiRecieved->Client->find('list');
+		$clients = $this->EphiReceived->Client->find('list');
 		$this->set(compact('clients'));
 	}
 
@@ -142,21 +142,21 @@ class EphiRecievedController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
-		$this->EphiRecieved->id = $id;
-		if (!$this->EphiRecieved->exists()) {
-			throw new NotFoundException(__('Invalid ephi recieved'));
+		$this->EphiReceived->id = $id;
+		if (!$this->EphiReceived->exists()) {
+			throw new NotFoundException(__('Invalid ephi received'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->EphiRecieved->save($this->request->data)) {
-				$this->Session->setFlash(__('The ephi recieved has been saved'));
+			if ($this->EphiReceived->save($this->request->data)) {
+				$this->Session->setFlash(__('The ephi received has been saved'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The ephi recieved could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The ephi received could not be saved. Please, try again.'));
 			}
 		} else {
-			$this->request->data = $this->EphiRecieved->read(null, $id);
+			$this->request->data = $this->EphiReceived->read(null, $id);
 		}
-		$clients = $this->EphiRecieved->Client->find('list');
+		$clients = $this->EphiReceived->Client->find('list');
 		$this->set(compact('clients'));
 	}
 
@@ -172,15 +172,15 @@ class EphiRecievedController extends AppController {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}
-		$this->EphiRecieved->id = $id;
-		if (!$this->EphiRecieved->exists()) {
-			throw new NotFoundException(__('Invalid ephi recieved'));
+		$this->EphiReceived->id = $id;
+		if (!$this->EphiReceived->exists()) {
+			throw new NotFoundException(__('Invalid ephi received'));
 		}
-		if ($this->EphiRecieved->delete()) {
-			$this->Session->setFlash(__('Ephi recieved deleted'));
+		if ($this->EphiReceived->delete()) {
+			$this->Session->setFlash(__('Ephi received deleted'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Ephi recieved was not deleted'));
+		$this->Session->setFlash(__('Ephi received was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
 
