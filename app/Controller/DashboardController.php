@@ -105,7 +105,7 @@ class DashboardController extends AppController {
  *
  * @return void
  */
-	public function what_can_you_do_now() {
+	public function about_hipaa() {
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
 	}

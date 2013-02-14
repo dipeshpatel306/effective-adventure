@@ -5,13 +5,10 @@ $this->Html->addCrumb('Users');
 	<h2><?php echo __('Users'); ?></h2>
 	<table>
 	<tr>
-			<th><?php echo $this->Paginator->sort('email'); ?></th>		
-			<!--<th><?php echo $this->Paginator->sort('first_name'); ?></th>-->
-			<th><?php echo $this->Paginator->sort('last_name', 'Name'); ?></th>
-			<th><?php echo $this->Paginator->sort('phone_number'); ?></th>
-			<th><?php echo $this->Paginator->sort('cell_number'); ?></th>
-			<th><?php echo $this->Paginator->sort('group_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('last_name', 'Name'); ?></th>			
+			<th><?php echo $this->Paginator->sort('email'); ?></th>		
+			<th><?php echo $this->Paginator->sort('group_id'); ?></th>			
 			<th><?php echo $this->Paginator->sort('last_login'); ?></th>		
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -20,17 +17,10 @@ $this->Html->addCrumb('Users');
 	<?php
 	foreach ($users as $user): ?>
 	<tr>
+		<td><?php echo $this->Html->link($user['Client']['name'], array('controller' => 'clients', 'action' => 'view', $user['Client']['id'])); ?></td>		
+		<td><?php echo $user['User']['last_name'] . ', ' . $user['User']['first_name']; ?>&nbsp;</td>			
 		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
-		<!--<td><?php echo h($user['User']['first_name']); ?>&nbsp;</td>-->
-		<td><?php echo $user['User']['last_name'] . ', ' . $user['User']['first_name']; ?>&nbsp;</td>
-		<td><?php echo h($user['User']['phone_number']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['cell_number']); ?>&nbsp;</td>		
-		<td>
-			<?php echo $this->Html->link($user['Group']['name'], array('controller' => 'groups', 'action' => 'view', $user['Group']['id'])); ?>
-		</td>
-		<td>
-			<?php echo $this->Html->link($user['Client']['name'], array('controller' => 'clients', 'action' => 'view', $user['Client']['id'])); ?>
-		</td>
+		<td><?php echo $this->Html->link($user['Group']['name'], array('controller' => 'groups', 'action' => 'view', $user['Group']['id'])); ?></td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['last_login']); ?>&nbsp;</td>		
 		<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['modified']); ?>&nbsp;</td>

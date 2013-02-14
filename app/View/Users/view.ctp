@@ -5,14 +5,24 @@ $this->Html->addCrumb($user['User']['email']);
 <div class="users view">
 <h2><?php  echo __('User'); ?></h2>
 	<dl>
+		<dt><?php echo __('Client'); ?></dt>
+		<dd>
+			<?php echo $this->Html->link($user['Client']['name'], array('controller' => 'clients', 'action' => 'view', $user['Client']['id'])); ?>
+			&nbsp;
+		</dd>		
+		<dt><?php echo __('Name'); ?></dt>
+		<dd>
+			<?php echo ($user['User']['first_name'] . ' ' . $user['User']['last_name']); ?>
+			&nbsp;
+		</dd>		
 		<dt><?php echo __('Email'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['email']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Name'); ?></dt>
+		<dt><?php echo __('Group'); ?></dt>
 		<dd>
-			<?php echo ($user['User']['first_name'] . ' ' . $user['User']['last_name']); ?>
+			<?php echo $this->Html->link($user['Group']['name'], array('controller' => 'groups', 'action' => 'view', $user['Group']['id'])); ?>
 			&nbsp;
 		</dd>
 		<!--<dt><?php echo __('Last Name'); ?></dt>
@@ -28,16 +38,6 @@ $this->Html->addCrumb($user['User']['email']);
 		<dt><?php echo __('Cell Number'); ?></dt>
 		<dd>
 			<?php echo h($user['User']['cell_number']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Group'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($user['Group']['name'], array('controller' => 'groups', 'action' => 'view', $user['Group']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Client'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($user['Client']['name'], array('controller' => 'clients', 'action' => 'view', $user['Client']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Last Login'); ?></dt>

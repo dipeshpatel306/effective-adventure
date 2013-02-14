@@ -27,6 +27,7 @@ body{
 }
 a{
 	font-weight: normal;
+	
 }
 #container{
 	min-height:100%;
@@ -57,13 +58,14 @@ a{
 	float: left;
 	width: 282px;
 	height: 70px;
+	padding-top: 5px;
 }
 #header .userBox{
 	float: right;
-	min-width: 250px; 
+	min-width: 300px; 
 	height: 72px;
 	font-size: 1em;
-	padding: 5px 8px 5px 8px;
+	padding: 8px 8px 5px 8px;
 	/*outline: 1px dotted #333333;
 	background-color: #e9e9e9;
 	border: 1px solid #e6e6e6;*/
@@ -169,8 +171,9 @@ img.homeIcon{
 }
 /* transparency */
 img.homeIcon:hover{
-	opacity:0.5;
-	filter:alpha(opacity=0.5);
+	 -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+	filter:alpha(opacity=0.7);
+	opacity:0.7;
 }
 .clickBtn{
 	width: 200px;
@@ -278,8 +281,9 @@ img.homeIcon:hover{
 }
 
 /* ##### Dashboard ##### */
-div.dashBox{
+.dashBox{
 	float: left;
+	background-color: #ffffff;
 	/*border: 1px solid #888888;*/
 	border: 1px solid #e6e6e6;
 	width: 300px;
@@ -288,10 +292,11 @@ div.dashBox{
 	padding: 8px;	
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+	text-decoration: none; // fixes IE < 7 bug
 	
-	-moz-box-shadow: 3px 3px 4px #e6e6e6;
-	-webkit-box-shadow: 3px 3px 4px #e6e6e6;
-	box-shadow: 3px 3px 4px #e6e6e6;
+	-moz-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 .triangle{
@@ -301,10 +306,13 @@ div.dashBox{
 	border-top: 15px solid transparent;
 	border-bottom: 15px solid transparent;
 }
-.dashBox:hover{
-	opacity:0.7;
-	filter:alpha(opacity=0.7);
+.dashBox:hover div{
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: alpha(opacity=50);
+	opacity: 0.5;
 }
+
+
 .dashHead{
 	height: 65px;
 	margin-bottom: 20px;
@@ -347,9 +355,10 @@ div.form, div.index, div.view{
 	border: 1px solid #e6e6e6;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	-moz-box-shadow: 3px 3px 4px #e6e6e6;
-	-webkit-box-shadow: 3px 3px 4px #e6e6e6;
-	box-shadow: 3px 3px 4px #e6e6e6;
+	-moz-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+	/*box-shadow: 3px 3px 4px #e6e6e6;*/
 }
 div.actions, div.login, div.loginBox{
 	background-color: #ffffff;
@@ -358,9 +367,9 @@ div.actions, div.login, div.loginBox{
 	border-radius: 5px;
 	margin-bottom: 4px;
 	
-	-moz-box-shadow: 3px 3px 4px #e6e6e6;
-	-webkit-box-shadow: 3px 3px 4px #e6e6e6;
-	box-shadow: 3px 3px 4px #e6e6e6;
+	-moz-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Tables */

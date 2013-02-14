@@ -25,11 +25,6 @@ $this->Html->addCrumb($client['Client']['name']);
 			<?php echo h($client['Client']['user_account']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Details'); ?></dt>
-		<dd>
-			<?php echo h($client['Client']['details']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Last Login'); ?></dt>
 		<dd>
 			<?php echo $this->Time->format('m/d/y g:i a', $client['Client']['last_login']); ?>
@@ -45,6 +40,11 @@ $this->Html->addCrumb($client['Client']['name']);
 			<?php echo $this->Time->format('m/d/y g:i a', $client['Client']['modified']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Details'); ?></dt>
+		<dd>
+			<?php echo h($client['Client']['details']); ?>
+			&nbsp;
+		</dd>		
 	</dl>
 </div>
 <div class="actions">
@@ -65,8 +65,8 @@ $this->Html->addCrumb($client['Client']['name']);
 	<?php if (!empty($client['User'])): ?>
 	<table>
 	<tr>
+		<th><?php echo __('Name'); ?></th> 		
 		<th><?php echo __('Email'); ?></th>
-		<th><?php echo __('Name'); ?></th> 
 		<th><?php echo __('Group Id'); ?></th>
 		<th><?php echo __('Last login'); ?></th>		
 		<th><?php echo __('Created'); ?></th>
@@ -78,8 +78,8 @@ $this->Html->addCrumb($client['Client']['name']);
 		$i = 0;
 		foreach ($client['User'] as $user): ?>
 		<tr>
-			<td><?php echo $user['email']; ?></td>
 			<td><?php echo $user['last_name'] . ', ' . $user['first_name']; ?></td>
+			<td><?php echo $user['email']; ?></td>			
 			<td><?php echo $user['group_id']; ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $user['last_login']); ?></td>			
 			<td><?php echo $this->Time->format('m/d/y g:i a', $user['created']); ?></td>

@@ -221,6 +221,7 @@ class UsersController extends AppController {
 			$this->Session->setFlash('You are not authorized to view that!');
 			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 		}
+		
 
 	}
 

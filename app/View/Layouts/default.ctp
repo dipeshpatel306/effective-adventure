@@ -14,7 +14,7 @@
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
-		echo $this->Html->meta('icon');
+		echo $this->Html->meta('favicon.ico', $this->webroot . '/img/favicon.ico', array('type' => 'icon'));
 
 		echo $this->Html->css('cake.generic');
 		echo $this->Html->css('styles');
@@ -29,7 +29,7 @@
 	<div id="container">
 		<div id="wrapper">
 		<div id="header">
-			<?php echo $this->Html->image('hsn_logo.gif', array(
+			<?php echo $this->Html->image('hipaa_logo.png', array(
 					'alt' => 'HIPAA',
 					'url' => array('controller' => '/'),
 					'class' => 'logo'
@@ -78,6 +78,6 @@
 										 'ckeditor/ckeditor.js',
 										 'scripts', 
 	)); ?>
-	// <?php //  echo $this->element('sql_dump'); ?>
+	<?php echo $this->element('sql_dump'); ?>
 </body>
 </html>

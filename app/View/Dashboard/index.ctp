@@ -131,7 +131,7 @@
 					array('escape' => false)
 			);
 			
-		echo $this->Html->link( // What you can do with HIPAA Secure Now
+	/*	echo $this->Html->link( // What you can do with HIPAA Secure Now
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
 					$this->Html->image('question_tile.jpg', array(
@@ -149,7 +149,7 @@
 					array('escape' => false)
 			);
 			
-	/*	echo $this->Html->link( // Contact
+		echo $this->Html->link( // Contact
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
 					$this->Html->image('infocenter.png', array(

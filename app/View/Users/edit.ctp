@@ -8,6 +8,7 @@ $this->Html->addCrumb('Edit User');
 		<legend><?php echo __('Edit User'); ?></legend>
 	<?php
 		echo $this->Form->input('User.authCode', array('label' => 'Authorization Code'));
+		echo $this->Form->input('client_id');
 		echo $this->Form->input('email');		
 		echo $this->Form->input('password');
 		echo $this->Form->input('first_name');
@@ -15,7 +16,6 @@ $this->Html->addCrumb('Edit User');
 		echo $this->Form->input('phone_number');
 		echo $this->Form->input('cell_number');
 		echo $this->Form->input('group_id');
-		echo $this->Form->input('client_id');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
