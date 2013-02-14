@@ -33,6 +33,17 @@ class Client extends AppModel {
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
+/**
+ * hasOne associations
+ * @var array
+ */
+	public $hasOne = array(
+		'OrganizationalProfile' => array(
+			'className' => 'OrganizationalProfile',
+			'dependent' => true
+		)
+	);
+ 	
 
 /**
  * hasMany associations
@@ -43,7 +54,7 @@ class Client extends AppModel {
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'client_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -56,7 +67,7 @@ class Client extends AppModel {
 		'PoliciesAndProcedure' => array(
 			'className' => 'PoliciesAndProcedure',
 			'foreignKey' => 'client_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -69,7 +80,7 @@ class Client extends AppModel {
 		'OtherPoliciesAndProcedure' => array( 
 			'className' => 'OtherPoliciesAndProcedure',
 			'foreignKey' => 'client_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -82,7 +93,7 @@ class Client extends AppModel {
 		'RiskAssessmentDocument' => array(
 			'className' => 'RiskAssessmentDocument',
 			'foreignKey' => 'client_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -95,7 +106,7 @@ class Client extends AppModel {
 		'BusinessAssociateAgreement' => array(
 			'className' => 'BusinessAssociateAgreement',
 			'foreignKey' => 'client_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -108,7 +119,7 @@ class Client extends AppModel {
 		'DisasterRecoveryPlan' => array(
 			'className' => 'DisasterRecoveryPlan',
 			'foreignKey' => 'client_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -121,7 +132,7 @@ class Client extends AppModel {
 		'OtherContractsAndDocument' => array(
 			'className' => 'OtherContractsAndDocument',
 			'foreignKey' => 'client_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -134,7 +145,7 @@ class Client extends AppModel {
 		'SecurityIncident' => array(
 			'className' => 'SecurityIncident',
 			'foreignKey' => 'client_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -147,7 +158,7 @@ class Client extends AppModel {
 		'ServerRoomAccess' => array(
 			'className' => 'ServerRoomAccess',
 			'foreignKey' => 'client_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -160,7 +171,7 @@ class Client extends AppModel {
 		'EphiReceived' => array(
 			'className' => 'EphiReceived',
 			'foreignKey' => 'client_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -173,7 +184,7 @@ class Client extends AppModel {
 		'EphiRemoved' => array(
 			'className' => 'EphiRemoved',
 			'foreignKey' => 'client_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -186,7 +197,7 @@ class Client extends AppModel {
 		'SirtTeam' => array(
 			'className' => 'SirtTeam',
 			'foreignKey' => 'client_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',

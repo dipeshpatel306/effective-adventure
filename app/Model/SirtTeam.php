@@ -89,7 +89,7 @@ class SirtTeam extends AppModel {
 		'SirtMember' => array(
 			'className' => 'SirtMember',
 			'foreignKey' => 'sirt_team_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
