@@ -64,8 +64,8 @@ $this->Html->addCrumb('Risk Assessments');
 		<td>
 			<?php echo $this->Html->link($riskAssessment['Client']['name'], array('controller' => 'clients', 'action' => 'view', $riskAssessment['Client']['id'])); ?>
 		</td>
-		<td><?php echo h($riskAssessment['RiskAssessment']['created']); ?>&nbsp;</td>
-		<td><?php echo h($riskAssessment['RiskAssessment']['modified']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $riskAssessment['RiskAssessment']['created']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $riskAssessment['RiskAssessment']['modified']); ?>&nbsp;</td>
 		<!--<td><?php echo h($riskAssessment['RiskAssessment']['question_1']); ?>&nbsp;</td>
 		<td><?php echo h($riskAssessment['RiskAssessment']['question_2']); ?>&nbsp;</td>
 		<td><?php echo h($riskAssessment['RiskAssessment']['question_3']); ?>&nbsp;</td>
@@ -140,7 +140,7 @@ $this->Html->addCrumb('Risk Assessments');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Get Assessed'), array('action' => 'get_assessed')); ?></li>
+		<li><?php echo $this->Html->link(__('Take Risk Assessment'), array('action' => 'take_risk_assessment')); ?></li>
 		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
 	</ul>

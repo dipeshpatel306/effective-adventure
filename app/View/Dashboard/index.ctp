@@ -1,9 +1,65 @@
+<?php
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	
+	if($group == 1){
+		$dashBtn = '<div class="dashBtn approved">
+						<div class="btnWrapNarrow">
+						<div class="btnText">Click Here</div> 
+						<div class="triangle"></div>
+						</div>
+					</div>';
+	} elseif($group == 2){
+		$dashBtn = '<div class="dashBtn denied">
+						<div class="btnWrapWide">
+						<div class="btnText">Subscribers Only!</div> 
+						<div class="triangle"></div>
+						</div>
+					</div>';
+	} elseif($group == 3){
+		$dashBtn = 'User';
+	} else {
+		$dashBtn = 'No Role yet';
+	}
+?>
+
 <div class="dashboard index">
 	<h2><?php echo __('Compliance Portal Dashboard'); ?></h2>
 	
-	<?php echo $this->Html->link('Risk Assessment Questionnaire', array('controller' => 'riskassessments', 'action' => 'take_risk_assessment'))?><br /><br />
+	<!--<?php echo $this->Html->link('Risk Assessment Questionnaire', array('controller' => 'riskassessments', 'action' => 'take_risk_assessment'))?><br /><br />-->
 
 	<?php 
+	
+		echo $this->Html->link( // Risk Assessment Questionnaire
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('raq_tile.jpg', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Risk Assessment Questionnaire'
+								)) .
+					'<h3>Risk Assessment Questionnaire</h3>' .
+					'</div>' .
+					'<div class="dashSum">Risk Assessment Questionnaire</div>' . $dashBtn .
+					'</div>',
+					array('controller' => 'risk_assessments', 'action' => 'take_risk_assessment'),
+					array('escape' => false)
+			);
+				
+		echo $this->Html->link( // Organizational Profile
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('org_prof_tile.jpg', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Organizational Profile'
+								)) .
+					'<h3>Organizational Profile</h3>' .
+					'</div>' .
+					'<div class="dashSum">Organizational Profile</div>' . $dashBtn .
+					'</div>',
+					array('controller' => 'organizational_profiles', 'action' => 'index'),
+					array('escape' => false)
+			);
+					
 		echo $this->Html->link( // policies & procedures
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
@@ -13,10 +69,7 @@
 								)) .
 					'<h3>Policies & Procedures</h3>' .
 					'</div>' .
-					'<div class="dashSum">HIPAA and Other Policies and Procedures</div>' .
-						//'<div class="clickBtn">Click Here!   
-						//	<div class="triangle"></div>
-						//</div>' .
+					'<div class="dashSum">HIPAA and Other Policies and Procedures</div>' . $dashBtn .
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'policies_and_procedures'),
 					array('escape' => false)
@@ -32,10 +85,7 @@
 								)) .
 					'<h3>Contracts & Documents</h3>' .
 					'</div>' .
-					'<div class="dashSum">Risk Assessment, Business Associates, Disaster Recovery</div>' .
-						//'<div class="clickBtn">Click Here!   
-						//	<div class="triangle"></div>
-						//</div>' .
+					'<div class="dashSum">Risk Assessment, Business Associates, Disaster Recovery</div>' . $dashBtn .
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
 					array('escape' => false)
@@ -50,10 +100,7 @@
 								)) .
 					'<h3>Track and Document</h3>' .
 					'</div>' .
-					'<div class="dashSum">Security Incidents and ePHI Received and Removed</div>' .
-						//'<div class="clickBtn">Click Here!   
-						//	<div class="triangle"></div>
-						//</div>' .
+					'<div class="dashSum">Security Incidents and ePHI Received and Removed</div>' . $dashBtn .
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'track_and_document'),
 					array('escape' => false)
@@ -68,10 +115,7 @@
 								)) .
 					'<h3>Social Center</h3>' .
 					'</div>' .
-					'<div class="dashSum">Facebook and Twitter</div>' .
-						//'<div class="clickBtn">Click Here!   
-						//	<div class="triangle"></div>
-						//</div>' .
+					'<div class="dashSum">Facebook and Twitter</div>' . $dashBtn .
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'social_center'),
 					array('escape' => false)
@@ -86,10 +130,7 @@
 								)) .
 					'<h3>Education Center</h3>' .
 					'</div>' .
-					'<div class="dashSum">Videos and Training</div>' .
-						//'<div class="clickBtn">Click Here!   
-						//	<div class="triangle"></div>
-						//</div>' .
+					'<div class="dashSum">Videos and Training</div>' . $dashBtn .
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'education_center'),
 					array('escape' => false)
@@ -104,10 +145,7 @@
 								)) .
 					'<h3>Information Center</h3>' .
 					'</div>' .
-					'<div class="dashSum">Articles and Blog</div>' .
-						//'<div class="clickBtn">Click Here!   
-						//	<div class="triangle"></div>
-						//</div>' .
+					'<div class="dashSum">Articles and Blog</div>' . $dashBtn .
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'information_center'),
 					array('escape' => false)
@@ -122,10 +160,7 @@
 								)) .
 					'<h3>SIRP</h3>' .
 					'</div>' .
-					'<div class="dashSum">Security Incident Response Plan</div>' .
-						//'<div class="clickBtn">Click Here!   
-						//	<div class="triangle"></div>
-						//</div>' .
+					'<div class="dashSum">Security Incident Response Plan</div>' . $dashBtn .
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'sirp'),
 					array('escape' => false)

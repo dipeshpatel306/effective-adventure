@@ -1,5 +1,5 @@
 <?php
-$this->Html->addCrumb('View Risk Assessments');
+$this->Html->addCrumb('View Risk Assessment - ' . $riskAssessment['Client']['name']);
 ?>
 <div class="riskAssessments view">
 <h2><?php  echo __('Risk Assessment'); ?></h2>
@@ -16,12 +16,12 @@ $this->Html->addCrumb('View Risk Assessments');
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
-			<?php echo h($riskAssessment['RiskAssessment']['created']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $riskAssessment['RiskAssessment']['created']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Modified'); ?></dt>
 		<dd>
-			<?php echo h($riskAssessment['RiskAssessment']['modified']); ?>
+			<?php echo $this->Time->format('m/d/y g:i a', $riskAssessment['RiskAssessment']['modified']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Question 1'); ?></dt>

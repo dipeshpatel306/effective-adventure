@@ -1,5 +1,29 @@
 <?php
 $this->Html->addCrumb('Policies & Procedures');
+
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	
+	if($group == 1){
+		$dashBtn = '<div class="dashBtn approved">
+						<div class="btnWrapNarrow">
+						<div class="btnText">Click Here</div> 
+						<div class="triangle"></div>
+						</div>
+					</div>';
+	} elseif($group == 2){
+		$dashBtn = '<div class="dashBtn denied">
+						<div class="btnWrapWide">
+						<div class="btnText">Subscribers Only!</div> 
+						<div class="triangle"></div>
+						</div>
+					</div>';
+	} elseif($group == 3){
+		$dashBtn = 'User';
+	} else {
+		$dashBtn = 'No Role yet';
+	}
+
 ?>
 
 <div class="dashboard index">
@@ -15,10 +39,7 @@ $this->Html->addCrumb('Policies & Procedures');
 								)) .
 					'<h3>Policies & Procedures</h3>' .
 					'</div>' .
-					'<div class="dashSum">HIPAA and other Policies and Procedures</div>' .
-						//'<div class="clickBtn">Click Here!   
-						//	<div class="triangle"></div>
-						//</div>' .
+					'<div class="dashSum">HIPAA and other Policies and Procedures</div>'  . $dashBtn .
 					'</div>',
 					array('controller' => 'policies_and_procedures', 'action' => 'index'),
 					array('escape' => false)
@@ -34,10 +55,7 @@ $this->Html->addCrumb('Policies & Procedures');
 								)) .
 					'<h3>Other Policies & Procedures</h3>' .
 					'</div>' .
-					'<div class="dashSum">Other Policies & Procedures</div>' .
-						//'<div class="clickBtn">Click Here!   
-						//	<div class="triangle"></div>
-						//</div>' .
+					'<div class="dashSum">Other Policies & Procedures</div>' . $dashBtn .
 					'</div>',
 					array('controller' => 'other_policies_and_procedures', 'action' => 'index'),
 					array('escape' => false)

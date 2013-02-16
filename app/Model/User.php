@@ -182,8 +182,11 @@ class User extends AppModel {
  * Hash password before storing in the database
  * 
  */
-    public function beforeSave($options = array()) {
-        $this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
+    public function beforeSave() {
+    	if(!empty($this->data['User']['password'])){
+    		        $this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
+    	}
+
         return true;
     }
 }

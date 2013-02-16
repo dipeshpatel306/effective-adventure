@@ -1,5 +1,29 @@
 <?php
 $this->Html->addCrumb('Track & Document');
+
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	
+	if($group == 1){
+		$dashBtn = '<div class="dashBtn approved">
+						<div class="btnWrapNarrow">
+						<div class="btnText">Click Here</div> 
+						<div class="triangle"></div>
+						</div>
+					</div>';
+	} elseif($group == 2){
+		$dashBtn = '<div class="dashBtn denied">
+						<div class="btnWrapWide">
+						<div class="btnText">Subscribers Only!</div> 
+						<div class="triangle"></div>
+						</div>
+					</div>';
+	} elseif($group == 3){
+		$dashBtn = 'User';
+	} else {
+		$dashBtn = 'No Role yet';
+	}
+
 ?>
 <div class="dashboard index">
 	<h2><?php echo __('Track & Document'); ?></h2>
@@ -14,10 +38,7 @@ $this->Html->addCrumb('Track & Document');
 								)) .
 					'<h3>Security Incidents</h3>' .
 					'</div>' .
-					'<div class="dashSum">Security Incidents</div>' .
-						//'<div class="clickBtn">Click Here!   
-						//	<div class="triangle"></div>
-						//</div>' .
+					'<div class="dashSum">Security Incidents</div>' . $dashBtn .
 					'</div>',
 					array('controller' => 'security_incidents', 'action' => 'index'),
 					array('escape' => false)
@@ -33,10 +54,7 @@ $this->Html->addCrumb('Track & Document');
 								)) .
 					'<h3>Server Room Access</h3>' .
 					'</div>' .
-					'<div class="dashSum">Server Room Access</div>' .
-						//'<div class="clickBtn">Click Here!   
-						//	<div class="triangle"></div>
-						//</div>' .
+					'<div class="dashSum">Server Room Access</div>'  . $dashBtn .
 					'</div>',
 					array('controller' => 'server_room_access', 'action' => 'index'),
 					array('escape' => false)
@@ -51,10 +69,7 @@ $this->Html->addCrumb('Track & Document');
 								)) .
 					'<h3>ePHI Removed</h3>' .
 					'</div>' .
-					'<div class="dashSum">ePHI Removed</div>' .
-						//'<div class="clickBtn">Click Here!   
-						//	<div class="triangle"></div>
-						//</div>' .
+					'<div class="dashSum">ePHI Removed</div>' . $dashBtn .
 					'</div>',
 					array('controller' => 'ephi_removed', 'action' => 'index'),
 					array('escape' => false)
@@ -69,10 +84,7 @@ $this->Html->addCrumb('Track & Document');
 								)) .
 					'<h3>ePHI Received</h3>' .
 					'</div>' .
-					'<div class="dashSum">ePHI Received</div>' .
-						//'<div class="clickBtn">Click Here!   
-						//	<div class="triangle"></div>
-						//</div>' .
+					'<div class="dashSum">ePHI Received</div>' . $dashBtn .
 					'</div>',
 					array('controller' => 'ephi_received', 'action' => 'index'),
 					array('escape' => false)
