@@ -45,10 +45,12 @@ class Client extends AppModel {
 		'OrganizationalProfile' => array(
 			'className' => 'OrganizationalProfile',
 			'dependent' => true,
+			'fields' => array('OrganizationalProfile.id, OrganizationalProfile.client_id')
 		),
 		'RiskAssessment' => array(
 			'className' => 'RiskAssessment',
-			'dependent' => true
+			'dependent' => true,
+			'fields' => array('RiskAssessment.id, RiskAssessment.client_id')
 		)
 	);
 	
@@ -63,7 +65,8 @@ class Client extends AppModel {
 			'foreignKey' => 'partner_id',
 			'conditions' => '',
 			'fields' => '',
-			'order' => ''
+			'order' => '',
+			'fields' => array('Partner.id, Partner.company')
 		),
 	);
  	
@@ -79,7 +82,7 @@ class Client extends AppModel {
 			'foreignKey' => 'client_id',
 			'dependent' => true,
 			'conditions' => '',
-			'fields' => '',
+			'fields' => array('User.id, User.first_name, User.last_name, User.email, User.group_id, User.client_id, User.last_login, User.created, User.modified'),
 			'order' => '',
 			'limit' => '',
 			'offset' => '',
@@ -92,7 +95,7 @@ class Client extends AppModel {
 			'foreignKey' => 'client_id',
 			'dependent' => true,
 			'conditions' => '',
-			'fields' => '',
+			'fields' => array('PoliciesAndProcedure.id, PoliciesAndProcedure.name, PoliciesAndProcedure.client_id, PoliciesAndProcedure.created, PoliciesAndProcedure.modified, PoliciesAndProcedure.attachment'),
 			'order' => '',
 			'limit' => '',
 			'offset' => '',
@@ -105,7 +108,7 @@ class Client extends AppModel {
 			'foreignKey' => 'client_id',
 			'dependent' => true,
 			'conditions' => '',
-			'fields' => '',
+			'fields' => array('OtherPoliciesAndProcedure.id, OtherPoliciesAndProcedure.name, OtherPoliciesAndProcedure.client_id, OtherPoliciesAndProcedure.created, OtherPoliciesAndProcedure.modified, OtherPoliciesAndProcedure.attachment'),
 			'order' => '',
 			'limit' => '',
 			'offset' => '',
@@ -118,7 +121,7 @@ class Client extends AppModel {
 			'foreignKey' => 'client_id',
 			'dependent' => true,
 			'conditions' => '',
-			'fields' => '',
+			'fields' => 'RiskAssessmentDocument.id, RiskAssessmentDocument.client_id, RiskAssessmentDocument.name, RiskAssessmentDocument.created, RiskAssessmentDocument.modified, RiskAssessmentDocument.attachment',
 			'order' => '',
 			'limit' => '',
 			'offset' => '',
@@ -131,7 +134,7 @@ class Client extends AppModel {
 			'foreignKey' => 'client_id',
 			'dependent' => true,
 			'conditions' => '',
-			'fields' => '',
+			'fields' => 'BusinessAssociateAgreement.id, BusinessAssociateAgreement.client_id, BusinessAssociateAgreement.name, BusinessAssociateAgreement.email, BusinessAssociateAgreement.contract_date, BusinessAssociateAgreement.created, BusinessAssociateAgreement.modified',
 			'order' => '',
 			'limit' => '',
 			'offset' => '',
@@ -144,7 +147,7 @@ class Client extends AppModel {
 			'foreignKey' => 'client_id',
 			'dependent' => true,
 			'conditions' => '',
-			'fields' => '',
+			'fields' => 'DisasterRecoveryPlan.id, DisasterRecoveryPlan.client_id, DisasterRecoveryPlan.created, DisasterRecoveryPlan.modified, DisasterRecoveryPlan.attachment',
 			'order' => '',
 			'limit' => '',
 			'offset' => '',
@@ -157,7 +160,7 @@ class Client extends AppModel {
 			'foreignKey' => 'client_id',
 			'dependent' => true,
 			'conditions' => '',
-			'fields' => '',
+			'fields' => 'OtherContractsAndDocument.id, OtherContractsAndDocument.client_id, OtherContractsAndDocument.name, OtherContractsAndDocument.created, OtherContractsAndDocument.modified, OtherContractsAndDocument.attachment',
 			'order' => '',
 			'limit' => '',
 			'offset' => '',
@@ -170,7 +173,7 @@ class Client extends AppModel {
 			'foreignKey' => 'client_id',
 			'dependent' => true,
 			'conditions' => '',
-			'fields' => '',
+			'fields' => 'SecurityIncident.id, SecurityIncident.client_id, SecurityIncident.date_of_incident, SecurityIncident.time_of_incident, SecurityIncident.discovery_date, SecurityIncident.reported_by, SecurityIncident.created, SecurityIncident.modified',
 			'order' => '',
 			'limit' => '',
 			'offset' => '',
@@ -183,7 +186,7 @@ class Client extends AppModel {
 			'foreignKey' => 'client_id',
 			'dependent' => true,
 			'conditions' => '',
-			'fields' => '',
+			'fields' => 'ServerRoomAccess.id, ServerRoomAccess.client_id, ServerRoomAccess.date, ServerRoomAccess.time, ServerRoomAccess.person, ServerRoomAccess.company, ServerRoomAccess.created, ServerRoomAccess.modified',
 			'order' => '',
 			'limit' => '',
 			'offset' => '',
@@ -196,7 +199,7 @@ class Client extends AppModel {
 			'foreignKey' => 'client_id',
 			'dependent' => true,
 			'conditions' => '',
-			'fields' => '',
+			'fields' => 'EphiReceived.id, EphiReceived.client_id, EphiReceived.date_received, EphiReceived.time_received, EphiReceived.patient_name, EphiReceived.date_returned, EphiReceived.time_returned, EphiReceived.created, EphiReceived.modified',
 			'order' => '',
 			'limit' => '',
 			'offset' => '',
@@ -209,7 +212,7 @@ class Client extends AppModel {
 			'foreignKey' => 'client_id',
 			'dependent' => true,
 			'conditions' => '',
-			'fields' => '',
+			'fields' => 'EphiRemoved.id, EphiRemoved.client_id, EphiRemoved.description, EphiRemoved.date, EphiRemoved.time, EphiRemoved.removed_by, EphiRemoved.returned_by, EphiRemoved.created, EphiRemoved.modified',
 			'order' => '',
 			'limit' => '',
 			'offset' => '',
@@ -222,7 +225,7 @@ class Client extends AppModel {
 			'foreignKey' => 'client_id',
 			'dependent' => true,
 			'conditions' => '',
-			'fields' => '',
+			'fields' => 'SirtTeam.id, SirtTeam.client_id, SirtTeam.company_name, SirtTeam.created, SirtTeam.modified',
 			'order' => '',
 			'limit' => '',
 			'offset' => '',

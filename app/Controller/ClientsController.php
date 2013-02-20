@@ -48,11 +48,24 @@ class ClientsController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+		//$this->Client->recursive = 2;
 		$this->Client->id = $id;
 		if (!$this->Client->exists()) {
 			throw new NotFoundException(__('Invalid client'));
 		}
 		$this->set('client', $this->Client->read(null, $id));
+		
+		
+		// Paginate Users and Get Group Role
+		$this->paginate = array('conditions' => array('User.client_id' => $id), 
+								'order' => array('User.last_name' => 'ASC'), 
+								'fields' => array('User.id', 'User.first_name', 'User.last_name', 'User.email', 'User.group_id', 'User.client_id', 
+											'User.last_login', 'User.created', 'User.modified', 'Client.id', 'Group.id', 'Group.name'
+								),
+								'limit' => 10);
+		$this->set('users', $this->paginate($this->Client->User));
+		//$this->set('users', $users);
+
 	}
 
 /**

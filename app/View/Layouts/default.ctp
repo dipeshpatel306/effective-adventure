@@ -53,12 +53,12 @@
 			<?php echo $this->Session->flash(); ?>
 			
 			<?php // Temp debug code
-				/*$auth = $this->Session->read('Auth');
-				echo "<pre>";
-				print_r($auth);
-				echo "</pre>";*/
+				//$auth = $this->Session->read('Auth');
+				//pr($auth);
+				//pr($users);
 				//pr($client)
 				//echo Configure::version();
+				
 			?>
 			<?php echo $this->fetch('content'); ?>
 		</div>

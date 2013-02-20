@@ -11,11 +11,11 @@ $this->Html->addCrumb('Partners');
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('email'); ?></th>
 			<th><?php echo $this->Paginator->sort('phone'); ?></th>
-			<th><?php echo $this->Paginator->sort('cell'); ?></th>
+			<!--<th><?php echo $this->Paginator->sort('cell'); ?></th>
 			<th><?php echo $this->Paginator->sort('address'); ?></th>
 			<th><?php echo $this->Paginator->sort('city'); ?></th>
 			<th><?php echo $this->Paginator->sort('state'); ?></th>
-			<th><?php echo $this->Paginator->sort('zip'); ?></th>
+			<th><?php echo $this->Paginator->sort('zip'); ?></th>-->
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -28,11 +28,11 @@ $this->Html->addCrumb('Partners');
 		<td><?php echo h($partner['Partner']['name']); ?>&nbsp;</td>
 		<td><?php echo h($partner['Partner']['email']); ?>&nbsp;</td>
 		<td><?php echo h($partner['Partner']['phone']); ?>&nbsp;</td>
-		<td><?php echo h($partner['Partner']['cell']); ?>&nbsp;</td>
+		<!--<td><?php echo h($partner['Partner']['cell']); ?>&nbsp;</td>
 		<td><?php echo h($partner['Partner']['address']); ?>&nbsp;</td>
 		<td><?php echo h($partner['Partner']['city']); ?>&nbsp;</td>
 		<td><?php echo h($partner['Partner']['state']); ?>&nbsp;</td>
-		<td><?php echo h($partner['Partner']['zip']); ?>&nbsp;</td>
+		<td><?php echo h($partner['Partner']['zip']); ?>&nbsp;</td>-->
 		<td><?php echo $this->Time->format('m/d/y g:i a', $partner['Partner']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $partner['Partner']['modified']); ?>&nbsp;</td>
 		<td class="actions">

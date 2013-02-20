@@ -67,36 +67,50 @@ $this->Html->addCrumb($client['Client']['name']);
 <!-- Users -->
 <div class="related">
 	<h3><?php echo __('Users'); ?></h3>
-	<?php if (!empty($client['User'])): ?>
+	<?php //if (!empty($client['User'])):?>
+	<?php if(!empty($users)): ?>	
 	<table>
 	<tr>
-		<th><?php echo __('Name'); ?></th> 		
-		<th><?php echo __('Email'); ?></th>
-		<th><?php echo __('Group Id'); ?></th>
-		<th><?php echo __('Last login'); ?></th>		
-		<th><?php echo __('Created'); ?></th>
-		<th><?php echo __('Modified'); ?></th>
+		<th><?php echo $this->Paginator->sort('User.last_name','Name'); ?></th> 		
+		<th><?php echo $this->Paginator->sort('User.email', 'Email'); ?></th>
+		<th><?php echo $this->Paginator->sort('Group.name', 'Group Role'); ?></th>
+		<th><?php echo $this->Paginator->sort('User.last_login', 'Last login'); ?></th>		
+		<th><?php echo $this->Paginator->sort('User.created', 'Created'); ?></th>
+		<th><?php echo $this->Paginator->sort('User.modified', 'Modified'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	
 	<?php
 		$i = 0;
-		foreach ($client['User'] as $user): ?>
+		foreach ($users as $user): ?>
 		<tr>
-			<td><?php echo $user['last_name'] . ', ' . $user['first_name']; ?></td>
-			<td><?php echo $user['email']; ?></td>			
-			<td><?php echo $user['group_id']; ?></td>
-			<td><?php echo $this->Time->format('m/d/y g:i a', $user['last_login']); ?></td>			
-			<td><?php echo $this->Time->format('m/d/y g:i a', $user['created']); ?></td>
-			<td><?php echo $this->Time->format('m/d/y g:i a', $user['modified']); ?></td>
+			<td><?php echo $user['User']['last_name'] . ', ' . $user['User']['first_name']; ?></td>
+			<td><?php echo $user['User']['email']; ?></td>			
+			<td><?php echo $user['Group']['name']; ?></td>
+			<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['last_login']); ?></td>			
+			<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['created']); ?></td>
+			<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['modified']); ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'users', 'action' => 'view', $user['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'users', 'action' => 'edit', $user['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'users', 'action' => 'delete', $user['id']), null, __('Are you sure you want to delete # %s?', $user['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?>
+				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'users', 'action' => 'delete', $user['User']['id']), null, __('Are you sure you want to delete # %s?', $user['User']['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
 	</table>
+	<?php
+	echo $this->Paginator->counter(array(
+	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+	));
+	?>	</p>
+
+	<div class="paging">
+	<?php
+		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
+		echo $this->Paginator->numbers(array('separator' => ''));
+		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+	?>
+	</div>
 <?php endif; ?>
 
 	<div class="actions">
