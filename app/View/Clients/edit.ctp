@@ -14,6 +14,7 @@ $this->Html->addCrumb('Edit Client');
 		echo $this->Form->input('admin_account');
 		echo $this->Form->input('user_account');
 		echo $this->Form->input('details', array('class' => 'ckeditor'));
+		echo $this->Form->input('partner_id');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

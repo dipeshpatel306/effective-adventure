@@ -11,6 +11,7 @@ $this->Html->addCrumb('Add Client');
 		echo $this->Form->input('account_type', array('options' => 
 						array('' => '', 'Subscription' => 'Subscription', 'Meaningful Use' => 'Meaningful Use')));
 		echo $this->Form->input('details', array('class' => 'ckeditor'));
+		echo $this->Form->input('partner_id');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

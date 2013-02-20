@@ -25,6 +25,11 @@ $this->Html->addCrumb($client['Client']['name']);
 			<?php echo h($client['Client']['user_account']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Partner'); ?></dt>
+		<dd>
+			<?php echo h($client['Partner']['company']); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Last Login'); ?></dt>
 		<dd>
 			<?php echo $this->Time->format('m/d/y g:i a', $client['Client']['last_login']); ?>

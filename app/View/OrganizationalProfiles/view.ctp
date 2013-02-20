@@ -1,4 +1,5 @@
 <?php
+$this->Html->addCrumb('Organizational Profiles', '/organizational_profiles');
 $this->Html->addCrumb('View Organizational Profile - ' . $organizationalProfile['Client']['name']);
 ?>
 <div class="organizationalProfiles view">

@@ -78,6 +78,8 @@ class ClientsController extends AppController {
 				$this->Session->setFlash(__('The client could not be saved. Please, try again.'));
 			}
 		}
+		$partners = $this->Client->Partner->find('list');
+		$this->set(compact('partners'));
 	}
 
 /**
@@ -123,6 +125,8 @@ class ClientsController extends AppController {
 		} else {
 			$this->request->data = $this->Client->read(null, $id);
 		}
+		$partners = $this->Client->Partner->find('list');
+		$this->set(compact('partners'));
 	}
 
 /**

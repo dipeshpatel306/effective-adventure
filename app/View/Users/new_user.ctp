@@ -5,6 +5,7 @@
 	echo $this->Form->create('User');
 	echo $this->Form->input('authCode', array('label' => 'Authorization Code'));
 	echo $this->Form->input('email');	
+	echo $this->Form->input('email2', array('label' => 'Confirm Email'));	
 	echo $this->Form->input('password');
 	echo $this->Form->input('password2', array('label' => 'Verify Password', 'type' => 'password'));
 	echo $this->Form->input('first_name');
