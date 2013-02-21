@@ -1,11 +1,11 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * OrganizationalProfile Model
+ * OrganizatioProfile Model
  *
  * @property Client $Client
  */
-class OrganizationalProfile extends AppModel {
+class OrganizationProfile extends AppModel {
 
 /**
  * Display field

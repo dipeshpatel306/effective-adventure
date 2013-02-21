@@ -1,11 +1,11 @@
 <?php
-App::uses('OrganizationalProfilesController', 'Controller');
+App::uses('OrganizationProfilesController', 'Controller');
 
 /**
- * OrganizationalProfilesController Test Case
+ * OrganizationProfilesController Test Case
  *
  */
-class OrganizationalProfilesControllerTest extends ControllerTestCase {
+class OrganizationProfilesControllerTest extends ControllerTestCase {
 
 /**
  * Fixtures
@@ -13,9 +13,8 @@ class OrganizationalProfilesControllerTest extends ControllerTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.organizational_profile',
+		'app.organization_profile',
 		'app.client',
-		'app.organizationa_profile',
 		'app.user',
 		'app.group',
 		'app.policies_and_procedure',

@@ -15,7 +15,7 @@ class PartnersControllerTest extends ControllerTestCase {
 	public $fixtures = array(
 		'app.partner',
 		'app.client',
-		'app.organizational_profile',
+		'app.organization_profile',
 		'app.risk_assessment',
 		'app.user',
 		'app.group',

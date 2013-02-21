@@ -57,6 +57,10 @@ class DashboardController extends AppController {
  * @return void
  */
 	public function policies_and_procedures() {
+		$group = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
+		if($group == 'Initial'){
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
+		}
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
 	}
@@ -67,6 +71,10 @@ class DashboardController extends AppController {
  * @return void
  */
 	public function contracts_and_documents() {
+		$group = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
+		if($group == 'Initial'){
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
+		}		
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
 	}
@@ -76,6 +84,10 @@ class DashboardController extends AppController {
  * @return void
  */
 	public function track_and_document() {
+		$group = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
+		if($group == 'Initial'){
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
+		}		
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
 	}
@@ -85,6 +97,10 @@ class DashboardController extends AppController {
  * @return void
  */
 	public function social_center() {
+		$group = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
+		if($group == 'Initial'){
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
+		}		
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
 	}	
@@ -94,6 +110,10 @@ class DashboardController extends AppController {
  * @return void
  */
 	public function education_center() {
+		$group = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
+		if($group == 'Initial'){
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
+		}		
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
 	}		
@@ -103,6 +123,10 @@ class DashboardController extends AppController {
  * @return void
  */
 	public function information_center() {
+		$group = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
+		if($group == 'Initial'){
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
+		}		
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
 	}		
@@ -112,6 +136,10 @@ class DashboardController extends AppController {
  * @return void
  */
 	public function sirp() {
+		$group = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
+		if($group == 'Initial'){
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
+		}		
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
 	}
@@ -121,6 +149,7 @@ class DashboardController extends AppController {
  * @return void
  */
 	public function about_hipaa() {
+	
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
 	}

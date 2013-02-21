@@ -1,6 +1,6 @@
 <?php
-$this->Html->addCrumb('Organizational Profiles', '/organizational_profiles');
-$this->Html->addCrumb('Add Organizational Profile');
+$this->Html->addCrumb('Organization Profiles', '/organization_profiles');
+$this->Html->addCrumb('Edit Organization Profile');
 
 	$states = array('AL'=>"Alabama", 'AK'=>"Alaska", 'AZ'=>"Arizona", 'AR'=>"Arkansas", 'CA'=>"California", 'CO'=>"Colorado", 
 					'CT'=>"Connecticut", 'DE'=>"Delaware", 'DC'=>"District Of Columbia", 'FL'=>"Florida", 'GA'=>"Georgia", 
@@ -21,18 +21,22 @@ $this->Html->addCrumb('Add Organizational Profile');
 	$emailHost = array('Onsite' => 'Onsite', 'Hosted by a 3rd party' => 'Hosted by a 3rd party', 
 					'Cloud(Google, Yahoo!, Hotmail)' => 'Cloud(Google, Yahoo!, Hotmail)', 'Other' => 'Other' );
 	$host = array('Onsite' => 'Onsite', 'Vendor Hosted' => 'Vendor Hosted', 'Hosted by a 3rd party' => 'Hosted by a 3rd party', 'Other' => 'Other' );					
+
+	// Convert OS installed from comma separated string back into check options
+	$os_installed = explode(',', $this->request->data['OrganizationProfile']['os_installed']);
 ?>
 
-<div class="organizationalProfiles form">
-<?php echo $this->Form->create('OrganizationalProfile'); ?>
+<div class="organizationProfiles form">
+<?php echo $this->Form->create('OrganizationProfile'); ?>
 	<fieldset>
-		<legend><?php echo __('Add Organizational Profile'); ?></legend>
+		<legend><?php echo __('Edit Organization Profile'); ?></legend>
 	<?php
+		echo $this->Form->input('id');
 		echo $this->Form->input('client_id');
 		
 		echo $this->Form->input('organization_name', array('label' => 'Organization Name: '));
 		echo $this->Form->input('administrator_name', array('label' => "Organization's Administrator Name: "));
-		echo $this->Form->input('administrator_email', array('label' =>"Organizations's Adminstrator Email: "));
+		echo $this->Form->input('administrator_email', array('label' =>"Organization's Adminstrator Email: "));
 		echo $this->Form->input('administrator_phone', array('label' =>"Administrator Phone (Primary Contact): "));
 		echo $this->Form->input('administrator_phone_alt', array('label' =>"Administrator Phone (Alternative): "));
 		echo $this->Form->input('address_1', array('label' => 'Address 1: '));
@@ -49,7 +53,7 @@ $this->Html->addCrumb('Add Organizational Profile');
 		echo $this->Form->input('number_workstations', array('label' =>'How many workstations(desktops) do you have?'));
 		echo $this->Form->input('number_laptops', array('label' =>'How many laptops do you have?'));
 		echo $this->Form->input('os_installed', array('label' =>'Please select the operating systems your workstations and laptiops are running: ',
-								'options' => $osLong, 'multiple' => 'checkbox'));
+								'options' => $osLong, 'multiple' => 'checkbox', 'selected' => $os_installed));
 		
 		echo $this->Form->input('emr_ehr_implemented', array('label' => 'Do you have an EMR/EHR implemented?', 'options' => $choice, 'empty' => 'Please Select One' ));
 		echo $this->Form->input('emr_ehr_vendor', array('label' => 'What is the name of your EMP/EHR Vendor?'));
@@ -120,7 +124,8 @@ $this->Html->addCrumb('Add Organizational Profile');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('List Organizational Profiles'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('OrganizationProfile.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('OrganizationProfile.id'))); ?></li>
+		<li><?php echo $this->Html->link(__('List Organization Profiles'), array('action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
 	</ul>

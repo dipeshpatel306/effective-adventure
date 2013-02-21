@@ -42,10 +42,10 @@ class Client extends AppModel {
  * @var array
  */
 	public $hasOne = array(
-		'OrganizationalProfile' => array(
-			'className' => 'OrganizationalProfile',
+		'OrganizationProfile' => array(
+			'className' => 'OrganizationProfile',
 			'dependent' => true,
-			'fields' => array('OrganizationalProfile.id, OrganizationalProfile.client_id')
+			'fields' => array('OrganizationProfile.id, OrganizationProfile.client_id')
 		),
 		'RiskAssessment' => array(
 			'className' => 'RiskAssessment',

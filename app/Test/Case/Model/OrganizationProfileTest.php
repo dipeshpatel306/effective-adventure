@@ -1,11 +1,11 @@
 <?php
-App::uses('OrganizationalProfile', 'Model');
+App::uses('OrganizationProfile', 'Model');
 
 /**
- * OrganizationalProfile Test Case
+ * OrganizationProfile Test Case
  *
  */
-class OrganizationalProfileTest extends CakeTestCase {
+class OrganizationProfileTest extends CakeTestCase {
 
 /**
  * Fixtures
@@ -13,9 +13,8 @@ class OrganizationalProfileTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.organizational_profile',
+		'app.organization_profile',
 		'app.client',
-		'app.organizationa_profile',
 		'app.user',
 		'app.group',
 		'app.policies_and_procedure',
@@ -39,7 +38,7 @@ class OrganizationalProfileTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->OrganizationalProfile = ClassRegistry::init('OrganizationalProfile');
+		$this->OrganizationProfile = ClassRegistry::init('OrganizationProfile');
 	}
 
 /**
@@ -48,7 +47,7 @@ class OrganizationalProfileTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->OrganizationalProfile);
+		unset($this->OrganizationProfile);
 
 		parent::tearDown();
 	}

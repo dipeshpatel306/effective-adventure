@@ -1,1 +1,69 @@
-You are an initial client!
+<?php
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	
+	if($group == 1){
+		$dashBtn = '<div class="dashBtn approved">
+						<div class="btnWrapNarrow">
+						<div class="btnText">Click Here</div> 
+						<div class="triangle"></div>
+						</div>
+					</div>';
+	} elseif($group == 2){
+		$dashBtn = '<div class="dashBtn denied">
+						<div class="btnWrapWide">
+						<div class="btnText">Subscribers Only!</div> 
+						<div class="triangle"></div>
+						</div>
+					</div>';
+	} elseif($group == 3){
+		$dashBtn = 'User';
+	} else {
+		$dashBtn = 'No Role yet';
+	}
+?>
+
+<div class="dashboard index">
+	<h2><?php echo __('Compliance Portal Dashboard'); ?></h2>
+	
+	<?php 					
+
+		echo $this->Html->link( // Risk Assessment Questionnaire
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('raq_tile.jpg', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Risk Assessment Questionnaire'
+								)) .
+					'<h3>Risk Assessment Questionnaire</h3>' .
+					'</div>' .
+					'<div class="dashSum">Risk Assessment Questionnaire</div>' . $dashBtn .
+					'</div>',
+					array('controller' => 'risk_assessments', 'action' => 'take_risk_assessment'),
+					array('escape' => false)
+			);
+				
+		echo $this->Html->link( // Organization Profile
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('org_prof_tile.jpg', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Organization Profile'
+								)) .
+					'<h3>Organization Profile</h3>' .
+					'</div>' .
+					'<div class="dashSum">Organization Profile</div>' . $dashBtn .
+					'</div>',
+					array('controller' => 'organization_profiles', 'action' => 'index'),
+					array('escape' => false)
+			);			
+	?>
+	
+</div>
+<div class="actions newsFeed">
+	<h3><?php echo __('Latest News'); ?></h3>
+	<!--<ul>
+		<li><?php echo $this->Html->link(__('New Dashboard'), array('action' => 'add')); ?></li>
+	</ul>-->
+	<?php echo $this->element('feeds'); ?>
+</div>

@@ -7,7 +7,6 @@
 			'alt' => 'HIPAA Secure Compliance Portal Home',
 			'url' => array('controller' => 'dashboard', 'action' => 'index')
 		));
-		
 		echo $this->Html->getCrumbs(' > ', 'Home');
 	}
 ?>
@@ -19,7 +18,7 @@
 		echo '<b>Admin Tools: </b> ';
 		echo $this->Html->link('Partners', array('controller' => 'partners', 'action' => 'index')) . ' | ';		
 		echo $this->Html->link('Clients', array('controller' => 'clients', 'action' => 'index')) . ' | ';
-		echo $this->Html->link('Org Profiles', array('controller' => 'organizational_profiles', 'action' => 'index')) . ' | ';
+		echo $this->Html->link('Org Profiles', array('controller' => 'organization_profiles', 'action' => 'index')) . ' | ';
 		echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')) . ' | ';
 		
 		echo $this->Html->link('Risk Assessments', array('controller' => 'riskassessments', 'action' => 'index'));
@@ -32,8 +31,8 @@
 		echo $this->Html->link('Contact Us', array('controller' => 'contact_us', 'action' => 'contact' ));
 	}
 		
-	// If Client load Contact
-	if($this->Session->read('Auth.User.group_id') == 3){
+	// If Client or Initial load Contact
+	if($this->Session->read('Auth.User.group_id') == 3 || $this->Session->read('Auth.User.group_id') == 4){
 		echo $this->Html->link('About HIPAA Secure Now!', array('controller' => 'dashboard', 'action' => 'about_hipaa')) . ' | ';
 		echo $this->Html->link('Contact Us', array('controller' => 'contact_us', 'action' => 'contact' ));		
 	}	
