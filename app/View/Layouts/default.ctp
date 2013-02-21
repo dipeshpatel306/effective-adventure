@@ -53,10 +53,8 @@
 			<?php echo $this->Session->flash(); ?>
 			
 			<?php // Temp debug code
-				//$auth = $this->Session->read('Auth');
-				//pr($auth);
-				//pr($users);
-				//pr($client)
+				$auth = $this->Session->read('Auth');
+				pr($auth);
 				//echo Configure::version();
 				
 			?>

@@ -65,6 +65,9 @@ class AppController extends Controller {
 		$this->Auth->loginRedirect = array('controller' => 'Dashboard', 'action' => 'index');
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
 		//$this->Auth->allow('display');
+		
+		$client = $this->Session->read('Auth.User.Client.name');
+		$this->set(compact('client'));
     }	
 	
 	public function isAuthorized($user){

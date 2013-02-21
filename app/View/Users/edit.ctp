@@ -1,21 +1,26 @@
 <?php
 $this->Html->addCrumb('Users', '/users');
 $this->Html->addCrumb('Edit User');
+
+$group = array(4 => 'Pending', 3 => 'User', 2 => 'Manager', 1 => 'HIPAA Administrator');
+
 ?>
 <div class="users form">
 <?php echo $this->Form->create('User'); ?>
 	<fieldset>
 		<legend><?php echo __('Edit User'); ?></legend>
 	<?php
-		echo $this->Form->input('User.authCode', array('label' => 'Authorization Code'));
-		echo $this->Form->input('client_id');
-		echo $this->Form->input('email');		
+		//echo $this->Form->input('User.authCode', array('label' => 'Authorization Code'));
+		echo $this->Form->input('group_id', array('options' => $group, 'default' => 4));		
+		echo $this->Form->input('client_id', array('empty' => 'Please Select'));
+		echo $this->Form->input('email');	
+		echo $this->Form->input('email2', array('label' => 'Confirm Email'));	
 		echo $this->Form->input('password');
+		echo $this->Form->input('password2', array('label' => 'Verify Password', 'type' => 'password'));		
 		echo $this->Form->input('first_name');
 		echo $this->Form->input('last_name');
 		echo $this->Form->input('phone_number');
 		echo $this->Form->input('cell_number');
-		echo $this->Form->input('group_id');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

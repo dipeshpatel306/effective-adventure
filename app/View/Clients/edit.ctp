@@ -1,6 +1,8 @@
 <?php
 $this->Html->addCrumb('Clients', '/clients');
 $this->Html->addCrumb('Edit Client');
+
+$acctType = array('Initial' => 'Initial', 'Subscription' => 'Subscription', 'Meaningful Use' => 'Meaningful Use');
 ?>
 <div class="clients form">
 <?php echo $this->Form->create('Client'); ?>
@@ -9,12 +11,9 @@ $this->Html->addCrumb('Edit Client');
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
-		echo $this->Form->input('account_type', array('options' => 
-						array('' => '', 'Subscription' => 'Subscription', 'Meaningful Use' => 'Meaningful Use')));		
-		echo $this->Form->input('admin_account');
-		echo $this->Form->input('user_account');
+		echo $this->Form->input('account_type', array('options' => $acctType, 'default' => 'Pending'));
+		echo $this->Form->input('partner_id', array('default' => ''));		
 		echo $this->Form->input('details', array('class' => 'ckeditor'));
-		echo $this->Form->input('partner_id');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

@@ -26,6 +26,9 @@ h1, h2, h3, h4, h5, fieldset legend{
 	background-color: #ffffff;
 	min-height: 500px;
 }
+.form label{
+	font-weight: bold;
+}
 div.form, div.index, div.view{
 	/*border-left: 1px solid #e6e6e6;*/
 	margin-bottom: 4px; /* fixes missing frop shadow */

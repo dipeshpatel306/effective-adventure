@@ -20,7 +20,7 @@ $this->Html->addCrumb('Users');
 		<td><?php echo $this->Html->link($user['Client']['name'], array('controller' => 'clients', 'action' => 'view', $user['Client']['id'])); ?></td>		
 		<td><?php echo $user['User']['last_name'] . ', ' . $user['User']['first_name']; ?>&nbsp;</td>			
 		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
-		<td><?php echo $this->Html->link($user['Group']['name'], array('controller' => 'groups', 'action' => 'view', $user['Group']['id'])); ?></td>
+		<td><?php echo $user['Group']['name']; ?></td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['last_login']); ?>&nbsp;</td>		
 		<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['modified']); ?>&nbsp;</td>

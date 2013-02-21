@@ -19,20 +19,35 @@ class DashboardController extends AppController {
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 
-		if ($group == 2  || $group == 3){ // Allow managers and Users to view dashboard
+		if ($group == 2  || $group == 3 || $group == 4){ // Allow managers, Users and Initial to view dashboard
 			return true;
 		}
 		
 		return parent::isAuthorized($user);
  	}
 
+/**
+ * index method
+ *
+ * @return void
+ */
+	public function initial() {	
+		
+		//$this->Dashboard->recursive = 0;
+		//$this->set('dashboard', $this->paginate());
+	}
 
 /**
  * index method
  *
  * @return void
  */
-	public function index() {
+	public function index() {	
+		$group = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
+		if($group == 'Initial'){
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
+		}
+
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
 	}

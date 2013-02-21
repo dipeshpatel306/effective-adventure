@@ -47,7 +47,7 @@ class User extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			array(
-				'rule' => array('emailCompare'),
+				'rule' => array('confirmEmail'),
 				'message' => 'The email does not match.'
 			),			
 		),		
@@ -61,7 +61,7 @@ class User extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			array(
-				'rule' => array('emailCompare'),
+				'rule' => array('confirmEmail'),
 				'message' => 'The email does not match.'
 			),
 		),			

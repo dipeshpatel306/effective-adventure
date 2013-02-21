@@ -28,38 +28,7 @@
 	
 	<!--<?php echo $this->Html->link('Risk Assessment Questionnaire', array('controller' => 'riskassessments', 'action' => 'take_risk_assessment'))?><br /><br />-->
 
-	<?php 
-	
-		echo $this->Html->link( // Risk Assessment Questionnaire
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('raq_tile.jpg', array(
-								'class' => 'dashTile', 
-								'alt' => 'HIPAA Risk Assessment Questionnaire'
-								)) .
-					'<h3>Risk Assessment Questionnaire</h3>' .
-					'</div>' .
-					'<div class="dashSum">Risk Assessment Questionnaire</div>' . $dashBtn .
-					'</div>',
-					array('controller' => 'risk_assessments', 'action' => 'take_risk_assessment'),
-					array('escape' => false)
-			);
-				
-		echo $this->Html->link( // Organizational Profile
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('org_prof_tile.jpg', array(
-								'class' => 'dashTile', 
-								'alt' => 'HIPAA Organizational Profile'
-								)) .
-					'<h3>Organizational Profile</h3>' .
-					'</div>' .
-					'<div class="dashSum">Organizational Profile</div>' . $dashBtn .
-					'</div>',
-					array('controller' => 'organizational_profiles', 'action' => 'index'),
-					array('escape' => false)
-			);
-					
+	<?php 					
 		echo $this->Html->link( // policies & procedures
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
@@ -165,7 +134,35 @@
 					array('controller' => 'dashboard', 'action' => 'sirp'),
 					array('escape' => false)
 			);
-			
+		echo $this->Html->link( // Risk Assessment Questionnaire
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('raq_tile.jpg', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Risk Assessment Questionnaire'
+								)) .
+					'<h3>Risk Assessment Questionnaire</h3>' .
+					'</div>' .
+					'<div class="dashSum">Risk Assessment Questionnaire</div>' . $dashBtn .
+					'</div>',
+					array('controller' => 'risk_assessments', 'action' => 'take_risk_assessment'),
+					array('escape' => false)
+			);
+				
+		echo $this->Html->link( // Organizational Profile
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('org_prof_tile.jpg', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Organizational Profile'
+								)) .
+					'<h3>Organizational Profile</h3>' .
+					'</div>' .
+					'<div class="dashSum">Organizational Profile</div>' . $dashBtn .
+					'</div>',
+					array('controller' => 'organizational_profiles', 'action' => 'index'),
+					array('escape' => false)
+			);			
 	/*	echo $this->Html->link( // What you can do with HIPAA Secure Now
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .

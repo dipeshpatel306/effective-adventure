@@ -61,8 +61,7 @@ class ClientsController extends AppController {
 								'order' => array('User.last_name' => 'ASC'), 
 								'fields' => array('User.id', 'User.first_name', 'User.last_name', 'User.email', 'User.group_id', 'User.client_id', 
 											'User.last_login', 'User.created', 'User.modified', 'Client.id', 'Group.id', 'Group.name'
-								),
-								'limit' => 10);
+								),'limit' => 20);
 		$this->set('users', $this->paginate($this->Client->User));
 		//$this->set('users', $users);
 
