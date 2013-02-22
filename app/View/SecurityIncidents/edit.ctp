@@ -18,7 +18,14 @@ $this->Html->addCrumb('Edit Security Incident');
 		echo $this->Form->input('description_of_incident', array('class' => 'ckeditor'));
 		echo $this->Form->input('cause_of_incident');
 		echo $this->Form->input('assets_involved');
-		echo $this->Form->input('client_id');
+		
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+		if($client == 1){  // if admin allow to choose
+			echo $this->Form->input('client_id', array('empty' => 'Please Select'));
+		} else {
+			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
+		}
+		
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

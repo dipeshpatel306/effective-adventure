@@ -8,6 +8,22 @@ App::uses('AppController', 'Controller');
 class OrganizationProfilesController extends AppController {
 
 /**
+ * isAuthorized Method
+ * Only Allow Hipaa Admin to add groups
+ * @return void
+ */
+ 	public function isAuthorized($user){
+ 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+
+		if ($group == 2 || $group == 3){ //deny
+				return true;
+		}
+		
+		return parent::isAuthorized($user);
+ 	}
+
+
+/**
  * index method
  *
  * @return void
@@ -42,6 +58,12 @@ class OrganizationProfilesController extends AppController {
 
 			// convert array of OS installed into comma separated string
 			$this->request->data['OrganizationProfile']['os_installed'] = implode(',', $this->data['OrganizationProfile']['os_installed']);
+			
+			// If user is a client automatically set the client id accordingly. Admin can change client ids
+			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+			if($group != 1){
+				$this->request->data['OrganizationProfile']['client_id'] = $this->Auth->User('client_id');
+			}	
 			
 			$this->OrganizationProfile->create();
 			if ($this->OrganizationProfile->save($this->request->data)) {

@@ -123,7 +123,13 @@ class EphiRemovedController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->request->data['Policy']['client_id'] = $this->Auth->User('client_id');
+					
+			// If user is a client automatically set the client id accordingly. Admin can change client ids
+			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+			if($group != 1){
+				$this->request->data['EphiRemoved']['client_id'] = $this->Auth->User('client_id');
+			}	
+
 			$this->EphiRemoved->create();
 			if ($this->EphiRemoved->save($this->request->data)) {
 				$this->Session->setFlash(__('The ephi removed has been saved'));

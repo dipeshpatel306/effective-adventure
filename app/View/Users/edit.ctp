@@ -2,8 +2,14 @@
 $this->Html->addCrumb('Users', '/users');
 $this->Html->addCrumb('Edit User');
 
-$group = array(4 => 'Pending', 3 => 'User', 2 => 'Manager', 1 => 'HIPAA Administrator');
+$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+if($group == 1){ // If admin allow creating another Hipaa administrator
+	$groupOption = array(4 => 'Pending', 3 => 'User', 2 => 'Manager', 1 => 'HIPAA Administrator');	
+} else {
+	$groupOption = array(4 => 'Pending', 3 => 'User', 2 => 'Manager');
+}
 
+$client = $this->Session->read('Auth.User.client_id');  // Test Client.  If admin allow client choosing, else hide field and set it to the current client
 ?>
 <div class="users form">
 <?php echo $this->Form->create('User'); ?>
@@ -11,8 +17,14 @@ $group = array(4 => 'Pending', 3 => 'User', 2 => 'Manager', 1 => 'HIPAA Administ
 		<legend><?php echo __('Edit User'); ?></legend>
 	<?php
 		//echo $this->Form->input('User.authCode', array('label' => 'Authorization Code'));
-		echo $this->Form->input('group_id', array('options' => $group, 'default' => 4));		
-		echo $this->Form->input('client_id', array('empty' => 'Please Select'));
+		echo $this->Form->input('group_id', array('options' => $groupOption, 'default' => 4));		
+		
+		if($client == 1){  // if admin allow to choose
+			echo $this->Form->input('client_id', array('empty' => 'Please Select'));
+		} else {
+			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
+		}
+		
 		echo $this->Form->input('email');	
 		echo $this->Form->input('email2', array('label' => 'Confirm Email'));	
 		echo $this->Form->input('password');

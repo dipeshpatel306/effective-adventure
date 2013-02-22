@@ -1,25 +1,22 @@
 <?php
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 	
-	if($group == 1){
+	if($acct == 'Initial'){
 		$dashBtn = '<div class="dashBtn approved">
 						<div class="btnWrapNarrow">
 						<div class="btnText">Click Here</div> 
 						<div class="triangle"></div>
 						</div>
 					</div>';
-	} elseif($group == 2){
+	} else{
 		$dashBtn = '<div class="dashBtn denied">
 						<div class="btnWrapWide">
 						<div class="btnText">Subscribers Only!</div> 
 						<div class="triangle"></div>
 						</div>
 					</div>';
-	} elseif($group == 3){
-		$dashBtn = 'User';
-	} else {
-		$dashBtn = 'No Role yet';
 	}
 ?>
 

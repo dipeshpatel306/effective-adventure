@@ -10,7 +10,14 @@ $this->Html->addCrumb('Edit Risk Assessment');
 		<legend><?php echo __('Edit Risk Assessment'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('client_id');
+		
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+		if($client == 1){  // if admin allow to choose
+			echo $this->Form->input('client_id', array('empty' => 'Please Select'));
+		} else {
+			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
+		}
+		
 		echo $this->Form->input('question_1');
 		echo $this->Form->input('question_2');
 		echo $this->Form->input('question_3');

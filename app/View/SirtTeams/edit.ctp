@@ -16,7 +16,14 @@ $this->Html->addCrumb('Edit SIRT Team');
 		echo $this->Form->input('zip');
 		echo $this->Form->input('phone');
 		echo $this->Form->input('website');
-		echo $this->Form->input('client_id');
+		
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+		if($client == 1){  // if admin allow to choose
+			echo $this->Form->input('client_id', array('empty' => 'Please Select'));
+		} else {
+			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
+		}
+		
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

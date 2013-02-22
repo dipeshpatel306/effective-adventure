@@ -8,6 +8,21 @@ App::uses('AppController', 'Controller');
 class RiskAssessmentsController extends AppController {
 
 /**
+ * isAuthorized Method
+ * Only Allow Hipaa Admin to add groups
+ * @return void
+ */
+ 	public function isAuthorized($user){
+ 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+
+		if ($group == 2 || $group == 3){ //deny
+				return true;
+		}
+		
+		return parent::isAuthorized($user);
+ 	}
+
+/**
  * index method
  *
  * @return void
@@ -39,6 +54,13 @@ class RiskAssessmentsController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+			
+			// If user is a client automatically set the client id accordingly. Admin can change client ids
+			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+			if($group != 1){
+				$this->request->data['RiskAssessment']['client_id'] = $this->Auth->User('client_id');
+			}	
+						
 			$this->RiskAssessment->create();
 			if ($this->RiskAssessment->save($this->request->data)) {
 				$this->Session->setFlash(__('The risk assessment has been saved'));
@@ -61,6 +83,14 @@ class RiskAssessmentsController extends AppController {
 		$this->set('RaQ', $RaQ);	
 		
 		if ($this->request->is('post')) {
+			
+			// If user is a client automatically set the client id accordingly. Admin can change client ids
+			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+			if($group != 1){
+				$this->request->data['RiskAssessment']['client_id'] = $this->Auth->User('client_id');
+			}	
+							
+			
 			$this->request->data['RiskAssessment']['client_id'] = $this->Auth->User('client_id');			
 			$this->RiskAssessment->create();
 			if ($this->RiskAssessment->save($this->request->data)) {

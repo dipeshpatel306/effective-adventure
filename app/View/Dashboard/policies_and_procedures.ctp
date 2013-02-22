@@ -3,27 +3,23 @@ $this->Html->addCrumb('Policies & Procedures');
 
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 	
-	if($group == 1){
-		$dashBtn = '<div class="dashBtn approved">
-						<div class="btnWrapNarrow">
-						<div class="btnText">Click Here</div> 
-						<div class="triangle"></div>
-						</div>
-					</div>';
-	} elseif($group == 2){
+	if($acct == 'Meaningful Use'){
 		$dashBtn = '<div class="dashBtn denied">
 						<div class="btnWrapWide">
 						<div class="btnText">Subscribers Only!</div> 
 						<div class="triangle"></div>
 						</div>
 					</div>';
-	} elseif($group == 3){
-		$dashBtn = 'User';
 	} else {
-		$dashBtn = 'No Role yet';
+		$dashBtn = '<div class="dashBtn approved">
+						<div class="btnWrapNarrow">
+						<div class="btnText">Click Here</div> 
+						<div class="triangle"></div>
+						</div>
+					</div>';	
 	}
-
 ?>
 
 <div class="dashboard index">

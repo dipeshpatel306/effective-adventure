@@ -34,9 +34,6 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/PoliciesAndProcedures');
 		$this->Acl->allow($group, 'controllers/OtherPoliciesAndProcedures');
 		
-		//$this->Acl->allow($group, 'controllers/Policies');
-		//$this->Acl->allow($group, 'controllers/OtherPolicies');
-		
 		$this->Acl->allow($group, 'controllers/RiskAssessmentDocuments');
 		$this->Acl->allow($group, 'controllers/BusinessAssociateAgreements');
 		$this->Acl->allow($group, 'controllers/DisasterRecoveryPlans');
@@ -235,8 +232,11 @@ class UsersController extends AppController {
 	public function add() { // TODO Secure Add Method
 		if ($this->request->is('post')) {
 				
-			// check id of user before allowiing add. TODO loosen privs when 'Partner' role
-			$this->request->data['User']['client_id'] = $this->Auth->User('client_id'); 
+			// If user is a client automatically set the client id accordingly. Admin can change client ids
+			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+			if($group != 1){
+				$this->request->data['User']['client_id'] = $this->Auth->User('client_id'); 
+			}
 			
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {

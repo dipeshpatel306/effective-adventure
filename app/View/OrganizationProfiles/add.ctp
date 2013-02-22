@@ -28,7 +28,14 @@ $this->Html->addCrumb('Add Organization Profile');
 	<fieldset>
 		<legend><?php echo __('Add Organization Profile'); ?></legend>
 	<?php
-		echo $this->Form->input('client_id');
+		
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+		if($client == 1){  // if admin allow to choose
+			echo $this->Form->input('client_id', array('empty' => 'Please Select'));
+		} else {
+			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
+		}
+		
 		
 		echo $this->Form->input('organization_name', array('label' => 'Organization Name: '));
 		echo $this->Form->input('administrator_name', array('label' => "Organization's Administrator Name: "));

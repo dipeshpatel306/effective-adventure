@@ -16,7 +16,14 @@ $this->Html->addCrumb('Edit ePHI Received');
 		echo $this->Form->input('received_by');
 		echo $this->Form->input('date_returned', array('class' => 'datePick'));
 		echo $this->Form->input('time_returned');
-		echo $this->Form->input('client_id');
+		
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+		if($client == 1){  // if admin allow to choose
+			echo $this->Form->input('client_id', array('empty' => 'Please Select'));
+		} else {
+			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
+		}
+		
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

@@ -118,7 +118,13 @@ class OtherPoliciesAndProceduresController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->OtherPoliciesAndProcedure->create();
+			
+			// If user is a client automatically set the client id accordingly. Admin can change client ids
+			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+			if($group != 1){
 			$this->request->data['OtherPoliciesAndProcedure']['client_id'] = $this->Auth->User('client_id');
+			}	
+			
 			if ($this->OtherPoliciesAndProcedure->save($this->request->data)) {
 				$this->Session->setFlash(__('The other policies and procedure has been saved'));
 				$this->redirect(array('action' => 'index'));
