@@ -2,7 +2,7 @@
 $this->Html->addCrumb('Clients', '/clients');
 $this->Html->addCrumb('Edit Client');
 
-$acctType = array('Initial' => 'Initial', 'Subscription' => 'Subscription', 'Meaningful Use' => 'Meaningful Use');
+$acctType = array('Initial' => 'Initial', 'Subscription' => 'Subscription', 'Meaningful Use' => 'Meaningful Use', 'HIPAA' => 'HIPAA');
 ?>
 <div class="clients form">
 <?php echo $this->Form->create('Client'); ?>

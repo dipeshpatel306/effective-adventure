@@ -2,7 +2,7 @@
 $this->Html->addCrumb('Messages');
 ?>
 <div class="contactUs index">
-	<h2><?php echo __('Contact Us'); ?></h2>
+	<h2><?php echo __('Messages'); ?></h2>
 	<table>
 	<tr>
 			<th><?php echo $this->Paginator->sort('email'); ?></th>
@@ -28,7 +28,7 @@ $this->Html->addCrumb('Messages');
 		<td><?php echo $this->Time->format('m/d/y g:i a', $contactUs['ContactUs']['created']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $contactUs['ContactUs']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $contactUs['ContactUs']['id'])); ?>
+			<!--<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $contactUs['ContactUs']['id'])); ?>-->
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $contactUs['ContactUs']['id']), null, __('Are you sure you want to delete # %s?', $contactUs['ContactUs']['id'])); ?>
 		</td>
 	</tr>
@@ -51,7 +51,7 @@ $this->Html->addCrumb('Messages');
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Contact Us'), array('action' => 'add')); ?></li>
-	</ul>
+<!--	<ul>
+		<li><?php // echo $this->Html->link(__('New Contact Us'), array('action' => 'add')); ?></li>
+</ul>-->
 </div>

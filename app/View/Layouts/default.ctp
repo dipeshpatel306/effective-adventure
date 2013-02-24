@@ -16,7 +16,7 @@
 	<?php
 		echo $this->Html->meta('favicon.ico', $this->webroot . '/img/favicon.ico', array('type' => 'icon'));
 
-		echo $this->Html->css('cake.generic');
+		echo $this->Html->css('base');
 		echo $this->Html->css('styles');
 
 		echo $this->fetch('meta');

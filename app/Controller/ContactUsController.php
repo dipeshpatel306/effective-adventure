@@ -20,7 +20,7 @@ class ContactUsController extends AppController {
  */
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+		//$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
 		
 		if ($group ==  2 || $group == 3){ //managers to send message
 			
@@ -30,7 +30,6 @@ class ContactUsController extends AppController {
 		}
 		return parent::isAuthorized($user);
  	}
-
 
 /**
  * index method
@@ -88,7 +87,7 @@ class ContactUsController extends AppController {
  *
  * @return void
  */
-	public function add() {
+/*	public function add() {
 		if ($this->request->is('post')) {
 			$this->ContactUs->create();
 			if ($this->ContactUs->save($this->request->data)) {
@@ -98,7 +97,7 @@ class ContactUsController extends AppController {
 				$this->Session->setFlash(__('The contact us could not be saved. Please, try again.'));
 			}
 		}
-	}
+	}*/
 
 /**
  * edit method
@@ -107,7 +106,7 @@ class ContactUsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+/*	public function edit($id = null) {
 		$this->ContactUs->id = $id;
 		if (!$this->ContactUs->exists()) {
 			throw new NotFoundException(__('Invalid contact us'));
@@ -122,7 +121,7 @@ class ContactUsController extends AppController {
 		} else {
 			$this->request->data = $this->ContactUs->read(null, $id);
 		}
-	}
+	}*/
 
 /**
  * delete method

@@ -52,9 +52,9 @@ $this->Html->addCrumb('From: ' . $contactUs['ContactUs']['email'] . ' - ' . $thi
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Contact Us'), array('action' => 'edit', $contactUs['ContactUs']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Contact Us'), array('action' => 'delete', $contactUs['ContactUs']['id']), null, __('Are you sure you want to delete # %s?', $contactUs['ContactUs']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Contact Us'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Contact Us'), array('action' => 'add')); ?> </li>
+		<!--<li><?php echo $this->Html->link(__('Edit Contact Us'), array('action' => 'edit', $contactUs['ContactUs']['id'])); ?> </li>-->
+		<li><?php echo $this->Form->postLink(__('Delete Message'), array('action' => 'delete', $contactUs['ContactUs']['id']), null, __('Are you sure you want to delete # %s?', $contactUs['ContactUs']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('List Messages'), array('action' => 'index')); ?> </li>
+		<!--<li><?php echo $this->Html->link(__('New Contact Us'), array('action' => 'add')); ?> </li>-->
 	</ul>
 </div>
