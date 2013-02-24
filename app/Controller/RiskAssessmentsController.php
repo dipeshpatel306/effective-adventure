@@ -14,8 +14,10 @@ class RiskAssessmentsController extends AppController {
  */
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+ 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+		$acct = $this->Session->read('Auth.User.Client.account_type');
 
-		if ($group == 2 || $group == 3){ //deny
+		if ($group == 2 || $group == 3){ //allow
 				return true;
 		}
 		

@@ -21,9 +21,9 @@ class OtherPoliciesAndProceduresController extends AppController {
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
-		$clientId = $this->Session->read('Auth.User.account_type');
+		$acct = $this->Session->read('Auth.User.account_type');
 		
-		if($group == 2){ // Allow Managers to add/edit/delete their own data
+		if($group == 2 || $acct == 'Initial'){ // Allow Managers to add/edit/delete their own data
 			
 			if(in_array($this->action, array('index', 'view', 'add'))){  // Allow Managers to Add 
 				return true;
