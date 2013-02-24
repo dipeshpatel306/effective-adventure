@@ -74,7 +74,7 @@ class ContactUsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->ContactUs->create();
 			if ($this->ContactUs->save($this->request->data)) {
-				$this->Session->setFlash(__('The contact us has been saved'));
+				$this->Session->setFlash('The contact us has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The contact us could not be saved. Please, try again.'));

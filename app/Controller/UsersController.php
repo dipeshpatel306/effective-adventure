@@ -107,7 +107,7 @@ class UsersController extends AppController {
 	        }
 	    }
 		if ($this->Session->read('Auth.User')) {
-        	$this->Session->setFlash('You are logged in!');
+        	$this->Session->setFlash('You are logged in!', 'default', array('class' => 'success message'));
 			//$this->Session->write('User.id', $userId);
         	$this->redirect('/', null, false);
     	}
@@ -146,7 +146,7 @@ class UsersController extends AppController {
 			}	
 		}
 		
-		if($group == 3){ // Deny Users
+		if($group == 3 || $group == 4){ // Deny Users
 			return false;
 		}
 		
@@ -220,8 +220,6 @@ class UsersController extends AppController {
 			$this->Session->setFlash('You are not authorized to view that!');
 			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 		}
-		
-
 	}
 
 /**
@@ -236,11 +234,16 @@ class UsersController extends AppController {
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 			if($group != 1){
 				$this->request->data['User']['client_id'] = $this->Auth->User('client_id'); 
+				
+				if($this->request->data['User']['group_id'] == 1){  // If client tries to spoof Hipaa admin group redirect them
+					$this->redirect(array('action' => 'index'));
+					$this->Session->setFlash(__('You are not authorized to do that!'));
+				}
 			}
 			
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved'));
+				$this->Session->setFlash('The user has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
@@ -280,7 +283,7 @@ class UsersController extends AppController {
 			if($this->User->validates()){ // check if invalidations exist
 				$this->User->create();	
 				if ($this->User->save($this->request->data)) {
-					$this->Session->setFlash(__('Your Account has been successfully created'));
+					$this->Session->setFlash('Your Account has been successfully created', 'default', array('class' => 'success message'));
 					$this->redirect(array('action' => 'index'));
 				} else {
 					$this->Session->setFlash(__('Your new account could not be created. Please, try again.'));
@@ -289,10 +292,8 @@ class UsersController extends AppController {
 					$errors = $this->User->validationErrors;
 					$this->Session->setFlash(__('Your new account could not be created. Please, try again.'));
 			}
-
 		}
 	}
-
 
 /**
  * edit method
@@ -306,9 +307,22 @@ class UsersController extends AppController {
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
 		}
+		
 		if ($this->request->is('post') || $this->request->is('put')) {
+			
+			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+			if($group != 1){
+				//$this->request->data['User']['client_id'] = $this->Auth->User('client_id'); 
+				
+				if($this->request->data['User']['group_id'] == 1){  // If client tries to spoof Hipaa admin group redirect them
+					$this->redirect(array('action' => 'index'));
+					$this->Session->setFlash(__('You are not authorized to do that!'));
+				}
+			}
+			
+
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved'));
+				$this->Session->setFlash('The user has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
@@ -345,6 +359,5 @@ class UsersController extends AppController {
 		$this->Session->setFlash(__('User was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
-
 
 }

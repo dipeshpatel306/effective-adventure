@@ -51,13 +51,6 @@
 	
 		<div id="content">
 			<?php echo $this->Session->flash(); ?>
-			
-			<?php // Temp debug code
-				//$auth = $this->Session->read('Auth');
-				//pr($auth);
-				//echo Configure::version();
-				
-			?>
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		</div><!--wrapper -->
@@ -65,6 +58,11 @@
 			<div class='footerContent'>
 				HIPAA Secure Now! Copyright &copy; <?php echo $year; ?>
 			</div>
+			<?php // Temp debug code
+				$auth = $this->Session->read('Auth');
+				pr($auth);
+				//echo Configure::version();	
+			?>
 		</div>
 	
 	</div>

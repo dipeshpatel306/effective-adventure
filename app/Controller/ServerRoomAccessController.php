@@ -130,7 +130,7 @@ class ServerRoomAccessController extends AppController {
 
 			$this->ServerRoomAccess->create();
 			if ($this->ServerRoomAccess->save($this->request->data)) {
-				$this->Session->setFlash(__('The server room access has been saved'));
+				$this->Session->setFlash('The server room access has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The server room access could not be saved. Please, try again.'));
@@ -154,7 +154,7 @@ class ServerRoomAccessController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->ServerRoomAccess->save($this->request->data)) {
-				$this->Session->setFlash(__('The server room access has been saved'));
+				$this->Session->setFlash('The server room access has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The server room access could not be saved. Please, try again.'));

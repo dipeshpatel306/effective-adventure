@@ -22,12 +22,18 @@ h1, h2, h3, h4, h5, fieldset legend{
 	font-family: 'Open Sans', Helvetica, Arial, "Lucida Grande", sans-serif;
 	color: #777777;
 }
+h3{
+	font-size: 1.3em;
+}
 .index, .view, .form{
 	background-color: #ffffff;
 	min-height: 500px;
 }
 .form label{
 	font-weight: bold;
+}
+form .submit input[type="submit"] {
+	border: none;
 }
 div.form, div.index, div.view{
 	/*border-left: 1px solid #e6e6e6;*/
@@ -157,6 +163,40 @@ dl dt:nth-of-type(odd), dl dd:nth-of-type(odd) {
 	padding: 30px;
 	/*outline: 1px dotted #333333;*/
 }
+
+
+/* ##### Actions Side Bar ##### */
+.sidebarContent{
+	margin-bottom: 20px;
+}
+
+.actions ul li a, .actions a {
+	background: none;
+	background-color: #76BF6B;
+	box-shadow: none;
+	box-shadow: none;
+	border: none;
+	color: #ffffff;
+	text-shadow: none;
+	padding: 6px 8px 6px 8px;
+	font-weight: bold;
+}
+.actions ul li a:hover, .actions a:hover {
+	background-color: #4C8AB0;
+}
+.sidebarContent ul li a{
+
+	/*background: none;
+	border: none;
+	box-shadow: none;
+	text-decoration: underline;*/
+}
+.sidebarContent ul li a:hover{
+	/*background-color: #F5F9FD;*/
+}
+.actions li{
+	white-space: normal;
+}
 .newsFeed{
 	width: 100%;
 	min-height: 300px;
@@ -203,7 +243,7 @@ dl dt:nth-of-type(odd), dl dd:nth-of-type(odd) {
 	color: #ffffff;
 }
 .navBar a:hover{
-	color: #666666;
+	color: #76BF6B;
 }
 .subMenu{
 	float: right;
@@ -239,6 +279,9 @@ img.homeIcon:hover{
 	-moz-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
 	-webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
 	box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+}
+.dashBox:hover{
+	background-color: #F5F9FD;
 }
 .dashBox:hover div{
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
@@ -316,7 +359,10 @@ img.homeIcon:hover{
 	border-bottom: 8px solid transparent;
 }
 
-
+/* ##### Messages #####*/
+.success, .message, .cake-error, p.error, .error-message {
+	border: none;
+}
 
 /* ##### Not Used ##### */
 /*.clickBtn{

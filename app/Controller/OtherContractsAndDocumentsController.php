@@ -125,7 +125,7 @@ class OtherContractsAndDocumentsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->OtherContractsAndDocument->create();
 			if ($this->OtherContractsAndDocument->save($this->request->data)) {
-				$this->Session->setFlash(__('The other contracts and document has been saved'));
+				$this->Session->setFlash('The other contracts and document has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The other contracts and document could not be saved. Please, try again.'));
@@ -149,7 +149,7 @@ class OtherContractsAndDocumentsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->OtherContractsAndDocument->save($this->request->data)) {
-				$this->Session->setFlash(__('The other contracts and document has been saved'));
+				$this->Session->setFlash('The other contracts and document has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The other contracts and document could not be saved. Please, try again.'));

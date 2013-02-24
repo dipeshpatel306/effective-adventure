@@ -1,6 +1,7 @@
 <?php
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 	
 	if($group == 1){
 		$dashBtn = '<div class="dashBtn approved">
@@ -211,6 +212,8 @@
 	
 </div>
 <div class="actions newsFeed">
+	<?php echo $this->element('quickLinks'); ?>
+	
 	<h3><?php echo __('Latest News'); ?></h3>
 	<!--<ul>
 		<li><?php echo $this->Html->link(__('New Dashboard'), array('action' => 'add')); ?></li>

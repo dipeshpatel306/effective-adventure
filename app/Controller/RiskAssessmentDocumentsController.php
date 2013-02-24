@@ -115,9 +115,16 @@ class RiskAssessmentDocumentsController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+			
+			// If user is a client automatically set the client id accordingly. Admin can change client ids
+			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+			if($group != 1){
+				$this->request->data['RiskAssessmentDocument']['client_id'] = $this->Auth->User('client_id');
+			}	
+			
 			$this->RiskAssessmentDocument->create();
 			if ($this->RiskAssessmentDocument->save($this->request->data)) {
-				$this->Session->setFlash(__('The risk assessment document has been saved'));
+				$this->Session->setFlash('The risk assessment document has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The risk assessment document could not be saved. Please, try again.'));
@@ -141,7 +148,7 @@ class RiskAssessmentDocumentsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->RiskAssessmentDocument->save($this->request->data)) {
-				$this->Session->setFlash(__('The risk assessment document has been saved'));
+				$this->Session->setFlash('The risk assessment document has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The risk assessment document could not be saved. Please, try again.'));

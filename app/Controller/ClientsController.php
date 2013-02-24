@@ -29,6 +29,23 @@ class ClientsController extends AppController {
 		
 		return parent::isAuthorized($user);
  	}
+/**
+ * Generate admin and user codes
+ * @return string  
+ */
+	public function accountCode(){
+		$chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$string = ''; // initialize string
+		$userString = '';
+		
+		$size = strlen($chars)-1; 
+		$length = 10; // length of string
+		
+		for($i = 0; $i < $length; $i++){
+			$string .= $chars[ mt_rand(0, $size) ];
+		}
+		return $string;
+	}
 
 /**
  * index method
@@ -64,7 +81,6 @@ class ClientsController extends AppController {
 								),'limit' => 20);
 		$this->set('users', $this->paginate($this->Client->User));
 		//$this->set('users', $users);
-
 	}
 
 /**
@@ -84,7 +100,7 @@ class ClientsController extends AppController {
 				$userString = $this->accountCode(); // user
 				$this->Client->saveField('user_account', $userString);
 				
-				$this->Session->setFlash(__('The client has been saved'));
+				$this->Session->setFlash('The client has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The client could not be saved. Please, try again.'));
@@ -94,26 +110,6 @@ class ClientsController extends AppController {
 		$this->set(compact('partners'));
 	}
 
-/**
- * Generate admin and user codes
- * @return string  
- */
- 
-	public function accountCode(){
-		$chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		$string = ''; // initialize string
-		$userString = '';
-		
-		$size = strlen($chars)-1; 
-		$length = 10; // length of string
-		
-		for($i = 0; $i < $length; $i++){
-			$string .= $chars[ mt_rand(0, $size) ];
-		}
-		
-		return $string;
-		
-	}
 
 /**
  * edit method
@@ -129,7 +125,7 @@ class ClientsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Client->save($this->request->data)) {
-				$this->Session->setFlash(__('The client has been saved'));
+				$this->Session->setFlash('The client has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The client could not be saved. Please, try again.'));

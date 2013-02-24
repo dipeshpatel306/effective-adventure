@@ -47,7 +47,7 @@ class SirtMembersController extends AppController {
 			$this->request->data['Policy']['client_id'] = $this->Auth->User('client_id');
 			$this->SirtMember->create();
 			if ($this->SirtMember->save($this->request->data)) {
-				$this->Session->setFlash(__('The sirt member has been saved'));
+				$this->Session->setFlash('The sirt member has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The sirt member could not be saved. Please, try again.'));
@@ -71,7 +71,7 @@ class SirtMembersController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->SirtMember->save($this->request->data)) {
-				$this->Session->setFlash(__('The sirt member has been saved'));
+				$this->Session->setFlash('The sirt member has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The sirt member could not be saved. Please, try again.'));

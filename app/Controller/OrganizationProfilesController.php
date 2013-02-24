@@ -67,7 +67,7 @@ class OrganizationProfilesController extends AppController {
 			
 			$this->OrganizationProfile->create();
 			if ($this->OrganizationProfile->save($this->request->data)) {
-				$this->Session->setFlash(__('The organization profile has been saved'));
+				$this->Session->setFlash('The organization profile has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The organization profile could not be saved. Please, try again.'));
@@ -91,7 +91,7 @@ class OrganizationProfilesController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->OrganizationProfile->save($this->request->data)) {
-				$this->Session->setFlash(__('The organization profile has been saved'));
+				$this->Session->setFlash('The organization profile has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The organization profile could not be saved. Please, try again.'));

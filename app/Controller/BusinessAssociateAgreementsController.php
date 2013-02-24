@@ -105,10 +105,8 @@ class BusinessAssociateAgreementsController extends AppController {
 		} else { 
 			$this->Session->setFlash('You are not authorized to view that!');
 			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
-		}
-		
+		}	
 	}
-
 
 /**
  * add method
@@ -126,7 +124,7 @@ class BusinessAssociateAgreementsController extends AppController {
 			
 			$this->BusinessAssociateAgreement->create();
 			if ($this->BusinessAssociateAgreement->save($this->request->data)) {
-				$this->Session->setFlash(__('The business associate agreement has been saved'));
+				$this->Session->setFlash('The business associate agreement has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The business associate agreement could not be saved. Please, try again.'));
@@ -150,7 +148,7 @@ class BusinessAssociateAgreementsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->BusinessAssociateAgreement->save($this->request->data)) {
-				$this->Session->setFlash(__('The business associate agreement has been saved'));
+				$this->Session->setFlash('The business associate agreement has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The business associate agreement could not be saved. Please, try again.'));

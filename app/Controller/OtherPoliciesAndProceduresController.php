@@ -126,7 +126,7 @@ class OtherPoliciesAndProceduresController extends AppController {
 			}	
 			
 			if ($this->OtherPoliciesAndProcedure->save($this->request->data)) {
-				$this->Session->setFlash(__('The other policies and procedure has been saved'));
+				$this->Session->setFlash('The other policies and procedure has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The other policies and procedure could not be saved. Please, try again.'));
@@ -150,7 +150,7 @@ class OtherPoliciesAndProceduresController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->OtherPoliciesAndProcedure->save($this->request->data)) {
-				$this->Session->setFlash(__('The other policies and procedure has been saved'));
+				$this->Session->setFlash('The other policies and procedure has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The other policies and procedure could not be saved. Please, try again.'));
