@@ -32,7 +32,6 @@ $this->Html->addCrumb('Add ePHI Received');
 	<ul>
 
 		<li><?php echo $this->Html->link(__('List Ephi Received'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+
 	</ul>
 </div>

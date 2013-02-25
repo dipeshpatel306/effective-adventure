@@ -3,7 +3,28 @@
 	$group = $this->Session->read('Auth.User.group_id'); 
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 	
-	if($group == 1){
+	$approved = '<div class="dashBtn approved">
+						<div class="btnWrapNarrow">
+						<div class="btnText">Click Here</div> 
+						<div class="triangle"></div>
+						</div>
+					</div>';
+	
+	$banned = '<div class="dashBtn denied">
+						<div class="btnWrapWide">
+						<div class="btnText">Subscribers Only!</div> 
+						<div class="triangle"></div>
+						</div>
+					</div>';
+					
+	$noAuth = '<div class="dashBtn denied">
+						<div class="btnWrapWide">
+						<div class="btnText">Not Authorized!</div> 
+						<div class="triangle"></div>
+						</div>
+					</div>';
+	
+	/*if($group == 1){
 		$dashBtn = '<div class="dashBtn approved">
 						<div class="btnWrapNarrow">
 						<div class="btnText">Click Here</div> 
@@ -21,7 +42,7 @@
 		$dashBtn = 'User';
 	} else {
 		$dashBtn = 'No Role yet';
-	}
+	}*/
 ?>
 
 <div class="dashboard index">
@@ -29,8 +50,9 @@
 	
 	<!--<?php echo $this->Html->link('Risk Assessment Questionnaire', array('controller' => 'riskassessments', 'action' => 'take_risk_assessment'))?><br /><br />-->
 
-	<?php 					
-		echo $this->Html->link( // policies & procedures
+	<?php
+		// policies & procedures. everyone sees this 					
+		echo $this->Html->link( 
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
 					$this->Html->image('pnp_tile.jpg', array(
@@ -39,14 +61,16 @@
 								)) .
 					'<h3>Policies & Procedures</h3>' .
 					'</div>' .
-					'<div class="dashSum">HIPAA and Other Policies and Procedures</div>' . $dashBtn .
+					'<div class="dashSum">HIPAA and Other Policies and Procedures</div>' . $approved .
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'policies_and_procedures'),
 					array('escape' => false)
 			);
 			
-			
-		echo $this->Html->link( // contracts and documents
+		
+		// 	// contracts and documents. managers see this. Users do not
+		if($group == '3'){
+			echo $this->Html->link( 
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
 					$this->Html->image('cnd_tile.jpg', array(
@@ -55,13 +79,32 @@
 								)) .
 					'<h3>Contracts & Documents</h3>' .
 					'</div>' .
-					'<div class="dashSum">Risk Assessment, Business Associates, Disaster Recovery</div>' . $dashBtn .
+					'<div class="dashSum">Risk Assessment, Business Associates, Disaster Recovery</div>' . $noAuth.
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
 					array('escape' => false)
 			);
+		} else{
+			echo $this->Html->link( 
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('cnd_tile.jpg', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Contracts and Documents'
+								)) .
+					'<h3>Contracts & Documents</h3>' .
+					'</div>' .
+					'<div class="dashSum">Risk Assessment, Business Associates, Disaster Recovery</div>' . $approved.
+					'</div>',
+					array('controller' => 'dashboard', 'action' => 'policies_and_procedures'),
+					array('escape' => false)
+			);			
 			
-		echo $this->Html->link( // Track and Document
+		}
+		
+		
+		// Track and Document  // Everyone sees
+		echo $this->Html->link( 
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
 					$this->Html->image('tnd_tile.jpg', array(
@@ -70,13 +113,14 @@
 								)) .
 					'<h3>Track and Document</h3>' .
 					'</div>' .
-					'<div class="dashSum">Security Incidents and ePHI Received and Removed</div>' . $dashBtn .
+					'<div class="dashSum">Security Incidents and ePHI Received and Removed</div>' . $approved .
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'track_and_document'),
 					array('escape' => false)
 			);
-			
-		echo $this->Html->link( // Social Center
+		
+		// Social Center Every one sees
+		echo $this->Html->link( 
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
 					$this->Html->image('social.png', array(
@@ -85,13 +129,14 @@
 								)) .
 					'<h3>Social Center</h3>' .
 					'</div>' .
-					'<div class="dashSum">Facebook and Twitter</div>' . $dashBtn .
+					'<div class="dashSum">Facebook and Twitter</div>' . $approved .
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'social_center'),
 					array('escape' => false)
 			);
-
-		echo $this->Html->link( // Education Center
+		
+		// Education Center. Everyone sees 
+		echo $this->Html->link( 
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
 					$this->Html->image('edcenter.png', array(
@@ -100,13 +145,14 @@
 								)) .
 					'<h3>Education Center</h3>' .
 					'</div>' .
-					'<div class="dashSum">Videos and Training</div>' . $dashBtn .
+					'<div class="dashSum">Videos and Training</div>' . $approved .
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'education_center'),
 					array('escape' => false)
 			);
-
-		echo $this->Html->link( // Information Center
+			
+		// Information Center. Everyone sees
+		echo $this->Html->link( 
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
 					$this->Html->image('infocenter.png', array(
@@ -115,13 +161,13 @@
 								)) .
 					'<h3>Information Center</h3>' .
 					'</div>' .
-					'<div class="dashSum">Articles and Blog</div>' . $dashBtn .
+					'<div class="dashSum">Articles and Blog</div>' . $approved .
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'information_center'),
 					array('escape' => false)
 			);
 			
-		echo $this->Html->link( // SIRP
+		/*echo $this->Html->link( // SIRP
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
 					$this->Html->image('sirp.png', array(
@@ -134,7 +180,9 @@
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'sirp'),
 					array('escape' => false)
-			);
+			);*/
+			
+			
 		echo $this->Html->link( // Risk Assessment Questionnaire
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
@@ -144,7 +192,7 @@
 								)) .
 					'<h3>Risk Assessment Questionnaire</h3>' .
 					'</div>' .
-					'<div class="dashSum">Risk Assessment Questionnaire</div>' . $dashBtn .
+					'<div class="dashSum">Risk Assessment Questionnaire</div>' . $approved .
 					'</div>',
 					array('controller' => 'risk_assessments', 'action' => 'take_risk_assessment'),
 					array('escape' => false)
@@ -159,7 +207,7 @@
 								)) .
 					'<h3>Organization Profile</h3>' .
 					'</div>' .
-					'<div class="dashSum">Organization Profile</div>' . $dashBtn .
+					'<div class="dashSum">Organization Profile</div>' . $approved .
 					'</div>',
 					array('controller' => 'organization_profiles', 'action' => 'index'),
 					array('escape' => false)

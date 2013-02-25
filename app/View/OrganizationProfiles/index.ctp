@@ -1,5 +1,9 @@
 <?php
 $this->Html->addCrumb('Organization Profiles');
+
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="organizationProfiles index">
 	<h2><?php echo __('Organization Profiles'); ?></h2>
@@ -178,8 +182,9 @@ $this->Html->addCrumb('Organization Profiles');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+		<?php if($group == 1): ?>		
 		<li><?php echo $this->Html->link(__('New Organization Profile'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+		
+		<?php endif; ?>
 	</ul>
 </div>

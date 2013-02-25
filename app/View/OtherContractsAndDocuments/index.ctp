@@ -1,5 +1,9 @@
 <?php
 $this->Html->addCrumb('Other Contracts & Documents');
+
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 
 <div class="otherContractsAndDocuments index">
@@ -49,8 +53,10 @@ $this->Html->addCrumb('Other Contracts & Documents');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+		<?php if($group == 1 || $group == 2): ?>
 		<li><?php echo $this->Html->link(__('New Other Contracts And Document'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+		<?php endif; ?>		
+
+
 	</ul>
 </div>

@@ -1,6 +1,10 @@
 <?php
 $this->Html->addCrumb('Organization Profiles', '/organization_profiles');
 $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Client']['name']);
+
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="organizationProfiles view">
 <h2><?php  echo __('Organization Profile'); ?></h2>
@@ -366,11 +370,11 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+		<?php if($group == 1): ?>		
 		<li><?php echo $this->Html->link(__('Edit Organization Profile'), array('action' => 'edit', $organizationProfile['OrganizationProfile']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Organization Profile'), array('action' => 'delete', $organizationProfile['OrganizationProfile']['id']), null, __('Are you sure you want to delete # %s?', $organizationProfile['OrganizationProfile']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Organization Profiles'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Organization Profile'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+		<?php endif; ?>
 	</ul>
 </div>

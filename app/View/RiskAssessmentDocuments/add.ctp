@@ -2,6 +2,10 @@
 $this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
 $this->Html->addCrumb('Risk Assessment Documents', '/risk_assessment_documents');
 $this->Html->addCrumb('Add Risk Assessment Document');
+
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="riskAssessmentDocuments form">
 <?php echo $this->Form->create('RiskAssessmentDocument'); ?>
@@ -29,7 +33,6 @@ $this->Html->addCrumb('Add Risk Assessment Document');
 	<ul>
 
 		<li><?php echo $this->Html->link(__('List Risk Assessment Documents'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+
 	</ul>
 </div>

@@ -2,6 +2,10 @@
 $this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
 $this->Html->addCrumb('Server Room Access', '/serevr_room_access');
 $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $serverRoomAccess['ServerRoomAccess']['date']));
+
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="serverRoomAccess view">
 <h2><?php  echo __('Server Room Access'); ?></h2>
@@ -61,11 +65,14 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $serverRoomAccess['Serv
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+		
+		<li><?php echo $this->Html->link(__('List Server Room Access'), array('action' => 'index')); ?> </li>
+
+		<?php if($group == 1 || $group == 2): ?>
 		<li><?php echo $this->Html->link(__('Edit Server Room Access'), array('action' => 'edit', $serverRoomAccess['ServerRoomAccess']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Server Room Access'), array('action' => 'delete', $serverRoomAccess['ServerRoomAccess']['id']), null, __('Are you sure you want to delete # %s?', $serverRoomAccess['ServerRoomAccess']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Server Room Access'), array('action' => 'index')); ?> </li>
+
 		<li><?php echo $this->Html->link(__('New Server Room Access'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+		<?php endif; ?>
 	</ul>
 </div>

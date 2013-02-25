@@ -1,6 +1,10 @@
 <?php
 $this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
 $this->Html->addCrumb('Security Incidents');
+
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="securityIncidents index">
 	<h2><?php echo __('Security Incidents'); ?></h2>
@@ -61,8 +65,9 @@ $this->Html->addCrumb('Security Incidents');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+
+		<?php if($group == 1 || $group == 2): ?>
 		<li><?php echo $this->Html->link(__('New Security Incident'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+		<?php endif; ?>
 	</ul>
 </div>

@@ -1,6 +1,10 @@
 <?php
 $this->Html->addCrumb('Other Contracts & Documents', '/other_contracts_and_documents');
 $this->Html->addCrumb('Edit Other Contract & Document');
+
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="otherContractsAndDocuments form">
 <?php echo $this->Form->create('OtherContractsAndDocument'); ?>
@@ -27,10 +31,12 @@ $this->Html->addCrumb('Edit Other Contract & Document');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-
+		<li><?php echo $this->Html->link(__('List Other Contracts And Documents'), array('action' => 'index')); ?></li>		
+		<?php if($group == 1 || $group == 2): ?>
 		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('OtherContractsAndDocument.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('OtherContractsAndDocument.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Other Contracts And Documents'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+
+		<?php endif; ?>
+
+
 	</ul>
 </div>

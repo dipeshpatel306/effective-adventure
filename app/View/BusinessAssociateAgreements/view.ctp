@@ -51,11 +51,12 @@ $this->Html->addCrumb($businessAssociateAgreement['BusinessAssociateAgreement'][
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+		<li><?php echo $this->Html->link(__('List Business Associate Agreements'), array('action' => 'index')); ?> </li>
+
+		<?php if($group == 1 || $group == 2): ?>				
 		<li><?php echo $this->Html->link(__('Edit Business Associate Agreement'), array('action' => 'edit', $businessAssociateAgreement['BusinessAssociateAgreement']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Business Associate Agreement'), array('action' => 'delete', $businessAssociateAgreement['BusinessAssociateAgreement']['id']), null, __('Are you sure you want to delete # %s?', $businessAssociateAgreement['BusinessAssociateAgreement']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Business Associate Agreements'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Business Associate Agreement'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+		<?php endif; ?>
 	</ul>
 </div>

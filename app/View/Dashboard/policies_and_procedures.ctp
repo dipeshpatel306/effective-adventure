@@ -4,8 +4,29 @@ $this->Html->addCrumb('Policies & Procedures');
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id'); 
 	$acct = $this->Session->read('Auth.User.Client.account_type');
+
+	$approved = '<div class="dashBtn approved">
+						<div class="btnWrapNarrow">
+						<div class="btnText">Click Here</div> 
+						<div class="triangle"></div>
+						</div>
+					</div>';
 	
-	if($acct == 'Meaningful Use'){
+	$banned = '<div class="dashBtn denied">
+						<div class="btnWrapWide">
+						<div class="btnText">Subscribers Only!</div> 
+						<div class="triangle"></div>
+						</div>
+					</div>';
+					
+	$noAuth = '<div class="dashBtn denied">
+						<div class="btnWrapWide">
+						<div class="btnText">Not Authorized!</div> 
+						<div class="triangle"></div>
+						</div>
+					</div>';	
+	
+	/*if($acct == 'Meaningful Use'){
 		$dashBtn = '<div class="dashBtn denied">
 						<div class="btnWrapWide">
 						<div class="btnText">Subscribers Only!</div> 
@@ -19,14 +40,16 @@ $this->Html->addCrumb('Policies & Procedures');
 						<div class="triangle"></div>
 						</div>
 					</div>';	
-	}
+	}*/
 ?>
 
 <div class="dashboard index">
 	<h2><?php echo __('Policies & Procedures'); ?></h2>
 
 	<?php 
-		echo $this->Html->link( // policies & procedures
+		// policies & procedures . If Manager allow, If employee read only. MU hidden
+		if($acct == 'Meaningful Use'){ // Ban Meaningful USe
+				echo $this->Html->link( 
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
 					$this->Html->image('pnp_tile.jpg', array(
@@ -35,14 +58,31 @@ $this->Html->addCrumb('Policies & Procedures');
 								)) .
 					'<h3>Policies & Procedures</h3>' .
 					'</div>' .
-					'<div class="dashSum">HIPAA and other Policies and Procedures</div>'  . $dashBtn .
+					'<div class="dashSum">HIPAA and other Policies and Procedures</div>'  . $banned .
+					'</div>',
+					array('controller' => 'dashboard', 'action' => 'policies_and_procedures'),
+					array('escape' => false)
+			);	
+		} else {
+				 // allow subscribers. Users are read only(see controller)
+			echo $this->Html->link( 
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('pnp_tile.jpg', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Policies & Procedures'
+								)) .
+					'<h3>Policies & Procedures</h3>' .
+					'</div>' .
+					'<div class="dashSum">HIPAA and other Policies and Procedures</div>'  . $approved .
 					'</div>',
 					array('controller' => 'policies_and_procedures', 'action' => 'index'),
 					array('escape' => false)
-			);
-			
-			
-		echo $this->Html->link( // Other policies & procedures
+				);				
+				
+		}
+		// Other policies & procedures. Subscribers and MU are allowed. Users are read only
+		echo $this->Html->link( 
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
 					$this->Html->image('opnp_tile.jpg', array(
@@ -51,7 +91,7 @@ $this->Html->addCrumb('Policies & Procedures');
 								)) .
 					'<h3>Other Policies & Procedures</h3>' .
 					'</div>' .
-					'<div class="dashSum">Other Policies & Procedures</div>' . $dashBtn .
+					'<div class="dashSum">Other Policies & Procedures</div>' . $approved .
 					'</div>',
 					array('controller' => 'other_policies_and_procedures', 'action' => 'index'),
 					array('escape' => false)

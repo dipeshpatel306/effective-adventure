@@ -2,6 +2,10 @@
 $this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
 $this->Html->addCrumb('Security Incidents', '/security_incidents');
 $this->Html->addCrumb('Edit Security Incident');
+
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 
 <div class="securityIncidents form">
@@ -33,10 +37,12 @@ $this->Html->addCrumb('Edit Security Incident');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+		<li><?php echo $this->Html->link(__('List Security Incidents'), array('action' => 'index')); ?></li>		
 
+		<?php if($group == 1 || $group == 2): ?>
 		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('SecurityIncident.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('SecurityIncident.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Security Incidents'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+
+		<?php endif; ?>
+
 	</ul>
 </div>

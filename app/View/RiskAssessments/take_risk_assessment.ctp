@@ -12,6 +12,10 @@ $this->Html->addCrumb('Take Risk Assessment');
 		echo '<p><b>Additional Information</b><br />' . $RaQ[$id]['RiskAssessmentQuestion']['additional_information'] . '</p>';
 		echo '<p><b>How to Answer Question</b><br />' . $RaQ[$id]['RiskAssessmentQuestion']['how_to_answer_question'] . '</p>';
 	}
+	
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');	
 ?>
 
 <div class="riskAssessments form">
@@ -420,8 +424,10 @@ $this->Html->addCrumb('Take Risk Assessment');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('List Risk Assessments'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+		<?php if($group == 1): ?>
+				<li><?php echo $this->Html->link(__('List Risk Assessments'), array('action' => 'index')); ?></li>
+		<?php endif; ?>
+
+
 	</ul>
 </div>

@@ -2,9 +2,35 @@
 $this->Html->addCrumb('Contracts & Documents');
 
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id'); 
+//	$group = $this->Session->read('Auth.User.group_id'); 
 	
-	if($group == 1){
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
+
+	$approved = '<div class="dashBtn approved">
+						<div class="btnWrapNarrow">
+						<div class="btnText">Click Here</div> 
+						<div class="triangle"></div>
+						</div>
+					</div>';
+	
+	$banned = '<div class="dashBtn denied">
+						<div class="btnWrapWide">
+						<div class="btnText">Subscribers Only!</div> 
+						<div class="triangle"></div>
+						</div>
+					</div>';
+					
+	$noAuth = 	'<div class="dashBtn denied">
+						<div class="btnWrapWide">
+						<div class="btnText">Not Authorized!</div> 
+						<div class="triangle"></div>
+						</div>
+					</div>';	
+	
+	
+/*	if($group == 1){
 		$dashBtn = '<div class="dashBtn approved">
 						<div class="btnWrapNarrow">
 						<div class="btnText">Click Here</div> 
@@ -22,14 +48,17 @@ $this->Html->addCrumb('Contracts & Documents');
 		$dashBtn = 'User';
 	} else {
 		$dashBtn = 'No Role yet';
-	}
+	}*/
 
 ?>
 <div class="dashboard index">
 	<h2><?php echo __('Contracts & Documents'); ?></h2>
 
 	<?php 
-		echo $this->Html->link( // policies & procedures
+	
+		// Risk Assessment Documents. If user deny
+		if($group == 3){
+			echo $this->Html->link( 
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
 					$this->Html->image('ra_tile.jpg', array(
@@ -38,14 +67,31 @@ $this->Html->addCrumb('Contracts & Documents');
 								)) .
 					'<h3>Risk Assessment Documents</h3>' .
 					'</div>' .
-					'<div class="dashSum">Risk Assessment Documents</div>' . $dashBtn .
+					'<div class="dashSum">Risk Assessment Documents</div>' . $noAuth .
+					'</div>',
+					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
+					array('escape' => false)
+			);
+		} else {
+		echo $this->Html->link( 
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('ra_tile.jpg', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Risk Assessment Documents'
+								)) .
+					'<h3>Risk Assessment Documents</h3>' .
+					'</div>' .
+					'<div class="dashSum">Risk Assessment Documents</div>' . $approved .
 					'</div>',
 					array('controller' => 'risk_assessment_documents', 'action' => 'index'),
 					array('escape' => false)
-			);
-			
-			
-		echo $this->Html->link( // Business Associate Agreements
+			);			
+		}
+		
+		// Business Associate Agreements Users are banned
+		if($group == 3){
+			echo $this->Html->link( 
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
 					$this->Html->image('ba_tile.jpg', array(
@@ -54,13 +100,33 @@ $this->Html->addCrumb('Contracts & Documents');
 								)) .
 					'<h3>Business Associate Agreements</h3>' .
 					'</div>' .
-					'<div class="dashSum">Business Associate Agreements</div>' . $dashBtn .
+					'<div class="dashSum">Business Associate Agreements</div>' . $noAuth .
+					'</div>',
+					array('controller' => 'business_associate_agreements', 'action' => 'index'),
+					array('escape' => false)
+			);			
+			
+		} else {
+			echo $this->Html->link( 
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('ba_tile.jpg', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Business Associate Agreements'
+								)) .
+					'<h3>Business Associate Agreements</h3>' .
+					'</div>' .
+					'<div class="dashSum">Business Associate Agreements</div>' . $approved .
 					'</div>',
 					array('controller' => 'business_associate_agreements', 'action' => 'index'),
 					array('escape' => false)
 			);
 			
-		echo $this->Html->link( // Disaster Recovery Plans
+		}
+		
+		// Disaster Recovery Plans. Only Sub Manager can use. Sub User is not authorized. MU is banned
+		if($acct == 'Meaningful Use'){ // ban if MU
+			echo $this->Html->link( 
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
 					$this->Html->image('dr_tile.bmp', array(
@@ -69,13 +135,48 @@ $this->Html->addCrumb('Contracts & Documents');
 								)) .
 					'<h3>Disaster Recovery Plans</h3>' .
 					'</div>' .
-					'<div class="dashSum">Disaster Recovery Plans</div>' . $dashBtn .
+					'<div class="dashSum">Disaster Recovery Plans</div>' . $banned .
+					'</div>',
+					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
+					array('escape' => false)
+			);			
+			
+		} elseif($group == 3 ){ // if sub user
+			echo $this->Html->link( 
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('dr_tile.bmp', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Disaster Recovery Plans'
+								)) .
+					'<h3>Disaster Recovery Plans</h3>' .
+					'</div>' .
+					'<div class="dashSum">Disaster Recovery Plans</div>' . $noAuth .
+					'</div>',
+					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
+					array('escape' => false)
+			);			
+		} else {
+			echo $this->Html->link( 
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('dr_tile.bmp', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Disaster Recovery Plans'
+								)) .
+					'<h3>Disaster Recovery Plans</h3>' .
+					'</div>' .
+					'<div class="dashSum">Disaster Recovery Plans</div>' . $approved .
 					'</div>',
 					array('controller' => 'disaster_recovery_plans', 'action' => 'index'),
 					array('escape' => false)
 			);
-
-		echo $this->Html->link( // Other Contracts & Documents
+		}
+			
+		// Other Contracts & Documents . Only SUB Managers can use. Employees is noauth. MU is banned
+			
+		if($acct == 'Meaningful Use'){
+		echo $this->Html->link( 
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
 					$this->Html->image('ocnd_tile.jpg', array(
@@ -84,11 +185,45 @@ $this->Html->addCrumb('Contracts & Documents');
 								)) .
 					'<h3>Other Contracts & Documents</h3>' .
 					'</div>' .
-					'<div class="dashSum">Other Contracts & Documents</div>' . $dashBtn .
+					'<div class="dashSum">Other Contracts & Documents</div>' . $banned .
+					'</div>',
+					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
+					array('escape' => false)
+			);			
+			
+		} elseif($group == 3){
+		echo $this->Html->link( 
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('ocnd_tile.jpg', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Other Contracts & Documents'
+								)) .
+					'<h3>Other Contracts & Documents</h3>' .
+					'</div>' .
+					'<div class="dashSum">Other Contracts & Documents</div>' . $noAuth .
+					'</div>',
+					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
+					array('escape' => false)
+			);			
+			
+		} else {
+		echo $this->Html->link( 
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('ocnd_tile.jpg', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Other Contracts & Documents'
+								)) .
+					'<h3>Other Contracts & Documents</h3>' .
+					'</div>' .
+					'<div class="dashSum">Other Contracts & Documents</div>' . $approved .
 					'</div>',
 					array('controller' => 'other_contracts_and_documents', 'action' => 'index'),
 					array('escape' => false)
-			);
+			);			
+		}
+
 
 
 	?>

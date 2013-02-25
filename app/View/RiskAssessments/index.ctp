@@ -1,5 +1,9 @@
 <?php
 $this->Html->addCrumb('Risk Assessments');
+
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="riskAssessments index">
 	<h2><?php echo __('Risk Assessments'); ?></h2>
@@ -141,7 +145,6 @@ $this->Html->addCrumb('Risk Assessments');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('Take Risk Assessment'), array('action' => 'take_risk_assessment')); ?></li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+
 	</ul>
 </div>

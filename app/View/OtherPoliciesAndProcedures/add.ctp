@@ -2,6 +2,10 @@
 $this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
 $this->Html->addCrumb('Other Policies & Procedures', '/other_policies_and_procedures');
 $this->Html->addCrumb('Add Other Policy & Procedure');
+
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="otherPoliciesAndProcedures form">
 <?php echo $this->Form->create('OtherPoliciesAndProcedure', array('type' => 'file')); ?>
@@ -30,7 +34,6 @@ $this->Html->addCrumb('Add Other Policy & Procedure');
 	<ul>
 
 		<li><?php echo $this->Html->link(__('List Other Policies And Procedures'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+
 	</ul>
 </div>

@@ -21,6 +21,10 @@ $this->Html->addCrumb('Add Organization Profile');
 	$emailHost = array('Onsite' => 'Onsite', 'Hosted by a 3rd party' => 'Hosted by a 3rd party', 
 					'Cloud(Google, Yahoo!, Hotmail)' => 'Cloud(Google, Yahoo!, Hotmail)', 'Other' => 'Other' );
 	$host = array('Onsite' => 'Onsite', 'Vendor Hosted' => 'Vendor Hosted', 'Hosted by a 3rd party' => 'Hosted by a 3rd party', 'Other' => 'Other' );					
+
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 
 <div class="organizationProfiles form">
@@ -127,8 +131,8 @@ $this->Html->addCrumb('Add Organization Profile');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
+		<?php if($group == 1): ?>
 		<li><?php echo $this->Html->link(__('List Organization Profiles'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+		<?php endif; ?>
 	</ul>
 </div>

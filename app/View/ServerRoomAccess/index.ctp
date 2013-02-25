@@ -1,6 +1,10 @@
 <?php
 $this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
 $this->Html->addCrumb('Server Room Access');
+
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="serverRoomAccess index">
 	<h2><?php echo __('Server Room Access'); ?></h2>
@@ -57,8 +61,9 @@ $this->Html->addCrumb('Server Room Access');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+
+		<?php if($group == 1 || $group == 2): ?>
 		<li><?php echo $this->Html->link(__('New Server Room Access'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+		<?php endif; ?>
 	</ul>
 </div>

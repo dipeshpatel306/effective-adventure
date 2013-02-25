@@ -2,6 +2,10 @@
 $this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
 $this->Html->addCrumb('Policies & Procedures', '/policies_and_procedures');
 $this->Html->addCrumb('Edit Policy & Procedure');
+
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="policiesAndProcedures form">
 <?php echo $this->Form->create('PoliciesAndProcedure', array('type' => 'file')); ?>
@@ -30,9 +34,11 @@ $this->Html->addCrumb('Edit Policy & Procedure');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('PoliciesAndProcedure.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('PoliciesAndProcedure.id'))); ?></li>
 		<li><?php echo $this->Html->link(__('List Policies And Procedures'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+		
+		<?php if($group == 1 || $group == 2): ?>
+		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('PoliciesAndProcedure.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('PoliciesAndProcedure.id'))); ?></li>			
+		<?php endif; ?>		
+
 	</ul>
 </div>

@@ -2,6 +2,9 @@
 $this->Html->addCrumb('Risk Assessments', '/risk_assessments');
 $this->Html->addCrumb('Edit Risk Assessment');
 
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 
 <div class="riskAssessments form">
@@ -73,10 +76,12 @@ $this->Html->addCrumb('Edit Risk Assessment');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('RiskAssessment.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('RiskAssessment.id'))); ?></li>
 		<li><?php echo $this->Html->link(__('List Risk Assessments'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+
+		<?php if($group == 1 || $group == 2): ?>
+		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('RiskAssessment.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('RiskAssessment.id'))); ?></li>
+
+		<?php endif; ?>
+
 	</ul>
 </div>

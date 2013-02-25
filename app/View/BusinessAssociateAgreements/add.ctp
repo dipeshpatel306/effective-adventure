@@ -3,7 +3,6 @@ $this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documen
 $this->Html->addCrumb('Business Associate Agreements', '/business_associate_agreements');
 $this->Html->addCrumb('Add Business Associate Agreement');
 
-
 ?>
 <div class="businessAssociateAgreements form">
 <?php echo $this->Form->create('BusinessAssociateAgreement', array('type' => 'file')); ?>
@@ -31,7 +30,6 @@ $this->Html->addCrumb('Add Business Associate Agreement');
 	<ul>
 
 		<li><?php echo $this->Html->link(__('List Business Associate Agreements'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+
 	</ul>
 </div>

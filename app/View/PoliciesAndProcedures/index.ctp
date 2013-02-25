@@ -1,6 +1,9 @@
 <?php
 $this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
 $this->Html->addCrumb('Policies & Procedures');
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="policiesAndProcedures index">
 	<h2><?php echo __('Policies And Procedures'); ?></h2>
@@ -51,8 +54,9 @@ $this->Html->addCrumb('Policies & Procedures');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+
+		<?php if($group == 1 || $group == 2): ?>
 		<li><?php echo $this->Html->link(__('New Policies And Procedure'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+		<?php endif; ?>	
 	</ul>
 </div>

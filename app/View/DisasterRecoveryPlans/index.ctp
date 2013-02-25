@@ -49,8 +49,8 @@ $this->Html->addCrumb('Disaster Recovery Plans');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+		<?php if($group == 1 || $group == 2): ?>		
 		<li><?php echo $this->Html->link(__('New Disaster Recovery Plan'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+		<?php endif; ?>
 	</ul>
 </div>

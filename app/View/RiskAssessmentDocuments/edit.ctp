@@ -2,6 +2,10 @@
 $this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
 $this->Html->addCrumb('Risk Assessment Documents', '/risk_assessment_documents');
 $this->Html->addCrumb('Edit Risk Assessment Document');
+
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="riskAssessmentDocuments form">
 <?php echo $this->Form->create('RiskAssessmentDocument'); ?>
@@ -28,10 +32,12 @@ $this->Html->addCrumb('Edit Risk Assessment Document');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('RiskAssessmentDocument.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('RiskAssessmentDocument.id'))); ?></li>
 		<li><?php echo $this->Html->link(__('List Risk Assessment Documents'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+				
+		<?php if($group == 1 || $group == 2): ?>
+		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('RiskAssessmentDocument.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('RiskAssessmentDocument.id'))); ?></li>
+		<?php endif; ?>
+
+
 	</ul>
 </div>

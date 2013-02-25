@@ -1,5 +1,9 @@
 <?php
 $this->Html->addCrumb('Users');
+
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="users index">
 	<h2><?php echo __('Users'); ?></h2>
@@ -51,12 +55,9 @@ $this->Html->addCrumb('Users');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<!--<li><?php echo $this->Html->link(__('List Groups'), array('controller' => 'groups', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Group'), array('controller' => 'groups', 'action' => 'add')); ?> </li>-->
-		<?php if(($this->Session->read('Auth.User.group_id'))== 1):  // Test group role. Is admin?  ?>
-			<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-			<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
-		<?php endif ?>
+		<?php if($group == 1 || $group == 2): ?>
 		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?></li>
+		<?php endif; ?>
+
 	</ul>
 </div>

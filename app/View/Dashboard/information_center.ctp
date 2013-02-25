@@ -3,27 +3,30 @@ $this->Html->addCrumb('Information Center');
 
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id'); 
-	
-	if($group == 1){
-		$dashBtn = '<div class="dashBtn approved">
+	$acct = $this->Session->read('Auth.User.Client.account_type');
+
+	$approved = '<div class="dashBtn approved">
 						<div class="btnWrapNarrow">
 						<div class="btnText">Click Here</div> 
 						<div class="triangle"></div>
 						</div>
 					</div>';
-	} elseif($group == 2){
-		$dashBtn = '<div class="dashBtn denied">
+	
+	$banned = '<div class="dashBtn denied">
 						<div class="btnWrapWide">
 						<div class="btnText">Subscribers Only!</div> 
 						<div class="triangle"></div>
 						</div>
 					</div>';
-	} elseif($group == 3){
-		$dashBtn = 'User';
-	} else {
-		$dashBtn = 'No Role yet';
-	}
-
+					
+	$noAuth = 	'<div class="dashBtn denied">
+						<div class="btnWrapWide">
+						<div class="btnText">Not Authorized!</div> 
+						<div class="triangle"></div>
+						</div>
+					</div>';	
+		
+	
 ?>
 
 <div class="dashboard index">
@@ -38,7 +41,7 @@ $this->Html->addCrumb('Information Center');
 								)) .
 					'<h3>HIPAA Information</h3>' .
 					'</div>' .
-					'<div class="dashSum">Policies and Procedures</div>'  . $dashBtn .
+					'<div class="dashSum">Policies and Procedures</div>'  . $approved .
 					'</div>', 'http://www.hipaasecurenow.com/?cat=10', 
 					array('escape' => false, 'target'=>'_blank')
 			);
@@ -52,7 +55,7 @@ $this->Html->addCrumb('Information Center');
 								)) .
 					'<h3>HIPAA Information</h3>' .
 					'</div>' .
-					'<div class="dashSum">Risk Assessments</div>' . $dashBtn .
+					'<div class="dashSum">Risk Assessments</div>' . $approved .
 					'</div>', 'http://www.hipaasecurenow.com/?cat=8', 
 					array('escape' => false, 'target'=>'_blank')
 			);
@@ -66,7 +69,7 @@ $this->Html->addCrumb('Information Center');
 								)) .
 					'<h3>HIPAA Information</h3>' .
 					'</div>' .
-					'<div class="dashSum">Security Training</div>' . $dashBtn .
+					'<div class="dashSum">Security Training</div>' . $approved .
 					'</div>', 'http://www.hipaasecurenow.com/?cat=9', 
 					array('escape' => false, 'target'=>'_blank')
 			);
@@ -80,7 +83,7 @@ $this->Html->addCrumb('Information Center');
 								)) .
 					'<h3>HIPAA Information</h3>' .
 					'</div>' .
-					'<div class="dashSum">HIPAA Audits</div>' . $dashBtn .
+					'<div class="dashSum">HIPAA Audits</div>' . $approved .
 					'</div>', 'http://www.hipaasecurenow.com/?s=HIPAA+Audits', 
 					array('escape' => false, 'target'=>'_blank')
 			);
@@ -94,7 +97,7 @@ $this->Html->addCrumb('Information Center');
 								)) .
 					'<h3>HIPAA Information</h3>' .
 					'</div>' .
-					'<div class="dashSum">What to do if you get audited</div>'  . $dashBtn .
+					'<div class="dashSum">What to do if you get audited</div>'  . $approved .
 					'</div>', 'http://www.hipaasecurenow.com/index.php/you-received-a-hipaa-audit-notification-now-what/', 
 					array('escape' => false, 'target'=>'_blank')
 			);
@@ -108,7 +111,7 @@ $this->Html->addCrumb('Information Center');
 								)) .
 					'<h3>HIPAA Information</h3>' .
 					'</div>' .
-					'<div class="dashSum">Practice Administrators Role w/ HIPAA</div>' . $dashBtn .
+					'<div class="dashSum">Practice Administrators Role w/ HIPAA</div>' . $approved .
 					'</div>', 'http://www.hipaasecurenow.com/index.php/practice-administrators-are-the-key-to-hipaa-security/', 
 					array('escape' => false, 'target'=>'_blank')
 			);
@@ -122,7 +125,7 @@ $this->Html->addCrumb('Information Center');
 								)) .
 					'<h3>HHS Information</h3>' .
 					'</div>' .
-					'<div class="dashSum">Breach Notification</div>' . $dashBtn .
+					'<div class="dashSum">Breach Notification</div>' . $approved .
 					'</div>', 'http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/index.html', 
 					array('escape' => false, 'target'=>'_blank')
 			);
@@ -136,7 +139,7 @@ $this->Html->addCrumb('Information Center');
 								)) .
 					'<h3>HIPAA Secure Now!</h3>' .
 					'</div>' .
-					'<div class="dashSum">Service Overview</div>' . $dashBtn .
+					'<div class="dashSum">Service Overview</div>' . $approved .
 					'</div>', 'http://www.hipaasecurenow.com/index.php/service/', 
 					array('escape' => false, 'target'=>'_blank')
 			);
