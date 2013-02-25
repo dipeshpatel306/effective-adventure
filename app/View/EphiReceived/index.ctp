@@ -1,6 +1,10 @@
 <?php
 $this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
 $this->Html->addCrumb('ePHI Received');
+
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="ephiReceived index">
 	<h2><?php echo __('Ephi Received'); ?></h2>

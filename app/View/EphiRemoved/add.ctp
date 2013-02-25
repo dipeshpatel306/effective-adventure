@@ -2,6 +2,10 @@
 $this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
 $this->Html->addCrumb('ePHI Removed', '/ephi_removed');
 $this->Html->addCrumb('Add ePHI Removed');
+
+// Conditionally load buttons based upon user role
+	$group = $this->Session->read('Auth.User.group_id'); 
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="ephiRemoved form">
 <?php echo $this->Form->create('EphiRemoved'); ?>
