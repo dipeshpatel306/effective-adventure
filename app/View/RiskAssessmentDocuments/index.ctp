@@ -26,7 +26,12 @@ $this->Html->addCrumb('Risk Assessment Documents');
 		</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $riskAssessmentDocument['RiskAssessmentDocument']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $riskAssessmentDocument['RiskAssessmentDocument']['modified']); ?>&nbsp;</td>
-		<td><?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['attachment']); ?>&nbsp;</td>
+		<td>
+		<?php 
+			$opnpLink =  preg_replace('/\/.*\//', '', $riskAssessmentDocument['RiskAssessmentDocument']['attachment']);
+			echo $this->Html->link($opnpLink, $riskAssessmentDocument['RiskAssessmentDocument']['attachment']);
+		?>	
+		&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?>

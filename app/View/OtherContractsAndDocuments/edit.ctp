@@ -7,9 +7,9 @@ $this->Html->addCrumb('Edit Other Contract & Document');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="otherContractsAndDocuments form">
-<?php echo $this->Form->create('OtherContractsAndDocument'); ?>
+<?php echo $this->Form->create('OtherContractsAndDocument', array('type' => 'file')); ?>
 	<fieldset>
-		<legend><?php echo __('Edit Other Contracts And Document'); ?></legend>
+		<legend><?php echo __('Edit Other Contracts And Documents'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
@@ -23,7 +23,7 @@ $this->Html->addCrumb('Edit Other Contract & Document');
 			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
 		}
 		
-		echo $this->Form->input('attachment');
+		echo $this->Form->input('attachment', array('type' => 'file'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

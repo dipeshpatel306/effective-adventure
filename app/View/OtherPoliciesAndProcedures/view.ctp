@@ -43,7 +43,10 @@ $this->Html->addCrumb($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['n
 		</dd>
 		<dt><?php echo __('Attachment'); ?></dt>
 		<dd>
-			<?php echo h($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment']); ?>
+		<?php 
+			$opnpLink =  preg_replace('/\/.*\//', '', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment']);
+			echo $this->Html->link($opnpLink, $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment']);
+		?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Media'); ?></dt>

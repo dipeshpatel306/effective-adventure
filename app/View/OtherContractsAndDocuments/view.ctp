@@ -8,7 +8,7 @@ $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['n
 ?>
 
 <div class="otherContractsAndDocuments view">
-<h2><?php  echo __('Other Contracts And Document'); ?></h2>
+<h2><?php  echo __('Other Contracts And Documents'); ?></h2>
 	<dl>
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
@@ -42,7 +42,10 @@ $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['n
 		</dd>
 		<dt><?php echo __('Attachment'); ?></dt>
 		<dd>
-			<?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['attachment']); ?>
+		<?php 
+			$opnpLink =  preg_replace('/\/.*\//', '', $otherContractsAndDocument['OtherContractsAndDocument']['attachment']);
+			echo $this->Html->link($opnpLink, $otherContractsAndDocument['OtherContractsAndDocument']['attachment']);
+		?>	
 			&nbsp;
 		</dd>
 	</dl>

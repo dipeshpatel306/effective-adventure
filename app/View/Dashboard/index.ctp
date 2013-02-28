@@ -81,7 +81,7 @@
 					'</div>' .
 					'<div class="dashSum">Risk Assessment, Business Associates, Disaster Recovery</div>' . $noAuth.
 					'</div>',
-					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
+					array('controller' => 'dashboard', 'action' => 'index'),
 					array('escape' => false)
 			);
 		} else{
@@ -96,7 +96,7 @@
 					'</div>' .
 					'<div class="dashSum">Risk Assessment, Business Associates, Disaster Recovery</div>' . $approved.
 					'</div>',
-					array('controller' => 'dashboard', 'action' => 'policies_and_procedures'),
+					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
 					array('escape' => false)
 			);			
 			

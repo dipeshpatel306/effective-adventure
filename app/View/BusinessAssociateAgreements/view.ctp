@@ -32,7 +32,10 @@ $this->Html->addCrumb($businessAssociateAgreement['BusinessAssociateAgreement'][
 		</dd>
 		<dt><?php echo __('Document'); ?></dt>
 		<dd>
-			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['attachment']); ?>
+		<?php 
+			$opnpLink =  preg_replace('/\/.*\//', '', $businessAssociateAgreement['BusinessAssociateAgreement']['attachment']);
+			echo $this->Html->link($opnpLink, $businessAssociateAgreement['BusinessAssociateAgreement']['attachment']);
+		?>	
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Client'); ?></dt>

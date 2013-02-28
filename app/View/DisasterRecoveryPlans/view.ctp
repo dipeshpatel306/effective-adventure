@@ -42,7 +42,10 @@ $this->Html->addCrumb($disasterRecoveryPlan['DisasterRecoveryPlan']['name']);
 		</dd>
 		<dt><?php echo __('Attachment'); ?></dt>
 		<dd>
-			<?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['attachment']); ?>
+		<?php 
+			$opnpLink =  preg_replace('/\/.*\//', '', $disasterRecoveryPlan['DisasterRecoveryPlan']['attachment']);
+			echo $this->Html->link($opnpLink, $disasterRecoveryPlan['DisasterRecoveryPlan']['attachment']);
+		?>					
 			&nbsp;
 		</dd>
 	</dl>

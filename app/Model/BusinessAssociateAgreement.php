@@ -128,8 +128,29 @@ class BusinessAssociateAgreement extends AppModel {
 					'filesize' => ''
 				)
 			)
-		)
+		),
+		'Uploader.FileValidation' => array(
+			'file' => array(
+				'extension' => array(
+				
+					'value' => array('doc', 'dot', 'docx', 'pdf'),
+					'error' => 'Only Pdf, Doc, and Docx file formats are supported!'
+				)
+			)
+		
+		)		
 	);
+
+/**
+ * Change file directory to that of client
+ * 
+ */
+public function beforeUpload($options){ 
+	
+	$client = $this->data['BusinessAssociateAgreement']['client_id']; // check client id
+	$options['uploadDir'] = '/documents/business_associate_agreements/' . $client . '/' ;
+	return $options;
+}
 
 /**
  * Check Client Owner

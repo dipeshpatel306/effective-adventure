@@ -43,7 +43,10 @@ $this->Html->addCrumb($riskAssessmentDocument['RiskAssessmentDocument']['name'])
 		</dd>
 		<dt><?php echo __('Attachment'); ?></dt>
 		<dd>
-			<?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['attachment']); ?>
+		<?php 
+			$opnpLink =  preg_replace('/\/.*\//', '', $riskAssessmentDocument['RiskAssessmentDocument']['attachment']);
+			echo $this->Html->link($opnpLink, $riskAssessmentDocument['RiskAssessmentDocument']['attachment']);
+		?>	
 			&nbsp;
 		</dd>
 	</dl>

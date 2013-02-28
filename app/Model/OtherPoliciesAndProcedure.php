@@ -102,11 +102,6 @@ class OtherPoliciesAndProcedure extends AppModel {
 		)
 	);
 	
-/*public function formatFileName($name, $field, $file){
-	$rafow = "/" . 'bubbles' . "/" . $name;
-	return $rafow;
-	
-}*/
 /**
  * Change file directory to that of client
  * 
@@ -114,7 +109,7 @@ class OtherPoliciesAndProcedure extends AppModel {
 public function beforeUpload($options){ 
 	
 	$client = $this->data['OtherPoliciesAndProcedure']['client_id']; // check client id
-	$options['uploadDir'] = '/documents/opnp/' . $client . '/' ;
+	$options['uploadDir'] = '/documents/other_policies_and_procedures/' . $client . '/' ;
 	return $options;
 }
 

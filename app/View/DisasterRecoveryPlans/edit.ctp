@@ -9,7 +9,7 @@ $this->Html->addCrumb('Edit Disaster Recovery Plan');
 <div class="disasterRecoveryPlans form">
 <?php echo $this->Form->create('DisasterRecoveryPlan'); ?>
 	<fieldset>
-		<legend><?php echo __('Edit Disaster Recovery Plan'); ?></legend>
+		<legend><?php echo __('Edit Disaster Recovery Plan', array('type' => 'file')); ?></legend>
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
@@ -23,7 +23,7 @@ $this->Html->addCrumb('Edit Disaster Recovery Plan');
 			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
 		}
 		
-		echo $this->Form->input('attachment');
+		echo $this->Form->input('attachment', array('type' => 'file'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

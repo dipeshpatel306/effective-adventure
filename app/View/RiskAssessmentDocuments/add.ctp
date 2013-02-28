@@ -8,7 +8,7 @@ $this->Html->addCrumb('Add Risk Assessment Document');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="riskAssessmentDocuments form">
-<?php echo $this->Form->create('RiskAssessmentDocument'); ?>
+<?php echo $this->Form->create('RiskAssessmentDocument', array('type' => 'file')); ?>
 	<fieldset>
 		<legend><?php echo __('Add Risk Assessment Document'); ?></legend>
 	<?php
@@ -23,7 +23,7 @@ $this->Html->addCrumb('Add Risk Assessment Document');
 			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
 		}
 		
-		echo $this->Form->input('attachment');
+		echo $this->Form->input('attachment', array('type' => 'file'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

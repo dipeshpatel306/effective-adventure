@@ -7,7 +7,7 @@ $this->Html->addCrumb('Add Disaster Recovery Plan');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="disasterRecoveryPlans form">
-<?php echo $this->Form->create('DisasterRecoveryPlan'); ?>
+<?php echo $this->Form->create('DisasterRecoveryPlan', array('type' => 'file')); ?>
 	<fieldset>
 		<legend><?php echo __('Add Disaster Recovery Plan'); ?></legend>
 	<?php
@@ -22,7 +22,7 @@ $this->Html->addCrumb('Add Disaster Recovery Plan');
 			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
 		}
 		
-		echo $this->Form->input('attachment');
+		echo $this->Form->input('attachment', array('type' => 'file'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
