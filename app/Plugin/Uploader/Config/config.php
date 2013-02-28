@@ -52,7 +52,13 @@ $config['Uploader']['mimeTypes'] = array(
 		'js'	=> 'text/javascript',
 		'xhtml'	=> 'application/xhtml+xml',
 		'xht'	=> 'application/xhtml+xml',
-		'json'	=> 'application/json'
+		'json'	=> 'application/json',
+		
+		'pdf'	=> 'application/pdf',
+		'doc'	=> 'application/msword',
+		'dot'	=> 'application/msword',
+		'docx'	=> 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+		
 	),
 	'archive' => array(
 		'gz'	=> 'application/x-gzip',

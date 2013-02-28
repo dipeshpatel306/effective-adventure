@@ -31,7 +31,7 @@ class OtherPoliciesAndProceduresController extends AppController {
 				
 			if(in_array($this->action, array('edit', 'delete'))){ // Allow Managers to Edit, delete their own
 				$id = $this->request->params['pass'][0];
-				if($this->OtherPolicy->isOwnedBy($id, $client)){
+				if($this->OtherPoliciesAndProcedure->isOwnedBy($id, $client)){
 					return true;
 				}	
 			}		
@@ -98,7 +98,7 @@ class OtherPoliciesAndProceduresController extends AppController {
 			));
 			
 			if($is_authorized){
-				$this->set('otherPoliciesAndProcedure', $this->OtherPolicy->read(null, $id));
+				$this->set('otherPoliciesAndProcedure', $this->OtherPoliciesAndProcedure->read(null, $id));
 			} else { // Else Banned!
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
@@ -117,14 +117,13 @@ class OtherPoliciesAndProceduresController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->OtherPoliciesAndProcedure->create();
-			
+
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 			if($group != 1){
-			$this->request->data['OtherPoliciesAndProcedure']['client_id'] = $this->Auth->User('client_id');
+				$this->request->data['OtherPoliciesAndProcedure']['client_id'] = $this->Auth->User('client_id');
 			}	
-			
+			$this->OtherPoliciesAndProcedure->create();
 			if ($this->OtherPoliciesAndProcedure->save($this->request->data)) {
 				$this->Session->setFlash('The other policies and procedure has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));

@@ -7,12 +7,14 @@ App::uses('AppModel', 'Model');
  */
 class OtherPoliciesAndProcedure extends AppModel {
 
+
 /**
  * Display field
  *
  * @var string
  */
 	public $displayField = 'name';
+
 
 /**
  * Validation rules
@@ -87,14 +89,39 @@ class OtherPoliciesAndProcedure extends AppModel {
 					'filesize' => ''
 				)
 			)
+		),
+		'Uploader.FileValidation' => array(
+			'file' => array(
+				'extension' => array(
+				
+					'value' => array('doc', 'dot', 'docx', 'pdf'),
+					'error' => 'Only Pdf, Doc, and Docx file formats are supported!'
+				)
+			)
+		
 		)
 	);
 	
+/*public function formatFileName($name, $field, $file){
+	$rafow = "/" . 'bubbles' . "/" . $name;
+	return $rafow;
 	
+}*/
+/**
+ * Change file directory to that of client
+ * 
+ */
+public function beforeUpload($options){ 
+	
+	$client = $this->data['OtherPoliciesAndProcedure']['client_id']; // check client id
+	$options['uploadDir'] = '/documents/opnp/' . $client . '/' ;
+	return $options;
+}
+
 /**
  * Check Client Owner
  */	
-	public function isOwnedBy($id, $user){
-		return $this->field('id', array($id, 'client_id' => $user)) === $id;
+	public function isOwnedBy($id, $client){
+		return $this->field('id', array($id, 'client_id' => $client)) === $id;
 	}
 }

@@ -27,7 +27,14 @@ $this->Html->addCrumb('Other Policies & Procedures');
 		</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a',$otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a',$otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['modified']); ?>&nbsp;</td>
-		<td><?php echo h($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment']); ?>&nbsp;</td>
+		<!--<td><?php echo h($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment']); ?>&nbsp;</td>-->
+		<td>
+		<?php 
+			//$attachment = $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment'];
+		
+			echo preg_replace('/\/.*\//', '', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment']);
+		?>
+		</td>
 		<!--<td><?php echo h($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['media']); ?>&nbsp;</td>-->
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id'])); ?>
