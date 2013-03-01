@@ -11,6 +11,13 @@ $this->Html->addCrumb($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['n
 <div class="otherPoliciesAndProcedures view">
 <h2><?php  echo __('Other Policies And Procedure'); ?></h2>
 	<dl>
+		<?php if($group == 1 ): ?>
+		<dt><?php echo __('Client'); ?></dt>
+		<dd>
+			<?php echo $this->Html->link($otherPoliciesAndProcedure['Client']['name'], array('controller' => 'clients', 'action' => 'view', $otherPoliciesAndProcedure['Client']['id'])); ?>
+			&nbsp;
+		</dd>		
+		<?php  endif; ?>
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
 			<?php echo h($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['name']); ?>
@@ -26,11 +33,7 @@ $this->Html->addCrumb($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['n
 			<?php echo h($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['details']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Client'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($otherPoliciesAndProcedure['Client']['name'], array('controller' => 'clients', 'action' => 'view', $otherPoliciesAndProcedure['Client']['id'])); ?>
-			&nbsp;
-		</dd>
+
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
 			<?php echo $this->Time->format('m/d/y g:i a',$otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['created']); ?>

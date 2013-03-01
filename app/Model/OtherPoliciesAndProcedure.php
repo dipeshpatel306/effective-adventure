@@ -97,7 +97,6 @@ class OtherPoliciesAndProcedure extends AppModel {
 					'error'	=> 'File must me .pdf, .doc, .docx or .dot'
 				)
 			)
-		
 		)
 	);
 	

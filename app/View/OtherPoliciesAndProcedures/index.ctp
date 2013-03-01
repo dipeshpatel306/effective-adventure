@@ -10,30 +10,36 @@ $this->Html->addCrumb('Other Policies & Procedures');
 	<h2><?php echo __('Other Policies And Procedures'); ?></h2>
 	<table>
 	<tr>
+			<?php if($group == 1): ?>
+			<th><?php echo $this->Paginator->sort('client_id'); ?></th>		
+			<?php endif; ?>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('attachment'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th><?php echo $this->Paginator->sort('attachment'); ?></th>
+
 			<!--<th><?php echo $this->Paginator->sort('media'); ?></th>-->
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php
 	foreach ($otherPoliciesAndProcedures as $otherPoliciesAndProcedure): ?>
 	<tr>
-		<td><?php echo h($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['name']); ?>&nbsp;</td>
+		<?php if($group == 1): ?>
 		<td>
 			<?php echo $this->Html->link($otherPoliciesAndProcedure['Client']['name'], array('controller' => 'clients', 'action' => 'view', $otherPoliciesAndProcedure['Client']['id'])); ?>
-		</td>
-		<td><?php echo $this->Time->format('m/d/y g:i a',$otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['created']); ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('m/d/y g:i a',$otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['modified']); ?>&nbsp;</td>
-		<!--<td><?php echo h($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment']); ?>&nbsp;</td>-->
+		</td>		
+		<?php endif; ?>
+		<td><?php echo h($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['name']); ?>&nbsp;</td>
 		<td>
 		<?php 
 			$opnpLink =  preg_replace('/\/.*\//', '', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment']);
 			echo $this->Html->link($opnpLink, $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment']);
 		?>
 		</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a',$otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['created']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a',$otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['modified']); ?>&nbsp;</td>
+		<!--<td><?php echo h($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment']); ?>&nbsp;</td>-->
+
 		<!--<td><?php echo h($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['media']); ?>&nbsp;</td>-->
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id'])); ?>

@@ -1,6 +1,6 @@
 <?php
 $this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
-$this->Html->addCrumb('Diaster Recovery Plans', '/disaster_recovery_plans');
+$this->Html->addCrumb('Disaster Recovery Plans', '/disaster_recovery_plans');
 $this->Html->addCrumb('Edit Disaster Recovery Plan');
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id'); 

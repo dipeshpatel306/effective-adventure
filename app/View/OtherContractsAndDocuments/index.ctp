@@ -1,4 +1,5 @@
 <?php
+$this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
 $this->Html->addCrumb('Other Contracts & Documents');
 
 // Conditionally load buttons based upon user role
@@ -10,28 +11,33 @@ $this->Html->addCrumb('Other Contracts & Documents');
 	<h2><?php echo __('Other Contracts And Documents'); ?></h2>
 	<table>
 	<tr>
+			<?php if($group ==1): ?>
+			<th><?php echo $this->Paginator->sort('client_id'); ?></th>			
+			<?php endif; ?>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('attachment'); ?></th>				
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th><?php echo $this->Paginator->sort('attachment'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php
 	foreach ($otherContractsAndDocuments as $otherContractsAndDocument): ?>
 	<tr>
-		<td><?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['name']); ?>&nbsp;</td>
+		<?php if($group == 1 ): ?>
 		<td>
 			<?php echo $this->Html->link($otherContractsAndDocument['Client']['name'], array('controller' => 'clients', 'action' => 'view', $otherContractsAndDocument['Client']['id'])); ?>
-		</td>
-		<td><?php echo $this->Time->format('m/d/y g:i a', $otherContractsAndDocument['OtherContractsAndDocument']['created']); ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('m/d/y g:i a', $otherContractsAndDocument['OtherContractsAndDocument']['modified']); ?>&nbsp;</td>
+		</td>		
+		<?php endif; ?>
+		<td><?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['name']); ?>&nbsp;</td>
 		<td>
 		<?php 
 			$opnpLink =  preg_replace('/\/.*\//', '', $otherContractsAndDocument['OtherContractsAndDocument']['attachment']);
 			echo $this->Html->link($opnpLink, $otherContractsAndDocument['OtherContractsAndDocument']['attachment']);
 		?>			
-		&nbsp;</td>
+		&nbsp;</td>		
+		<td><?php echo $this->Time->format('m/d/y g:i a', $otherContractsAndDocument['OtherContractsAndDocument']['created']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $otherContractsAndDocument['OtherContractsAndDocument']['modified']); ?>&nbsp;</td>
+
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $otherContractsAndDocument['OtherContractsAndDocument']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $otherContractsAndDocument['OtherContractsAndDocument']['id'])); ?>

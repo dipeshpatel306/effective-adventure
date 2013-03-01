@@ -10,7 +10,13 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiReceived['EphiRece
 <div class="ephiReceived view">
 <h2><?php  echo __('Ephi Received'); ?></h2>
 	<dl>
-
+		<?php if ($group == 1): ?>
+		<dt><?php echo __('Client'); ?></dt>
+		<dd>
+			<?php echo $this->Html->link($ephiReceived['Client']['name'], array('controller' => 'clients', 'action' => 'view', $ephiReceived['Client']['id'])); ?>
+			&nbsp;
+		</dd>
+		<?php endif; ?>
 		<dt><?php echo __('Date Received'); ?></dt>
 		<dd>
 			<?php echo $this->Time->format('m/d/y', $ephiReceived['EphiReceived']['date_received']); ?>
@@ -46,11 +52,7 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiReceived['EphiRece
 			<?php echo $this->Time->format('g:i a', $ephiReceived['EphiReceived']['time_returned']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Client'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($ephiReceived['Client']['name'], array('controller' => 'clients', 'action' => 'view', $ephiReceived['Client']['id'])); ?>
-			&nbsp;
-		</dd>
+
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
 			<?php echo $this->Time->format('m/d/y g:i a', $ephiReceived['EphiReceived']['created']); ?>

@@ -143,8 +143,8 @@ a.logoutLink{
 	padding-bottom: 5px;
 }
 .userBox .highlight{
-	/*color: #4C8AB0;*/
-	color: #76BF6B;
+	color: #4C8AB0;
+	/*color: #76BF6B;*/
 	font-weight: bold;
 }
 #header .userBox a:link, #header .userBox a:visited{

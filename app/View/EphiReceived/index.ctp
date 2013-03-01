@@ -10,14 +10,15 @@ $this->Html->addCrumb('ePHI Received');
 	<h2><?php echo __('Ephi Received'); ?></h2>
 	<table>
 	<tr>
-			<th><?php echo $this->Paginator->sort('date_received'); ?></th>
-			<th><?php echo $this->Paginator->sort('time_received'); ?></th>
+			<?php if($group == 1): ?>
+			<th><?php echo $this->Paginator->sort('client_id'); ?></th>		
+			<?php endif; ?>
+			<th><?php echo $this->Paginator->sort('date_received', 'Receieved Date/Time'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th><?php echo $this->Paginator->sort('patient_name'); ?></th>
 			<th><?php echo $this->Paginator->sort('received_by'); ?></th>
-			<th><?php echo $this->Paginator->sort('date_returned'); ?></th>
-			<th><?php echo $this->Paginator->sort('time_returned'); ?></th>
-			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('date_returned', 'Returned Date/Time'); ?></th>
+
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -25,16 +26,21 @@ $this->Html->addCrumb('ePHI Received');
 	<?php
 	foreach ($ephiReceived as $ephiReceived): ?>
 	<tr>
-		<td><?php echo $this->Time->format('m/d/y', $ephiReceived['EphiReceived']['date_received']); ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('g:i a', $ephiReceived['EphiReceived']['time_received']); ?>&nbsp;</td>
+		<?php if($group == 1): ?>
+		<td>
+			<?php echo $this->Html->link($ephiReceived['Client']['name'], array('controller' => 'clients', 'action' => 'view', $ephiReceived['Client']['id'])); ?>
+		</td>		
+		<?php endif; ?>
+		<td><?php echo $this->Time->format('m/d/y', $ephiReceived['EphiReceived']['date_received']) . ' ' .
+				$this->Time->format('g:i a', $ephiReceived['EphiReceived']['time_received']);
+		?>&nbsp;</td>
+
 		<td><?php echo h($ephiReceived['EphiReceived']['description']); ?>&nbsp;</td>
 		<td><?php echo h($ephiReceived['EphiReceived']['patient_name']); ?>&nbsp;</td>
 		<td><?php echo h($ephiReceived['EphiReceived']['received_by']); ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('m/d/y', $ephiReceived['EphiReceived']['date_returned']); ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('g:i a', $ephiReceived['EphiReceived']['time_returned']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($ephiReceived['Client']['name'], array('controller' => 'clients', 'action' => 'view', $ephiReceived['Client']['id'])); ?>
-		</td>
+		<td><?php echo $this->Time->format('m/d/y', $ephiReceived['EphiReceived']['date_returned']) . ' ' .
+				$this->Time->format('g:i a', $ephiReceived['EphiReceived']['time_returned']);
+		?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $ephiReceived['EphiReceived']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $ephiReceived['EphiReceived']['modified']); ?>&nbsp;</td>
 		<td class="actions">

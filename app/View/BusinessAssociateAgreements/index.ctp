@@ -10,12 +10,14 @@ $this->Html->addCrumb('Business Associate Agreements');
 	<h2><?php echo __('Business Associate Agreements'); ?></h2>
 	<table>
 	<tr>
+			<?php if($group == 1): ?>		
+			<th><?php echo $this->Paginator->sort('client_id'); ?></th>		
+			<?php endif; ?>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('email'); ?></th>
 			<th><?php echo $this->Paginator->sort('phone'); ?></th>
 			<th><?php echo $this->Paginator->sort('contract_date'); ?></th>
 			<th><?php echo $this->Paginator->sort('attachment'); ?></th>
-			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -23,6 +25,11 @@ $this->Html->addCrumb('Business Associate Agreements');
 	<?php
 	foreach ($businessAssociateAgreements as $businessAssociateAgreement): ?>
 	<tr>
+		<?php if($group == 1): ?>	
+		<td>
+			<?php echo $this->Html->link($businessAssociateAgreement['Client']['name'], array('controller' => 'clients', 'action' => 'view', $businessAssociateAgreement['Client']['id'])); ?>
+		</td>
+		<?php endif; ?>		
 		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['name']); ?>&nbsp;</td>
 		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['email']); ?>&nbsp;</td>
 		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['phone']); ?>&nbsp;</td>
@@ -32,9 +39,7 @@ $this->Html->addCrumb('Business Associate Agreements');
 			$opnpLink =  preg_replace('/\/.*\//', '', $businessAssociateAgreement['BusinessAssociateAgreement']['attachment']);
 			echo $this->Html->link($opnpLink, $businessAssociateAgreement['BusinessAssociateAgreement']['attachment']);
 		?>		
-		<td>
-			<?php echo $this->Html->link($businessAssociateAgreement['Client']['name'], array('controller' => 'clients', 'action' => 'view', $businessAssociateAgreement['Client']['id'])); ?>
-		</td>
+
 		<td><?php echo $this->Time->format('m/d/y g:i a', $businessAssociateAgreement['BusinessAssociateAgreement']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $businessAssociateAgreement['BusinessAssociateAgreement']['modified']); ?>&nbsp;</td>
 		<td class="actions">

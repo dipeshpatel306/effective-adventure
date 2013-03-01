@@ -9,29 +9,37 @@ $this->Html->addCrumb('Disaster Recovery Plans');
 <div class="disasterRecoveryPlans index">
 	<h2><?php echo __('Disaster Recovery Plans'); ?></h2>
 	<table>
-	<tr>
-			<th><?php echo $this->Paginator->sort('name'); ?></th>
+	<tr>	
+		<?php if($group == 1): ?>
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
+
+		<?php endif; ?>	
+			<th><?php echo $this->Paginator->sort('name'); ?></th>
+			<th><?php echo $this->Paginator->sort('attachment'); ?></th>			
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th><?php echo $this->Paginator->sort('attachment'); ?></th>
+
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php
 	foreach ($disasterRecoveryPlans as $disasterRecoveryPlan): ?>
 	<tr>
-		<td><?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['name']); ?>&nbsp;</td>
+		<?php if($group == 1): ?>
+
 		<td>
 			<?php echo $this->Html->link($disasterRecoveryPlan['Client']['name'], array('controller' => 'clients', 'action' => 'view', $disasterRecoveryPlan['Client']['id'])); ?>
-		</td>
-		<td><?php echo $this->Time->format('m/d/y g:i a', $disasterRecoveryPlan['DisasterRecoveryPlan']['created']); ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('m/d/y g:i a', $disasterRecoveryPlan['DisasterRecoveryPlan']['modified']); ?>&nbsp;</td>
+		</td>		
+		<?php endif; ?>
+		<td><?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['name']); ?>&nbsp;</td>
 		<td>
 		<?php 
 			$opnpLink =  preg_replace('/\/.*\//', '', $disasterRecoveryPlan['DisasterRecoveryPlan']['attachment']);
 			echo $this->Html->link($opnpLink, $disasterRecoveryPlan['DisasterRecoveryPlan']['attachment']);
 		?>		
-		</td>
+		</td>		
+		<td><?php echo $this->Time->format('m/d/y g:i a', $disasterRecoveryPlan['DisasterRecoveryPlan']['created']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', $disasterRecoveryPlan['DisasterRecoveryPlan']['modified']); ?>&nbsp;</td>
+
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $disasterRecoveryPlan['DisasterRecoveryPlan']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $disasterRecoveryPlan['DisasterRecoveryPlan']['id'])); ?>

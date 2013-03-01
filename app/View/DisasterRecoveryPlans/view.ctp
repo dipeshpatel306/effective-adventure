@@ -1,6 +1,6 @@
 <?php
 $this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
-$this->Html->addCrumb('Diaster Recovery Plans', '/disaster_recovery_plans');
+$this->Html->addCrumb('Disaster Recovery Plans', '/disaster_recovery_plans');
 $this->Html->addCrumb($disasterRecoveryPlan['DisasterRecoveryPlan']['name']);
 
 // Conditionally load buttons based upon user role
@@ -10,6 +10,13 @@ $this->Html->addCrumb($disasterRecoveryPlan['DisasterRecoveryPlan']['name']);
 <div class="disasterRecoveryPlans view">
 <h2><?php  echo __('Disaster Recovery Plan'); ?></h2>
 	<dl>
+		<?php if($group == 1): ?>
+		<dt><?php echo __('Client'); ?></dt>
+		<dd>
+			<?php echo $this->Html->link($disasterRecoveryPlan['Client']['name'], array('controller' => 'clients', 'action' => 'view', $disasterRecoveryPlan['Client']['id'])); ?>
+			&nbsp;
+		</dd>
+		<?php endif; ?>		
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
 			<?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['name']); ?>
@@ -25,11 +32,7 @@ $this->Html->addCrumb($disasterRecoveryPlan['DisasterRecoveryPlan']['name']);
 			<?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['details']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Client'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($disasterRecoveryPlan['Client']['name'], array('controller' => 'clients', 'action' => 'view', $disasterRecoveryPlan['Client']['id'])); ?>
-			&nbsp;
-		</dd>
+
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
 			<?php echo $this->Time->format('m/d/y g:i a', $disasterRecoveryPlan['DisasterRecoveryPlan']['created']); ?>

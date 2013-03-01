@@ -9,7 +9,9 @@ $this->Html->addCrumb('Users');
 	<h2><?php echo __('Users'); ?></h2>
 	<table>
 	<tr>
+			<?php if($group == 1): ?>
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
+			<?php endif; ?>
 			<th><?php echo $this->Paginator->sort('last_name', 'Name'); ?></th>			
 			<th><?php echo $this->Paginator->sort('email'); ?></th>		
 			<th><?php echo $this->Paginator->sort('group_id'); ?></th>			
@@ -21,7 +23,9 @@ $this->Html->addCrumb('Users');
 	<?php
 	foreach ($users as $user): ?>
 	<tr>
+		<?php if($group == 1): ?>
 		<td><?php echo $this->Html->link($user['Client']['name'], array('controller' => 'clients', 'action' => 'view', $user['Client']['id'])); ?></td>		
+		<?php endif; ?>
 		<td><?php echo $user['User']['last_name'] . ', ' . $user['User']['first_name']; ?>&nbsp;</td>			
 		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
 		<td><?php echo $user['Group']['name']; ?></td>

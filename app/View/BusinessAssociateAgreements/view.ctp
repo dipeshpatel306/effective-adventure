@@ -10,6 +10,13 @@ $this->Html->addCrumb($businessAssociateAgreement['BusinessAssociateAgreement'][
 <div class="businessAssociateAgreements view">
 <h2><?php  echo __('Business Associate Agreement'); ?></h2>
 	<dl>
+		<?php if($group == 1): ?>
+		<dt><?php echo __('Client'); ?></dt>
+		<dd>
+			<?php echo $this->Html->link($businessAssociateAgreement['Client']['name'], array('controller' => 'clients', 'action' => 'view', $businessAssociateAgreement['Client']['id'])); ?>
+			&nbsp;
+		</dd>
+		<?php endif; ?>		
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
 			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['name']); ?>
@@ -38,11 +45,7 @@ $this->Html->addCrumb($businessAssociateAgreement['BusinessAssociateAgreement'][
 		?>	
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Client'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($businessAssociateAgreement['Client']['name'], array('controller' => 'clients', 'action' => 'view', $businessAssociateAgreement['Client']['id'])); ?>
-			&nbsp;
-		</dd>
+
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
 			<?php echo $this->Time->format('m/d/y g:i a', $businessAssociateAgreement['BusinessAssociateAgreement']['created']); ?>

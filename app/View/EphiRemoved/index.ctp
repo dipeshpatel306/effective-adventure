@@ -10,12 +10,15 @@ $this->Html->addCrumb('ePHI Removed');
 	<h2><?php echo __('Ephi Removed'); ?></h2>
 	<table>
 	<tr>
-			<th><?php echo $this->Paginator->sort('date'); ?></th>
+			<?php if($group == 1): ?>
+			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
+			<?php endif; ?>		
+			<th><?php echo $this->Paginator->sort('date', 'Removed Date/Time'); ?></th>
 			<th><?php echo $this->Paginator->sort('time'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th><?php echo $this->Paginator->sort('removed_by'); ?></th>
 			<th><?php echo $this->Paginator->sort('returned_by'); ?></th>
-			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
+
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -23,14 +26,18 @@ $this->Html->addCrumb('ePHI Removed');
 	<?php
 	foreach ($ephiRemoved as $ephiRemoved): ?>
 	<tr>
-		<td><?php echo $this->Time->format('m/d/y', $ephiRemoved['EphiRemoved']['date']); ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('g:i a', $ephiRemoved['EphiRemoved']['time']); ?>&nbsp;</td>
+		<?php if($group == 1): ?>
+		<td>
+			<?php echo $this->Html->link($ephiRemoved['Client']['name'], array('controller' => 'clients', 'action' => 'view', $ephiRemoved['Client']['id'])); ?>
+		</td>		
+		<?php endif; ?>
+		<td><?php echo $this->Time->format('m/d/y', $ephiRemoved['EphiRemoved']['date']) . ' ' . 
+				$this->Time->format('g:i a', $ephiRemoved['EphiRemoved']['time']);
+		?>&nbsp;</td>
 		<td><?php echo h($ephiRemoved['EphiRemoved']['description']); ?>&nbsp;</td>
 		<td><?php echo h($ephiRemoved['EphiRemoved']['removed_by']); ?>&nbsp;</td>
 		<td><?php echo h($ephiRemoved['EphiRemoved']['returned_by']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($ephiRemoved['Client']['name'], array('controller' => 'clients', 'action' => 'view', $ephiRemoved['Client']['id'])); ?>
-		</td>
+
 		<td><?php echo $this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemoved']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemoved']['modified']); ?>&nbsp;</td>
 		<td class="actions">

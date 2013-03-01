@@ -10,6 +10,13 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $serverRoomAccess['Serv
 <div class="serverRoomAccess view">
 <h2><?php  echo __('Server Room Access'); ?></h2>
 	<dl>
+		<?php if($group == 1): ?>
+		<dt><?php echo __('Client'); ?></dt>
+		<dd>
+			<?php echo $this->Html->link($serverRoomAccess['Client']['name'], array('controller' => 'clients', 'action' => 'view', $serverRoomAccess['Client']['id'])); ?>
+			&nbsp;
+		</dd>		
+		<?php endif; ?>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>
 			<?php echo h($serverRoomAccess['ServerRoomAccess']['id']); ?>
@@ -45,11 +52,7 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $serverRoomAccess['Serv
 			<?php echo h($serverRoomAccess['ServerRoomAccess']['notes']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Client'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($serverRoomAccess['Client']['name'], array('controller' => 'clients', 'action' => 'view', $serverRoomAccess['Client']['id'])); ?>
-			&nbsp;
-		</dd>
+
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
 			<?php echo $this->Time->format('m/d/y g:i a', $serverRoomAccess['ServerRoomAccess']['created']); ?>

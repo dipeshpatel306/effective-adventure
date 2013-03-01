@@ -10,7 +10,13 @@ $this->Html->addCrumb($riskAssessmentDocument['RiskAssessmentDocument']['name'])
 <div class="riskAssessmentDocuments view">
 <h2><?php  echo __('Risk Assessment Document'); ?></h2>
 	<dl>
-
+		<?php if ($group == 1): ?>
+		<dt><?php echo __('Client'); ?></dt>
+		<dd>
+			<?php echo $this->Html->link($riskAssessmentDocument['Client']['name'], array('controller' => 'clients', 'action' => 'view', $riskAssessmentDocument['Client']['id'])); ?>
+			&nbsp;
+		</dd>
+		<?php endif; ?>
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
 			<?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['name']); ?>
@@ -26,11 +32,7 @@ $this->Html->addCrumb($riskAssessmentDocument['RiskAssessmentDocument']['name'])
 			<?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['details']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Client'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($riskAssessmentDocument['Client']['name'], array('controller' => 'clients', 'action' => 'view', $riskAssessmentDocument['Client']['id'])); ?>
-			&nbsp;
-		</dd>
+
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
 			<?php echo $this->Time->format('m/d/y g:i a', $riskAssessmentDocument['RiskAssessmentDocument']['created']); ?>

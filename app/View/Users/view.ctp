@@ -9,11 +9,13 @@ $this->Html->addCrumb($user['User']['email']);
 <div class="users view">
 <h2><?php  echo __('User'); ?></h2>
 	<dl>
+		<?php if($group == 1): ?>
 		<dt><?php echo __('Client'); ?></dt>
 		<dd>
 			<?php echo $this->Html->link($user['Client']['name'], array('controller' => 'clients', 'action' => 'view', $user['Client']['id'])); ?>
 			&nbsp;
 		</dd>		
+		<?php endif; ?>
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
 			<?php echo ($user['User']['first_name'] . ' ' . $user['User']['last_name']); ?>

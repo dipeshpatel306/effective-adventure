@@ -12,6 +12,13 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 <div class="policiesAndProcedures view">
 <h2><?php  echo __('Policies And Procedure'); ?></h2>
 	<dl>
+		<?php if($group == 1): ?>
+		<dt><?php echo __('Client'); ?></dt>
+		<dd>
+			<?php echo $this->Html->link($policiesAndProcedure['Client']['name'], array('controller' => 'clients', 'action' => 'view', $policiesAndProcedure['Client']['id'])); ?>
+			&nbsp;
+		</dd>		
+		<?php endif; ?>
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
 			<?php echo h($policiesAndProcedure['PoliciesAndProcedure']['name']); ?>
@@ -27,11 +34,7 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 			<?php echo h($policiesAndProcedure['PoliciesAndProcedure']['details']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Client'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($policiesAndProcedure['Client']['name'], array('controller' => 'clients', 'action' => 'view', $policiesAndProcedure['Client']['id'])); ?>
-			&nbsp;
-		</dd>
+
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
 			<?php echo $this->Time->format('m/d/y g:i a',$policiesAndProcedure['PoliciesAndProcedure']['created']); ?>

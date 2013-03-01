@@ -10,6 +10,13 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemov
 <div class="ephiRemoved view">
 <h2><?php  echo __('Ephi Removed'); ?></h2>
 	<dl>
+		<?php if($group == 1): ?>
+		<dt><?php echo __('Client'); ?></dt>
+		<dd>
+			<?php echo $this->Html->link($ephiRemoved['Client']['name'], array('controller' => 'clients', 'action' => 'view', $ephiRemoved['Client']['id'])); ?>
+			&nbsp;
+		</dd>		
+		<?php endif; ?>
 		<dt><?php echo __('Date'); ?></dt>
 		<dd>
 			<?php echo $this->Time->format('m/d/y', $ephiRemoved['EphiRemoved']['date']); ?>
@@ -35,11 +42,7 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemov
 			<?php echo h($ephiRemoved['EphiRemoved']['returned_by']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Client'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($ephiRemoved['Client']['name'], array('controller' => 'clients', 'action' => 'view', $ephiRemoved['Client']['id'])); ?>
-			&nbsp;
-		</dd>
+
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
 			<?php echo $this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemoved']['created']); ?>

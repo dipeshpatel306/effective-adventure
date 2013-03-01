@@ -10,13 +10,15 @@ $this->Html->addCrumb('Server Room Access');
 	<h2><?php echo __('Server Room Access'); ?></h2>
 	<table>
 	<tr>
-			<th><?php echo $this->Paginator->sort('date'); ?></th>
-			<th><?php echo $this->Paginator->sort('time'); ?></th>
+			<?php if($group == 1): ?>
+			<th><?php echo $this->Paginator->sort('client_id'); ?></th>		
+			<?php endif; ?>
+			<th><?php echo $this->Paginator->sort('date', 'Date/Time'); ?></th>
 			<th><?php echo $this->Paginator->sort('person'); ?></th>
 			<th><?php echo $this->Paginator->sort('company'); ?></th>
 			<!--<th><?php echo $this->Paginator->sort('reason'); ?></th>
 			<th><?php echo $this->Paginator->sort('notes'); ?></th>-->
-			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
+
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -24,15 +26,20 @@ $this->Html->addCrumb('Server Room Access');
 	<?php
 	foreach ($serverRoomAccess as $serverRoomAccess): ?>
 	<tr>
-		<td><?php echo $this->Time->format('m/d/y', $serverRoomAccess['ServerRoomAccess']['date']); ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('g:i a', $serverRoomAccess['ServerRoomAccess']['time']); ?>&nbsp;</td>
+		<?php if($group == 1): ?>
+		<td>
+			<?php echo $this->Html->link($serverRoomAccess['Client']['name'], array('controller' => 'clients', 'action' => 'view', $serverRoomAccess['Client']['id'])); ?>
+		</td>			
+		<?php endif; ?>
+		<td><?php echo $this->Time->format('m/d/y', $serverRoomAccess['ServerRoomAccess']['date']) . ' ' .
+				$this->Time->format('g:i a', $serverRoomAccess['ServerRoomAccess']['time']);
+			 ?>&nbsp;</td>
+
 		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['person']); ?>&nbsp;</td>
 		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['company']); ?>&nbsp;</td>
 		<!--<td><?php echo h($serverRoomAccess['ServerRoomAccess']['reason']); ?>&nbsp;</td>
 		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['notes']); ?>&nbsp;</td>-->
-		<td>
-			<?php echo $this->Html->link($serverRoomAccess['Client']['name'], array('controller' => 'clients', 'action' => 'view', $serverRoomAccess['Client']['id'])); ?>
-		</td>
+
 		<td><?php echo $this->Time->format('m/d/y g:i a', $serverRoomAccess['ServerRoomAccess']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $serverRoomAccess['ServerRoomAccess']['modified']); ?>&nbsp;</td>
 		<td class="actions">

@@ -1,4 +1,5 @@
 <?php
+$this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
 $this->Html->addCrumb('Other Contracts & Documents', '/other_contracts_and_documents');
 $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['name']);
 
@@ -10,6 +11,13 @@ $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['n
 <div class="otherContractsAndDocuments view">
 <h2><?php  echo __('Other Contracts And Documents'); ?></h2>
 	<dl>
+		<?php if($group == 1): ?>
+		<dt><?php echo __('Client'); ?></dt>
+		<dd>
+			<?php echo $this->Html->link($otherContractsAndDocument['Client']['name'], array('controller' => 'clients', 'action' => 'view', $otherContractsAndDocument['Client']['id'])); ?>
+			&nbsp;
+		</dd>		
+		<?php endif; ?>
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
 			<?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['name']); ?>
@@ -25,11 +33,7 @@ $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['n
 			<?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['details']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Client'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($otherContractsAndDocument['Client']['name'], array('controller' => 'clients', 'action' => 'view', $otherContractsAndDocument['Client']['id'])); ?>
-			&nbsp;
-		</dd>
+
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
 			<?php echo $this->Time->format('m/d/y g:i a', $otherContractsAndDocument['OtherContractsAndDocument']['created']); ?>
