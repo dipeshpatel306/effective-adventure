@@ -17,7 +17,7 @@ $this->Html->addCrumb('Edit Business Associate Agreement');
 		echo $this->Form->input('name');
 		echo $this->Form->input('email');
 		echo $this->Form->input('phone');
-		echo $this->Form->input('attachment', array('type' => 'file'));
+		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Attachment - (pdf, doc, docx, dot files only)'));
 		
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
 		if($client == 1){  // if admin allow to choose

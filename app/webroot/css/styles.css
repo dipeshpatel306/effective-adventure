@@ -9,8 +9,8 @@ body {
 }
 body{
 	background-color: #ffffff;
-	background-image:url('../img/bg_dot.png');
-	background-repeat: repeat;
+	/*background-image:url('../img/bg_dot.png');
+	background-repeat: repeat;*/
 	color: #666666;
 	font-family: 'Open Sans', Helvetica, Arial, "Lucida Grande", sans-serif;
 }
@@ -153,13 +153,13 @@ a.logoutLink{
 }
 /* ##### Body Content ##### */
 #content{
-	/*background-image:url('../img/bg_dot.png');
-	background-repeat: repeat;*/
+	background-image:url('../img/bg_dot.png');
+	background-repeat: repeat;
 	/*width: 960px;*/
 	margin-left: auto;
 	margin-right: auto;
 	padding-bottom: 0;
-	background: none;
+	/*background: none;*/
 	/*outline: 1px dotted #333333;*/
 }
 .loginBox{

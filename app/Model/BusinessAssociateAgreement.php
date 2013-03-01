@@ -130,15 +130,13 @@ class BusinessAssociateAgreement extends AppModel {
 			)
 		),
 		'Uploader.FileValidation' => array(
-			'file' => array(
+			'attachment' => array(
 				'extension' => array(
-				
-					'value' => array('doc', 'dot', 'docx', 'pdf'),
-					'error' => 'Only Pdf, Doc, and Docx file formats are supported!'
+					'value' => array('doc', 'docx', 'dot', 'pdf'),
+					'error'	=> 'File must me .pdf, .doc, .docx or .dot'
 				)
 			)
-		
-		)		
+		)	
 	);
 
 /**

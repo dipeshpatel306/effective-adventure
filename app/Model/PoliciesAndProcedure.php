@@ -87,7 +87,15 @@ class PoliciesAndProcedure extends AppModel {
 					'filesize' => ''
 				)
 			)
-		)
+		),
+		'Uploader.FileValidation' => array(
+			'attachment' => array(
+				'extension' => array(
+					'value' => array('doc', 'docx', 'dot', 'pdf'),
+					'error'	=> 'File must me .pdf, .doc, .docx or .dot'
+				)
+			)
+		)		
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed	
