@@ -154,6 +154,11 @@ class EphiRemovedController extends AppController {
 		if (!$this->EphiRemoved->exists()) {
 			throw new NotFoundException(__('Invalid ephi removed'));
 		}
+		// If user is a client automatically set the client id accordingly. Admin can change client ids
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		if($group != 1){
+			$this->request->data['EphiRemoved']['client_id'] = $this->Auth->User('client_id');
+		}		
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->EphiRemoved->save($this->request->data)) {
 				$this->Session->setFlash('The ephi removed has been saved', 'default', array('class' => 'success message'));

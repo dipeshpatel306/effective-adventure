@@ -124,9 +124,15 @@ class OtherPoliciesAndProceduresController extends AppController {
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 			if($group != 1){
 				$this->request->data['OtherPoliciesAndProcedure']['client_id'] = $this->Auth->User('client_id');
+				$this->request->data['OtherPoliciesAndProcedure']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key				
+			} else {
+				$this->loadModel('Client');
+				$key = $this->Client->find('first', array('conditions' => array(
+							'Client.id' => $this->request->data['OtherPoliciesAndProcedure']['client_id']),
+							'fields' => 'Client.file_key'
+							));
+				$this->request->data['OtherPoliciesAndProcedure']['file_key'] = $key['Client']['file_key'];
 			}	
-
-			$this->request->data['OtherPoliciesAndProcedure']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key	
 			
 			$this->OtherPoliciesAndProcedure->create();
 			if ($this->OtherPoliciesAndProcedure->save($this->request->data)) {
@@ -152,8 +158,18 @@ class OtherPoliciesAndProceduresController extends AppController {
 		if (!$this->OtherPoliciesAndProcedure->exists()) {
 			throw new NotFoundException(__('Invalid other policies and procedure'));
 		}
-		
-		//$this->request->data['OtherPoliciesAndProcedure']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key	
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin? 		
+		if($group != 1){
+			$this->request->data['OtherPoliciesAndProcedure']['client_id'] = $this->Auth->User('client_id');
+			$this->request->data['OtherPoliciesAndProcedure']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key	
+		} else {
+				$this->loadModel('Client');
+				$key = $this->Client->find('first', array('conditions' => array(
+							'Client.id' => $this->request->data['OtherPoliciesAndProcedure']['client_id']),
+							'fields' => 'Client.file_key'
+							));
+				$this->request->data['OtherPoliciesAndProcedure']['file_key'] = $key['Client']['file_key'];
+		}	
 					
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->OtherPoliciesAndProcedure->save($this->request->data)) {

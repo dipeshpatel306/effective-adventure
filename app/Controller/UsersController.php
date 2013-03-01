@@ -312,7 +312,7 @@ class UsersController extends AppController {
 			
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 			if($group != 1){
-				//$this->request->data['User']['client_id'] = $this->Auth->User('client_id'); 
+				$this->request->data['User']['client_id'] = $this->Auth->User('client_id'); 
 				
 				if($this->request->data['User']['group_id'] == 1){  // If client tries to spoof Hipaa admin group redirect them
 					$this->redirect(array('action' => 'index'));

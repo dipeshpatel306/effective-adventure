@@ -129,7 +129,6 @@ $this->Html->addCrumb($client['Client']['name']);
 	<table>
 	<tr>
 		<th><?php echo __('Name'); ?></th>
-		<th><?php echo __('Description'); ?></th> 
 		<th><?php echo __('Attachment'); ?></th>	
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
@@ -141,8 +140,6 @@ $this->Html->addCrumb($client['Client']['name']);
 		foreach ($client['PoliciesAndProcedure'] as $pnp): ?>
 		<tr>
 			<td><?php echo $pnp['name']; ?></td>
-
-			<td><?php echo $pnp['description']; ?></td>
 			<td><?php echo $pnp['attachment']; ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $pnp['created']); ?></td>			
 			<td><?php echo $this->Time->format('m/d/y g:i a', $pnp['modified']); ?></td>
@@ -172,7 +169,6 @@ $this->Html->addCrumb($client['Client']['name']);
 	<table>
 	<tr>
 		<th><?php echo __('Name'); ?></th>
-		<th><?php echo __('Description'); ?></th> 
 		<th><?php echo __('Attachment'); ?></th>	
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
@@ -185,7 +181,6 @@ $this->Html->addCrumb($client['Client']['name']);
 		<tr>
 			<td><?php echo $opnp['name']; ?></td>
 
-			<td><?php echo $opnp['description']; ?></td>
 			<td><?php echo $opnp['attachment']; ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $opnp['created']); ?></td>			
 			<td><?php echo $this->Time->format('m/d/y g:i a', $opnp['modified']); ?></td>
@@ -215,7 +210,6 @@ $this->Html->addCrumb($client['Client']['name']);
 	<table>
 	<tr>
 		<th><?php echo __('Name'); ?></th>
-		<th><?php echo __('Description'); ?></th> 
 		<th><?php echo __('Attachment'); ?></th>	
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
@@ -227,8 +221,6 @@ $this->Html->addCrumb($client['Client']['name']);
 		foreach ($client['RiskAssessmentDocument'] as $rad): ?>
 		<tr>
 			<td><?php echo $rad['name']; ?></td>
-
-			<td><?php echo $rad['description']; ?></td>
 			<td><?php echo $rad['attachment']; ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $rad['created']); ?></td>			
 			<td><?php echo $this->Time->format('m/d/y g:i a', $rad['modified']); ?></td>
@@ -301,7 +293,6 @@ $this->Html->addCrumb($client['Client']['name']);
 	<table>
 	<tr>
 		<th><?php echo __('Name'); ?></th>
-		<th><?php echo __('Description'); ?></th> 
 		<th><?php echo __('Attachment'); ?></th> 
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
@@ -313,7 +304,6 @@ $this->Html->addCrumb($client['Client']['name']);
 		foreach ($client['DisasterRecoveryPlan'] as $drp): ?>
 		<tr>
 			<td><?php echo $drp['name']; ?></td>
-			<td><?php echo $drp['description']; ?></td>
 			<td><?php echo $drp['attachment']; ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $drp['created']); ?></td>			
 			<td><?php echo $this->Time->format('m/d/y g:i a', $drp['modified']); ?></td>
@@ -338,12 +328,11 @@ $this->Html->addCrumb($client['Client']['name']);
 <div class="related">
 	<h3><?php echo __('Other Contracts & Documents'); ?></h3>
 
-	<?php if (!empty($client['OtherContractsAndDocuments'])): ?>
+	<?php if (!empty($client['OtherContractsAndDocument'])): ?>
 		
 	<table>
 	<tr>
 		<th><?php echo __('Name'); ?></th>
-		<th><?php echo __('Description'); ?></th> 
 		<th><?php echo __('Attachment'); ?></th> 
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
@@ -352,10 +341,9 @@ $this->Html->addCrumb($client['Client']['name']);
 	
 	<?php
 		$i = 0;
-		foreach ($client['OtherContractsAndDocuments'] as $ocad): ?>
+		foreach ($client['OtherContractsAndDocument'] as $ocad): ?>
 		<tr>
 			<td><?php echo $ocad['name']; ?></td>
-			<td><?php echo $ocad['description']; ?></td>
 			<td><?php echo $ocad['attachment']; ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $ocad['created']); ?></td>			
 			<td><?php echo $this->Time->format('m/d/y g:i a', $ocad['modified']); ?></td>
@@ -412,7 +400,7 @@ $this->Html->addCrumb($client['Client']['name']);
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Security Incident'), array('controller' => 'SecurityIncident', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Security Incident'), array('controller' => 'SecurityIncidents', 'action' => 'add')); ?> </li>
 		</ul>
 	</div>	
 </div>
@@ -513,7 +501,6 @@ $this->Html->addCrumb($client['Client']['name']);
 		<th><?php echo __('Date received'); ?></th>
 		<th><?php echo __('Time received'); ?></th> 
 		<th><?php echo __('Patient Name'); ?></th> 
-		<th><?php echo __('Description'); ?></th> 
 		<th><?php echo __('received By'); ?></th> 
 		<th><?php echo __('Date Returned'); ?></th>
 		<th><?php echo __('Time Returned'); ?></th>
@@ -526,7 +513,7 @@ $this->Html->addCrumb($client['Client']['name']);
 		<tr>
 			<td><?php echo $this->Time->format('m/d/y', $erc['date_received']); ?></td>
 			<td><?php echo $this->Time->format('g:i a', $erc['time_received']); ?></td>
-			<td><?php echo $erc['description']; ?></td>
+			<td><?php echo $erc['patient_name']; ?></td>
 			<td><?php echo $erc['received_by']; ?></td>
 			<td><?php echo $this->Time->format('m/d/y', $erc['date_returned']); ?></td>
 			<td><?php echo $this->Time->format('g:i a', $erc['time_returned']); ?></td>

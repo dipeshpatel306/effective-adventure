@@ -141,10 +141,16 @@ class PoliciesAndProceduresController extends AppController {
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 			if($group != 1){
 				$this->request->data['PoliciesAndProcedure']['client_id'] = $this->Auth->User('client_id');
+				$this->request->data['PoliciesAndProcedure']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key					
+			} else {
+				$this->loadModel('Client');
+				$key = $this->Client->find('first', array('conditions' => array(
+							'Client.id' => $this->request->data['PoliciesAndProcedure']['client_id']),
+							'fields' => 'Client.file_key'
+							));
+				$this->request->data['PoliciesAndProcedure']['file_key'] = $key['Client']['file_key'];
 			}				
 			
-			$this->request->data['PoliciesAndProcedure']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key		
-
 			$this->PoliciesAndProcedure->create();
 			if ($this->PoliciesAndProcedure->save($this->request->data)) {
 				$this->Session->setFlash('The policy and procedure has been saved', 'default', array('class' => 'success message'));
@@ -170,7 +176,19 @@ class PoliciesAndProceduresController extends AppController {
 		if (!$this->PoliciesAndProcedure->exists()) {
 			throw new NotFoundException(__('Invalid policies and procedure'));
 		}
-		$this->request->data['PoliciesAndProcedure']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key			
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin? 
+		if($group != 1){
+			$this->request->data['PoliciesAndProcedure']['client_id'] = $this->Auth->User('client_id');			
+			$this->request->data['PoliciesAndProcedure']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key			
+		} else {
+				$this->loadModel('Client');
+				$key = $this->Client->find('first', array('conditions' => array(
+							'Client.id' => $this->request->data['PoliciesAndProcedure']['client_id']),
+							'fields' => 'Client.file_key'
+							));
+				$this->request->data['PoliciesAndProcedure']['file_key'] = $key['Client']['file_key'];
+		}
+			
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->PoliciesAndProcedure->save($this->request->data)) {
 				$this->Session->setFlash('The policies and procedure has been saved', 'default', array('class' => 'success message'));

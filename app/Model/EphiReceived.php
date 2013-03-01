@@ -68,8 +68,8 @@ class EphiReceived extends AppModel {
 			),
 		),
 		'date_returned' => array(
-			'datetime' => array(
-				'rule' => array('datetime'),
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

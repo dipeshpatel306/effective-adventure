@@ -119,6 +119,12 @@ class RiskAssessmentsController extends AppController {
 		if (!$this->RiskAssessment->exists()) {
 			throw new NotFoundException(__('Invalid risk assessment'));
 		}
+		// If user is a client automatically set the client id accordingly. Admin can change client ids
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		if($group != 1){
+			$this->request->data['RiskAssessment']['client_id'] = $this->Auth->User('client_id');
+		}	
+							
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->RiskAssessment->save($this->request->data)) {
 				$this->Session->setFlash('The risk assessment has been saved', 'default', array('class' => 'success message'));

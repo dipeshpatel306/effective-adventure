@@ -120,10 +120,16 @@ class BusinessAssociateAgreementsController extends AppController {
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 			if($group != 1){
 				$this->request->data['BusinessAssociateAgreement']['client_id'] = $this->Auth->User('client_id');
+				$this->request->data['BusinessAssociateAgreement']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
+			} else {
+				$this->loadModel('Client');
+				$key = $this->Client->find('first', array('conditions' => array(
+							'Client.id' => $this->request->data['BusinessAssociateAgreement']['client_id']),
+							'fields' => 'Client.file_key'
+							));
+				$this->request->data['BusinessAssociateAgreement']['file_key'] = $key['Client']['file_key'];
 			}
-			
-			$this->request->data['BusinessAssociateAgreement']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
-			
+		
 			$this->BusinessAssociateAgreement->create();
 			if ($this->BusinessAssociateAgreement->save($this->request->data)) {
 				$this->Session->setFlash('The business associate agreement has been saved', 'default', array('class' => 'success message'));
@@ -148,8 +154,19 @@ class BusinessAssociateAgreementsController extends AppController {
 		if (!$this->BusinessAssociateAgreement->exists()) {
 			throw new NotFoundException(__('Invalid business associate agreement'));
 		}
-		$this->request->data['BusinessAssociateAgreement']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
-		
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		if($group != 1){
+			$this->request->data['BusinessAssociateAgreement']['client_id'] = $this->Auth->User('client_id');			
+			$this->request->data['BusinessAssociateAgreement']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
+		}else {
+				$this->loadModel('Client');
+				$key = $this->Client->find('first', array('conditions' => array(
+							'Client.id' => $this->request->data['BusinessAssociateAgreement']['client_id']),
+							'fields' => 'Client.file_key'
+							));
+				$this->request->data['BusinessAssociateAgreement']['file_key'] = $key['Client']['file_key'];
+		}
+
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->BusinessAssociateAgreement->save($this->request->data)) {
 				$this->Session->setFlash('The business associate agreement has been saved', 'default', array('class' => 'success message'));

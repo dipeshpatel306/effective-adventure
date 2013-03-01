@@ -120,10 +120,16 @@ class RiskAssessmentDocumentsController extends AppController {
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 			if($group != 1){
 				$this->request->data['RiskAssessmentDocument']['client_id'] = $this->Auth->User('client_id');
+				$this->request->data['RiskAssessmentDocument']['file_key'] = $this->Session->read('Auth.User.Client.file_key');	// file key					
+			} else {
+				$this->loadModel('Client');
+				$key = $this->Client->find('first', array('conditions' => array(
+							'Client.id' => $this->request->data['RiskAssessmentDocument']['client_id']),
+							'fields' => 'Client.file_key'
+							));
+				$this->request->data['RiskAssessmentDocument']['file_key'] = $key['Client']['file_key'];
 			}	
-			
-			$this->request->data['RiskAssessmentDocument']['file_key'] = $this->Session->read('Auth.User.Client.file_key');	// file key	
-				
+		
 			$this->RiskAssessmentDocument->create();
 			if ($this->RiskAssessmentDocument->save($this->request->data)) {
 				$this->Session->setFlash('The risk assessment document has been saved', 'default', array('class' => 'success message'));
@@ -148,9 +154,19 @@ class RiskAssessmentDocumentsController extends AppController {
 		if (!$this->RiskAssessmentDocument->exists()) {
 			throw new NotFoundException(__('Invalid risk assessment document'));
 		}
-		
-		$this->request->data['RiskAssessmentDocument']['file_key'] = $this->Session->read('Auth.User.Client.file_key');	// file key	
-					
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin? 
+		if($group != 1){
+			$this->request->data['RiskAssessmentDocument']['client_id'] = $this->Auth->User('client_id');			
+			$this->request->data['RiskAssessmentDocument']['file_key'] = $this->Session->read('Auth.User.Client.file_key');	// file key				
+		} else {
+				$this->loadModel('Client');
+				$key = $this->Client->find('first', array('conditions' => array(
+							'Client.id' => $this->request->data['RiskAssessmentDocument']['client_id']),
+							'fields' => 'Client.file_key'
+							));
+				$this->request->data['RiskAssessmentDocument']['file_key'] = $key['Client']['file_key'];
+		}	
+
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->RiskAssessmentDocument->save($this->request->data)) {
 				$this->Session->setFlash('The risk assessment document has been saved', 'default', array('class' => 'success message'));

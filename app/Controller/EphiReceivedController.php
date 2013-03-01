@@ -152,6 +152,11 @@ class EphiReceivedController extends AppController {
 		if (!$this->EphiReceived->exists()) {
 			throw new NotFoundException(__('Invalid ephi received'));
 		}
+		// If user is a client automatically set the client id accordingly. Admin can change client ids
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		if($group != 1){
+			$this->request->data['EphiReceived']['client_id'] = $this->Auth->User('client_id');
+		}			
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->EphiReceived->save($this->request->data)) {
 				$this->Session->setFlash('The ephi received has been saved', 'default', array('class' => 'success message'));
