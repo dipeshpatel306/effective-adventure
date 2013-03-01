@@ -91,7 +91,7 @@ class SecurityIncident extends AppModel {
 /**
  * Check Client Owner
  */	
-	public function isOwnedBy($id, $user){
-		return $this->field('id', array($id, 'client_id' => $user)) === $id;
+	public function isOwnedBy($id, $client){
+		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;	
 	}
 }

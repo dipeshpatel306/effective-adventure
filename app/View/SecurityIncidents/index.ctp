@@ -17,8 +17,6 @@ $this->Html->addCrumb('Security Incidents');
 			<th><?php echo $this->Paginator->sort('discovery_date', 'Discovery Date/Time'); ?></th>
 			<th><?php echo $this->Paginator->sort('reported_by'); ?></th>
 			<th><?php echo $this->Paginator->sort('description_of_incident'); ?></th>
-			<!--<th><?php echo $this->Paginator->sort('cause_of_incident'); ?></th>
-			<th><?php echo $this->Paginator->sort('assets_involved'); ?></th>-->
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 
@@ -32,20 +30,18 @@ $this->Html->addCrumb('Security Incidents');
 			<?php echo $this->Html->link($securityIncident['Client']['name'], array('controller' => 'clients', 'action' => 'view', $securityIncident['Client']['id'])); ?>
 		</td>
 		<?php endif; ?>
+		
 		<td>
 		<?php echo $this->Time->format('m/d/y', $securityIncident['SecurityIncident']['date_of_incident']) . ' ' . 
 				$this->Time->format('g:i a', $securityIncident['SecurityIncident']['time_of_incident']);
-		?>&nbsp;
-		</td>
-		<!--<td><?php echo $this->Time->format('g:i a', $securityIncident['SecurityIncident']['time_of_incident']); ?>&nbsp;</td>-->
-		
+		?>&nbsp;</td>
 		<td>
 		<?php echo $this->Time->format('m/d/y', $securityIncident['SecurityIncident']['discovery_date']) . ' ' .
 				$this->Time->format('g:i a', $securityIncident['SecurityIncident']['discovery_time']); 
 		?>&nbsp;</td>
 		<td><?php echo h($securityIncident['SecurityIncident']['reported_by']); ?>&nbsp;</td>
 		<td><?php echo h($securityIncident['SecurityIncident']['description_of_incident']); ?>&nbsp;</td>
-		<!--<td><?php echo h($securityIncident['SecurityIncident']['cause_of_incident']); ?>&nbsp;</td>-->-->
+		<!--<td><?php echo h($securityIncident['SecurityIncident']['cause_of_incident']); ?>&nbsp;</td>-->
 		<!--<td><?php echo h($securityIncident['SecurityIncident']['assets_involved']); ?>&nbsp;</td>-->
 		<td><?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['modified']); ?>&nbsp;</td>

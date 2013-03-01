@@ -146,15 +146,19 @@ class BusinessAssociateAgreement extends AppModel {
 public function beforeUpload($options){ 
 	
 	$client = $this->data['BusinessAssociateAgreement']['client_id']; // check client id
-	$options['uploadDir'] = '/documents/business_associate_agreements/' . $client . '/' ;
+	
+	$key = $this->data['BusinessAssociateAgreement']['file_key'];
+	
+	$options['uploadDir'] = "/documents/business_associate_agreements/$client/$key/" ;
 	return $options;
 }
 
 /**
  * Check Client Owner
  */	
-	public function isOwnedBy($id, $user){
-		return $this->field('id', array($id, 'client_id' => $user)) === $id;
+	public function isOwnedBy($id, $client){
+		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
+		
 	}
 
 }

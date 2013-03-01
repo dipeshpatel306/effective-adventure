@@ -142,6 +142,8 @@ class PoliciesAndProceduresController extends AppController {
 			if($group != 1){
 				$this->request->data['PoliciesAndProcedure']['client_id'] = $this->Auth->User('client_id');
 			}				
+			
+			$this->request->data['PoliciesAndProcedure']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key		
 
 			$this->PoliciesAndProcedure->create();
 			if ($this->PoliciesAndProcedure->save($this->request->data)) {
@@ -168,6 +170,7 @@ class PoliciesAndProceduresController extends AppController {
 		if (!$this->PoliciesAndProcedure->exists()) {
 			throw new NotFoundException(__('Invalid policies and procedure'));
 		}
+		$this->request->data['PoliciesAndProcedure']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key			
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->PoliciesAndProcedure->save($this->request->data)) {
 				$this->Session->setFlash('The policies and procedure has been saved', 'default', array('class' => 'success message'));

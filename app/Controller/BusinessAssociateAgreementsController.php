@@ -122,6 +122,8 @@ class BusinessAssociateAgreementsController extends AppController {
 				$this->request->data['BusinessAssociateAgreement']['client_id'] = $this->Auth->User('client_id');
 			}
 			
+			$this->request->data['BusinessAssociateAgreement']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
+			
 			$this->BusinessAssociateAgreement->create();
 			if ($this->BusinessAssociateAgreement->save($this->request->data)) {
 				$this->Session->setFlash('The business associate agreement has been saved', 'default', array('class' => 'success message'));
@@ -146,6 +148,8 @@ class BusinessAssociateAgreementsController extends AppController {
 		if (!$this->BusinessAssociateAgreement->exists()) {
 			throw new NotFoundException(__('Invalid business associate agreement'));
 		}
+		$this->request->data['BusinessAssociateAgreement']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
+		
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->BusinessAssociateAgreement->save($this->request->data)) {
 				$this->Session->setFlash('The business associate agreement has been saved', 'default', array('class' => 'success message'));

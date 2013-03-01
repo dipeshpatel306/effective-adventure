@@ -105,9 +105,9 @@ class OtherPoliciesAndProcedure extends AppModel {
  * 
  */
 public function beforeUpload($options){ 
-	
+	$key = $this->data['OtherPoliciesAndProcedure']['file_key'];	
 	$client = $this->data['OtherPoliciesAndProcedure']['client_id']; // check client id
-	$options['uploadDir'] = '/documents/other_policies_and_procedures/' . $client . '/' ;
+	$options['uploadDir'] = "/documents/other_policies_and_procedures/$client/$key/" ;
 	return $options;
 }
 
@@ -115,6 +115,7 @@ public function beforeUpload($options){
  * Check Client Owner
  */	
 	public function isOwnedBy($id, $client){
-		return $this->field('id', array($id, 'client_id' => $client)) === $id;
+		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
+		
 	}
 }

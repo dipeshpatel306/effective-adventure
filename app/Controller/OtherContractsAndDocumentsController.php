@@ -123,6 +123,15 @@ class OtherContractsAndDocumentsController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+			
+			// If user is a client automatically set the client id accordingly. Admin can change client ids
+			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+			if($group != 1){
+				$this->request->data['OtherContractsAndDocument']['client_id'] = $this->Auth->User('client_id');
+			}	
+
+			$this->request->data['OtherContractsAndDocument']['file_key'] = $this->Session->read('Auth.User.Client.file_key');	// file key	
+						
 			$this->OtherContractsAndDocument->create();
 			if ($this->OtherContractsAndDocument->save($this->request->data)) {
 				$this->Session->setFlash('The other contracts and document has been saved', 'default', array('class' => 'success message'));
@@ -147,6 +156,7 @@ class OtherContractsAndDocumentsController extends AppController {
 		if (!$this->OtherContractsAndDocument->exists()) {
 			throw new NotFoundException(__('Invalid other contracts and document'));
 		}
+		$this->request->data['OtherContractsAndDocument']['file_key'] = $this->Session->read('Auth.User.Client.file_key');	// file key	
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->OtherContractsAndDocument->save($this->request->data)) {
 				$this->Session->setFlash('The other contracts and document has been saved', 'default', array('class' => 'success message'));

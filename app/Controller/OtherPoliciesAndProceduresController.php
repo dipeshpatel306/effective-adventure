@@ -32,16 +32,18 @@ class OtherPoliciesAndProceduresController extends AppController {
 			if(in_array($this->action, array('edit', 'delete'))){ // Allow Managers to Edit, delete their own
 				$id = $this->request->params['pass'][0];
 				if($this->OtherPoliciesAndProcedure->isOwnedBy($id, $client)){
+					($this->OtherPoliciesAndProcedure->isOwnedBy($id, $client));
 					return true;
-				}	
-			}		
+				}
+				
+			}	
 		}
 
 		if($group == 3){
 			if(in_array($this->action, array('index', 'view'))){  
 				return true;
 			}	
-		}	
+		}
 
 		return parent::isAuthorized($user);
  	}
@@ -123,6 +125,9 @@ class OtherPoliciesAndProceduresController extends AppController {
 			if($group != 1){
 				$this->request->data['OtherPoliciesAndProcedure']['client_id'] = $this->Auth->User('client_id');
 			}	
+
+			$this->request->data['OtherPoliciesAndProcedure']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key	
+			
 			$this->OtherPoliciesAndProcedure->create();
 			if ($this->OtherPoliciesAndProcedure->save($this->request->data)) {
 				$this->Session->setFlash('The other policies and procedure has been saved', 'default', array('class' => 'success message'));
@@ -147,6 +152,9 @@ class OtherPoliciesAndProceduresController extends AppController {
 		if (!$this->OtherPoliciesAndProcedure->exists()) {
 			throw new NotFoundException(__('Invalid other policies and procedure'));
 		}
+		
+		//$this->request->data['OtherPoliciesAndProcedure']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key	
+					
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->OtherPoliciesAndProcedure->save($this->request->data)) {
 				$this->Session->setFlash('The other policies and procedure has been saved', 'default', array('class' => 'success message'));
@@ -160,6 +168,7 @@ class OtherPoliciesAndProceduresController extends AppController {
 		$clients = $this->OtherPoliciesAndProcedure->Client->find('list');
 		$this->set(compact('clients'));
 	}
+
 
 /**
  * delete method

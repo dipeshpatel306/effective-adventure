@@ -95,6 +95,16 @@ table tr:nth-child(odd) {
 table tr:nth-child(2n) {
     background: #ffffff;
 }
+dl{
+	width: 70%;
+}
+
+dt{
+	width: 15em;
+}
+dd{
+	margin-left: 15em;
+}
 dl dt:nth-of-type(odd), dl dd:nth-of-type(odd) {
     background: #F5F9FD;
 }

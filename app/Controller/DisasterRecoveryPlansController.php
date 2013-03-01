@@ -130,7 +130,8 @@ class DisasterRecoveryPlansController extends AppController {
 			if($group != 1){
 				$this->request->data['DisasterRecoveryPlan']['client_id'] = $this->Auth->User('client_id');
 			}			
-			
+			$this->request->data['DisasterRecoveryPlan']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
+						
 			$this->DisasterRecoveryPlan->create();
 			if ($this->DisasterRecoveryPlan->save($this->request->data)) {
 				$this->Session->setFlash('The disaster recovery plan has been saved', 'default', array('class' => 'success message'));
@@ -155,6 +156,7 @@ class DisasterRecoveryPlansController extends AppController {
 		if (!$this->DisasterRecoveryPlan->exists()) {
 			throw new NotFoundException(__('Invalid disaster recovery plan'));
 		}
+		$this->request->data['DisasterRecoveryPlan']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->DisasterRecoveryPlan->save($this->request->data)) {
 				$this->Session->setFlash('The disaster recovery plan has been saved', 'default', array('class' => 'success message'));

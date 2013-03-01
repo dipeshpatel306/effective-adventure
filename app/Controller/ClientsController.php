@@ -100,6 +100,9 @@ class ClientsController extends AppController {
 				$userString = $this->accountCode(); // user
 				$this->Client->saveField('user_account', $userString);
 				
+				$securityString = $this->accountCode();
+				$this->Client->saveField('file_key', $securityString);
+				
 				$this->Session->setFlash('The client has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {

@@ -103,15 +103,15 @@ class RiskAssessmentDocument extends AppModel {
  * 
  */
 public function beforeUpload($options){ 
-	
+	$key = $this->data['RiskAssessmentDocument']['file_key'];		
 	$client = $this->data['RiskAssessmentDocument']['client_id']; // check client id
-	$options['uploadDir'] = '/documents/risk_assessment_documents/' . $client . '/' ;
+	$options['uploadDir'] = "/documents/risk_assessment_documents/$client/$key/" ;
 	return $options;
 }	
 /**
  * Check Client Owner
  */	
-	public function isOwnedBy($id, $user){
-		return $this->field('id', array($id, 'client_id' => $user)) === $id;
+	public function isOwnedBy($id, $client){
+		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;	
 	}
 }

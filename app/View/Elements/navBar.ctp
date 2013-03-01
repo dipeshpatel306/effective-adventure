@@ -29,7 +29,7 @@
 	}	
 	// Client Manager Load Users link
 	if($this->Session->read('Auth.User.group_id') == 2){
-		echo $this->Html->link('About HIPAA Secure Now!', array('controller' => 'dashboard', 'action' => 'about_hipaa')) . ' | ';		
+		echo $this->Html->link('About HIPAA Secure Now!', array('controller' => 'dashboard', 'action' => 'about_hipaa')) . ' | ';	
 		echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')) . ' | ';
 		echo $this->Html->link('Contact Us', array('controller' => 'contact_us', 'action' => 'contact' ));
 	}

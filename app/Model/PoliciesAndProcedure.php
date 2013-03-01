@@ -97,14 +97,22 @@ class PoliciesAndProcedure extends AppModel {
 			)
 		)		
 	);
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed	
 	
+/**
+ * Change file directory to that of client
+ * 
+ */
+public function beforeUpload($options){ 
+	$key = $this->data['PoliciesAndProcedure']['file_key'];	
+	$client = $this->data['PoliciesAndProcedure']['client_id']; // check client id
+	$options['uploadDir'] = "/documents/policies_and_procedures/$client/$key/" ;
+	return $options;
+}
+
 /**
  * Check Client Owner
  */	
-	public function isOwnedBy($id, $user){
-		return $this->field('id', array($id, 'client_id' => $user)) === $id;
-	} 
-
+	public function isOwnedBy($id, $client){
+		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;	
+	}
 }
