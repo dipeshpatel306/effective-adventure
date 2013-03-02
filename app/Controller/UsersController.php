@@ -44,6 +44,8 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/EphiReceived');
 		$this->Acl->allow($group, 'controllers/EphiRemoved');
 		
+		$this->Acl->allow($group, 'controllers/EducationCenter/LearnNow');
+		
 		$this->Acl->allow($group, 'controllers/SirtTeams');
 		$this->Acl->allow($group, 'controllers/SirtMembers');
 		
@@ -70,6 +72,8 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/ServerRoomAccess');
 		$this->Acl->allow($group, 'controllers/EphiReceived');
 		$this->Acl->allow($group, 'controllers/EphiRemoved');
+		
+		$this->Acl->allow($group, 'controllers/EducationCenter/LearnNow');				
 
 		$this->Acl->allow($group, 'controllers/SirtTeams');
 		$this->Acl->allow($group, 'controllers/SirtMembers');

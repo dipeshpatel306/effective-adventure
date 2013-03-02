@@ -23,7 +23,8 @@
 		echo $this->Html->link('Org Profiles', array('controller' => 'organization_profiles', 'action' => 'index')) . ' | ';
 		echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')) . ' | ';
 		
-		echo $this->Html->link('Risk Assessments', array('controller' => 'riskassessments', 'action' => 'index')) . ' | ';
+		echo $this->Html->link('Risk Assessments', array('controller' => 'risk_assessments', 'action' => 'index')) . ' | ';
+		echo $this->Html->link('Education Center', array('controller' => 'education_center', 'action' => 'index')) . ' | ';
 		echo $this->Html->link('Messages', array('controller' => 'contact_us', 'action' => 'index'));
 
 	}	

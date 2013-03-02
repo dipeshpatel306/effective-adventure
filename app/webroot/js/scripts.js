@@ -21,7 +21,7 @@ $(document).ready(function(){
 
 	
 // Jwplayer	
-	function showVideo(fileId, mp4Name) {
+	function showVideo(mp4Name) {
 		jwplayer("mediaplayer").setup({
 			'autostart' : 'true',
 			'id' : 'playerID',
@@ -66,18 +66,20 @@ $(document).ready(function(){
        $('#mediaplayer').empty();
 	}
 	
-	$('.whatIsHipaa1').click(function(){
-		showVideo('flv:WhatIsHIPAAPart1','WhatIsHIPAAPart1');	
+	// Event Handlers for loading pop up javascript videos
+	$('.WhatIsHIPAAPart1').click(function(){
+		showVideo('WhatIsHIPAAPart1');	
 	});
-	$('.whatIsHipaa2').click(function(){
-		showVideo('flv:WhatIsHIPAAPart2', 'WhatIsHIPAAPart2');	
+	$('.WhatIsHIPAAPart2').click(function(){
+		showVideo('WhatIsHIPAAPart2');	
 	});
-	$('.10things').click(function(){
-		showVideo('flv:BestPracticesforProtectingePHI', 'BestPracticesforProtectingePHI');	
+	$('.BestPracticesforProtectingePHI').click(function(){
+		showVideo('BestPracticesforProtectingePHI');	
 	});
-	$('.overview').click(function(){
-		showVideo('flv:Overview', 'Overview');	
+	$('.Overview').click(function(){
+		showVideo('Overview');	
 	});
+	
 	
 	$('.closeVideo').click(function(){
 		closeVideo();

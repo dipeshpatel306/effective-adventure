@@ -147,7 +147,7 @@
 					'</div>' .
 					'<div class="dashSum">Videos and Training</div>' . $approved .
 					'</div>',
-					array('controller' => 'dashboard', 'action' => 'education_center'),
+					array('controller' => 'education_center', 'action' => 'learn_now'),
 					array('escape' => false)
 			);
 			
