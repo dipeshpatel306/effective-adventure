@@ -66,7 +66,7 @@ class Client extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
-			'fields' => array('Partner.id, Partner.company')
+			'fields' => array('Partner.id, Partner.name')
 		),
 	);
  	

@@ -10,7 +10,7 @@ $this->Html->addCrumb('Clients');
 			<th><?php echo $this->Paginator->sort('admin_account'); ?></th>	
 			<th><?php echo $this->Paginator->sort('user_account'); ?></th>	
 			<!--<th><?php echo $this->Paginator->sort('body'); ?></th>-->
-			<th><?php echo $this->Paginator->sort('Partner.company', 'Partner'); ?></th>
+			<th><?php echo $this->Paginator->sort('Partner'); ?></th>
 			<th><?php echo $this->Paginator->sort('last_login'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -23,7 +23,7 @@ $this->Html->addCrumb('Clients');
 		<td><?php echo h($client['Client']['account_type']); ?>&nbsp;</td>
 		<td><?php echo h($client['Client']['admin_account']); ?>&nbsp;</td>
 		<td><?php echo h($client['Client']['user_account']); ?>&nbsp;</td>
-		<td><?php echo h($client['Partner']['company']); ?>&nbsp;</td>
+		<td><?php echo h($client['Partner']['name']); ?>&nbsp;</td>
 		<!--<td><?php echo h($client['Client']['details']); ?>&nbsp;</td>-->
 		<td><?php echo $this->Time->format('m/d/y g:i a', $client['Client']['last_login']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $client['Client']['created']); ?>&nbsp;</td>

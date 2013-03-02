@@ -14,19 +14,21 @@ $this->Html->addCrumb('Add Partner');
 					);
 ?>
 <div class="partners form">
-<?php echo $this->Form->create('Partner'); ?>
+<?php echo $this->Form->create('Partner', array('type' => 'file')); ?>
 	<fieldset>
 		<legend><?php echo __('Add Partner'); ?></legend>
 	<?php
-		echo $this->Form->input('company');
+		/*echo $this->Form->input('company');*/
 		echo $this->Form->input('name');
 		echo $this->Form->input('email');
-		echo $this->Form->input('phone');
+		echo $this->Form->input('link', array('value' => "http://", 'label'=> 'Link - Please include "http://" '));		
+		echo $this->Form->input('logo', array('type' => 'file', 'label' => 'Attachment - (gif, jpg, jpeg, png files only)'));
+		/*echo $this->Form->input('phone');
 		echo $this->Form->input('cell');
 		echo $this->Form->input('address');
 		echo $this->Form->input('city');
 		echo $this->Form->input('state', array('options' => $states, 'empty' => 'Please Select'));
-		echo $this->Form->input('zip');
+		echo $this->Form->input('zip');*/
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

@@ -6,11 +6,11 @@ $this->Html->addCrumb('View Partner - ' . $partner['Partner']['company']);
 <div class="partners view">
 <h2><?php  echo __('Partner'); ?></h2>
 	<dl>
-		<dt><?php echo __('Company'); ?></dt>
+		<!--<dt><?php echo __('Company'); ?></dt>
 		<dd>
 			<?php echo h($partner['Partner']['company']); ?>
 			&nbsp;
-		</dd>
+		</dd>-->
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
 			<?php echo h($partner['Partner']['name']); ?>
@@ -26,7 +26,17 @@ $this->Html->addCrumb('View Partner - ' . $partner['Partner']['company']);
 			<?php echo h($partner['Partner']['phone']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Cell'); ?></dt>
+		<dt><?php echo __('Link'); ?></dt>
+		<dd>
+			<?php echo h($partner['Partner']['link']); ?>
+			&nbsp;
+		</dd>
+		<!--<dt><?php echo __('Logo'); ?></dt>
+		<dd>
+			<?php echo h($partner['Partner']['logo']); ?>
+			&nbsp;
+		</dd>-->
+		<!--<dt><?php echo __('Cell'); ?></dt>
 		<dd>
 			<?php echo h($partner['Partner']['cell']); ?>
 			&nbsp;
@@ -50,7 +60,7 @@ $this->Html->addCrumb('View Partner - ' . $partner['Partner']['company']);
 		<dd>
 			<?php echo h($partner['Partner']['zip']); ?>
 			&nbsp;
-		</dd>
+		</dd>-->
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
 			<?php echo h($partner['Partner']['created']); ?>
@@ -62,6 +72,9 @@ $this->Html->addCrumb('View Partner - ' . $partner['Partner']['company']);
 			&nbsp;
 		</dd>
 	</dl>
+	<div class='partnerLogo'>
+		<?php echo $this->Html->image($partner['Partner']['logo']); ?>
+	</div>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>

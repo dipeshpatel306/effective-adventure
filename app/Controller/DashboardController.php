@@ -47,7 +47,17 @@ class DashboardController extends AppController {
 		if($acct == 'Initial'){
 			$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
 		}
-
+		
+		$partnerId = $this->Session->read('Auth.User.Client.partner_id');
+		if(isset($partnerId) && ($partnerId != 0)){
+			$this->loadModel('Partner');
+			$partner = $this->Partner->find('first', array('conditions' => array(
+						'id' => $partnerId),
+						'fields' => 'Partner.name, Partner.link, Partner.logo',
+						));
+			$this->set(compact('partner'));
+		}
+		
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
 	}

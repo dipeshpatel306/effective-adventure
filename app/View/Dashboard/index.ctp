@@ -211,7 +211,46 @@
 					'</div>',
 					array('controller' => 'organization_profiles', 'action' => 'index'),
 					array('escape' => false)
-			);			
+			);	
+			
+		
+		if(isset($partner)){
+			
+			echo $this->Html->link( // Partner Link
+				'<div class="dashBox">' . 
+				'<div class="dashHeadLogo">' .
+				$this->Html->image($partner['Partner']['logo'], array(
+							//'class' => 'dashTileLogo', 
+							'alt' => 'HIPAA Partner Link'
+							)) .
+				//'<h3>' . $partner['Partner']['name'] . '</h3>' .
+				'</div>' .
+				'<div class="dashSum">' . $partner['Partner']['name'] .'</div>' . $approved .
+				'</div>', $partner['Partner']['link'],
+				array('escape' => false, 'target' => '_blank')
+			);	
+			
+			
+			
+		/*echo $this->Html->link( // Security Training
+					'<div class="dashBox">' . 
+					'<div class="dashHead">' .
+					$this->Html->image('blog.png', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Information'
+								)) .
+					'<h3>HIPAA Information</h3>' .
+					'</div>' .
+					'<div class="dashSum">Security Training</div>' . $approved .
+					'</div>', 'http://www.hipaasecurenow.com/?cat=9', 
+					array('escape' => false, 'target'=>'_blank')
+			);*/
+			
+
+			
+		}
+		
+				///	pr($partner);
 	?>
 	
 	<!--<table>

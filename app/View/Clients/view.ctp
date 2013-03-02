@@ -27,7 +27,7 @@ $this->Html->addCrumb($client['Client']['name']);
 		</dd>
 		<dt><?php echo __('Partner'); ?></dt>
 		<dd>
-			<?php echo h($client['Partner']['company']); ?>
+			<?php echo h($client['Partner']['name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Last Login'); ?></dt>
@@ -67,7 +67,6 @@ $this->Html->addCrumb($client['Client']['name']);
 <!-- Users -->
 <div class="related">
 	<h3><?php echo __('Users'); ?></h3>
-	<?php //if (!empty($client['User'])):?>
 	<?php if(!empty($users)): ?>	
 	<table>
 	<tr>
@@ -140,7 +139,12 @@ $this->Html->addCrumb($client['Client']['name']);
 		foreach ($client['PoliciesAndProcedure'] as $pnp): ?>
 		<tr>
 			<td><?php echo $pnp['name']; ?></td>
-			<td><?php echo $pnp['attachment']; ?></td>
+			<td>
+		<?php 
+			$pnpLink =  preg_replace('/\/.*\//', '', $pnp['attachment']);
+			echo $this->Html->link($pnpLink, $pnp['attachment']);
+		?>				
+			</td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $pnp['created']); ?></td>			
 			<td><?php echo $this->Time->format('m/d/y g:i a', $pnp['modified']); ?></td>
 			<td class="actions">
@@ -181,7 +185,13 @@ $this->Html->addCrumb($client['Client']['name']);
 		<tr>
 			<td><?php echo $opnp['name']; ?></td>
 
-			<td><?php echo $opnp['attachment']; ?></td>
+			<td>
+			<?php 
+				$opnpLink =  preg_replace('/\/.*\//', '', $opnp['attachment']);
+				echo $this->Html->link($opnpLink, $opnp['attachment']);
+			?>			
+			</td>
+			
 			<td><?php echo $this->Time->format('m/d/y g:i a', $opnp['created']); ?></td>			
 			<td><?php echo $this->Time->format('m/d/y g:i a', $opnp['modified']); ?></td>
 			<td class="actions">
@@ -221,7 +231,12 @@ $this->Html->addCrumb($client['Client']['name']);
 		foreach ($client['RiskAssessmentDocument'] as $rad): ?>
 		<tr>
 			<td><?php echo $rad['name']; ?></td>
-			<td><?php echo $rad['attachment']; ?></td>
+			<td>
+			<?php 
+				$radLink =  preg_replace('/\/.*\//', '', $rad['attachment']);
+				echo $this->Html->link($radLink, $rad['attachment']);
+			?>			
+			</td>			
 			<td><?php echo $this->Time->format('m/d/y g:i a', $rad['created']); ?></td>			
 			<td><?php echo $this->Time->format('m/d/y g:i a', $rad['modified']); ?></td>
 			<td class="actions">
@@ -264,7 +279,12 @@ $this->Html->addCrumb($client['Client']['name']);
 			<td><?php echo $boa['name']; ?></td>
 
 			<td><?php echo $boa['contract_date']; ?></td>
-			<td><?php echo $boa['attachment']; ?></td>
+			<td>
+			<?php 
+				$boaLink =  preg_replace('/\/.*\//', '', $boa['attachment']);
+				echo $this->Html->link($boaLink, $boa['attachment']);
+			?>	
+			</td>			
 			<td><?php echo $this->Time->format('m/d/y g:i a', $boa['created']); ?></td>			
 			<td><?php echo $this->Time->format('m/d/y g:i a', $boa['modified']); ?></td>
 			<td class="actions">
@@ -279,7 +299,7 @@ $this->Html->addCrumb($client['Client']['name']);
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Business Associate Agreement'), array('controller' => 'risk_assessment_documents', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Business Associate Agreement'), array('controller' => 'business_associate_agreements', 'action' => 'add')); ?> </li>
 		</ul>
 	</div>	
 </div>
@@ -304,7 +324,12 @@ $this->Html->addCrumb($client['Client']['name']);
 		foreach ($client['DisasterRecoveryPlan'] as $drp): ?>
 		<tr>
 			<td><?php echo $drp['name']; ?></td>
-			<td><?php echo $drp['attachment']; ?></td>
+			<td>
+			<?php 
+				$drpLink =  preg_replace('/\/.*\//', '', $drp['attachment']);
+				echo $this->Html->link($drpLink, $drp['attachment']);
+			?>	
+			</td>				
 			<td><?php echo $this->Time->format('m/d/y g:i a', $drp['created']); ?></td>			
 			<td><?php echo $this->Time->format('m/d/y g:i a', $drp['modified']); ?></td>
 			<td class="actions">
@@ -344,7 +369,12 @@ $this->Html->addCrumb($client['Client']['name']);
 		foreach ($client['OtherContractsAndDocument'] as $ocad): ?>
 		<tr>
 			<td><?php echo $ocad['name']; ?></td>
-			<td><?php echo $ocad['attachment']; ?></td>
+			<td>
+			<?php 
+				$ocadLink =  preg_replace('/\/.*\//', '', $ocad['attachment']);
+				echo $this->Html->link($ocadLink, $ocad['attachment']);
+			?>	
+			</td>			
 			<td><?php echo $this->Time->format('m/d/y g:i a', $ocad['created']); ?></td>			
 			<td><?php echo $this->Time->format('m/d/y g:i a', $ocad['modified']); ?></td>
 			<td class="actions">
@@ -372,8 +402,7 @@ $this->Html->addCrumb($client['Client']['name']);
 		
 	<table>
 	<tr>
-		<th><?php echo __('Date Of Incident'); ?></th>
-		<th><?php echo __('Time of Incident'); ?></th> 
+		<th><?php echo __('Incident Date/Time'); ?></th>
 		<th><?php echo __('Discovery Date'); ?></th> 
 		<th><?php echo __('Reported By'); ?></th> 
 
@@ -384,9 +413,8 @@ $this->Html->addCrumb($client['Client']['name']);
 		$i = 0;
 		foreach ($client['SecurityIncident'] as $si): ?>
 		<tr>
-			<td><?php echo $this->Time->format('m/d/y g:i a', $si['date_of_incident']); ?></td>			
-			<td><?php echo $this->Time->format('m/d/y g:i a', $si['time_of_incident']); ?></td>
-			<td><?php echo $this->Time->format('m/d/y g:i a', $si['discovery_date']); ?></td>
+			<td><?php echo $this->Time->format('m/d/y', $si['date_of_incident']) . ' ' . $this->Time->format('g:i a', $si['time_of_incident']); ?></td>			
+			<td><?php echo $this->Time->format('m/d/y', $si['discovery_date']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $si['reported_by']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'SecurityIncident', 'action' => 'view', $si['id'])); ?>
@@ -413,8 +441,7 @@ $this->Html->addCrumb($client['Client']['name']);
 		
 	<table>
 	<tr>
-		<th><?php echo __('Date'); ?></th>
-		<th><?php echo __('Time'); ?></th> 
+		<th><?php echo __('Date/Time'); ?></th>
 		<th><?php echo __('Person'); ?></th> 
 		<th><?php echo __('Company'); ?></th>
 		<th><?php echo __('Reason'); ?></th>
@@ -425,8 +452,7 @@ $this->Html->addCrumb($client['Client']['name']);
 		$i = 0;
 		foreach ($client['ServerRoomAccess'] as $sra): ?>
 		<tr>
-			<td><?php echo $this->Time->format('m/d/y', $sra['date']); ?></td>
-			<td><?php echo $this->Time->format('g:i a', $sra['time']); ?></td>
+			<td><?php echo $this->Time->format('m/d/y', $sra['date']) . ' ' . $this->Time->format('g:i a', $sra['time']); ?></td>
 			<td><?php echo $sra['person']; ?></td>
 			<td><?php echo $sra['company']; ?></td>
 			<td><?php echo $sra['reason']; ?></td>
@@ -455,8 +481,7 @@ $this->Html->addCrumb($client['Client']['name']);
 		
 	<table>
 	<tr>
-		<th><?php echo __('Date'); ?></th>
-		<th><?php echo __('Time'); ?></th> 
+		<th><?php echo __('Date/Time'); ?></th>
 		<th><?php echo __('Description'); ?></th> 
 		<th><?php echo __('Removed By'); ?></th>
 		<th><?php echo __('Returned By'); ?></th>
@@ -467,8 +492,7 @@ $this->Html->addCrumb($client['Client']['name']);
 		$i = 0;
 		foreach ($client['EphiRemoved'] as $erm): ?>
 		<tr>
-			<td><?php echo $this->Time->format('m/d/y', $erm['date']); ?></td>
-			<td><?php echo $this->Time->format('g:i a', $erm['time']); ?></td>
+			<td><?php echo $this->Time->format('m/d/y', $erm['date']) . ' ' . $this->Time->format('g:i a', $erm['time']); ?></td>
 			<td><?php echo $erm['description']; ?></td>
 			<td><?php echo $erm['removed_by']; ?></td>
 			<td><?php echo $erm['returned_by']; ?></td>
@@ -498,12 +522,10 @@ $this->Html->addCrumb($client['Client']['name']);
 		
 	<table>
 	<tr>
-		<th><?php echo __('Date received'); ?></th>
-		<th><?php echo __('Time received'); ?></th> 
+		<th><?php echo __('Received Date/Time'); ?></th>
 		<th><?php echo __('Patient Name'); ?></th> 
 		<th><?php echo __('received By'); ?></th> 
-		<th><?php echo __('Date Returned'); ?></th>
-		<th><?php echo __('Time Returned'); ?></th>
+		<th><?php echo __('Returned Date/Time'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	
@@ -511,12 +533,10 @@ $this->Html->addCrumb($client['Client']['name']);
 		$i = 0;
 		foreach ($client['EphiReceived'] as $erc): ?>
 		<tr>
-			<td><?php echo $this->Time->format('m/d/y', $erc['date_received']); ?></td>
-			<td><?php echo $this->Time->format('g:i a', $erc['time_received']); ?></td>
+			<td><?php echo $this->Time->format('m/d/y', $erc['date_received']) . ' ' . $this->Time->format('g:i a', $erc['time_received']); ?></td>
 			<td><?php echo $erc['patient_name']; ?></td>
 			<td><?php echo $erc['received_by']; ?></td>
-			<td><?php echo $this->Time->format('m/d/y', $erc['date_returned']); ?></td>
-			<td><?php echo $this->Time->format('g:i a', $erc['time_returned']); ?></td>
+			<td><?php echo $this->Time->format('m/d/y', $erc['date_returned']) . ' ' . $this->Time->format('g:i a', $erc['time_returned']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'EphiReceived', 'action' => 'view', $erc['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'EphiReceived', 'action' => 'edit', $erc['id'])); ?>

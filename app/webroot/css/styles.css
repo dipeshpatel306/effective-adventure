@@ -321,17 +321,24 @@ img.homeIcon:hover{
 	height: 65px;
 	margin-bottom: 15px;
 }
+.dashHeadLogo{ /* partners tile */
+	height: 80px;
+	text-align: center;
+	
+}
 .dashTile{ /* Icon */
 	float: left;
 	width: 60px;
 	padding-right: 15px;
 }
+
 .dashSum{ /* Summary */
 	width: 280px;
 	height: 30px;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
+	font-weight: bold;
 }
 .dashBtn{
 	width: 200px;

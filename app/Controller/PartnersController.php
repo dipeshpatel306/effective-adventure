@@ -57,7 +57,7 @@ class PartnersController extends AppController {
  * @return void
  */
 	public function add() {
-		if ($this->request->is('post')) {
+		if ($this->request->is('post')) {			
 			$this->Partner->create();
 			if ($this->Partner->save($this->request->data)) {
 				$this->Session->setFlash('The partner has been saved', 'default', array('class' => 'success message'));
