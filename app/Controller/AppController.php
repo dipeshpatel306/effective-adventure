@@ -46,7 +46,8 @@ class AppController extends Controller {
             )*/
         ),
         'Session',
-        'Security'
+        'Security',
+        'Cookie'
     );
     public $helpers = array('Html', 'Form', 'Session');
 
@@ -66,8 +67,11 @@ class AppController extends Controller {
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
 		//$this->Auth->allow('display');
 		
-		//$client = $this->Session->read('Auth.User.Client.name');
-		//$this->set(compact('client'));
+		
+		// Moodle Cookie. Move it to login?
+		$email = $this->Session->read('Auth.User.email');
+		//$this->Cookie->write('u', $email, 0, '/', '.hipaasecurenow');
+		setcookie('u', $email, 0, '/', '.hipaasecurenow.com');
     }	
 	
 	public function isAuthorized($user){
