@@ -48,7 +48,13 @@ $this->Html->addCrumb($user['User']['email']);
 		</dd>
 		<dt><?php echo __('Last Login'); ?></dt>
 		<dd>
-			<?php echo $this->Time->format('m/d/y g:i a', $user['User']['last_login']); ?>
+		<?php 
+			if($user['User']['last_login'] == '0000-00-00 00:00:00'){
+				echo ''; 
+			} else {
+			echo $this->Time->format('m/d/y g:i a', $user['User']['last_login']); 
+			}
+		?>
 			&nbsp;
 		</dd>		
 		<dt><?php echo __('Created'); ?></dt>

@@ -56,7 +56,7 @@ class GroupsController extends AppController {
  *
  * @return void
  */
-	public function add() {
+/*	public function add() {
 		if ($this->request->is('post')) {
 			$this->Group->create();
 			if ($this->Group->save($this->request->data)) {
@@ -66,7 +66,7 @@ class GroupsController extends AppController {
 				$this->Session->setFlash(__('The group could not be saved. Please, try again.'));
 			}
 		}
-	}
+	}*/
 
 /**
  * edit method
@@ -75,7 +75,7 @@ class GroupsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+/*	public function edit($id = null) {
 		$this->Group->id = $id;
 		if (!$this->Group->exists()) {
 			throw new NotFoundException(__('Invalid group'));
@@ -90,7 +90,7 @@ class GroupsController extends AppController {
 		} else {
 			$this->request->data = $this->Group->read(null, $id);
 		}
-	}
+	}*/
 
 /**
  * delete method
@@ -100,7 +100,7 @@ class GroupsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+/*	public function delete($id = null) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}
@@ -114,7 +114,7 @@ class GroupsController extends AppController {
 		}
 		$this->Session->setFlash(__('Group was not deleted'));
 		$this->redirect(array('action' => 'index'));
-	}
+	}*/
 
 
 }

@@ -95,7 +95,7 @@ table tr:nth-child(odd) {
 table tr:nth-child(2n) {
     background: #ffffff;
 }
-td.completed{
+td.completed, dd.completed{
 	background-color: #76BF6B;
 	color: #ffffff;
 	font-weight: bold;
@@ -106,9 +106,11 @@ dl{
 
 dt{
 	width: 15em;
+	padding-left: 5px;
 }
 dd{
 	margin-left: 15em;
+	padding-left: 5px;
 }
 dl dt:nth-of-type(odd), dl dd:nth-of-type(odd) {
     background: #F5F9FD;
@@ -261,6 +263,7 @@ a.logoutLink{
 	margin-right: auto;*/
 	height: 30px;
 	margin: 10px 0px 0 25px;
+	font-size: 1em;
 
 }
 .navBar, .navBar a:link, .navBar a:visited{
@@ -361,7 +364,7 @@ img.homeIcon:hover{
     /*text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);*/
 }
 .dashBtn.approved{
-	 vccccccccccccccccccccccc  /*for ie */
+	 background-color: #76BF6B;   /*for ie */
 	/*background-image: -webkit-gradient(linear, left top, left bottom, from(#76BF6B), to(#3B8230));
 	background-image: -webkit-linear-gradient(top, #76BF6B, #3B8230);
 	background: -moz-linear-gradient(center top , #76BF6B, #3B8230) repeat scroll 0 0 #62AF56;*/

@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 /**
  * Dashboard Controller
  *
@@ -30,15 +31,21 @@ class DashboardController extends AppController {
  * 
  */
  	public function mark_complete(){
-			$completed = date('Y-m-d H:i:s'); // Get DateTime
+			$completed = date('Y-m-d'); // Get DateTime
 			$client = $this->Session->read('Auth.User.client_id');
-			
-						
+			$clientName = $this->Session->read('Auth.User.Client.name');
+			$message = 'New Risk Assessment Completed for ' . $clientName . ' Completed at ' . $completed;
 			$this->loadModel('Client');
-			//$this->Client->find('first', array('conditions' => array(
-			//		'Client.id' => $client
-			//	)));
 			$this->Client->id = $client;
+			
+			// Send email about new registration
+			/*$email = new CakeEmail('gmail');
+			$email->from('chris@gpointech.com');
+			$email->to('chris@gpointech.com');
+			$email->subject('New Risk Assessment Completed for ' . $clientName);
+			$email->send($message);*/
+			
+			
 			if ($this->Client->saveField('risk_assessment_status', $completed)) {
 				$this->Session->setFlash('Thanks! Your Risk Assessment has been marked complete', 'default', array('class' => 'success message'));
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
@@ -69,6 +76,29 @@ class DashboardController extends AppController {
 		$acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
 		if($acct == 'Initial'){
 			$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
+		}
+		
+		// Check if Client already has an existing Risk Assessment
+		$clientId = $this->Session->read('Auth.User.client_id');
+		$this->loadModel('RiskAssessment');
+		$risk = $this->RiskAssessment->find('first', array('conditions' => array(
+				'client_id' => $clientId),
+				'fields' => 'RiskAssessment.id, RiskAssessment.client_id'
+		));
+		
+		if(isset($risk) && !empty($risk)){
+			$this->set(compact('risk'));
+		}
+		
+		// Check if Client already has an existing Org Profile
+		$this->loadModel('OrganizationProfile');
+		$org = $this->OrganizationProfile->find('first', array('conditions' => array(
+				'client_id' => $clientId),
+				'fields' => 'OrganizationProfile.id, OrganizationProfile.client_id'
+		));
+		
+		if(isset($org) && !empty($org)){
+			$this->set(compact('org'));
 		}
 		
 		$partnerId = $this->Session->read('Auth.User.Client.partner_id');

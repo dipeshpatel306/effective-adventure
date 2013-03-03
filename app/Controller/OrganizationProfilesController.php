@@ -9,7 +9,7 @@ class OrganizationProfilesController extends AppController {
 
 /**
  * isAuthorized Method
- * Only Allow Hipaa Admin to add groups
+ * Only Allow Hipaa Admin to add Edit Org Profile
  * @return void
  */
  	public function isAuthorized($user){
@@ -17,9 +17,18 @@ class OrganizationProfilesController extends AppController {
  		$acct = $this->Session->read('Auth.User.Client.account_type');
 
 		if ($group == 2 || $group == 3 || $acct == 'Initial'){ //allow
+			if(in_array($this->action, array('view','add'))){  // Allow Managers to Add 
 				return true;
+			}
+			
+			if(in_array($this->action, array('edit', 'delete'))){ // Allow Managers to Edit, delete their own
+				$id = $this->request->params['pass'][0];
+				if($this->OrganizationProfile->isOwnedBy($id, $client)){
+					return true;
+				}
+			}
+				
 		}
-		
 		return parent::isAuthorized($user);
  	}
 
@@ -69,7 +78,7 @@ class OrganizationProfilesController extends AppController {
 			$this->OrganizationProfile->create();
 			if ($this->OrganizationProfile->save($this->request->data)) {
 				$this->Session->setFlash('The organization profile has been saved', 'default', array('class' => 'success message'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The organization profile could not be saved. Please, try again.'));
 			}
@@ -93,7 +102,7 @@ class OrganizationProfilesController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->OrganizationProfile->save($this->request->data)) {
 				$this->Session->setFlash('The organization profile has been saved', 'default', array('class' => 'success message'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The organization profile could not be saved. Please, try again.'));
 			}

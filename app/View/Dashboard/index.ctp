@@ -3,6 +3,18 @@
 	$group = $this->Session->read('Auth.User.group_id'); 
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 	
+	if(isset($risk) && !empty($risk)){
+		$riskAss = array('controller' => 'risk_assessments', 'action' => 'edit', $risk['RiskAssessment']['id']);
+	} else {
+		$riskAss = array('controller' => 'risk_assessments', 'action' => 'take_risk_assessment');
+	}
+	
+	if(isset($org) && !empty($org)){
+		$orgPro = array('controller' => 'Organization_profiles', 'action' => 'edit', $org['OrganizationProfile']['id']);
+	} else {
+		$orgPro = array('controller' => 'Organization_profiles', 'action' => 'add');
+	}
+	
 	$approved = '<div class="dashBtn approved">
 						<div class="btnWrapNarrow">
 						<div class="btnText">Click Here</div> 
@@ -23,26 +35,6 @@
 						<div class="triangle"></div>
 						</div>
 					</div>';
-	
-	/*if($group == 1){
-		$dashBtn = '<div class="dashBtn approved">
-						<div class="btnWrapNarrow">
-						<div class="btnText">Click Here</div> 
-						<div class="triangle"></div>
-						</div>
-					</div>';
-	} elseif($group == 2){
-		$dashBtn = '<div class="dashBtn denied">
-						<div class="btnWrapWide">
-						<div class="btnText">Subscribers Only!</div> 
-						<div class="triangle"></div>
-						</div>
-					</div>';
-	} elseif($group == 3){
-		$dashBtn = 'User';
-	} else {
-		$dashBtn = 'No Role yet';
-	}*/
 ?>
 
 <div class="dashboard index">
@@ -194,7 +186,7 @@
 					'</div>' .
 					'<div class="dashSum">Risk Assessment Questionnaire</div>' . $approved .
 					'</div>',
-					array('controller' => 'risk_assessments', 'action' => 'take_risk_assessment'),
+					$riskAss,
 					array('escape' => false)
 			);
 				
@@ -209,7 +201,7 @@
 					'</div>' .
 					'<div class="dashSum">Organization Profile</div>' . $approved .
 					'</div>',
-					array('controller' => 'organization_profiles', 'action' => 'index'),
+					$orgPro,
 					array('escape' => false)
 			);	
 			

@@ -9,18 +9,26 @@ class RiskAssessmentsController extends AppController {
 
 /**
  * isAuthorized Method
- * Only Allow Hipaa Admin to add groups
+ * Only Allow Hipaa Admin to add Edit Risk Assessment
  * @return void
  */
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
- 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
-		$acct = $this->Session->read('Auth.User.Client.account_type');
+ 		$acct = $this->Session->read('Auth.User.Client.account_type');
 
-		if ($group == 2 || $group == 3){ //allow
+		if ($group == 2 || $group == 3 || $acct == 'Initial'){ //allow
+			if(in_array($this->action, array('view','add'))){  // Allow Managers to Add 
 				return true;
+			}
+			
+			if(in_array($this->action, array('edit', 'delete'))){ // Allow Managers to Edit, delete their own
+				$id = $this->request->params['pass'][0];
+				if($this->RiskAssessment->isOwnedBy($id, $client)){
+					return true;
+				}
+			}
+				
 		}
-		
 		return parent::isAuthorized($user);
  	}
 
@@ -66,7 +74,7 @@ class RiskAssessmentsController extends AppController {
 			$this->RiskAssessment->create();
 			if ($this->RiskAssessment->save($this->request->data)) {
 				$this->Session->setFlash('The risk assessment has been saved', 'default', array('class' => 'success message'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The risk assessment could not be saved. Please, try again.'));
 			}
@@ -98,7 +106,7 @@ class RiskAssessmentsController extends AppController {
 			if ($this->RiskAssessment->save($this->request->data)) {
 						
 				$this->Session->setFlash('Your risk assessment has been saved', 'default', array('class' => 'success message'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('Your risk assessment could not be saved. Please, try again.'));
 			}
@@ -119,6 +127,11 @@ class RiskAssessmentsController extends AppController {
 		if (!$this->RiskAssessment->exists()) {
 			throw new NotFoundException(__('Invalid risk assessment'));
 		}
+		$this->loadModel('RiskAssessmentQuestion');
+		$RaQ = $this->RiskAssessmentQuestion->find('all');
+		$this->set('RaQ', $RaQ);	
+		
+		
 		// If user is a client automatically set the client id accordingly. Admin can change client ids
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 		if($group != 1){
@@ -128,7 +141,7 @@ class RiskAssessmentsController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->RiskAssessment->save($this->request->data)) {
 				$this->Session->setFlash('The risk assessment has been saved', 'default', array('class' => 'success message'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The risk assessment could not be saved. Please, try again.'));
 			}

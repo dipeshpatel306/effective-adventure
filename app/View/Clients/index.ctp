@@ -40,7 +40,13 @@ $this->Html->addCrumb('Clients');
 			}		
 		?>
 		&nbsp;</td>
-		<td><?php echo $this->Time->format('m/d/y g:i a', $client['Client']['last_login']); ?>&nbsp;</td>
+		<td><?php 
+		if($client['Client']['last_login'] == '0000-00-00 00:00:00'){
+			echo ''; 
+		} else {
+			echo $this->Time->format('m/d/y g:i a', $client['Client']['last_login']);
+		}
+		 ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $client['Client']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $client['Client']['modified']); ?>&nbsp;</td>
 		<td class="actions">

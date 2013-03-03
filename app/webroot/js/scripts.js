@@ -6,12 +6,21 @@ $(document).ready(function(){
 	
 	// Multistep form wizard for Risk Assessment Questionnaire
 	$('form#RiskAssessmentTakeRiskAssessmentForm .step1').siblings().hide('fast');  // hide all except question one
+	$('form#RiskAssessmentEditForm .step1').siblings().hide('fast');  // hide all except question one
 	
 	$('form#RiskAssessmentTakeRiskAssessmentForm .next').click(function(){
 		$(this).closest('.step').hide().next('.step').show();
 		return false;
 	})
+	$('form#RiskAssessmentEditForm .next').click(function(){
+		$(this).closest('.step').hide().next('.step').show();
+		return false;
+	})
 	$('form#RiskAssessmentTakeRiskAssessmentForm .back').click(function(){
+		$(this).closest('.step').hide().prev('.step').show();
+		return false;
+	});
+	$('form#RiskAssessmentEditForm .back').click(function(){
 		$(this).closest('.step').hide().prev('.step').show();
 		return false;
 	});

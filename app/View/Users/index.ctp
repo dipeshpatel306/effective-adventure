@@ -29,7 +29,14 @@ $this->Html->addCrumb('Users');
 		<td><?php echo $user['User']['last_name'] . ', ' . $user['User']['first_name']; ?>&nbsp;</td>			
 		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
 		<td><?php echo $user['Group']['name']; ?></td>
-		<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['last_login']); ?>&nbsp;</td>		
+		<td> 
+		<?php 
+			if($user['User']['last_login'] == '0000-00-00 00:00:00'){
+				echo ''; 
+			} else {
+			echo $this->Time->format('m/d/y g:i a', $user['User']['last_login']); 
+			}
+		?>&nbsp;</td>		
 		<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['modified']); ?>&nbsp;</td>
 		<td class="actions">

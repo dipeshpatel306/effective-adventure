@@ -93,8 +93,8 @@ $this->Html->addCrumb('Organization Profiles');
 		<td><?php echo h($organizationProfile['OrganizationProfile']['administrator_name']); ?>&nbsp;</td>
 		<td><?php echo h($organizationProfile['OrganizationProfile']['administrator_email']); ?>&nbsp;</td>
 		<td><?php echo h($organizationProfile['OrganizationProfile']['administrator_phone']); ?>&nbsp;</td>
-		<td><?php echo h($organizationProfile['OrganizationProfile']['created']); ?>&nbsp;</td>
-		<td><?php echo h($organizationProfile['OrganizationProfile']['modified']); ?>&nbsp;</td>		
+		<td><?php echo $this->Time->format('m/d/y g:i a', ($organizationProfile['OrganizationProfile']['created'])); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a', ($organizationProfile['OrganizationProfile']['modified'])); ?>&nbsp;</td>		
 		<!--<td><?php echo h($organizationProfile['OrganizationProfile']['address_1']); ?>&nbsp;</td>
 		<td><?php echo h($organizationProfile['OrganizationProfile']['address_2']); ?>&nbsp;</td>
 		<td><?php echo h($organizationProfile['OrganizationProfile']['city']); ?>&nbsp;</td>

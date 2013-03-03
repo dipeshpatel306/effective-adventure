@@ -1,6 +1,12 @@
 <?php
 $this->Html->addCrumb('Clients', '/clients');
 $this->Html->addCrumb($client['Client']['name']);
+
+if(!empty($client['Client']['risk_assessment_status'])){
+	$completed = 'class="completed"';
+} else {
+	$completed = '';
+}
 ?>
 <div class="clients view">
 <h2><?php  echo __('Client'); ?></h2>
@@ -30,9 +36,21 @@ $this->Html->addCrumb($client['Client']['name']);
 			<?php echo h($client['Partner']['name']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Risk Assessment Completed'); ?></dt>
+		<dd <?php echo $completed; ?> >
+			<?php 
+			echo $this->Time->format('m/d/y', $client['Client']['risk_assessment_status']); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Last Login'); ?></dt>
 		<dd>
-			<?php echo $this->Time->format('m/d/y g:i a', $client['Client']['last_login']); ?>
+			<?php 
+			if($client['Client']['last_login'] == '0000-00-00 00:00:00'){
+				echo ''; 
+			} else {
+				echo $this->Time->format('m/d/y g:i a', $client['Client']['last_login']); 
+			}
+			?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
@@ -45,11 +63,13 @@ $this->Html->addCrumb($client['Client']['name']);
 			<?php echo $this->Time->format('m/d/y g:i a', $client['Client']['modified']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Details'); ?></dt>
+		<!--<dt><?php echo __('Details'); ?></dt>
 		<dd>
 			<?php echo h($client['Client']['details']); ?>
 			&nbsp;
-		</dd>		
+		</dd>-->
+		<h3><?php echo __('Details'); ?></h3>
+		<?php echo h($client['Client']['details']); ?>
 	</dl>
 </div>
 <div class="actions">
