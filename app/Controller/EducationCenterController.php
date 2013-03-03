@@ -8,6 +8,32 @@ App::uses('AppController', 'Controller');
 class EducationCenterController extends AppController {
 
 /**
+ * isAuthorized Method
+ * Allows Hippa Admin to Add, Edit, Delete Everything
+ * Client Managers & MU MAnagers can only Add Edit Delete to their own group
+ * Users cannot see
+ * @return void
+ */
+ 	public function isAuthorized($user){
+ 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+		$acct = $this->Session->read('Auth.User.Client.account_type'); // Get account type 
+		
+		if($group == 2 || $group == 3 ){
+			if(in_array($this->action, array('learn_now'))){  // Allow Managers to Add 
+				return true;
+			}
+		}
+		if($acct == 'Initial'){
+				$this->Session->setFlash('You are not authorized to view that!');
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+				return false;
+		}		
+		return parent::isAuthorized($user);
+ 	}
+
+
+/**
  * index method
  *
  * @return void
@@ -21,7 +47,7 @@ class EducationCenterController extends AppController {
  *
  * @return void
  */
-	public function learn_Now() {
+	public function learn_now() {
 		$this->EducationCenter->recursive = 0;
 		$this->set('educationCenter', $this->paginate());
 	}

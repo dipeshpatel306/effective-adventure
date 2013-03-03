@@ -18,6 +18,7 @@
 	// If Admin load Admin Tools
 	if(($this->Session->read('Auth.User.group_id') == 1)){
 		//echo '<b>Admin Tools: </b> ';
+		echo $this->Html->link('About', array('controller' => 'dashboard', 'action' => 'edit', 1)) . ' | ';	
 		echo $this->Html->link('Partners', array('controller' => 'partners', 'action' => 'index')) . ' | ';		
 		echo $this->Html->link('Clients', array('controller' => 'clients', 'action' => 'index')) . ' | ';
 		echo $this->Html->link('Org Profiles', array('controller' => 'organization_profiles', 'action' => 'index')) . ' | ';

@@ -33,7 +33,7 @@ class Client extends AppModel {
 				'rule' => 'isUnique',
 				'message' => 'That Client name already exists',
 			),
-		),
+		),	
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

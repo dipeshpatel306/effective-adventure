@@ -2,7 +2,7 @@ $(document).ready(function(){
 	//CKEDITOR.replace( 'textEdit'); // initialize WYSIWYG Editor
 	
 	// instantiate date picker and format date
-	$('.datePick').datepicker({ dateFormat: 'mm/dd/yy'});
+	$('.datePick').datepicker({ dateFormat: 'mm/dd/yy',  defaultDate: '' });
 	
 	// Multistep form wizard for Risk Assessment Questionnaire
 	$('form#RiskAssessmentTakeRiskAssessmentForm .step1').siblings().hide('fast');  // hide all except question one
@@ -17,8 +17,6 @@ $(document).ready(function(){
 	});
 	
 	//$('form').quickWizard();
-	
-
 	
 // Jwplayer	
 	function showVideo(mp4Name) {
@@ -56,15 +54,7 @@ $(document).ready(function(){
 		$('#videooverlay').css('display', 'inline');
 	
 		$('#videocontainer').css('display', 'inline');
-	}
-
-	// close player
-	function closeVideo()    {
-       $('#videooverlay').css('display', 'none');               
-       $('#videocontainer').css('display', 'none');
-       jwplayer().stop();
-       $('#mediaplayer').empty();
-	}
+	}	
 	
 	// Event Handlers for loading pop up javascript videos
 	$('.WhatIsHIPAAPart1').click(function(){
@@ -80,9 +70,12 @@ $(document).ready(function(){
 		showVideo('Overview');	
 	});
 	
-	
+	// Stop and Close Video Player. Hide pop up regeion
 	$('.closeVideo').click(function(){
-		closeVideo();
+       $('#videooverlay').css('display', 'none');               
+       $('#videocontainer').css('display', 'none');
+       jwplayer().stop();
+       $('#mediaplayer').empty();
 	});
 });
 

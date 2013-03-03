@@ -27,7 +27,14 @@ class UsersController extends AppController {
 	    //allow managers to posts and widgets
 	    $group->id = 2; 
 	    $this->Acl->deny($group, 'controllers');
-		$this->Acl->allow($group, 'controllers/Dashboard');
+		$this->Acl->allow($group, 'controllers/Dashboard/about_hipaa');
+		$this->Acl->allow($group, 'controllers/Dashboard/policies_and_procedures');
+		$this->Acl->allow($group, 'controllers/Dashboard/contracts_and_documents');
+		$this->Acl->allow($group, 'controllers/Dashboard/track_and_document');
+		$this->Acl->allow($group, 'controllers/Dashboard/social_center');
+		$this->Acl->allow($group, 'controllers/Dashboard/information_center');
+		$this->Acl->allow($group, 'controllers/Clients/markComplete');
+		
 		$this->Acl->allow($group, 'controllers/Users');
 		$this->Acl->allow($group, 'controllers/Users/new_user');
 		
@@ -44,7 +51,7 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/EphiReceived');
 		$this->Acl->allow($group, 'controllers/EphiRemoved');
 		
-		$this->Acl->allow($group, 'controllers/EducationCenter/LearnNow');
+		$this->Acl->allow($group, 'controllers/EducationCenter/learn_now');
 		
 		$this->Acl->allow($group, 'controllers/SirtTeams');
 		$this->Acl->allow($group, 'controllers/SirtMembers');
@@ -52,13 +59,19 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/ContactUs/contact');	
 		
 		$this->Acl->allow($group, 'controllers/RiskAssessments/take_risk_assessment');
-		$this->Acl->allow($group, 'controllers/OrganizationProfiles/');		
+		$this->Acl->allow($group, 'controllers/OrganizationProfiles');		
 	
 	    //allow users to only add and edit on posts and widgets
 	    $group->id = 3;
 	    $this->Acl->deny($group, 'controllers');
-		$this->Acl->allow($group, 'controllers/Dashboard');
+		$this->Acl->allow($group, 'controllers/Dashboard/about_hipaa');
+		$this->Acl->allow($group, 'controllers/Dashboard/policies_and_procedures');
+		$this->Acl->allow($group, 'controllers/Dashboard/contracts_and_documents');
+		$this->Acl->allow($group, 'controllers/Dashboard/track_and_document');
+		$this->Acl->allow($group, 'controllers/Dashboard/social_center');
+		$this->Acl->allow($group, 'controllers/Dashboard/information_center');		
 		$this->Acl->allow($group, 'controllers/Users/new_user');
+		$this->Acl->allow($group, 'controllers/Clients/markComplete');		
 		
 		$this->Acl->allow($group, 'controllers/PoliciesAndProcedures');
 		$this->Acl->allow($group, 'controllers/OtherPoliciesAndProcedures');
@@ -73,7 +86,7 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/EphiReceived');
 		$this->Acl->allow($group, 'controllers/EphiRemoved');
 		
-		$this->Acl->allow($group, 'controllers/EducationCenter/LearnNow');				
+		$this->Acl->allow($group, 'controllers/EducationCenter/learn_now');				
 
 		$this->Acl->allow($group, 'controllers/SirtTeams');
 		$this->Acl->allow($group, 'controllers/SirtMembers');
@@ -81,7 +94,7 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/ContactUs/contact');	
 		
 		$this->Acl->allow($group, 'controllers/RiskAssessments/take_risk_assessment');
-		$this->Acl->allow($group, 'controllers/OrganizationProfiles/');			
+		$this->Acl->allow($group, 'controllers/OrganizationProfiles');			
 	    //we add an exit to avoid an ugly "missing views" error message
 	    echo "all done";
 	    exit;

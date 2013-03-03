@@ -6,11 +6,6 @@ $this->Html->addCrumb('View Partner - ' . $partner['Partner']['company']);
 <div class="partners view">
 <h2><?php  echo __('Partner'); ?></h2>
 	<dl>
-		<!--<dt><?php echo __('Company'); ?></dt>
-		<dd>
-			<?php echo h($partner['Partner']['company']); ?>
-			&nbsp;
-		</dd>-->
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
 			<?php echo h($partner['Partner']['name']); ?>
@@ -31,36 +26,6 @@ $this->Html->addCrumb('View Partner - ' . $partner['Partner']['company']);
 			<?php echo h($partner['Partner']['link']); ?>
 			&nbsp;
 		</dd>
-		<!--<dt><?php echo __('Logo'); ?></dt>
-		<dd>
-			<?php echo h($partner['Partner']['logo']); ?>
-			&nbsp;
-		</dd>-->
-		<!--<dt><?php echo __('Cell'); ?></dt>
-		<dd>
-			<?php echo h($partner['Partner']['cell']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Address'); ?></dt>
-		<dd>
-			<?php echo h($partner['Partner']['address']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('City'); ?></dt>
-		<dd>
-			<?php echo h($partner['Partner']['city']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('State'); ?></dt>
-		<dd>
-			<?php echo h($partner['Partner']['state']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Zip'); ?></dt>
-		<dd>
-			<?php echo h($partner['Partner']['zip']); ?>
-			&nbsp;
-		</dd>-->
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
 			<?php echo h($partner['Partner']['created']); ?>
@@ -92,13 +57,10 @@ $this->Html->addCrumb('View Partner - ' . $partner['Partner']['company']);
 	<?php if (!empty($partner['Client'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<!--<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Partner Id'); ?></th>-->
 		<th><?php echo __('Name'); ?></th>
 		<th><?php echo __('Account Type'); ?></th>
 		<th><?php echo __('Admin Account'); ?></th>
 		<th><?php echo __('User Account'); ?></th>
-		<!--<th><?php echo __('Details'); ?></th>-->
 		<th><?php echo __('Last Login'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
@@ -108,13 +70,10 @@ $this->Html->addCrumb('View Partner - ' . $partner['Partner']['company']);
 		$i = 0;
 		foreach ($partner['Client'] as $client): ?>
 		<tr>
-			<!--<td><?php echo $client['id']; ?></td>
-			<td><?php echo $client['partner_id']; ?></td>-->
 			<td><?php echo $client['name']; ?></td>
 			<td><?php echo $client['account_type']; ?></td>
 			<td><?php echo $client['admin_account']; ?></td>
 			<td><?php echo $client['user_account']; ?></td>
-			<!--<td><?php echo $client['details']; ?></td>-->
 			<td><?php echo $this->Time->format('m/d/y g:i a', $client['last_login']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $client['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $client['modified']); ?></td>

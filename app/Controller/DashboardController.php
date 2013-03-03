@@ -25,7 +25,30 @@ class DashboardController extends AppController {
 		
 		return parent::isAuthorized($user);
  	}
-
+/**
+ * Mark Complete method - Sets Risk Asessment to complete in the Clients Model
+ * 
+ */
+ 	public function mark_complete(){
+			$completed = date('Y-m-d H:i:s'); // Get DateTime
+			$client = $this->Session->read('Auth.User.client_id');
+			
+						
+			$this->loadModel('Client');
+			//$this->Client->find('first', array('conditions' => array(
+			//		'Client.id' => $client
+			//	)));
+			$this->Client->id = $client;
+			if ($this->Client->saveField('risk_assessment_status', $completed)) {
+				$this->Session->setFlash('Thanks! Your Risk Assessment has been marked complete', 'default', array('class' => 'success message'));
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
+			} else {
+				$this->Session->setFlash(__('Sorry, Risk Assessment did not complete. Please, try again.'));
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
+			}
+ 	}
+ 
+ 
 /**
  * index method
  *
@@ -159,7 +182,8 @@ class DashboardController extends AppController {
  * @return void
  */
 	public function about_hipaa() {
-	
+		$about = $this->Dashboard->find('first', array('conditions' => array('Dashboard.name' => 'about')));
+		$this->set(compact('about'));		
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
 	}
@@ -190,7 +214,7 @@ class DashboardController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Dashboard->create();
 			if ($this->Dashboard->save($this->request->data)) {
-				$this->Session->setFlash(__('The dashboard has been saved'));
+				$this->Session->setFlash('The dashboard has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The dashboard could not be saved. Please, try again.'));
@@ -205,14 +229,14 @@ class DashboardController extends AppController {
  * @param string $id
  * @return void
  */
-/*	public function edit($id = null) {
+	public function edit($id = null) {
 		$this->Dashboard->id = $id;
 		if (!$this->Dashboard->exists()) {
 			throw new NotFoundException(__('Invalid dashboard'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Dashboard->save($this->request->data)) {
-				$this->Session->setFlash(__('The dashboard has been saved'));
+				$this->Session->setFlash('The dashboard has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The dashboard could not be saved. Please, try again.'));
@@ -220,7 +244,7 @@ class DashboardController extends AppController {
 		} else {
 			$this->request->data = $this->Dashboard->read(null, $id);
 		}
-	}*/
+	}
 
 /**
  * delete method

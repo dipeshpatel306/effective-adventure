@@ -24,7 +24,7 @@ class PoliciesAndProceduresController extends AppController {
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		$acct = $this->Session->read('Auth.User.Client.account_type');
 		if($group == 2){ // Allow Managers to add/edit/delete their own data
-			if($acct == 'Meaningful Use'){
+			if($acct == 'Meaningful Use' || $acct == 'Initial'){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 				return false;

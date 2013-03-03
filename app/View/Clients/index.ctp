@@ -11,6 +11,7 @@ $this->Html->addCrumb('Clients');
 			<th><?php echo $this->Paginator->sort('user_account'); ?></th>	
 			<!--<th><?php echo $this->Paginator->sort('body'); ?></th>-->
 			<th><?php echo $this->Paginator->sort('Partner'); ?></th>
+			<th><?php echo $this->Paginator->sort('risk_assessment_status', 'Risk Assessment Completed'); ?></th>
 			<th><?php echo $this->Paginator->sort('last_login'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -25,6 +26,20 @@ $this->Html->addCrumb('Clients');
 		<td><?php echo h($client['Client']['user_account']); ?>&nbsp;</td>
 		<td><?php echo h($client['Partner']['name']); ?>&nbsp;</td>
 		<!--<td><?php echo h($client['Client']['details']); ?>&nbsp;</td>-->
+		<?php
+			if(!empty($client['Client']['risk_assessment_status'])){
+				$completed = 'class="completed"';
+			} else {
+				$completed = '';
+			}		
+		?>
+		<td <?php echo $completed; ?> >
+		<?php 
+			if(!empty($client['Client']['risk_assessment_status'])){
+				echo $this->Time->format('m/d/y', $client['Client']['risk_assessment_status']); 
+			}		
+		?>
+		&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $client['Client']['last_login']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $client['Client']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $client['Client']['modified']); ?>&nbsp;</td>
