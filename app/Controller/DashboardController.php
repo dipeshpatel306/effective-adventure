@@ -20,7 +20,7 @@ class DashboardController extends AppController {
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 
-		if ($group == 2  || $group == 3 || $group == 4){ // Allow managers, Users and Initial to view dashboard
+		if ($group == 2  || $group == 3 ){ // Allow managers, Users  to view dashboard
 			return true;
 		}
 		
@@ -37,6 +37,7 @@ class DashboardController extends AppController {
 			$message = 'New Risk Assessment Completed for ' . $clientName . ' Completed at ' . $completed;
 			$this->loadModel('Client');
 			$this->Client->id = $client;
+			$this->render(false); // tell cake to not use a view
 			
 			// Send email about new registration
 			/*$email = new CakeEmail('gmail');
@@ -85,7 +86,7 @@ class DashboardController extends AppController {
 				'client_id' => $clientId),
 				'fields' => 'RiskAssessment.id, RiskAssessment.client_id'
 		));
-		
+		// If Risk Assessment exists then set it
 		if(isset($risk) && !empty($risk)){
 			$this->set(compact('risk'));
 		}
@@ -96,7 +97,7 @@ class DashboardController extends AppController {
 				'client_id' => $clientId),
 				'fields' => 'OrganizationProfile.id, OrganizationProfile.client_id'
 		));
-		
+		// If Org profile exists then set it
 		if(isset($org) && !empty($org)){
 			$this->set(compact('org'));
 		}

@@ -9,6 +9,8 @@ if($group == 1){ // If admin allow creating another Hipaa administrator
 	$groupOption = array(4 => 'Pending', 3 => 'User', 2 => 'Manager');
 }
 
+$active = array('No' => 'No', 'Yes' => 'Yes');  // activate / deactivate a user
+
 $client = $this->Session->read('Auth.User.client_id');  // Test Client.  If admin allow client choosing, else hide field and set it to the current client
 
 // Conditionally load buttons based upon user role
@@ -21,18 +23,23 @@ $client = $this->Session->read('Auth.User.client_id');  // Test Client.  If admi
 		<legend><?php echo __('Edit User'); ?></legend>
 	<?php
 		//echo $this->Form->input('User.authCode', array('label' => 'Authorization Code'));
-		echo $this->Form->input('group_id', array('options' => $groupOption, 'default' => 4));		
-		
+		if($client == 1){
+			echo $this->Form->input('group_id', array('options' => $groupOption));	
+		}
 		if($client == 1){  // if admin allow to choose
 			echo $this->Form->input('client_id', array('empty' => 'Please Select'));
 		} else {
 			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
 		}
+
+		if($client == 1 || $client == 2){ // activate / deactivate user
+			echo $this->Form->input('active', array('options' => $active, 'default' => 1));
+		}
 		
-		echo $this->Form->input('email');	
+		echo $this->Form->input('email', array('allowEmpty' => true));	
 		echo $this->Form->input('email2', array('label' => 'Confirm Email'));	
 		echo $this->Form->input('password');
-		echo $this->Form->input('password2', array('label' => 'Verify Password', 'type' => 'password'));		
+		echo $this->Form->input('password2', array('label' => 'Verify Password', 'type' => 'password', 'allowEmpty' => true));		
 		echo $this->Form->input('first_name');
 		echo $this->Form->input('last_name');
 		echo $this->Form->input('phone_number');
@@ -44,9 +51,8 @@ $client = $this->Session->read('Auth.User.client_id');  // Test Client.  If admi
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?></li>
-		
 		<?php if($group == 1 || $group == 2): ?>
+		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?></li>
 		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('User.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('User.id'))); ?></li>
 
 		<?php endif; ?>		

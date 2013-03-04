@@ -9,6 +9,8 @@ if($group == 1){ // If admin allow creating another Hipaa administrator
 	$groupOption = array(4 => 'Pending', 3 => 'User', 2 => 'Manager');
 }
 
+$active = array('No' => 'No', 'Yes' => 'Yes');  // activate / deactivate a user
+
 $client = $this->Session->read('Auth.User.client_id');  // Test Client.  If admin allow client choosing, else hide field and set it to the current client
 
 // Conditionally load buttons based upon user role
@@ -29,7 +31,11 @@ $client = $this->Session->read('Auth.User.client_id');  // Test Client.  If admi
 		} else {
 			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
 		}
-
+		
+		if($client == 1 || $client == 2){ // activate / deactivate user
+			echo $this->Form->input('active', array('options' => $active));
+		}
+		
 		echo $this->Form->input('email');
 		echo $this->Form->input('email2', array('label' => 'Confirm Email'));		
 		echo $this->Form->input('password');

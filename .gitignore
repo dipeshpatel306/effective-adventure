@@ -10,3 +10,5 @@
 *.class
 *.pyc
 *.pyo
+app/webroot/documents
+app/webroot/files

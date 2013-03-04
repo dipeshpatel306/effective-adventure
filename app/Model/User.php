@@ -197,6 +197,12 @@ class User extends AppModel {
 	public function isOwnedBy($id, $client){
 		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;	
 	}
+/**
+ * Allow user to edit their own profile
+ */ 
+ 	public function isUser($id){
+ 		return $this->field('id', array('id' => $id)) === $id;
+ 	}
  
 /** 
  * Compare and Verify Password
@@ -223,4 +229,14 @@ class User extends AppModel {
     	}
         return true;
     }
+/**
+ * Account Activation Hash method
+ */	
+	public function getActivationHash(){
+		if(!isset($this->id)){
+			return false;
+		}
+		return substr(Security::hash(Configure::read('Security.salt').$this->field('created').date(Ymd)), 0, 8);
+	}
+ 	
 }

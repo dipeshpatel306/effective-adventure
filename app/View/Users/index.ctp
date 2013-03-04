@@ -14,7 +14,8 @@ $this->Html->addCrumb('Users');
 			<?php endif; ?>
 			<th><?php echo $this->Paginator->sort('last_name', 'Name'); ?></th>			
 			<th><?php echo $this->Paginator->sort('email'); ?></th>		
-			<th><?php echo $this->Paginator->sort('group_id'); ?></th>			
+			<th><?php echo $this->Paginator->sort('group_id'); ?></th>	
+			<th><?php echo $this->Paginator->sort('active'); ?></th>			
 			<th><?php echo $this->Paginator->sort('last_login'); ?></th>		
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -29,6 +30,7 @@ $this->Html->addCrumb('Users');
 		<td><?php echo $user['User']['last_name'] . ', ' . $user['User']['first_name']; ?>&nbsp;</td>			
 		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
 		<td><?php echo $user['Group']['name']; ?></td>
+		<td><?php echo h($user['User']['active']); ?>&nbsp;</td>
 		<td> 
 		<?php 
 			if($user['User']['last_login'] == '0000-00-00 00:00:00'){

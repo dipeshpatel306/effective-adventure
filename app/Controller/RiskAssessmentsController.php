@@ -17,7 +17,7 @@ class RiskAssessmentsController extends AppController {
  		$acct = $this->Session->read('Auth.User.Client.account_type');
 
 		if ($group == 2 || $group == 3 || $acct == 'Initial'){ //allow
-			if(in_array($this->action, array('view','add'))){  // Allow Managers to Add 
+			if(in_array($this->action, array('view','take_risk_assessment'))){  // Allow Managers to Add 
 				return true;
 			}
 			

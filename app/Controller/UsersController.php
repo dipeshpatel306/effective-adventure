@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 /**
  * Users Controller
  *
@@ -7,9 +8,12 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
 
+
 	public function beforeFilter() {
 	    parent::beforeFilter();
-    	$this->Auth->allow('login', 'new_user', 'logout');		
+    	$this->Auth->allow('login', 'new_user', 'logout');	
+		
+		$this->Auth->scope= array('User.active' => 0);	
 	    //$this->Auth->allow('*');
 	    // Runs ACL Permission Setup. Disable when not in use
 	    //$this->Auth->allow('initDB'); 
@@ -33,7 +37,7 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Dashboard/track_and_document');
 		$this->Acl->allow($group, 'controllers/Dashboard/social_center');
 		$this->Acl->allow($group, 'controllers/Dashboard/information_center');
-		$this->Acl->allow($group, 'controllers/Clients/markComplete');
+		$this->Acl->allow($group, 'controllers/Dashboard/mark_complete');
 		
 		$this->Acl->allow($group, 'controllers/Users');
 		$this->Acl->allow($group, 'controllers/Users/new_user');
@@ -69,9 +73,12 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Dashboard/contracts_and_documents');
 		$this->Acl->allow($group, 'controllers/Dashboard/track_and_document');
 		$this->Acl->allow($group, 'controllers/Dashboard/social_center');
-		$this->Acl->allow($group, 'controllers/Dashboard/information_center');		
+		$this->Acl->allow($group, 'controllers/Dashboard/information_center');	
+		$this->Acl->allow($group, 'controllers/Dashboard/mark_complete');	
+			
 		$this->Acl->allow($group, 'controllers/Users/new_user');
-		$this->Acl->allow($group, 'controllers/Clients/markComplete');		
+		
+		$this->Acl->allow($group, 'controllers/Users/edit');	
 		
 		$this->Acl->allow($group, 'controllers/PoliciesAndProcedures');
 		$this->Acl->allow($group, 'controllers/OtherPoliciesAndProcedures');
@@ -99,45 +106,6 @@ class UsersController extends AppController {
 	    echo "all done";
 	    exit;
 	}
-
-/**
- * Login Method
- */
-	public function login() {
-	    if ($this->request->is('post')) {
-	        if ($this->Auth->login()) {
-	        	
-	        	$dateTime = date('Y-m-d H:i:s'); // Get DateTime
-					
-				$this->User->Client->id = $this->Session->read('Auth.User.client_id');  // Get correct Client
-				$this->User->Client->saveField('last_login', $dateTime);  // Save last login to Client DB
-				$this->Session->write('Auth.User.Client.last_login', $dateTime);  // write client login into session
-				
-				$this->User->id = $this->Session->read('Auth.User.id');  // Get User id
-				$this->User->saveField('last_login', $dateTime);  // Save last login to user DB
-				$this->Session->write('Auth.User.last_login', $dateTime);  // write user login into user session
-				
-				$this->redirect($this->Auth->redirect());
-
-	        } else {
-	            $this->Session->setFlash('Your username or password was incorrect.');
-	        }
-	    }
-		if ($this->Session->read('Auth.User')) {
-        	$this->Session->setFlash('You are logged in!', 'default', array('class' => 'success message'));
-			//$this->Session->write('User.id', $userId);
-        	$this->redirect('/', null, false);
-    	}
-	}
-/**
- * Logout Method
- */
-	public function logout() {
-		$this->Session->setFlash('Good-Bye');
-		$this->Session->destroy();
-		$this->redirect($this->Auth->logout());   
-	}
-
 /**
  * isAuthorized Method
  * Allows Hippa Admin to Add, Edit, Delete Everything
@@ -148,6 +116,7 @@ class UsersController extends AppController {
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+		$userId = $this->Session->read('Auth.User.id');
 		
 		if($group == 2){ // Allow Managers to add/edit/delete their own data
 			
@@ -163,14 +132,120 @@ class UsersController extends AppController {
 			}	
 		}
 		
-		if($group == 3 || $group == 4){ // Deny Users
+		if($group == 3 || $group == 'initial'){ // Allow user to edit own profile
+			if(in_array($this->action, array('edit'))){
+				$id = $this->request->params['pass'][0];
+				if($this->User->isUser($userId)){
+					return true;
+				}
+		}
+			
+			
 			return false;
 		}
 		
 		return parent::isAuthorized($user);
  	}
 
+/**
+ * Login Method
+ */
+	public function login() {
+	    if ($this->request->is('post')) {
+	        if ($this->Auth->login()) {
+	        	
+				// check if user is active
+				$user = $this->User->find('first', array(
+					'recursive' => -1,
+					'fields' => array('User.id', 'User.email', 'User.password', 'User.active'),
+					'conditions' => array('User.email' => $this->request->data['User']['email']),			
+				));
+				
+				if($user['User']['active'] != 'Yes'){
+					$this->Session->setFlash('Your account is not active yet!');
+					$this->Auth->logout();
+					$this->redirect('login');
+					
+				} else {
+	        		$dateTime = date('Y-m-d H:i:s'); // Get DateTime
+					
+					$this->User->Client->id = $this->Session->read('Auth.User.client_id');  // Get correct Client
+					$this->User->Client->saveField('last_login', $dateTime);  // Save last login to Client DB
+					$this->Session->write('Auth.User.Client.last_login', $dateTime);  // write client login into session
+				
+					$this->User->id = $this->Session->read('Auth.User.id');  // Get User id
+					$this->User->saveField('last_login', $dateTime);  // Save last login to user DB
+					$this->Session->write('Auth.User.last_login', $dateTime);  // write user login into user session
+					$this->redirect($this->Auth->redirect());					
+				}
 
+	        } else {
+	            $this->Session->setFlash('Your username or password was incorrect.');
+	        }
+	    }
+		if ($this->Session->read('Auth.User')) {
+        	$this->Session->setFlash('You are logged in!', 'default', array('class' => 'success message'));
+			//$this->Session->write('User.id', $userId);
+        	$this->redirect('/', null, false);
+    	}
+	}
+
+/**
+ * Activate Account Method
+ * 
+ */
+/*	public function activate($user_id = null, $in_hash = null){
+		$this->User->id = $user_id;
+		
+		if($User->exists() && ($in_hash == $this->User->getActivationHash())){
+			if($empty($this->data)){
+				$this->data = $this->User->read(null, $user_id);
+				$this->User->set('active', 'Yes');
+				$this->User->save();
+				
+				$this->Session->setFlash('Your account has been activated. Please Login.');
+				$this->redirect('login');
+			}
+		}
+	}*/
+
+/**
+ * Send Activation Email method
+ */
+/*public function sendActivationEmail(){
+	$user = $this->User->find('first', array('conditions' => 
+		array('User.id' => $user_id),
+		'fields' => array('User.id', 'User.email', 'User.first_name', 'User.last_name')
+	));
+	
+	if($user === false){
+		return false;
+	}
+	
+	// Set data for email view
+	$this->set('activate_url', 'http://' . env('SERVER_NAME') . 'users/activate/' . $user['User']['id'] . $this->USer->getActivationHash());
+	$this->set('username', $this->request->data['User']['first_name'] . ' ' . $this->request->data['User']['last_name']);
+
+	$email = new CakeEmail('gmail');
+	$email->from('chris@gpointech.com');
+	$email->to($user['User']['email']);
+	$email->subject('HIPAA Account activation');
+	$email->send();
+	
+}*/
+
+
+ 
+ 
+/**
+ * Logout Method
+ */
+	public function logout() {
+		$this->Session->setFlash('Good-Bye');
+		$this->Session->destroy();
+		$this->redirect($this->Auth->logout());   
+	}
+	
 /**
  * index method
  *
@@ -300,7 +375,7 @@ class UsersController extends AppController {
 			if($this->User->validates()){ // check if invalidations exist
 				$this->User->create();	
 				if ($this->User->save($this->request->data)) {
-					$this->Session->setFlash('Your Account has been successfully created', 'default', array('class' => 'success message'));
+					$this->Session->setFlash('Your Account has been successfully created. Check your email to activate your account.', 'default', array('class' => 'success message'));
 					$this->redirect(array('action' => 'index'));
 				} else {
 					$this->Session->setFlash(__('Your new account could not be created. Please, try again.'));
@@ -328,13 +403,17 @@ class UsersController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+			
+			
 			if($group != 1){
 				$this->request->data['User']['client_id'] = $this->Auth->User('client_id'); 
 				
-				if($this->request->data['User']['group_id'] == 1){  // If client tries to spoof Hipaa admin group redirect them
+				/*if($this->request->data['User']['group_id'] == 1){  // If client tries to spoof Hipaa admin group redirect them
 					$this->redirect(array('action' => 'index'));
 					$this->Session->setFlash(__('You are not authorized to do that!'));
-				}
+				}*/
+				$this->request->data['User']['group_id'] = $this->Session->read('Auth.User.group_id');
+				
 			}
 			
 
