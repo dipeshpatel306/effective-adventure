@@ -13,7 +13,7 @@ class UsersController extends AppController {
 	    parent::beforeFilter();
     	$this->Auth->allow('login', 'new_user', 'logout');	
 		
-		$this->Auth->scope= array('User.active' => 0);	
+		// $this->Auth->scope = array('User.active' => 'No');	
 	    //$this->Auth->allow('*');
 	    // Runs ACL Permission Setup. Disable when not in use
 	    //$this->Auth->allow('initDB'); 
@@ -42,7 +42,8 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Users');
 		$this->Acl->allow($group, 'controllers/Users/new_user');
 		
-		$this->Acl->allow($group, 'controllers/PoliciesAndProcedures');
+		$this->Acl->allow($group, 'controllers/PoliciesAndProcedures/index');
+		$this->Acl->allow($group, 'controllers/PoliciesAndProcedures/view');
 		$this->Acl->allow($group, 'controllers/OtherPoliciesAndProcedures');
 		
 		$this->Acl->allow($group, 'controllers/RiskAssessmentDocuments');
@@ -80,7 +81,8 @@ class UsersController extends AppController {
 		
 		$this->Acl->allow($group, 'controllers/Users/edit');	
 		
-		$this->Acl->allow($group, 'controllers/PoliciesAndProcedures');
+		$this->Acl->allow($group, 'controllers/PoliciesAndProcedures/index');
+		$this->Acl->allow($group, 'controllers/PoliciesAndProcedures/view');
 		$this->Acl->allow($group, 'controllers/OtherPoliciesAndProcedures');
 		
 		$this->Acl->allow($group, 'controllers/RiskAssessmentDocuments');

@@ -3,28 +3,18 @@ $this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedur
 $this->Html->addCrumb('Policies & Procedures', '/policies_and_procedures');
 $this->Html->addCrumb('Edit Policy & Procedure');
 
-// Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id'); 
-	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
+
 <div class="policiesAndProcedures form">
-<?php echo $this->Form->create('PoliciesAndProcedure', array('type' => 'file')); ?>
+<?php echo $this->Form->create('PoliciesAndProcedure'); ?>
 	<fieldset>
-		<legend><?php echo __('Edit Policies And Procedure'); ?></legend>
+		<legend><?php echo __('Edit Policies And Procedures'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
 		echo $this->Form->input('description', array('class' => 'ckeditor'));
 		echo $this->Form->input('details', array('class' => 'ckeditor'));
-		
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
-		if($client == 1){  // if admin allow to choose
-			echo $this->Form->input('client_id', array('empty' => 'Please Select'));
-		} else {
-			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
-		}
-		
-		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Attachment - (pdf, doc, docx, dot files only)'));
 		echo $this->Form->input('media');
 	?>
 	</fieldset>
@@ -34,11 +24,9 @@ $this->Html->addCrumb('Edit Policy & Procedure');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
+		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('PoliciesAndProcedure.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('PoliciesAndProcedure.id'))); ?></li>
 		<li><?php echo $this->Html->link(__('List Policies And Procedures'), array('action' => 'index')); ?></li>
-		
-		<?php if($group == 1 || $group == 2): ?>
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('PoliciesAndProcedure.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('PoliciesAndProcedure.id'))); ?></li>			
-		<?php endif; ?>		
-
+		<li><?php echo $this->Html->link(__('List Policies And Procedures Documents'), array('controller' => 'policies_and_procedures_documents', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Policies And Procedures Document'), array('controller' => 'policies_and_procedures_documents', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

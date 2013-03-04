@@ -165,10 +165,12 @@ class OtherPoliciesAndProceduresController extends AppController {
 		} else {
 				$this->loadModel('Client');
 				$key = $this->Client->find('first', array('conditions' => array(
-							'Client.id' => $this->request->data['OtherPoliciesAndProcedure']['client_id']),
-							'fields' => 'Client.file_key'
+							'Client.id' => $this->data['OtherPoliciesAndProcedure']['client_id']),
+							'fields' => array('Client.file_key', 'Client.id'),
 							));
 				$this->request->data['OtherPoliciesAndProcedure']['file_key'] = $key['Client']['file_key'];
+				
+				
 		}	
 					
 		if ($this->request->is('post') || $this->request->is('put')) {

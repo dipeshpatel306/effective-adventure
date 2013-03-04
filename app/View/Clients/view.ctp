@@ -140,7 +140,7 @@ if(!empty($client['Client']['risk_assessment_status'])){
 </div>
 
 <!-- Policies & Procedures -->
-<div class="related">
+<!--<div class="related">
 	<h3><?php echo __('Policies & Procedures'); ?></h3>
 
 	<?php if (!empty($client['PoliciesAndProcedure'])): ?>
@@ -182,7 +182,7 @@ if(!empty($client['Client']['risk_assessment_status'])){
 		</ul>
 	</div>	
 
-</div>
+</div>-->
 
 <!-- Other Policies & Procedures -->
 <div class="related">

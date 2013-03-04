@@ -6,6 +6,7 @@ App::uses('AppController', 'Controller');
  * @property PoliciesAndProcedure $PoliciesAndProcedure
  */
 class PoliciesAndProceduresController extends AppController {
+
 	
  public function beforeFilter(){
 	parent::beforeFilter();
@@ -23,21 +24,21 @@ class PoliciesAndProceduresController extends AppController {
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		$acct = $this->Session->read('Auth.User.Client.account_type');
+		
 		if($group == 2){ // Allow Managers to add/edit/delete their own data
 			if($acct == 'Meaningful Use' || $acct == 'Initial'){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 				return false;
 			} 
-			if(in_array($this->action, array('index', 'view','add'))){  // Allow Managers to Add 
+			if(in_array($this->action, array('index', 'view'))){  // Allow Managers to Add 
 				return true;
 			}
 				
 			if(in_array($this->action, array('edit', 'delete'))){ // Allow Managers to Edit, delete their own
-				$id = $this->request->params['pass'][0];
-				if($this->Policy->isOwnedBy($id, $client)){
-					return true;
-				}
+				$this->Session->setFlash('You are not authorized to view that!');
+				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+				return false;
 			}
 		}
 
@@ -68,24 +69,8 @@ class PoliciesAndProceduresController extends AppController {
  * @return void
  */
 	public function index() {
-
-		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
-		
-		if($group == 1){
-			$this->PoliciesAndProcedure->recursive = 0;
-			$this->paginate = array('order' => array('policiesAndProcedure.client_id' => 'ASC'));
-			$this->set('policiesAndProcedures', $this->paginate());
-		} elseif($group == 2 || $group == 3) {
-			$this->paginate = array(
-				'conditions' => array('policiesAndProcedure.client_id' => $client),
-				'order' => array('policiesAndProcedure.name' => 'ASC')
-			);
-			$this->set('policiesAndProcedures', $this->paginate());
-		} 
 		$this->PoliciesAndProcedure->recursive = 0;
 		$this->set('policiesAndProcedures', $this->paginate());
-
 	}
 
 /**
@@ -102,30 +87,23 @@ class PoliciesAndProceduresController extends AppController {
 		
 		$this->PoliciesAndProcedure->id = $id;
 		if (!$this->PoliciesAndProcedure->exists()) {
-			throw new NotFoundException(__('Invalid policy and procedure'));
+			throw new NotFoundException(__('Invalid policies and procedure'));
 		}
 		
-		if($group == 1){
-			$this->set('policiesAndProcedure', $this->PoliciesAndProcedure->read(null, $id));
-		} elseif($group == 2 || $group == 3){
-			$is_authorized = $this->PoliciesAndProcedure->find('first', array(
+		if($group == 2 || $group == 3){
+		$policiesAndProcedureDocument = $this->PoliciesAndProcedure->PoliciesAndProceduresDocument->find('first', array(
 				'conditions' => array(
-					'PoliciesAndProcedure.id' => $id,
-					'AND' => array('PoliciesAndProcedure.client_id' => $client)
-				)
+				'PoliciesAndProceduresDocument.policies_and_procedure_id' => $id,
+				'PoliciesAndProceduresDocument.client_id' => $client,
+				),
+				'fields' => array('PoliciesAndProceduresDocument.id','PoliciesAndProceduresDocument.policies_and_procedure_id', 'PoliciesAndProceduresDocument.client_id', 
+				'PoliciesAndProceduresDocument.document', 'PoliciesAndProceduresDocument.created', 'PoliciesAndProceduresDocument.modified')		
 			));
 			
-			if($is_authorized){
-				$this->set('policiesAndProcedure', $this->PoliciesAndProcedure->read(null, $id));
-			} else { // Else Banned!
-				$this->Session->setFlash('You are not authorized to view that!');
-				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
-			}			
-		} else { // Else Banned	
-			$this->Session->setFlash('You are not authorized to view that!');
-			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
-		}		
 		
+		}
+		$this->set(compact('policiesAndProcedureDocument'));
+		$this->set('policiesAndProcedure', $this->PoliciesAndProcedure->read(null, $id));
 	}
 
 /**
@@ -134,34 +112,15 @@ class PoliciesAndProceduresController extends AppController {
  * @return void
  */
 	public function add() {
-		
 		if ($this->request->is('post')) {
-			
-			// If user is a client automatically set the client id accordingly. Admin can change client ids
-			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-			if($group != 1){
-				$this->request->data['PoliciesAndProcedure']['client_id'] = $this->Auth->User('client_id');
-				$this->request->data['PoliciesAndProcedure']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key					
-			} else {
-				$this->loadModel('Client');
-				$key = $this->Client->find('first', array('conditions' => array(
-							'Client.id' => $this->request->data['PoliciesAndProcedure']['client_id']),
-							'fields' => 'Client.file_key'
-							));
-				$this->request->data['PoliciesAndProcedure']['file_key'] = $key['Client']['file_key'];
-			}				
-			
 			$this->PoliciesAndProcedure->create();
 			if ($this->PoliciesAndProcedure->save($this->request->data)) {
-				$this->Session->setFlash('The policy and procedure has been saved', 'default', array('class' => 'success message'));
+				$this->Session->setFlash('The policies and procedure has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The policy could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The policies and procedure could not be saved. Please, try again.'));
 			}
 		}
-		$clients = $this->PoliciesAndProcedure->Client->find('list');
-		$this->set(compact('clients'));		
-		
 	}
 
 /**
@@ -176,19 +135,6 @@ class PoliciesAndProceduresController extends AppController {
 		if (!$this->PoliciesAndProcedure->exists()) {
 			throw new NotFoundException(__('Invalid policies and procedure'));
 		}
-		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin? 
-		if($group != 1){
-			$this->request->data['PoliciesAndProcedure']['client_id'] = $this->Auth->User('client_id');			
-			$this->request->data['PoliciesAndProcedure']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key			
-		} else {
-				$this->loadModel('Client');
-				$key = $this->Client->find('first', array('conditions' => array(
-							'Client.id' => $this->request->data['PoliciesAndProcedure']['client_id']),
-							'fields' => 'Client.file_key'
-							));
-				$this->request->data['PoliciesAndProcedure']['file_key'] = $key['Client']['file_key'];
-		}
-			
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->PoliciesAndProcedure->save($this->request->data)) {
 				$this->Session->setFlash('The policies and procedure has been saved', 'default', array('class' => 'success message'));
@@ -199,8 +145,6 @@ class PoliciesAndProceduresController extends AppController {
 		} else {
 			$this->request->data = $this->PoliciesAndProcedure->read(null, $id);
 		}
-		$clients = $this->PoliciesAndProcedure->Client->find('list');
-		$this->set(compact('clients'));
 	}
 
 /**

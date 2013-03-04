@@ -3,7 +3,7 @@ App::uses('AppModel', 'Model');
 /**
  * PoliciesAndProcedure Model
  *
- * @property Client $Client
+ * @property PoliciesAndProceduresDocument $PoliciesAndProceduresDocument
  */
 class PoliciesAndProcedure extends AppModel {
 
@@ -30,9 +30,9 @@ class PoliciesAndProcedure extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'client_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+		'description' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -45,74 +45,31 @@ class PoliciesAndProcedure extends AppModel {
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
- * belongsTo associations
+ * hasMany associations
  *
  * @var array
  */
-	public $belongsTo = array(
-		'Client' => array(
-			'className' => 'Client',
-			'foreignKey' => 'client_id',
+	public $hasMany = array(
+		'PoliciesAndProceduresDocument' => array(
+			'className' => 'PoliciesAndProceduresDocument',
+			'foreignKey' => 'policies_and_procedure_id',
+			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
-			'order' => ''
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
 		)
 	);
-/*
- * Upload behavior
- * 
- */
-	public $actsAs = array( 
-		'Uploader.Attachment' => array(
-			'attachment' => array(
-				//'name'		=> 'formatFileName',	// Name of the function to use to format filenames
-				'baseDir'	=> '',			// See UploaderComponent::$baseDir
-				'uploadDir'	=> '/documents/',			// See UploaderComponent::$uploadDir
-				'dbColumn'	=> 'attachment',	// The database column name to save the path to
-				'importFrom'	=> '',			// Path or URL to import file
-				'defaultPath'	=> '',			// Default file path if no upload present
-				'maxNameLength'	=> 100,			// Max file name length
-				'overwrite'	=> true,		// Overwrite file with same name if it exists
-				'stopSave'	=> true,		// Stop the model save() if upload fails
-				'allowEmpty'	=> true,		// Allow an empty file upload to continue
-				'transforms'	=> array(),		// What transformations to do on images: scale, resize, etc
-				's3'		=> array(),		// Array of Amazon S3 settings
-				'metaColumns'	=> array(		// Mapping of meta data to database fields
-					'ext' => '',
-					'type' => '',
-					'size' => '',
-					'group' => '',
-					'width' => '',
-					'height' => '',
-					'filesize' => ''
-				)
-			)
-		),
-		'Uploader.FileValidation' => array(
-			'attachment' => array(
-				'extension' => array(
-					'value' => array('doc', 'docx', 'dot', 'pdf'),
-					'error'	=> 'File must me .pdf, .doc, .docx or .dot'
-				)
-			)
-		)		
-	);
 	
-/**
- * Change file directory to that of client
- * 
- */
-public function beforeUpload($options){ 
-	$key = $this->data['PoliciesAndProcedure']['file_key'];	
-	$client = $this->data['PoliciesAndProcedure']['client_id']; // check client id
-	$options['uploadDir'] = "/documents/policies_and_procedures/$client/$key/" ;
-	return $options;
-}
-
 /**
  * Check Client Owner
  */	
 	public function isOwnedBy($id, $client){
 		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;	
 	}
+
 }

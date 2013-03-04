@@ -90,12 +90,25 @@ class Client extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'PoliciesAndProcedure' => array(
+/*		'PoliciesAndProcedure' => array(
 			'className' => 'PoliciesAndProcedure',
 			'foreignKey' => 'client_id',
 			'dependent' => true,
 			'conditions' => '',
 			'fields' => array('PoliciesAndProcedure.id, PoliciesAndProcedure.name, PoliciesAndProcedure.client_id, PoliciesAndProcedure.created, PoliciesAndProcedure.modified, PoliciesAndProcedure.attachment'),
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),*/
+		'PoliciesAndProceduresDocument' => array(
+			'className' => 'PoliciesAndProceduresDocument',
+			'foreignKey' => 'client_id',
+			'dependent' => true,
+			'conditions' => '',
+			'fields' => array(),
 			'order' => '',
 			'limit' => '',
 			'offset' => '',

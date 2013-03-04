@@ -72,7 +72,6 @@ class ClientsController extends AppController {
 		}
 		$this->set('client', $this->Client->read(null, $id));
 		
-		
 		// Paginate Users and Get Group Role
 		$this->paginate = array('conditions' => array('User.client_id' => $id), 
 								'order' => array('User.last_name' => 'ASC'), 

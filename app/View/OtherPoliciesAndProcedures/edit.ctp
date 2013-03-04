@@ -26,6 +26,7 @@ $this->Html->addCrumb('Edit Other Policy & Procedure');
 		
 		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Attachment - (pdf, doc, docx, dot files only)'));
 		echo $this->Form->input('media');
+	
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
