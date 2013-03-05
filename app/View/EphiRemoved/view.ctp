@@ -13,7 +13,7 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemov
 		<?php if($group == 1): ?>
 		<dt><?php echo __('Client'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($ephiRemoved['Client']['name'], array('controller' => 'clients', 'action' => 'view', $ephiRemoved['Client']['id'])); ?>
+			<?php echo $ephiRemoved['Client']['name']; ?>
 			&nbsp;
 		</dd>		
 		<?php endif; ?>

@@ -100,9 +100,9 @@ class PoliciesAndProceduresController extends AppController {
 				'PoliciesAndProceduresDocument.document', 'PoliciesAndProceduresDocument.created', 'PoliciesAndProceduresDocument.modified')		
 			));
 			
-		
-		}
 		$this->set(compact('policiesAndProcedureDocument'));
+		}
+		
 		$this->set('policiesAndProcedure', $this->PoliciesAndProcedure->read(null, $id));
 	}
 

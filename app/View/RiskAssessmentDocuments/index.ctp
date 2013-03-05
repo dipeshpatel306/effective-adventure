@@ -25,7 +25,7 @@ $this->Html->addCrumb('Risk Assessment Documents');
 	<tr>
 		<?php if($group == 1): ?>
 		<td>
-			<?php echo $this->Html->link($riskAssessmentDocument['Client']['name'], array('controller' => 'clients', 'action' => 'view', $riskAssessmentDocument['Client']['id'])); ?>
+			<?php echo $riskAssessmentDocument['Client']['name']; ?>
 		</td>	
 		<?php endif; ?>	
 		<td><?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['name']); ?>&nbsp;</td>

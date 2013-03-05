@@ -15,22 +15,23 @@ $this->Html->addCrumb('Users');
 			<th><?php echo $this->Paginator->sort('last_name', 'Name'); ?></th>			
 			<th><?php echo $this->Paginator->sort('email'); ?></th>		
 			<th><?php echo $this->Paginator->sort('group_id'); ?></th>	
-			<th><?php echo $this->Paginator->sort('active'); ?></th>			
+		
 			<th><?php echo $this->Paginator->sort('last_login'); ?></th>		
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
+			<th><?php echo $this->Paginator->sort('active', 'Account Active'); ?></th>	
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php
 	foreach ($users as $user): ?>
 	<tr>
 		<?php if($group == 1): ?>
-		<td><?php echo $this->Html->link($user['Client']['name'], array('controller' => 'clients', 'action' => 'view', $user['Client']['id'])); ?></td>		
+		<td><?php echo $user['Client']['name']; ?></td>		
 		<?php endif; ?>
 		<td><?php echo $user['User']['last_name'] . ', ' . $user['User']['first_name']; ?>&nbsp;</td>			
 		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
 		<td><?php echo $user['Group']['name']; ?></td>
-		<td><?php echo h($user['User']['active']); ?>&nbsp;</td>
+
 		<td> 
 		<?php 
 			if($user['User']['last_login'] == '0000-00-00 00:00:00'){
@@ -41,6 +42,18 @@ $this->Html->addCrumb('Users');
 		?>&nbsp;</td>		
 		<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['modified']); ?>&nbsp;</td>
+		<?php 
+			if($user['User']['active'] == 'Yes'){
+				$active = "class='active'";
+			} else {
+				$active = "class='inactive'";
+			}
+		?>	
+		<td <?php echo $active; ?>>
+			<?php 
+			echo $user['User']['active']; 
+			?>&nbsp;
+		</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id'])); ?>

@@ -13,7 +13,7 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiReceived['EphiRece
 		<?php if ($group == 1): ?>
 		<dt><?php echo __('Client'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($ephiReceived['Client']['name'], array('controller' => 'clients', 'action' => 'view', $ephiReceived['Client']['id'])); ?>
+			<?php echo $ephiReceived['Client']['name']; ?>
 			&nbsp;
 		</dd>
 		<?php endif; ?>

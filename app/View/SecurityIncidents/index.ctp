@@ -27,7 +27,7 @@ $this->Html->addCrumb('Security Incidents');
 	<tr>
 		<?php if ($group == 1): ?> 		
 		<td>
-			<?php echo $this->Html->link($securityIncident['Client']['name'], array('controller' => 'clients', 'action' => 'view', $securityIncident['Client']['id'])); ?>
+			<?php echo $securityIncident['Client']['name']; ?>
 		</td>
 		<?php endif; ?>
 		

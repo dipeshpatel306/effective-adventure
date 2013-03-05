@@ -163,20 +163,22 @@ class DisasterRecoveryPlansController extends AppController {
 		if (!$this->DisasterRecoveryPlan->exists()) {
 			throw new NotFoundException(__('Invalid disaster recovery plan'));
 		}
-		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-		if($group != 1){
-			$this->request->data['DisasterRecoveryPlan']['client_id'] = $this->Auth->User('client_id');
-			$this->request->data['DisasterRecoveryPlan']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
-		} else {
-				$this->loadModel('Client');
-				$key = $this->Client->find('first', array('conditions' => array(
-							'Client.id' => $this->request->data['DisasterRecoveryPlan']['client_id']),
-							'fields' => 'Client.file_key'
-							));
-				$this->request->data['DisasterRecoveryPlan']['file_key'] = $key['Client']['file_key'];
-			}	
 			
 		if ($this->request->is('post') || $this->request->is('put')) {
+			
+				$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+				if($group != 1){
+					$this->request->data['DisasterRecoveryPlan']['client_id'] = $this->Auth->User('client_id');
+					$this->request->data['DisasterRecoveryPlan']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
+				} else {
+						$this->loadModel('Client');
+						$key = $this->Client->find('first', array('conditions' => array(
+									'Client.id' => $this->request->data['DisasterRecoveryPlan']['client_id']),
+									'fields' => 'Client.file_key'
+									));
+						$this->request->data['DisasterRecoveryPlan']['file_key'] = $key['Client']['file_key'];
+				}				
+			
 			if ($this->DisasterRecoveryPlan->save($this->request->data)) {
 				$this->Session->setFlash('The disaster recovery plan has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));

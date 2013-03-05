@@ -13,7 +13,7 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $serverRoomAccess['Serv
 		<?php if($group == 1): ?>
 		<dt><?php echo __('Client'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($serverRoomAccess['Client']['name'], array('controller' => 'clients', 'action' => 'view', $serverRoomAccess['Client']['id'])); ?>
+			<?php echo $serverRoomAccess['Client']['name']; ?>
 			&nbsp;
 		</dd>		
 		<?php endif; ?>

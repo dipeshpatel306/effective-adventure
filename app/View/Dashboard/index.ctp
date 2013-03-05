@@ -206,7 +206,7 @@
 			);	
 			
 		
-		if(isset($partner)){	
+		if(!empty($partner) && ($partner != 0)){	
 			echo $this->Html->link( // Partner Link
 				'<div class="dashBox">' . 
 				'<div class="dashHeadLogo">' .

@@ -5,6 +5,12 @@ $this->Html->addCrumb($user['User']['email']);
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id'); 
 	$acct = $this->Session->read('Auth.User.Client.account_type');
+	
+if($user['User']['active'] == 'Yes'){
+	$active = "class='active'";
+} else {
+	$active = "class='inactive'";
+}
 ?>
 <div class="users view">
 <h2><?php  echo __('User'); ?></h2>
@@ -12,7 +18,7 @@ $this->Html->addCrumb($user['User']['email']);
 		<?php if($group == 1): ?>
 		<dt><?php echo __('Client'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($user['Client']['name'], array('controller' => 'clients', 'action' => 'view', $user['Client']['id'])); ?>
+			<?php echo $user['Client']['name']; ?>
 			&nbsp;
 		</dd>		
 		<?php endif; ?>
@@ -46,6 +52,7 @@ $this->Html->addCrumb($user['User']['email']);
 			<?php echo h($user['User']['cell_number']); ?>
 			&nbsp;
 		</dd>
+		
 		<dt><?php echo __('Last Login'); ?></dt>
 		<dd>
 		<?php 
@@ -54,6 +61,13 @@ $this->Html->addCrumb($user['User']['email']);
 			} else {
 			echo $this->Time->format('m/d/y g:i a', $user['User']['last_login']); 
 			}
+		?>
+			&nbsp;
+		</dd>		
+		<dt><?php echo __('Account Active?'); ?></dt>
+		<dd <?php echo $active; ?>>
+		<?php 
+			echo $user['User']['active'];
 		?>
 			&nbsp;
 		</dd>		

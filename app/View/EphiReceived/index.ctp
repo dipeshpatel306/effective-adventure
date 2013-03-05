@@ -28,7 +28,7 @@ $this->Html->addCrumb('ePHI Received');
 	<tr>
 		<?php if($group == 1): ?>
 		<td>
-			<?php echo $this->Html->link($ephiReceived['Client']['name'], array('controller' => 'clients', 'action' => 'view', $ephiReceived['Client']['id'])); ?>
+			<?php echo $ephiReceived['Client']['name']; ?>
 		</td>		
 		<?php endif; ?>
 		<td><?php echo $this->Time->format('m/d/y', $ephiReceived['EphiReceived']['date_received']) . ' ' .

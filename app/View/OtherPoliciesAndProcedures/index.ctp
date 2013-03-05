@@ -26,7 +26,7 @@ $this->Html->addCrumb('Other Policies & Procedures');
 	<tr>
 		<?php if($group == 1): ?>
 		<td>
-			<?php echo $this->Html->link($otherPoliciesAndProcedure['Client']['name'], array('controller' => 'clients', 'action' => 'view', $otherPoliciesAndProcedure['Client']['id'])); ?>
+			<?php echo $otherPoliciesAndProcedure['Client']['name']; ?>
 		</td>		
 		<?php endif; ?>
 		<td><?php echo h($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['name']); ?>&nbsp;</td>

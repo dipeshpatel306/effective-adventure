@@ -18,6 +18,8 @@ class UsersController extends AppController {
 	    // Runs ACL Permission Setup. Disable when not in use
 	    //$this->Auth->allow('initDB'); 
 	}
+	
+
 /**
  * Acl Setup Permissions. Comment out when not is use.
  * 
@@ -140,9 +142,7 @@ class UsersController extends AppController {
 				if($this->User->isUser($userId)){
 					return true;
 				}
-		}
-			
-			
+		}	
 			return false;
 		}
 		
@@ -153,17 +153,28 @@ class UsersController extends AppController {
  * Login Method
  */
 	public function login() {
+
 	    if ($this->request->is('post')) {
 	        if ($this->Auth->login()) {
-	        	
-				// check if user is active
-				$user = $this->User->find('first', array(
-					'recursive' => -1,
-					'fields' => array('User.id', 'User.email', 'User.password', 'User.active'),
-					'conditions' => array('User.email' => $this->request->data['User']['email']),			
-				));
+	        	// /debug($this->User->find('all'));
+				// check if client is active
 				
-				if($user['User']['active'] != 'Yes'){
+				/*$client = $this->User->find('first', array(
+					'recursive' => -1,
+					'fields' => array('Client.id', 'Client.active'),
+					'conditions' => array($clientActive => $this->Session->read('Auth.User.Client.active'))
+				));*/
+				
+				//pr($this->Session->read('Auth.User.Client.active'));		
+				//$email = $this->request->data['User']['email'];		
+				
+				$user = $this->User->find('first', array(
+						'conditions' => array('User.email' => $this->request->data['User']['email']),
+											'fields' => array('User.active','Client.active'),
+				));
+
+				// Check to make sure both client and user are active
+				if($user['Client']['active'] != 'Yes' || $user['User']['active'] != 'Yes'){
 					$this->Session->setFlash('Your account is not active yet!');
 					$this->Auth->logout();
 					$this->redirect('login');
@@ -321,7 +332,7 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function add() { // TODO Secure Add Method
+	public function add() { 
 		if ($this->request->is('post')) {
 				
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
@@ -396,7 +407,7 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) { // TODO Secure Edit Method
+	public function edit($id = null) { 
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
@@ -442,7 +453,7 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {  // TODO Secure Delete method
+	public function delete($id = null) {  
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}

@@ -28,7 +28,7 @@ $this->Html->addCrumb('ePHI Removed');
 	<tr>
 		<?php if($group == 1): ?>
 		<td>
-			<?php echo $this->Html->link($ephiRemoved['Client']['name'], array('controller' => 'clients', 'action' => 'view', $ephiRemoved['Client']['id'])); ?>
+			<?php echo $ephiRemoved['Client']['name']; ?>
 		</td>		
 		<?php endif; ?>
 		<td><?php echo $this->Time->format('m/d/y', $ephiRemoved['EphiRemoved']['date']) . ' ' . 

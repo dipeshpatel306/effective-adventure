@@ -13,7 +13,7 @@ $this->Html->addCrumb($riskAssessmentDocument['RiskAssessmentDocument']['name'])
 		<?php if ($group == 1): ?>
 		<dt><?php echo __('Client'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($riskAssessmentDocument['Client']['name'], array('controller' => 'clients', 'action' => 'view', $riskAssessmentDocument['Client']['id'])); ?>
+			<?php echo $riskAssessmentDocument['Client']['name']; ?>
 			&nbsp;
 		</dd>
 		<?php endif; ?>

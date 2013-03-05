@@ -12,3 +12,5 @@
 *.pyo
 app/webroot/documents
 app/webroot/files
+app/webroot/documents
+app/webroot/files

@@ -7,6 +7,7 @@ $this->Html->addCrumb('Clients');
 	<tr>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('account_type'); ?></th>			
+		
 			<th><?php echo $this->Paginator->sort('admin_account'); ?></th>	
 			<th><?php echo $this->Paginator->sort('user_account'); ?></th>	
 			<!--<th><?php echo $this->Paginator->sort('body'); ?></th>-->
@@ -15,6 +16,7 @@ $this->Html->addCrumb('Clients');
 			<th><?php echo $this->Paginator->sort('last_login'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
+			<th><?php echo $this->Paginator->sort('active', 'Account Active?'); ?></th>				
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php
@@ -22,6 +24,8 @@ $this->Html->addCrumb('Clients');
 	<tr>
 		<td><?php echo h($client['Client']['name']); ?>&nbsp;</td>
 		<td><?php echo h($client['Client']['account_type']); ?>&nbsp;</td>
+		
+
 		<td><?php echo h($client['Client']['admin_account']); ?>&nbsp;</td>
 		<td><?php echo h($client['Client']['user_account']); ?>&nbsp;</td>
 		<td><?php echo h($client['Partner']['name']); ?>&nbsp;</td>
@@ -49,6 +53,16 @@ $this->Html->addCrumb('Clients');
 		 ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $client['Client']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $client['Client']['modified']); ?>&nbsp;</td>
+		
+		<?php if($client['Client']['active'] != 'Yes'){
+			$active = 'class="inactive"';
+		} else {
+			$active = 'class="active"';
+		}
+		?>
+		<td <?php echo $active; ?>>
+			<?php echo h($client['Client']['active']); ?>&nbsp;
+		</td>		
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $client['Client']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $client['Client']['id'])); ?>

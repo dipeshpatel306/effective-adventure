@@ -45,7 +45,7 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 	
 <div class="related">
 	<h2><?php echo __('Policies And Procedures Documents'); ?></h2>
-	<?php  if (!empty($policiesAndProcedure['PoliciesAndProceduresDocument'])): ?>
+	<?php  if (!empty($policiesAndProcedureDocument)): ?>
 	<table>
 	<tr>
 	

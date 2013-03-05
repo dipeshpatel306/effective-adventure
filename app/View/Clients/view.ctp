@@ -2,10 +2,16 @@
 $this->Html->addCrumb('Clients', '/clients');
 $this->Html->addCrumb($client['Client']['name']);
 
-if(!empty($client['Client']['risk_assessment_status'])){
-	$completed = 'class="completed"';
-} else {
+if(empty($client['Client']['risk_assessment_status'])){
 	$completed = '';
+} else {
+	$completed = 'class="completed"';
+}
+
+if($client['Client']['active'] == 'Yes'){
+	$active = "class='active'";
+} else {
+	$active = "class='inactive'";
 }
 ?>
 <div class="clients view">
@@ -39,18 +45,29 @@ if(!empty($client['Client']['risk_assessment_status'])){
 		<dt><?php echo __('Risk Assessment Completed'); ?></dt>
 		<dd <?php echo $completed; ?> >
 			<?php 
-			echo $this->Time->format('m/d/y', $client['Client']['risk_assessment_status']); ?>
+			if(empty($client['Client']['risk_assessment_status'])){
+				echo '';
+			} else {
+				echo $this->Time->format('m/d/y', $client['Client']['risk_assessment_status']);
+			}
+			
+			 ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Last Login'); ?></dt>
 		<dd>
 			<?php 
-			if($client['Client']['last_login'] == '0000-00-00 00:00:00'){
+			if($client['Client']['last_login']){
 				echo ''; 
 			} else {
 				echo $this->Time->format('m/d/y g:i a', $client['Client']['last_login']); 
 			}
 			?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Account Active'); ?></dt>
+		<dd <?php echo $active; ?>>
+			<?php echo $client['Client']['active']; ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
@@ -68,9 +85,10 @@ if(!empty($client['Client']['risk_assessment_status'])){
 			<?php echo h($client['Client']['details']); ?>
 			&nbsp;
 		</dd>-->
-		<h3><?php echo __('Details'); ?></h3>
-		<?php echo h($client['Client']['details']); ?>
+
 	</dl>
+		<h2><?php echo __('Details'); ?></h2>
+		<?php echo h($client['Client']['details']); ?>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
@@ -83,6 +101,8 @@ if(!empty($client['Client']['risk_assessment_status'])){
 		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+
+<div class="clientPanel">
 
 <!-- Users -->
 <div class="related">
@@ -140,15 +160,15 @@ if(!empty($client['Client']['risk_assessment_status'])){
 </div>
 
 <!-- Policies & Procedures -->
-<!--<div class="related">
-	<h3><?php echo __('Policies & Procedures'); ?></h3>
+<div class="related">
+	<h3><?php echo __('Policies & Procedures Documents'); ?></h3>
 
-	<?php if (!empty($client['PoliciesAndProcedure'])): ?>
+	<?php if (!empty($client['PoliciesAndProceduresDocument'])): ?>
 		
 	<table>
 	<tr>
-		<th><?php echo __('Name'); ?></th>
-		<th><?php echo __('Attachment'); ?></th>	
+		<th><?php echo __('Policy'); ?></th>
+		<th><?php echo __('Document'); ?></th>	
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
@@ -156,33 +176,34 @@ if(!empty($client['Client']['risk_assessment_status'])){
 	
 	<?php
 		$i = 0;
-		foreach ($client['PoliciesAndProcedure'] as $pnp): ?>
+		foreach ($client['PoliciesAndProceduresDocument'] as $pnp): ?>
 		<tr>
-			<td><?php echo $pnp['name']; ?></td>
+			<td><?php echo $pnp['id']; ?></td>
 			<td>
 		<?php 
-			$pnpLink =  preg_replace('/\/.*\//', '', $pnp['attachment']);
-			echo $this->Html->link($pnpLink, $pnp['attachment']);
+			$pnpLink =  preg_replace('/\/.*\//', '', $pnp['document']);
+			echo $this->Html->link($pnpLink, $pnp['document']);
 		?>				
 			</td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $pnp['created']); ?></td>			
 			<td><?php echo $this->Time->format('m/d/y g:i a', $pnp['modified']); ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'policies_and_procedures', 'action' => 'view', $pnp['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'policies_and_procedures', 'action' => 'edit', $pnp['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'policies_and_procedures', 'action' => 'delete', $pnp['id']), null, __('Are you sure you want to delete # %s?', $pnp['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'policies_and_procedures_documents', 'action' => 'view', $pnp['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'policies_and_procedures_documents', 'action' => 'edit', $pnp['id'])); ?>
+				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'policies_and_procedures_documents', 'action' => 'delete', $pnp['id']), null, __('Are you sure you want to delete # %s?', $pnp['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
+
 	</table>
 <?php endif; ?>
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Policies & Procedure'), array('controller' => 'policies_and_procedures', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Policies & Procedure  Document'), array('controller' => 'policies_and_procedures_documents', 'action' => 'add')); ?> </li>
 		</ul>
 	</div>	
 
-</div>-->
+</div>
 
 <!-- Other Policies & Procedures -->
 <div class="related">
@@ -572,4 +593,5 @@ if(!empty($client['Client']['risk_assessment_status'])){
 			<li><?php echo $this->Html->link(__('New Ephi Received'), array('controller' => 'EphiReceived', 'action' => 'add')); ?> </li>
 		</ul>
 	</div>	
+</div>
 </div>

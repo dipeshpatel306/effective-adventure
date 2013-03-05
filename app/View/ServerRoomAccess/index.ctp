@@ -28,7 +28,7 @@ $this->Html->addCrumb('Server Room Access');
 	<tr>
 		<?php if($group == 1): ?>
 		<td>
-			<?php echo $this->Html->link($serverRoomAccess['Client']['name'], array('controller' => 'clients', 'action' => 'view', $serverRoomAccess['Client']['id'])); ?>
+			<?php echo $serverRoomAccess['Client']['name']; ?>
 		</td>			
 		<?php endif; ?>
 		<td><?php echo $this->Time->format('m/d/y', $serverRoomAccess['ServerRoomAccess']['date']) . ' ' .

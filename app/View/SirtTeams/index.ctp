@@ -30,7 +30,7 @@ $this->Html->addCrumb('SIRT Teams');
 		<td><?php echo h($sirtTeam['SirtTeam']['phone']); ?>&nbsp;</td>
 		<td><?php echo h($sirtTeam['SirtTeam']['website']); ?>&nbsp;</td>-->
 		<td>
-			<?php echo $this->Html->link($sirtTeam['Client']['name'], array('controller' => 'clients', 'action' => 'view', $sirtTeam['Client']['id'])); ?>
+			<?php echo $sirtTeam['Client']['name']; ?>
 		</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $sirtTeam['SirtTeam']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $sirtTeam['SirtTeam']['modified']); ?>&nbsp;</td>

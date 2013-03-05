@@ -14,7 +14,7 @@ $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['n
 		<?php if($group == 1): ?>
 		<dt><?php echo __('Client'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($otherContractsAndDocument['Client']['name'], array('controller' => 'clients', 'action' => 'view', $otherContractsAndDocument['Client']['id'])); ?>
+			<?php echo $otherContractsAndDocument['Client']['name']; ?>
 			&nbsp;
 		</dd>		
 		<?php endif; ?>

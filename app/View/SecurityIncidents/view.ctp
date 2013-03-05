@@ -13,7 +13,7 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $securityIncident['Secu
 		<?php if($group == 1): ?>
 		<dt><?php echo __('Client'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($securityIncident['Client']['name'], array('controller' => 'clients', 'action' => 'view', $securityIncident['Client']['id'])); ?>
+			<?php echo $securityIncident['Client']['name']; ?>
 			&nbsp;
 		</dd>		
 		<?php endif; ?>

@@ -13,7 +13,7 @@ $this->Html->addCrumb($disasterRecoveryPlan['DisasterRecoveryPlan']['name']);
 		<?php if($group == 1): ?>
 		<dt><?php echo __('Client'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($disasterRecoveryPlan['Client']['name'], array('controller' => 'clients', 'action' => 'view', $disasterRecoveryPlan['Client']['id'])); ?>
+			<?php echo $disasterRecoveryPlan['Client']['name']; ?>
 			&nbsp;
 		</dd>
 		<?php endif; ?>		

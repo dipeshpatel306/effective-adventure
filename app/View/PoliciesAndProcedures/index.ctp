@@ -26,8 +26,10 @@ $this->Html->addCrumb('Policies & Procedures');
 		<td><?php echo $this->Time->format('m/d/y g:i a',$policiesAndProcedure['PoliciesAndProcedure']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?>
-			<!--<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $policiesAndProcedure['PoliciesAndProcedure']['id']), null, __('Are you sure you want to delete # %s?', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?>-->
+			<?php if($group == 1 ): ?>
+			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $policiesAndProcedure['PoliciesAndProcedure']['id']), null, __('Are you sure you want to delete # %s?', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?>
+			<?php endif; ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

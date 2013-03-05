@@ -3,7 +3,7 @@ $this->Html->addCrumb('Clients', '/clients');
 $this->Html->addCrumb('Edit Client');
 
 $acctType = array('Initial' => 'Initial', 'Subscription' => 'Subscription', 'Meaningful Use' => 'Meaningful Use', 'HIPAA' => 'HIPAA');
-
+$active = array('Yes' => 'Yes', 'No' => 'No');
 $risk = array('' => '', 'Completed' => 'Completed');
 ?>
 <div class="clients form">
@@ -14,7 +14,8 @@ $risk = array('' => '', 'Completed' => 'Completed');
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
 		echo $this->Form->input('account_type', array('options' => $acctType, 'default' => 'Pending'));
-		echo $this->Form->input('partner_id', array('default' => ''));		
+		echo $this->Form->input('active', array('label' => 'Account Active?', 'options' => $active));			
+		echo $this->Form->input('partner_id', array('default' => '', 'empty' => ''));		
 		echo $this->Form->input('risk_assessment_status', array('label' => 'Risk Assessment Completed', 'class' => 'datePick'));
 		echo $this->Form->input('details', array('class' => 'ckeditor'));
 	?>

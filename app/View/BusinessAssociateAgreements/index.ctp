@@ -27,7 +27,7 @@ $this->Html->addCrumb('Business Associate Agreements');
 	<tr>
 		<?php if($group == 1): ?>	
 		<td>
-			<?php echo $this->Html->link($businessAssociateAgreement['Client']['name'], array('controller' => 'clients', 'action' => 'view', $businessAssociateAgreement['Client']['id'])); ?>
+			<?php echo $businessAssociateAgreement['Client']['name']; ?>
 		</td>
 		<?php endif; ?>		
 		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['name']); ?>&nbsp;</td>
