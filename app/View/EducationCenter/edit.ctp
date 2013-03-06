@@ -1,5 +1,5 @@
 <?php
-$this->Html->addCrumb('Education Center', '/dashboard/education_center');
+$this->Html->addCrumb('Education Center', '/education_center/admin_index');
 $this->Html->addCrumb('Edit Education Center Video/Link');
 
 $options = array('Video' => 'Video', 'Link' => 'Link');
@@ -15,7 +15,7 @@ $options = array('Video' => 'Video', 'Link' => 'Link');
 		echo $this->Form->input('header', array('value' => 'Education Video'));	
 		echo $this->Form->input('name');
 		echo $this->Form->input('video_link', array('type' => 'radio', 'options' => $options, 'legend' => false));		
-		echo $this->Form->input('video', array('label' => 'Video - (Note: Video name will be used as class name!)'));
+		echo $this->Form->input('video', array('label' => 'Video - (Enter the name of the Video with no extension)'));
 		echo $this->Form->input('link');
 	?>
 	</fieldset>

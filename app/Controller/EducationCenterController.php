@@ -43,6 +43,15 @@ class EducationCenterController extends AppController {
 		$this->set('educationCenter', $this->paginate());
 	}
 /**
+ * index method
+ *
+ * @return void
+ */
+	public function admin_index() {
+		$this->EducationCenter->recursive = 0;
+		$this->set('educationCenter', $this->paginate());
+	}
+/**
  * Learn Now method
  *
  * @return void
@@ -65,6 +74,7 @@ class EducationCenterController extends AppController {
 		}
 		$this->set('educationCenter', $this->EducationCenter->read(null, $id));
 	}
+
 
 /**
  * add method

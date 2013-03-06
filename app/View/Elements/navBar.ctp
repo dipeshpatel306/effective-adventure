@@ -26,7 +26,7 @@
 		echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')) . ' | ';
 		
 		echo $this->Html->link('Risk Assessments', array('controller' => 'risk_assessments', 'action' => 'index')) . ' | ';
-		echo $this->Html->link('Education Center', array('controller' => 'education_center', 'action' => 'index')) . ' | ';
+		echo $this->Html->link('Education Center', array('controller' => 'education_center', 'action' => 'admin_index')) . ' | ';
 		echo $this->Html->link('Messages', array('controller' => 'contact_us', 'action' => 'index'));
 
 	}	
