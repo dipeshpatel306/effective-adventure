@@ -98,6 +98,27 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			
+			/*$conditions = array(
+				'PoliciesAndProceduresDocument.client_id' => $this->request->data['PoliciesAndProceduresDocument']['client_id'],
+				'PoliciesAndProceduresDocument.policies_and_procedure_id' => $this->request->data['PoliciesAndProceduresDocument']['policies_and_procedure_id'],
+			);*/
+			$check = $this->PoliciesAndProceduresDocument->find('first',(array(
+				'conditions' => array(
+						'PoliciesAndProceduresDocument.client_id' => $this->request->data['PoliciesAndProceduresDocument']['client_id'],
+						'PoliciesAndProceduresDocument.policies_and_procedure_id' => $this->request->data['PoliciesAndProceduresDocument']['policies_and_procedure_id']),
+						'fields' => array('PoliciesAndProceduresDocument.id, PoliciesAndProceduresDocument.client_id, PoliciesAndProceduresDocument.policies_and_procedure_id'),
+						'recursive' => 0
+				)));
+
+			/*		$conditions = array(
+						$this->request->data['PoliciesAndProceduresDocument']['client_id'],
+						$this->request->data['PoliciesAndProceduresDocument']['policies_and_procedure_id']);*/
+
+			
+			if($check){
+				$this->request->data['PoliciesAndProceduresDocument']['id'] = $check['PoliciesAndProceduresDocument']['id'];
+			}
+			
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 			if($group != 1){

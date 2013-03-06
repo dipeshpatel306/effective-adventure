@@ -1,52 +1,72 @@
 <?php
-$this->Html->addCrumb('Education Center', '/dashboard/education_center');
-$this->Html->addCrumb('Education Center Videos/Links');
+$this->Html->addCrumb('Education Center');
 ?>
 <div class="educationCenter index">
 	<h2><?php echo __('Education Center'); ?></h2>
-	<table>
-	<tr>
-			<th><?php echo $this->Paginator->sort('header'); ?></th>
-			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('video_link'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php
-	foreach ($educationCenter as $educationCenter): ?>
-	<tr>
-		<td><?php echo h($educationCenter['EducationCenter']['header']); ?>&nbsp;</td>		
-		<td><?php echo h($educationCenter['EducationCenter']['name']); ?>&nbsp;</td>
-		<td><?php echo h($educationCenter['EducationCenter']['video_link']); ?>&nbsp;</td>		
-		<td><?php echo $this->Time->format('m/d/y g:i a', ($educationCenter['EducationCenter']['created'])); ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('m/d/y g:i a', ($educationCenter['EducationCenter']['modified'])); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $educationCenter['EducationCenter']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $educationCenter['EducationCenter']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $educationCenter['EducationCenter']['id']), null, __('Are you sure you want to delete # %s?', $educationCenter['EducationCenter']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
+	
+	<div id="videooverlay"></div>
+		<div id="videocontainer">
+		<div class='closeVideo'>Close [x]</div>
+	
+		<center>
+		<div id="mediaplayer"></div>
+		<p class='imgsub'>Click on <img title="Fullscreen" src="http://www.hipaasecurenow.com/wp-content/uploads/2011/05/Fullscreen.png"
+		alt="" width="30" height="21" /> above to view in fullscreen mode!</p>
+		</center>
+		</div>	
+	
+	<?php // Load Hipaa security training		
+	echo $this->Html->link( 
+		'<div class="dashBox">' . 
+		'<div class="dashHead">' .
+			$this->Html->image('training_tile.jpg', array(
+								'class' => 'dashTile', 
+								'alt' => 'HIPAA Security Training'
+								)) .
+			'<h3>Education Video</h3>' .
+			'</div>' .
+			'<div class="dashSum">HIPAA Security Training</div>
+			<div class="dashBtn approved">
+						<div class="btnWrapMed">
+						<div class="btnText">Watch Now</div> 
+						<div class="triangle"></div>
+						</div>
+					</div>' .
+			'</div>', 'http://training.hipaasecurenow.com/login/index.php',
+			//array('controller' => 'dashboard', 'action' => 'education_center', '#'),
+			array('escape' => false, 'target' => '_blank')
+			);
+	?>		
+	
+	<?php foreach ($educationCenter as $educationCenter): ?>
+	
+	<?php if($educationCenter['EducationCenter']['video_link'] == 'Link'):?><!-- If link load link -->
+		<a target="_blank" href="<?php echo $educationCenter['EducationCenter']['link']; ?>">
+	<?php endif; ?>
+		
+		<div class="dashBox <?php echo $educationCenter['EducationCenter']['video']; ?>">
+		<div class="dashHead">
+			<?php echo  $this->Html->image('movie.png', array('class' => 'dashTile')); ?>
+			<h3><?php echo $educationCenter['EducationCenter']['header']; ?></h3>
+		</div>
+		<div class="dashSum"><?php echo $educationCenter['EducationCenter']['name']; ?></div>
+		<div class="dashBtn approved">
+			<div class="btnWrapMed">
+			<div class="btnText">Watch Now</div> 
+			<div class="triangle"></div>
+			</div>
+		</div>	
+		</div>			
+	<?php if($educationCenter['EducationCenter']['video_link'] == 'Video'):?>
+		</a>
+	<?php endif; ?>
 
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
+	
+	<?php endforeach; ?>
+
+
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Education Center'), array('action' => 'add')); ?></li>
-	</ul>
+
 </div>

@@ -69,8 +69,8 @@ $this->Html->addCrumb('ePHI Received');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<?php if($group == 1 || $group == 2): ?>		
+		
 		<li><?php echo $this->Html->link(__('New Ephi Received'), array('action' => 'add')); ?></li>
-		<?php endif; ?>
+
 	</ul>
 </div>

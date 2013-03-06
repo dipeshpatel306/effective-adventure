@@ -58,7 +58,7 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/EphiReceived');
 		$this->Acl->allow($group, 'controllers/EphiRemoved');
 		
-		$this->Acl->allow($group, 'controllers/EducationCenter/learn_now');
+		$this->Acl->allow($group, 'controllers/EducationCenter');
 		
 		$this->Acl->allow($group, 'controllers/SirtTeams');
 		$this->Acl->allow($group, 'controllers/SirtMembers');
@@ -97,7 +97,7 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/EphiReceived');
 		$this->Acl->allow($group, 'controllers/EphiRemoved');
 		
-		$this->Acl->allow($group, 'controllers/EducationCenter/learn_now');				
+		$this->Acl->allow($group, 'controllers/EducationCenter');				
 
 		$this->Acl->allow($group, 'controllers/SirtTeams');
 		$this->Acl->allow($group, 'controllers/SirtMembers');
@@ -155,18 +155,7 @@ class UsersController extends AppController {
 	public function login() {
 
 	    if ($this->request->is('post')) {
-	        if ($this->Auth->login()) {
-	        	// /debug($this->User->find('all'));
-				// check if client is active
-				
-				/*$client = $this->User->find('first', array(
-					'recursive' => -1,
-					'fields' => array('Client.id', 'Client.active'),
-					'conditions' => array($clientActive => $this->Session->read('Auth.User.Client.active'))
-				));*/
-				
-				//pr($this->Session->read('Auth.User.Client.active'));		
-				//$email = $this->request->data['User']['email'];		
+	        if ($this->Auth->login()) {	
 				
 				$user = $this->User->find('first', array(
 						'conditions' => array('User.email' => $this->request->data['User']['email']),

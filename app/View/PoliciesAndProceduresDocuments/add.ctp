@@ -22,11 +22,15 @@ $this->Html->addCrumb('Add Policy & Procedure Document');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		
+		<?php if($group == 1): ?>
 		<li><?php echo $this->Html->link(__('List Documents'), array('action' => 'index')); ?></li>
+		<?php endif;?>
+		
+		
 		<li><?php echo $this->Html->link(__('List Policies And Procedures'), array('controller' => 'policies_and_procedures', 'action' => 'index')); ?> </li>
+		<?php if($group == 1):?>
 		<li><?php echo $this->Html->link(__('New Policies And Procedure'), array('controller' => 'policies_and_procedures', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
+		<?php endif ?>
+
 	</ul>
 </div>

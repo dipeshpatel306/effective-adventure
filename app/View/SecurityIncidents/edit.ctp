@@ -39,10 +39,10 @@ $this->Html->addCrumb('Edit Security Incident');
 	<ul>
 		<li><?php echo $this->Html->link(__('List Security Incidents'), array('action' => 'index')); ?></li>		
 
-		<?php if($group == 1 || $group == 2): ?>
+
 		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('SecurityIncident.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('SecurityIncident.id'))); ?></li>
 
-		<?php endif; ?>
+
 
 	</ul>
 </div>

@@ -93,10 +93,13 @@ if($client['Client']['active'] == 'Yes'){
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+		
+		<li><?php echo $this->Html->link(__('List Clients'), array('action' => 'index')); ?> </li>		
+		<li><?php echo $this->Html->link(__('New Client'), array('action' => 'add')); ?> </li>		
 		<li><?php echo $this->Html->link(__('Edit Client'), array('action' => 'edit', $client['Client']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Client'), array('action' => 'delete', $client['Client']['id']), null, __('Are you sure you want to delete # %s?', $client['Client']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Clients'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Client'), array('action' => 'add')); ?> </li>
+		<br />
+
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 	</ul>
@@ -124,7 +127,7 @@ if($client['Client']['active'] == 'Yes'){
 		foreach ($users as $user): ?>
 		<tr>
 			<td><?php echo $user['User']['last_name'] . ', ' . $user['User']['first_name']; ?></td>
-			<td><?php echo $user['User']['email']; ?></td>			
+			<td><?php echo $this->Text->autoLinkEmails($user['User']['email']); ?></td>			
 			<td><?php echo $user['Group']['name']; ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['last_login']); ?></td>			
 			<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['created']); ?></td>

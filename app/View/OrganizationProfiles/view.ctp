@@ -370,11 +370,12 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<?php if($group == 1): ?>		
-		<li><?php echo $this->Html->link(__('Edit Organization Profile'), array('action' => 'edit', $organizationProfile['OrganizationProfile']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Organization Profile'), array('action' => 'delete', $organizationProfile['OrganizationProfile']['id']), null, __('Are you sure you want to delete # %s?', $organizationProfile['OrganizationProfile']['id'])); ?> </li>
+		<?php if($group == 1): ?>
 		<li><?php echo $this->Html->link(__('List Organization Profiles'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Organization Profile'), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Organization Profile'), array('action' => 'edit', $organizationProfile['OrganizationProfile']['id'])); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Organization Profile'), array('action' => 'delete', $organizationProfile['OrganizationProfile']['id']), null, __('Are you sure you want to delete # %s?', $organizationProfile['OrganizationProfile']['id'])); ?> </li>
+
 		<?php endif; ?>
 	</ul>
 </div>

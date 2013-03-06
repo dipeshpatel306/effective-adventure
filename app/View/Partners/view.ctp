@@ -13,7 +13,7 @@ $this->Html->addCrumb('View Partner - ' . $partner['Partner']['company']);
 		</dd>
 		<dt><?php echo __('Email'); ?></dt>
 		<dd>
-			<?php echo h($partner['Partner']['email']); ?>
+			<?php echo $this->Text->autoLinkEmails($partner['Partner']['email']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Phone'); ?></dt>
@@ -23,7 +23,7 @@ $this->Html->addCrumb('View Partner - ' . $partner['Partner']['company']);
 		</dd>
 		<dt><?php echo __('Link'); ?></dt>
 		<dd>
-			<?php echo h($partner['Partner']['link']); ?>
+			<?php echo $this->Html->link($partner['Partner']['link'],null, array('target' => '_blank')); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
@@ -44,10 +44,11 @@ $this->Html->addCrumb('View Partner - ' . $partner['Partner']['company']);
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+		<li><?php echo $this->Html->link(__('List Partners'), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Partner'), array('action' => 'add')); ?> </li>		
 		<li><?php echo $this->Html->link(__('Edit Partner'), array('action' => 'edit', $partner['Partner']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Partner'), array('action' => 'delete', $partner['Partner']['id']), null, __('Are you sure you want to delete # %s?', $partner['Partner']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Partners'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Partner'), array('action' => 'add')); ?> </li>
+		<br />
 		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
 	</ul>

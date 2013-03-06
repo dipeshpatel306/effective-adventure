@@ -19,8 +19,8 @@ $this->Html->addCrumb('Edit Risk Assessment Question');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('RiskAssessmentQuestion.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('RiskAssessmentQuestion.id'))); ?></li>
 		<li><?php echo $this->Html->link(__('List Risk Assessment Questions'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('RiskAssessmentQuestion.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('RiskAssessmentQuestion.id'))); ?></li>
+
 	</ul>
 </div>

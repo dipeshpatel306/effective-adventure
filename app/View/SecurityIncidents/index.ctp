@@ -73,8 +73,8 @@ $this->Html->addCrumb('Security Incidents');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<?php if($group == 1 || $group == 2): ?>
+
 		<li><?php echo $this->Html->link(__('New Security Incident'), array('action' => 'add')); ?></li>
-		<?php endif; ?>
+
 	</ul>
 </div>

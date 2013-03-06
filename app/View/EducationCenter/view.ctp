@@ -5,6 +5,7 @@ $this->Html->addCrumb('Education Center Video/Link' . ' ' . $educationCenter['Ed
 
 <div class="educationCenter view">
 <h2><?php  echo __('Education Center'); ?></h2>
+
 	<dl>
 		<dt><?php echo __('Header'); ?></dt>
 		<dd>
@@ -46,9 +47,10 @@ $this->Html->addCrumb('Education Center Video/Link' . ' ' . $educationCenter['Ed
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+		<li><?php echo $this->Html->link(__('List Education Center'), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Education Center'), array('action' => 'add')); ?> </li>		
 		<li><?php echo $this->Html->link(__('Edit Education Center'), array('action' => 'edit', $educationCenter['EducationCenter']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Education Center'), array('action' => 'delete', $educationCenter['EducationCenter']['id']), null, __('Are you sure you want to delete # %s?', $educationCenter['EducationCenter']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Education Center'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Education Center'), array('action' => 'add')); ?> </li>
+
 	</ul>
 </div>

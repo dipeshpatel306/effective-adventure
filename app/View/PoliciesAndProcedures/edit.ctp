@@ -15,7 +15,7 @@ $this->Html->addCrumb('Edit Policy & Procedure');
 		echo $this->Form->input('name');
 		echo $this->Form->input('description', array('class' => 'ckeditor'));
 		echo $this->Form->input('details', array('class' => 'ckeditor'));
-		echo $this->Form->input('media');
+		echo $this->Form->input('video_summary', array('label' => "Video Summary - (enter video name without extension)"));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
@@ -24,8 +24,10 @@ $this->Html->addCrumb('Edit Policy & Procedure');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('PoliciesAndProcedure.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('PoliciesAndProcedure.id'))); ?></li>
 		<li><?php echo $this->Html->link(__('List Policies And Procedures'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Form->postLink(__('Delete Policies and Procedures'), array('action' => 'delete', $this->Form->value('PoliciesAndProcedure.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('PoliciesAndProcedure.id'))); ?></li>
+		
+		<br />
 		<li><?php echo $this->Html->link(__('List Policies And Procedures Documents'), array('controller' => 'policies_and_procedures_documents', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Policies And Procedures Document'), array('controller' => 'policies_and_procedures_documents', 'action' => 'add')); ?> </li>
 	</ul>

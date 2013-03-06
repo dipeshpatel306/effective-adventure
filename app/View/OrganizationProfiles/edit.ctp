@@ -135,8 +135,9 @@ $this->Html->addCrumb('Edit Organization Profile');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<?php if($group == 1): ?>
+		<li><?php echo $this->Html->link(__('List Organization Profiles'), array('action' => 'index')); ?></li>			
 		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('OrganizationProfile.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('OrganizationProfile.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Organization Profiles'), array('action' => 'index')); ?></li>
+
 		<?php endif; ?>	
 	</ul>
 </div>

@@ -61,10 +61,11 @@ $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['n
 
 	
 		<?php if($group == 1 || $group == 2): ?>
+		<li><?php echo $this->Html->link(__('New Other Contracts And Document'), array('action' => 'add')); ?> </li>			
 		<li><?php echo $this->Html->link(__('Edit Other Contracts And Document'), array('action' => 'edit', $otherContractsAndDocument['OtherContractsAndDocument']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Other Contracts And Document'), array('action' => 'delete', $otherContractsAndDocument['OtherContractsAndDocument']['id']), null, __('Are you sure you want to delete # %s?', $otherContractsAndDocument['OtherContractsAndDocument']['id'])); ?> </li>
 
-		<li><?php echo $this->Html->link(__('New Other Contracts And Document'), array('action' => 'add')); ?> </li>
+
 		<?php endif; ?>				
 
 

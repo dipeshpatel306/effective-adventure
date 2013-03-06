@@ -14,7 +14,7 @@ $risk = array('' => '', 'Completed' => 'Completed');
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
 		echo $this->Form->input('account_type', array('options' => $acctType, 'default' => 'Pending'));
-		echo $this->Form->input('active', array('label' => 'Account Active?', 'options' => $active));			
+		echo $this->Form->input('active', array('label' => 'Account Active?', 'options' => $active, 'empty' => ''));			
 		echo $this->Form->input('partner_id', array('default' => '', 'empty' => ''));		
 		echo $this->Form->input('risk_assessment_status', array('label' => 'Risk Assessment Completed', 'class' => 'datePick'));
 		echo $this->Form->input('details', array('class' => 'ckeditor'));
@@ -26,9 +26,12 @@ $risk = array('' => '', 'Completed' => 'Completed');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Client.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Client.id'))); ?></li>
+
 		<li><?php echo $this->Html->link(__('List Clients'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Form->postLink(__('Delete Client'), array('action' => 'delete', $this->Form->value('Client.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Client.id'))); ?></li>	
+		<br />
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
+	
 	</ul>
 </div>

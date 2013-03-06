@@ -47,10 +47,10 @@ class EducationCenterController extends AppController {
  *
  * @return void
  */
-	public function learn_now() {
+/*	public function learn_now() {
 		$this->EducationCenter->recursive = 0;
 		$this->set('educationCenter', $this->paginate());
-	}
+	}*/
 /**
  * view method
  *

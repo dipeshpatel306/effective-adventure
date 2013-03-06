@@ -69,8 +69,8 @@ $this->Html->addCrumb('Server Room Access');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<?php if($group == 1 || $group == 2): ?>
+
 		<li><?php echo $this->Html->link(__('New Server Room Access'), array('action' => 'add')); ?></li>
-		<?php endif; ?>
+
 	</ul>
 </div>

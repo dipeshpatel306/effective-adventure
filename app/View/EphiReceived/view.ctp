@@ -69,11 +69,11 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiReceived['EphiRece
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('List Ephi Received'), array('action' => 'index')); ?> </li>
-		
-		<?php if($group == 1 || $group == 2): ?>
+		<li><?php echo $this->Html->link(__('New Ephi Received'), array('action' => 'add')); ?> </li>		
+
 		<li><?php echo $this->Html->link(__('Edit Ephi Received'), array('action' => 'edit', $ephiReceived['EphiReceived']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Ephi Received'), array('action' => 'delete', $ephiReceived['EphiReceived']['id']), null, __('Are you sure you want to delete # %s?', $ephiReceived['EphiReceived']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('New Ephi Received'), array('action' => 'add')); ?> </li>
-		<?php endif; ?>
+
+
 	</ul>
 </div>

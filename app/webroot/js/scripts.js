@@ -37,31 +37,9 @@ $(document).ready(function(){
 			//'provider' : 'rtmp',
 			// /'streamer' : 'rtmp://stream.entegration.net/vod',
 			'file' : 'http://stream.entegration.net/vod/' + mp4Name + '.mp4'
-			/*'modes' : [
-				{
-					type : 'flash',
-					src : 'https://www.hipaasecurenow.com/jwplayer/player.swf'
-				},
-				{
-					type : 'html5',
-					config : {
-						'file' : 'http://stream.entegration.net/vod/' + mp4Name + '.mp4',
-						'provider' : 'video',
-						'autostart' : 'true'
-					}
-				},
-				{
-					type : 'download',
-					config : {
-						'file' : 'http://stream.entegration.net/vod/' + mp4Name + '.mp4',
-						'provider' : 'video'
-					}
-				}
-			]*/
 		});
 	
 		$('#videooverlay').css('display', 'inline');
-	
 		$('#videocontainer').css('display', 'inline');
 	}	
 	
@@ -79,6 +57,13 @@ $(document).ready(function(){
 		showVideo('Overview');	
 	});
 	
+	// Policies and Procedures Video
+	$('.papVideo a.policyName').click(function(){		
+		var videoName = $('span.videoName').text();
+		videoName = encodeURIComponent(videoName);
+		showVideo(videoName);
+	});
+
 	// Stop and Close Video Player. Hide pop up regeion
 	$('.closeVideo').click(function(){
        $('#videooverlay').css('display', 'none');               

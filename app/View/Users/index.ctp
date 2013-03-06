@@ -29,7 +29,7 @@ $this->Html->addCrumb('Users');
 		<td><?php echo $user['Client']['name']; ?></td>		
 		<?php endif; ?>
 		<td><?php echo $user['User']['last_name'] . ', ' . $user['User']['first_name']; ?>&nbsp;</td>			
-		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
+		<td><?php echo $this->Text->autoLinkEmails($user['User']['email']); ?>&nbsp;</td>
 		<td><?php echo $user['Group']['name']; ?></td>
 
 		<td> 

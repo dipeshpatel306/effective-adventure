@@ -75,12 +75,10 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $securityIncident['Secu
 	<ul>
 		<li><?php echo $this->Html->link(__('List Security Incidents'), array('action' => 'index')); ?> </li>		
 		
-
-		<?php if($group == 1 || $group == 2): ?>
+		<li><?php echo $this->Html->link(__('New Security Incident'), array('action' => 'add')); ?> </li>			
 		<li><?php echo $this->Html->link(__('Edit Security Incident'), array('action' => 'edit', $securityIncident['SecurityIncident']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Security Incident'), array('action' => 'delete', $securityIncident['SecurityIncident']['id']), null, __('Are you sure you want to delete # %s?', $securityIncident['SecurityIncident']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('New Security Incident'), array('action' => 'add')); ?> </li>
-		<?php endif; ?>
+
 		
 	</ul>
 </div>

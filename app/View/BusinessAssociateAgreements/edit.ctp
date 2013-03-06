@@ -35,7 +35,7 @@ $this->Html->addCrumb('Edit Business Associate Agreement');
 		<li><?php echo $this->Html->link(__('List Business Associate Agreements'), array('action' => 'index')); ?></li>
 		
 		<?php if($group == 1 || $group == 2): ?>
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('BusinessAssociateAgreement.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('BusinessAssociateAgreement.id'))); ?></li>
+		<li><?php echo $this->Form->postLink(__('Delete Business Associate Agreement'), array('action' => 'delete', $this->Form->value('BusinessAssociateAgreement.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('BusinessAssociateAgreement.id'))); ?></li>
 		<?php endif; ?>
 	</ul>
 </div>

@@ -275,9 +275,10 @@ $this->Html->addCrumb('View Risk Assessment - ' . $riskAssessment['Client']['nam
 	<ul>
 
 		<?php if($group == 1): ?>
+		<li><?php echo $this->Html->link(__('List Risk Assessments'), array('action' => 'index')); ?> </li>				
 		<li><?php echo $this->Html->link(__('Edit Risk Assessment'), array('action' => 'edit', $riskAssessment['RiskAssessment']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Risk Assessment'), array('action' => 'delete', $riskAssessment['RiskAssessment']['id']), null, __('Are you sure you want to delete # %s?', $riskAssessment['RiskAssessment']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Risk Assessments'), array('action' => 'index')); ?> </li>		
+	
 		<?php endif; ?>
 
 	</ul>

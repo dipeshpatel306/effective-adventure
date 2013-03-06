@@ -29,12 +29,12 @@ if($user['User']['active'] == 'Yes'){
 		</dd>		
 		<dt><?php echo __('Email'); ?></dt>
 		<dd>
-			<?php echo h($user['User']['email']); ?>
+			<?php echo $this->Text->autoLinkEmails($user['User']['email']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Group'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($user['Group']['name'], array('controller' => 'groups', 'action' => 'view', $user['Group']['id'])); ?>
+			<?php echo $user['Group']['name']; ?>
 			&nbsp;
 		</dd>
 		<!--<dt><?php echo __('Last Name'); ?></dt>
@@ -77,7 +77,7 @@ if($user['User']['active'] == 'Yes'){
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
+		<dd>  
 			<?php echo $this->Time->format('m/d/y g:i a', $user['User']['modified']); ?>
 			&nbsp;
 		</dd>

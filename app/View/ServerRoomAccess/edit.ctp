@@ -36,10 +36,10 @@ $this->Html->addCrumb('Edit Server Room Access');
 	<ul>
 		<li><?php echo $this->Html->link(__('List Server Room Access'), array('action' => 'index')); ?></li>		
 		
-		<?php if($group == 1 || $group == 2): ?>
+
 		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('ServerRoomAccess.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('ServerRoomAccess.id'))); ?></li>
 
-		<?php endif; ?>
+
 
 	</ul>
 </div>
