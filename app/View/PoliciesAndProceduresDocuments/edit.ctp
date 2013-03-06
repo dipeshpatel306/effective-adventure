@@ -32,8 +32,8 @@ $this->Html->addCrumb('Edit Policy & Procedure Document');
 		
 		<li><?php echo $this->Html->link(__('List Documents'), array('action' => 'index')); ?></li>
 		<li><?php echo $this->Form->postLink(__('Delete Document'), array('action' => 'delete', $this->Form->value('PoliciesAndProceduresDocument.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('PoliciesAndProceduresDocument.id'))); ?></li>
-		<br />
-		
+	</ul>
+	<ul>	
 		<li><?php echo $this->Html->link(__('List Policies And Procedures'), array('controller' => 'policies_and_procedures', 'action' => 'index')); ?> </li>
 		
 		<?php if($group == 1): ?>

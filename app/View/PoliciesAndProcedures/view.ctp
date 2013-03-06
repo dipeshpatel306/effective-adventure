@@ -95,7 +95,7 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 			 Watch a short interactive movie that summarizes this policy or procedure. <br />
 			 
 			<a class="policyName">View Movie for
-				<span class='videoName'><?php echo ucwords(trim($policiesAndProcedure['PoliciesAndProcedure']['video_summary'])); ?></span>
+				<span class='videoName'><?php echo ucwords($policiesAndProcedure['PoliciesAndProcedure']['video_summary']); ?></span>
 			</a>
 		</div>
 		
@@ -114,10 +114,10 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 		<li><?php echo $this->Html->link(__('New Policies and Procedures'), array('action' => 'add')); ?> </li>			
 		<li><?php echo $this->Html->link(__('Edit Policies And Procedures'), array('action' => 'edit', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Policies And Procedure'), array('action' => 'delete', $policiesAndProcedure['PoliciesAndProcedure']['id']), null, __('Are you sure you want to delete # %s?', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?> </li>
-<br />	<?php endif; ?>
-
+		<?php endif; ?>
+	</ul>
+	<ul>
 		<li><?php echo $this->Html->link(__('List Documents'), array('controller' => 'policies_and_procedures_documents', 'action' => 'index')); ?> </li>
-
 		<li><?php echo $this->Html->link(__('New Document'), array('controller' => 'policies_and_procedures_documents', 'action' => 'add')); ?> </li>
 	</ul>
 	<?php endif; ?>

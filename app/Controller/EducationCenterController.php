@@ -83,6 +83,9 @@ class EducationCenterController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+			
+			$this->request->data['EducationCenter']['video_link'] = trim($this->request->data['EducationCenter']['video_link']); // clean video name
+			
 			$this->EducationCenter->create();
 			if ($this->EducationCenter->save($this->request->data)) {
 				$this->Session->setFlash('The education center has been saved', 'default', array('class' => 'success message'));
@@ -106,6 +109,8 @@ class EducationCenterController extends AppController {
 			throw new NotFoundException(__('Invalid education center'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
+			$this->request->data['EducationCenter']['video_link'] = trim($this->request->data['EducationCenter']['video_link']); // clean video name
+			
 			if ($this->EducationCenter->save($this->request->data)) {
 				$this->Session->setFlash('The education center has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));

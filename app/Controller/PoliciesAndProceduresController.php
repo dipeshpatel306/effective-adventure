@@ -132,6 +132,9 @@ class PoliciesAndProceduresController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+				
+			$this->request->data['PoliciesAndProcedure']['video_summary'] = trim($this->request->data['PoliciesAndProcedure']['video_summary']); // clean video name
+			
 			$this->PoliciesAndProcedure->create();
 			if ($this->PoliciesAndProcedure->save($this->request->data)) {
 				$this->Session->setFlash('The policies and procedure has been saved', 'default', array('class' => 'success message'));
@@ -155,6 +158,9 @@ class PoliciesAndProceduresController extends AppController {
 			throw new NotFoundException(__('Invalid policies and procedure'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
+			
+			$this->request->data['PoliciesAndProcedure']['video_summary'] = trim($this->request->data['PoliciesAndProcedure']['video_summary']); // clean video name
+			
 			if ($this->PoliciesAndProcedure->save($this->request->data)) {
 				$this->Session->setFlash('The policies and procedure has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));

@@ -22,7 +22,7 @@ $this->Html->addCrumb('Education Center');
 		
 		<div class="dashBox <?php if($educationCenter['EducationCenter']['video_link'] == 'Video'){ echo 'eduVideo';} ?>"
 			<?php if($educationCenter['EducationCenter']['video_link'] == 'Video'){ // sets id for jquery video player
-				echo 'id="' . trim($educationCenter['EducationCenter']['video']) . '"';
+				echo 'id="' . $educationCenter['EducationCenter']['video'] . '"';
 			} ?> 
 		> 
 		

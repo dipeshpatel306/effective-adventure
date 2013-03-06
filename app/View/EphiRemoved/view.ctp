@@ -63,7 +63,5 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemov
 		<li><?php echo $this->Html->link(__('Edit Ephi Removed'), array('action' => 'edit', $ephiRemoved['EphiRemoved']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Ephi Removed'), array('action' => 'delete', $ephiRemoved['EphiRemoved']['id']), null, __('Are you sure you want to delete # %s?', $ephiRemoved['EphiRemoved']['id'])); ?> </li>
 
-
-
 	</ul>
 </div>

@@ -50,15 +50,16 @@ $this->Html->addCrumb($policiesAndProceduresDocument['PoliciesAndProcedure']['na
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('List Documents'), array('action' => 'index')); ?> </li>		
-		<li><?php echo $this->Html->link(__('Edit Document'), array('action' => 'edit', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Document'), array('action' => 'delete', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id']), null, __('Are you sure you want to delete # %s?', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id'])); ?> </li>
-		
-		<br />
+		<li><?php echo $this->Html->link(__('List Documents'), array('action' => 'index')); ?> </li>	
 		<?php if($group == 1): ?>
 		<li><?php echo $this->Html->link(__('New Document'), array('action' => 'add')); ?> </li>
 		<?php endif ?>
+		<li><?php echo $this->Html->link(__('Edit Document'), array('action' => 'edit', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id'])); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Document'), array('action' => 'delete', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id']), null, __('Are you sure you want to delete # %s?', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id'])); ?> </li>
 		
+	</ul>
+
+	<ul>	
 		<li><?php echo $this->Html->link(__('List Policies And Procedures'), array('controller' => 'policies_and_procedures', 'action' => 'index')); ?> </li>
 		<?php if($group == 1): ?>
 		<li><?php echo $this->Html->link(__('New Policies And Procedure'), array('controller' => 'policies_and_procedures', 'action' => 'add')); ?> </li>

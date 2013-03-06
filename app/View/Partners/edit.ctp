@@ -33,8 +33,8 @@ $this->Html->addCrumb('Edit Partner');
 
 		<li><?php echo $this->Html->link(__('List Partners'), array('action' => 'index')); ?></li>
 		<li><?php echo $this->Form->postLink(__('Delete Partner'), array('action' => 'delete', $this->Form->value('Partner.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Partner.id'))); ?></li>
-		<br />
-		
+	</ul>
+	<ul>
 		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
 	</ul>

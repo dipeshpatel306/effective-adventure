@@ -21,16 +21,19 @@ $this->Html->addCrumb('Add Policy & Procedure Document');
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
+
 		<?php if($group == 1): ?>
+		<ul>
 		<li><?php echo $this->Html->link(__('List Documents'), array('action' => 'index')); ?></li>
+		</ul>
 		<?php endif;?>
 		
-		
+		<ul>
 		<li><?php echo $this->Html->link(__('List Policies And Procedures'), array('controller' => 'policies_and_procedures', 'action' => 'index')); ?> </li>
 		<?php if($group == 1):?>
 		<li><?php echo $this->Html->link(__('New Policies And Procedure'), array('controller' => 'policies_and_procedures', 'action' => 'add')); ?> </li>
+		</ul>
 		<?php endif ?>
 
-	</ul>
+	
 </div>

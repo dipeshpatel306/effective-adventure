@@ -40,7 +40,10 @@ class AppController extends Controller {
     		),
 		);
         //Configure AuthComponent
-		$this->Auth->authorize = array('controller');
+		//$this->Auth->authorize = array('actions');
+		//$this->Auth->actionPath = array('controllers/');		
+        
+        $this->Auth->authorize = array('controller');
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
 		$this->Auth->loginRedirect = array('controller' => 'Dashboard', 'action' => 'index');
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');

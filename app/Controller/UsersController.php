@@ -26,10 +26,11 @@ class UsersController extends AppController {
  */	
 	public function initDB() {
 	    $group = $this->User->Group;
+
 	    //Allow admins to everything
 	    $group->id = 1;
 	    $this->Acl->allow($group, 'controllers');
-	
+		//$this->Auth->allow('*');	
 	    //allow managers to posts and widgets
 	    $group->id = 2; 
 	    $this->Acl->deny($group, 'controllers');
@@ -46,6 +47,7 @@ class UsersController extends AppController {
 		
 		$this->Acl->allow($group, 'controllers/PoliciesAndProcedures/index');
 		$this->Acl->allow($group, 'controllers/PoliciesAndProcedures/view');
+		$this->Acl->allow($group, 'controllers/PoliciesAndProceduresDocuments');
 		$this->Acl->allow($group, 'controllers/OtherPoliciesAndProcedures');
 		
 		$this->Acl->allow($group, 'controllers/RiskAssessmentDocuments');
@@ -85,6 +87,7 @@ class UsersController extends AppController {
 		
 		$this->Acl->allow($group, 'controllers/PoliciesAndProcedures/index');
 		$this->Acl->allow($group, 'controllers/PoliciesAndProcedures/view');
+		$this->Acl->allow($group, 'controllers/PoliciesAndProceduresDocuments');		
 		$this->Acl->allow($group, 'controllers/OtherPoliciesAndProcedures');
 		
 		$this->Acl->allow($group, 'controllers/RiskAssessmentDocuments');

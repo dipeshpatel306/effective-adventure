@@ -229,6 +229,9 @@ a.logoutLink{
 .sidebarContent ul li a:hover{
 	/*background-color: #F5F9FD;*/
 }
+.actions ul{
+	margin-bottom: 30px;
+}
 .actions li{
 	white-space: normal;
 }
@@ -338,7 +341,9 @@ img.homeIcon:hover{
 .dashHead{
 	height: 65px;
 	margin-bottom: 15px;
+
 }
+
 .dashHeadLogo{ /* partners tile */
 	height: 80px;
 	text-align: center;

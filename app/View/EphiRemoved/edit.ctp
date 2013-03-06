@@ -37,6 +37,5 @@ $this->Html->addCrumb('Edit ePHI Removed');
 		<li><?php echo $this->Html->link(__('List Ephi Removed'), array('action' => 'index')); ?></li>			
 		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('EphiRemoved.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('EphiRemoved.id'))); ?></li>
 
-		
 	</ul>
 </div>

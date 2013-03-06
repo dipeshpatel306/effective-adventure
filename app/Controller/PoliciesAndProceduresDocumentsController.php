@@ -98,10 +98,6 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			
-			/*$conditions = array(
-				'PoliciesAndProceduresDocument.client_id' => $this->request->data['PoliciesAndProceduresDocument']['client_id'],
-				'PoliciesAndProceduresDocument.policies_and_procedure_id' => $this->request->data['PoliciesAndProceduresDocument']['policies_and_procedure_id'],
-			);*/
 			$check = $this->PoliciesAndProceduresDocument->find('first',(array(
 				'conditions' => array(
 						'PoliciesAndProceduresDocument.client_id' => $this->request->data['PoliciesAndProceduresDocument']['client_id'],
@@ -109,11 +105,6 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 						'fields' => array('PoliciesAndProceduresDocument.id, PoliciesAndProceduresDocument.client_id, PoliciesAndProceduresDocument.policies_and_procedure_id'),
 						'recursive' => 0
 				)));
-
-			/*		$conditions = array(
-						$this->request->data['PoliciesAndProceduresDocument']['client_id'],
-						$this->request->data['PoliciesAndProceduresDocument']['policies_and_procedure_id']);*/
-
 			
 			if($check){
 				$this->request->data['PoliciesAndProceduresDocument']['id'] = $check['PoliciesAndProceduresDocument']['id'];
@@ -132,7 +123,6 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 							));
 				$this->request->data['PoliciesAndProceduresDocument']['file_key'] = $key['Client']['file_key'];
 			}	
-			
 			
 			$this->PoliciesAndProceduresDocument->create();
 			if ($this->PoliciesAndProceduresDocument->save($this->request->data)) {

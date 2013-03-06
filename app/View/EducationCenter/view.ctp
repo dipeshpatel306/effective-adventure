@@ -34,7 +34,7 @@ $this->Html->addCrumb('Education Center View' . ' ' . $educationCenter['Educatio
 		</dd>		
 		<dt><?php echo __('Video'); ?></dt>
 		<dd class='eduVideo'>
-			<a id='<?php echo trim($educationCenter['EducationCenter']['video']); ?>'><?php echo $educationCenter['EducationCenter']['video']; ?></a>
+			<a id='<?php echo $educationCenter['EducationCenter']['video']; ?>'><?php echo $educationCenter['EducationCenter']['video']; ?></a>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Link'); ?></dt>

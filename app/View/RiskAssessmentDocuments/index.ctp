@@ -66,8 +66,7 @@ $this->Html->addCrumb('Risk Assessment Documents');
 	<ul>
 		<?php if($group == 1 || $group == 2): ?>
 		<li><?php echo $this->Html->link(__('New Risk Assessment Document'), array('action' => 'add')); ?></li>
-		<?php endif; ?>		
-
+		<?php endif; ?>	
 
 	</ul>
 </div>

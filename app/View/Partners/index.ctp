@@ -50,7 +50,8 @@ $this->Html->addCrumb('Partners');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Partner'), array('action' => 'add')); ?></li>
-		<br />
+	</ul>
+	<ul>
 		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>
 	</ul>
