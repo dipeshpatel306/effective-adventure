@@ -27,7 +27,7 @@
 	?>
 	</li>
 	
-	<li><?php echo $this->Html->link('HIPAA Security Training', array('controller' => 'dashboard', 'action' => 'education_center')); ?></li>
+	<li><?php echo $this->Html->link('HIPAA Security Training', array('controller' => 'education_center', 'action' => 'index')); ?></li>
 
 	
 	<li><?php echo $this->Html->link('Security Incidents', array('controller' => 'security_incidents', 'action' => 'index')); ?></li>

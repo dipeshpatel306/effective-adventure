@@ -66,7 +66,7 @@ $this->Html->addCrumb('Policies & Procedures Documents');
 		<li><?php echo $this->Html->link(__('New Document'), array('action' => 'add')); ?></li>
 		</ul>
 		<?php endif; ?>
-		
+		<ul>
 		<li><?php echo $this->Html->link(__('List Policies And Procedures'), array('controller' => 'policies_and_procedures', 'action' => 'index')); ?> </li>
 		<?php if($group == 1): ?>
 		<ul>	

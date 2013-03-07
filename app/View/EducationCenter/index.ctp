@@ -58,6 +58,5 @@ $this->Html->addCrumb('Education Center');
 
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-
+	<?php echo $this->element('quickLinks'); ?>
 </div>

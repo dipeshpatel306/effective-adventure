@@ -150,9 +150,5 @@ $this->Html->addCrumb('Information Center');
 	
 </div>
 <div class="actions newsFeed">
-	<h3><?php echo __('Latest News'); ?></h3>
-	<!--<ul>
-		<li><?php echo $this->Html->link(__('New Dashboard'), array('action' => 'add')); ?></li>
-	</ul>-->
-	<?php echo $this->element('feeds'); ?>
+	<?php echo $this->element('quickLinks'); ?>
 </div>

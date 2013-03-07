@@ -15,7 +15,7 @@ class OrganizationProfilesController extends AppController {
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
  		$acct = $this->Session->read('Auth.User.Client.account_type');
-
+		$client = $this->Auth->User('client_id');
 		if ($group == 2 || $group == 3 || $acct == 'Initial'){ //allow
 			if(in_array($this->action, array('view','add'))){  // Allow Managers to Add 
 				return true;

@@ -20,7 +20,7 @@ class EducationCenterController extends AppController {
 		$acct = $this->Session->read('Auth.User.Client.account_type'); // Get account type 
 		
 		if($group == 2 || $group == 3 ){
-			if(in_array($this->action, array('learn_now'))){  // Allow Managers to Add 
+			if(in_array($this->action, array('index'))){  // Allow Managers to Add 
 				return true;
 			}
 		}
