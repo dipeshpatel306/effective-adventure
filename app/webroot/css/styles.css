@@ -46,6 +46,10 @@ div.form, div.index, div.view{
 	box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
 	/*box-shadow: 3px 3px 4px #e6e6e6;*/
 }
+input, textarea, form .input{
+	color: #444444;
+	font-family: 'Open Sans', Helvetica, Arial, "Lucida Grande", sans-serif;
+}
 div.actions, div.login, div.loginBox{
 	background-color: #ffffff;
 	border: 1px solid #e6e6e6;
@@ -489,15 +493,113 @@ ul.tabs{
 .tabs a {
 	padding:5px 10px;
 	display:inline-block;
-	background:#4C8AB0;
+	background: #76BF6B;
 	color:#fff;
 	text-decoration:none;
+	font-weight: bold;
 }
 
 .tabs a.active {
-	background: #76BF6B;
+	
+	background:#4C8AB0;
 	color:#fff;
 }
 .tabBox{
 	border: 1px solid #d7d7d7;
+}
+
+#slides h3{
+	color: #4C8AB0;
+	font-weight: bold;
+}
+.slides_container {
+	width:900px;
+	display:none;
+}
+
+
+.slides_container div {
+	width:900px;
+	height:290px;
+	display:block;
+}
+
+/*
+	Next/prev buttons
+*/
+
+#slides .next,#slides .prev {
+	/*position:absolute;*/
+	/*top:107px;
+	left:-39px;
+	width:24px;
+	height:43px;
+	display:block;
+	z-index:101;*/
+	/*margin: 5px;
+	padding: 8px;
+	width: 300px;
+	background-color: #76BF6B;*/
+	/*color: #76BF6B;*/
+}
+
+
+#slides .next {
+	/*left:585px;*/
+}
+/*
+	Pagination
+*/
+span.prevNext a{
+	
+	width: 100px;
+	height: 30px;
+	background-color: #76BF6B;;
+}
+
+.pagination {
+	margin:26px auto 0;
+	width:700px;
+}
+
+.pagination li {
+	display: none;
+	float:left;
+	margin:0 1px;
+	list-style:none;
+}
+
+.pagination li a {
+	display:block;
+	width:12px;
+	height:0;
+	padding-top:12px;
+	background-image:url(../img/pagination.png);
+	background-position:0 0;
+	float:left;
+	overflow:hidden;
+}
+
+.pagination li.current a {
+	background-position:0 -12px;
+}
+button.prev, button.next{
+	width: 100px;
+	padding: 8px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background: -moz-linear-gradient(center top , #76BF6B, #3B8230) repeat scroll 0 0 #62AF56;
+	color: #ffffff;
+	border-radius: 4px 4px 4px 4px;
+	border: none;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+}
+button.prev:hover, button.next:hover{
+	background: none repeat scroll 0 0 #5BA150
+}
+.buttonWrap{
+	width: 230px;
+	margin-left: auto;
+	margin-right: auto;	
 }

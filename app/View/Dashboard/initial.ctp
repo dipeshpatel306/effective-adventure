@@ -3,6 +3,19 @@
 	$group = $this->Session->read('Auth.User.group_id'); 
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 	
+	if(isset($risk) && !empty($risk)){  // if already filled out then give edit link
+		$riskAss = array('controller' => 'risk_assessments', 'action' => 'edit', $risk['RiskAssessment']['id']);
+	} else {
+		$riskAss = array('controller' => 'risk_assessments', 'action' => 'take_risk_assessment');
+	}
+	
+	if(isset($org) && !empty($org)){ // if already filled out then give edit link
+		$orgPro = array('controller' => 'Organization_profiles', 'action' => 'edit', $org['OrganizationProfile']['id']);
+	} else {
+		$orgPro = array('controller' => 'Organization_profiles', 'action' => 'add');
+	}	
+	
+	
 	if($acct == 'Initial'){
 		$dashBtn = '<div class="dashBtn approved">
 						<div class="btnWrapNarrow">
@@ -51,7 +64,7 @@
 					'</div>' .
 					'<div class="dashSum">Organization Profile</div>' . $dashBtn .
 					'</div>',
-					array('controller' => 'organization_profiles', 'action' => 'index'),
+					$orgPro,
 					array('escape' => false)
 			);		
 			
@@ -81,7 +94,7 @@
 					'</div>' .
 					'<div class="dashSum">Mark Risk Assessment Complete</div>' . $dashBtn .
 					'</div>',
-					array('controller' => 'dashboard', 'action' => 'mark_complete'),
+					$riskAss,
 					array('escape' => false)
 			);				
 	?>

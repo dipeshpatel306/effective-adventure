@@ -1,32 +1,14 @@
+
+
+
+
 $(document).ready(function(){
 	//CKEDITOR.replace( 'textEdit'); // initialize WYSIWYG Editor
 	
 	// instantiate date picker and format date
 	$('.datePick').datepicker({ dateFormat: 'mm/dd/yy',  defaultDate: '' });
 	
-	// Multistep form wizard for Risk Assessment Questionnaire
-	$('form#RiskAssessmentTakeRiskAssessmentForm .step1').siblings().hide('fast');  // hide all except question one
-	$('form#RiskAssessmentEditForm .step1').siblings().hide('fast');  // hide all except question one
-	
-	$('form#RiskAssessmentTakeRiskAssessmentForm .next').click(function(){
-		$(this).closest('.step').hide().next('.step').show();
-		return false;
-	})
-	$('form#RiskAssessmentEditForm .next').click(function(){
-		$(this).closest('.step').hide().next('.step').show();
-		return false;
-	})
-	$('form#RiskAssessmentTakeRiskAssessmentForm .back').click(function(){
-		$(this).closest('.step').hide().prev('.step').show();
-		return false;
-	});
-	$('form#RiskAssessmentEditForm .back').click(function(){
-		$(this).closest('.step').hide().prev('.step').show();
-		return false;
-	});
-	
-	// Org Profile tabs
-	$('ul.tabs').each(function(){
+	$('.organizationProfiles ul.tabs').each(function(){
 	    // For each set of tabs, we want to keep track of
 	    // which tab is active and it's associated content
 	    var $active, $content, $links = $(this).find('a');
@@ -60,9 +42,15 @@ $(document).ready(function(){
 	        e.preventDefault();
 	    });
 	});	
-	
-	//$('form').quickWizard();
-	
+	// Slide show for risk assessment
+	$(function(){
+		$('#slides').slides({
+			preload: true,
+			//generateNextPrev: true
+		});
+	});	
+		
+
 	// Jwplayer	
 	function showVideo(mp4Name) {
 		jwplayer("mediaplayer").setup({
@@ -123,6 +111,3 @@ $(document).ready(function(){
 	});
 });
 
-
-
-	

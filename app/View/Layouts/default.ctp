@@ -23,7 +23,6 @@
 		echo $this->fetch('css');
 		echo '<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />';
 		echo $this->fetch('script');
-		echo $this->Html->script('jwplayer/jwplayer.js'); 
 	?>	
 </head>
 <body>
@@ -73,8 +72,8 @@
 										 '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js',
 										 //'jquery-ui-1.10.0.custom/js/jquery-ui-1.10.0.custom.min.js',
 										 'ckeditor/ckeditor.js',
-										 //'jwplayer/jwplayer.js',
-										 'sliding.form.js',
+										 'jwplayer/jwplayer.js',
+										 'slides.min.jquery.js',
 										 'scripts', 
 	)); ?>
 	<?php //  echo $this->element('sql_dump'); ?>
