@@ -59,8 +59,8 @@
 				HIPAA Secure Now! Copyright &copy; <?php echo $year; ?>
 			</div>
 			<?php // Temp debug code
-				$auth = $this->Session->read('Auth');
-				pr($auth);
+				//$auth = $this->Session->read('Auth');
+				//pr($auth);
 				//echo Configure::version();	
 			?>
 		</div>
@@ -76,6 +76,6 @@
 										 'slides.min.jquery.js',
 										 'scripts', 
 	)); ?>
-	<?php //  echo $this->element('sql_dump'); ?>
+	<?php   echo $this->element('sql_dump'); ?>
 </body>
 </html>

@@ -51,6 +51,10 @@ class RiskAssessmentsController extends AppController {
  */
 	public function view($id = null) {
 		$this->RiskAssessment->id = $id;
+		$this->loadModel('RiskAssessmentQuestions');
+		$ra = $this->RiskAssessmentQuestions->find('all');
+		$this->set(compact('ra'));
+		
 		if (!$this->RiskAssessment->exists()) {
 			throw new NotFoundException(__('Invalid risk assessment'));
 		}
