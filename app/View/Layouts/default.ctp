@@ -24,13 +24,7 @@
 		echo '<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />';
 		echo $this->fetch('script');
 		echo $this->Html->script('jwplayer/jwplayer.js'); 
-	?>
-	<script>
-
-	</script>
-	
-	
-	
+	?>	
 </head>
 <body>
 	<div id="container">
@@ -66,12 +60,12 @@
 				HIPAA Secure Now! Copyright &copy; <?php echo $year; ?>
 			</div>
 			<?php // Temp debug code
-				//$auth = $this->Session->read('Auth');
-				//pr($auth);
+				$auth = $this->Session->read('Auth');
+				pr($auth);
 				//echo Configure::version();	
 			?>
 		</div>
-	
+
 	</div>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
   	<script>window.jQuery || document.write('<script src="../js/jquery-1.9.0.min.js"><\/script>')</script>
@@ -80,6 +74,7 @@
 										 //'jquery-ui-1.10.0.custom/js/jquery-ui-1.10.0.custom.min.js',
 										 'ckeditor/ckeditor.js',
 										 //'jwplayer/jwplayer.js',
+										 'sliding.form.js',
 										 'scripts', 
 	)); ?>
 	<?php //  echo $this->element('sql_dump'); ?>

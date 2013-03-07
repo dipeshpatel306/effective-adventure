@@ -411,8 +411,9 @@ $this->Html->addCrumb('Edit Risk Assessment');
 		echo $this->Form->button('Back', array('class' => 'back'));
 		//echo $this->Form->button('Next', array('class' => 'next')); 
 		?>
+		</fieldset>
 	<?php  echo $this->Form->end(__('Submit')); ?>
-	</fieldset>
+
 
 
 

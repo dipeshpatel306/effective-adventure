@@ -21,12 +21,12 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($organizationProfile['Client']['created'], array('controller' => 'clients', 'action' => 'view', $organizationProfile['Client']['id'])); ?>
+			<?php echo $this->Time->format('m/d/y g:i a',$organizationProfile['Client']['created'], array('controller' => 'clients', 'action' => 'view', $organizationProfile['Client']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Modified'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($organizationProfile['Client']['modified'], array('controller' => 'clients', 'action' => 'view', $organizationProfile['Client']['id'])); ?>
+			<?php echo $this->Time->format('m/d/y g:i a',$organizationProfile['Client']['modified'], array('controller' => 'clients', 'action' => 'view', $organizationProfile['Client']['id'])); ?>
 			&nbsp;
 		</dd>
 		
@@ -187,7 +187,7 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 		</dd>
 		<dt><?php echo __('Do you use Tablets?'); ?></dt>
 		<dd>
-			<?php echo h($organizationProfile['OrganizationProfile']['tables']); ?>
+			<?php echo h($organizationProfile['OrganizationProfile']['tablets']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('List the portable media devices you are currently using:'); ?></dt>

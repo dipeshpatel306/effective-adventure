@@ -18,11 +18,6 @@ class AppController extends Controller {
 			'Actions' => array('actionPath' => 'controllers/'),
 			'Controller'
 			),
-
-            /*'authorize' => array('Controller'),
-            array(
-            	//'Actions' => array('actionPath' => 'controllers')
-            )*/
         ),
         'Session',
         'Security',
@@ -31,24 +26,22 @@ class AppController extends Controller {
     public $helpers = array('Html', 'Form', 'Session');
 
     public function beforeFilter() {
-    	// Login information
-    	$this->set('logged_in', $this->Auth->loggedIn());
-		$this->set('current_user', $this->Auth->user());
+    	parent::beforeFilter();
+
 		$this->Auth->authenticate = array( // Use email as the login username
     		'Form' => array(
         	'fields' => array('username' => 'email', 'password' => 'password')
     		),
 		);
-        //Configure AuthComponent
-		//$this->Auth->authorize = array('actions');
-		//$this->Auth->actionPath = array('controllers/');		
         
         $this->Auth->authorize = array('controller');
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
 		$this->Auth->loginRedirect = array('controller' => 'Dashboard', 'action' => 'index');
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
 		//$this->Auth->allow('display');
-		
+		// Login information
+    	$this->set('logged_in', $this->Auth->loggedIn());
+		//$this->set('current_user', $this->Auth->user());
 		
 		// Moodle Cookie. Move it to login?
 		$email = $this->Session->read('Auth.User.email');

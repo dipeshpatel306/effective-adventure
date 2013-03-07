@@ -17,7 +17,6 @@
 <?php 
 	// If Admin load Admin Tools
 	if(($this->Session->read('Auth.User.group_id') == 1)){
-		//echo '<b>Admin Tools: </b> ';
 		echo $this->Html->link('About', array('controller' => 'dashboard', 'action' => 'edit', 1)) . ' | ';	
 		echo $this->Html->link('Policies', array('controller' => 'policies_and_procedures', 'action' => 'index')) . ' | ';			
 		echo $this->Html->link('Partners', array('controller' => 'partners', 'action' => 'index')) . ' | ';		
@@ -30,7 +29,7 @@
 		echo $this->Html->link('Messages', array('controller' => 'contact_us', 'action' => 'index'));
 
 	}	
-	// Client Manager Load Users link
+	// Client Manager Load links
 	if($this->Session->read('Auth.User.group_id') == 2){
 		$userId = $this->Session->read('Auth.User.id');
 		echo $this->Html->link('Profile', array('controller' => 'users', 'action' => 'edit', $userId)) . ' | ';		
@@ -39,7 +38,7 @@
 		echo $this->Html->link('Contact Us', array('controller' => 'contact_us', 'action' => 'contact' ));
 	}
 		
-	// If Client or Initial load Contact
+	// If Client User or Initial load link
 	if($this->Session->read('Auth.User.group_id') == 3 || $this->Session->read('Auth.User.group_id') == 4){
 		$userId = $this->Session->read('Auth.User.id');
 		echo $this->Html->link('Profile', array('controller' => 'users', 'action' => 'edit', $userId)) . ' | ';

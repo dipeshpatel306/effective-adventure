@@ -111,7 +111,6 @@ class DashboardController extends AppController {
 						));
 			$this->set(compact('partner'));
 		}
-		
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
 	}

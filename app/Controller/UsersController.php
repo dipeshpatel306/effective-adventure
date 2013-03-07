@@ -30,7 +30,7 @@ class UsersController extends AppController {
 	    //Allow admins to everything
 	    $group->id = 1;
 	    $this->Acl->allow($group, 'controllers');
-		//$this->Auth->allow('*');	
+	
 	    //allow managers to posts and widgets
 	    $group->id = 2; 
 	    $this->Acl->deny($group, 'controllers');

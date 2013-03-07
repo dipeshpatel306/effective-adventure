@@ -3,13 +3,13 @@
 	$group = $this->Session->read('Auth.User.group_id'); 
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 	
-	if(isset($risk) && !empty($risk)){
+	if(isset($risk) && !empty($risk)){  // if already filled out then give edit link
 		$riskAss = array('controller' => 'risk_assessments', 'action' => 'edit', $risk['RiskAssessment']['id']);
 	} else {
 		$riskAss = array('controller' => 'risk_assessments', 'action' => 'take_risk_assessment');
 	}
 	
-	if(isset($org) && !empty($org)){
+	if(isset($org) && !empty($org)){ // if already filled out then give edit link
 		$orgPro = array('controller' => 'Organization_profiles', 'action' => 'edit', $org['OrganizationProfile']['id']);
 	} else {
 		$orgPro = array('controller' => 'Organization_profiles', 'action' => 'add');
