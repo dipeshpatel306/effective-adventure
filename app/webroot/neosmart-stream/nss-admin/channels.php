@@ -1,4 +1,5 @@
 <?php 
+	$current_page = 'channels';
 	$no_channel_warning = true;
 	include "header.inc.php";
 ?>
@@ -7,29 +8,62 @@
 <div class="nss-admin-container warning not-saved" style="display:none">
 	<div class="row">Your changes are not saved, yet.</div>
 </div>
-<form id="channels" class="nss-admin-form" method="post">
+<form id="channels" class="nss-admin-form" method="post" data-test="auto">
 	<input type="hidden" name="action" value="update_channels">
 
+	<div class="row ">
+		
+			<table cellpadding="0" cellspacing="0" class="inline-table" width="100%">
+				<tr>
+					<th>Username (ID)</th>
+					<th>Status</th>
+					<th>Access token expires in</th>
+					<th>Edit</th>
+				</tr>
+				<?php foreach ($nss->get('channel_list') as $channelArray => $channel){
+						$type = $channel['type'];
+				?>
+					<tr>
+						<td class="channel-<?php echo $type; ?>">
+							<?php echo $channel['id']; ?>
+						</td>
+						<td><?php echo getChannelStatus($type,$channel['id']); ?></td>
+						<td width="270"><?php if($type=='facebook'){ ?>
+							<input type="hidden" value="<?php echo $channel['access_token_expires']; ?>" name="access_token_expires">
+							<input type="hidden" value="<?php echo $channel['access_token']; ?>" name="access_token">
+							<span class="expires_in_real_time"></span>
+							<?php } else { ?>
+							<i style="color:#999;font-style:italic;">Access token is not required</i>
+							<?php } ?>
+						</td>
+						<td><a href="javascript://" data-id="<?php echo $channel['id']; ?>" class="button edit-channel">Details</a></td>
+					</tr>
+				<?php } ?>
+			</table>
+	
+	</div>
+	
 <?php
 $k = 0;
 foreach ($nss->get('channel_list') as $channelArray => $channel){
 	$type = $channel['type'];
-	echo '<div class="nss-admin-channel channel-id-'.$k.'" data-channel="'.$type.'"><h3>'.$type.'</h3>';
+	$display = isset($_GET['pos'])&&$_GET['pos']==$k ? 'block' : 'none';
+	echo '<div class="nss-admin-channel channel-id-'.$k.'" data-channel="'.$type.'" style="display:'.$display.'"><h3>'.$type.'</h3>';
 	switch($type){
 		case 'facebook': /******************************************************************************/ ?>
 			<div class='nss-admin-form-row'>
 				<label>Id</label>
 				<div class="field-area">
 					<input type="text" value='<?php echo $channel['id']; ?>' name="id" class="text">
-					<div class="field-info">Your Facebook ID</div>
+					<div class="field-info">Your Facebook ID or Vanity-URL</div>
 				</div>
 			</div>
 			<div class='nss-admin-form-row'>
 				<label>Access token</label>
 				<div class="field-area">
 					<input type="text" value="<?php echo $channel['access_token']; ?>" name="access_token" class="text">
-					<div class="field-info">To access your Facebook data you have to enter a valid access token.<?php if($nss->get('license_version')=='pro'){ ?>If you have a pro license just use the Access Token Creator.</div>
-					<div><a class="button atc-button" data-id="<?php echo $k; ?>" href="javascript://">Open Access Token Creator</a><?php } ?></div>
+					<div class="field-info">To access your Facebook data you have to enter a valid access token.<br />Create your own access token or <b>just use the Access Token Creator</b>.</div>
+					<div><a class="button atc-button" data-id="<?php echo $k; ?>" href="javascript://">Open Access Token Creator</a></div>
 				</div>
 			</div>
 			
@@ -108,6 +142,10 @@ foreach ($nss->get('channel_list') as $channelArray => $channel){
 			<span class="nss-admin-test button">Test</span>
 			<span class="nss-admin-remove button">Remove</span>
 		</div>
+		<div class='nss-admin-form-row hl'>
+			<a href='?cancel' class='cancel button'>Cancel changes</a>
+			<a class='submit save-channels' href='#channel-start' data-pos="<?php echo $k; ?>">Save channels</a>
+		</div>
 	</div>
 <?php
 $k++;
@@ -140,8 +178,8 @@ $k++;
 				<label>Access token</label>
 				<div class="field-area">
 					<input type="text" value="" name="access_token" class="text">
-					<div class="field-info">To access your facebook data you have to enter a valid access token.<?php if($nss->get('license_version')=='pro'){ ?>If you have a pro license just use the Access Token Creator.</div>
-					<div><a class="button atc-button" data-id="<?php echo $k; ?>" href="javascript://">Open Access Token Creator</a><?php } ?></div>
+					<div class="field-info">To access your Facebook data you have to enter a valid access token.<br />Create your own access token or <b>just use the Access Token Creator</b>.</div>
+					<div><a class="button atc-button" data-id="<?php echo $k; ?>" href="javascript://">Open Access Token Creator</a></div>
 				</div>
 			</div>
 			<div class="nss-admin-form-row" style="display:none">
@@ -152,6 +190,7 @@ $k++;
 			</div>
 			
 			<div class="nss-admin-form-row hl">
+				<a href='?cancel' class='cancel button'>Cancel</a>
 				<span class="nss-admin-add-channel button">Add channel</span>
 			</div>
 		</div>
@@ -166,6 +205,7 @@ $k++;
 				</div>
 			</div>			
 			<div class="nss-admin-form-row hl">
+				<a href='?cancel' class='cancel button'>Cancel</a>
 				<span class="nss-admin-add-channel button">Add channel</span>
 			</div>
 		</div>
@@ -180,16 +220,14 @@ $k++;
 				</div>
 			</div>			
 			<div class="nss-admin-form-row hl">
+				<a href='?cancel' class='cancel button'>Cancel</a>
 				<span class="nss-admin-add-channel button">Add channel</span>
 			</div>
 		</div>
 		
 		
 	</div>
-	<div class='nss-admin-form-row'>
-		<a id="cancel-3" href='?cancel=3#marker-channels' class='cancel button'>Cancel changes</a>
-		<a id='save-channels' class='submit' href='#channel-start'>Save channels</a>
-	</div>
+	
 </form>
 
 <?php include "footer.inc.php"; ?>

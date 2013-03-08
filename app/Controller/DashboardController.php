@@ -34,18 +34,17 @@ class DashboardController extends AppController {
 			$completed = date('Y-m-d'); // Get DateTime
 			$client = $this->Session->read('Auth.User.client_id');
 			$clientName = $this->Session->read('Auth.User.Client.name');
-			$message = 'New Risk Assessment Completed for ' . $clientName . ' Completed on ' . $completed;
+			$message = 'New Risk Assessment Completed by Client ' . $clientName . ' - Completed on ' . $completed;
 			$this->loadModel('Client');
 			$this->Client->id = $client;
 			$this->render(false); // tell cake to not use a view
 			
-			// Send email about new registration
-			/*$email = new CakeEmail('gmail');
-			$email->from('chris@gpointech.com');
-			$email->to('chris@gpointech.com');
-			$email->subject('New Risk Assessment Completed for ' . $clientName);
-			$email->send($message);*/
-			
+			// Send Email
+			$email = new CakeEmail('hipaaMail');
+			$email->from('no-reply@hipaasecurenow.com');
+			$email->to('info@hipaasecurenow.com');
+			$email->subject('HIPAA Risk Assessment Marked Complete by Client - ' . $clientName);
+			$email->send($message);
 			
 			if ($this->Client->saveField('risk_assessment_status', $completed)) {
 				$this->Session->setFlash('Thanks! Your Risk Assessment has been marked complete', 'default', array('class' => 'success message'));

@@ -46,9 +46,11 @@
 			NSS_CONFIG_BASE_URL,
 			NSS_CONFIG_CHANNELS,
 			NSS_CONFIG_CONFIG,
+			NSS_CONFIG_THEME,
 			NSS_CONFIG_LICENSE,
 			NSS_CONFIG_PASSWORD,
-			NSS_CONFIG_TRANSLATE
+			NSS_CONFIG_TRANSLATE,
+			NSS_CONFIG_FEEDBACK
 		);
 
 		foreach($files as $f){
@@ -90,10 +92,13 @@
  *****************************************************************************************/
  	
 	function saveBaseURL(){
+		$root = getNssRoot();
+		if($root===false) return 'error';
+		
 		$fh = @fopen(NSS_CONFIG_BASE_URL, 'w');
 		$data = '<?php ';
 		$data .= "if(!isset($"."nss))die;";
-		$data .= "\n$"."nss->set('nss_root','".getNssRoot()."');";
+		$data .= "\n$"."nss->set('nss_root','".$root."');";
 		$data .= "\n?>";
 		if($fh){
 			fwrite($fh, $data);
@@ -102,6 +107,16 @@
 		}else{
 			reload('?error=file_permissions');
 		}
+	}
+	
+	function activatePluginMode($plugin){
+		$fh = fopen(NSS_CONFIG_PLUGIN, 'w');
+		$data = '<?php ';
+		$data .= "if(!isset($"."nss))die;";
+		$data .= "\n$"."nss->set('plugin_mode','".$plugin."');";
+		$data .= "\n?>";
+		fwrite($fh, $data);
+		fclose($fh);
 	}
 	
 
@@ -117,10 +132,12 @@
 	
 	
 	function removeLicenseKey(){
+		global $nss;
 		@unlink(NSS_CONFIG_LICENSE);
 		@unlink(NSS_CONFIG_ERROR);
 		@unlink(NSS_CONFIG_CODE);
-		unset($_SESSION['nss_admin_password']);
+		$nss->cleanDir(NSS_CONTENT_CACHE);
+		//unset($_SESSION['nss_admin_password']);
 		redirectTo('?error=3');
 	}
 	
@@ -129,32 +146,71 @@
 		header('Location: '.$nss->get('nss_root').$path);
 		die;
 	}
+	
+	function saveBoolean($key){
+		if(empty($_POST[$key])) return 'false';
+		if(trim($_POST[$key])=='') return 'false';
+		else return 'true';
+	}
 
 	function updateConfig(){
 		$config_file = NSS_ABSPATH."nss-config/nss-config.php";
-		$debug_mode = $_POST['debug_mode']=='on' ? 'true' : 'false';
 		$fh = fopen($config_file, 'w');
 		$data = '<?php ';
 		$data .= "if(!isset($"."nss)) die;";
-		$data .= "\n$"."nss->set('debug_mode',".$debug_mode.");";
-		$data .= "\n$"."nss->set('cache_time','".$_POST['cache_time']."');";
-		$data .= "\n$"."nss->set('date_time_format','".$_POST['date_time_format']."');";
-		$data .= "\n$"."nss->set('theme','".$_POST['theme']."');";
+		$data .= "\n$"."nss->set('debug_mode',".saveBoolean('debug_mode').");";
+		$data .= "\n$"."nss->set('show_admin_link',".saveBoolean('show_admin_link').");";
+		$data .= "\n$"."nss->set('cache_time','".trim($_POST['cache_time'])."');";
+		$data .= "\n$"."nss->set('cache_time_profile','".trim($_POST['cache_time_profile'])."');";
+		$data .= "\n$"."nss->set('date_time_format','".trim($_POST['date_time_format'])."');";
+		$data .= "\n$"."nss->set('intro_fadein','".trim($_POST['intro_fadein'])."');";
+		$data .= "\n?>";
+		fwrite($fh, $data);
+		fclose($fh);
+		reload('?saved=1');
+	}
+	
+	function updateFeedback(){
+		$file = NSS_ABSPATH."nss-config/nss-feedback.php";	
+		$fh = fopen($file, 'w');
+		$data = '<?php ';
+		$data .= "if(!isset($"."nss)) die;";
+		$data .= "\n$"."nss->set('fb_api_lang','".trim($_POST['fb_api_lang'])."');";
+		$data .= "\n$"."nss->set('feedback_header',".saveBoolean('feedback_header').");";
+		$data .= "\n$"."nss->set('feedback_header_fb_like',".saveBoolean('feedback_header_fb_like').");";
+		$data .= "\n$"."nss->set('feedback_header_fb_send',".saveBoolean('feedback_header_fb_send').");";
+		$data .= "\n$"."nss->set('feedback_header_fb_post',".saveBoolean('feedback_header_fb_post').");";
+		$data .= "\n$"."nss->set('feedback_item',".saveBoolean('feedback_item').");";
+		$data .= "\n$"."nss->set('feedback_item_fb_like',".saveBoolean('feedback_item_fb_like').");";
+		$data .= "\n$"."nss->set('feedback_item_fb_comment',".saveBoolean('feedback_item_fb_comment').");";
+		$data .= "\n$"."nss->set('feedback_header_twitter_follow',".trim($_POST['feedback_header_twitter_follow']).");";
+		$data .= "\n$"."nss->set('feedback_item_retweet',".trim($_POST['feedback_item_retweet']).");";
+		$data .= "\n?>";
+		fwrite($fh, $data);
+		fclose($fh);
+		reload('?saved=1');
+	}
+	
+	function updateTheme(){
+		$file = NSS_ABSPATH."nss-config/nss-theme.php";
+		$fh = fopen($file, 'w');
+		$data = '<?php ';
+		$data .= "if(!isset($"."nss)) die;";
+		$data .= "\n$"."nss->set('theme','".trim($_POST['theme'])."');";
 		$data .= "\n?>";
 		fwrite($fh, $data);
 		fclose($fh);
 		reload();
 	}
 	
-	function updatePassword(){
+	function updatePassword($password,$reload=true){
 		
-		$password = $_POST['admin_password'];
+		$password = trim($password);
 		if(strlen($password)<3){
 			return 'Unsafe password';
 		}
 		
-
-		$config_file = "../nss-config/nss-password.php";
+		$config_file = NSS_ABSPATH."nss-config/nss-password.php";
 		$fh = fopen($config_file, 'w');
 		$data = '<?php ';
 		$data .= "if(!isset($"."nss)) die;";
@@ -163,12 +219,13 @@
 		$data .= "\n?>";
 		fwrite($fh, $data);
 		fclose($fh);
-		$_SESSION['nss_admin_password'] = $_POST['admin_password'];
-		reload();
+		$_SESSION['nss_admin_password'] = $password;
+		
+		if($reload) reload('?saved=1');
 	}
 	
 	function updateChannels(){
-		$config_file = "../nss-config/nss-channels.php";
+		$config_file = NSS_ABSPATH."nss-config/nss-channels.php";
 		$fh = fopen($config_file, 'w');
 		$data = "<?php \n";
 		$data .= "if(!isset($"."nss)) die;";
@@ -181,15 +238,15 @@
 	}
 	
 	function updateTranslation(){
-		$file = "../nss-config/nss-translate.php";
+		$file = NSS_ABSPATH."nss-config/nss-translate.php";
 		$fh = fopen($file, 'w');
 		$data = '<?php ';
 		$data .= "if(!isset($"."nss)) die;";
-		$data .= "\n$"."nss->set('error_no_data','".$_POST['error_no_data']."');";
+		$data .= "\n$"."nss->set('error_no_data','".trim($_POST['error_no_data'])."');";
 		$data .= "\n?>";
 		fwrite($fh, $data);
 		fclose($fh);
-		reload();
+		reload('?saved=1');
 	}
 	
 	function is_logged_in($nss){
@@ -197,7 +254,6 @@
 			if(is_default_password($nss->get('admin_password'))){
 				$_SESSION['nss_admin_password'] = 'admin';			
 			}else{
-
 				return false;	
 			}
 		} 
@@ -216,7 +272,7 @@
 	
 	function cl($nss){
 		if(!$nss->testNSS()){
-			apiRequest('file_conflict');
+			$nss->apiRequest('file_conflict');
 			header('Location: '.getNssRoot().'?error=2');
 			die;
 		}else{
@@ -225,43 +281,35 @@
 	}
 	
 	function afl(){
-		if(filemtime("../nss-config/nss-license.php")	== intval(file_get_contents(NSS_CONFIG_CODE))) return true;
+		if(filemtime(NSS_ABSPATH."nss-config/nss-license.php")	== intval(file_get_contents(NSS_CONFIG_CODE))) return true;
 		else false;
 	}
 
 /****************************************************************************
-* Check for Updates once a week
+* Check for Updates once a day
 *****************************************************************************/
 	
 	function is_update_available($nss){
-		$file = "../nss-content/cache/latest_version.txt";
-		$ft = @filemtime($file);
-		$week = 60*60*24*7;
-		$current_version = $nss->get('version');
-		$output = '(Version '.$current_version.')';
-
+		if(!$nss->checkForUpdate()) return false;
 		
-		if(!$ft || $ft+$week<time()){
-			//Erstelle Datei
-			$license = apiRequest('latest_version');
-			
-			if($license[0]->type=='latest_version'){
-				$version = $license[0]->message;
-				
-				//Save Data
-				$fh = fopen($file, 'w');
-				fwrite($fh, $version);
-				fclose($fh);
-			}else{
-				//TODO error	
-			}
-		}else{
-			$version = @file_get_contents($file);
+		$file = NSS_ABSPATH."nss-content/cache/latest_version.txt";
+		$latest_version = @file_get_contents($file);
+		$current_version = $nss->get('version');		
+		$output = '(Version '.$current_version.')';
+		
+		$v = explode('.',$latest_version);
+		$sv = array(intval($v[0]),intval($v[1]),intval($v[2])); 
+		$cv = array($nss->get('version_major'),$nss->get('version_minor'),$nss->get('version_revision'));		
+		
+		if(isset($latest_version) && 
+		(
+			$sv[0]>$cv[0] 
+			|| ($sv[0]==$cv[0] && $sv[1]>$cv[1])
+			|| ($sv[0]==$cv[0] && $sv[1]==$cv[1] && $sv[2]>$cv[2])
+		)){
+			return '<b>Update Info:</b> <a target="_blank" href="'.$nss->get('nss_website').'downloads/">neosmart STREAM '.$latest_version.'</a> is available!';	
 		}
-		if(isset($version) && $current_version!=$version){
-			$output .= '<br><br><span class="warning status">An Update is available: <a target="_blank" href="'.$nss->get('nss_website').'downloads/">Download Version '.$version.'</a></span>';	
-		}
-		return $output;
+		return false;
 	}
 	
 /****************************************************************************
@@ -269,7 +317,7 @@
 *****************************************************************************/
 	
 	function getChannelStatus($type,$id){
-		$status = @file_get_contents("../nss-content/cache/".$type.'_'.$id.'_status.xml');
+		$status = @file_get_contents(NSS_ABSPATH."nss-content/cache/".$type.'_'.$id.'_status.xml');
 		if(!$status) return '<span class="warning status">untested</span>';
 		return $status;
 	}
@@ -291,28 +339,21 @@
 /****************************************************************************
 * Add Licence Key
 *****************************************************************************/
-
-	function apiRequest($action,$key=false){
-		global $nss;
-		if(!$key) $key = $nss->get('license_key');
-		$query = NSS_API_URL.'index.php?key='.$key
-			.'&site='.$_SERVER['HTTP_HOST'].'&action='.$action
-			.'&return_url='.urlencode($nss->get('nss_root'));
-		$response = simplexml_load_file($query);
-		return $response;
-	}
 	
 	function addLicenseKey($key){
+		global $nss;
+		$key = trim($key);
+		
 		if(strlen($key)!=19){
 			return 'Error: This license key is invalid';
 		}
 
-		$license = apiRequest('validate_key',$key);	
+		$license = $nss->apiRequest('validate_key',$key);	
 	
 		//Success
 		if(!empty($license) && $license->type=='license'){
 			
-			$file = "nss-config/nss-license.php";
+			$file = NSS_ABSPATH."nss-config/nss-license.php";
 			$fh = fopen($file, 'w');
 			
 			$data = '<?php ';

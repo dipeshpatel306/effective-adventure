@@ -8,10 +8,20 @@
 
 	<form class="nss-admin-form">
 		<div class="row">
-			<label>Access Token</label><span id="atc-access-token" class="info"><?php echo $_GET['access_token']; ?></span>
+			<label>Access Token</label>
+			<div class="field-area">
+				<div class="field-info">
+					<span id="atc-access-token" class="info"><?php echo $_GET['access_token']; ?></span>
+				</div>
+			</div>
 		</div>
 		<div class="row">
-			<label>Expires</label><span id="atc-expires" class="info"><?php echo $_GET['expires']; ?></span>
+			<label>Expires</label>
+			<div class="field-area">
+				<div class="field-info">
+					<span id="atc-expires" class="info"><?php echo $_GET['expires']; ?></span>
+				</div>
+			</div>
 		</div>
 	</form>
 	<?php } else { ?>

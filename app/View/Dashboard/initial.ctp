@@ -49,7 +49,7 @@
 					'</div>' .
 					'<div class="dashSum">Risk Assessment Questionnaire</div>' . $dashBtn .
 					'</div>',
-					array('controller' => 'risk_assessments', 'action' => 'take_risk_assessment'),
+					$riskAss,
 					array('escape' => false)
 			);
 				
@@ -94,7 +94,7 @@
 					'</div>' .
 					'<div class="dashSum">Mark Risk Assessment Complete</div>' . $dashBtn .
 					'</div>',
-					$riskAss,
+					array('controller' => 'dashboard', 'action' => 'mark_complete'),
 					array('escape' => false)
 			);				
 	?>

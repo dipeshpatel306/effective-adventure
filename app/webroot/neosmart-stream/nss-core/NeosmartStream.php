@@ -5,7 +5,7 @@
  *	@copyright:			neosmart GmbH
  *	@licence:			https://neosmart-stream.de/legal/license-agreement/
  *	@documentation:		https://neosmart-stream.de/docs/
- *	@version:			1.0.0
+ *	@version:			1.3.1
  *	
  ************************************************************************************************************************************/
 
@@ -14,42 +14,74 @@ NSS_DEBUG ? error_reporting(E_ALL) : error_reporting(0);
 class NeosmartStream{
 	
 	private $config = array(
-		'version_major'				=> 1,
-		'version_minor'				=> 0,
-		'version_revision'			=> 0,
-		'admin_password'			=> '21232f297a57a5a743894a0e4a801fc3',
-		'nss_root'					=> '',
-		'debug_mode'				=> true,
-		'cache_time'				=> 60,
-		'date_time_format'			=> 'd F Y, G:i',
-		'theme'						=> 'base',
-		'error_no_data'				=> 'No data found. Please check your configuration.',
-		'default_limit'				=> 5,
-		'license_name'				=> false,
-		'license_version'			=> '',
-		'license_owner'				=> '',
-		'license_key'				=> '',
-		'license_sites'				=> '',
-		'license_status'			=> '',
-		'license_message'			=> '',
-		'license_code'				=> false
+		'version_major'					=> 1,
+		'version_minor'					=> 3,
+		'version_revision'				=> 1,
+		'admin_password'				=> '21232f297a57a5a743894a0e4a801fc3',
+		'nss_root'						=> '',
+		'debug_mode'					=> true,
+		'cache_time'					=> 60,
+		'cache_time_profile'			=> 86400,
+		'date_time_format'				=> 'd F Y, G:i',
+		'theme'							=> 'base',
+		'error_no_data'					=> 'No data found. Please check your configuration.',
+		'default_limit'					=> 5,
+		'license_name'					=> false,
+		'license_version'				=> '',
+		'license_owner'					=> '',
+		'license_key'					=> '',
+		'license_sites'					=> '',
+		'license_status'				=> '',
+		'license_message'				=> '',
+		'license_code'					=> false,
+		'plugin_mode'					=> false,
+		'error'							=> 0,
+		'show_admin_link'				=> false,
+		'fb_api_lang'					=> 'en_US',
+		'feedback_header'				=> true,
+		'feedback_header_fb_like'		=> true,
+		'feedback_header_fb_send'		=> true,
+		'feedback_header_fb_post'		=> true,
+		'feedback_header_twitter_follow'=> 1,
+		'feedback_item'					=> true,
+		'feedback_item_fb_like'			=> true,
+		'feedback_item_fb_comment'		=> true,
+		'feedback_item_retweet'			=> 1,
+		'intro_fadein'					=> 700
 	);
-	private $channel_list 			= array();
-	private $CACHE_FOLDER 			= 'nss-content/cache/';
-	private $CACHE_FOLDER_INTERNAL 	= '../nss-content/cache/';
-	private $CACHE_FILE_NAME 		= 'stream.html';	
-	private $NSS_WEBSITE			= 'https://neosmart-stream.de/';	
+	private $channel_list 			= array();	
+
 	
+/****************************************************************************
+ * IT IS EXPLICITLY FORBIDDEN TO EDIT THIS FILE.
+ * It is explicitly forbidden to remove the branding. Any hiding or 
+ * disguising of the branding, or using any other method to avoid the 
+ * showing of the branding is a breach of the terms of the license agreement!
+ ****************************************************************************/
+ 
+	private $el = array(
+		'a' 	=> "<div style='color:#888888!important; font-family:\"lucida grande\", tahoma, verdana, arial, sans-serif; font-size:11px!important;overflow:visible!important;display:block!important;visibility:visible!important;opacity:1!important' data-id='nss-ad'>",
+		'_a' 	=> "</div>",
+		'd' 	=> "<div style='display:block;width:auto;padding:5px 10px;overflow:hidden;'>",
+		'_d' 	=> "</div>",
+		'e'		=> "<div style='font-family:\"lucida grande\", tahoma, verdana, arial, sans-serif; font-size:11px!important;display:block;width:auto;padding:5px 10px;overflow:hidden;background-color:#c00;color:#fff;'>",
+		'sp' 	=> "<a title='neosmart STREAM - Social Media Plugin - Facebook, Twitter, Wordpress Support' target='_blank' href='https://neosmart-stream.de/' style='text-decoration:none;color:#888888!important;'><span style='color:#ff7800!important;background:url(nss-root/nss-core/nss-icon.png) no-repeat 0 center!important;display:inline-block!important;padding:2px 2px 4px 22px!important'>neosmart STREAM</span> - Social Plugin</a>",
+		'dmi'	=> "<div id='nss-debug-mode-info'></div>"
+	);
+
 /**************************************************************************
  * Construct
  **************************************************************************/
  
 	function __construct() {
-		$this->set('https',array_key_exists("HTTPS",$_SERVER));
+		$https = array_key_exists("HTTPS",$_SERVER) && $_SERVER['HTTPS']!='off';
+		$this->set('https',$https);
 	}
    
+   
 /**************************************************************************
- * Get / Set
+ * Getter and Setter
+ * @since 1.0
  **************************************************************************/
  
 	function set($parameter,$value){
@@ -67,32 +99,63 @@ class NeosmartStream{
 			return $this->config['version_major'].'.'.$this->config['version_minor'].'.'.$this->config['version_revision'];
 		}
 		elseif($parameter=='nss_website'){
-			return $this->NSS_WEBSITE;
+			return NSS_WEBSITE_URL;
 		}
 		return array_key_exists($parameter,$this->config)?$this->config[$parameter]:false;
 	}
 	
 	function getPath(){
-		//return getcwd();	
 		return get_include_path();
+	}
+	
+/**************************************************************************
+ * Theme Meta auslesen
+ * @since 1.0
+ **************************************************************************/
+ 
+	function getThemeMeta($meta,$theme){
+		$data = false;
+		$lines 	= explode("\n", implode('', file(NSS_CONTENT_THEMES.$theme."/style.css")));
+		foreach ($lines as $line) {
+			$pos = strpos($line, $meta);
+			if($pos!==false) $data = trim(substr($line,$pos+strlen($meta)));
+		}
+		return $data;
 	}
 
 /**************************************************************************
  * Current Host is Part of Base-Url?
+ * @since 1.0
+ * @update 1.2.3
  **************************************************************************/
  	
 	function hostIsPartOfBaseURL(){
-		$protocol = (array_key_exists('HTTPS',$_SERVER)) ? "https://" : "http://";
+		$protocol = (array_key_exists('HTTPS',$_SERVER) && $_SERVER['HTTPS']!='off') ? "https://" : "http://";
 		$host = $_SERVER['HTTP_HOST'];
 		$site = $protocol.$host;
 		$baseURL = substr($this->get('nss_root'),0,strlen($site));
 		return $site===$baseURL;
+	}
+	
+/**************************************************************************
+ * Syntax test for license
+ * @since 1.0
+ **************************************************************************/
+ 	
+	function testLicenseSyntax(){
+		$key = $this->get('license_key');
+		if(empty($key)) return false;
+		if(strlen($key)!=19) return false;
+		if(count(explode('-',$key))!=4) return false;
+		if($this->get('license_status')!='valid') return false;
+		return true;
 	}
 
 	
 	
 /**************************************************************************
  * Add Channel
+ * @since 1.0
  **************************************************************************/
  	
 	function addChannel($a,$b,$c='',$d=3,$e='true',$f=0){
@@ -139,10 +202,10 @@ class NeosmartStream{
  * Update
  **************************************************************************/
  
-	function updateRequired(){
+	function updateRequired($theme='base'){
 		$now = time();
 		$update = false;
-		$cache_file = NSS_ABSPATH."nss-content/cache/stream.html";
+		$cache_file = NSS_ABSPATH."nss-content/cache/".$theme."-stream.html";
 		
 		if(!is_dir(NSS_ABSPATH."nss-content/cache/")){
 			mkdir(NSS_ABSPATH."nss-content/cache/",0755);
@@ -156,6 +219,7 @@ class NeosmartStream{
 		}
 		elseif(filemtime(NSS_ABSPATH.'nss-config/nss-config.php')-filemtime($cache_file)>0
 			|| filemtime(NSS_ABSPATH.'nss-config/nss-channels.php')-filemtime($cache_file)>0
+			|| filemtime(NSS_ABSPATH.'nss-config/nss-feedback.php')-filemtime($cache_file)>0
 			|| filemtime(NSS_CONFIG_BASE_URL)-filemtime($cache_file)>0
 			|| filemtime(NSS_ABSPATH.'nss-config/nss-translate.php')-filemtime($cache_file)>0
 		){
@@ -165,8 +229,34 @@ class NeosmartStream{
 		return $update;
 	}
 	
+	function isChannelUpToDate($file,$cache_time='cache_time'){
+		$now = time();
+		$ft = @filemtime($file);
+		$channelConfig = @filemtime(NSS_ABSPATH.'nss-config/nss-channels.php');
+		if(!$ft){
+			//Datei nicht vorhanden
+			return false;
+		}
+		elseif($now-$ft >= $this->get($cache_time)){
+			//Datei älter als Cache Time
+			return false;
+		}
+		elseif($channelConfig >= $ft){
+			//Datei älter als Channel Config
+			return false;
+		}
+		else{
+			//Datei is aktuell
+			return true;
+		}
+	}
+	
+/**************************************************************************
+ * Update Info für den Anwender (wird im Backend angezeigt)
+ **************************************************************************/
+ 	
 	function getLastUpdate(){
-		$cache_file = $this->CACHE_FOLDER_INTERNAL.$this->CACHE_FILE_NAME;
+		$cache_file = NSS_CONTENT_CACHE.$this->get('theme').'-stream.html';
 		$ft = @filemtime($cache_file);
 		if(!$ft) return "Never";
 		return date($this->get('date_time_format'), $ft);
@@ -180,18 +270,22 @@ class NeosmartStream{
 	function show($echo = true){
 		$html = '';
 		$cache_handle = '';
-		$error = '';
-		$debug = '';
 		$chancel = '';
 		$admin_link = $this->htmlWrap('admin_link','Admin');
-		$pre = "<div style='color:#000;background-color:#ff7800;display:block;width:auto;padding:2px 10px;overflow:hidden;'>";
-		$suff = "</div>";
-		$pre_fff = "<span style='color:#fff'>";
-		$suff_fff = "</span>";
-		
 		//Error
-		if($this->get('license_owner')==''){
-			$chancel .= $pre.$pre_fff.'neosmart STREAM'.$suff_fff.' - add your license in the admin area!'.$suff;
+		if($this->get('license_owner')=='' || $this->get('error')!==0){
+			if($this->get('license_owner')=='') $message = 'add your license in the admin area!';
+			elseif($this->get('error')==2) $message = '<b>File error:</b> a file has been manually adjusted and caused a serious error. Please provide your license key again.';
+			else $message = '<b>File error:</b> one or more files are conflicted. <a href="'.NSS_WEBSITE_URL.'downloads/" style="color:#fff;" target="_blank">Download</a> the latest version.';
+			$chancel .= $this->el['e']."neosmart STREAM - ".$message.$this->el['_d'];
+			if($echo){
+				echo $chancel;
+				return;
+			}
+			else return $chancel;
+		}
+		if(!$this->hostIsPartOfBaseURL()){
+			$chancel .= $this->el['d']."<span style='color:#fff;background-color:#c00;padding:10px;display:inline-block;'><strong>neosmart STREAM</strong> - URL conflict - Open your admin area and update your configuration!</span>".$this->el['_d'];
 			if($echo){
 				echo $chancel;
 				return;
@@ -201,34 +295,22 @@ class NeosmartStream{
 		
 		//Cache
 		if($this->get('channel_count')!=0){
-			$cache_handle .= @file_get_contents(NSS_ABSPATH.$this->CACHE_FOLDER.'stream.html');
+			$cache_handle .= @file_get_contents(NSS_CONTENT_CACHE.$this->get('theme').'-stream.html');
 		}
 		
-		//Debug
-		if($this->get('debug_mode')){
-			
-			$debug .= "<a href='".$this->get('nss_website')."' title='neosmart STREAM - Social Plugin' target='_blank' style='color:#190d03;font-size:12px;overflow:visible!important;display:block!important;visibility:visible!important;text-decoration:none;'>".$pre.$pre_fff."neosmart STREAM".$suff_fff." - DEBUG MODE".$suff."</a>";
-			
-			if(!$this->hostIsPartOfBaseURL()){
-				$debug .= $this->htmlWrap('notice','Base URL is wrong. Please update your configuration!');
-				$admin_link = '';
-			}elseif($this->get('channel_count')==0){
-				$debug .= $this->htmlWrap('notice','No Channels to display. <a href="'.$this->get('nss_root').'">Login</a> and add a channel!');
-				$this->cleanDir(NSS_CONTENT_CACHE);
-			}else{
-				if($this->updateRequired()){
-					$debug .= $this->htmlWrap('notice','The cache is being rebuilt ... Refresh this page to see the changes.');
-				}
-			}			
-		}
+		$html = $this->deb($html);
 		
-		$ad = "<a href='".$this->get('nss_website')."' title='Stream your favorite Social Networks directly to your website.' target='_blank' style='color:#190d03;font-size:12px;overflow:visible!important;display:block!important;visibility:visible!important;text-decoration:none;'>".$pre.$pre_fff."neosmart STREAM".$suff_fff." - Social Media for your Website".$suff."</a>";
+		$html .= $cache_handle;
+		if($this->get('show_admin_link')) $html .= $admin_link;
 		
-		if(!$this->get('debug_mode') && $this->get('license_version')!='pro') $html .= $ad;
-		$html .= $error;
-		if($this->get('debug_mode')) $html .= $debug;
-		if($error=='') $html .= $cache_handle;
-		$html .= $admin_link;
+		$class = $this->get('license_version')=='pro' ? 'nss-pro' : 'nss-lite';
+		if($this->get('debug_mode')) $class .= ' nss-debug';
+		$html = '<div id="nss" class="'.$class.'" data-fb-lang="'.$this->get('fb_api_lang').'">'.$this->el['dmi'].$html.'</div>';
+		
+		//Check for update
+		$this->checkForUpdate();
+		$html = '<style>.nss-pro,.nss-lite{display:none;}</style>'.$html;
+		$html .= '<script>var nsstmp = document.getElementById("nss"); nsstmp.className = nsstmp.className+" nss-load";</script>';
 		
 		if($echo){
 			echo $html;
@@ -237,8 +319,38 @@ class NeosmartStream{
 		else return $html;
 	}
 	
+	private function deb($html){
+		if($this->get('debug_mode')){
+			if($this->get('channel_count')==0){
+				$html = $this->htmlWrap('notice','No Channels to display. <a href="'.$this->get('nss_root').'">Login</a> and add a channel!');
+				$this->cleanDir(NSS_CONTENT_CACHE);
+			}else{
+				if($this->updateRequired($this->get('theme'))){
+					//Info wird über jQuery ausgegeben
+				}
+			}	
+		}
+		return $html;
+	}
+	
+	private function wrap($html){
+		$feedback = '';
+		$html = '<div class="nss-stream-wrap" style="position:relative!important;">'.$html.'</div>';
+		if($this->get('license_version')!='pro'){
+			$html = $this->el['a'].$this->el['d'].$this->el['sp'].$this->el['_d'].$this->el['_a'].$html;
+			$html = preg_replace('/nss-root\//',$this->get('nss_root'),$html);
+		}
+
+		if($this->get('license_version')=='pro' && $this->get('feedback_header')==true){	
+			 include "template-feedback.php";
+		}
+		$html = '<div class="nss-stream">'.$feedback.$html.'</div>';
+		return $html;
+	}
+	
+	
 	function readFile($filename){
-		$cache_handle = @file_get_contents($this->CACHE_FOLDER_INTERNAL.$filename);
+		$cache_handle = @file_get_contents(NSS_CONTENT_CACHE.$filename);
 		return $cache_handle;
 	}
 	
@@ -296,19 +408,84 @@ function cleanDir($dir=false) {
  * Update Channel
  **************************************************************************/
  	
-	function updateChannel($k){
+	function updateChannel($k){		
+		
 		switch($this->channel_list[$k]['type']){
 			case 'facebook':
-				$response = $this->readFacebookChannel($this->channel_list[$k]['id'],$this->channel_list[$k]['access_token'],$this->channel_list[$k]['limit'],$this->channel_list[$k]['show_all']);
+				$filename = NSS_CONTENT_CACHE.'facebook_'.$this->channel_list[$k]['id'].'.xml';
+				if($this->isChannelUpToDate($filename)){
+					$response = 'up-to-date';
+				}
+				else{
+					$response = $this->readFacebookChannel($this->channel_list[$k]['id'],$this->channel_list[$k]['access_token'],$this->channel_list[$k]['limit'],$this->channel_list[$k]['show_all']);
+				}
 			break;
 			case 'twitter':
-				$response  = $this->readTwitterChannel($this->channel_list[$k]['id'],$this->channel_list[$k]['limit']);
+				$filename = NSS_CONTENT_CACHE.'twitter_'.$this->channel_list[$k]['id'].'.xml';
+				if($this->isChannelUpToDate($filename)){
+					$response = 'up-to-date';
+				}
+				else{
+					$response  = $this->readTwitterChannel($this->channel_list[$k]['id'],$this->channel_list[$k]['limit']);
+				}
 			break;
 			default:
 				$response = $this->readChannel($this->channel_list[$k]['url']);
 			break;
 		}
+		
+		//Profil Info
+		$this->readChannelProfile($this->channel_list[$k]);
+		
 		return $response;
+	}
+	
+	function readChannelProfile($channel){
+		
+		$error 			= false;
+		$file 			= NSS_CONTENT_CACHE.$channel['type'].'_'.$channel['id'].'_profile.xml';
+		$username 		= $channel['id'];
+		$link			= '';
+		$extras			= '';
+		
+		//Abbruch wenn Cache aktuell
+		if($this->isChannelUpToDate($file,'cache_time_profile')){
+			return true;	
+		}
+		
+		
+		switch($channel['type']){			
+			case 'facebook':
+				$url = "https://graph.facebook.com/".$channel['id']."?access_token=".$channel['access_token'];
+				$data = $this->readData($url);
+				$fbdata = json_decode($data);		
+				if($data=='error' || isset($fbdata->{'error'})) $error = true;
+				else{
+					$username = $fbdata->username;
+					$link = $fbdata->link;
+					if(isset($fbdata->name)) $username = $fbdata->name;
+					$fb_type = isset($fbdata->likes) ? 'page' : 'user';
+					$extras .= "\n\t\t<type>".$fb_type."</type>";
+					if($fb_type=='page') $extras .= "\n\t\t<likes>".$fbdata->likes."</likes>";
+					$extras .= "\n\t";
+				}
+			break;
+		}	
+
+		
+		if($error===false){
+			$data = "<?xml version='1.0'?>";
+			$data .= "<profile>";
+			$data .= "\n\t<channel>".$channel['type']."</channel>";
+			$data .= "\n\t<id>".$channel['id']."</id>";
+			$data .= "\n\t<username>".$username."</username>";
+			$data .= "\n\t<link>".$link."</link>";
+			$data .= "\n\t<extras>".$extras."</extras>";
+			$data .= "\n</profile>";
+			$fh = fopen($file, 'w');
+			fwrite($fh, $data);
+			fclose($fh);
+		}
 	}
 
 
@@ -341,18 +518,26 @@ function cleanDir($dir=false) {
  	
 	function saveChannelTestToFile($type,$id,$status){
 		$file = NSS_ABSPATH."nss-content/cache/".$type.'_'.$id.'_status.xml';
+		if($status=='success'){
+			$data = 	'<span class="status active">active</span>';
+			$return = 	'<span class="status active">active</span>';
+		}
+		else{
+			$data = 	'<span class="status inactive">error</span>';
+			$return = 	'<span class="status inactive">Error: '.$status.'</span>';
+		}
 		$fh = fopen($file, 'w');
-		$data = $status=='success' ? '<span class="status active">active</span>' : '<span class="status inactive">inactive</span>';
 		fwrite($fh, $data);
 		fclose($fh);
-		return $data;
+		return $return;
 	}
 	
 /**************************************************************************
  * Merge and Sort Data
  **************************************************************************/
 	
-	function mergeChannels(){
+	function mergeChannels($theme){
+		if(!empty($theme)) $this->set('theme',$theme);
 		$data = '';
 		for($k=0;$k<count($this->channel_list);$k++){
 			$file = $this->readFile($this->channel_list[$k]['type'].'_'.$this->channel_list[$k]['id'].'.xml');
@@ -368,7 +553,7 @@ function cleanDir($dir=false) {
 	}
 	
 	function sortData($data){
-		
+		$el = '';
 		function filter_xml($matches) { 
 			return trim(htmlspecialchars($matches[1])); 
 		} 
@@ -379,6 +564,14 @@ function cleanDir($dir=false) {
 		
 		$item = $arrXml['item'];		
 		if(isset($item['channel'])){$item = array($item);}
+		
+		foreach($this->el as $key => $value){ $el .= $value;}
+		if(md5($el)!='55615d01702975a1a89183c68c825955'){
+			$fh = fopen(NSS_CONFIG_ERROR, 'w');	
+			fwrite($fh, "<?php $"."nss->set('error',3); ?>");
+			fclose($fh);
+			return false;	
+		}
 		
 		//If more than one
 		if(!@array_key_exists('created',$item)){
@@ -393,6 +586,7 @@ function cleanDir($dir=false) {
 	
 	function changeObjectsToArrays($data, $skip = array()){
 		$arrayData = array();
+		
 		if (is_object($data)) $data = get_object_vars($data);
 		if (is_array($data)) {
 			foreach ($data as $index => $value) {
@@ -417,11 +611,12 @@ function cleanDir($dir=false) {
 		$out = '';
 		for($position=0;$position<count($item);$position++){
 			$nss = $item[$position];
-			
+		
 			$channel = $nss['channel'];
 			$is_facebook = $channel=='facebook';
 			$is_twitter = $channel=='twitter';
 			$is_default = !$is_facebook && !$is_twitter;
+			$item_class = '';
 						
 			$id = $nss['id'];
 			$created = $this->transformDate($nss['created']);
@@ -437,11 +632,23 @@ function cleanDir($dir=false) {
 			$location_address = isset($nss['location']['address']) ? $nss['location']['address'] : '';
 			$location_latitude = isset($nss['location']['latitude']) ? $nss['location']['latitude'] : '';
 			$location_longitude = isset($nss['location']['longitude']) ? $nss['location']['longitude'] : '';
+			
+			//Facebook
 			$extras_facebook_type = $is_facebook ? $nss['extras']['facebook']['type'] : '';
 			$extras_facebook_source = !$is_facebook || is_array($nss['extras']['facebook']['source']) ? '' : str_replace('autoplay=1','autoplay=0',$nss['extras']['facebook']['source']);
 			$extras_facebook_description = !$is_facebook || is_array($nss['extras']['facebook']['description']) ? '' : $this->autoLink($nss['extras']['facebook']['description']);
 			$extras_facebook_caption = !$is_facebook || is_array($nss['extras']['facebook']['caption']) ? '' : $nss['extras']['facebook']['caption'];
 			$extras_facebook_picture = !$is_facebook || is_array($nss['extras']['facebook']['picture']) ? '' : $nss['extras']['facebook']['picture'];
+			
+			//Facebook Images
+			$extras_facebook_image_2048 = !$is_facebook || empty($nss['extras']['facebook']['images']['image_2048']) ? '' : $nss['extras']['facebook']['images']['image_2048'];
+			$extras_facebook_image_960 = !$is_facebook || empty($nss['extras']['facebook']['images']['image_960']) ? '' : $nss['extras']['facebook']['images']['image_960'];
+			$extras_facebook_image_720 = !$is_facebook || empty($nss['extras']['facebook']['images']['image_720']) ? '' : $nss['extras']['facebook']['images']['image_720'];
+			$extras_facebook_image_600 = !$is_facebook || empty($nss['extras']['facebook']['images']['image_600']) ? '' : $nss['extras']['facebook']['images']['image_600'];
+			$extras_facebook_image_480 = !$is_facebook || empty($nss['extras']['facebook']['images']['image_480']) ? '' : $nss['extras']['facebook']['images']['image_480'];
+			$extras_facebook_image_320 = !$is_facebook || empty($nss['extras']['facebook']['images']['image_320']) ? '' : $nss['extras']['facebook']['images']['image_320'];
+			$extras_facebook_image_130 = !$is_facebook || empty($nss['extras']['facebook']['images']['image_130']) ? '' : $nss['extras']['facebook']['images']['image_130'];
+						
 			$extras_facebook_link = !$is_facebook || is_array($nss['extras']['facebook']['link']) ? '' : $nss['extras']['facebook']['link'];
 			$extras_facebook_name = !$is_facebook || is_array($nss['extras']['facebook']['name']) ? '' : $nss['extras']['facebook']['name'];
 			$extras_facebook_message = !$is_facebook || is_array($nss['extras']['facebook']['message']) ? '' : $this->autoLink($nss['extras']['facebook']['message']);
@@ -494,11 +701,21 @@ function cleanDir($dir=false) {
 				$extras_facebook_comments = '';
 			}
 			
+			//Twitter Buttons
+			$extras_twitter_button_tweet = '';
+			if($this->get('feedback_item_retweet')>0){
+				$twitter_data_count = $this->get('feedback_item_retweet')==2 ? 'horizontal' : 'none';
+				$extras_twitter_button_tweet .= "<div class='nss-feedback' data-object-id='$id'>";
+				$extras_twitter_button_tweet .= '<a href="https://twitter.com/share" class="twitter-share-button" target="_blank" data-via="'.$author_name.'" data-url="false" data-text="'.strip_tags($content).'" data-count="'.$twitter_data_count.'">Tweet</a>';
+				$extras_twitter_button_tweet .= '</div>';
+			}
 			
+			if($is_facebook) $item_class .= ' nss-facebook-type-'.$extras_facebook_type;
+			$item_class = trim($item_class);
 			$tmp = false;
 			include '../nss-content/themes/'.$this->get('theme').'/template-post.php';
 		}
-		$out = "<div class='nss-stream'>\n".$out."\n</div>";
+		$out = $this->wrap($out);
 		return $this->saveCache($out);
 	}
 	
@@ -507,7 +724,7 @@ function cleanDir($dir=false) {
  **************************************************************************/
 	
 	function saveCache($out){
-		$cache_file = $this->CACHE_FOLDER_INTERNAL.$this->CACHE_FILE_NAME;
+		$cache_file = NSS_CONTENT_CACHE.$this->get('theme').'-stream.html';
 		$fh = fopen($cache_file, 'w');
 		fwrite($fh, $out);
 		fclose($fh);
@@ -515,7 +732,7 @@ function cleanDir($dir=false) {
 	}
 	
 	function saveFile($filename,$content){
-		$cache_file = $this->CACHE_FOLDER_INTERNAL.$filename;
+		$cache_file = NSS_CONTENT_CACHE.$filename;
 		$fh = fopen($cache_file, 'w');
 		fwrite($fh, $content);
 		fclose($fh);
@@ -572,7 +789,6 @@ function cleanDir($dir=false) {
 		$binding = $show_all=='false' ? 'posts' : 'feed';
 		$url = "https://graph.facebook.com/".$id."/".$binding."?limit=".$limit."&access_token=".$access_token;
 		$data = $this->readData($url);
-		
 		$error = false;
 		
 		if($data == 'error') $error = true;
@@ -591,17 +807,25 @@ function cleanDir($dir=false) {
 				return 'error';
 			}
 		}else{		
-			return $this->convertFacebookChannel($id,$fbdata);
+			return $this->convertFacebookChannel($id,$fbdata,$access_token);
 		}
 	}	
 	
-	function convertFacebookChannel($id,$fbdata){ 
+	function convertFacebookChannel($id,$fbdata,$access_token){ 
 	
 		$posts = $fbdata->{'data'};
 		$output = "";
-
+		
 		for($k=0;$k< count($posts);$k++){
 			$p = $posts[$k];
+			$object_json = false;
+			
+			//Bilder über Object ID lesen
+			if(isset($p->type)&&isset($p->object_id)&&$p->type=='photo'){
+				$url = "https://graph.facebook.com/".$p->object_id."?access_token=".$access_token;
+				$object_data = $this->readData($url);
+				$object_json = json_decode($object_data);
+			}
 			
 			$output .= "<item>";
 			$output .= "\n\t<channel>facebook</channel>";	
@@ -611,7 +835,7 @@ function cleanDir($dir=false) {
 			$output .= "\n\t<content></content>";
 			$output .= "\n\t<author>";
 				$output .= "\n\t\t<id>"; if(isset($p->from->id)) $output .= $p->from->id; $output .='</id>';
-				$output .= "\n\t\t<name>"; if(isset($p->from->name)) $output .= $p->from->name; $output .='</name>';
+				$output .= "\n\t\t<name>"; if(isset($p->from->name)) $output .= $this->cdata($p->from->name); $output .='</name>';
 				$output .= "\n\t\t<link>"; if(isset($p->from->id)) $output .= "http://www.facebook.com/".$p->from->id; $output .='</link>';
 				$output .= "\n\t\t<avatar>"; if(isset($p->from->id)) $output .= "https://graph.facebook.com/".$p->from->id.'/picture'; $output .='</avatar>';		 			
 			$output .= "\n\t</author>";
@@ -638,6 +862,18 @@ function cleanDir($dir=false) {
 					$output .= "\n\t\t\t<story>"; if(isset($p->story)) $output .= $this->cdata($p->story); $output .= '</story>';			
 					$output .= "\n\t\t\t<icon>"; if(isset($p->icon)) $output .= $p->icon; $output .='</icon>';
 					$output .= "\n\t\t\t<object_id>"; if(isset($p->object_id)) $output .= $p->object_id; $output .='</object_id>';
+					
+					$output .= "\n\t\t\t<images>";
+						 if(isset($object_json->images[0]->source)) $output .= "\n\t\t\t\t<image_2048>".$object_json->images[0]->source."</image_2048>";
+						 if(isset($object_json->images[1]->source)) $output .= "\n\t\t\t\t<image_960>".$object_json->images[1]->source."</image_960>";
+						 if(isset($object_json->images[2]->source)) $output .= "\n\t\t\t\t<image_720>".$object_json->images[2]->source."</image_720>";
+						 if(isset($object_json->images[3]->source)) $output .= "\n\t\t\t\t<image_600>".$object_json->images[3]->source."</image_600>";
+						 if(isset($object_json->images[4]->source)) $output .= "\n\t\t\t\t<image_480>".$object_json->images[4]->source."</image_480>";
+						 if(isset($object_json->images[5]->source)) $output .= "\n\t\t\t\t<image_320>".$object_json->images[5]->source."</image_320>";
+						 if(isset($object_json->images[8]->source)) $output .= "\n\t\t\t\t<image_130>".$object_json->images[8]->source."</image_130>";
+					$output .= "\n\t\t\t</images>";
+					
+					
 					$output .= "\n\t\t\t<application>";
 						$output .= "\n\t\t\t\t<name>"; if(isset($p->application->name)) $output .= $p->application->name; $output .='</name>';
 						$output .= "\n\t\t\t\t<id>"; if(isset($p->application->id)) $output .= $p->application->id; $output .='</id>';
@@ -701,7 +937,7 @@ function cleanDir($dir=false) {
 			<id>".$t->id."</id>
 			<created>".$this->transformDate($t->created_at,'c')."</created>
 			<updated>false</updated>
-			<content>".$this->cdata($this->escapeString($this->autoLink($t->text)))."</content>
+			<content>".$this->cdata($t->text)."</content>
 			<author>
 				<id>".$t->user->id."</id>
 				<name>".$t->user->name."</name>
@@ -738,6 +974,7 @@ function cleanDir($dir=false) {
 	
 /**************************************************************************
  * Read NSS Channel
+ * @since 1.0
  **************************************************************************/
  
  	function readChannel($url){
@@ -750,8 +987,149 @@ function cleanDir($dir=false) {
 		return 'success';
 	}
 	
+	
+/**************************************************************************
+ * Test NSS
+ * @since 1.1
+ **************************************************************************/
+ 
+ 	function testNSS(){
+		$l = @file_get_contents(NSS_CONFIG_CODE);
+		if($l!=md5('nss'.$this->get('license_key').$this->get('license_version').$this->get('license_status'))){
+			@unlink(NSS_CONFIG_LICENSE);
+			@unlink(NSS_CONFIG_CODE);
+			$fh = fopen(NSS_CONFIG_ERROR, 'w');	
+			fwrite($fh, "<?php $"."nss->set('error',2); ?>");
+			fclose($fh);
+			return false;
+		}else{
+			return true;	
+		}
+	}
+
+	
+ /**************************************************************************
+ * Template Output: Optionale Ausgabe JS oder CSS
+ * @since 1.1
+ **************************************************************************/
+ 
+ 	function includeFile($file){
+		$ext = substr($file,strrpos($file,'.')+1);
+		switch($ext){
+			case 'js':
+				echo "<script type='text/javascript' src='".$this->get('nss_root').NSS_INCLUDES.$file."'></script>\n";
+			break;
+			case 'css':
+				echo "<link href='".$this->get('nss_root').NSS_INCLUDES.$file."' type='text/css' rel='stylesheet' />\n";
+			break;
+		}	
+	}
+
+/**************************************************************************
+ * Template Output: Ausgabe aller Theme-Files
+ * @since 1.1
+ **************************************************************************/
+ 
+	function theme($theme=false){
+		if(empty($theme)) $theme = $this->get('theme');
+		else $this->set('theme',$theme);
+		
+		$plugins = $this->getThemeMeta('Plugins:',$theme);
+		$masonry = strpos($plugins,'masonry') ? 'true' : 'false';
+		$fb_app_id = $this->get('fb_app_id');
+		$intro_fadein = $this->get('intro_fadein');
+		
+		echo "<script type='text/javascript' src='".$this->get('nss_root').NSS_CORE."jquery.neosmart.stream.js'></script>\n";
+		echo "<link href='".$this->get('nss_root').NSS_CONTENT.'themes/'.$theme."/style.css' type='text/css' rel='stylesheet' />\n";
+		echo "<script type='text/javascript'>(function(window){window.onload=function(){jQuery(function(){jQuery('#nss').neosmartStream({introFadeIn:".$intro_fadein.",masonry:".$masonry.",cache_time:".$this->get('cache_time').",theme:'".$theme."',path:'".$this->get('nss_root')."'})})}})(window);</script>\n";
+	}
+	
+	function themeWordPress($theme=false){
+		if(empty($theme)) $theme = $this->get('theme');
+		else $this->set('theme',$theme);
+		
+		$plugins = $this->getThemeMeta('Plugins:',$theme);
+		$masonry = strpos($plugins,'masonry') ? 'true' : 'false';		
+
+		wp_enqueue_style('neosmart-stream',NSS_WP_URL.'nss-content/themes/'.$theme.'/style.css',array(),false,'screen');
+		wp_enqueue_script('jquery');
+		if($masonry) wp_enqueue_script('jquery-masonry',NSS_WP_URL.'nss-includes/jquery-masonry.js',array('jquery'),'2.1.6');
+		wp_enqueue_script('neosmart-stream',NSS_WP_URL.'nss-core/jquery.neosmart.stream.js',array('jquery'),'1.1');
+		
+		
+		return "<script type='text/javascript'>(function(window){window.onload=function(){jQuery(function(){jQuery('#nss').neosmartStream({masonry:".$masonry.",cache_time:".$this->get('cache_time').",theme:'".$theme."',path:'".$this->get('nss_root')."'})})}})(window);</script>\n";
+	}
+
+	
+/**************************************************************************
+ * Überprüfung auf Updates
+ * @since 1.2
+ **************************************************************************/
+ 	
+	public function checkForUpdate(){
+
+		$file = NSS_ABSPATH."nss-content/cache/latest_version.txt";
+		$ft = @filemtime($file);
+		$day = 60*60*24*1;
+		
+		if(!$ft || $ft+$day<time()){
+			$license = $this->apiRequest('latest_version');
+			
+			if($license->type=='latest_version'){
+				$version = $license[0]->message;
+				$fh = fopen($file, 'w');
+				fwrite($fh, $version);
+				fclose($fh);
+				return true;
+			}elseif($license->type=='error' && $license->status==5){
+				$this->logError(5);
+				return false;
+			}else{
+				//Server error	
+				return false;
+			}
+		}
+		return true;
+	}
+
+/**************************************************************************
+ * API-Kommunikation
+ * @since 1.2
+ * @update 1.3.1: readData verwenden
+ **************************************************************************/
+ 
+	public function apiRequest($action,$key=false){
+		if(!$key) $key = $this->get('license_key');
+		$query = NSS_API_URL.'index.php?key='.$key
+			.'&site='.$_SERVER['HTTP_HOST'].'&action='.$action.'&https='.$this->get('https')
+			.'&return_url='.urlencode($this->get('nss_root')).'&request_url='.urlencode($_SERVER['REQUEST_URI']);
+		$response = $this->readData($query);
+		$response = new SimpleXMLElement($response);
+		//$response = simplexml_load_file($query);
+		return $response;
+	}
+
+/**************************************************************************
+ * Error Log
+ * @since 1.2
+ **************************************************************************/
+ 
+	public function logError($errorCode){
+		$fh = fopen(NSS_CONFIG_ERROR, 'w');	
+		fwrite($fh, "<?php $"."nss->set('error',".$errorCode."); ?>");
+		fclose($fh);
+		switch($errorCode){
+			case 5:
+				@unlink(NSS_CONFIG_LICENSE);
+				@unlink(NSS_CONFIG_CODE);	
+			break;	
+		}
+	}
+	
 /**************************************************************************
  * Include JS and CSS
+ * @since 1.0
+ * @deprecated 1.1 (new functions: includeFile + theme)
  **************************************************************************/
  
  	function getHead($echo=true,$jquery=true){
@@ -763,29 +1141,11 @@ function cleanDir($dir=false) {
 		if($echo) echo $data;
 		else return $data;
 	}
-	
-/**************************************************************************
- * Test NSS
- **************************************************************************/
- 
- 	function testNSS(){
-		$l = @file_get_contents(NSS_CONFIG_CODE);
-		if($l!=md5('nss'.$this->get('license_key').$this->get('license_version').$this->get('license_status'))){
-			//die('STOP');
-			@unlink(NSS_CONFIG_LICENSE);
-			@unlink(NSS_CONFIG_CODE);
-			
-			$fh = fopen(NSS_CONFIG_ERROR, 'w');	
-			fwrite($fh, '1');
-			fclose($fh);
-			return false;
-		}else{
-			return true;	
-		}
-	}
-	
+
+
 /**************************************************************************
  * Little Helpers ...
+ * @since 1.0
  **************************************************************************/
  
 	function transformDate($date,$format='auto') {
@@ -799,7 +1159,7 @@ function cleanDir($dir=false) {
 	}
 	
 	function autoLink($string) {
-		$pattern = "/(((http[s]?:\/\/)|(www\.))(([a-z][-a-z0-9]+\.)?[a-z][-a-z0-9]+\.[a-z]+(\.[a-z]{2,2})?)\/?[a-z0-9._\/~#&=;%+?-]+[a-z0-9\/#=?]{1,1})/is";
+		$pattern = "/((((http[s]?:\/\/)|(ftp[s]?:\/\/)|(www\.))([a-z][-a-z0-9]*\.)?)[-a-z0-9]+\.[a-z]+(\/[a-z0-9._\/~#&=;%+?-]*)*)/is";
 		$string = preg_replace($pattern, " <a href='$1' target='_blank'>$1</a>", $string);
 		$string = preg_replace("/href='www/", "href='http://www", $string);
 		return $string;
@@ -816,5 +1176,6 @@ function cleanDir($dir=false) {
 		$re = '<br/>';
 		return "<![CDATA[".preg_replace($nl,$re,$string)."]]>";
 	}
+ 
 }
 ?>

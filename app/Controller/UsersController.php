@@ -194,53 +194,6 @@ class UsersController extends AppController {
         	$this->redirect('/', null, false);
     	}
 	}
-
-/**
- * Activate Account Method
- * 
- */
-/*	public function activate($user_id = null, $in_hash = null){
-		$this->User->id = $user_id;
-		
-		if($User->exists() && ($in_hash == $this->User->getActivationHash())){
-			if($empty($this->data)){
-				$this->data = $this->User->read(null, $user_id);
-				$this->User->set('active', 'Yes');
-				$this->User->save();
-				
-				$this->Session->setFlash('Your account has been activated. Please Login.');
-				$this->redirect('login');
-			}
-		}
-	}*/
-
-/**
- * Send Activation Email method
- */
-/*public function sendActivationEmail(){
-	$user = $this->User->find('first', array('conditions' => 
-		array('User.id' => $user_id),
-		'fields' => array('User.id', 'User.email', 'User.first_name', 'User.last_name')
-	));
-	
-	if($user === false){
-		return false;
-	}
-	
-	// Set data for email view
-	$this->set('activate_url', 'http://' . env('SERVER_NAME') . 'users/activate/' . $user['User']['id'] . $this->USer->getActivationHash());
-	$this->set('username', $this->request->data['User']['first_name'] . ' ' . $this->request->data['User']['last_name']);
-
-	$email = new CakeEmail('gmail');
-	$email->from('chris@gpointech.com');
-	$email->to($user['User']['email']);
-	$email->subject('HIPAA Account activation');
-	$email->send();
-	
-}*/
-
-
- 
  
 /**
  * Logout Method

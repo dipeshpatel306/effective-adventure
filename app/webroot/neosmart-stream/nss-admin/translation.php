@@ -1,4 +1,5 @@
 <?php
+	$current_page = 'translation';
 	include "header.inc.php";
 	
 	$error_no_data = $nss->get('error_no_data');

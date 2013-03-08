@@ -1,4 +1,5 @@
 <?php
+	$current_page = 'license';
 	include "header.inc.php";
 ?>
 	<h2 id="marker-translation">License</h2>	

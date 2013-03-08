@@ -1,21 +1,25 @@
-/******************************************************************************
- * NSS Preview CSS
+/*******************************************************************************
+ * Theme Name: base 
+ * Description: A simple base theme for your website.
+ * Author: neosmart
+ * Version: 1.3
  ******************************************************************************/
  
 	#nss-preview{
-		background-color:#E7EBF2;}
-		
-	#nss-preview-container{
-		max-width:760px;
-		margin:0 auto;}
-		
-	#nss-preview-container h1{
-		font-family:Arial, Helvetica, sans-serif;
-		font-size:120px;
-		line-height:1.4em;
-		margin:0;
-		color:#9ca2ad;
-		font-weight:bold;}
+		background-color:#fff;
+		text-align:center;
+	}	
+	#nss-preview .nss-stream{
+		max-width:740px;
+		margin:20px auto;
+	}	
+	#nss.nss-load{
+		background:url(ajax-loader.gif) no-repeat center center;
+		min-height:300px;
+	}
+	.nss-load .nss-stream{
+		display:none;
+	}
 
 
 /******************************************************************************
@@ -29,6 +33,13 @@
 		color:#000;
 		margin:0;
 		padding:0;
+		line-height:1.3em;
+		font-size:13px;
+		display:block;
+	}
+	.nss-stream{
+		text-align:left;
+		padding:0 20px;
 	}
 
 	
@@ -40,10 +51,20 @@
 		background-color:#FFF;
 		border:1px solid #ddd;
 	}
-	.nss-item a{
+	.nss-item a, .nss-feedback-root a{
 		color:#3B5998;
 	}
-	.nss-created, .nss-facebook-comment-created, .nss-facebook-description, .nss-facebook-count-comments, .nss-facebook-count-likes, .nss-facebook-name{
+	.nss-twitter a,
+	.nss-feedback-twitter .nss-feedback-channel-name a{	
+		color:#19a4d5;
+	}
+	.nss-created,
+	.nss-facebook-comment-created,
+	.nss-facebook-description,
+	.nss-facebook-count-comments,
+	.nss-facebook-count-likes,
+	.nss-facebook-name,
+	.nss-facebook-comments-created{
 		color:#666;	
 	}
 
@@ -51,16 +72,24 @@
  * INFO
  ******************************************************************************/	
 
-	.nss-info, .nss-error{
+	.nss-info, .nss-error, .nss-success, .nss-loading{
 		background-color:#ffffe0;
 		color:#555;
 		padding:5px 10px;
-		font-size:13px;
-		border-bottom:1px solid #d8d8a4;
-	}
-	.nss-error{
+		font-size:1em;
+		border-bottom:1px solid #d8d8a4;}
+
+	#nss .nss-success{
+		background-color:#D9FFD9;
+		color:#555;}
+		
+	#nss .nss-error{
 		background-color:#c00;
 		color:#FFFFFF;}
+	
+	#nss .nss-loading{
+		background-color:#ffffe0;
+		color:#555;}
 		
 	
 /******************************************************************************
@@ -68,7 +97,7 @@
  ******************************************************************************/
 	 
 	.nss-item{
-		font-size:13px;
+		font-size:1em;
 		padding:10px;
 		margin:10px 0 10px 0;
 		-webkit-border-radius: 5px;
@@ -83,7 +112,7 @@
 	}		
 	.nss-author-avatar{
 		font-weight:bold;
-		font-size:16px;
+		font-size:1.3em;
 		float:left;
 		display:block;
 		margin-right:10px;
@@ -93,18 +122,19 @@
 	}
 	.nss-head{
 		border-bottom:1px solid #ddd;
+		padding-bottom:7px;
 	}
 	.nss-body{
 	}
 	.nss-author-name{
 		font-weight:bold;
-		font-size:16px;
+		font-size:1.3em;
 		display:-moz-inline-stack;
 		display:inline-block;
 	}
 	.nss-created{
 		clear:right;
-		font-size:11px;
+		font-size:.85em;
 		display:block;
 	}
 	.nss-content{
@@ -129,11 +159,11 @@
 	}
 	.nss-comment-form-submit{
 		margin-left:3px;
-		font-size:11px;
+		font-size:.85em;
 	}
 	.nss-comment-form-error{
 		color:#990000;
-		font-size:11px;
+		font-size:.85em;
 		padding:5px;	
 	}
 	
@@ -143,7 +173,7 @@
 		background:#D7FFF0;
 		margin:10px;
 		padding:10px;	
-		font-size:11px;
+		font-size:.85em;
 		display:none;
 	}
 	.nss-user .nss-content{
@@ -166,9 +196,20 @@
 	}
 	.nss-facebook-message{
 		margin:10px 0;
-	}  
+	} 
+	.nss-facebook-photo{
+		position:relative;
+		margin:0 0 10px 0;
+		padding:0;
+		display:block;
+		text-align:center;
+	}	
 	.nss-facebook-picture{
 		border:0;
+		width:auto;
+		height:auto;
+		max-width:100%;
+		max-height:320px;
 	}
 	.nss-facebook-caption{
 		margin:5px 0;
@@ -177,7 +218,7 @@
 		margin:5px 0;
 	}
 	.nss-facebook-description{
-		font-size:11px;
+		font-size:.85em;
 		margin:10px 0;
 		display:block;
 	}
@@ -188,9 +229,14 @@
 	.nss-facebook-media-name{
 		font-weight:bold;
 	}
+	.nss-facebook-iframe{
+		text-align:center;
+		margin:0 0 10px 0;
+		position:relative;
+	}
 	.nss-facebook-video{
-		margin:10px 0;
 		border:0;
+		width:100%;
 	}
 	.nss-facebook-comments{
 	}
@@ -217,18 +263,35 @@
 	.nss-facebook-comment-created{
 		display:block;	
 		margin-top:5px;
-		font-size:11px;
+		font-size:.85em;
 	}
 	.nss-facebook-like{
-		font-size:11px;
+		font-size:.85em;
 		margin-left:5px;
 	}
 	.nss-facebook-count-likes{
-		font-size:11px;
+		font-size:.85em;
 		margin-top:10px;
 	}
 	.nss-facebook-count-comments{
-		font-size:11px;	
+		font-size:.85em;
+	}
+	.nss-facebook-link{
+		display:inline-block;
+		margin-bottom:8px;
+	}
+	.nss-facebook-caption-box{
+		padding:10px;
+		background-color:#f2f2f2;
+		border:1px solid #ddd;
+		margin-bottom:10px;	
+	}
+	.nss-facebook-caption .nss-facebook-description{
+		margin:5px 0;
+		line-height:1.2em;
+	}
+	.nss-facebook-comments-created{
+		font-size:.85em;
 	}
 	
 /******************************************************************************
@@ -252,6 +315,115 @@
 	.nss-nss .nss-content{
 		margin:10px 0;
 	}
+	
+/******************************************************************************
+ * Feedback
+ ******************************************************************************/
+	
+	.nss-feedback-root{
+		border-radius: 5px 5px 5px 5px;
+		font-size: 1em;
+		margin: 10px 0;
+		padding: 10px;
+		border:1px solid #ddd;
+	}
+	
+	.nss-feedback-channel{
+		clear:both;	
+		border-bottom:1px solid #ddd;
+		border-right:1px solid #ddd;
+		padding-top:5px;
+		margin-top:1px;
+		padding:10px;
+		background-color:#EDEFF4;
+	}
+	
+	.nss-feedback{
+		background-color:#EDEFF4;
+		padding:5px 10px;
+		vertical-align:text-top;
+		margin-top:2px;
+		display:none;
+	}
+	
+	.nss-feedback-link{
+		display:inline-block;}
+
+	.nss-feedback-link a{
+		margin-right:7px;
+		display:inline-block;
+		cursor:pointer;
+	}
+	
+	.nss-feedback-link .nss-close, .nss-feedback-link.nss-active a{
+		display:none;}
+		
+	.nss-feedback-link.nss-active a.nss-close{
+		display:inline-block;}
+
+	.nss-fb-comment-container{}
+	
+	.nss-fb-comment-container iframe{
+		border:0;
+		margin-top:5px;
+	}
+
+	.nss-feedback-facebook{
+	}
+		
+	.nss-feedback-twitter{
+		}
+	
+	.nss-feedback-channel-name{
+		font-size:16px;
+		font-weight:bold;
+		margin-bottom:5px;
+		display:block;}
+		
+	.nss-feedback-channel-name a{
+		text-decoration:none;}
+		
+
+	
+	.nss-feedback-avatar{
+		width:32px;
+		height:32px;
+		float:left;}
+		
+	.nss-feedback-channel-name{
+		display:block;
+		margin-left:10px;
+		margin-right:10px;
+		padding-top:5px;
+		float:left;}
+		
+	.nss-feedback-channel-buttons{
+		margin-left:40px;
+		padding-top:5px;}
+		
+	.nss-feedback-button{
+		display:inline-block;
+		font-size:11px;
+		border:1px solid #cad4e7;
+		background-color:#eceef5;
+		padding:3px 3px;
+		line-height:1em;
+		border-radius: 3px;
+		color:#4f6aa3;
+		cursor:pointer;
+		float:left;
+		margin-right:5px;}
+		
+	.nss-feedback-button:hover{
+		border:1px solid #29447E;
+		background-color:#3B5998;
+		color:#FFFFFF;}
+		
+	.nss-feedback-button .nss-active-label, .nss-feedback-button.nss-active .nss-normal-label{
+		display:none;}
+		
+	.nss-feedback-button.nss-active .nss-active-label{
+		display:inline-block;}
 
 /******************************************************************************
  * Extras
@@ -262,15 +434,19 @@
 		margin:0 5px 5px 5px;}
 	
 	.nss-admin-link a{
-		font-size:10px;
+		font-size:.7em;
 		color:#190d03;
 		text-decoration:none;}
 	
 	#nss-ad{
-		font-size:11px;
+		font-size:.8em;
 		text-align:center;}
 	
-	.nss-clean, .nss-head:after, .nss-facebook-content:after, .nss-facebook-comment:after{
+	.nss-clean, .nss-head:after, .nss-facebook-content:after,
+	.nss-facebook-comment:after,
+	.nss-feedback-root:after,
+	.nss-feedback-channel:after,
+	.nss-feedback-channel:after{
 		content:'.';
 		display:block;
 		visibility:hidden;

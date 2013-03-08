@@ -2,27 +2,16 @@
 	//error_reporting(E_ALL);
 	if(!isset($_SESSION)){session_start();}
 
-
+	
 /****************************************************************************
 * Includes
 *****************************************************************************/
-	
-	include '../define.php';
+
+	include '../setup.php';	
 	include "functions.php";
-	include NSS_ABSPATH."nss-core/NeosmartStream.php";
 	
-/****************************************************************************
-* Config
-*****************************************************************************/
-	
-	$nss = new NeosmartStream();
-	
-	@include NSS_CONFIG_CONFIG;
-	@include NSS_CONFIG_CHANNELS;
-	@include NSS_CONFIG_TRANSLATE;
-	@include NSS_CONFIG_LICENSE;
-	@include NSS_CONFIG_BASE_URL;
-	@include NSS_CONFIG_PASSWORD;
+	$permissionError 	= testFilePermissions();
+	$serverError 		= testServerSettings();
 	
 /****************************************************************************
 * Login/Logout
@@ -34,6 +23,10 @@
 	
 	if(!is_logged_in($nss)){
 		header('Location: '.getNssRoot().'?error=1');
+		die;
+	}
+	if(!$nss->testLicenseSyntax()){
+		header('Location: '.getNssRoot().'?error=3');
 		die;
 	}
 	cl($nss);
@@ -55,12 +48,13 @@
 	$nss_root = $nss->get('nss_root');
 	$cache_time = $nss->get('cache_time');
 	$debug_mode = $nss->get('debug_mode');
+	$facebook_feedback = $nss->get('facebook_feedback');
 	$date_time_format = $nss->get('date_time_format');
 	$theme = $nss->get('theme');
 	$error_no_data = $nss->get('error_no_data');
 	$channel_count = $nss->get('channel_count');
 	
-	//Uupdate available?
+	//Update available?
 	$update_available = is_update_available($nss);
 	
 	//License
@@ -101,11 +95,17 @@
 			case 'update_config':
 				updateConfig();
 			break;
+			case 'update_feedback':
+				updateFeedback();
+			break;
 			case 'update_password':
-				$passwordError = updatePassword();
+				$passwordError = updatePassword($_POST['admin_password']);
 			break;
 			case 'update_translation':
 				updateTranslation();
+			break;
+			case 'update_theme':
+				updateTheme();
 			break;
 			case 'update_channels':
 				updateChannels();
@@ -129,9 +129,10 @@
 <head>
 	<meta charset="utf-8">
 	<title>neosmart STREAM Admin</title>
-	<link href='reset.css' type='text/css' rel='stylesheet' />
+	<?php $nss->includeFile('reset.css'); ?>
 	<link href='style.css' type='text/css' rel='stylesheet' />
-	<script type='text/javascript' src='../nss-includes/jquery.js'></script>
+	<?php $nss->includeFile('jquery.js'); ?>
+	<?php $nss->includeFile('jquery-masonry.js'); ?>
 	<script type='text/javascript' src='jquery.neosmart.stream.admin.js'></script>
 	<script type="text/javascript">
 		$(function(){
@@ -143,16 +144,24 @@
 	<div id="nss-admin">
 		<div class="nss-admin-header">
 			<div class="center">
-				
-				<h1><a href="<?php echo NSS_WEBSITE_URL; ?>" target="_blank"><img src="neosmart-stream-logo.png" alt="neosmart STREAM"></a></h1>			
+				<?php if(!is_default_password($admin_password) && $nss->get('plugin_mode')===false){ ?>
+					<a id="logout" class="nss-admin-logout button" href="index.php?logout=1">Logout</a>
+				<?php } ?>
+				<?php if($nss->get('plugin_mode')=='wordpress'){ ?>
+					<a id="admin-refresh" class="button" href="javascript://" onclick="window.location.reload()">Refresh</a>
+				<?php } ?>
+				<h1><a href="<?php echo NSS_WEBSITE_URL; ?>" target="_blank"><img src="neosmart-stream-logo.png" alt="neosmart STREAM" width="260" height="41"></a></h1>			
 				<?php if(!isset($hide_menu)){ ?>
+				
 				<div class="nss-admin-menu">
-					<a href="index.php" class="button">Overview</a>
-					<a href="config.php" class="button">Configuration</a>
-					<a href="channels.php" class="button">Channels</a>
-					<a href="license.php" class="button">License</a>
-					<a href="password.php" class="button">Password</a>
-					<?php if(!is_default_password($admin_password)){ ?><a class="nss-admin-logout button" href="index.php?logout=1">Logout</a><?php } ?>
+					<a href="index.php" class="button<?php if($current_page=='overview') echo " current-page"; ?>">Overview</a>
+					<a href="channels.php" class="button<?php if($current_page=='channels') echo " current-page"; ?>">Channels</a>
+					<a href="themes.php" class="button<?php if($current_page=='themes') echo " current-page"; ?>">Themes</a>
+					<a href="config.php" class="button<?php if($current_page=='config') echo " current-page"; ?>">Configuration</a>
+					<a href="feedback.php" class="button<?php if($current_page=='feedback') echo " current-page"; ?>">Feedback</a>
+					<a href="license.php" class="button<?php if($current_page=='license') echo " current-page"; ?>">License</a>
+					<?php if($nss->get('plugin_mode')===false){ ?><a href="password.php" class="button<?php if($current_page=='password') echo " current-page"; ?>">Password</a><?php } ?>
+					
 				</div>
 				<?php } ?>
 				
@@ -165,11 +174,51 @@
 			<?php } ?>
 			<?php if(is_default_password($admin_password)){ ?>
 				<div class="nss-admin-container warning">
-					<div class="row"><b><a href="password.php">Set admin password</a></b> as soon as possible!</div>
+					<div class="row"><b>Empty admin password:</b> <a href="password.php">Set admin password</a> as soon as possible!</div>
 				</div>
 			<?php } ?>
 			<?php if($channel_count===0 && !isset($no_channel_warning)){ ?>
 			<div class="nss-admin-container warning">
-				<div class="row">There is no data to display. <a href="channels.php"><b>Add a channel</b></a>.</div>
+				<div class="row"><b>No data to display:</b> <a href="channels.php">Add a channel</a></div>
 			</div>
 			<?php } ?>
+			
+			
+			<?php if($serverError){ /***********************************************/ ?>
+				<h2>Server error</h2>
+				<div class="nss-admin-container error">
+					<div class="row"><?php echo $serverError[0]; ?></div>
+					<div class="todo"><?php echo $serverError[1]; ?></div>
+				</div>
+				
+			<?php } elseif($permissionError){ /***********************************************/ ?>
+					<h2>Permission error</h2>
+					<?php foreach($permissionError as $pErr){ ?>
+					<div class="nss-admin-container error">
+						<div class="row"><?php echo $pErr[0]; ?></div>
+						<div class="todo"><?php echo $pErr[1]; ?></div>
+					</div>
+					<?php } ?>
+			<?php }  ?>
+			
+			
+			<?php if($update_available){ ?>
+				<div class="nss-admin-container warning">
+					<div class="row"><?php echo $update_available; ?></div>
+				</div>
+			<?php } ?>
+			
+			<noscript>
+				<div class="nss-admin-container error">
+					<div class="row"><b>Javascript is disabled!</b></div>
+					<div class="todo">You have to <b>activate Javascript</b> to use all features.</div>
+				</div>
+			</noscript>
+			
+			<?php if(!empty($_GET['saved'])){ ?>
+				<div class="nss-admin-container saved">
+					<div class="row">Changes are saved</div>
+				</div>
+			<?php } ?>
+			
+			<?php if(isset($fullsize_content)){ ?></div><?php } ?>

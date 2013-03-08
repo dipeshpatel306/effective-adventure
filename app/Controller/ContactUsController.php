@@ -67,16 +67,16 @@ class ContactUsController extends AppController {
 			$this->ContactUs->create();
 			if ($this->ContactUs->save($this->request->data)) {
 				// Send Email
-				/*$email = new CakeEmail('gmail');
-				$email->from($this->request->data['email']);
-				$email->to('chris@gpointech.com');
-				$email->subject('HIPAA Contact Form - ' . $this->request->data['subject']);
-				$email->send($this->request->data['feedback']);*/
+				$email = new CakeEmail('hipaaMail');
+				$email->from('no-reply@hipaasecurenow.com');
+				$email->to('info@hipaasecurenow.com');
+				$email->subject('HIPAA Contact Form - ' . $this->request->data['ContactUs']['subject']);
+				$email->send($this->request->data['ContactUs']['feedback']);
 				
-				$this->Session->setFlash('The contact us has been saved', 'default', array('class' => 'success message'));
-				$this->redirect(array('action' => 'index'));
+				$this->Session->setFlash('Your message has been sent! Someone will get back to you shortly.', 'default', array('class' => 'success message'));
+				$this->redirect(array('controller' => 'dashboard','action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The contact us could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('Message could not be sent. Please, try again.'));
 			}
 		}
 	}
