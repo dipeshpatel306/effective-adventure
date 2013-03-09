@@ -189,14 +189,15 @@ $this->Html->addCrumb('Edit Risk Assessment');
 
 </div>
 
+<?php if($group == 1): ?>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-
-		<?php if($group == 1): ?>
-				<li><?php echo $this->Html->link(__('List Risk Assessments'), array('action' => 'index')); ?></li>
-		<?php endif; ?>
-
-
+		<li><?php echo $this->Html->link(__('List Risk Assessments'), array('action' => 'index')); ?></li>
 	</ul>
+</div>
+<?php endif; ?>
+<div class='newsFeed'>
+	<h3><?php echo __('Latest News'); ?></h3>
+	<?php echo $this->element('feeds'); ?>
 </div>

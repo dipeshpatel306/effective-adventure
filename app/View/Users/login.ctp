@@ -6,7 +6,7 @@
 	echo $this->Form->input('email');
 	echo $this->Form->input('password');
 	echo $this->Html->link($this->Html->div('formLink', 'New User?'), 
-		array('controller' => 'users', 'action' => 'new_user'), 
+		array('controller' => 'users', 'action' => 'register'), 
 		array('escape' => false));
 	echo $this->Form->end('Login');
 ?>

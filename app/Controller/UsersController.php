@@ -11,7 +11,7 @@ class UsersController extends AppController {
 
 	public function beforeFilter() {
 	    parent::beforeFilter();
-    	$this->Auth->allow('login', 'new_user', 'logout');	
+    	$this->Auth->allow('login', 'register', 'logout');	
 		
 		// $this->Auth->scope = array('User.active' => 'No');	
 	    //$this->Auth->allow('*');
@@ -43,7 +43,7 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Dashboard/mark_complete');
 		
 		$this->Acl->allow($group, 'controllers/Users');
-		$this->Acl->allow($group, 'controllers/Users/new_user');
+		$this->Acl->allow($group, 'controllers/Users/register');
 		
 		$this->Acl->allow($group, 'controllers/PoliciesAndProcedures/index');
 		$this->Acl->allow($group, 'controllers/PoliciesAndProcedures/view');
@@ -81,7 +81,7 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Dashboard/information_center');	
 		$this->Acl->allow($group, 'controllers/Dashboard/mark_complete');	
 			
-		$this->Acl->allow($group, 'controllers/Users/new_user');
+		$this->Acl->allow($group, 'controllers/Users/register');
 		
 		$this->Acl->allow($group, 'controllers/Users/edit');	
 		
@@ -309,7 +309,7 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function new_user() {
+	public function register() {
 
 		if ($this->request->is('post')) {
 				
@@ -333,7 +333,8 @@ class UsersController extends AppController {
 			if($this->User->validates()){ // check if invalidations exist
 				$this->User->create();	
 				if ($this->User->save($this->request->data)) {
-					$this->Session->setFlash('Your Account has been successfully created. Check your email to activate your account.', 'default', array('class' => 'success message'));
+					$this->Session->setFlash('Your Account has been successfully created. Check your email to activate your account.', 
+					'default', array('class' => 'success message'));
 					$this->redirect(array('action' => 'index'));
 				} else {
 					$this->Session->setFlash(__('Your new account could not be created. Please, try again.'));

@@ -249,11 +249,43 @@ a.logoutLink{
 .actions li{
 	white-space: normal;
 }
-.newsFeed{
+
+div.newsFeed{
+    background-color: #FFFFFF;
+    border: 1px solid #E6E6E6;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+    margin-bottom: 4px;
+}
+div.newsFeed {
+    float: left;
+    padding: 10px 1.5%;
+    width: 16%;
+    padding-bottom: 40px;
+}
+/*##### Jquery Social Media Plugin ##### */
+.dcsns{
+	height: 350px;
+	overflow: hidden;
+}
+.dcsns .dcsns-toolbar{
+	position: relative;
+	top: -210px;
+	z-index: 1000;
+	overflow: visible;
+}
+.stream li{
+	margin-bottom: 15px;
+}
+#social-wall.dcsns{
+	height: 500px;
+	margin-bottom: 20px;
+}
+/*.newsFeed{
 	width: 100%;
 	min-height: 300px;
 	background-color: #D2E6EF;
-}
+}*/
 #footer{
 	position:absolute;
 	bottom:0;
@@ -603,3 +635,4 @@ button.prev:hover, button.next:hover{
 	margin-left: auto;
 	margin-right: auto;	
 }
+

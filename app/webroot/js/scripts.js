@@ -1,12 +1,33 @@
-
-
-
-
 $(document).ready(function(){
-	//CKEDITOR.replace( 'textEdit'); // initialize WYSIWYG Editor
 	
-	// instantiate date picker and format date
-	$('.datePick').datepicker({ dateFormat: 'mm/dd/yy',  defaultDate: '' });
+	$('#social-stream').dcSocialStream({
+		feeds:{
+			facebook:{
+				id: '132416226824065',
+				out: 'intro,thumnb,title,user,share',
+				icon: 'facebook.png'
+			},
+			/*twitter:{
+				id: 'HIPAASecureNow',
+			}*/
+		},
+		//twitterId: 'designchemical',
+		days: 30,
+		iconPath: '/js/jquery-social-stream/images/',
+		imagePath: '/js/jquery-social-stream/images/'
+	});
+	
+	$('#social-wall').dcSocialStream({
+		feeds:{
+			facebook: {
+				id: '132416226824065,Facebook Timeline/132416226824065'
+			},
+		},
+		days: 30,
+		iconPath: '/js/jquery-social-stream/images/',
+		imagePath: '/js/jquery-social-stream/images/'
+	})
+
 	
 	$('.organizationProfiles ul.tabs').each(function(){
 	    // For each set of tabs, we want to keep track of
@@ -109,5 +130,8 @@ $(document).ready(function(){
        jwplayer().stop();
        $('#mediaplayer').empty();
 	});
+	
+	// instantiate date picker and format date
+	$('.datePick').datepicker({ dateFormat: 'mm/dd/yy',  defaultDate: '' });
 });
 

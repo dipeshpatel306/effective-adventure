@@ -225,9 +225,11 @@
 	?>
 	
 </div>
-<div class="actions newsFeed">
+<div class="actions">
 	<?php echo $this->element('quickLinks'); ?>
-	
+</div>
+
+<div class='newsFeed'>
 	<h3><?php echo __('Latest News'); ?></h3>
 	<?php echo $this->element('feeds'); ?>
 </div>
