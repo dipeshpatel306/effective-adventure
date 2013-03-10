@@ -11,7 +11,7 @@ class UsersController extends AppController {
 
 	public function beforeFilter() {
 	    parent::beforeFilter();
-    	$this->Auth->allow('login', 'register', 'logout');	
+    	$this->Auth->allow('login', 'register', 'logout', 'forgot_password', 'reset_password');	
 		
 		// $this->Auth->scope = array('User.active' => 'No');	
 	    //$this->Auth->allow('*');
@@ -44,6 +44,8 @@ class UsersController extends AppController {
 		
 		$this->Acl->allow($group, 'controllers/Users');
 		$this->Acl->allow($group, 'controllers/Users/register');
+		$this->Acl->allow($group, 'controllers/Users/forgot_password');
+		$this->Acl->allow($group, 'controllers/Users/reset_password');
 		
 		$this->Acl->allow($group, 'controllers/PoliciesAndProcedures/index');
 		$this->Acl->allow($group, 'controllers/PoliciesAndProcedures/view');
@@ -82,6 +84,8 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Dashboard/mark_complete');	
 			
 		$this->Acl->allow($group, 'controllers/Users/register');
+		$this->Acl->allow($group, 'controllers/Users/forgot_password');
+		$this->Acl->allow($group, 'controllers/Users/reset_password');		
 		
 		$this->Acl->allow($group, 'controllers/Users/edit');	
 		
@@ -167,7 +171,7 @@ class UsersController extends AppController {
 
 				// Check to make sure both client and user are active
 				if($user['Client']['active'] != 'Yes' || $user['User']['active'] != 'Yes'){
-					$this->Session->setFlash('Your account is not active yet!');
+					$this->Session->setFlash('Your account is not active!');
 					$this->Auth->logout();
 					$this->redirect('login');
 					
@@ -203,6 +207,87 @@ class UsersController extends AppController {
 		$this->Session->destroy();
 		$this->redirect($this->Auth->logout());   
 	}
+/**
+ * forgotpwd method
+ */
+ function forgot_password(){
+ 	$this->User->recursive = -1;
+	if(!empty($this->request->data)){
+		if(empty($this->request->data['User']['email'])){
+			$this->Session->setFlash('Please provide the email that you used to register with us.');
+		} else {
+			$email = $this->request->data['User']['email'];
+			$foundUser = $this->User->find('first', array('conditions' => array('User.email' => $email)));
+			
+			if($foundUser){
+				if($foundUser['User']['active'] == 'Yes'){
+					$key = Security::hash(String::uuid(), 'sha512', true);
+					$hash = sha1($foundUser['User']['first_name'].rand(0,100));
+					$url = Router::url(array('controller' => 'users', 'action' => 'reset'), true) . '/' . $key . '#' . $hash;
+					$ms = $url;
+					$ms = wordwrap($ms, 1000);
+					
+					$foundUser['User']['tokenhash'] = $key;
+					$this->User->id = $foundUser['User']['id'];
+					if($this->User->saveField('tokenhash', $foundUser['User']['tokenhash'])){
+
+						// Send Email
+						$email = new CakeEmail('hipaaMail'); 
+						$email->from('no-reply@hipaasecurenow.com');
+						$email->to($foundUser['User']['email']);
+						$email->subject('HIPAA Password Reset');
+						$email->send($ms);
+				
+						$this->Session->setFlash('Your password reset has been sent. Please check your email', 'default', array('class' => 'success message'));
+						$this->redirect(array('controller' => 'users','action' => 'login'));
+						
+					} else {
+						$this->Session->setFlash('There was an error sending you a reset email.');
+					}
+					
+				} else {
+					$this->Session->setFlash('Your account is not active yet!');
+				}
+				
+			} else {
+				$this->Session->setFlash('That email does not exist.');
+			}	
+	   }
+	}	
+ }
+
+/**
+ * Reset Method
+ * 
+ */
+ function reset($token=null){
+        $this->User->recursive = -1;
+        if(!empty($token)){
+            $u=$this->User->findBytokenhash($token);                       
+            if($u){               
+                $this->User->id = $u['User']['id'];                                               
+                if(!empty($this->data)){                   
+                    $this->User->request->data=$this->data;
+                    $this->User->request->data['User']['username']=$u['User']['username'];                   
+                    $new_hash = sha1($u['User']['username'].rand(0,100));//created token
+                    $this->User->request->data['User']['tokenhash']=$new_hash;                   
+                    if($this->User->validates(array('fieldList'=>array('password','password_confirm')))){                       
+                        if($this->User->save($this->User->data))
+                        {
+                            $this->Session->setFlash('Password Has been Updated');
+                            $this->redirect(array('controller'=>'users','action'=>'login'));
+                        }
+                    } else {
+                        $this->set('errors',$this->User->invalidFields());                       
+                    }
+                }
+            } else {
+                $this->Session->setFlash('Token Corrupted,,Please Retry.the reset link work only for once.');
+            }
+        } else {
+            $this->redirect('/');   
+        }   
+    }
 	
 /**
  * index method

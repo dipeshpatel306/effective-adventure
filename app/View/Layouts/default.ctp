@@ -1,7 +1,6 @@
 <?php 
 	ini_set('date.timezone', 'America/New_York');
 	$year = date('Y');
-    //include "/neosmart-stream/setup.php";
 ?>
 <!doctype html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
@@ -16,25 +15,10 @@
 	</title>
 	<?php
 		echo $this->Html->meta('favicon.ico', $this->webroot . '/img/favicon.ico', array('type' => 'icon'));
-
-		echo $this->Html->css('base');
-		echo $this->Html->css('/js/jquery-social-stream/css/dcsns_light.css');		
-		echo $this->Html->css('styles');
-
-
+		echo $this->Html->css(array('base', '/js/jquery-social-stream/css/dcsns_light.css', 'styles', 'http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css'));
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
-		//echo '<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />';
 		echo $this->fetch('script');
-		
-		// Include reset CSS (optional)
-        //$nss->includeFile('reset.css');
-        // Include jQuery
-        //$nss->includeFile('jquery.js');
-        // Include jQuery-masonry
-        //$nss->includeFile('jquery-masonry.js');
-        // Include theme
-        // $nss->theme();
 	?>	
 </head>
 <body>
@@ -60,7 +44,6 @@
 			
 		</div>
 		
-	
 		<div id="content">
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->fetch('content'); ?>
@@ -75,8 +58,6 @@
 				//$auth = $this->Session->read('Auth');
 				//pr($auth);
 				//echo Configure::version();	
-				
-				
 			?>
 		</div>
 
@@ -92,6 +73,6 @@
 										 'jquery-social-stream/js/jquery.social.stream.1.5.min.js',
 										 'scripts', 
 	)); ?>
-	<?php   echo $this->element('sql_dump'); ?>
+	<?php echo $this->element('sql_dump'); ?>
 </body>
 </html>

@@ -28,7 +28,14 @@ $(document).ready(function(){
 		imagePath: '/js/jquery-social-stream/images/'
 	})
 
-	
+	// Slide show for risk assessment
+	$(function(){
+		$('#slides').slides({
+			preload: true,
+			//generateNextPrev: true
+		});
+	});	
+		
 	$('.organizationProfiles ul.tabs').each(function(){
 	    // For each set of tabs, we want to keep track of
 	    // which tab is active and it's associated content
@@ -63,14 +70,6 @@ $(document).ready(function(){
 	        e.preventDefault();
 	    });
 	});	
-	// Slide show for risk assessment
-	$(function(){
-		$('#slides').slides({
-			preload: true,
-			//generateNextPrev: true
-		});
-	});	
-		
 
 	// Jwplayer	
 	function showVideo(mp4Name) {
@@ -123,7 +122,7 @@ $(document).ready(function(){
 		showVideo(videoName);
 	});
 
-	// Stop and Close Video Player. Hide pop up regeion
+	// Stop and Close Video Player. Hide pop up region
 	$('.closeVideo').click(function(){
        $('#videooverlay').css('display', 'none');               
        $('#videocontainer').css('display', 'none');
