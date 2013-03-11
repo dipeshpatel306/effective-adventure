@@ -1,4 +1,4 @@
-<?php 
+<?php
 	ini_set('date.timezone', 'America/New_York');
 	$year = date('Y');
 ?>
@@ -19,7 +19,7 @@
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
-	?>	
+	?>
 </head>
 <body>
 	<div id="container">
@@ -40,14 +40,14 @@
 		</div>
 		<div class='navWrap'>
 			<?php  //echo $this->element('navigation'); ?>
-			<?php echo $this->element('navBar'); ?>	
-			
+			<?php echo $this->element('navBar'); ?>
+
 		</div>
-		
+
 		<div id="content">
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->fetch('content'); ?>
-			
+
 		</div>
 		</div><!--wrapper -->
 		<div id="footer">
@@ -55,9 +55,9 @@
 				HIPAA Secure Now! Copyright &copy; <?php echo $year; ?>
 			</div>
 			<?php // Temp debug code
-				//$auth = $this->Session->read('Auth');
-				//pr($auth);
-				//echo Configure::version();	
+				$auth = $this->Session->read('Auth');
+				pr($auth);
+				//echo Configure::version();
 			?>
 		</div>
 
@@ -71,8 +71,8 @@
 										 'jwplayer/jwplayer.js',
 										 'slides.min.jquery.js',
 										 'jquery-social-stream/js/jquery.social.stream.1.5.min.js',
-										 'scripts', 
+										 'scripts',
 	)); ?>
-	<?php echo $this->element('sql_dump'); ?>
+	<?php //echo $this->element('sql_dump'); ?>
 </body>
 </html>

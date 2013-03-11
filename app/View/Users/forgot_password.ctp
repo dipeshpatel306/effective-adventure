@@ -1,10 +1,18 @@
-<h2 class="hightitle"><?php __('Forget Password'); ?></h2>
+<div class="forgetpwd loginBox">
 
-<div class="forgetpwd form">
+<h2>Forget Your Password?</h2>
 
-<?php echo $this->Form->create('User', array('action' => 'forgetpwd')); ?>
-<?php echo $this->Form->input('email',array('style'=>'float:left'));?>
-<input type="submit"/>
+<p>
+	Please enter the email address that you registered with.
+</p>
 
-<?php echo $this->Form->end();?>
+<?php
+	echo $this->Form->create('User', array('action' => 'forgot_password'));
+	echo $this->Form->input('email',array('style'=>'float:left'));
+
+	echo $this->Form->end('Submit');
+?>
 </div>
+
+
+
