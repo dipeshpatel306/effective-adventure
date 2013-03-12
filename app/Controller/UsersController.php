@@ -233,7 +233,7 @@ class UsersController extends AppController {
 
 						// Send Email
 						$email = new CakeEmail('hipaaMail');
-						// $email->template('resetpw');
+						$email->template('resetpw');
 						//$emailFormat('both');
 						$email->from('no-reply@hipaasecurenow.com');
 						$email->to($foundUser['User']['email']);
@@ -420,12 +420,12 @@ class UsersController extends AppController {
 				$this->User->invalidate('authCode', 'Incorrect Authorization Code.', true); // auth Code doesnt exist so deny.
 			}
 
-			$this->request->data['User']['active'] == 'Yes'; // activate user by default
+			$this->request->data['User']['active'] = 'Yes'; // activate user by default
 
 			if($this->User->validates()){ // check if invalidations exist
 				$this->User->create();
 				if ($this->User->save($this->request->data)) {
-					$this->Session->setFlash('Your Account has been successfully created. Check your email to activate your account.',
+					$this->Session->setFlash('Your Account has been successfully created.',
 					'default', array('class' => 'success message'));
 					$this->redirect(array('action' => 'index'));
 				} else {

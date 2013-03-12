@@ -4,81 +4,161 @@ $this->Html->addCrumb('Security Incidents', '/security_incidents');
 $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['date_of_incident']));
 
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id'); 
+	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="securityIncidents view">
 <h2><?php  echo __('Security Incident'); ?></h2>
-	<dl>
+	<div>
 		<?php if($group == 1): ?>
-		<dt><?php echo __('Client'); ?></dt>
-		<dd>
+		<h3 class='highlight"><?php echo __('Client'); ?></h3>
+		<p>
 			<?php echo $securityIncident['Client']['name']; ?>
 			&nbsp;
-		</dd>		
+		</p>
 		<?php endif; ?>
-		<dt><?php echo __('Date Of Incident'); ?></dt>
-		<dd>
+		<h3 class='highlight"><?php echo __('Date Of Incident'); ?></h3>
+		<p>
 			<?php echo $this->Time->format('m/d/y', $securityIncident['SecurityIncident']['date_of_incident']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Time Of Incident'); ?></dt>
-		<dd>
+		</p>
+		<h3 class='highlight"><?php echo __('Time Of Incident'); ?></h3>
+		<p>
 			<?php echo $this->Time->format('g:i a', $securityIncident['SecurityIncident']['time_of_incident']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Discovery Date'); ?></dt>
-		<dd>
+		</p>
+		<h3 class='highlight"><?php echo __('Discovery Date'); ?></h3>
+		<p>
 			<?php echo $this->Time->format('m/d/y', $securityIncident['SecurityIncident']['discovery_date']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Discovery Time'); ?></dt>
-		<dd>
+		</p>
+		<h3 class='highlight"><?php echo __('Discovery Time'); ?></h3>
+		<p>
 			<?php echo $this->Time->format('g:i a', $securityIncident['SecurityIncident']['discovery_time']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Reported By'); ?></dt>
-		<dd>
-			<?php echo h($securityIncident['SecurityIncident']['reported_by']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Description Of Incident'); ?></dt>
-		<dd>
+		</p>
+		<h3 class='highlight"><?php echo __('Description Of Incident'); ?></h3>
+		<p>
 			<?php echo h($securityIncident['SecurityIncident']['description_of_incident']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Cause Of Incident'); ?></dt>
-		<dd>
+		</p>
+		<h3 class='highlight"><?php echo __('Number of Records'); ?></h3>
+		<p>
+			<?php echo h($securityIncident['SecurityIncident']['number_of_records']); ?>
+			&nbsp;
+		</p>
+		<h3 class='highlight"><?php echo __('Source'); ?></h3>
+		<p>
+			<?php echo h($securityIncident['SecurityIncident']['source']); ?>
+			&nbsp;
+		</p>
+		<h3 class='highlight"><?php echo __('Cause Of Incident'); ?></h3>
+		<p>
 			<?php echo h($securityIncident['SecurityIncident']['cause_of_incident']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Assets Involved'); ?></dt>
-		<dd>
+		</p>
+		<h3 class='highlight"><?php echo __('Assets Involved'); ?></h3>
+		<p>
 			<?php echo h($securityIncident['SecurityIncident']['assets_involved']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
+		</p>
+		<h3 class='highlight"><?php echo __('Systems Involved'); ?></h3>
+		<p>
+			<?php echo h($securityIncident['SecurityIncident']['systems_involved']); ?>
+			&nbsp;
+		</p>
+		<h3 class='highlight"><?php echo __('Description of Breached Information'); ?></h3>
+		<p>
+			<?php echo h($securityIncident['SecurityIncident']['description_of_breached']); ?>
+			&nbsp;
+		</p>
+		<h3 class='highlight"><?php echo __('Impact Level'); ?></h3>
+		<p>
+			<?php echo h($securityIncident['SecurityIncident']['impact_level']); ?>
+			&nbsp;
+		</p>
+		<h3 class='highlight"><?php echo __('Steps taken for resolution'); ?></h3>
+		<p>
+			<?php echo h($securityIncident['SecurityIncident']['steps_taken']); ?>
+			&nbsp;
+		</p>
+
+		<h3 class='highlight"><?php echo __('Date/Time of Resolution'); ?></h3>
+		<p>
+			<?php echo $this->Time->format('m/d/y', $securityIncident['SecurityIncident']['date_of_resolution']) . ' ' . $this->Time->format('g:i a', $securityIncident['SecurityIncident']['time_of_resolution']); ?>
+			&nbsp;
+		</p>
+		<h3 class='highlight"><?php echo __('Have you done a Breach Notification Risk Assessment?'); ?></h3>
+		<p>
+			<?php echo h($securityIncident['SecurityIncident']['breach_notification_ra']); ?>
+			&nbsp;
+		</p>
+		<h3 class='highlight"><?php echo __('After completing the assessment do you feel the disclosure compromises the Security and Privacy of the PHI AND Poses a significant risk to the financial'); ?></h3>
+		<p>
+			<?php echo h($securityIncident['SecurityIncident']['after_completing']); ?>
+			&nbsp;
+		</p>
+		<h3 class='highlight"><?php echo __('Have you informed the individuals of the breach?'); ?></h3>
+		<p>
+			<?php echo h($securityIncident['SecurityIncident']['informed_individual']); ?>
+			&nbsp;
+		</p>
+		<h3 class='highlight"><?php echo __('Did this effect more than 500 individuals?'); ?></h3>
+		<p>
+			<?php echo h($securityIncident['SecurityIncident']['effect_more_than_500']); ?>
+			&nbsp;
+		</p>
+		<h3 class='highlight"><?php echo __('Did you notify HHS of security breach?'); ?></h3>
+		<p>
+			<?php echo h($securityIncident['SecurityIncident']['notify_hhs']); ?>
+			&nbsp;
+		</p>
+		<h3 class='highlight"><?php echo __('Did you notify all individuals?'); ?></h3>
+		<p>
+			<?php echo h($securityIncident['SecurityIncident']['notify_individuals']); ?>
+			&nbsp;
+		</p>
+		<h3 class='highlight"><?php echo __('Did you provide notice to prominent media outlets in surrounding area (press release)?'); ?></h3>
+		<p>
+			<?php echo h($securityIncident['SecurityIncident']['notify_media']); ?>
+			&nbsp;
+		</p>
+		<h3 class='highlight"><?php echo __('Date Completed'); ?></h3>
+		<p>
+			<?php echo h($securityIncident['SecurityIncident']['breach_date']); ?>
+			&nbsp;
+		</p>
+		<h3 class='highlight"><?php echo __('Corrective Measures'); ?></h3>
+		<p>
+			<?php echo h($securityIncident['SecurityIncident']['corrective_measures']); ?>
+			&nbsp;
+		</p>
+
+
+
+
+		<h3 class='highlight"><?php echo __('Created'); ?></h3>
+		<p>
 			<?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['created']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
+		</p>
+		<h3 class='highlight"><?php echo __('Modified'); ?></h3>
+		<p>
 			<?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['modified']); ?>
 			&nbsp;
-		</dd>
+		</p>
 
-	</dl>
+	</div>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('List Security Incidents'), array('action' => 'index')); ?> </li>		
-		
-		<li><?php echo $this->Html->link(__('New Security Incident'), array('action' => 'add')); ?> </li>			
+		<li><?php echo $this->Html->link(__('List Security Incidents'), array('action' => 'index')); ?> </li>
+
+		<li><?php echo $this->Html->link(__('New Security Incident'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('Edit Security Incident'), array('action' => 'edit', $securityIncident['SecurityIncident']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Security Incident'), array('action' => 'delete', $securityIncident['SecurityIncident']['id']), null, __('Are you sure you want to delete # %s?', $securityIncident['SecurityIncident']['id'])); ?> </li>
 
-		
+
 	</ul>
 </div>

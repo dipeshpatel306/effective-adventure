@@ -20,7 +20,57 @@ class BusinessAssociateAgreement extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'name' => array(
+		'business_name' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'business_address' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'city' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'state' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'zip' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'contact' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -50,6 +100,16 @@ class BusinessAssociateAgreement extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'business_associate_agreement' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 		'contract_date' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -60,7 +120,7 @@ class BusinessAssociateAgreement extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'document' => array(
+		'attachment' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -98,12 +158,12 @@ class BusinessAssociateAgreement extends AppModel {
 			'order' => ''
 		)
 	);
-	
+
 /*
  * Upload behavior
- * 
+ *
  */
-	public $actsAs = array( 
+	public $actsAs = array(
 		'Uploader.Attachment' => array(
 			'attachment' => array(
 				//'name'		=> 'formatFileName',	// Name of the function to use to format filenames
@@ -136,29 +196,29 @@ class BusinessAssociateAgreement extends AppModel {
 					'error'	=> 'File must me .pdf, .doc, .docx or .dot'
 				)
 			)
-		)	
+		)
 	);
 
 /**
  * Change file directory to that of client
- * 
+ *
  */
-public function beforeUpload($options){ 
-	
+public function beforeUpload($options){
+
 	$client = $this->data['BusinessAssociateAgreement']['client_id']; // check client id
-	
+
 	$key = $this->data['BusinessAssociateAgreement']['file_key'];
-	
+
 	$options['uploadDir'] = "/documents/business_associate_agreements/$client/$key/" ;
 	return $options;
 }
 
 /**
  * Check Client Owner
- */	
+ */
 	public function isOwnedBy($id, $client){
 		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
-		
+
 	}
 
 }

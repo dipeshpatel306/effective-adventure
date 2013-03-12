@@ -3,7 +3,7 @@ $this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
 $this->Html->addCrumb('Security Incidents');
 
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id'); 
+	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="securityIncidents index">
@@ -12,10 +12,9 @@ $this->Html->addCrumb('Security Incidents');
 	<tr>
 			<?php if($group == 1): ?>
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
-			<?php endif ?>		
+			<?php endif ?>
 			<th><?php echo $this->Paginator->sort('date_of_incident', 'Incident Date/Time'); ?></th>
 			<th><?php echo $this->Paginator->sort('discovery_date', 'Discovery Date/Time'); ?></th>
-			<th><?php echo $this->Paginator->sort('reported_by'); ?></th>
 			<th><?php echo $this->Paginator->sort('description_of_incident'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -25,21 +24,20 @@ $this->Html->addCrumb('Security Incidents');
 	<?php
 	foreach ($securityIncidents as $securityIncident): ?>
 	<tr>
-		<?php if ($group == 1): ?> 		
+		<?php if ($group == 1): ?>
 		<td>
 			<?php echo $securityIncident['Client']['name']; ?>
 		</td>
 		<?php endif; ?>
-		
+
 		<td>
-		<?php echo $this->Time->format('m/d/y', $securityIncident['SecurityIncident']['date_of_incident']) . ' ' . 
+		<?php echo $this->Time->format('m/d/y', $securityIncident['SecurityIncident']['date_of_incident']) . ' ' .
 				$this->Time->format('g:i a', $securityIncident['SecurityIncident']['time_of_incident']);
 		?>&nbsp;</td>
 		<td>
 		<?php echo $this->Time->format('m/d/y', $securityIncident['SecurityIncident']['discovery_date']) . ' ' .
-				$this->Time->format('g:i a', $securityIncident['SecurityIncident']['discovery_time']); 
+				$this->Time->format('g:i a', $securityIncident['SecurityIncident']['discovery_time']);
 		?>&nbsp;</td>
-		<td><?php echo h($securityIncident['SecurityIncident']['reported_by']); ?>&nbsp;</td>
 		<td><?php echo h($securityIncident['SecurityIncident']['description_of_incident']); ?>&nbsp;</td>
 		<!--<td><?php echo h($securityIncident['SecurityIncident']['cause_of_incident']); ?>&nbsp;</td>-->
 		<!--<td><?php echo h($securityIncident['SecurityIncident']['assets_involved']); ?>&nbsp;</td>-->

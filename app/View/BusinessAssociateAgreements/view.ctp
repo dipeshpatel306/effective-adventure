@@ -1,10 +1,10 @@
 <?php
 $this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
 $this->Html->addCrumb('Business Associate Agreements', '/business_associate_agreements');
-$this->Html->addCrumb($businessAssociateAgreement['BusinessAssociateAgreement']['name']);
+$this->Html->addCrumb($businessAssociateAgreement['BusinessAssociateAgreement']['contact']);
 
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id'); 
+	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="businessAssociateAgreements view">
@@ -16,10 +16,42 @@ $this->Html->addCrumb($businessAssociateAgreement['BusinessAssociateAgreement'][
 			<?php echo $businessAssociateAgreement['Client']['name']; ?>
 			&nbsp;
 		</dd>
-		<?php endif; ?>		
-		<dt><?php echo __('Name'); ?></dt>
+		<?php endif; ?>
+
+
+		<dt><?php echo __('Business Name'); ?></dt>
 		<dd>
-			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['name']); ?>
+			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['business_name']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Business Address'); ?></dt>
+		<dd>
+			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['business_address']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Business Address 2'); ?></dt>
+		<dd>
+			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['business_address2']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('City'); ?></dt>
+		<dd>
+			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['city']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('State'); ?></dt>
+		<dd>
+			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['state']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Zip'); ?></dt>
+		<dd>
+			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['state']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Contact Name'); ?></dt>
+		<dd>
+			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['contact']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Email'); ?></dt>
@@ -39,10 +71,10 @@ $this->Html->addCrumb($businessAssociateAgreement['BusinessAssociateAgreement'][
 		</dd>
 		<dt><?php echo __('Document'); ?></dt>
 		<dd>
-		<?php 
+		<?php
 			$opnpLink =  preg_replace('/\/.*\//', '', $businessAssociateAgreement['BusinessAssociateAgreement']['attachment']);
 			echo $this->Html->link($opnpLink, $businessAssociateAgreement['BusinessAssociateAgreement']['attachment']);
-		?>	
+		?>
 			&nbsp;
 		</dd>
 
@@ -63,7 +95,7 @@ $this->Html->addCrumb($businessAssociateAgreement['BusinessAssociateAgreement'][
 	<ul>
 		<li><?php echo $this->Html->link(__('List Business Associate Agreements'), array('action' => 'index')); ?> </li>
 
-		<?php if($group == 1 || $group == 2): ?>	
+		<?php if($group == 1 || $group == 2): ?>
 		<li><?php echo $this->Html->link(__('New Business Associate Agreement'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('Edit Business Associate Agreement'), array('action' => 'edit', $businessAssociateAgreement['BusinessAssociateAgreement']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Business Associate Agreement'), array('action' => 'delete', $businessAssociateAgreement['BusinessAssociateAgreement']['id']), null, __('Are you sure you want to delete # %s?', $businessAssociateAgreement['BusinessAssociateAgreement']['id'])); ?> </li>

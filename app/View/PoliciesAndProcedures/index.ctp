@@ -2,7 +2,7 @@
 $this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
 $this->Html->addCrumb('Policies & Procedures');
 
-	$group = $this->Session->read('Auth.User.group_id'); 
+	$group = $this->Session->read('Auth.User.group_id');
 ?>
 
 <div class="policiesAndProcedures index">
@@ -54,14 +54,14 @@ $this->Html->addCrumb('Policies & Procedures');
 	<?php if($group == 1): ?>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Policies And Procedures'), array('action' => 'add')); ?></li>
-	</ul>
-		
-		<?php if($group == 1): ?>
-	<ul>	
 		<li><?php echo $this->Html->link(__('List Documents'), array('controller' => 'policies_and_procedures_documents', 'action' => 'index')); ?> </li>
+	</ul>
+	<?php endif; ?>
+		<?php if($group == 1 || $group == 2): ?>
+	<ul>
 		<li><?php echo $this->Html->link(__('New Documents'), array('controller' => 'policies_and_procedures_documents', 'action' => 'add')); ?> </li>
-	</ul>	
-		<?php endif; ?>
-	
-	<?php endif; ?>	
+	</ul>
+
+
+	<?php endif; ?>
 </div>

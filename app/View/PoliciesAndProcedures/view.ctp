@@ -3,7 +3,7 @@ $this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedur
 $this->Html->addCrumb('Policies & Procedures', '/policies_and_procedures');
 $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 
-	$group = $this->Session->read('Auth.User.group_id'); 
+	$group = $this->Session->read('Auth.User.group_id');
 ?>
 
 <div class="policiesAndProcedures view">
@@ -12,11 +12,11 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 	<div id="videooverlay"></div>
 		<div id="videocontainer">
 		<div class='closeVideo'>Close [x]</div>
-	
+
 		<div id="mediaplayer"></div>
 		<p class='imgsub'>Click on <img title="Fullscreen" src="http://www.hipaasecurenow.com/wp-content/uploads/2011/05/Fullscreen.png"
 		alt="" width="30" height="21" /> above to view in fullscreen mode!</p>
-		</div>	
+		</div>
 
 	<dl>
 		<dt><?php echo __('Policy'); ?></dt>
@@ -40,21 +40,21 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 			&nbsp;
 		</dd>
 	</dl>
-	
+
 	<h2><?php echo __('Description'); ?></h2>
 	<?php echo $policiesAndProcedure['PoliciesAndProcedure']['description']; ?>
-	
-	<?php if(!empty($policiesAndProcedure['PoliciesAndProcedure']['details'])): ?>	
+
+	<?php if(!empty($policiesAndProcedure['PoliciesAndProcedure']['details'])): ?>
 	<h2><?php echo __('Details'); ?></h2>
 	<?php echo $policiesAndProcedure['PoliciesAndProcedure']['details']; ?>
 	<?php endif; ?>
-	
+
 <div class="related">
 	<h2><?php echo __('Policies And Procedures Documents'); ?></h2>
 	<?php  if (!empty($policiesAndProcedure['PoliciesAndProceduresDocument'])): ?>
 	<table>
 	<tr>
-	
+
 		<th><?php echo __('Client'); ?></th>
 		<th><?php echo __('Document'); ?></th>
 		<th><?php echo __('Created'); ?></th>
@@ -70,10 +70,10 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 		<tr>
 			<td><?php echo $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['client_id']; ?></td>
 			<td>
-			<?php 
+			<?php
 				$docLink =  preg_replace('/\/.*\//', '', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document']);
 				echo $this->Html->link($docLink, $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document']);
-			?>	
+			?>
 			</td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a',$policiesAndProceduresDocument['PoliciesAndProceduresDocument']['modified']); ?></td>
@@ -88,38 +88,38 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 <?php  endif; ?>
 
 	<?php  if(!empty($policiesAndProcedure['PoliciesAndProcedure']['video_summary'])): ?>
-		<div class='papVideo' >		
+		<div class='papVideo' >
 		<h2><?php echo __('Video Summary'); ?></h2>
 
 			<?php echo $this->Html->image('movie2.png')?>
 			 Watch a short interactive movie that summarizes this policy or procedure. <br />
-			 
+
 			<a class="policyName">View Movie for
 				<span class='videoName'><?php echo ucwords($policiesAndProcedure['PoliciesAndProcedure']['video_summary']); ?></span>
 			</a>
 		</div>
-		
-		
+
+
 	<?php  endif; ?>
 	<br /><br />
-</div>		
-	
+</div>
+
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
-	<?php if($group == 1): ?>	
+	<?php if($group == 1): ?>
 	<ul>
 		<li><?php echo $this->Html->link(__('List Policies And Procedures'), array('action' => 'index')); ?> </li>
 		<?php if($group == 1): ?>
-		<li><?php echo $this->Html->link(__('New Policies and Procedures'), array('action' => 'add')); ?> </li>			
+		<li><?php echo $this->Html->link(__('New Policies and Procedures'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('Edit Policies And Procedures'), array('action' => 'edit', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Policies And Procedure'), array('action' => 'delete', $policiesAndProcedure['PoliciesAndProcedure']['id']), null, __('Are you sure you want to delete # %s?', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?> </li>
 		<?php endif; ?>
 	</ul>
-	<ul>
+	<!--<ul>
 		<li><?php echo $this->Html->link(__('List Documents'), array('controller' => 'policies_and_procedures_documents', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Document'), array('controller' => 'policies_and_procedures_documents', 'action' => 'add')); ?> </li>
-	</ul>
+	</ul>-->
 	<?php endif; ?>
 </div>
 

@@ -44,23 +44,23 @@ if($client['Client']['active'] == 'Yes'){
 		</dd>
 		<dt><?php echo __('Risk Assessment Completed'); ?></dt>
 		<dd <?php echo $completed; ?> >
-			<?php 
+			<?php
 			if(empty($client['Client']['risk_assessment_status'])){
 				echo '';
 			} else {
 				echo $this->Time->format('m/d/y', $client['Client']['risk_assessment_status']);
 			}
-			
+
 			 ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Last Login'); ?></dt>
 		<dd>
-			<?php 
+			<?php
 			if($client['Client']['last_login']){
-				echo ''; 
+				echo '';
 			} else {
-				echo $this->Time->format('m/d/y g:i a', $client['Client']['last_login']); 
+				echo $this->Time->format('m/d/y g:i a', $client['Client']['last_login']);
 			}
 			?>
 			&nbsp;
@@ -93,9 +93,9 @@ if($client['Client']['active'] == 'Yes'){
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		
-		<li><?php echo $this->Html->link(__('List Clients'), array('action' => 'index')); ?> </li>		
-		<li><?php echo $this->Html->link(__('New Client'), array('action' => 'add')); ?> </li>		
+
+		<li><?php echo $this->Html->link(__('List Clients'), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Client'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('Edit Client'), array('action' => 'edit', $client['Client']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Client'), array('action' => 'delete', $client['Client']['id']), null, __('Are you sure you want to delete # %s?', $client['Client']['id'])); ?> </li>
 	</ul>
@@ -110,26 +110,26 @@ if($client['Client']['active'] == 'Yes'){
 <!-- Users -->
 <div class="related">
 	<h3><?php echo __('Users'); ?></h3>
-	<?php if(!empty($users)): ?>	
+	<?php if(!empty($users)): ?>
 	<table>
 	<tr>
-		<th><?php echo $this->Paginator->sort('User.last_name','Name'); ?></th> 		
+		<th><?php echo $this->Paginator->sort('User.last_name','Name'); ?></th>
 		<th><?php echo $this->Paginator->sort('User.email', 'Email'); ?></th>
 		<th><?php echo $this->Paginator->sort('Group.name', 'Group Role'); ?></th>
-		<th><?php echo $this->Paginator->sort('User.last_login', 'Last login'); ?></th>		
+		<th><?php echo $this->Paginator->sort('User.last_login', 'Last login'); ?></th>
 		<th><?php echo $this->Paginator->sort('User.created', 'Created'); ?></th>
 		<th><?php echo $this->Paginator->sort('User.modified', 'Modified'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	
+
 	<?php
 		$i = 0;
 		foreach ($users as $user): ?>
 		<tr>
 			<td><?php echo $user['User']['last_name'] . ', ' . $user['User']['first_name']; ?></td>
-			<td><?php echo $this->Text->autoLinkEmails($user['User']['email']); ?></td>			
+			<td><?php echo $this->Text->autoLinkEmails($user['User']['email']); ?></td>
 			<td><?php echo $user['Group']['name']; ?></td>
-			<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['last_login']); ?></td>			
+			<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['last_login']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['modified']); ?></td>
 			<td class="actions">
@@ -167,28 +167,28 @@ if($client['Client']['active'] == 'Yes'){
 	<h3><?php echo __('Policies & Procedures Documents'); ?></h3>
 
 	<?php if (!empty($client['PoliciesAndProceduresDocument'])): ?>
-		
+
 	<table>
 	<tr>
 		<th><?php echo __('Policy'); ?></th>
-		<th><?php echo __('Document'); ?></th>	
+		<th><?php echo __('Document'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	
+
 	<?php
 		$i = 0;
 		foreach ($client['PoliciesAndProceduresDocument'] as $pnp): ?>
 		<tr>
 			<td><?php echo $pnp['id']; ?></td>
 			<td>
-		<?php 
+		<?php
 			$pnpLink =  preg_replace('/\/.*\//', '', $pnp['document']);
 			echo $this->Html->link($pnpLink, $pnp['document']);
-		?>				
+		?>
 			</td>
-			<td><?php echo $this->Time->format('m/d/y g:i a', $pnp['created']); ?></td>			
+			<td><?php echo $this->Time->format('m/d/y g:i a', $pnp['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $pnp['modified']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'policies_and_procedures_documents', 'action' => 'view', $pnp['id'])); ?>
@@ -204,7 +204,7 @@ if($client['Client']['active'] == 'Yes'){
 		<ul>
 			<li><?php echo $this->Html->link(__('New Policies & Procedure  Document'), array('controller' => 'policies_and_procedures_documents', 'action' => 'add')); ?> </li>
 		</ul>
-	</div>	
+	</div>
 
 </div>
 
@@ -213,16 +213,16 @@ if($client['Client']['active'] == 'Yes'){
 	<h3><?php echo __('Other Policies & Procedures'); ?></h3>
 
 	<?php if (!empty($client['OtherPoliciesAndProcedure'])): ?>
-		
+
 	<table>
 	<tr>
 		<th><?php echo __('Name'); ?></th>
-		<th><?php echo __('Attachment'); ?></th>	
+		<th><?php echo __('Attachment'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	
+
 	<?php
 		$i = 0;
 		foreach ($client['OtherPoliciesAndProcedure'] as $opnp): ?>
@@ -230,13 +230,13 @@ if($client['Client']['active'] == 'Yes'){
 			<td><?php echo $opnp['name']; ?></td>
 
 			<td>
-			<?php 
+			<?php
 				$opnpLink =  preg_replace('/\/.*\//', '', $opnp['attachment']);
 				echo $this->Html->link($opnpLink, $opnp['attachment']);
-			?>			
+			?>
 			</td>
-			
-			<td><?php echo $this->Time->format('m/d/y g:i a', $opnp['created']); ?></td>			
+
+			<td><?php echo $this->Time->format('m/d/y g:i a', $opnp['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $opnp['modified']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'other_policies_and_procedures', 'action' => 'view', $opnp['id'])); ?>
@@ -252,7 +252,7 @@ if($client['Client']['active'] == 'Yes'){
 		<ul>
 			<li><?php echo $this->Html->link(__('New Other Policies & Procedure'), array('controller' => 'other_policies_and_procedures', 'action' => 'add')); ?> </li>
 		</ul>
-	</div>	
+	</div>
 </div>
 
 <!-- Risk Assessment Documents -->
@@ -260,28 +260,28 @@ if($client['Client']['active'] == 'Yes'){
 	<h3><?php echo __('Risk Assessment Documents'); ?></h3>
 
 	<?php if (!empty($client['RiskAssessmentDocument'])): ?>
-		
+
 	<table>
 	<tr>
 		<th><?php echo __('Name'); ?></th>
-		<th><?php echo __('Attachment'); ?></th>	
+		<th><?php echo __('Attachment'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	
+
 	<?php
 		$i = 0;
 		foreach ($client['RiskAssessmentDocument'] as $rad): ?>
 		<tr>
 			<td><?php echo $rad['name']; ?></td>
 			<td>
-			<?php 
+			<?php
 				$radLink =  preg_replace('/\/.*\//', '', $rad['attachment']);
 				echo $this->Html->link($radLink, $rad['attachment']);
-			?>			
-			</td>			
-			<td><?php echo $this->Time->format('m/d/y g:i a', $rad['created']); ?></td>			
+			?>
+			</td>
+			<td><?php echo $this->Time->format('m/d/y g:i a', $rad['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $rad['modified']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'risk_assessment_documents', 'action' => 'view', $rad['id'])); ?>
@@ -297,7 +297,7 @@ if($client['Client']['active'] == 'Yes'){
 		<ul>
 			<li><?php echo $this->Html->link(__('New Risk Assessment Document'), array('controller' => 'risk_assessment_documents', 'action' => 'add')); ?> </li>
 		</ul>
-	</div>	
+	</div>
 </div>
 
 <!-- Business Associate Agreements -->
@@ -305,31 +305,31 @@ if($client['Client']['active'] == 'Yes'){
 	<h3><?php echo __('Business Associate Agreements'); ?></h3>
 
 	<?php if (!empty($client['BusinessAssociateAgreement'])): ?>
-		
+
 	<table>
 	<tr>
-		<th><?php echo __('Name'); ?></th>
-		<th><?php echo __('Contract Date'); ?></th> 
-		<th><?php echo __('Attachment'); ?></th>	
+		<th><?php echo __('Business Name'); ?></th>
+		<th><?php echo __('Contract Date'); ?></th>
+		<th><?php echo __('Attachment'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	
+
 	<?php
 		$i = 0;
 		foreach ($client['BusinessAssociateAgreement'] as $boa): ?>
 		<tr>
-			<td><?php echo $boa['name']; ?></td>
+			<td><?php echo $boa['business_name']; ?></td>
 
 			<td><?php echo $boa['contract_date']; ?></td>
 			<td>
-			<?php 
+			<?php
 				$boaLink =  preg_replace('/\/.*\//', '', $boa['attachment']);
 				echo $this->Html->link($boaLink, $boa['attachment']);
-			?>	
-			</td>			
-			<td><?php echo $this->Time->format('m/d/y g:i a', $boa['created']); ?></td>			
+			?>
+			</td>
+			<td><?php echo $this->Time->format('m/d/y g:i a', $boa['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $boa['modified']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'business_associate_agreements', 'action' => 'view', $boa['id'])); ?>
@@ -345,7 +345,7 @@ if($client['Client']['active'] == 'Yes'){
 		<ul>
 			<li><?php echo $this->Html->link(__('New Business Associate Agreement'), array('controller' => 'business_associate_agreements', 'action' => 'add')); ?> </li>
 		</ul>
-	</div>	
+	</div>
 </div>
 
 <!-- Disaster Recovery Plans -->
@@ -353,28 +353,28 @@ if($client['Client']['active'] == 'Yes'){
 	<h3><?php echo __('Disaster Recovery Plans'); ?></h3>
 
 	<?php if (!empty($client['DisasterRecoveryPlan'])): ?>
-		
+
 	<table>
 	<tr>
 		<th><?php echo __('Name'); ?></th>
-		<th><?php echo __('Attachment'); ?></th> 
+		<th><?php echo __('Attachment'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	
+
 	<?php
 		$i = 0;
 		foreach ($client['DisasterRecoveryPlan'] as $drp): ?>
 		<tr>
 			<td><?php echo $drp['name']; ?></td>
 			<td>
-			<?php 
+			<?php
 				$drpLink =  preg_replace('/\/.*\//', '', $drp['attachment']);
 				echo $this->Html->link($drpLink, $drp['attachment']);
-			?>	
-			</td>				
-			<td><?php echo $this->Time->format('m/d/y g:i a', $drp['created']); ?></td>			
+			?>
+			</td>
+			<td><?php echo $this->Time->format('m/d/y g:i a', $drp['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $drp['modified']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'disaster_recovery_plans', 'action' => 'view', $drp['id'])); ?>
@@ -390,7 +390,7 @@ if($client['Client']['active'] == 'Yes'){
 		<ul>
 			<li><?php echo $this->Html->link(__('New Disaster Recovery Plan'), array('controller' => 'disaster_recovery_plans', 'action' => 'add')); ?> </li>
 		</ul>
-	</div>	
+	</div>
 </div>
 
 <!-- Other Contracts & Documents -->
@@ -398,28 +398,28 @@ if($client['Client']['active'] == 'Yes'){
 	<h3><?php echo __('Other Contracts & Documents'); ?></h3>
 
 	<?php if (!empty($client['OtherContractsAndDocument'])): ?>
-		
+
 	<table>
 	<tr>
 		<th><?php echo __('Name'); ?></th>
-		<th><?php echo __('Attachment'); ?></th> 
+		<th><?php echo __('Attachment'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	
+
 	<?php
 		$i = 0;
 		foreach ($client['OtherContractsAndDocument'] as $ocad): ?>
 		<tr>
 			<td><?php echo $ocad['name']; ?></td>
 			<td>
-			<?php 
+			<?php
 				$ocadLink =  preg_replace('/\/.*\//', '', $ocad['attachment']);
 				echo $this->Html->link($ocadLink, $ocad['attachment']);
-			?>	
-			</td>			
-			<td><?php echo $this->Time->format('m/d/y g:i a', $ocad['created']); ?></td>			
+			?>
+			</td>
+			<td><?php echo $this->Time->format('m/d/y g:i a', $ocad['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $ocad['modified']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'OtherContractsAndDocuments', 'action' => 'view', $ocad['id'])); ?>
@@ -435,7 +435,7 @@ if($client['Client']['active'] == 'Yes'){
 		<ul>
 			<li><?php echo $this->Html->link(__('New Other Contracts & Document'), array('controller' => 'OtherContractsAndDocuments', 'action' => 'add')); ?> </li>
 		</ul>
-	</div>	
+	</div>
 </div>
 
 <!-- Security Incident -->
@@ -443,23 +443,23 @@ if($client['Client']['active'] == 'Yes'){
 	<h3><?php echo __('Security Incident'); ?></h3>
 
 	<?php if (!empty($client['SecurityIncident'])): ?>
-		
+
 	<table>
 	<tr>
 		<th><?php echo __('Incident Date/Time'); ?></th>
-		<th><?php echo __('Discovery Date'); ?></th> 
-		<th><?php echo __('Reported By'); ?></th> 
+		<th><?php echo __('Discovery Date'); ?></th>
+		<th><?php echo __('Description'); ?></th>
 
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	
+
 	<?php
 		$i = 0;
 		foreach ($client['SecurityIncident'] as $si): ?>
 		<tr>
-			<td><?php echo $this->Time->format('m/d/y', $si['date_of_incident']) . ' ' . $this->Time->format('g:i a', $si['time_of_incident']); ?></td>			
+			<td><?php echo $this->Time->format('m/d/y', $si['date_of_incident']) . ' ' . $this->Time->format('g:i a', $si['time_of_incident']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y', $si['discovery_date']); ?></td>
-			<td><?php echo $this->Time->format('m/d/y g:i a', $si['reported_by']); ?></td>
+			<td><?php echo $si['description_of_incident']; ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'SecurityIncident', 'action' => 'view', $si['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'SecurityIncident', 'action' => 'edit', $si['id'])); ?>
@@ -474,7 +474,7 @@ if($client['Client']['active'] == 'Yes'){
 		<ul>
 			<li><?php echo $this->Html->link(__('New Security Incident'), array('controller' => 'SecurityIncidents', 'action' => 'add')); ?> </li>
 		</ul>
-	</div>	
+	</div>
 </div>
 
 <!-- Server Room Access -->
@@ -482,16 +482,16 @@ if($client['Client']['active'] == 'Yes'){
 	<h3><?php echo __('Server Room Access'); ?></h3>
 
 	<?php if (!empty($client['ServerRoomAccess'])): ?>
-		
+
 	<table>
 	<tr>
 		<th><?php echo __('Date/Time'); ?></th>
-		<th><?php echo __('Person'); ?></th> 
+		<th><?php echo __('Person'); ?></th>
 		<th><?php echo __('Company'); ?></th>
 		<th><?php echo __('Reason'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	
+
 	<?php
 		$i = 0;
 		foreach ($client['ServerRoomAccess'] as $sra): ?>
@@ -514,7 +514,7 @@ if($client['Client']['active'] == 'Yes'){
 		<ul>
 			<li><?php echo $this->Html->link(__('New Server Room Access'), array('controller' => 'ServerRoomAccess', 'action' => 'add')); ?> </li>
 		</ul>
-	</div>	
+	</div>
 </div>
 
 <!-- ePHI Removed -->
@@ -522,22 +522,20 @@ if($client['Client']['active'] == 'Yes'){
 	<h3><?php echo __('Ephi Removed'); ?></h3>
 
 	<?php if (!empty($client['EphiRemoved'])): ?>
-		
+
 	<table>
 	<tr>
 		<th><?php echo __('Date/Time'); ?></th>
-		<th><?php echo __('Description'); ?></th> 
 		<th><?php echo __('Removed By'); ?></th>
 		<th><?php echo __('Returned By'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	
+
 	<?php
 		$i = 0;
 		foreach ($client['EphiRemoved'] as $erm): ?>
 		<tr>
 			<td><?php echo $this->Time->format('m/d/y', $erm['date']) . ' ' . $this->Time->format('g:i a', $erm['time']); ?></td>
-			<td><?php echo $erm['description']; ?></td>
 			<td><?php echo $erm['removed_by']; ?></td>
 			<td><?php echo $erm['returned_by']; ?></td>
 			<td class="actions">
@@ -554,7 +552,7 @@ if($client['Client']['active'] == 'Yes'){
 		<ul>
 			<li><?php echo $this->Html->link(__('New Ephi Removed'), array('controller' => 'EphiRemoved', 'action' => 'add')); ?> </li>
 		</ul>
-	</div>	
+	</div>
 </div>
 
 
@@ -563,16 +561,16 @@ if($client['Client']['active'] == 'Yes'){
 	<h3><?php echo __('Ephi Received'); ?></h3>
 
 	<?php if (!empty($client['EphiReceived'])): ?>
-		
+
 	<table>
 	<tr>
 		<th><?php echo __('Received Date/Time'); ?></th>
-		<th><?php echo __('Patient Name'); ?></th> 
-		<th><?php echo __('received By'); ?></th> 
+		<th><?php echo __('Patient Name'); ?></th>
+		<th><?php echo __('received By'); ?></th>
 		<th><?php echo __('Returned Date/Time'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	
+
 	<?php
 		$i = 0;
 		foreach ($client['EphiReceived'] as $erc): ?>
@@ -595,6 +593,6 @@ if($client['Client']['active'] == 'Yes'){
 		<ul>
 			<li><?php echo $this->Html->link(__('New Ephi Received'), array('controller' => 'EphiReceived', 'action' => 'add')); ?> </li>
 		</ul>
-	</div>	
+	</div>
 </div>
 </div>

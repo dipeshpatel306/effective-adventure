@@ -18,17 +18,17 @@ class DashboardController extends AppController {
  * @return void
  */
  	public function isAuthorized($user){
- 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+ 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 
 		if ($group == 2  || $group == 3 ){ // Allow managers, Users  to view dashboard
 			return true;
 		}
-		
+
 		return parent::isAuthorized($user);
  	}
 /**
  * Mark Complete method - Sets Risk Asessment to complete in the Clients Model
- * 
+ *
  */
  	public function mark_complete(){
 			$completed = date('Y-m-d'); // Get DateTime
@@ -38,14 +38,14 @@ class DashboardController extends AppController {
 			$this->loadModel('Client');
 			$this->Client->id = $client;
 			$this->render(false); // tell cake to not use a view
-			
+
 			// Send Email
 			$email = new CakeEmail('hipaaMail');
 			$email->from('no-reply@hipaasecurenow.com');
-			$email->to('info@hipaasecurenow.com');
+			$email->to('info@@hipaasecurenow.com');
 			$email->subject('HIPAA Risk Assessment Marked Complete by Client - ' . $clientName);
 			$email->send($message);
-			
+
 			if ($this->Client->saveField('risk_assessment_status', $completed)) {
 				$this->Session->setFlash('Thanks! Your Risk Assessment has been marked complete', 'default', array('class' => 'success message'));
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
@@ -54,15 +54,15 @@ class DashboardController extends AppController {
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
 			}
  	}
- 
- 
+
+
 /**
  * index method
  *
  * @return void
  */
-	public function initial() {	
-		
+	public function initial() {
+
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
 	}
@@ -72,12 +72,12 @@ class DashboardController extends AppController {
  *
  * @return void
  */
-	public function index() {	
+	public function index() {
 		$acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
 		if($acct == 'Initial'){
 			$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
 		}
-		
+
 		// Check if Client already has an existing Risk Assessment
 		$clientId = $this->Session->read('Auth.User.client_id');
 		$this->loadModel('RiskAssessment');
@@ -89,7 +89,7 @@ class DashboardController extends AppController {
 		if(isset($risk) && !empty($risk)){
 			$this->set(compact('risk'));
 		}
-		
+
 		// Check if Client already has an existing Org Profile
 		$this->loadModel('OrganizationProfile');
 		$org = $this->OrganizationProfile->find('first', array('conditions' => array(
@@ -100,7 +100,7 @@ class DashboardController extends AppController {
 		if(isset($org) && !empty($org)){
 			$this->set(compact('org'));
 		}
-		
+
 		$partnerId = $this->Session->read('Auth.User.Client.partner_id');
 		if(isset($partnerId) && ($partnerId != 0)){
 			$this->loadModel('Partner');
@@ -136,7 +136,7 @@ class DashboardController extends AppController {
 		$acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
 		if($acct == 'Initial'){
 			$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
-		}		
+		}
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
 	}
@@ -149,7 +149,7 @@ class DashboardController extends AppController {
 		$acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
 		if($acct == 'Initial'){
 			$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
-		}		
+		}
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
 	}
@@ -162,10 +162,10 @@ class DashboardController extends AppController {
 		$acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
 		if($acct == 'Initial'){
 			$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
-		}		
+		}
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
-	}	
+	}
 /**
  * Education Center method
  *
@@ -175,10 +175,10 @@ class DashboardController extends AppController {
 		$acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
 		if($acct == 'Initial'){
 			$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
-		}		
+		}
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
-	}		
+	}
 /**
  * Information Center method
  *
@@ -188,10 +188,10 @@ class DashboardController extends AppController {
 		$acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
 		if($acct == 'Initial'){
 			$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
-		}		
+		}
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
-	}		
+	}
 /**
  * SIRP method
  *
@@ -201,7 +201,7 @@ class DashboardController extends AppController {
 		$acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
 		if($acct == 'Initial'){
 			$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
-		}		
+		}
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
 	}
@@ -212,7 +212,7 @@ class DashboardController extends AppController {
  */
 	public function about_hipaa() {
 		$about = $this->Dashboard->find('first', array('conditions' => array('Dashboard.name' => 'about')));
-		$this->set(compact('about'));		
+		$this->set(compact('about'));
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
 	}

@@ -40,6 +40,16 @@ class RiskAssessmentDocument extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'attachment' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				'allowEmpty' => true,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -60,9 +70,9 @@ class RiskAssessmentDocument extends AppModel {
 	);
 /*
  * Upload behavior
- * 
+ *
  */
-	public $actsAs = array( 
+	public $actsAs = array(
 		'Uploader.Attachment' => array(
 			'attachment' => array(
 				//'name'		=> 'formatFileName',	// Name of the function to use to format filenames
@@ -97,21 +107,21 @@ class RiskAssessmentDocument extends AppModel {
 			)
 		)
 	);
-	
+
 /**
  * Change file directory to that of client
- * 
+ *
  */
-public function beforeUpload($options){ 
-	$key = $this->data['RiskAssessmentDocument']['file_key'];		
+public function beforeUpload($options){
+	$key = $this->data['RiskAssessmentDocument']['file_key'];
 	$client = $this->data['RiskAssessmentDocument']['client_id']; // check client id
 	$options['uploadDir'] = "/documents/risk_assessment_documents/$client/$key/" ;
 	return $options;
-}	
+}
 /**
  * Check Client Owner
- */	
+ */
 	public function isOwnedBy($id, $client){
-		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;	
+		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
 	}
 }

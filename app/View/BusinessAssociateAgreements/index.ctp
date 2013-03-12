@@ -3,17 +3,17 @@ $this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documen
 $this->Html->addCrumb('Business Associate Agreements');
 
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id'); 
+	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="businessAssociateAgreements index">
 	<h2><?php echo __('Business Associate Agreements'); ?></h2>
 	<table>
 	<tr>
-			<?php if($group == 1): ?>		
-			<th><?php echo $this->Paginator->sort('client_id'); ?></th>		
+			<?php if($group == 1): ?>
+			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
 			<?php endif; ?>
-			<th><?php echo $this->Paginator->sort('name'); ?></th>
+			<th><?php echo $this->Paginator->sort('contact'); ?></th>
 			<th><?php echo $this->Paginator->sort('email'); ?></th>
 			<th><?php echo $this->Paginator->sort('phone'); ?></th>
 			<th><?php echo $this->Paginator->sort('contract_date'); ?></th>
@@ -25,20 +25,20 @@ $this->Html->addCrumb('Business Associate Agreements');
 	<?php
 	foreach ($businessAssociateAgreements as $businessAssociateAgreement): ?>
 	<tr>
-		<?php if($group == 1): ?>	
+		<?php if($group == 1): ?>
 		<td>
 			<?php echo $businessAssociateAgreement['Client']['name']; ?>
 		</td>
-		<?php endif; ?>		
-		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['name']); ?>&nbsp;</td>
+		<?php endif; ?>
+		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['contact']); ?>&nbsp;</td>
 		<td><?php echo $this->Text->autoLinkEmails($businessAssociateAgreement['BusinessAssociateAgreement']['email']); ?>&nbsp;</td>
 		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['phone']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y', $businessAssociateAgreement['BusinessAssociateAgreement']['contract_date']); ?>&nbsp;</td>
 		<td>
-		<?php 
+		<?php
 			$opnpLink =  preg_replace('/\/.*\//', '', $businessAssociateAgreement['BusinessAssociateAgreement']['attachment']);
 			echo $this->Html->link($opnpLink, $businessAssociateAgreement['BusinessAssociateAgreement']['attachment']);
-		?>		
+		?>
 
 		<td><?php echo $this->Time->format('m/d/y g:i a', $businessAssociateAgreement['BusinessAssociateAgreement']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $businessAssociateAgreement['BusinessAssociateAgreement']['modified']); ?>&nbsp;</td>

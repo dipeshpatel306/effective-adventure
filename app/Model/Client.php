@@ -33,7 +33,7 @@ class Client extends AppModel {
 				'rule' => 'isUnique',
 				'message' => 'That Client name already exists',
 			),
-		),	
+		),
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -53,7 +53,7 @@ class Client extends AppModel {
 			'fields' => array('RiskAssessment.id, RiskAssessment.client_id')
 		)
 	);
-	
+
 /**
  * belongsTo associations
  *
@@ -69,7 +69,7 @@ class Client extends AppModel {
 			'fields' => array('Partner.id, Partner.name')
 		),
 	);
- 	
+
 
 /**
  * hasMany associations
@@ -116,7 +116,7 @@ class Client extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'OtherPoliciesAndProcedure' => array( 
+		'OtherPoliciesAndProcedure' => array(
 			'className' => 'OtherPoliciesAndProcedure',
 			'foreignKey' => 'client_id',
 			'dependent' => true,
@@ -128,7 +128,7 @@ class Client extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		),		
+		),
 		'RiskAssessmentDocument' => array(
 			'className' => 'RiskAssessmentDocument',
 			'foreignKey' => 'client_id',
@@ -147,7 +147,7 @@ class Client extends AppModel {
 			'foreignKey' => 'client_id',
 			'dependent' => true,
 			'conditions' => '',
-			'fields' => 'BusinessAssociateAgreement.id, BusinessAssociateAgreement.client_id, BusinessAssociateAgreement.name, BusinessAssociateAgreement.attachment, BusinessAssociateAgreement.email, BusinessAssociateAgreement.contract_date, BusinessAssociateAgreement.created, BusinessAssociateAgreement.modified',
+			'fields' => 'BusinessAssociateAgreement.id, BusinessAssociateAgreement.client_id, BusinessAssociateAgreement.business_name, BusinessAssociateAgreement.attachment, BusinessAssociateAgreement.email, BusinessAssociateAgreement.contract_date, BusinessAssociateAgreement.created, BusinessAssociateAgreement.modified',
 			'order' => '',
 			'limit' => '',
 			'offset' => '',
@@ -186,7 +186,7 @@ class Client extends AppModel {
 			'foreignKey' => 'client_id',
 			'dependent' => true,
 			'conditions' => '',
-			'fields' => 'SecurityIncident.id, SecurityIncident.client_id, SecurityIncident.date_of_incident, SecurityIncident.time_of_incident, SecurityIncident.discovery_date, SecurityIncident.reported_by, SecurityIncident.created, SecurityIncident.modified',
+			'fields' => 'SecurityIncident.id, SecurityIncident.client_id, SecurityIncident.date_of_incident, SecurityIncident.time_of_incident, SecurityIncident.discovery_date, SecurityIncident.description_of_incident,SecurityIncident.created, SecurityIncident.modified',
 			'order' => '',
 			'limit' => '',
 			'offset' => '',
@@ -225,7 +225,7 @@ class Client extends AppModel {
 			'foreignKey' => 'client_id',
 			'dependent' => true,
 			'conditions' => '',
-			'fields' => 'EphiRemoved.id, EphiRemoved.client_id, EphiRemoved.description, EphiRemoved.date, EphiRemoved.time, EphiRemoved.removed_by, EphiRemoved.returned_by, EphiRemoved.created, EphiRemoved.modified',
+			'fields' => 'EphiRemoved.id, EphiRemoved.client_id, EphiRemoved.date, EphiRemoved.time, EphiRemoved.removed_by, EphiRemoved.returned_by, EphiRemoved.created, EphiRemoved.modified',
 			'order' => '',
 			'limit' => '',
 			'offset' => '',
@@ -246,6 +246,6 @@ class Client extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		
+
 	);
 }
