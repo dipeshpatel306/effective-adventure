@@ -195,7 +195,7 @@ class UsersController extends AppController {
 		if ($this->Session->read('Auth.User')) {
         	$this->Session->setFlash('You are logged in!', 'default', array('class' => 'success message'));
 			//$this->Session->write('User.id', $userId);
-        	$this->redirect('/', null, false);
+        	$this->redirect(array('controller' => 'dashboard'));
     	}
 	}
 

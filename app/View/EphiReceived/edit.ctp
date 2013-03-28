@@ -13,6 +13,7 @@ $reason = array('' => '', 'Referral from another provider' => 'Referral from ano
 ?>
 <div class="ephiReceived form">
 <?php echo $this->Form->create('EphiReceived'); ?>
+	<h2>Track ePHI received into organization </h2>
 	<fieldset>
 		<legend><?php echo __('Add Ephi Received'); ?></legend>
 

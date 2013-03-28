@@ -4,7 +4,7 @@ $this->Html->addCrumb('Disaster Recovery Plans', '/disaster_recovery_plans');
 $this->Html->addCrumb($disasterRecoveryPlan['DisasterRecoveryPlan']['name']);
 
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id'); 
+	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="disasterRecoveryPlans view">
@@ -16,7 +16,12 @@ $this->Html->addCrumb($disasterRecoveryPlan['DisasterRecoveryPlan']['name']);
 			<?php echo $disasterRecoveryPlan['Client']['name']; ?>
 			&nbsp;
 		</dd>
-		<?php endif; ?>		
+		<?php endif; ?>
+		<dt><?php echo __('Date'); ?></dt>
+		<dd>
+			<?php echo $this->Time->format('m/d/y', $disasterRecoveryPlan['DisasterRecoveryPlan']['date']); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
 			<?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['name']); ?>
@@ -25,11 +30,6 @@ $this->Html->addCrumb($disasterRecoveryPlan['DisasterRecoveryPlan']['name']);
 		<dt><?php echo __('Description'); ?></dt>
 		<dd>
 			<?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['description']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Details'); ?></dt>
-		<dd>
-			<?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['details']); ?>
 			&nbsp;
 		</dd>
 
@@ -45,10 +45,10 @@ $this->Html->addCrumb($disasterRecoveryPlan['DisasterRecoveryPlan']['name']);
 		</dd>
 		<dt><?php echo __('Attachment'); ?></dt>
 		<dd>
-		<?php 
+		<?php
 			$opnpLink =  preg_replace('/\/.*\//', '', $disasterRecoveryPlan['DisasterRecoveryPlan']['attachment']);
 			echo $this->Html->link($opnpLink, $disasterRecoveryPlan['DisasterRecoveryPlan']['attachment']);
-		?>					
+		?>
 			&nbsp;
 		</dd>
 	</dl>
@@ -56,14 +56,14 @@ $this->Html->addCrumb($disasterRecoveryPlan['DisasterRecoveryPlan']['name']);
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('List Disaster Recovery Plans'), array('action' => 'index')); ?> </li>		
-		
+		<li><?php echo $this->Html->link(__('List Disaster Recovery Plans'), array('action' => 'index')); ?> </li>
+
 		<?php if($group == 1 || $group == 2): ?>
-		<li><?php echo $this->Html->link(__('New Disaster Recovery Plan'), array('action' => 'add')); ?> </li>			
+		<li><?php echo $this->Html->link(__('New Disaster Recovery Plan'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('Edit Disaster Recovery Plan'), array('action' => 'edit', $disasterRecoveryPlan['DisasterRecoveryPlan']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Disaster Recovery Plan'), array('action' => 'delete', $disasterRecoveryPlan['DisasterRecoveryPlan']['id']), null, __('Are you sure you want to delete # %s?', $disasterRecoveryPlan['DisasterRecoveryPlan']['id'])); ?> </li>
 
-		<?php endif; ?>	
-	
+		<?php endif; ?>
+
 	</ul>
 </div>

@@ -52,7 +52,7 @@ $this->Html->addCrumb('Add Business Associate Agreement');
 		echo $this->Form->input('business_address', array('label' => 'Business Associate Address'));
 		echo $this->Form->input('business_address2', array('label' => 'Business Associate Address2'));
 		echo $this->Form->input('city');
-		echo $this->Form->input('state', array('option' => $states));
+		echo $this->Form->input('state', array('options' => $states));
 		echo $this->Form->input('zip');
 		echo $this->Form->input('contact', array('label' => 'Business Associate Contact'));
 		echo $this->Form->input('email', array('label' => 'Business Associate Email'));

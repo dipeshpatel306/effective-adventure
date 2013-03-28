@@ -7,7 +7,7 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 ?>
 
 <div class="policiesAndProcedures view">
-<h2><?php  echo __('Policies And Procedures'); ?></h2>
+<h2><?php  echo __('HIPAA Policies And Procedures'); ?></h2>
 
 	<div id="videooverlay"></div>
 		<div id="videocontainer">
@@ -44,10 +44,6 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 	<h2><?php echo __('Description'); ?></h2>
 	<?php echo $policiesAndProcedure['PoliciesAndProcedure']['description']; ?>
 
-	<?php if(!empty($policiesAndProcedure['PoliciesAndProcedure']['details'])): ?>
-	<h2><?php echo __('Details'); ?></h2>
-	<?php echo $policiesAndProcedure['PoliciesAndProcedure']['details']; ?>
-	<?php endif; ?>
 
 <div class="related">
 	<h2><?php echo __('Policies And Procedures Documents'); ?></h2>
@@ -55,7 +51,7 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 	<table>
 	<tr>
 
-		<th><?php echo __('Client'); ?></th>
+		<!--<th><?php echo __('Client'); ?></th>-->
 		<th><?php echo __('Document'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
@@ -68,7 +64,7 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 		foreach ($documents as $policiesAndProceduresDocument): ?>
 		<?php //debug($policiesAndProceduresDocument['PoliciesAndProceduresDocument']);?>
 		<tr>
-			<td><?php echo $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['client_id']; ?></td>
+			<!--<td><?php echo $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['client_id']; ?></td>-->
 			<td>
 			<?php
 				$docLink =  preg_replace('/\/.*\//', '', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document']);

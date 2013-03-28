@@ -22,6 +22,11 @@ if($client['Client']['active'] == 'Yes'){
 			<?php echo h($client['Client']['name']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Email'); ?></dt>
+		<dd>
+			<?php echo h($client['Client']['email']); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Account Type'); ?></dt>
 		<dd>
 			<?php echo h($client['Client']['account_type']); ?>
@@ -164,7 +169,7 @@ if($client['Client']['active'] == 'Yes'){
 
 <!-- Policies & Procedures -->
 <div class="related">
-	<h3><?php echo __('Policies & Procedures Documents'); ?></h3>
+	<h3><?php echo __('HIPAA Policies & Procedures Documents'); ?></h3>
 
 	<?php if (!empty($client['PoliciesAndProceduresDocument'])): ?>
 
@@ -202,7 +207,7 @@ if($client['Client']['active'] == 'Yes'){
 <?php endif; ?>
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Policies & Procedure  Document'), array('controller' => 'policies_and_procedures_documents', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New HIPAA Policies & Procedure  Document'), array('controller' => 'policies_and_procedures_documents', 'action' => 'add')); ?> </li>
 		</ul>
 	</div>
 

@@ -1,16 +1,16 @@
 <?php
-$this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
-$this->Html->addCrumb('Policies & Procedures', '/policies_and_procedures');
-$this->Html->addCrumb('Add Policy & Procedure');
+$this->Html->addCrumb('HIPAA Policies & Procedures', '/dashboard/policies_and_procedures');
+$this->Html->addCrumb('HIPAA Policies & Procedures', '/policies_and_procedures');
+$this->Html->addCrumb('Add HIPAA Policy & Procedure');
 
-	$group = $this->Session->read('Auth.User.group_id'); 
+	$group = $this->Session->read('Auth.User.group_id');
 ?>
 
 
 <div class="policiesAndProcedures form">
 <?php echo $this->Form->create('PoliciesAndProcedure'); ?>
 	<fieldset>
-		<legend><?php echo __('Add Policies And Procedures'); ?></legend>
+		<legend><?php echo __('Add HIPAA Policies And Procedures'); ?></legend>
 	<?php
 		echo $this->Form->input('name');
 		echo $this->Form->input('description', array('class' => 'ckeditor'));
@@ -30,7 +30,7 @@ $this->Html->addCrumb('Add Policy & Procedure');
 	<ul>
 		<li><?php echo $this->Html->link(__('List Policies And Procedures Documents'), array('controller' => 'policies_and_procedures_documents', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Policies And Procedures Document'), array('controller' => 'policies_and_procedures_documents', 'action' => 'add')); ?> </li>
-	</ul>	
+	</ul>
 		<?php endif;?>
-	
+
 </div>

@@ -4,7 +4,7 @@ $this->Html->addCrumb('Other Contracts & Documents', '/other_contracts_and_docum
 $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['name']);
 
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id'); 
+	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 
@@ -16,8 +16,13 @@ $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['n
 		<dd>
 			<?php echo $otherContractsAndDocument['Client']['name']; ?>
 			&nbsp;
-		</dd>		
+		</dd>
 		<?php endif; ?>
+		<dt><?php echo __('Date'); ?></dt>
+		<dd>
+			<?php echo $this->Time->format('m/d/y', $otherContractsAndDocument['OtherContractsAndDocument']['date']); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
 			<?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['name']); ?>
@@ -29,10 +34,6 @@ $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['n
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Details'); ?></dt>
-		<dd>
-			<?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['details']); ?>
-			&nbsp;
-		</dd>
 
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
@@ -46,10 +47,10 @@ $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['n
 		</dd>
 		<dt><?php echo __('Attachment'); ?></dt>
 		<dd>
-		<?php 
+		<?php
 			$opnpLink =  preg_replace('/\/.*\//', '', $otherContractsAndDocument['OtherContractsAndDocument']['attachment']);
 			echo $this->Html->link($opnpLink, $otherContractsAndDocument['OtherContractsAndDocument']['attachment']);
-		?>	
+		?>
 			&nbsp;
 		</dd>
 	</dl>
@@ -58,12 +59,12 @@ $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['n
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('List Other Contracts And Documents'), array('action' => 'index')); ?> </li>
-	
+
 		<?php if($group == 1 || $group == 2): ?>
-		<li><?php echo $this->Html->link(__('New Other Contracts And Document'), array('action' => 'add')); ?> </li>			
+		<li><?php echo $this->Html->link(__('New Other Contracts And Document'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('Edit Other Contracts And Document'), array('action' => 'edit', $otherContractsAndDocument['OtherContractsAndDocument']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Other Contracts And Document'), array('action' => 'delete', $otherContractsAndDocument['OtherContractsAndDocument']['id']), null, __('Are you sure you want to delete # %s?', $otherContractsAndDocument['OtherContractsAndDocument']['id'])); ?> </li>
-		<?php endif; ?>				
+		<?php endif; ?>
 
 	</ul>
 </div>

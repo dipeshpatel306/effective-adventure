@@ -30,7 +30,7 @@ class OrganizationProfile extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'organization_name' => array(
+	/*	'organization_name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -109,7 +109,7 @@ class OrganizationProfile extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
+		),*/
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -130,9 +130,9 @@ class OrganizationProfile extends AppModel {
 	);
 /**
  * Check Client Owner
- */	
+ */
 	public function isOwnedBy($id, $client){
-		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;	
+		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
 	}
 
 }

@@ -56,7 +56,7 @@ div.actions, div.login, div.loginBox{
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	margin-bottom: 4px;
-	
+
 	-moz-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
 	-webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
 	box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
@@ -104,7 +104,7 @@ td.active, td.completed, dd.active, dd.completed{
 	color: #ffffff;
 	font-weight: bold;
 	border-top: 1px solid #ffffff;
-	border-bottom: 1px solid #ffffff;		
+	border-bottom: 1px solid #ffffff;
 }
 
 td.inactive, dd.inactive{
@@ -173,7 +173,7 @@ dl dt:nth-of-type(odd), dl dd:nth-of-type(odd) {
 }
 #header .userBox{
 	float: right;
-	min-width: 300px; 
+	min-width: 300px;
 	height: 72px;
 	font-size: .9em;
 	padding: 8px 8px 4px 8px;
@@ -190,7 +190,7 @@ a.logoutLink{
 }
 #header .userBox a:link, #header .userBox a:visited{
 	/*color: #ffffff;*/
-	
+
 }
 /* ##### Body Content ##### */
 #content{
@@ -335,7 +335,7 @@ div.newsFeed {
 	float: left;
 }
 .subMenu{
-	
+
 	float: right;
 	margin-right: 30px;
 }
@@ -361,11 +361,11 @@ img.homeIcon:hover{
 	width: 300px;
 	height: 200px;
 	margin: 8px;
-	padding: 8px;	
+	padding: 8px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	text-decoration: none; // fixes IE < 7 bug
-	
+
 	-moz-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
 	-webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
 	box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
@@ -393,7 +393,7 @@ img.homeIcon:hover{
 .dashHeadLogo{ /* partners tile */
 	height: 80px;
 	text-align: center;
-	
+
 }
 .dashTile{ /* Icon */
 	float: left;
@@ -409,7 +409,7 @@ img.homeIcon:hover{
 	text-align: center;
 	color: #888888;
 	font-weight: bold;
-	
+
 }
 .dashBtn{
 	width: 200px;
@@ -532,7 +532,7 @@ ul.tabs{
 }
 
 .tabs a.active {
-	
+
 	background:#4C8AB0;
 	color:#fff;
 }
@@ -583,7 +583,7 @@ ul.tabs{
 	Pagination
 */
 span.prevNext a{
-	
+
 	width: 100px;
 	height: 30px;
 	background-color: #76BF6B;;
@@ -633,6 +633,6 @@ button.prev:hover, button.next:hover{
 .buttonWrap{
 	width: 230px;
 	margin-left: auto;
-	margin-right: auto;	
+	margin-right: auto;
 }
 

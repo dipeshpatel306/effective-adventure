@@ -3,7 +3,7 @@ $this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documen
 $this->Html->addCrumb('Diaster Recovery Plans', '/disaster_recovery_plans');
 $this->Html->addCrumb('Add Disaster Recovery Plan');
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id'); 
+	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="disasterRecoveryPlans form">
@@ -11,17 +11,17 @@ $this->Html->addCrumb('Add Disaster Recovery Plan');
 	<fieldset>
 		<legend><?php echo __('Add Disaster Recovery Plan'); ?></legend>
 	<?php
+		echo $this->Form->input('date', array('class' => 'datePick'));
 		echo $this->Form->input('name');
 		echo $this->Form->input('description', array('class' => 'ckeditor'));
-		echo $this->Form->input('details', array('class' => 'ckeditor'));
-		
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		if($client == 1){  // if admin allow to choose
 			echo $this->Form->input('client_id', array('empty' => 'Please Select'));
 		} else {
 			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
 		}
-		
+
 		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Attachment - (pdf, doc, docx, dot files only)'));
 	?>
 	</fieldset>

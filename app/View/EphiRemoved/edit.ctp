@@ -13,13 +13,14 @@ $reason = array('' => '', 'Work form home' => 'Work from home', 'Transfer to ano
 ?>
 <div class="ephiRemoved form">
 <?php echo $this->Form->create('EphiRemoved'); ?>
+	<h2>Tracked ePHI removed from organization </h2>
 	<fieldset>
 		<legend><?php echo __('Add Ephi Removed'); ?></legend>
 
 	<h2 class='highlight'>Description and Date Removed</h2>
 	<?php
-		echo $this->Form->input('item', array('Label' => 'Description of item removed', 'options' => $item));
-		echo $this->Form->input('date', array('class' => 'datePick'));
+		echo $this->Form->input('item', array('label' => 'Description of item removed', 'options' => $item));
+		echo $this->Form->input('date', array('label' => 'Date Removed', 'class' => 'datePick'));
 		echo $this->Form->input('time');
 	?>
 	<h2 class='highlight'>Removing Information</h2>

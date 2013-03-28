@@ -1,20 +1,19 @@
 <?php
-$this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
-$this->Html->addCrumb('Policies & Procedures', '/policies_and_procedures');
-$this->Html->addCrumb('Edit Policy & Procedure');
+$this->Html->addCrumb('HIPAA Policies & Procedures', '/dashboard/policies_and_procedures');
+$this->Html->addCrumb('HIPAA Policies & Procedures', '/policies_and_procedures');
+$this->Html->addCrumb('Edit HIPAA Policy & Procedure');
 
-	$group = $this->Session->read('Auth.User.group_id'); 
+	$group = $this->Session->read('Auth.User.group_id');
 ?>
 
 <div class="policiesAndProcedures form">
 <?php echo $this->Form->create('PoliciesAndProcedure'); ?>
 	<fieldset>
-		<legend><?php echo __('Edit Policies And Procedures'); ?></legend>
+		<legend><?php echo __('Edit HIPAA Policies And Procedures'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
 		echo $this->Form->input('description', array('class' => 'ckeditor'));
-		echo $this->Form->input('details', array('class' => 'ckeditor'));
 		echo $this->Form->input('video_summary', array('label' => "Video Summary - (enter video name without extension)"));
 	?>
 	</fieldset>
@@ -26,7 +25,7 @@ $this->Html->addCrumb('Edit Policy & Procedure');
 
 		<li><?php echo $this->Html->link(__('List Policies And Procedures'), array('action' => 'index')); ?></li>
 		<li><?php echo $this->Form->postLink(__('Delete Policies and Procedures'), array('action' => 'delete', $this->Form->value('PoliciesAndProcedure.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('PoliciesAndProcedure.id'))); ?></li>
-	</ul>	
+	</ul>
 	<ul>
 		<li><?php echo $this->Html->link(__('List Policies And Procedures Documents'), array('controller' => 'policies_and_procedures_documents', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Policies And Procedures Document'), array('controller' => 'policies_and_procedures_documents', 'action' => 'add')); ?> </li>
