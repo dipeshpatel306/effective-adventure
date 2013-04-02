@@ -72,6 +72,81 @@ $(document).ready(function(){
 	    });
 	});
 
+	// Toggle div based upon checkbox (org profile)
+
+		$('.orgSecondLocation, .orgThirdLocation, .orgFourthLocation, .orgFifthLocation, .otherEmail, .otherReason, .otherDescription, .otherReason').hide(); // first hide fields
+		// toggle field visibility
+  		$('.orgCheck2').change(function () {
+     		$('.orgSecondLocation').toggle(this.checked);
+  		}).change();
+
+		$('.orgCheck3').change(function () {
+     		$('.orgThirdLocation').toggle(this.checked);
+  		}).change();
+
+		$('.orgCheck4').change(function () {
+     		$('.orgFourthLocation').toggle(this.checked);
+  		}).change();
+		$('.orgCheck5').change(function () {
+     		$('.orgFifthLocation').toggle(this.checked);
+  		}).change();
+
+  		// toggle other email
+		$('#OrganizationProfileEmailVendor').change(function(){
+			var selected;
+			selected = $(this).val();
+			if(selected === 'Other'){
+				$('.otherEmail').toggle(this.checked);
+			} else {
+				$('.otherEmail').hide();
+			}
+		}).change();
+
+		 // toggle server room access
+		$('#ServerRoomAccessReason').change(function(){
+			var selected;
+			selected = $(this).val();
+			if(selected === 'Other'){
+				$('.otherReason').toggle(this.checked);
+			} else {
+				$('.otherReason').hide();
+			}
+		}).change();
+
+		 // toggle server room access
+		$('#ServerRoomAccessChanged').change(function(){
+			var selected;
+			selected = $(this).val();
+			if(selected === 'Yes'){
+				$('.whatChanged').toggle(this.checked);
+			} else {
+				$('.whatChanged').hide();
+			}
+		}).change();
+
+		// toggle Ephi removed
+		$('#EphiRemovedItem, #EphiReceivedItem').change(function(){
+			var selected;
+			selected = $(this).val();
+			if(selected === 'Other'){
+				$('.otherDescription').toggle(this.checked);
+			} else {
+				$('.otherDescription').hide();
+			}
+		}).change();
+
+		// toggle Ephi removed reason
+		$('#EphiRemovedReason, #EphiReceivedReason').change(function(){
+			var selected;
+			selected = $(this).val();
+			if(selected === 'Other'){
+				$('.otherReason').toggle(this.checked);
+			} else {
+				$('.otherReason').hide();
+			}
+		}).change();
+
+
 	// Jwplayer
 	function showVideo(mp4Name) {
 		jwplayer("mediaplayer").setup({

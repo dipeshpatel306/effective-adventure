@@ -65,10 +65,58 @@ $this->Html->addCrumb('Add Organization Profile');
 		echo $this->Form->input('state', array('label' => 'State: ', 'options' => $states, 'empty' => 'Please Select One'));
 		echo $this->Form->input('zip', array('label' => 'Zip: '));
 		echo $this->Form->input('number_employees', array('label' =>'How many employees(total in the Organization?):'));
-		echo $this->Form->input('second_location', array('label' =>'Do you have a second location?', 'options' => $choice, 'empty' => 'Please Select One'));
+		echo $this->Form->input('second_location', array('label' =>'Do you have a second location?', 'type' => 'checkbox', 'value' => 'Yes', 'hiddenField' => 'No', 'class' => 'orgCheck2'));
 	?>
+
+	<div class='orgSecondLocation'>
+		<hr />
+		<h3>Second Location</h3>
+		<?php
+		echo $this->Form->input('second_address_1', array('label' => 'Address 1: '));
+		echo $this->Form->input('second_address_2', array('label' => 'Address 2: '));
+		echo $this->Form->input('second_city', array('label' => 'City: '));
+		echo $this->Form->input('second_state', array('label' => 'State: ', 'options' => $states, 'empty' => 'Please Select One'));
+		echo $this->Form->input('second_zip', array('label' => 'Zip: '));
+		echo $this->Form->input('third_location', array('label' =>'Do you have a third location?', 'type' => 'checkbox', 'value' => 'Yes', 'hiddenField' => 'No', 'class' => 'orgCheck3'));
+		?>
 	</div>
 
+	<div class='orgThirdLocation'>
+		<hr />
+		<h3>Third Location</h3>
+		<?php
+		echo $this->Form->input('third_address_1', array('label' => 'Address 1: '));
+		echo $this->Form->input('third_address_2', array('label' => 'Address 2: '));
+		echo $this->Form->input('third_city', array('label' => 'City: '));
+		echo $this->Form->input('third_state', array('label' => 'State: ', 'options' => $states, 'empty' => 'Please Select One'));
+		echo $this->Form->input('third_zip', array('label' => 'Zip: '));
+		echo $this->Form->input('fourth_location', array('label' =>'Do you have a fourth location?', 'type' => 'checkbox', 'value' => 'Yes', 'hiddenField' => 'No', 'class' => 'orgCheck4'));
+		?>
+	</div>
+	<div class='orgFourthLocation'>
+		<hr />
+		<h3>Fourth Location</h3>
+		<?php
+		echo $this->Form->input('fourth_address_1', array('label' => 'Address 1: '));
+		echo $this->Form->input('fourth_address_2', array('label' => 'Address 2: '));
+		echo $this->Form->input('fourth_city', array('label' => 'City: '));
+		echo $this->Form->input('fourth_state', array('label' => 'State: ', 'options' => $states, 'empty' => 'Please Select One'));
+		echo $this->Form->input('fourth_zip', array('label' => 'Zip: '));
+		echo $this->Form->input('fifth_location', array('label' =>'Do you have a fifth location?', 'type' => 'checkbox', 'value' => 'Yes', 'hiddenField' => 'No', 'class' => 'orgCheck5'));
+		?>
+	</div>
+	<div class='orgFifthLocation'>
+		<hr />
+		<h3>Fifth Location</h3>
+		<?php
+		echo $this->Form->input('fifth_address_1', array('label' => 'Address 1: '));
+		echo $this->Form->input('fifth_address_2', array('label' => 'Address 2: '));
+		echo $this->Form->input('fifth_city', array('label' => 'City: '));
+		echo $this->Form->input('fifth_state', array('label' => 'State: ', 'options' => $states, 'empty' => 'Please Select One'));
+		echo $this->Form->input('fifth_zip', array('label' => 'Zip: '));
+		?>
+	</div>
+	</div>
 	<div id='tab2' class='tabBox'>
 	<?php
 		echo $this->Form->input('number_of_servers', array('label' =>'How many servers do you have?'));
@@ -77,7 +125,7 @@ $this->Html->addCrumb('Add Organization Profile');
 		echo $this->Form->input('number_workstations', array('label' =>'How many workstations(desktops) do you have?'));
 		echo $this->Form->input('number_laptops', array('label' =>'How many laptops do you have?'));
 		echo $this->Form->input('os_installed', array('label' => 'Please select the operating systems your workstations and laptiops are running: ',
-								'options' => $osLong, 'multiple' => 'checkbox'));
+								'options' => $osLong, 'multiple' => 'checkbox', 'class' => 'inlinebox'));
 	?>
 	</div>
 
@@ -99,7 +147,11 @@ $this->Html->addCrumb('Add Organization Profile');
 		echo $this->Form->input('email', array('label' => 'Do you utilize Email in your organization?', 'options' => $choice, 'empty' => 'Please Select One'));
 		echo $this->Form->input('email_vendor', array('label' => 'What Email vendor and product do you use?',
 														'options' => $emailVendor, 'empty' => 'Please Select One'));
-		echo $this->Form->input('email_vendor_details', array('label' => 'List the name of the other Email vendor or provide more details: '));
+
+		echo '<div class="otherEmail">'.
+		$this->Form->input('email_vendor_details', array('label' => 'List the name of the other Email vendor or provide more details: '))
+		. "</div>";
+
 		echo $this->Form->input('email_server_location', array('label' => 'Where is your Email Server?', 'options' => $emailHost, 'empty' => 'Please Select One'));
 		echo $this->Form->input('email_details', array('label' => 'Please provide us with any additional details regarding your Email: '));
 	?>

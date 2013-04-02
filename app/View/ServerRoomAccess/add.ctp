@@ -3,7 +3,7 @@ $this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
 $this->Html->addCrumb('Server Room Access', '/server_room_access');
 $this->Html->addCrumb('Add Server Room Access');
 
-$reason = array('' => '', 'Change Backup Tape' => 'Change Backup Tape', 'Maintenance' => 'Maintenance', 'It Support' => 'It Support');
+$reason = array('' => '', 'Change Backup Tape' => 'Change Backup Tape', 'Maintenance' => 'Maintenance', 'It Support' => 'It Support', 'Other' => 'Other');
 $changed = array('' => '', 'Yes' => 'Yes', 'No' => 'No');
 
 // Conditionally load buttons based upon user role
@@ -24,12 +24,20 @@ $changed = array('' => '', 'Yes' => 'Yes', 'No' => 'No');
 	?>
 	<h2 class='highlight'>Reason</h2>
 	<?php
-		echo $this->Form->input('reason', array('label' => 'Reason for Access', 'options' => $reason));
+		echo $this->Form->input('reason', array('label' => 'Reason for Access', 'options' => $reason, 'empty' => 'Please Select'));
 	?>
+	<div class='otherReason'>
+		<?php echo $this->Form->input('other_reason', array('label' => 'Other Reasons')); ?>
+	</div>
+
 	<h2 class='highlight'>Items Changed in Server Room</h2>
 	<?php
-		echo $this->Form->input('changed', array('label' => 'Was anything changed?', 'options' => $changed));
+		echo $this->Form->input('changed', array('label' => 'Was anything changed?', 'options' => $changed, 'empty' => 'Please Select'));
 	?>
+	<div class='whatChanged'>
+		<?php echo $this->Form->input('what_changed', array('label' => 'What was changed?')); ?>
+	</div>
+
 	<h2 class='highlight'>Additional Information</h2>
 	<?php
 		echo $this->Form->input('notes', array('class' => 'ckeditor'));

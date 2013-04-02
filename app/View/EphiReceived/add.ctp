@@ -17,18 +17,28 @@ $reason = array('' => '', 'Referral from another provider' => 'Referral from ano
 
 	<h2 class='highlight'>Description and Date Received</h2>
 	<?php
-		echo $this->Form->input('item', array('Desciprtion of item received', 'options' => $item));
+		echo $this->Form->input('item', array('Desciprtion of item received', 'options' => $item, 'empty' => 'Please Select'));
+
+		echo '<div class="otherDescription">' .
+				$this->Form->input('other_description', array('label' => 'Other Description'))
+			. "</div>";
+
 		echo $this->Form->input('date_received', array('class' => 'datePick'));
 		echo $this->Form->input('time_received');
 	?>
-	<h2 class='highlight'>Description and Date Received</h2>
+	<h2 class='highlight'>Recieving Information</h2>
 	<?php
 		echo $this->Form->input('patient_name', array('label' => 'Name of patient associated with ePHI'));
 		echo $this->Form->input('where_received', array('label' => 'Where was ePHI received from?'));
 		echo $this->Form->input('received_by', array('label' => 'Who received / accepted the ePHI? '));
-		echo $this->Form->input('reason', array('label' => 'Reason for receiving ePHI', 'options' => $reason));
+		echo $this->Form->input('reason', array('label' => 'Reason for receiving ePHI', 'options' => $reason, 'empty' => 'Please Select'));
 
-
+		echo '<div class="otherReason">' .
+				$this->Form->input('other_reason', array('label' => 'Other Reason'))
+			. "</div>";
+	?>
+	<h2 class='highlight'>ePHI Returned</h2>
+	<?php
 		echo $this->Form->input('date_returned', array('label' => 'Date ePHI Returned', 'class' => 'datePick'));
 		echo $this->Form->input('time_returned');
 		echo $this->Form->input('returned_to', array('label' => 'Who was the ePhi returned to?'));

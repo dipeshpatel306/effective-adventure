@@ -18,13 +18,23 @@ $reason = array('' => '', 'Work form home' => 'Work from home', 'Transfer to ano
 
 	<h2 class='highlight'>Description and Date Removed</h2>
 	<?php
-		echo $this->Form->input('item', array('label' => 'Description of item removed', 'options' => $item));
+		echo $this->Form->input('item', array('label' => 'Description of item removed', 'options' => $item, 'empty' => 'Please Select'));
+
+		echo '<div class="otherDescription">' .
+				$this->Form->input('other_description', array('label' => 'Other Description'))
+			. "</div>";
+
 		echo $this->Form->input('date', array('label' => 'Date Removed', 'class' => 'datePick'));
 		echo $this->Form->input('time');
 	?>
 	<h2 class='highlight'>Removing Information</h2>
 	<?php
-		echo $this->Form->input('reason', array('label' => 'Reason for removing ePHI', 'options' => $reason));
+		echo $this->Form->input('reason', array('label' => 'Reason for removing ePHI', 'options' => $reason, 'empty' => 'Please Select'));
+
+		echo '<div class="otherReason">' .
+				$this->Form->input('other_reason', array('label' => 'Other Reason'))
+			. "</div>";
+
 		echo $this->Form->input('removed_by', array('label' => 'Who removed ePHI?'));
 		echo $this->Form->input('approved', array('label' => 'Who approved of removal of ePHI?'));
 	?>
