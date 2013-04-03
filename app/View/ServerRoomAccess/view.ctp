@@ -34,12 +34,14 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $serverRoomAccess['Serv
 		</dd>
 		<dt><?php echo __('Reason for Access'); ?></dt>
 		<dd>
-			<?php echo h($serverRoomAccess['ServerRoomAccess']['reason']); ?>
+			<?php echo h($serverRoomAccess['ServerRoomAccess']['reason']) . ' '; ?>
+			<?php echo h($serverRoomAccess['ServerRoomAccess']['other_reason']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Items changed in server room'); ?></dt>
 		<dd>
-			<?php echo h($serverRoomAccess['ServerRoomAccess']['changed']); ?>
+			<?php echo h($serverRoomAccess['ServerRoomAccess']['changed']) . ' '; ?>
+			<?php echo h($serverRoomAccess['ServerRoomAccess']['what_changed']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Notes'); ?></dt>

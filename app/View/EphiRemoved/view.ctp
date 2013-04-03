@@ -19,7 +19,8 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemov
 		<?php endif; ?>
 		<dt><?php echo __('Description of item removed'); ?></dt>
 		<dd>
-			<?php echo $this->Time->format('m/d/y', $ephiRemoved['EphiRemoved']['item']); ?>
+			<?php echo $this->Time->format('m/d/y', $ephiRemoved['EphiRemoved']['item']) . ' '; ?>
+			<?php echo $this->Time->format('m/d/y', $ephiRemoved['EphiRemoved']['other_description']) . ' '; ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Date'); ?></dt>
@@ -34,7 +35,8 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemov
 		</dd>
 		<dt><?php echo __('Reason for removing ePHI'); ?></dt>
 		<dd>
-			<?php echo h($ephiRemoved['EphiRemoved']['reason']); ?>
+			<?php echo h($ephiRemoved['EphiRemoved']['reason']) . ' '; ?>
+			<?php echo h($ephiRemoved['EphiRemoved']['other_reason']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Who Removed ePHI'); ?></dt>

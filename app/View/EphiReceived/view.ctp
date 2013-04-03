@@ -19,7 +19,8 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiReceived['EphiRece
 		<?php endif; ?>
 		<dt><?php echo __('Description of item received'); ?></dt>
 		<dd>
-			<?php echo $this->Time->format('m/d/y', $ephiReceived['EphiReceived']['item']); ?>
+			<?php echo $this->Time->format('m/d/y', $ephiReceived['EphiReceived']['item']) . ' '; ?>
+			<?php echo $this->Time->format('m/d/y', $ephiReceived['EphiReceived']['other_description']) . ' '; ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Date Received'); ?></dt>
@@ -50,7 +51,8 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiReceived['EphiRece
 		</dd>
 		<dt><?php echo __('Reason for receiving ePHI'); ?></dt>
 		<dd>
-			<?php echo h($ephiReceived['EphiReceived']['reason']); ?>
+			<?php echo h($ephiReceived['EphiReceived']['reason']) . ' '; ?>
+			<?php echo h($ephiReceived['EphiReceived']['other_reason']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Date ePHI returned '); ?></dt>

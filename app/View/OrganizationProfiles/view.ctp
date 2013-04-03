@@ -3,7 +3,7 @@ $this->Html->addCrumb('Organization Profiles', '/organization_profiles');
 $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Client']['name']);
 
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id'); 
+	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="organizationProfiles view">
@@ -29,7 +29,7 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 			<?php echo $this->Time->format('m/d/y g:i a',$organizationProfile['Client']['modified'], array('controller' => 'clients', 'action' => 'view', $organizationProfile['Client']['id'])); ?>
 			&nbsp;
 		</dd>
-		
+
 		<dt><?php echo __('Organization Name:'); ?></dt>
 		<dd>
 			<?php echo h($organizationProfile['OrganizationProfile']['organization_name']); ?>
@@ -45,14 +45,28 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 			<?php echo h($organizationProfile['OrganizationProfile']['administrator_email']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Administrator Phone (Primary Contact): '); ?></dt>
+		<dt>
+			<?php echo __('Administrator Phone (Primary Contact): '); ?></dt>
 		<dd>
-			<?php echo h($organizationProfile['OrganizationProfile']['administrator_phone']); ?>
+			<?php
+
+				if(!empty($organizationProfile['OrganizationProfile']['administrator_phone_ext'])){
+					$ext = ' ext. ' . $organizationProfile['OrganizationProfile']['administrator_phone_ext'];
+				} else {
+				$ext = '';
+				}
+			echo h($organizationProfile['OrganizationProfile']['administrator_phone'] . $ext); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Administrator Phone (Alternative): '); ?></dt>
 		<dd>
-			<?php echo h($organizationProfile['OrganizationProfile']['administrator_phone_alt']); ?>
+			<?php
+				if(!empty($organizationProfile['OrganizationProfile']['administrator_phone_alt_ext'])){
+					$altExt = ' ext. ' . $organizationProfile['OrganizationProfile']['administrator_phone_alt_ext'];
+				} else {
+				$altExt = '';
+				}
+			echo h($organizationProfile['OrganizationProfile']['administrator_phone_alt']) . $altExt; ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Address 1: '); ?></dt>
@@ -90,6 +104,126 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 			<?php echo h($organizationProfile['OrganizationProfile']['second_location']); ?>
 			&nbsp;
 		</dd>
+
+		<dt><?php echo __('Second Address 1: '); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['second_address_1']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Second Address 2: '); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['second_address_2']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Second City:'); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['second_city']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Second State:'); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['second_state']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Second Zip:'); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['second_zip']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Do you have a third location?'); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['third_location']); ?>
+			&nbsp;
+		</dd>
+
+		<dt><?php echo __('Third Address 1: '); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['third_address_1']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Third Address 2: '); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['third_address_2']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Third City:'); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['third_city']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Third State:'); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['third_state']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Third Zip:'); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['third_zip']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Do you have a fourth location?'); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['fourth_location']); ?>
+			&nbsp;
+		</dd>
+
+		<dt><?php echo __('Fourth Address 1: '); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['fourth_address_1']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Fourth Address 2: '); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['fourth_address_2']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Fourth City:'); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['fourth_city']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Fourth State:'); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['fourth_state']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Fourth Zip:'); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['fourth_zip']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Do you have a fifth location?'); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['fifth_location']); ?>
+			&nbsp;
+		</dd>
+
+		<dt><?php echo __('Fifth Address 1: '); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['fifth_address_1']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Fifth Address 2: '); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['fifth_address_2']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Fifth City:'); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['fifth_city']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Fifth State:'); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['fifth_state']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Fifth Zip:'); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['fifth_zip']); ?>
+			&nbsp;
+		</dd>
+
 		<dt><?php echo __('How many servers do you have?'); ?></dt>
 		<dd>
 			<?php echo h($organizationProfile['OrganizationProfile']['number_of_servers']); ?>
@@ -169,7 +303,12 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 		<dd>
 			<?php echo h($organizationProfile['OrganizationProfile']['email_vendor_details']); ?>
 			&nbsp;
-		</dd>		
+		</dd>
+		<dt><?php echo __('What Email vendor and product do you use? '); ?></dt>
+		<dd>
+			<?php echo h($organizationProfile['OrganizationProfile']['email_vendor_other']); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Where is your Email Server?'); ?></dt>
 		<dd>
 			<?php echo h($organizationProfile['OrganizationProfile']['email_server_location']); ?>

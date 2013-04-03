@@ -623,7 +623,7 @@ span.prevNext a{
 .pagination li.current a {
 	background-position:0 -12px;
 }
-button.prev, button.next{
+button.prev, button.next, button.prev:visited, button.next:visited{
 	width: 100px;
 	padding: 8px;
 	margin-left: 5px;

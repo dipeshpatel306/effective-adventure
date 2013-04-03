@@ -27,7 +27,7 @@ class EphiReceived extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'date_received' => array(
+		/*'date_received' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -76,7 +76,7 @@ class EphiReceived extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
+		),*/
 		'client_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
@@ -107,8 +107,8 @@ class EphiReceived extends AppModel {
 	);
 /**
  * Check Client Owner
- */	
+ */
 	public function isOwnedBy($id, $client){
-		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;	
+		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
 	}
 }

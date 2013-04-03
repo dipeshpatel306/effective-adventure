@@ -2,7 +2,7 @@
 $this->Html->addCrumb('Organization Profiles');
 
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id'); 
+	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="organizationProfiles index">
@@ -16,7 +16,7 @@ $this->Html->addCrumb('Organization Profiles');
 			<th><?php echo $this->Paginator->sort('administrator_email'); ?></th>
 			<th><?php echo $this->Paginator->sort('administrator_phone'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>			
+			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<!--<th><?php echo $this->Paginator->sort('address_1'); ?></th>
 			<th><?php echo $this->Paginator->sort('address_2'); ?></th>
 			<th><?php echo $this->Paginator->sort('city'); ?></th>
@@ -85,16 +85,23 @@ $this->Html->addCrumb('Organization Profiles');
 	<tr>
 		<!--<td><?php echo h($organizationProfile['OrganizationProfile']['id']); ?>&nbsp;</td>-->
 
-		
+
 		<td>
 			<?php echo $this->Html->link($organizationProfile['Client']['name'], array('controller' => 'clients', 'action' => 'view', $organizationProfile['Client']['id'])); ?>
 		</td>
+		<?php
+		if(!empty($organizationProfile['OrganizationProfile']['administrator_phone_ext'])){
+			$ext = ' ext. ' . $organizationProfile['OrganizationProfile']['administrator_phone_ext'];
+		} else {
+			$ext = '';
+		}
+		?>
 		<td><?php echo h($organizationProfile['OrganizationProfile']['organization_name']); ?>&nbsp;</td>
 		<td><?php echo h($organizationProfile['OrganizationProfile']['administrator_name']); ?>&nbsp;</td>
 		<td><?php echo h($organizationProfile['OrganizationProfile']['administrator_email']); ?>&nbsp;</td>
-		<td><?php echo h($organizationProfile['OrganizationProfile']['administrator_phone']); ?>&nbsp;</td>
+		<td><?php echo h($organizationProfile['OrganizationProfile']['administrator_phone']) . $ext; ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', ($organizationProfile['OrganizationProfile']['created'])); ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('m/d/y g:i a', ($organizationProfile['OrganizationProfile']['modified'])); ?>&nbsp;</td>		
+		<td><?php echo $this->Time->format('m/d/y g:i a', ($organizationProfile['OrganizationProfile']['modified'])); ?>&nbsp;</td>
 		<!--<td><?php echo h($organizationProfile['OrganizationProfile']['address_1']); ?>&nbsp;</td>
 		<td><?php echo h($organizationProfile['OrganizationProfile']['address_2']); ?>&nbsp;</td>
 		<td><?php echo h($organizationProfile['OrganizationProfile']['city']); ?>&nbsp;</td>
@@ -182,9 +189,9 @@ $this->Html->addCrumb('Organization Profiles');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<?php if($group == 1): ?>		
+		<?php if($group == 1): ?>
 		<li><?php echo $this->Html->link(__('New Organization Profile'), array('action' => 'add')); ?></li>
-		
+
 		<?php endif; ?>
 	</ul>
 </div>

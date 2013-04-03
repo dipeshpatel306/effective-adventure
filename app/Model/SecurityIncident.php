@@ -20,7 +20,7 @@ class SecurityIncident extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'date_of_incident' => array(
+		/*'date_of_incident' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -59,7 +59,7 @@ class SecurityIncident extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
+		),*/
 		'client_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
@@ -90,8 +90,8 @@ class SecurityIncident extends AppModel {
 	);
 /**
  * Check Client Owner
- */	
+ */
 	public function isOwnedBy($id, $client){
-		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;	
+		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
 	}
 }
