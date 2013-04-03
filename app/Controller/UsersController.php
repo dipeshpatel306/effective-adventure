@@ -12,7 +12,7 @@ class UsersController extends AppController {
 	public function beforeFilter() {
 	    parent::beforeFilter();
     	$this->Auth->allow('login', 'register', 'logout', 'forgot_password', 'reset_password');
-
+ 		//$this->Auth->autoRedirect = False;
 		// $this->Auth->scope = array('User.active' => 'No');
 	    //$this->Auth->allow('*');
 	    // Runs ACL Permission Setup. Disable when not in use
@@ -160,7 +160,6 @@ class UsersController extends AppController {
  * Login Method
  */
 	public function login() {
-
 	    if ($this->request->is('post')) {
 	        if ($this->Auth->login()) {
 
@@ -185,7 +184,7 @@ class UsersController extends AppController {
 					$this->User->id = $this->Session->read('Auth.User.id');  // Get User id
 					$this->User->saveField('last_login', $dateTime);  // Save last login to user DB
 					$this->Session->write('Auth.User.last_login', $dateTime);  // write user login into user session
-					$this->redirect($this->Auth->redirect());
+					return $this->redirect($this->Auth->redirect(array('controller' => 'dashboard', 'action' => 'index')));
 				}
 
 	        } else {
