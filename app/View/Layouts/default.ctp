@@ -55,8 +55,8 @@
 				HIPAA Secure Now! Copyright &copy; <?php echo $year; ?>
 			</div>
 			<?php // Temp debug code
-				$auth = $this->Session->read('Auth');
-				pr($auth);
+				//$auth = $this->Session->read('Auth');
+				//pr($auth);
 				//echo Configure::version();
 			?>
 		</div>
