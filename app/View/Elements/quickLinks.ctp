@@ -16,22 +16,36 @@
 	?>
 	</li>
 
-	<li><?php echo $this->Html->link('HIPAA Policies & Procedures', array('controller' => 'policies_and_procedures', 'action' => 'index')); ?></li>
+	<li>
+	<?php
+	if($acct != 'Meaningful Use'){
+		echo $this->Html->link('HIPAA Policies & Procedures', array('controller' => 'policies_and_procedures', 'action' => 'index'));
+	}
+
+	?>
+	</li>
+
 
 
 	<li>
 	<?php
-		if($acct != 'Meaningful Use'){
+		//if($acct == 'Meaningful Use'){
 		echo $this->Html->link('Risk Assessment Documents', array('controller' => 'risk_assessment_documents', 'action' => 'index'));
-		}
+		//}
 	?>
 	</li>
 
-	<li><?php echo $this->Html->link('HIPAA Security Training', array('controller' => 'education_center', 'action' => 'index')); ?></li>
-
 	<?php if($acct != 'Meaningful Use'):?>
-	<li><?php echo $this->Html->link('Security Incidents', array('controller' => 'security_incidents', 'action' => 'index')); ?></li>
+	<li><?php echo $this->Html->link('HIPAA Security Training', array('controller' => 'education_center', 'action' => 'index')); ?></li>
 	<?php endif; ?>
+
+	<!--<?php if($acct == 'Meaningful Use'):?>-->
+	<li>
+		<?php
+		echo $this->Html->link('Security Incidents', array('controller' => 'security_incidents', 'action' => 'index'));
+		?>
+	</li>
+	<!--<?php endif; ?>-->
 </ul>
 
 </div>

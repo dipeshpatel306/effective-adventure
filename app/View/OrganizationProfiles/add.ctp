@@ -138,6 +138,11 @@ $this->Html->addCrumb('Add Organization Profile');
 		echo $this->Form->input('emr_ehr_internal_name', array('label' => 'What is the internal name that you use to refer to your EMR/EHR?'));
 		echo $this->Form->input('emr_ehr_os', array('label' => 'What server operating system does your EMR/EHR run on?',
 													'options' => $os, 'empty' => 'Please Select One'));
+		echo '<div class="otherEmrOs">'.
+		$this->Form->input('emr_ehr_os_other', array('label' => 'Other EMR/EHR OS?'))
+		. '</div>';
+
+
 		echo $this->Form->input('emr_ehr_details', array('label' => 'Please enter EMR/EHR Other operating system or provide more details: '));
 		echo $this->Form->input('emr_ehr_location', array('label' => 'Where is your EMR/EHR located?', 'options' => $emrehr, 'empty' => 'Please Select One'));
 		echo $this->Form->input('emr_ehr_description', array('label' => 'Please describe where your EMR/EHR is located: '));

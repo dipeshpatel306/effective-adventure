@@ -13,21 +13,21 @@ class OrganizationProfilesController extends AppController {
  * @return void
  */
  	public function isAuthorized($user){
- 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+ 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
  		$acct = $this->Session->read('Auth.User.Client.account_type');
 		$client = $this->Auth->User('client_id');
 		if ($group == 2 || $group == 3 || $acct == 'Initial'){ //allow
-			if(in_array($this->action, array('view','add'))){  // Allow Managers to Add 
+			if(in_array($this->action, array('view','add'))){  // Allow Managers to Add
 				return true;
 			}
-			
+
 			if(in_array($this->action, array('edit', 'delete'))){ // Allow Managers to Edit, delete their own
 				$id = $this->request->params['pass'][0];
 				if($this->OrganizationProfile->isOwnedBy($id, $client)){
 					return true;
 				}
 			}
-				
+
 		}
 		return parent::isAuthorized($user);
  	}
@@ -67,14 +67,19 @@ class OrganizationProfilesController extends AppController {
 		if ($this->request->is('post')) {
 
 			// convert array of OS installed into comma separated string
-			$this->request->data['OrganizationProfile']['os_installed'] = implode(',', $this->data['OrganizationProfile']['os_installed']);
-			
+			//if(!empty( $this->request->data['OrganizationProfile']['os_installed'])){
+				$this->data['OrganizationProfile']['os_installed'] = implode(',', $this->data['OrganizationProfile']['os_installed']);
+			//}
+
+			//var_dump($this->data);
+			//pr($this->request->data['OrganizationProfile']['os_installed']);
+
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
-			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 			if($group != 1){
 				$this->request->data['OrganizationProfile']['client_id'] = $this->Auth->User('client_id');
-			}	
-			
+			}
+
 			$this->OrganizationProfile->create();
 			if ($this->OrganizationProfile->save($this->request->data)) {
 				$this->Session->setFlash('The organization profile has been saved', 'default', array('class' => 'success message'));

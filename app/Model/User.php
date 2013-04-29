@@ -31,7 +31,7 @@ class User extends AppModel {
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),		
+			),
 		),
 		'email' => array(
 			'isUnique' => array(
@@ -49,8 +49,8 @@ class User extends AppModel {
 			array(
 				'rule' => array('confirmEmail'),
 				'message' => 'The email does not match.'
-			),			
-		),		
+			),
+		),
 		'email2' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -64,7 +64,7 @@ class User extends AppModel {
 				'rule' => array('confirmEmail'),
 				'message' => 'The email does not match.'
 			),
-		),			
+		),
 		'password' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -77,7 +77,7 @@ class User extends AppModel {
 			array(
 				'rule' => array('passCompare'),
 				'message' => 'The Passwords do not match.'
-			),			
+			),
 		),
 		'password2' => array(
 			'notempty' => array(
@@ -122,7 +122,7 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),		
+		),
 		'group_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
@@ -193,25 +193,25 @@ class User extends AppModel {
 
 /**
  * Check Client Owner
- */	
+ */
 	public function isOwnedBy($id, $client){
-		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;	
+		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
 	}
 /**
  * Allow user to edit their own profile
- */ 
+ */
  	public function isUser($id){
  		return $this->field('id', array('id' => $id)) === $id;
  	}
- 
-/** 
+
+/**
  * Compare and Verify Password
  */
  public function passCompare(){
  	return $this->data['User']['password'] === $this->data['User']['password2'];
  }
 
-/** 
+/**
  * Confirm Email
  */
  public function confirmEmail(){
@@ -220,7 +220,7 @@ class User extends AppModel {
 
 /**
  * Hash password before storing in the database
- * 
+ *
  */
     public function beforeSave($options = array()) {
     	parent::beforeSave($options);
@@ -231,12 +231,12 @@ class User extends AppModel {
     }
 /**
  * Account Activation Hash method
- */	
+ */
 	public function getActivationHash(){
 		if(!isset($this->id)){
 			return false;
 		}
 		return substr(Security::hash(Configure::read('Security.salt').$this->field('created').date(Ymd)), 0, 8);
 	}
- 	
+
 }

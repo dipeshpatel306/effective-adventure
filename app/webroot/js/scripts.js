@@ -102,6 +102,17 @@ $(document).ready(function(){
 			}
 		}).change();
 
+  		// toggle other email
+		$('#OrganizationProfileEmrEhrOs').change(function(){
+			var selected;
+			selected = $(this).val();
+			if(selected === 'Other'){
+				$('.otherEmrOs').toggle(this.checked);
+			} else {
+				$('.otherEmrOs').hide();
+			}
+		}).change();
+
 		 // toggle server room access
 		$('#ServerRoomAccessReason').change(function(){
 			var selected;

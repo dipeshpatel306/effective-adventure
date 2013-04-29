@@ -14,8 +14,9 @@ $this->Html->addCrumb('Other Contracts & Documents');
 			<?php if($group ==1): ?>
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
 			<?php endif; ?>
-			<th><?php echo $this->Paginator->sort('date'); ?></th>
+
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
+			<th><?php echo $this->Paginator->sort('date'); ?></th>
 			<th><?php echo $this->Paginator->sort('attachment'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -29,8 +30,9 @@ $this->Html->addCrumb('Other Contracts & Documents');
 			<?php echo $otherContractsAndDocument['Client']['name']; ?>
 		</td>
 		<?php endif; ?>
-		<td><?php echo $this->Time->format('m/d/y', $otherContractsAndDocument['OtherContractsAndDocument']['date']); ?>&nbsp;</td>
+
 		<td><?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['name']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y', $otherContractsAndDocument['OtherContractsAndDocument']['date']); ?>&nbsp;</td>
 		<td>
 		<?php
 			$opnpLink =  preg_replace('/\/.*\//', '', $otherContractsAndDocument['OtherContractsAndDocument']['attachment']);

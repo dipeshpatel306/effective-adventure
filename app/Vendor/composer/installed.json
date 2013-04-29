@@ -352,5 +352,99 @@
             "yii",
             "zend"
         ]
+    },
+    {
+        "name": "mjohnson/uploader",
+        "version": "4.0.7",
+        "version_normalized": "4.0.7.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/milesj/Uploader.git",
+            "reference": "4.0.7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/milesj/Uploader/zipball/4.0.7",
+            "reference": "4.0.7",
+            "shasum": ""
+        },
+        "require": {
+            "composer/installers": "*",
+            "ext-curl": "*",
+            "ext-mbstring": "*",
+            "mjohnson/transit": "1.*",
+            "php": ">=5.3.3"
+        },
+        "time": "2013-03-19 19:18:18",
+        "type": "cakephp-plugin",
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Miles Johnson",
+                "homepage": "http://milesj.me"
+            }
+        ],
+        "description": "File uploader and validation plugin for CakePHP.",
+        "homepage": "http://milesj.me/code/cakephp/uploader",
+        "keywords": [
+            "attachment",
+            "cakephp",
+            "file",
+            "plugin",
+            "uploader",
+            "validation"
+        ]
+    },
+    {
+        "name": "mjohnson/decoda",
+        "version": "5.1.3",
+        "version_normalized": "5.1.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/milesj/Decoda.git",
+            "reference": "5.1.3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/milesj/Decoda/zipball/5.1.3",
+            "reference": "5.1.3",
+            "shasum": ""
+        },
+        "require": {
+            "ext-mbstring": "*",
+            "php": ">=5.3.0"
+        },
+        "time": "2013-03-29 06:50:18",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Decoda": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Miles Johnson",
+                "homepage": "http://milesj.me"
+            }
+        ],
+        "description": "A lightweight lexical string parser for BBCode styled markup.",
+        "homepage": "http://milesj.me/code/php/decoda",
+        "keywords": [
+            "HOOK",
+            "bbcode",
+            "decoda",
+            "filter",
+            "markup",
+            "parser"
+        ]
     }
 ]

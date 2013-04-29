@@ -37,6 +37,8 @@
 	<h2><?php echo __('Compliance Portal Dashboard'); ?></h2>
 
 	<?php
+
+	if($group != 3){
 		echo $this->Html->link( // Organization Profile
 					'<div class="dashBox">' .
 					'<div class="dashHead">' .
@@ -66,6 +68,7 @@
 					$riskAss,
 					array('escape' => false)
 			);
+	}
 
 
 		echo $this->Html->link( // Upload Other Policies and Procedures

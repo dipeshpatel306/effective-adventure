@@ -2,7 +2,7 @@
 $this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
 $this->Html->addCrumb('Policies & Procedures Documents');
 
-	$group = $this->Session->read('Auth.User.group_id'); 
+	$group = $this->Session->read('Auth.User.group_id');
 ?>
 
 
@@ -10,7 +10,7 @@ $this->Html->addCrumb('Policies & Procedures Documents');
 	<h2><?php echo __('Policies And Procedures Documents'); ?></h2>
 	<table>
 	<tr>
-			<th><?php echo $this->Paginator->sort('client_id'); ?></th>			
+			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('policies_and_procedure_id'); ?></th>
 
 			<th><?php echo $this->Paginator->sort('document'); ?></th>
@@ -29,10 +29,10 @@ $this->Html->addCrumb('Policies & Procedures Documents');
 		</td>
 
 		<td>
-		<?php 
+		<?php
 			$docLink =  preg_replace('/\/.*\//', '', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document']);
 			echo $this->Html->link($docLink, $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document']);
-		?>	
+		?>
 		<td><?php echo $this->Time->format('m/d/y g:i a',$policiesAndProceduresDocument['PoliciesAndProceduresDocument']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a',$policiesAndProceduresDocument['PoliciesAndProceduresDocument']['modified']); ?>&nbsp;</td>
 		<td class="actions">
@@ -60,7 +60,7 @@ $this->Html->addCrumb('Policies & Procedures Documents');
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
-	
+
 		<?php if($group ==1): ?>
 		<ul>
 		<li><?php echo $this->Html->link(__('New Document'), array('action' => 'add')); ?></li>
@@ -69,7 +69,7 @@ $this->Html->addCrumb('Policies & Procedures Documents');
 		<ul>
 		<li><?php echo $this->Html->link(__('List Policies And Procedures'), array('controller' => 'policies_and_procedures', 'action' => 'index')); ?> </li>
 		<?php if($group == 1): ?>
-		<ul>	
+		<ul>
 		<li><?php echo $this->Html->link(__('New Policies And Procedure'), array('controller' => 'policies_and_procedures', 'action' => 'add')); ?> </li>
 		</ul>
 		<?php endif; ?>

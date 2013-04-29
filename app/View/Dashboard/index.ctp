@@ -49,7 +49,7 @@
 					'<div class="dashHead">' .
 					$this->Html->image('pnp_tile.jpg', array(
 								'class' => 'dashTile',
-								'alt' => 'HIPAA Policies & Procedures'
+								'alt' => 'Policies & Procedures'
 								)) .
 					'<h3>HIPAA Policies & Procedures</h3>' .
 					'</div>' .
@@ -174,7 +174,7 @@
 					array('escape' => false)
 			);*/
 
-
+		if($group != 3){
 		echo $this->Html->link( // Risk Assessment Questionnaire
 					'<div class="dashBox">' .
 					'<div class="dashHead">' .
@@ -204,6 +204,8 @@
 					$orgPro,
 					array('escape' => false)
 			);
+		}
+
 
 
 		if(!empty($partner) && ($partner != 0)){

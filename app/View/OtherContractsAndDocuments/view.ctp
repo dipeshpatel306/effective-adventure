@@ -18,11 +18,7 @@ $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['n
 			&nbsp;
 		</dd>
 		<?php endif; ?>
-		<dt><?php echo __('Date'); ?></dt>
-		<dd>
-			<?php echo $this->Time->format('m/d/y', $otherContractsAndDocument['OtherContractsAndDocument']['date']); ?>
-			&nbsp;
-		</dd>
+
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
 			<?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['name']); ?>
@@ -31,6 +27,11 @@ $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['n
 		<dt><?php echo __('Description'); ?></dt>
 		<dd>
 			<?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['description']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Date'); ?></dt>
+		<dd>
+			<?php echo $this->Time->format('m/d/y', $otherContractsAndDocument['OtherContractsAndDocument']['date']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Details'); ?></dt>

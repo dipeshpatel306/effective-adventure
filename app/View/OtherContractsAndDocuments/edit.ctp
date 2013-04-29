@@ -12,10 +12,10 @@ $this->Html->addCrumb('Edit Other Contract & Document');
 		<legend><?php echo __('Edit Other Contracts And Documents'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('date', array('class' => 'datePick'));
+
 		echo $this->Form->input('name');
 		echo $this->Form->input('description', array('class' => 'ckeditor'));
-
+		echo $this->Form->input('date', array('class' => 'datePick'));
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		if($client == 1){  // if admin allow to choose
 			echo $this->Form->input('client_id', array('empty' => 'Please Select'));

@@ -17,11 +17,7 @@ $this->Html->addCrumb($disasterRecoveryPlan['DisasterRecoveryPlan']['name']);
 			&nbsp;
 		</dd>
 		<?php endif; ?>
-		<dt><?php echo __('Date'); ?></dt>
-		<dd>
-			<?php echo $this->Time->format('m/d/y', $disasterRecoveryPlan['DisasterRecoveryPlan']['date']); ?>
-			&nbsp;
-		</dd>
+
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
 			<?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['name']); ?>
@@ -32,7 +28,11 @@ $this->Html->addCrumb($disasterRecoveryPlan['DisasterRecoveryPlan']['name']);
 			<?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['description']); ?>
 			&nbsp;
 		</dd>
-
+		<dt><?php echo __('Date'); ?></dt>
+		<dd>
+			<?php echo $this->Time->format('m/d/y', $disasterRecoveryPlan['DisasterRecoveryPlan']['date']); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
 			<?php echo $this->Time->format('m/d/y g:i a', $disasterRecoveryPlan['DisasterRecoveryPlan']['created']); ?>

@@ -19,6 +19,22 @@ class UsersController extends AppController {
 	    //$this->Auth->allow('initDB');
 	}
 
+	public function beforeValidate(array $options = array()){
+		if ($this->request->is('post') || $this->request->is('put')) {
+
+		// bypass email comparison for admin
+			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
+			if($group == 1){
+				$this->request->data['User']['email2'] = $this->request->data['User']['email'];
+				return true;
+			}
+
+		}
+
+		//pr($Group);
+
+	 	return true;
+	}
 
 /**
  * Acl Setup Permissions. Comment out when not is use.
@@ -454,6 +470,50 @@ class UsersController extends AppController {
 
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 
+
+			if($group != 1){
+				$this->request->data['User']['client_id'] = $this->Auth->User('client_id');
+
+				/*if($this->request->data['User']['group_id'] == 1){  // If client tries to spoof Hipaa admin group redirect them
+					$this->redirect(array('action' => 'index'));
+					$this->Session->setFlash(__('You are not authorized to do that!'));
+				}*/
+				$this->request->data['User']['group_id'] = $this->Session->read('Auth.User.group_id');
+
+			}
+
+			if ($this->User->save($this->request->data)) {
+				$this->Session->setFlash('The user has been saved', 'default', array('class' => 'success message'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+			}
+		} else {
+			$this->request->data = $this->User->read(null, $id);
+		}
+		$groups = $this->User->Group->find('list');
+		$clients = $this->User->Client->find('list');
+		$this->set(compact('groups', 'clients'));
+		unset($this->request->data['User']['password']); // todo implement better password handling for edit
+	}
+
+/**
+ * admin edit method. Does not require password or email
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function admin_edit($id = null) {
+		$this->User->id = $id;
+		if (!$this->User->exists()) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+
+
+		if ($this->request->is('post') || $this->request->is('put')) {
+
+			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 
 			if($group != 1){
 				$this->request->data['User']['client_id'] = $this->Auth->User('client_id');

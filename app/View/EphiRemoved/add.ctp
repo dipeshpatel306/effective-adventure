@@ -12,7 +12,7 @@ $reason = array('' => '', 'Work form home' => 'Work from home', 'Transfer to ano
 ?>
 <div class="ephiRemoved form">
 <?php echo $this->Form->create('EphiRemoved'); ?>
-	<h2>Tracked ePHI removed from organization </h2>
+	<h2><strong>Tracked ePHI removed from organization </strong></h2>
 	<fieldset>
 		<legend><?php echo __('Add Ephi Removed'); ?></legend>
 
