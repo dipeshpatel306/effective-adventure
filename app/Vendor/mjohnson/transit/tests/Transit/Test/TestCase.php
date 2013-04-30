@@ -62,6 +62,33 @@ class TestCase extends \PHPUnit_Framework_TestCase {
 	 */
 	protected function tearDown() {
 		@unlink($this->tempFile);
+		clearstatcache();
+	}
+
+	/**
+	 * Check S3 credentials.
+	 */
+	protected function checkS3() {
+		if (!AWS_ACCESS || !AWS_SECRET) {
+			$this->markTestSkipped('Please provide AWS access credentials to run these tests');
+		}
+
+		if (!S3_BUCKET || !S3_REGION) {
+			$this->markTestSkipped('Please provide an S3 bucket and region to run these tests');
+		}
+	}
+
+	/**
+	 * Check Glacier credentials.
+	 */
+	protected function checkGlacier() {
+		if (!AWS_ACCESS || !AWS_SECRET) {
+			$this->markTestSkipped('Please provide AWS access credentials to run these tests');
+		}
+
+		if (!GLACIER_VAULT || !GLACIER_REGION) {
+			$this->markTestSkipped('Please provide a Glacier vault and region to run these tests');
+		}
 	}
 
 }

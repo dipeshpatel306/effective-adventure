@@ -236,17 +236,22 @@ class Transit {
 		$url = $this->_data;
 		$name = pathinfo(parse_url($url, PHP_URL_PATH), PATHINFO_BASENAME);
 
+		if (!$name) {
+			$name = md5(microtime(true));
+		}
+
 		// Fetch the remote file
 		$curl = curl_init($url);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
 		curl_setopt($curl, CURLOPT_FAILONERROR, true);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 		$response = curl_exec($curl);
+		$error = curl_error($curl);
+		curl_close($curl);
 
 		// Save the file locally
-		if (!curl_error($curl)) {
-			curl_close($curl);
-
+		if (!$error) {
 			$target = $this->findDestination($name, $overwrite);
 
 			if (file_put_contents($target, $response)) {
@@ -254,11 +259,9 @@ class Transit {
 
 				return true;
 			}
-		} else {
-			curl_close($curl);
 		}
 
-		throw new IoException(sprintf('Failed to import %s from remote location', $name));
+		throw new IoException(sprintf('Failed to import %s from remote location: %s', $name, $error));
 	}
 
 	/**

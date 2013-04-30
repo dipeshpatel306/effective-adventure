@@ -227,7 +227,7 @@ class FileValidationBehavior extends ModelBehavior {
 	 */
 	public function required(Model $model, $data, $required = true) {
 		foreach ($data as $field => $value) {
-			if ($required && (!$value || empty($value['tmp_name']))) {
+			if ($required && $this->_isEmpty($value)) {
 				return false;
 			}
 		}
@@ -297,7 +297,21 @@ class FileValidationBehavior extends ModelBehavior {
 
 			if ($validations) {
 				if (!empty($model->validate[$field])) {
-					$validations = $validations + $model->validate[$field];
+					$currentRules = $model->validate[$field];
+
+					// Fix single rule validate
+					if (isset($currentRules['rule'])) {
+						$currentRules = array(
+							$currentRules['rule'] => $currentRules
+						);
+					}
+
+					$validations = $currentRules + $validations;
+				}
+
+				// Remove notEmpty for uploads
+				if (isset($model->data[$model->alias][$field]['tmp_name']) && isset($validations['notEmpty'])) {
+					unset($validations['notEmpty']);
 				}
 
 				$this->_validations[$field] = $validations;
@@ -335,7 +349,7 @@ class FileValidationBehavior extends ModelBehavior {
 			$rule = $this->_validations[$field]['required'];
 			$required = isset($rule['rule'][1]) ? $rule['rule'][1] : true;
 
-			if (empty($value['tmp_name'])) {
+			if ($this->_isEmpty($value)) {
 				if ($rule['allowEmpty']) {
 					return true;
 
@@ -349,13 +363,16 @@ class FileValidationBehavior extends ModelBehavior {
 	}
 
 	/**
-	 * Parse out the extension.
+	 * Check if a file input field is empty.
 	 *
-	 * @param string $path
-	 * @return string
+	 * @param string|array $value
+	 * @return bool
 	 */
-	protected function _ext($path) {
-		return mb_strtolower(pathinfo($path, PATHINFO_EXTENSION));
+	protected function _isEmpty($value) {
+		return (
+			is_array($value) && empty($value['tmp_name']) || // uploads
+			is_string($value) && !$value // imports
+		);
 	}
 
 	/**
@@ -373,54 +390,50 @@ class FileValidationBehavior extends ModelBehavior {
 			if ($this->_allowEmpty($model, $field, $value)) {
 				return true;
 
-			} else if (empty($value['tmp_name'])) {
+			} else if ($this->_isEmpty($value)) {
 				return false;
 			}
 
-			// Extension is special as the tmp_name uses the .tmp extension
-			if ($method === 'ext') {
-				return in_array($this->_ext($value['name']), $params[0]);
+			$file = null;
 
-			// Use robust validator
-			} else {
-				$file = null;
+			// Upload, use temp file
+			if (is_array($value)) {
+				$file = new File($value['tmp_name']);
 
-				// Upload, use temp file
-				if (is_array($value)) {
-					$file = new File($value['tmp_name']);
+			// Import, copy file for validation
+			} else if (preg_match('/^http/i', $value)) {
+				$target = TMP . md5($value);
 
-				// Import, copy file for validation
-				} else if (preg_match('/^http/', $value)) {
-					$target = TMP . md5($value) . '.' . $this->_ext($value);
+				// Already imported from previous validation
+				if (file_exists($target)) {
+					$file = new File($target);
 
-					// Already imported from previous validation
-					if (file_exists($target)) {
-						$file = new File($target);
+				// Attempt to copy
+				} else {
+					$transit = new \Transit\Transit($value);
+					$transit->setDirectory(TMP);
 
-					// Attempt to copy
-					} else if (copy($value, $target)) {
-						$file = new File($target);
-
-					// Delete just in case
-					} else {
-						@unlink($target);
-					}
-
-					// Save temp so we can delete later
-					if ($file) {
-						$this->_tempFile = $file;
+					if ($transit->importFromRemote()) {
+						$file = $transit->getOriginalFile();
+						$file->rename(basename($target));
 					}
 				}
 
-				if (!$file) {
-					throw new UnexpectedValueException('Invalid upload or import for validation');
+				// Save temp so we can delete later
+				if ($file) {
+					$this->_tempFile = $file;
 				}
-
-				$validator = new ImageValidator();
-				$validator->setFile($file);
-
-				return call_user_func_array(array($validator, $method), $params);
 			}
+
+			if (!$file) {
+				$this->log(sprintf('Invalid upload or import for validation: %s', json_encode($value)), LOG_DEBUG);
+				return false;
+			}
+
+			$validator = new ImageValidator();
+			$validator->setFile($file);
+
+			return call_user_func_array(array($validator, $method), $params);
 		}
 
 		return false;

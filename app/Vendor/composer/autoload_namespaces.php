@@ -7,10 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Transit' => $vendorDir . '/mjohnson/transit/src',
-    'Symfony\\Component\\EventDispatcher\\' => $vendorDir . '/symfony/event-dispatcher',
-    'Guzzle\\Tests' => $vendorDir . '/guzzle/guzzle/tests',
-    'Guzzle' => $vendorDir . '/guzzle/guzzle/src',
-    'Decoda' => $vendorDir . '/mjohnson/decoda/src',
     'Composer\\Installers\\' => $vendorDir . '/composer/installers/src',
-    'Aws' => $vendorDir . '/aws/aws-sdk-php/src',
 );

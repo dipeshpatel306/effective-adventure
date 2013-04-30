@@ -47,6 +47,9 @@ class AppController extends Controller {
 		$email = $this->Session->read('Auth.User.email');
 		//$this->Cookie->write('u', $email, 0, '/', '.hipaasecurenow');
 		setcookie('u', $email, 0, '/', '.hipaasecurenow.com');
+
+		// needed? without causing blackhole errors, likely because idiotically no data is required in some forms as per request
+		$this->Security->csrfCheck = false;
     }
 
 	public function isAuthorized($user){

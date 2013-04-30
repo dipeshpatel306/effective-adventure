@@ -17,14 +17,16 @@ class S3TransporterTest extends TestCase {
 	 * Test that uploading a file to S3 returns a URL and deleting the file via the URL works.
 	 */
 	public function testTransportAndDelete() {
+		$this->checkS3();
+
 		$object = new S3Transporter(AWS_ACCESS, AWS_SECRET, array(
 			'bucket' => S3_BUCKET,
 			'region' => S3_REGION
 		));
 
 		try {
-			if ($response = $object->transport(new File($this->baseFile))) {
-				$this->assertEquals($response, sprintf('https://s3.amazonaws.com/%s/%s', S3_BUCKET, basename($this->baseFile)));
+			if ($response = $object->transport(new File($this->tempFile))) {
+				$this->assertEquals($response, sprintf('https://s3.amazonaws.com/%s/%s', S3_BUCKET, basename($this->tempFile)));
 			} else {
 				$this->assertTrue(false);
 			}
@@ -41,6 +43,8 @@ class S3TransporterTest extends TestCase {
 	 * Test that parsing S3 URLs returns the bucket and key.
 	 */
 	public function testParseUrl() {
+		$this->checkS3();
+
 		$object = new S3Transporter(AWS_ACCESS, AWS_SECRET, array(
 			'bucket' => S3_BUCKET,
 			'region' => S3_REGION

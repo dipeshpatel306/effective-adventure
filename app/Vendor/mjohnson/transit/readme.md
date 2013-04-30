@@ -1,4 +1,4 @@
-# Transit v1.0.5 #
+# Transit v1.1.0 [![Build Status](https://travis-ci.org/milesj/Transit.png?branch=master)](https://travis-ci.org/milesj/Transit) #
 
 A lightweight file uploader that also provides extended support for file validation,
 file transformation (image resizing, cropping, etc) and file transportation (moving
@@ -7,9 +7,11 @@ files to Amazon S3 or another external storage system).
 ## Requirements ##
 
 * PHP 5.3.3
+	* Fileinfo
 	* Multibyte
 	* Curl
 * Composer
+	* AWS PHP SDK v2.2+
 
 ## Features ##
 

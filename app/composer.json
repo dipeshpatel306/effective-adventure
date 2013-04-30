@@ -3,7 +3,6 @@
 		"vendor-dir": "Vendor"
 	},
 	"require": {
-		"mjohnson/uploader": "4.*",
-		"mjohnson/decoda": "5.*"
+		"mjohnson/uploader": "4.*"
 	}
 }

@@ -60,9 +60,9 @@ class OtherContractsAndDocument extends AppModel {
 	);
 /*
  * Upload behavior
- * 
+ *
  */
-	public $actsAs = array( 
+	public $actsAs = array(
 		'Uploader.Attachment' => array(
 			'attachment' => array(
 				//'name'		=> 'formatFileName',	// Name of the function to use to format filenames
@@ -91,28 +91,28 @@ class OtherContractsAndDocument extends AppModel {
 		'Uploader.FileValidation' => array(
 			'attachment' => array(
 				'extension' => array(
-					'value' => array('doc', 'docx', 'dot', 'pdf'),
-					'error'	=> 'File must me .pdf, .doc, .docx or .dot'
+					'value' => array('doc', 'docx', 'dot', 'pdf')
+					//'error'	=> 'File must me .pdf, .doc, .docx or .dot'
 				)
 			)
 		)
 	);
-	
+
 /**
  * Change file directory to that of client
- * 
+ *
  */
-public function beforeUpload($options){ 
-	$key = $this->data['OtherContractsAndDocument']['file_key'];	
+public function beforeUpload($options){
+	$key = $this->data['OtherContractsAndDocument']['file_key'];
 	$client = $this->data['OtherContractsAndDocument']['client_id']; // check client id
 	$options['uploadDir'] = "/documents/other_contracts_and_documents/$client/$key/" ;
 	return $options;
-}		
+}
 /**
  * Check Client Owner
- */	
+ */
 	public function isOwnedBy($id, $client){
-		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;	
+		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
 	}
 
 }

@@ -240,7 +240,7 @@ class AttachmentBehavior extends ModelBehavior {
 					$response = $transit->upload($overwrite);
 
 				// Remote import
-				} else if (strpos($file, 'http') === 0) {
+				} else if (preg_match('/^http/i', $file)) {
 					$response = $transit->importFromRemote($overwrite);
 
 				// Local import
@@ -254,6 +254,7 @@ class AttachmentBehavior extends ModelBehavior {
 
 				// Successful upload or import
 				if ($response) {
+					$dbColumnMap = array($attachment['dbColumn']);
 
 					// Rename and move file
 					$data[$attachment['dbColumn']] = $this->_renameAndMove($model, $transit->getOriginalFile(), $attachment);
@@ -268,8 +269,11 @@ class AttachmentBehavior extends ModelBehavior {
 						foreach ($attachment['transforms'] as $transform) {
 							if ($transform['self']) {
 								$tempFile = $transit->getOriginalFile();
+								$dbColumnMap[0] = $transform['dbColumn'];
+
 							} else {
 								$tempFile = $transformedFiles[$count];
+								$dbColumnMap[] = $transform['dbColumn'];
 								$count++;
 							}
 
@@ -282,16 +286,8 @@ class AttachmentBehavior extends ModelBehavior {
 					// Transport the files and save their remote path
 					if ($attachment['transport']) {
 						if ($transportedFiles = $transit->transport()) {
-							$transformSchemas = array_values($attachment['transforms']);
-
 							foreach ($transportedFiles as $i => $transportedFile) {
-								if ($i === 0) {
-									$dbColumn = $attachment['dbColumn'];
-								} else {
-									$dbColumn = $transformSchemas[($i - 1)]['dbColumn'];
-								}
-
-								$data[$dbColumn] = $transportedFile;
+								$data[$dbColumnMap[$i]] = $transportedFile;
 							}
 						}
 					}
@@ -299,16 +295,22 @@ class AttachmentBehavior extends ModelBehavior {
 
 			// Trigger form errors if validation fails
 			} catch (ValidationException $e) {
+				$dbColumns = array_merge(array($attachment['dbColumn']), array_keys($attachment['transforms']));
+
+				foreach ($dbColumns as $dbCol) {
+					unset($model->data[$alias][$dbCol]);
+				}
+
+				// Allow empty uploads
 				if ($attachment['allowEmpty']) {
-					if (empty($attachment['defaultPath']) || $model->id) {
-						unset($model->data[$alias][$attachment['dbColumn']]);
-					} else {
+					if (!empty($attachment['defaultPath']) && !$model->id) {
 						$model->data[$alias][$attachment['dbColumn']] = $attachment['defaultPath'];
 					}
 
 					continue;
 				}
 
+				// Invalidate and stop
 				$model->invalidate($field, __d('uploader', $e->getMessage()));
 
 				if ($attachment['stopSave']) {
@@ -323,6 +325,10 @@ class AttachmentBehavior extends ModelBehavior {
 
 				// Rollback the files since it threw errors
 				$transit->rollback();
+
+				if ($attachment['stopSave']) {
+					return false;
+				}
 			}
 
 			// Save file meta data

@@ -1,5 +1,7 @@
 <?php
 App::uses('AppModel', 'Model');
+//App::uses('AttachmentBehavior', 'Uploader.Model/Behavior');
+//App::uses('FileValidationBehavior', 'Uploader.Model/Behavior');
 /**
  * BusinessAssociateAgreement Model
  *
@@ -20,7 +22,7 @@ class BusinessAssociateAgreement extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'business_name' => array(
+/*		'business_name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -30,7 +32,7 @@ class BusinessAssociateAgreement extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-/*		'business_address' => array(
+		'business_address' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -129,7 +131,7 @@ class BusinessAssociateAgreement extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
+		),*/
 		'client_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
@@ -139,7 +141,7 @@ class BusinessAssociateAgreement extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),*/
+		),
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -164,9 +166,42 @@ class BusinessAssociateAgreement extends AppModel {
  *
  */
 	public $actsAs = array(
+
+		'Uploader.FileValidation' => array(
+			'attachment' => array(
+				'extension'	=> array(
+					'value' => array('doc', 'docx', 'dot', 'pdf')
+					),
+
+				/*'required' => array(
+					'value' => false,
+					'on' => 'update',
+					'allowEmpty' => true
+				)*/
+			)
+
+		),
+
 		'Uploader.Attachment' => array(
 			'attachment' => array(
+				'nameCallback' => 'formatFileName',
+				'append' => '',
+				'prepend' => '',
+				'tempDir' => TMP,
+				'uploadDir'	=> 'webroot/documents/',
+				'finalPath' => '',
+				'dbColumn' => 'attachment',
+				'metaColumns' => array(),
+				'defaultPath' => '',
+				'overwrite' => true,
+				'stopSave' => true,
+				'allowEmpty' => true,
+				'transforms' => array(),
+				'transport' => array()
+
+
 				//'name'		=> 'formatFileName',	// Name of the function to use to format filenames
+				/*'overwrite' => true,
 				'baseDir'	=> '',			// See UploaderComponent::$baseDir
 				'uploadDir'	=> '/documents/',			// See UploaderComponent::$uploadDir
 				'dbColumn'	=> 'attachment',	// The database column name to save the path to
@@ -186,17 +221,11 @@ class BusinessAssociateAgreement extends AppModel {
 					'width' => '',
 					'height' => '',
 					'filesize' => ''
-				)
-			)
-		),
-		'Uploader.FileValidation' => array(
-			'attachment' => array(
-				'extension' => array(
-					'value' => array('doc', 'docx', 'dot', 'pdf'),
-					'error'	=> 'File must me .pdf, .doc, .docx or .dot'
-				)
+				)*/
 			)
 		)
+
+
 	);
 
 /**
@@ -209,8 +238,12 @@ public function beforeUpload($options){
 
 	$key = $this->data['BusinessAssociateAgreement']['file_key'];
 
-	$options['uploadDir'] = "/documents/business_associate_agreements/$client/$key/" ;
+	$options['uploadDir'] =  "/documents/business_associate_agreements/$client/$key/";
+//print_r($options);
+//exit();
 	return $options;
+
+
 }
 
 /**

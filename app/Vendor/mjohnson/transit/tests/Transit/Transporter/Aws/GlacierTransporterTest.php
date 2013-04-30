@@ -17,13 +17,15 @@ class GlacierTransporterTest extends TestCase {
 	 * Test that uploading a file to Glacier returns an archive ID and deleting the file via the ID works.
 	 */
 	public function testTransportAndDelete() {
+		$this->checkGlacier();
+
 		$object = new GlacierTransporter(AWS_ACCESS, AWS_SECRET, array(
 			'vault' => GLACIER_VAULT,
 			'region' => GLACIER_REGION
 		));
 
 		try {
-			if ($response = $object->transport(new File($this->baseFile))) {
+			if ($response = $object->transport(new File($this->tempFile))) {
 				$this->assertNotEmpty($response);
 			} else {
 				$this->assertTrue(false);

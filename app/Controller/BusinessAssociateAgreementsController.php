@@ -10,7 +10,7 @@ class BusinessAssociateAgreementsController extends AppController {
  public function beforeFilter(){
 	parent::beforeFilter();
  }
- 
+
 /**
  * isAuthorized Method
  * Allows Hippa Admin to Add, Edit, Delete Everything
@@ -19,15 +19,15 @@ class BusinessAssociateAgreementsController extends AppController {
  * @return void
  */
  	public function isAuthorized($user){
- 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+ 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
-		$acct = $this->Session->read('Auth.User.Client.account_type'); // Get account type 
-		
+		$acct = $this->Session->read('Auth.User.Client.account_type'); // Get account type
+
 		if($group == 2){
-			if(in_array($this->action, array('index', 'view','add'))){  // Allow Managers to Add 
+			if(in_array($this->action, array('index', 'view','add'))){  // Allow Managers to Add
 				return true;
 			}
-				
+
 			if(in_array($this->action, array('edit', 'delete'))){ // Allow Managers to Edit, delete their own
 				$id = $this->request->params['pass'][0];
 				if($this->BusinessAssociateAgreement->isOwnedBy($id, $client)){
@@ -35,7 +35,7 @@ class BusinessAssociateAgreementsController extends AppController {
 				}
 			}
 		}
-		
+
 		if($group == 3 || $acct == 'Initial'){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
@@ -51,13 +51,13 @@ class BusinessAssociateAgreementsController extends AppController {
  * @return void
  */
 	public function index() {
-		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
- 
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+
 		if($group == 1){
 			$this->BusinessAssociateAgreement->recursive = 0;
-			$this->paginate = array('order' => array('BusinessAssociateAgreement.client_id' => 'ASC'));			
-			$this->set('businessAssociateAgreements', $this->paginate());			
+			$this->paginate = array('order' => array('BusinessAssociateAgreement.client_id' => 'ASC'));
+			$this->set('businessAssociateAgreements', $this->paginate());
 		}elseif($group == 2) {
 			$this->paginate = array(
 				'conditions' => array('BusinessAssociateAgreement.client_id' => $client),
@@ -78,9 +78,9 @@ class BusinessAssociateAgreementsController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
-		
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+
 		$this->BusinessAssociateAgreement->id = $id;
 		if (!$this->BusinessAssociateAgreement->exists()) {
 			throw new NotFoundException(__('Invalid Business Associate Agreement'));
@@ -95,17 +95,17 @@ class BusinessAssociateAgreementsController extends AppController {
 					'AND' => array('BusinessAssociateAgreement.client_id' => $client)
 				)
 			));
-			
+
 			if($is_authorized){
 				$this->set('businessAssociateAgreement', $this->BusinessAssociateAgreement->read(null, $id));
 			} else { // Else Banned!
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
-			} 
-		} else { 
+			}
+		} else {
 			$this->Session->setFlash('You are not authorized to view that!');
 			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
-		}	
+		}
 	}
 
 /**
@@ -115,9 +115,9 @@ class BusinessAssociateAgreementsController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
-			
+
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
-			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 			if($group != 1){
 				$this->request->data['BusinessAssociateAgreement']['client_id'] = $this->Auth->User('client_id');
 				$this->request->data['BusinessAssociateAgreement']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
@@ -129,7 +129,7 @@ class BusinessAssociateAgreementsController extends AppController {
 							));
 				$this->request->data['BusinessAssociateAgreement']['file_key'] = $key['Client']['file_key'];
 			}
-		
+
 			$this->BusinessAssociateAgreement->create();
 			if ($this->BusinessAssociateAgreement->save($this->request->data)) {
 				$this->Session->setFlash('The business associate agreement has been saved', 'default', array('class' => 'success message'));
@@ -156,10 +156,10 @@ class BusinessAssociateAgreementsController extends AppController {
 		}
 
 		if ($this->request->is('post') || $this->request->is('put')) {
-			
-				$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+
+				$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 				if($group != 1){
-					$this->request->data['BusinessAssociateAgreement']['client_id'] = $this->Auth->User('client_id');			
+					$this->request->data['BusinessAssociateAgreement']['client_id'] = $this->Auth->User('client_id');
 					$this->request->data['BusinessAssociateAgreement']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
 				}else {
 						$this->loadModel('Client');
@@ -168,8 +168,8 @@ class BusinessAssociateAgreementsController extends AppController {
 									'fields' => 'Client.file_key'
 									));
 						$this->request->data['BusinessAssociateAgreement']['file_key'] = $key['Client']['file_key'];
-				}			
-			
+				}
+
 			if ($this->BusinessAssociateAgreement->save($this->request->data)) {
 				$this->Session->setFlash('The business associate agreement has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
