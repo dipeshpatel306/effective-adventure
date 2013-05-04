@@ -79,15 +79,48 @@ class PoliciesAndProceduresDocument extends AppModel {
 
 /*
  * Upload behavior
- * 
+ *
  */
-	public $actsAs = array( 
+	public $actsAs = array(
+
+		'Uploader.FileValidation' => array(
+			'attachment' => array(
+				'extension'	=> array(
+					'value' => array('doc', 'docx', 'dot', 'pdf')
+					),
+
+				/*'required' => array(
+					'value' => false,
+					'on' => 'update',
+					'allowEmpty' => true
+				)*/
+			)
+
+		),
+
 		'Uploader.Attachment' => array(
-			'document' => array(
+			'attachment' => array(
+				'nameCallback' => 'formatFileName',
+				'append' => '',
+				'prepend' => '',
+				'tempDir' => TMP,
+				//'uploadDir'	=> 'webroot/documents/',
+				//'finalPath' => '',
+				'dbColumn' => 'attachment',
+				'metaColumns' => array(),
+				'defaultPath' => '',
+				'overwrite' => true,
+				'stopSave' => true,
+				'allowEmpty' => true,
+				'transforms' => array(),
+				'transport' => array()
+
+
 				//'name'		=> 'formatFileName',	// Name of the function to use to format filenames
+				/*'overwrite' => true,
 				'baseDir'	=> '',			// See UploaderComponent::$baseDir
 				'uploadDir'	=> '/documents/',			// See UploaderComponent::$uploadDir
-				'dbColumn'	=> 'document',	// The database column name to save the path to
+				'dbColumn'	=> 'attachment',	// The database column name to save the path to
 				'importFrom'	=> '',			// Path or URL to import file
 				'defaultPath'	=> '',			// Default file path if no upload present
 				'maxNameLength'	=> 100,			// Max file name length
@@ -104,27 +137,24 @@ class PoliciesAndProceduresDocument extends AppModel {
 					'width' => '',
 					'height' => '',
 					'filesize' => ''
-				)
-			)
-		),
-		'Uploader.FileValidation' => array(
-			'document' => array(
-				'extension' => array(
-					'value' => array('doc', 'docx', 'dot', 'pdf'),
-					'error'	=> 'File must me .pdf, .doc, .docx or .dot'
-				)
+				)*/
 			)
 		)
+
+
 	);
-	
+
+
 /**
  * Change file directory to that of client
- * 
+ *
  */
-public function beforeUpload($options){ 
-	$key = $this->data['PoliciesAndProceduresDocument']['file_key'];	
+public function beforeUpload($options){
+	$key = $this->data['PoliciesAndProceduresDocument']['file_key'];
 	$client = $this->data['PoliciesAndProceduresDocument']['client_id']; // check client id
-	$options['uploadDir'] = "/documents/policies_and_procedures/$client/$key/" ;
+
+	$options['finalPath'] = 'webroot/documents/'  .  "policies_and_procedures/$client/$key/";
+	$options['uploadDir'] =  WWW_ROOT . $options['finalPath'];
 	return $options;
 }
 
@@ -132,8 +162,8 @@ public function beforeUpload($options){
 
 /**
  * Check Client Owner
- */	
+ */
 	public function isOwnedBy($id, $client){
-		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;	
+		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
 	}
 }

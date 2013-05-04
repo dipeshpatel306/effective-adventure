@@ -161,6 +161,8 @@ class BusinessAssociateAgreement extends AppModel {
 		)
 	);
 
+
+
 /*
  * Upload behavior
  *
@@ -188,8 +190,8 @@ class BusinessAssociateAgreement extends AppModel {
 				'append' => '',
 				'prepend' => '',
 				'tempDir' => TMP,
-				'uploadDir'	=> 'webroot/documents/',
-				'finalPath' => '',
+				//'uploadDir'	=> 'webroot/documents/',
+				//'finalPath' => '',
 				'dbColumn' => 'attachment',
 				'metaColumns' => array(),
 				'defaultPath' => '',
@@ -233,17 +235,13 @@ class BusinessAssociateAgreement extends AppModel {
  *
  */
 public function beforeUpload($options){
-
 	$client = $this->data['BusinessAssociateAgreement']['client_id']; // check client id
-
 	$key = $this->data['BusinessAssociateAgreement']['file_key'];
 
-	$options['uploadDir'] =  "/documents/business_associate_agreements/$client/$key/";
-//print_r($options);
-//exit();
+	$options['finalPath'] = 'webroot/documents/'  .  "business_associate_agreements/$client/$key/";
+	$options['uploadDir'] =  WWW_ROOT . $options['finalPath'];
+
 	return $options;
-
-
 }
 
 /**

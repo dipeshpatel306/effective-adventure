@@ -62,12 +62,45 @@ class OtherPoliciesAndProcedure extends AppModel {
 	);
 /*
  * Upload behavior
- * 
+ *
  */
-	public $actsAs = array( 
+	public $actsAs = array(
+
+		'Uploader.FileValidation' => array(
+			'attachment' => array(
+				'extension'	=> array(
+					'value' => array('doc', 'docx', 'dot', 'pdf')
+					),
+
+				/*'required' => array(
+					'value' => false,
+					'on' => 'update',
+					'allowEmpty' => true
+				)*/
+			)
+
+		),
+
 		'Uploader.Attachment' => array(
 			'attachment' => array(
+				'nameCallback' => 'formatFileName',
+				'append' => '',
+				'prepend' => '',
+				'tempDir' => TMP,
+				//'uploadDir'	=> 'webroot/documents/',
+				//'finalPath' => '',
+				'dbColumn' => 'attachment',
+				'metaColumns' => array(),
+				'defaultPath' => '',
+				'overwrite' => true,
+				'stopSave' => true,
+				'allowEmpty' => true,
+				'transforms' => array(),
+				'transport' => array()
+
+
 				//'name'		=> 'formatFileName',	// Name of the function to use to format filenames
+				/*'overwrite' => true,
 				'baseDir'	=> '',			// See UploaderComponent::$baseDir
 				'uploadDir'	=> '/documents/',			// See UploaderComponent::$uploadDir
 				'dbColumn'	=> 'attachment',	// The database column name to save the path to
@@ -87,35 +120,33 @@ class OtherPoliciesAndProcedure extends AppModel {
 					'width' => '',
 					'height' => '',
 					'filesize' => ''
-				)
-			)
-		),
-		'Uploader.FileValidation' => array(
-			'attachment' => array(
-				'extension' => array(
-					'value' => array('doc', 'docx', 'dot', 'pdf'),
-					'error'	=> 'File must me .pdf, .doc, .docx or .dot'
-				)
+				)*/
 			)
 		)
+
+
 	);
-	
+
+
 /**
  * Change file directory to that of client
- * 
+ *
  */
-public function beforeUpload($options){ 
-	$key = $this->data['OtherPoliciesAndProcedure']['file_key'];	
+public function beforeUpload($options){
+	$key = $this->data['OtherPoliciesAndProcedure']['file_key'];
 	$client = $this->data['OtherPoliciesAndProcedure']['client_id']; // check client id
-	$options['uploadDir'] = "/documents/other_policies_and_procedures/$client/$key/" ;
+
+
+	$options['finalPath'] = 'webroot/documents/'  .  "other_policies_and_procedures/$client/$key/";
+	$options['uploadDir'] =  WWW_ROOT . $options['finalPath'];
 	return $options;
 }
 
 /**
  * Check Client Owner
- */	
+ */
 	public function isOwnedBy($id, $client){
 		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
-		
+
 	}
 }

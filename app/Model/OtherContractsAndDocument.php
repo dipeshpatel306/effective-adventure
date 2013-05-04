@@ -63,9 +63,42 @@ class OtherContractsAndDocument extends AppModel {
  *
  */
 	public $actsAs = array(
+
+		'Uploader.FileValidation' => array(
+			'attachment' => array(
+				'extension'	=> array(
+					'value' => array('doc', 'docx', 'dot', 'pdf')
+					),
+
+				/*'required' => array(
+					'value' => false,
+					'on' => 'update',
+					'allowEmpty' => true
+				)*/
+			)
+
+		),
+
 		'Uploader.Attachment' => array(
 			'attachment' => array(
+				'nameCallback' => 'formatFileName',
+				'append' => '',
+				'prepend' => '',
+				'tempDir' => TMP,
+				//'uploadDir'	=> 'webroot/documents/',
+				//'finalPath' => '',
+				'dbColumn' => 'attachment',
+				'metaColumns' => array(),
+				'defaultPath' => '',
+				'overwrite' => true,
+				'stopSave' => true,
+				'allowEmpty' => true,
+				'transforms' => array(),
+				'transport' => array()
+
+
 				//'name'		=> 'formatFileName',	// Name of the function to use to format filenames
+				/*'overwrite' => true,
 				'baseDir'	=> '',			// See UploaderComponent::$baseDir
 				'uploadDir'	=> '/documents/',			// See UploaderComponent::$uploadDir
 				'dbColumn'	=> 'attachment',	// The database column name to save the path to
@@ -85,18 +118,13 @@ class OtherContractsAndDocument extends AppModel {
 					'width' => '',
 					'height' => '',
 					'filesize' => ''
-				)
-			)
-		),
-		'Uploader.FileValidation' => array(
-			'attachment' => array(
-				'extension' => array(
-					'value' => array('doc', 'docx', 'dot', 'pdf')
-					//'error'	=> 'File must me .pdf, .doc, .docx or .dot'
-				)
+				)*/
 			)
 		)
+
+
 	);
+
 
 /**
  * Change file directory to that of client
@@ -105,7 +133,9 @@ class OtherContractsAndDocument extends AppModel {
 public function beforeUpload($options){
 	$key = $this->data['OtherContractsAndDocument']['file_key'];
 	$client = $this->data['OtherContractsAndDocument']['client_id']; // check client id
-	$options['uploadDir'] = "/documents/other_contracts_and_documents/$client/$key/" ;
+
+	$options['finalPath'] = 'webroot/documents/'  .  "other_contracts_and_documents/$client/$key/";
+	$options['uploadDir'] =  WWW_ROOT . $options['finalPath'];
 	return $options;
 }
 /**
