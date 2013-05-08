@@ -15,12 +15,25 @@ class DisasterRecoveryPlan extends AppModel {
 	public $displayField = 'name';
 
 /**
+ * Upload Plugin Behavior
+ */
+	public $actsAs = array(
+		'Upload.Upload' => array(
+			'attachment' => array(
+				'fields' => array(
+					'dir' => 'attachment_dir'
+				),
+
+			)
+		)
+	);
+/**
  * Validation rules
  *
  * @var array
  */
 	public $validate = array(
-		'name' => array(
+		/*'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -29,13 +42,45 @@ class DisasterRecoveryPlan extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+		),*/
+		'attachment' => array(
+			'notempty' => array(
+				//'rule' => array('notempty'),
+				////'message' => 'Your custom message here',
+				'allowEmpty' => true,
+				'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+
+			),
+			'1' => array(
+				'rule' => array('isValidExtension', array('doc', 'docx', 'dot', 'dotx', 'pdf'), false),
+        		'message' => 'File type must be doc, docx, dot, dotx, pdf'
+			),
+			'2' => array(
+        		'rule' => array('isValidMimeType', array(
+				'application/msword',
+				'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+				'application/vnd.openxmlformats-officedocument.wordprocessingml.template',
+				'application/pdf'
+			), false),
+       	 		'message' => 'File type must be doc, docx, dot, dotx, pdf'
+			),
+			'3' => array(
+        		'rule' => 'isUnderFormSizeLimit',
+        		'message' => 'File exceeds form upload filesize limit'
+			),
+			'4' => array(
+        		'rule' => 'isCompletedUpload',
+        		'message' => 'File was not successfully uploaded'
+			),
 		),
 		'client_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
+				'message' => 'Your forgot the client',
+				'allowEmpty' => false,
+				'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -58,86 +103,7 @@ class DisasterRecoveryPlan extends AppModel {
 			'order' => ''
 		)
 	);
-/*
- * Upload behavior
- *
- */
-	public $actsAs = array(
 
-		'Uploader.FileValidation' => array(
-			'attachment' => array(
-				'extension'	=> array(
-					'value' => array('doc', 'docx', 'dot', 'pdf')
-					),
-
-				/*'required' => array(
-					'value' => false,
-					'on' => 'update',
-					'allowEmpty' => true
-				)*/
-			)
-
-		),
-
-		'Uploader.Attachment' => array(
-			'attachment' => array(
-				'nameCallback' => 'formatFileName',
-				'append' => '',
-				'prepend' => '',
-				'tempDir' => TMP,
-				//'uploadDir'	=> 'webroot/documents/',
-				//'finalPath' => '',
-				'dbColumn' => 'attachment',
-				'metaColumns' => array(),
-				'defaultPath' => '',
-				'overwrite' => true,
-				'stopSave' => true,
-				'allowEmpty' => true,
-				'transforms' => array(),
-				'transport' => array()
-
-
-				//'name'		=> 'formatFileName',	// Name of the function to use to format filenames
-				/*'overwrite' => true,
-				'baseDir'	=> '',			// See UploaderComponent::$baseDir
-				'uploadDir'	=> '/documents/',			// See UploaderComponent::$uploadDir
-				'dbColumn'	=> 'attachment',	// The database column name to save the path to
-				'importFrom'	=> '',			// Path or URL to import file
-				'defaultPath'	=> '',			// Default file path if no upload present
-				'maxNameLength'	=> 100,			// Max file name length
-				'overwrite'	=> true,		// Overwrite file with same name if it exists
-				'stopSave'	=> true,		// Stop the model save() if upload fails
-				'allowEmpty'	=> true,		// Allow an empty file upload to continue
-				'transforms'	=> array(),		// What transformations to do on images: scale, resize, etc
-				's3'		=> array(),		// Array of Amazon S3 settings
-				'metaColumns'	=> array(		// Mapping of meta data to database fields
-					'ext' => '',
-					'type' => '',
-					'size' => '',
-					'group' => '',
-					'width' => '',
-					'height' => '',
-					'filesize' => ''
-				)*/
-			)
-		)
-
-
-	);
-
-/**
- * Change file directory to that of client
- *
- */
-public function beforeUpload($options){
-	$key = $this->data['DisasterRecoveryPlan']['file_key'];
-	$client = $this->data['DisasterRecoveryPlan']['client_id']; // check client id
-
-	$options['finalPath'] = 'webroot/documents/'  .  "disaster_recovery_plans/$client/$key/";
-	$options['uploadDir'] =  WWW_ROOT . $options['finalPath'];
-
-	return $options;
-}
 
 
 /**

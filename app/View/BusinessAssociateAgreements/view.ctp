@@ -66,14 +66,30 @@ $this->Html->addCrumb($businessAssociateAgreement['BusinessAssociateAgreement'][
 		</dd>
 		<dt><?php echo __('Contract Date'); ?></dt>
 		<dd>
-			<?php echo $this->Time->format('m/d/y', $businessAssociateAgreement['BusinessAssociateAgreement']['contract_date']); ?>
+			<?php
+			if(!empty($businessAssociateAgreement['BusinessAssociateAgreement']['contract_date'])){
+				echo $this->Time->format('m/d/y', $businessAssociateAgreement['BusinessAssociateAgreement']['contract_date']);
+			}
+
+			?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Document'); ?></dt>
 		<dd>
 		<?php
-			$opnpLink =  preg_replace('/\/.*\//', '', $businessAssociateAgreement['BusinessAssociateAgreement']['attachment']);
-			echo $this->Html->link($opnpLink, $businessAssociateAgreement['BusinessAssociateAgreement']['attachment']);
+
+			if(!empty($businessAssociateAgreement['BusinessAssociateAgreement']['attachment'])){
+
+				$dir = $businessAssociateAgreement['BusinessAssociateAgreement']['attachment_dir'];
+				$file = $businessAssociateAgreement['BusinessAssociateAgreement']['attachment'];
+				$opnpLink =  preg_replace('/\/.*\//', '', $businessAssociateAgreement['BusinessAssociateAgreement']['attachment']);
+				echo $this->Html->link($businessAssociateAgreement['BusinessAssociateAgreement']['attachment'], array(
+				'controller' => 'business_associate_agreements',
+
+				'action' => 'sendFile', $dir, $file ));
+
+			}
+
 		?>
 			&nbsp;
 		</dd>

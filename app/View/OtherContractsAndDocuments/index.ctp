@@ -32,11 +32,24 @@ $this->Html->addCrumb('Other Contracts & Documents');
 		<?php endif; ?>
 
 		<td><?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['name']); ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('m/d/y', $otherContractsAndDocument['OtherContractsAndDocument']['date']); ?>&nbsp;</td>
+		<td><?php
+		if(!empty($otherContractsAndDocument['OtherContractsAndDocument']['date'])){
+			echo $this->Time->format('m/d/y', $otherContractsAndDocument['OtherContractsAndDocument']['date']);
+		}
+		 ?>&nbsp;</td>
 		<td>
 		<?php
-			$opnpLink =  preg_replace('/\/.*\//', '', $otherContractsAndDocument['OtherContractsAndDocument']['attachment']);
-			echo $this->Html->link($opnpLink, $otherContractsAndDocument['OtherContractsAndDocument']['attachment']);
+
+			if(!empty($otherContractsAndDocument['OtherContractsAndDocument']['attachment'])){
+				$attr_dir = '/files/other_contracts_and_document/attachment/'.
+				$otherContractsAndDocument['OtherContractsAndDocument']['attachment_dir'] . '/' .
+				$otherContractsAndDocument['OtherContractsAndDocument']['attachment'];
+
+				$opnpLink =  preg_replace('/\/.*\//', '', $otherContractsAndDocument['OtherContractsAndDocument']['attachment']);
+				echo $this->Html->link($otherContractsAndDocument['OtherContractsAndDocument']['attachment'], $attr_dir);
+
+			}
+
 		?>
 		&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $otherContractsAndDocument['OtherContractsAndDocument']['created']); ?>&nbsp;</td>

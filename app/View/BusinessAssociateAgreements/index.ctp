@@ -33,11 +33,28 @@ $this->Html->addCrumb('Business Associate Agreements');
 		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['contact']); ?>&nbsp;</td>
 		<td><?php echo $this->Text->autoLinkEmails($businessAssociateAgreement['BusinessAssociateAgreement']['email']); ?>&nbsp;</td>
 		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['phone']); ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('m/d/y', $businessAssociateAgreement['BusinessAssociateAgreement']['contract_date']); ?>&nbsp;</td>
+		<td>
+			<?php
+			if(!empty($businessAssociateAgreement['BusinessAssociateAgreement']['contract_date'])){
+				echo $this->Time->format('m/d/y', $businessAssociateAgreement['BusinessAssociateAgreement']['contract_date']);
+			}
+
+			?>&nbsp;</td>
 		<td>
 		<?php
-			$opnpLink =  preg_replace('/\/.*\//', '', $businessAssociateAgreement['BusinessAssociateAgreement']['attachment']);
-			echo $this->Html->link($opnpLink, $businessAssociateAgreement['BusinessAssociateAgreement']['attachment']);
+
+			if(!empty($businessAssociateAgreement['BusinessAssociateAgreement']['attachment'])){
+
+				$dir = $businessAssociateAgreement['BusinessAssociateAgreement']['attachment_dir'];
+				$file = $businessAssociateAgreement['BusinessAssociateAgreement']['attachment'];
+				$opnpLink =  preg_replace('/\/.*\//', '', $businessAssociateAgreement['BusinessAssociateAgreement']['attachment']);
+				echo $this->Html->link($businessAssociateAgreement['BusinessAssociateAgreement']['attachment'], array(
+				'controller' => 'business_associate_agreements',
+
+				'action' => 'sendFile', $dir, $file ));
+
+			}
+
 		?>
 
 		<td><?php echo $this->Time->format('m/d/y g:i a', $businessAssociateAgreement['BusinessAssociateAgreement']['created']); ?>&nbsp;</td>

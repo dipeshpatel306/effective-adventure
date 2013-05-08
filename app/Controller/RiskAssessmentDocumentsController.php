@@ -18,15 +18,15 @@ class RiskAssessmentDocumentsController extends AppController {
  * @return void
  */
  	public function isAuthorized($user){
- 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+ 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		$acct = $this->Session->read('Auth.User.Client.account_type');
-		
+
 		if($group == 2){
-			if(in_array($this->action, array('index', 'view','add'))){  // Allow Managers to Add 
+			if(in_array($this->action, array('index', 'view','add'))){  // Allow Managers to Add
 				return true;
 			}
-				
+
 			if(in_array($this->action, array('edit', 'delete'))){ // Allow Managers to Edit, delete their own
 				$id = $this->request->params['pass'][0];
 				if($this->RiskAssessmentDocument->isOwnedBy($id, $client)){
@@ -34,7 +34,7 @@ class RiskAssessmentDocumentsController extends AppController {
 				}
 			}
 		}
-		
+
 		if($group == 3 || $acct == 'Initial'){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
@@ -43,20 +43,30 @@ class RiskAssessmentDocumentsController extends AppController {
 
 		return parent::isAuthorized($user);
  	}
-
+/**
+ * SendFile Method
+ *
+ */
+	public function sendFile($dir, $file) {
+    	//$file = $this->Attachment->getFile($id);
+		$file = WWW_ROOT . '/files/risk_assessment_document/attachment/' . $dir . '/' . $file;
+   	 	$this->response->file($file, array('download' => true, 'name' => 'file'));
+    	//Return reponse object to prevent controller from trying to render a view
+    	return $this->response;
+	}
 /**
  * index method
  *
  * @return void
  */
 	public function index() {
-		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 
 		if($group == 1){
 			$this->RiskAssessmentDocument->recursive = 0;
-			$this->paginate = array('order' => array('RiskAssessmentDocument.client_id' => 'ASC'));			
-			$this->set('riskAssessmentDocuments', $this->paginate());			
+			$this->paginate = array('order' => array('RiskAssessmentDocument.client_id' => 'ASC'));
+			$this->set('riskAssessmentDocuments', $this->paginate());
 		}elseif($group == 2) {
 			$this->paginate = array(
 				'conditions' => array('RiskAssessmentDocument.client_id' => $client),
@@ -77,9 +87,9 @@ class RiskAssessmentDocumentsController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
-		
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+
 		$this->RiskAssessmentDocument->id = $id;
 		if (!$this->RiskAssessmentDocument->exists()) {
 			throw new NotFoundException(__('Invalid Risk Assessment Document'));
@@ -94,18 +104,18 @@ class RiskAssessmentDocumentsController extends AppController {
 					'AND' => array('RiskAssessmentDocument.client_id' => $client)
 				)
 			));
-			
+
 			if($is_authorized){
 				$this->set('riskAssessmentDocument', $this->RiskAssessmentDocument->read(null, $id));
 			} else { // Else Banned!
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
-			} 
-		} else { 
+			}
+		} else {
 			$this->Session->setFlash('You are not authorized to view that!');
 			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 		}
-		
+
 	}
 
 /**
@@ -115,12 +125,12 @@ class RiskAssessmentDocumentsController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
-			
+
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
-			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 			if($group != 1){
 				$this->request->data['RiskAssessmentDocument']['client_id'] = $this->Auth->User('client_id');
-				$this->request->data['RiskAssessmentDocument']['file_key'] = $this->Session->read('Auth.User.Client.file_key');	// file key					
+				$this->request->data['RiskAssessmentDocument']['file_key'] = $this->Session->read('Auth.User.Client.file_key');	// file key
 			} else {
 				$this->loadModel('Client');
 				$key = $this->Client->find('first', array('conditions' => array(
@@ -128,8 +138,8 @@ class RiskAssessmentDocumentsController extends AppController {
 							'fields' => 'Client.file_key'
 							));
 				$this->request->data['RiskAssessmentDocument']['file_key'] = $key['Client']['file_key'];
-			}	
-		
+			}
+
 			$this->RiskAssessmentDocument->create();
 			if ($this->RiskAssessmentDocument->save($this->request->data)) {
 				$this->Session->setFlash('The risk assessment document has been saved', 'default', array('class' => 'success message'));
@@ -157,10 +167,10 @@ class RiskAssessmentDocumentsController extends AppController {
 
 		if ($this->request->is('post') || $this->request->is('put')) {
 
-				$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?   			
+				$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 				if($group != 1){
-					$this->request->data['RiskAssessmentDocument']['client_id'] = $this->Auth->User('client_id');			
-					$this->request->data['RiskAssessmentDocument']['file_key'] = $this->Session->read('Auth.User.Client.file_key');	// file key				
+					$this->request->data['RiskAssessmentDocument']['client_id'] = $this->Auth->User('client_id');
+					$this->request->data['RiskAssessmentDocument']['file_key'] = $this->Session->read('Auth.User.Client.file_key');	// file key
 				} else {
 						$this->loadModel('Client');
 						$key = $this->Client->find('first', array('conditions' => array(
@@ -168,8 +178,8 @@ class RiskAssessmentDocumentsController extends AppController {
 									'fields' => 'Client.file_key'
 									));
 						$this->request->data['RiskAssessmentDocument']['file_key'] = $key['Client']['file_key'];
-				}				
-			
+				}
+
 			if ($this->RiskAssessmentDocument->save($this->request->data)) {
 				$this->Session->setFlash('The risk assessment document has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));

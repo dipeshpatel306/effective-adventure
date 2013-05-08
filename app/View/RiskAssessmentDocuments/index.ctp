@@ -3,13 +3,13 @@ $this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documen
 $this->Html->addCrumb('Risk Assessment Documents');
 
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id'); 
+	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="riskAssessmentDocuments index">
 	<h2><?php echo __('Risk Assessment Documents'); ?></h2>
 	<table>
-	<tr>	
+	<tr>
 			<?php if($group == 1 ): ?>
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
 			<?php endif; ?>
@@ -26,14 +26,23 @@ $this->Html->addCrumb('Risk Assessment Documents');
 		<?php if($group == 1): ?>
 		<td>
 			<?php echo $riskAssessmentDocument['Client']['name']; ?>
-		</td>	
-		<?php endif; ?>	
+		</td>
+		<?php endif; ?>
 		<td><?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['name']); ?>&nbsp;</td>
 		<td>
-		<?php 
-			$opnpLink =  preg_replace('/\/.*\//', '', $riskAssessmentDocument['RiskAssessmentDocument']['attachment']);
-			echo $this->Html->link($opnpLink, $riskAssessmentDocument['RiskAssessmentDocument']['attachment']);
-		?>	
+		<?php
+			if(!empty($riskAssessmentDocument['RiskAssessmentDocument']['attachment'])){
+				$dir = $riskAssessmentDocument['RiskAssessmentDocument']['attachment_dir'] ;
+				$file = $riskAssessmentDocument['RiskAssessmentDocument']['attachment'];
+
+				$opnpLink =  preg_replace('/\/.*\//', '', $riskAssessmentDocument['RiskAssessmentDocument']['attachment']);
+				echo $this->Html->link($riskAssessmentDocument['RiskAssessmentDocument']['attachment'], array(
+					'controller' => 'risk_assessment_documents',
+					'action' => 'sendFile', $dir, $file));
+
+			}
+
+		?>
 		&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $riskAssessmentDocument['RiskAssessmentDocument']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $riskAssessmentDocument['RiskAssessmentDocument']['modified']); ?>&nbsp;</td>
@@ -66,7 +75,7 @@ $this->Html->addCrumb('Risk Assessment Documents');
 	<ul>
 		<?php if($group == 1 || $group == 2): ?>
 		<li><?php echo $this->Html->link(__('New Risk Assessment Document'), array('action' => 'add')); ?></li>
-		<?php endif; ?>	
+		<?php endif; ?>
 
 	</ul>
 </div>

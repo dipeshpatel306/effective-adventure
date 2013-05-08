@@ -4,7 +4,7 @@ $this->Html->addCrumb('Risk Assessment Documents', '/risk_assessment_documents')
 $this->Html->addCrumb($riskAssessmentDocument['RiskAssessmentDocument']['name']);
 
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id'); 
+	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="riskAssessmentDocuments view">
@@ -45,10 +45,17 @@ $this->Html->addCrumb($riskAssessmentDocument['RiskAssessmentDocument']['name'])
 		</dd>
 		<dt><?php echo __('Attachment'); ?></dt>
 		<dd>
-		<?php 
-			$opnpLink =  preg_replace('/\/.*\//', '', $riskAssessmentDocument['RiskAssessmentDocument']['attachment']);
-			echo $this->Html->link($opnpLink, $riskAssessmentDocument['RiskAssessmentDocument']['attachment']);
-		?>	
+		<?php
+			if(!empty($riskAssessmentDocument['RiskAssessmentDocument']['attachment'])){
+				$dir = $riskAssessmentDocument['RiskAssessmentDocument']['attachment_dir'] ;
+				$file = $riskAssessmentDocument['RiskAssessmentDocument']['attachment'];
+
+				$opnpLink =  preg_replace('/\/.*\//', '', $riskAssessmentDocument['RiskAssessmentDocument']['attachment']);
+				echo $this->Html->link($riskAssessmentDocument['RiskAssessmentDocument']['attachment'], array(
+					'controller' => 'risk_assessment_documents',
+					'action' => 'sendFile', $dir, $file));
+			}
+		?>
 			&nbsp;
 		</dd>
 	</dl>
@@ -56,14 +63,14 @@ $this->Html->addCrumb($riskAssessmentDocument['RiskAssessmentDocument']['name'])
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('List Risk Assessment Documents'), array('action' => 'index')); ?> </li>		
+		<li><?php echo $this->Html->link(__('List Risk Assessment Documents'), array('action' => 'index')); ?> </li>
 
 		<?php if($group == 1 || $group == 2): ?>
-		<li><?php echo $this->Html->link(__('New Risk Assessment Document'), array('action' => 'add')); ?> </li>			
+		<li><?php echo $this->Html->link(__('New Risk Assessment Document'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('Edit Risk Assessment Document'), array('action' => 'edit', $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Risk Assessment Document'), array('action' => 'delete', $riskAssessmentDocument['RiskAssessmentDocument']['id']), null, __('Are you sure you want to delete # %s?', $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?> </li>
 
-		<?php endif; ?>		
+		<?php endif; ?>
 
 
 	</ul>

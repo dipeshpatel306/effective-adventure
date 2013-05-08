@@ -7,7 +7,7 @@ App::uses('AppController', 'Controller');
  */
 class PoliciesAndProceduresDocumentsController extends AppController {
 
-	
+
  public function beforeFilter(){
 	parent::beforeFilter();
  }
@@ -21,20 +21,20 @@ class PoliciesAndProceduresDocumentsController extends AppController {
  * @return void
  */
  	public function isAuthorized($user){
- 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+ 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		$acct = $this->Session->read('Auth.User.Client.account_type');
-		
+
 		if($group == 2){ // Allow Managers to add/edit/delete their own data
 			if($acct == 'Meaningful Use' || $acct == 'Initial'){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 				return false;
-			} 
-			if(in_array($this->action, array('index', 'view','add'))){  // Allow Managers to Add 
+			}
+			if(in_array($this->action, array('index', 'view','add'))){  // Allow Managers to Add
 				return true;
 			}
-				
+
 			if(in_array($this->action, array('edit', 'delete'))){ // Allow Managers to Edit, delete their own
 				$id = $this->request->params['pass'][0];
 				if($this->PoliciesAndProceduresDocument->isOwnedBy($id, $client)){
@@ -48,23 +48,33 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 				return false;
-			} 
-					
+			}
+
 			if(in_array($this->action, array('edit', 'delete', 'add'))){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
-					return false;	
+					return false;
 				}
-				
-				if(in_array($this->action, array('index', 'view'))){  
+
+				if(in_array($this->action, array('index', 'view'))){
 					return true;
 				}
-		}	
+		}
 
 		return parent::isAuthorized($user);
  	}
 
-
+/**
+ * SendFile Method
+ *
+ */
+	public function sendFile($dir, $file) {
+    	//$file = $this->Attachment->getFile($id);
+		$file = WWW_ROOT . '/files/policies_and_procedures_document/document/' . $dir . '/' . $file;
+   	 	$this->response->file($file, array('download' => true, 'name' => 'file'));
+    	//Return reponse object to prevent controller from trying to render a view
+    	return $this->response;
+	}
 /**
  * index method
  *
@@ -97,7 +107,7 @@ class PoliciesAndProceduresDocumentsController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
-			
+
 			$check = $this->PoliciesAndProceduresDocument->find('first',(array(
 				'conditions' => array(
 						'PoliciesAndProceduresDocument.client_id' => $this->request->data['PoliciesAndProceduresDocument']['client_id'],
@@ -105,16 +115,16 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 						'fields' => array('PoliciesAndProceduresDocument.id, PoliciesAndProceduresDocument.client_id, PoliciesAndProceduresDocument.policies_and_procedure_id'),
 						'recursive' => 0
 				)));
-			
+
 			if($check){
 				$this->request->data['PoliciesAndProceduresDocument']['id'] = $check['PoliciesAndProceduresDocument']['id'];
 			}
-			
+
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
-			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 			if($group != 1){
 				$this->request->data['PoliciesAndProceduresDocument']['client_id'] = $this->Auth->User('client_id');
-				$this->request->data['PoliciesAndProceduresDocument']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key				
+				$this->request->data['PoliciesAndProceduresDocument']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
 			} else {
 				$this->loadModel('Client');
 				$key = $this->Client->find('first', array('conditions' => array(
@@ -122,8 +132,8 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 							'fields' => 'Client.file_key'
 							));
 				$this->request->data['PoliciesAndProceduresDocument']['file_key'] = $key['Client']['file_key'];
-			}	
-			
+			}
+
 			$this->PoliciesAndProceduresDocument->create();
 			if ($this->PoliciesAndProceduresDocument->save($this->request->data)) {
 				$this->Session->setFlash('The policies and procedures document has been saved', 'default', array('class' => 'success message'));
@@ -149,14 +159,14 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 		if (!$this->PoliciesAndProceduresDocument->exists()) {
 			throw new NotFoundException(__('Invalid policies and procedures document'));
 		}
-					
+
 		if ($this->request->is('post') || $this->request->is('put')) {
-				
+
 				// If user is a client automatically set the client id accordingly. Admin can change client ids
-				$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+				$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 				if($group != 1){
 					$this->request->data['PoliciesAndProceduresDocument']['client_id'] = $this->Auth->User('client_id');
-					$this->request->data['PoliciesAndProceduresDocument']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key				
+					$this->request->data['PoliciesAndProceduresDocument']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
 				} else {
 					$this->loadModel('Client');
 					$key = $this->Client->find('first', array('conditions' => array(
@@ -164,8 +174,8 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 								'fields' => 'Client.file_key'
 								));
 					$this->request->data['PoliciesAndProceduresDocument']['file_key'] = $key['Client']['file_key'];
-				}					
-				
+				}
+
 			if ($this->PoliciesAndProceduresDocument->save($this->request->data)) {
 				$this->Session->setFlash('The policies and procedures document has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('controller' => 'policies_and_procedures', 'action' => 'index'));

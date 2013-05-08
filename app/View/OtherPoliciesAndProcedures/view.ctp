@@ -4,7 +4,7 @@ $this->Html->addCrumb('Other Policies & Procedures', '/other_policies_and_proced
 $this->Html->addCrumb($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['name']);
 
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id'); 
+	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 
@@ -16,7 +16,7 @@ $this->Html->addCrumb($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['n
 		<dd>
 			<?php echo $otherPoliciesAndProcedure['Client']['name']; ?>
 			&nbsp;
-		</dd>		
+		</dd>
 		<?php  endif; ?>
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
@@ -46,9 +46,17 @@ $this->Html->addCrumb($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['n
 		</dd>
 		<dt><?php echo __('Attachment'); ?></dt>
 		<dd>
-		<?php 
-			$opnpLink =  preg_replace('/\/.*\//', '', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment']);
-			echo $this->Html->link($opnpLink, $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment']);
+		<?php
+			if(!empty($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment'])){
+				$dir = $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment_dir'];
+				$file = $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment'];
+
+				$opnpLink =  preg_replace('/\/.*\//', '', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment']);
+				echo $this->Html->link($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment'], array(
+					'controller' => 'other_policies_and_procedures',
+					'action' => 'sendFile', $dir, $file));
+
+			}
 		?>
 			&nbsp;
 		</dd>
@@ -63,13 +71,13 @@ $this->Html->addCrumb($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['n
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('List Other Policies And Procedures'), array('action' => 'index')); ?> </li>
-		
+
 		<?php if($group == 1 || $group == 2): ?>
-		<li><?php echo $this->Html->link(__('New Other Policies And Procedure'), array('action' => 'add')); ?> </li>			
+		<li><?php echo $this->Html->link(__('New Other Policies And Procedure'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('Edit Other Policies And Procedure'), array('action' => 'edit', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Other Policies And Procedure'), array('action' => 'delete', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id']), null, __('Are you sure you want to delete # %s?', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id'])); ?> </li>
 
-		<?php endif; ?>				
+		<?php endif; ?>
 
 	</ul>
 </div>

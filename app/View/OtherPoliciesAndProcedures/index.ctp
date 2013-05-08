@@ -3,7 +3,7 @@ $this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedur
 $this->Html->addCrumb('Other Policies & Procedures');
 
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id'); 
+	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="otherPoliciesAndProcedures index">
@@ -11,7 +11,7 @@ $this->Html->addCrumb('Other Policies & Procedures');
 	<table>
 	<tr>
 			<?php if($group == 1): ?>
-			<th><?php echo $this->Paginator->sort('client_id'); ?></th>		
+			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
 			<?php endif; ?>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('attachment'); ?></th>
@@ -27,13 +27,23 @@ $this->Html->addCrumb('Other Policies & Procedures');
 		<?php if($group == 1): ?>
 		<td>
 			<?php echo $otherPoliciesAndProcedure['Client']['name']; ?>
-		</td>		
+		</td>
 		<?php endif; ?>
 		<td><?php echo h($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['name']); ?>&nbsp;</td>
 		<td>
-		<?php 
-			$opnpLink =  preg_replace('/\/.*\//', '', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment']);
-			echo $this->Html->link($opnpLink, $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment']);
+		<?php
+
+
+			if(!empty($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment'])){
+				$dir = $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment_dir'];
+				$file = $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment'];
+
+				$opnpLink =  preg_replace('/\/.*\//', '', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment']);
+				echo $this->Html->link($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment'], array(
+					'controller' => 'other_policies_and_procedures',
+					'action' => 'sendFile', $dir, $file));
+			}
+
 		?>
 		</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a',$otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['created']); ?>&nbsp;</td>
@@ -71,6 +81,6 @@ $this->Html->addCrumb('Other Policies & Procedures');
 		<?php if($group == 1 || $group == 2): ?>
 		<li><?php echo $this->Html->link(__('New Other Policies And Procedure'), array('action' => 'add')); ?></li>
 		<?php endif; ?>
-		
+
 	</ul>
 </div>

@@ -30,7 +30,11 @@ $this->Html->addCrumb($disasterRecoveryPlan['DisasterRecoveryPlan']['name']);
 		</dd>
 		<dt><?php echo __('Date'); ?></dt>
 		<dd>
-			<?php echo $this->Time->format('m/d/y', $disasterRecoveryPlan['DisasterRecoveryPlan']['date']); ?>
+			<?php
+			if(!empty($disasterRecoveryPlan['DisasterRecoveryPlan']['date'])){
+			echo $this->Time->format('m/d/y', $disasterRecoveryPlan['DisasterRecoveryPlan']['date']);
+			}
+			?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
@@ -46,8 +50,16 @@ $this->Html->addCrumb($disasterRecoveryPlan['DisasterRecoveryPlan']['name']);
 		<dt><?php echo __('Attachment'); ?></dt>
 		<dd>
 		<?php
-			$opnpLink =  preg_replace('/\/.*\//', '', $disasterRecoveryPlan['DisasterRecoveryPlan']['attachment']);
-			echo $this->Html->link($opnpLink, $disasterRecoveryPlan['DisasterRecoveryPlan']['attachment']);
+			if(!empty($disasterRecoveryPlan['DisasterRecoveryPlan']['attachment'])){
+
+				$dir = $disasterRecoveryPlan['DisasterRecoveryPlan']['attachment_dir'];
+				$file = $disasterRecoveryPlan['DisasterRecoveryPlan']['attachment'];
+
+				$opnpLink =  preg_replace('/\/.*\//', '', $disasterRecoveryPlan['DisasterRecoveryPlan']['attachment']);
+				echo $this->Html->link($disasterRecoveryPlan['DisasterRecoveryPlan']['attachment'], array(
+					'controller' => 'disaster_recovery_plans',
+					'action' => 'sendFile', $dir, $file));
+			}
 		?>
 			&nbsp;
 		</dd>

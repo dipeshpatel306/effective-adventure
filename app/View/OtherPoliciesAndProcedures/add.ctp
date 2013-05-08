@@ -4,7 +4,7 @@ $this->Html->addCrumb('Other Policies & Procedures', '/other_policies_and_proced
 $this->Html->addCrumb('Add Other Policy & Procedure');
 
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id'); 
+	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="otherPoliciesAndProcedures form">
@@ -15,16 +15,17 @@ $this->Html->addCrumb('Add Other Policy & Procedure');
 		echo $this->Form->input('name');
 		echo $this->Form->input('description', array('class' => 'ckeditor'));
 		echo $this->Form->input('details', array('class' => 'ckeditor'));
-		
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		if($client == 1){  // if admin allow to choose
 			echo $this->Form->input('client_id', array('empty' => 'Please Select'));
 		} else {
 			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
 		}
-		
+
 		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Attachment - (pdf, doc, docx, dot files only)'));
-		echo $this->Form->input('media');
+		echo $this->Form->input('attachment_dir', array('type' => 'hidden'));
+		// /echo $this->Form->input('media');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

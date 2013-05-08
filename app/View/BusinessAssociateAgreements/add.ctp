@@ -38,7 +38,6 @@ $this->Html->addCrumb('Add Business Associate Agreement');
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
-
 ?>
 <div class="businessAssociateAgreements form">
 <?php echo $this->Form->create('BusinessAssociateAgreement', array('type' => 'file')); ?>
@@ -66,7 +65,9 @@ $this->Html->addCrumb('Add Business Associate Agreement');
 		echo $this->Form->input('business_associate_relationship', array('options' => $relationship));
 
 		echo $this->Form->input('contract_date', array('class' => 'datePick'));
+
 		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Attachment - (pdf, doc, docx, dot files only)'));
+		echo $this->Form->input('attachment_dir', array('type' => 'hidden'));
 
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		if($client == 1){  // if admin allow to choose

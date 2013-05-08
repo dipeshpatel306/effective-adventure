@@ -31,7 +31,10 @@ $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['n
 		</dd>
 		<dt><?php echo __('Date'); ?></dt>
 		<dd>
-			<?php echo $this->Time->format('m/d/y', $otherContractsAndDocument['OtherContractsAndDocument']['date']); ?>
+			<?php
+			if(!empty($otherContractsAndDocument['OtherContractsAndDocument']['date'])){
+			echo $this->Time->format('m/d/y', $otherContractsAndDocument['OtherContractsAndDocument']['date']);
+			} ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Details'); ?></dt>
@@ -49,8 +52,15 @@ $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['n
 		<dt><?php echo __('Attachment'); ?></dt>
 		<dd>
 		<?php
-			$opnpLink =  preg_replace('/\/.*\//', '', $otherContractsAndDocument['OtherContractsAndDocument']['attachment']);
-			echo $this->Html->link($opnpLink, $otherContractsAndDocument['OtherContractsAndDocument']['attachment']);
+			if(!empty($otherContractsAndDocument['OtherContractsAndDocument']['attachment'])){
+				$attr_dir = '/files/other_contracts_and_document/attachment/'.
+				$otherContractsAndDocument['OtherContractsAndDocument']['attachment_dir'] . '/' .
+				$otherContractsAndDocument['OtherContractsAndDocument']['attachment'];
+
+				$opnpLink =  preg_replace('/\/.*\//', '', $otherContractsAndDocument['OtherContractsAndDocument']['attachment']);
+				echo $this->Html->link($otherContractsAndDocument['OtherContractsAndDocument']['attachment'], $attr_dir);
+
+			}
 		?>
 			&nbsp;
 		</dd>

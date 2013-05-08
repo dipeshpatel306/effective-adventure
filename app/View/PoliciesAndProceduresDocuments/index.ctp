@@ -30,8 +30,15 @@ $this->Html->addCrumb('Policies & Procedures Documents');
 
 		<td>
 		<?php
-			$docLink =  preg_replace('/\/.*\//', '', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document']);
-			echo $this->Html->link($docLink, $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document']);
+			if(!empty($policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document'])){
+				$dir = $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document_dir'];
+				$file = $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document'];
+
+				$opnpLink =  preg_replace('/\/.*\//', '', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document']);
+				echo $this->Html->link($policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document'], array(
+					'controller' => 'policies_and_procedures_documents',
+					'action' => 'sendFile', $dir, $file));
+			}
 		?>
 		<td><?php echo $this->Time->format('m/d/y g:i a',$policiesAndProceduresDocument['PoliciesAndProceduresDocument']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a',$policiesAndProceduresDocument['PoliciesAndProceduresDocument']['modified']); ?>&nbsp;</td>

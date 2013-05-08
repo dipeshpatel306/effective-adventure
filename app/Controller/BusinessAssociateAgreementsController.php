@@ -44,7 +44,17 @@ class BusinessAssociateAgreementsController extends AppController {
 
 		return parent::isAuthorized($user);
  	}
-
+/**
+ * SendFile Method
+ *
+ */
+	public function sendFile($dir, $file) {
+    	//$file = $this->Attachment->getFile($id);
+		$file = WWW_ROOT . '/files/business_associate_agreement/attachment/' . $dir . '/' . $file;
+   	 	$this->response->file($file, array('download' => true, 'name' => 'file'));
+    	//Return reponse object to prevent controller from trying to render a view
+    	return $this->response;
+	}
 /**
  * index method
  *
@@ -120,15 +130,28 @@ class BusinessAssociateAgreementsController extends AppController {
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 			if($group != 1){
 				$this->request->data['BusinessAssociateAgreement']['client_id'] = $this->Auth->User('client_id');
+				//$clientId = $this->request->data['BusinessAssociateAgreement']['client_id'];
+
 				$this->request->data['BusinessAssociateAgreement']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
+				//$fileKey = $this->request->data['BusinessAssociateAgreement']['file_key'];
 			} else {
 				$this->loadModel('Client');
 				$key = $this->Client->find('first', array('conditions' => array(
 							'Client.id' => $this->request->data['BusinessAssociateAgreement']['client_id']),
 							'fields' => 'Client.file_key'
 							));
+				//$clientId = $this->request->data['BusinessAssociateAgreement']['client_id'];
 				$this->request->data['BusinessAssociateAgreement']['file_key'] = $key['Client']['file_key'];
+
+				//$fileKey = $this->request->data['BusinessAssociateAgreement']['file_key'];
 			}
+
+			//$this->request->data['BusinessAssociateAgreement']['attachment_dir'] = ROOT . DS . webroot . DS . files . DS . 'business_associate_agreements' . DS . $clientId . DS . $fileKey . DS;
+
+
+
+			// /debug($this->request->data['BusinessAssociateAgreement']);
+			//exit();
 
 			$this->BusinessAssociateAgreement->create();
 			if ($this->BusinessAssociateAgreement->save($this->request->data)) {
