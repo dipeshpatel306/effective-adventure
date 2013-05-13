@@ -85,11 +85,25 @@ if($client['Client']['active'] == 'Yes'){
 			<?php echo $this->Time->format('m/d/y g:i a', $client['Client']['modified']); ?>
 			&nbsp;
 		</dd>
-		<!--<dt><?php echo __('Details'); ?></dt>
+
+		<dt><?php echo __('Risk Assessment'); ?></dt>
 		<dd>
-			<?php echo h($client['Client']['details']); ?>
+			<?php
+			if(!empty($client['RiskAssessment']['id'])){
+ 			echo $this->Html->link(__('View'), array('controller' => 'risk_assessments', 'action' => 'view', $client['RiskAssessment']['id']));
+			}
+			?>
 			&nbsp;
-		</dd>-->
+		</dd>
+		<dt><?php echo __('Organization Profiles'); ?></dt>
+		<dd>
+			<?php
+			if(!empty($client['OrganizationProfile']['id'])){
+ 			echo $this->Html->link(__('View'), array('controller' => 'organization_profiles', 'action' => 'view', $client['OrganizationProfile']['id']));
+			}
+			?>
+			&nbsp;
+		</dd>
 
 	</dl>
 		<h2><?php echo __('Details'); ?></h2>
@@ -111,6 +125,8 @@ if($client['Client']['active'] == 'Yes'){
 </div>
 
 <div class="clientPanel">
+
+
 
 <!-- Users -->
 <div class="related">

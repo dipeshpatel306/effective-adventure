@@ -20,7 +20,7 @@ class AppController extends Controller {
 			),
         ),
         'Session',
-        'Security',
+		'Security',
         'Cookie'
     );
     public $helpers = array('Html', 'Form', 'Session');
@@ -47,11 +47,14 @@ class AppController extends Controller {
 		$email = $this->Session->read('Auth.User.email');
 		//$this->Cookie->write('u', $email, 0, '/', '.hipaasecurenow');
 		// /setcookie('u', $email, 0, '/', '.hipaasecurenow.com');
-
+		$this->Security->blackHoleCallback = 'blackhole';
 		// needed? without causing blackhole errors, likely because idiotically no data is required in some forms as per request
-		$this->Security->csrfCheck = false;
+		//$this->Security->csrfCheck = false;
     }
 
+	public function blackhole($type) {
+    	debug($type);
+	}
 	public function isAuthorized($user){
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 		if (isset($group) && $group == 1){ // is admin allow all

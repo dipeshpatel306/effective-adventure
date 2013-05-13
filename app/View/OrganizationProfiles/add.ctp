@@ -126,8 +126,8 @@ $this->Html->addCrumb('Add Organization Profile');
 		echo $this->Form->input('network_details', array('label' =>'Please provide details of your network: '));
 		echo $this->Form->input('number_workstations', array('label' =>'How many workstations(desktops) do you have?'));
 		echo $this->Form->input('number_laptops', array('label' =>'How many laptops do you have?'));
-		echo $this->Form->input('os_installed', array('label' => 'Please select the operating systems your workstations and laptiops are running: ',
-								'options' => $osLong, 'multiple' => 'checkbox', 'class' => 'inlinebox'));
+		echo $this->Form->input('OperatingSystem', array('label' => 'Please select the operating systems your workstations and laptiops are running: ',
+								 'multiple' => 'checkbox', 'class' => 'inlinebox'));
 	?>
 	</div>
 

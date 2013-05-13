@@ -63,6 +63,38 @@ class DashboardController extends AppController {
  */
 	public function initial() {
 
+		// Check if Client already has an existing Risk Assessment
+		$clientId = $this->Session->read('Auth.User.client_id');
+		$this->loadModel('RiskAssessment');
+		$risk = $this->RiskAssessment->find('first', array('conditions' => array(
+				'client_id' => $clientId),
+				'fields' => 'RiskAssessment.id, RiskAssessment.client_id'
+		));
+		// If Risk Assessment exists then set it
+		if(isset($risk) && !empty($risk)){
+			$this->set(compact('risk'));
+		}
+
+		// Check if Client already has an existing Org Profile
+		$this->loadModel('OrganizationProfile');
+		$org = $this->OrganizationProfile->find('first', array('conditions' => array(
+				'client_id' => $clientId),
+				'fields' => 'OrganizationProfile.id, OrganizationProfile.client_id'
+		));
+		// If Org profile exists then set it
+		if(isset($org) && !empty($org)){
+			$this->set(compact('org'));
+		}
+
+		$partnerId = $this->Session->read('Auth.User.Client.partner_id');
+		if(isset($partnerId) && ($partnerId != 0)){
+			$this->loadModel('Partner');
+			$partner = $this->Partner->find('first', array('conditions' => array(
+						'id' => $partnerId),
+						'fields' => 'Partner.name, Partner.link, Partner.logo',
+						));
+			$this->set(compact('partner'));
+		}
 		//$this->Dashboard->recursive = 0;
 		//$this->set('dashboard', $this->paginate());
 	}

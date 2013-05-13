@@ -32,7 +32,6 @@ class OrganizationProfilesController extends AppController {
 		return parent::isAuthorized($user);
  	}
 
-
 /**
  * index method
  *
@@ -51,11 +50,11 @@ class OrganizationProfilesController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		$this->OrganizationProfile->id = $id;
-		if (!$this->OrganizationProfile->exists()) {
+		if (!$this->OrganizationProfile->exists($id)) {
 			throw new NotFoundException(__('Invalid organization profile'));
 		}
-		$this->set('organizationProfile', $this->OrganizationProfile->read(null, $id));
+		$options = array('conditions' => array('OrganizationProfile.' . $this->OrganizationProfile->primaryKey => $id));
+		$this->set('organizationProfile', $this->OrganizationProfile->find('first', $options));
 	}
 
 /**
@@ -66,15 +65,7 @@ class OrganizationProfilesController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 
-			// convert array of OS installed into comma separated string
-			//if(!empty( $this->request->data['OrganizationProfile']['os_installed'])){
-				$this->data['OrganizationProfile']['os_installed'] = implode(',', $this->data['OrganizationProfile']['os_installed']);
-			//}
 
-			//var_dump($this->data);
-			//pr($this->request->data['OrganizationProfile']['os_installed']);
-
-			// If user is a client automatically set the client id accordingly. Admin can change client ids
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 			if($group != 1){
 				$this->request->data['OrganizationProfile']['client_id'] = $this->Auth->User('client_id');
@@ -89,7 +80,8 @@ class OrganizationProfilesController extends AppController {
 			}
 		}
 		$clients = $this->OrganizationProfile->Client->find('list');
-		$this->set(compact('clients'));
+		$operatingSystems = $this->OrganizationProfile->OperatingSystem->find('list');
+		$this->set(compact('clients', 'operatingSystems'));
 	}
 
 /**
@@ -100,8 +92,7 @@ class OrganizationProfilesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
-		$this->OrganizationProfile->id = $id;
-		if (!$this->OrganizationProfile->exists()) {
+		if (!$this->OrganizationProfile->exists($id)) {
 			throw new NotFoundException(__('Invalid organization profile'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
@@ -112,28 +103,27 @@ class OrganizationProfilesController extends AppController {
 				$this->Session->setFlash(__('The organization profile could not be saved. Please, try again.'));
 			}
 		} else {
-			$this->request->data = $this->OrganizationProfile->read(null, $id);
+			$options = array('conditions' => array('OrganizationProfile.' . $this->OrganizationProfile->primaryKey => $id));
+			$this->request->data = $this->OrganizationProfile->find('first', $options);
 		}
 		$clients = $this->OrganizationProfile->Client->find('list');
-		$this->set(compact('clients'));
+		$operatingSystems = $this->OrganizationProfile->OperatingSystem->find('list');
+		$this->set(compact('clients', 'operatingSystems'));
 	}
 
 /**
  * delete method
  *
- * @throws MethodNotAllowedException
  * @throws NotFoundException
  * @param string $id
  * @return void
  */
 	public function delete($id = null) {
-		if (!$this->request->is('post')) {
-			throw new MethodNotAllowedException();
-		}
 		$this->OrganizationProfile->id = $id;
 		if (!$this->OrganizationProfile->exists()) {
 			throw new NotFoundException(__('Invalid organization profile'));
 		}
+		$this->request->onlyAllow('post', 'delete');
 		if ($this->OrganizationProfile->delete()) {
 			$this->Session->setFlash(__('Organization profile deleted'));
 			$this->redirect(array('action' => 'index'));

@@ -15,7 +15,6 @@ $this->Html->addCrumb('ePHI Removed');
 			<?php endif; ?>
 			<th><?php echo $this->Paginator->sort('item'); ?></th>
 			<th><?php echo $this->Paginator->sort('date', 'Removed Date/Time'); ?></th>
-			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th><?php echo $this->Paginator->sort('removed_by'); ?></th>
 			<th><?php echo $this->Paginator->sort('returned_by'); ?></th>
 

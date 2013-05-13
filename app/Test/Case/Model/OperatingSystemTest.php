@@ -1,11 +1,11 @@
 <?php
-App::uses('OrganizationProfile', 'Model');
+App::uses('OperatingSystem', 'Model');
 
 /**
- * OrganizationProfile Test Case
+ * OperatingSystem Test Case
  *
  */
-class OrganizationProfileTest extends CakeTestCase {
+class OperatingSystemTest extends CakeTestCase {
 
 /**
  * Fixtures
@@ -13,6 +13,7 @@ class OrganizationProfileTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
+		'app.operating_system',
 		'app.organization_profile',
 		'app.client',
 		'app.partner',
@@ -32,7 +33,6 @@ class OrganizationProfileTest extends CakeTestCase {
 		'app.ephi_removed',
 		'app.sirt_team',
 		'app.sirt_member',
-		'app.operating_system',
 		'app.operating_systems_organization_profile'
 	);
 
@@ -43,7 +43,7 @@ class OrganizationProfileTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->OrganizationProfile = ClassRegistry::init('OrganizationProfile');
+		$this->OperatingSystem = ClassRegistry::init('OperatingSystem');
 	}
 
 /**
@@ -52,7 +52,7 @@ class OrganizationProfileTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->OrganizationProfile);
+		unset($this->OperatingSystem);
 
 		parent::tearDown();
 	}

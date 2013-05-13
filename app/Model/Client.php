@@ -50,7 +50,7 @@ class Client extends AppModel {
 		'RiskAssessment' => array(
 			'className' => 'RiskAssessment',
 			'dependent' => true,
-			'fields' => array('RiskAssessment.id, RiskAssessment.client_id')
+			'fields' => array('RiskAssessment.id, RiskAssessment.client_id, RiskAssessment.created, RiskAssessment.modified')
 		)
 	);
 

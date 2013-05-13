@@ -1,7 +1,7 @@
 <?php
 $this->Html->addCrumb('Risk Assessments', '/risk_assessments');
 $this->Html->addCrumb('Edit Risk Assessment');
-	$options = array('No' => 'No', 'Yes' => 'Yes', 'N/A');
+	$options = array('Please Select' => 'Please Select', 'No' => 'No', 'Yes' => 'Yes', 'N/A');
 
 	// format Risk Assessment Question
 	function raq($id, $RaQ){ //TODO replace this function with something less cpu intensive
@@ -28,10 +28,10 @@ $this->Html->addCrumb('Edit Risk Assessment');
 <div class="slides_container">
 
 	<div>
-	<?php echo $this->Form->input('question_1', array('label' => raq(0, $RaQ), 'options' => $options ));?>
+	<?php echo $this->Form->input('question_1', array('label' => raq(0, $RaQ), 'options' => $options));?>
 	</div>
 	<div>
-	<?php echo $this->Form->input('question_2', array('label' => raq(1, $RaQ), 'options' => $options ));?>
+	<?php echo $this->Form->input('question_2', array('label' => raq(1, $RaQ), 'options' => $options));?>
 	</div>
 	<div>
 	<?php echo $this->Form->input('question_3', array('label' => raq(2, $RaQ), 'options' => $options ));?>

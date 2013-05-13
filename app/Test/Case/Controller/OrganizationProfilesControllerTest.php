@@ -15,8 +15,11 @@ class OrganizationProfilesControllerTest extends ControllerTestCase {
 	public $fixtures = array(
 		'app.organization_profile',
 		'app.client',
+		'app.partner',
+		'app.risk_assessment',
 		'app.user',
 		'app.group',
+		'app.policies_and_procedures_document',
 		'app.policies_and_procedure',
 		'app.other_policies_and_procedure',
 		'app.risk_assessment_document',
@@ -28,7 +31,9 @@ class OrganizationProfilesControllerTest extends ControllerTestCase {
 		'app.ephi_received',
 		'app.ephi_removed',
 		'app.sirt_team',
-		'app.sirt_member'
+		'app.sirt_member',
+		'app.operating_system',
+		'app.operating_systems_organization_profile'
 	);
 
 /**

@@ -251,7 +251,17 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 		</dd>
 		<dt><?php echo __('Please select the operating systems your workstations and laptiops are running: '); ?></dt>
 		<dd>
-			<?php echo h($organizationProfile['OrganizationProfile']['os_installed']); ?>
+			<?php // Get OS list, comma separate except last result
+			if (!empty($organizationProfile['OperatingSystem'])){
+				$i = 0;
+				foreach ($organizationProfile['OperatingSystem'] as $operatingSystem){
+					$osList[] = $operatingSystem['os_name'];
+				}
+				$osList = implode(", ", $osList);
+				echo $osList;
+			}
+			?>
+
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Do you have an EMR/EHR implemented?'); ?></dt>

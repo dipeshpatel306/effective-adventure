@@ -18,7 +18,7 @@ class ClientsController extends AppController {
  * @return void
  */
  	public function isAuthorized($user){
- 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
+ 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 
 		if ($group == 2 || $group == 3){ // Deny Managers and Users
 
@@ -26,21 +26,21 @@ class ClientsController extends AppController {
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 				return false;
 		}
-		
+
 		return parent::isAuthorized($user);
  	}
 /**
  * Generate admin and user codes
- * @return string  
+ * @return string
  */
 	public function accountCode(){
 		$chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		$string = ''; // initialize string
 		$userString = '';
-		
-		$size = strlen($chars)-1; 
+
+		$size = strlen($chars)-1;
 		$length = 10; // length of string
-		
+
 		for($i = 0; $i < $length; $i++){
 			$string .= $chars[ mt_rand(0, $size) ];
 		}
@@ -71,11 +71,13 @@ class ClientsController extends AppController {
 			throw new NotFoundException(__('Invalid client'));
 		}
 		$this->set('client', $this->Client->read(null, $id));
-		
+
+
+
 		// Paginate Users and Get Group Role
-		$this->paginate = array('conditions' => array('User.client_id' => $id), 
-								'order' => array('User.last_name' => 'ASC'), 
-								'fields' => array('User.id', 'User.first_name', 'User.last_name', 'User.email', 'User.group_id', 'User.client_id', 
+		$this->paginate = array('conditions' => array('User.client_id' => $id),
+								'order' => array('User.last_name' => 'ASC'),
+								'fields' => array('User.id', 'User.first_name', 'User.last_name', 'User.email', 'User.group_id', 'User.client_id',
 											'User.last_login', 'User.created', 'User.modified', 'Client.id', 'Group.id', 'Group.name'
 								),'limit' => 20);
 		$this->set('users', $this->paginate($this->Client->User));
@@ -91,17 +93,17 @@ class ClientsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Client->create();
 			if ($this->Client->save($this->request->data)) {
-					
+
 				// Call method to generate user Strings
 				$adminString = $this->accountCode();  // admin
 				$this->Client->saveField('admin_account', $adminString);
-				
+
 				$userString = $this->accountCode(); // user
 				$this->Client->saveField('user_account', $userString);
-				
+
 				$securityString = $this->accountCode();
 				$this->Client->saveField('file_key', $securityString);
-				
+
 				$this->Session->setFlash('The client has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {

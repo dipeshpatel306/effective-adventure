@@ -22,8 +22,6 @@ $this->Html->addCrumb('Edit Organization Profile');
 					'Cloud(Google, Yahoo!, Hotmail)' => 'Cloud(Google, Yahoo!, Hotmail)', 'Other' => 'Other' );
 	$host = array('Onsite' => 'Onsite', 'Vendor Hosted' => 'Vendor Hosted', 'Hosted by a 3rd party' => 'Hosted by a 3rd party', 'Other' => 'Other' );
 	$emrehr = array('Running on a server in office' => 'Running on a server in office', 'Hosted by vendor(Cloud/SaaS)' => 'Hosted by vendor(Cloud/SaaS)', 'Hosted by third party(Not EMR vendor)' => 'Hosted by third party(Not EMR vendor)');
-	// Convert OS installed from comma separated string back into check options
-	$os_installed = explode(',', $this->request->data['OrganizationProfile']['os_installed']);
 
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id');
@@ -130,8 +128,8 @@ $this->Html->addCrumb('Edit Organization Profile');
 		echo $this->Form->input('network_details', array('label' =>'Please provide details of your network: '));
 		echo $this->Form->input('number_workstations', array('label' =>'How many workstations(desktops) do you have?'));
 		echo $this->Form->input('number_laptops', array('label' =>'How many laptops do you have?'));
-		echo $this->Form->input('os_installed', array('label' => 'Please select the operating systems your workstations and laptiops are running: ',
-								'options' => $osLong, 'multiple' => 'checkbox'));
+		echo $this->Form->input('OperatingSystem', array('label' => 'Please select the operating systems your workstations and laptiops are running: ',
+								 'multiple' => 'checkbox', 'class' => 'inlinebox'));
 	?>
 	</div>
 
