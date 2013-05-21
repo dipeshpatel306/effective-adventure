@@ -6,7 +6,6 @@ App::uses('AppController', 'Controller');
  * @property Client $Client
  */
 class ClientsController extends AppController {
-
  public function beforeFilter(){
 	parent::beforeFilter();
  }

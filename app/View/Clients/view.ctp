@@ -155,7 +155,7 @@ if($client['Client']['active'] == 'Yes'){
 			<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['modified']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'users', 'action' => 'admin_edit', $user['User']['id'])); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'users', 'action' => 'delete', $user['User']['id']), null, __('Are you sure you want to delete # %s?', $user['User']['id'])); ?>
 			</td>
 		</tr>
