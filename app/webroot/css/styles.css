@@ -547,6 +547,9 @@ ul.tabs{
 .tabBox{
 	border: 1px solid #d7d7d7;
 }
+.tabBox h3{
+	margin-left: 10px;
+}
 
 #slides h3{
 	color: #4C8AB0;

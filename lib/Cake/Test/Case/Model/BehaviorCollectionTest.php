@@ -17,7 +17,7 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Test.Case.Model
  * @since         1.2
- * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 App::uses('AppModel', 'Model');
@@ -142,15 +142,15 @@ class TestBehavior extends ModelBehavior {
 		switch ($settings['afterSave']) {
 			case 'on':
 				$model->data[$model->alias]['aftersave'] = $string;
-			break;
+				break;
 			case 'test':
 				unset($model->data[$model->alias]['name']);
-			break;
+				break;
 			case 'test2':
 				return false;
 			case 'modify':
 				$model->data[$model->alias]['name'] .= ' ' . $string;
-			break;
+				break;
 		}
 	}
 
@@ -241,7 +241,7 @@ class TestBehavior extends ModelBehavior {
 		switch ($settings['afterDelete']) {
 			case 'on':
 				echo 'afterDelete success';
-			break;
+				break;
 		}
 	}
 
@@ -349,7 +349,7 @@ class Test2Behavior extends TestBehavior {
  *
  * @package       Cake.Test.Case.Model
  */
-class Test3Behavior extends TestBehavior{
+class Test3Behavior extends TestBehavior {
 }
 
 /**
@@ -357,7 +357,7 @@ class Test3Behavior extends TestBehavior{
  *
  * @package       Cake.Test.Case.Model
  */
-class Test4Behavior extends ModelBehavior{
+class Test4Behavior extends ModelBehavior {
 
 	public function setup(Model $model, $config = null) {
 		$model->bindModel(
@@ -372,7 +372,7 @@ class Test4Behavior extends ModelBehavior{
  *
  * @package       Cake.Test.Case.Model
  */
-class Test5Behavior extends ModelBehavior{
+class Test5Behavior extends ModelBehavior {
 
 	public function setup(Model $model, $config = null) {
 		$model->bindModel(
@@ -387,7 +387,7 @@ class Test5Behavior extends ModelBehavior{
  *
  * @package       Cake.Test.Case.Model
  */
-class Test6Behavior extends ModelBehavior{
+class Test6Behavior extends ModelBehavior {
 
 	public function setup(Model $model, $config = null) {
 		$model->bindModel(
@@ -402,7 +402,7 @@ class Test6Behavior extends ModelBehavior{
  *
  * @package       Cake.Test.Case.Model
  */
-class Test7Behavior extends ModelBehavior{
+class Test7Behavior extends ModelBehavior {
 
 	public function setup(Model $model, $config = null) {
 		$model->bindModel(

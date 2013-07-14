@@ -21,7 +21,7 @@ $this->Html->addCrumb('Edit Organization Profile');
 	$emailHost = array('Onsite' => 'Onsite', 'Hosted by a 3rd party' => 'Hosted by a 3rd party',
 					'Cloud(Google, Yahoo!, Hotmail)' => 'Cloud(Google, Yahoo!, Hotmail)', 'Other' => 'Other' );
 	$host = array('Onsite' => 'Onsite', 'Vendor Hosted' => 'Vendor Hosted', 'Hosted by a 3rd party' => 'Hosted by a 3rd party', 'Other' => 'Other' );
-	$emrehr = array('Running on a server in office' => 'Running on a server in office', 'Hosted by vendor(Cloud/SaaS)' => 'Hosted by vendor(Cloud/SaaS)', 'Hosted by third party(Not EMR vendor)' => 'Hosted by third party(Not EMR vendor)');
+	$emrehr = array('Running on a server in office' => 'Running on a server in office', 'Hosted by vendor(Cloud/SaaS)' => 'Hosted by vendor(Cloud/SaaS)', 'Hosted by third party(Not EMR vendor)' => 'Hosted by third party(Not EMR vendor)', 'Other' => 'Other');
 
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id');
@@ -136,7 +136,7 @@ $this->Html->addCrumb('Edit Organization Profile');
 	<div id='tab3' class='tabBox'>
 	<?php
 		echo $this->Form->input('emr_ehr_implemented', array('label' => 'Do you have an EMR/EHR implemented?', 'options' => $choice, 'empty' => 'Please Select One' ));
-		echo $this->Form->input('emr_ehr_vendor', array('label' => 'What is the name of your EMP/EHR Vendor?'));
+		echo $this->Form->input('emr_ehr_vendor', array('label' => 'What is the name of your EMR/EHR Vendor?'));
 		echo $this->Form->input('emr_ehr_internal_name', array('label' => 'What is the internal name that you use to refer to your EMR/EHR?'));
 		echo $this->Form->input('emr_ehr_os', array('label' => 'What server operating system does your EMR/EHR run on?',
 													'options' => $os, 'empty' => 'Please Select One'));
@@ -146,6 +146,11 @@ $this->Html->addCrumb('Edit Organization Profile');
 
 		echo $this->Form->input('emr_ehr_details', array('label' => 'Please enter EMR/EHR Other operating system or provide more details: '));
 		echo $this->Form->input('emr_ehr_location', array('label' => 'Where is your EMR/EHR located?', 'options' => $emrehr));
+
+		echo '<div class="emrEhrOtherLoc">'.
+		$this->Form->input('emr_ehr_other_location', array('label' => 'Other EMR/EHR Location'))
+		. '</div>';
+
 		echo $this->Form->input('emr_ehr_description', array('label' => 'Please describe where your EMR/EHR is located: '));
 	?>
 	</div>

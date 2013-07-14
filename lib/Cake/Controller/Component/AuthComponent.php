@@ -17,7 +17,7 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Controller.Component
  * @since         CakePHP(tm) v 0.10.0.1076
- * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 App::uses('Component', 'Controller');
@@ -173,7 +173,7 @@ class AuthComponent extends Component {
 	protected static $_user = array();
 
 /**
- * A URL (defined as a string or array) to the controller action that handles
+ * An URL (defined as a string or array) to the controller action that handles
  * logins. Defaults to `/users/login`
  *
  * @var mixed
@@ -217,9 +217,9 @@ class AuthComponent extends Component {
 
 /**
  * Controls handling of unauthorized access.
- * - For default value `true` unauthorized user is redirected to the referrer url
+ * - For default value `true` unauthorized user is redirected to the referrer URL
  *   or AuthComponent::$loginRedirect or '/'.
- * - If set to a string or array the value is used as an url to redirect to.
+ * - If set to a string or array the value is used as an URL to redirect to.
  * - If set to false a ForbiddenException exception is thrown instead of redirecting.
  *
  * @var mixed
@@ -643,16 +643,16 @@ class AuthComponent extends Component {
 	}
 
 /**
- * Get the URL a use should be redirected to upon login.
+ * Get the URL a user should be redirected to upon login.
  *
- * Pass a url in to set the destination a user should be redirected to upon
+ * Pass an URL in to set the destination a user should be redirected to upon
  * logging in.
  *
- * If no parameter is passed, gets the authentication redirect URL. The url
+ * If no parameter is passed, gets the authentication redirect URL. The URL
  * returned is as per following rules:
  *
- *  - Returns the session Auth.redirect value if it is present and for the same
- *    domain the current app is running on.
+ *  - Returns the normalized URL from session Auth.redirect value if it is
+ *    present and for the same domain the current app is running on.
  *  - If there is no session value and there is a $loginRedirect, the $loginRedirect
  *    value is returned.
  *  - If there is no session and no $loginRedirect, / is returned.
@@ -666,6 +666,7 @@ class AuthComponent extends Component {
 			$this->Session->write('Auth.redirect', $redir);
 		} elseif ($this->Session->check('Auth.redirect')) {
 			$redir = $this->Session->read('Auth.redirect');
+			$redir = is_string($redir) ? ltrim($redir, '/') : $redir;
 			$this->Session->delete('Auth.redirect');
 
 			if (Router::normalize($redir) == Router::normalize($this->loginAction)) {

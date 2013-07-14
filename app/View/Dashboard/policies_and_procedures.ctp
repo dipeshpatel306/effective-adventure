@@ -44,7 +44,7 @@ $this->Html->addCrumb('Policies & Procedures');
 ?>
 
 <div class="dashboard index">
-	<h2><?php echo __('Policies & Procedures'); ?></h2>
+	<h2><?php echo __('HIPAA Policies & Procedures'); ?></h2>
 
 	<?php
 		// policies & procedures . If Manager allow, If employee read only. MU hidden
@@ -72,9 +72,9 @@ $this->Html->addCrumb('Policies & Procedures');
 								'class' => 'dashTile',
 								'alt' => 'HIPAA Policies & Procedures'
 								)) .
-					'<h3>Policies & Procedures</h3>' .
+					'<h3>HIPAA Policies & Procedures</h3>' .
 					'</div>' .
-					'<div class="dashSum">HIPAA and other Policies and Procedures</div>'  . $approved .
+					'<div class="dashSum">HIPAA Policies and Procedures</div>'  . $approved .
 					'</div>',
 					array('controller' => 'policies_and_procedures', 'action' => 'index'),
 					array('escape' => false)

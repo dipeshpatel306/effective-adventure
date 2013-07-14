@@ -22,7 +22,7 @@ $this->Html->addCrumb('Add Organization Profile');
 					'Cloud(Google, Yahoo!, Hotmail)' => 'Cloud(Google, Yahoo!, Hotmail)', 'Other' => 'Other' );
 	$host = array('Onsite' => 'Onsite', 'Vendor Hosted' => 'Vendor Hosted', 'Hosted by a 3rd party' => 'Hosted by a 3rd party', 'Other' => 'Other' );
 
-	$emrehr = array('Running on a server in office' => 'Running on a server in office', 'Hosted by vendor(Cloud/SaaS)' => 'Hosted by vendor(Cloud/SaaS)', 'Hosted by third party(Not EMR vendor)' => 'Hosted by third party(Not EMR vendor)');
+	$emrehr = array('Running on a server in office' => 'Running on a server in office', 'Hosted by vendor(Cloud/SaaS)' => 'Hosted by vendor(Cloud/SaaS)', 'Hosted by third party(Not EMR vendor)' => 'Hosted by third party(Not EMR vendor)', 'Other' => 'Other');
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
@@ -134,7 +134,7 @@ $this->Html->addCrumb('Add Organization Profile');
 	<div id='tab3' class='tabBox'>
 	<?php
 		echo $this->Form->input('emr_ehr_implemented', array('label' => 'Do you have an EMR/EHR implemented?', 'options' => $choice, 'empty' => 'Please Select One' ));
-		echo $this->Form->input('emr_ehr_vendor', array('label' => 'What is the name of your EMP/EHR Vendor?'));
+		echo $this->Form->input('emr_ehr_vendor', array('label' => 'What is the name of your EMR/EHR Vendor?'));
 		echo $this->Form->input('emr_ehr_internal_name', array('label' => 'What is the internal name that you use to refer to your EMR/EHR?'));
 		echo $this->Form->input('emr_ehr_os', array('label' => 'What server operating system does your EMR/EHR run on?',
 													'options' => $os, 'empty' => 'Please Select One'));
@@ -145,6 +145,11 @@ $this->Html->addCrumb('Add Organization Profile');
 
 		echo $this->Form->input('emr_ehr_details', array('label' => 'Please enter EMR/EHR Other operating system or provide more details: '));
 		echo $this->Form->input('emr_ehr_location', array('label' => 'Where is your EMR/EHR located?', 'options' => $emrehr, 'empty' => 'Please Select One'));
+
+		echo '<div class="emrEhrOtherLoc">'.
+		$this->Form->input('emr_ehr_other_location', array('label' => 'Other EMR/EHR Location'))
+		. '</div>';
+
 		echo $this->Form->input('emr_ehr_description', array('label' => 'Please describe where your EMR/EHR is located: '));
 	?>
 	</div>
@@ -188,6 +193,7 @@ $this->Html->addCrumb('Add Organization Profile');
 
 	<div id='tab8' class='tabBox'>
 	<?php
+		echo '<h3 class="highlight">System 1</h3>';
 		echo $this->Form->input('system_1_name', array('label' => 'System 1 Name: '));
 		echo $this->Form->input('system_1_os', array('label' => 'System 1 Operating System: ', 'options' => $os, 'empty' => 'Please Select One'));
 		echo $this->Form->input('system_1_vendor', array('label' => 'System 1 Vendor: '));
@@ -195,6 +201,7 @@ $this->Html->addCrumb('Add Organization Profile');
 		echo $this->Form->input('system_1_ephi', array('label' => 'System 1 # of ePHI Records (estimate):'));
 		echo $this->Form->input('system_1_details', array('label' => 'System 1 - Please provide details of the system (how it is used, who uses it, etc.): '));
 
+		echo '<h3 class="highlight">System 2</h3>';
 		echo $this->Form->input('system_2_name', array('label' => 'System 2 Name: '));
 		echo $this->Form->input('system_2_os', array('label' => 'System 2 Operating System: ', 'options' => $os, 'empty' => 'Please Select One'));
 		echo $this->Form->input('system_2_vendor', array('label' => 'System 2 Vendor: '));
@@ -202,6 +209,7 @@ $this->Html->addCrumb('Add Organization Profile');
 		echo $this->Form->input('system_2_ephi', array('label' => 'System 2 # of ePHI Records (estimate):'));
 		echo $this->Form->input('system_2_details', array('label' => 'System 2 - Please provide details of the system (how it is used, who uses it, etc.): '));
 
+		echo '<h3 class="highlight">System 3</h3>';
 		echo $this->Form->input('system_3_name', array('label' => 'System 3 Name: '));
 		echo $this->Form->input('system_3_os', array('label' => 'System 3 Operating System: ', 'options' => $os, 'empty' => 'Please Select One'));
 		echo $this->Form->input('system_3_vendor', array('label' => 'System 3 Vendor: '));
@@ -209,6 +217,7 @@ $this->Html->addCrumb('Add Organization Profile');
 		echo $this->Form->input('system_3_ephi', array('label' => 'System 3 # of ePHI Records (estimate):'));
 		echo $this->Form->input('system_3_details', array('label' => 'System 3 - Please provide details of the system (how it is used, who uses it, etc.): '));
 
+		echo '<h3 class="highlight">System 4</h3>';
 		echo $this->Form->input('system_4_name', array('label' => 'System 4 Name: '));
 		echo $this->Form->input('system_4_os', array('label' => 'System 4 Operating System: ', 'options' => $os, 'empty' => 'Please Select One'));
 		echo $this->Form->input('system_4_vendor', array('label' => 'System 4 Vendor: '));
@@ -216,6 +225,7 @@ $this->Html->addCrumb('Add Organization Profile');
 		echo $this->Form->input('system_4_ephi', array('label' => 'System 4 # of ePHI Records (estimate):'));
 		echo $this->Form->input('system_4_details', array('label' => 'System 4 - Please provide details of the system (how it is used, who uses it, etc.): '));
 
+		echo '<h3 class="highlight">System 5</h3>';
 		echo $this->Form->input('system_5_name', array('label' => 'System 5 Name: '));
 		echo $this->Form->input('system_5_os', array('label' => 'System 5 Operating System: ', 'options' => $os, 'empty' => 'Please Select One'));
 		echo $this->Form->input('system_5_vendor', array('label' => 'System 5 Vendor: '));

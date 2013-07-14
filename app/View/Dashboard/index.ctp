@@ -51,9 +51,9 @@
 								'class' => 'dashTile',
 								'alt' => 'Policies & Procedures'
 								)) .
-					'<h3>HIPAA Policies & Procedures</h3>' .
+					'<h3>Policies & Procedures</h3>' .
 					'</div>' .
-					'<div class="dashSum">HIPAA Policies and Procedures</div>' . $approved .
+					'<div class="dashSum">Policies and Procedures</div>' . $approved .
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'policies_and_procedures'),
 					array('escape' => false)

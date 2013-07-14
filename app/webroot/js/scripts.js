@@ -102,7 +102,7 @@ $(document).ready(function(){
 			}
 		}).change();
 
-  		// toggle other email
+  		// toggle other OS
 		$('#OrganizationProfileEmrEhrOs').change(function(){
 			var selected;
 			selected = $(this).val();
@@ -110,6 +110,17 @@ $(document).ready(function(){
 				$('.otherEmrOs').toggle(this.checked);
 			} else {
 				$('.otherEmrOs').hide();
+			}
+		}).change();
+
+  		// toggle other EMR/EHR Location
+		$('#OrganizationProfileEmrEhrLocation').change(function(){
+			var selected;
+			selected = $(this).val();
+			if(selected === 'Other'){
+				$('.emrEhrOtherLoc').toggle(this.checked);
+			} else {
+				$('.emrEhrOtherLoc').hide();
 			}
 		}).change();
 
