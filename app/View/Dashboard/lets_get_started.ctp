@@ -18,16 +18,16 @@
 
 <b>The Risk Assessment is a four step process:</b><br /><br />
 
-	<b>1) <?php echo $this->Html->link('Fill out the Organization Profile', $orgPro); ?></b>
+	<b><span class='important'>1)</span> <?php echo $this->Html->link('Fill out the Organization Profile', $orgPro); ?></b>
 	<p>By clicking on the above link you will be brought to a page that will allow you to describe your organization.
 	</p>
 	<p>This information along with below Risk Assessment questions, will help us perform the Risk Assessment.</p>
 
-	<b>2) <?php echo $this->Html->link('Answer the Risk Assessment Questions', $riskAss) ?> </b>
+	<b><span class='important'>2)</span> <?php echo $this->Html->link('Answer the Risk Assessment Questions', $riskAss) ?> </b>
 	<p>By clicking on the above link you will be brought to a page that has 44 questions to be answered. The questions will provide an insight into how you are currently protecting electronic protected health information (ePHI). We will use this information to help perform the Risk Assessment.
 	</p>
 
-	<b>3) <?php echo $this->Html->link('Upload any existing Policy or Procedure that you already have in place.', array('controller' => 'other_policies_and_procedures')) ?> </b>
+	<b><span class='important'>3)</span> <?php echo $this->Html->link('Upload any existing Policy or Procedure that you already have in place.', array('controller' => 'other_policies_and_procedures')) ?> </b>
 	<p>The next step after you answer the Risk Assessment Questions is to upload any existing policies and procedures (P&Ps) you have in place. This will provide insight into how your existing policy and procedures address protecting ePHI. Examples of the existing P&Ps include:
 	</p>
 	<ul>
@@ -37,7 +37,7 @@
 	</ul>
 <br />
 
-	<b>4) Mark the Risk Assessment Complete <span class='important'>**Important**</span></b>
+	<b><span class='important'>4)</span> Mark the Risk Assessment Complete <span class='important'>**Important**</span></b>
 	<p>The last step is to Mark the Risk Assessment Complete so that you will know you are done and can perform the Risk Assessment and produce the Risk Assessment Reports. We will not be able to complete the Risk Assessment until you tell us you are done.</p>
 	<p><b>Begin your Risk Assessment with the Organization Profile button on the previous page</b></p>
 
