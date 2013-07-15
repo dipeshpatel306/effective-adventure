@@ -168,6 +168,21 @@ $(document).ready(function(){
 			}
 		}).change();
 
+	// Mark Risk Assessment Complete. Modal Window
+		$('.markComplete').click(function(){
+			$('.completeBox').dialog({
+				height: 400,
+				width: 600,
+				modal: true,
+				resizable: false,
+			});
+		});
+
+		$('.closeBox').click(function(){
+			$('.completeBox').dialog('close');
+
+		});
+
 
 	// Jwplayer
 	function showVideo(mp4Name) {

@@ -28,7 +28,6 @@ class AppController extends Controller {
 
     public function beforeFilter() {
     	parent::beforeFilter();
-
 		$this->Auth->authenticate = array( // Use email as the login username
     		'Form' => array(
         	'fields' => array('username' => 'email', 'password' => 'password')

@@ -100,6 +100,36 @@ class DashboardController extends AppController {
 	}
 
 /**
+ * Lets Get Started Controller
+ *
+ * @return void
+ */
+ public function lets_get_started(){
+		// Check if Client already has an existing Risk Assessment
+		$clientId = $this->Session->read('Auth.User.client_id');
+		$this->loadModel('RiskAssessment');
+		$risk = $this->RiskAssessment->find('first', array('conditions' => array(
+				'client_id' => $clientId),
+				'fields' => 'RiskAssessment.id, RiskAssessment.client_id'
+		));
+		// If Risk Assessment exists then set it
+		if(isset($risk) && !empty($risk)){
+			$this->set(compact('risk'));
+		}
+
+		// Check if Client already has an existing Org Profile
+		$this->loadModel('OrganizationProfile');
+		$org = $this->OrganizationProfile->find('first', array('conditions' => array(
+				'client_id' => $clientId),
+				'fields' => 'OrganizationProfile.id, OrganizationProfile.client_id'
+		));
+		// If Org profile exists then set it
+		if(isset($org) && !empty($org)){
+			$this->set(compact('org'));
+		}
+ }
+
+/**
  * index method
  *
  * @return void
