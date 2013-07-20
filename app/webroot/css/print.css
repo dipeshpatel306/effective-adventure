@@ -1,0 +1,8 @@
+@media print {
+.navWrap { display:none }
+#content { 
+           margin-left:-16em;
+          }
+.actions { display:none }
+.userBox  { display:none }
+}

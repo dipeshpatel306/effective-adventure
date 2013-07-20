@@ -24,8 +24,10 @@ $this->Html->addCrumb('Edit Risk Assessment');
 		<!-- <legend><?php echo __('Take Risk Assessment'); ?></legend>-->
 
 
-<div id="slides">
-<div class="slides_container">
+<!--<div id="slides">
+<div class="slides_container">-->
+<div >
+<div >
 
 	<div>
 	<?php echo $this->Form->input('question_1', array('label' => raq(0, $RaQ), 'options' => $options));?>
