@@ -1,8 +1,32 @@
 @media print {
 .navWrap { display:none }
-#content { 
-           margin-left:-16em;
-          }
+#header .logo{
+	width:141px;
+	height: 35px;
+}
+#header{
+	height: 50px;
+	padding: 0;
+}
+h2{
+	font-size: 150%;
+}
+div.view{
+	width: 100%;
+	border: none;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+}
+dl{
+	line-height: 1em;
+}
+#footer{
+	display: none;
+}
 .actions { display:none }
 .userBox  { display:none }
+}
+#debug-kit-toolbar{
+	display: none;
 }
