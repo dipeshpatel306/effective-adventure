@@ -24,9 +24,9 @@ $this->Html->addCrumb('Take Risk Assessment');
 
 
 <!--<div id="slides">
-<div class="slides_container">--></div>
-<div>
-<div>
+<div class="slides_container">-->
+<div class="riskAssHead">
+
 
 	<div>
 	<?php echo $this->Form->input('question_1', array('label' => raq(0, $RaQ), 'options' => $options));?>
@@ -177,10 +177,10 @@ $this->Html->addCrumb('Take Risk Assessment');
 	<?php echo $this->Form->input('question_48',  array('label' => raq(47, $RaQ), 'options' => $options));?>
 
 	</div>
-</div><!--<span class='prevNext'><a class="prev" href="#">Previous</a></span><span class='prevNext'><a class="next" href="#">Next</a></span>-->
-		<div class='buttonWrap'>
+<!--<span class='prevNext'><a class="prev" href="#">Previous</a></span><span class='prevNext'><a class="next" href="#">Next</a></span>-->
+		<!--<div class='buttonWrap'>
 		<?php echo $this->Form->button('Previous', array('class' => 'prev'));?><?php echo $this->Form->button('Next', array('class' => 'next'));?>
-		</div>
+		</div>-->
 </div>
 	<?php echo $this->Form->end('Submit');?>
 	<?php //echo $this->Form->end(); ?>

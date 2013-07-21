@@ -572,6 +572,7 @@ ul.tabs{
 	display:block;
 }
 
+
 /*
 	Next/prev buttons
 */
@@ -646,7 +647,7 @@ button.prev, button.next, button.prev:visited, button.next:visited{
 button.prev:hover, button.next:hover{
 	background: none repeat scroll 0 0 #5BA150
 }
-.buttonWrap{
+.buttonWrap{ /* remove ? */
 	width: 230px;
 	margin-left: auto;
 	margin-right: auto;
@@ -671,4 +672,9 @@ button.prev:hover, button.next:hover{
 }
 .completeBox .btnText{
 
+}
+/* ##### Risk Assessment ###### */
+.riskAssHead h3{
+	color: #4C8AB0;
+	font-weight: bold;
 }
