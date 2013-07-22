@@ -203,7 +203,8 @@ class BusinessAssociateAgreementsController extends AppController {
 			$this->request->data = $this->BusinessAssociateAgreement->read(null, $id);
 		}
 		$clients = $this->BusinessAssociateAgreement->Client->find('list');
-		$this->set(compact('clients'));
+		$doc = $this->BusinessAssociateAgreement->data['BusinessAssociateAgreement']['attachment'];
+		$this->set(compact('clients', 'doc'));
 	}
 
 /**

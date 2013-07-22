@@ -678,3 +678,7 @@ button.prev:hover, button.next:hover{
 	color: #4C8AB0;
 	font-weight: bold;
 }
+/* Documents */
+.labelNew, .currentDoc{
+	margin-left: 10px;
+}

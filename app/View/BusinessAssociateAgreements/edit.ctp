@@ -65,7 +65,13 @@ $this->Html->addCrumb('Edit Business Associate Agreement');
 		echo $this->Form->input('business_associate_relationship', array('options' => $relationship));
 
 		echo $this->Form->input('contract_date', array('class' => 'datePick'));
-		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Attachment - (pdf, doc, docx, dot files only)'));
+	?>	
+		<label for='currentDoc' class='labelNew'>Current Document</label>
+		<div class='currentDoc'><?php echo $doc ?>
+			
+		</div>
+	<?php	
+		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Replace Document - (pdf, doc, docx, dot files only)'));
 		echo $this->Form->input('attachment_dir', array('type' => 'hidden'));
 
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.

@@ -21,8 +21,14 @@ $this->Html->addCrumb('Edit Policy & Procedure Document');
 			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
 		}
 
-		echo $this->Form->input('document', array('type' => 'file'));
+?>
+	<label for='currentDoc' class='labelNew'>Current Document</label>
+	<div class='currentDoc'><?php echo $doc ?></div>
+	<?php
+	 	
+		echo $this->Form->input('document', array('label' => 'Replace Document', 'type' => 'file'));
 		echo $this->Form->input('document_dir', array('type' => 'hidden'));
+		
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

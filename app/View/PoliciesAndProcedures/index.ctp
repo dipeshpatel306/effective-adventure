@@ -20,7 +20,7 @@ $this->Html->addCrumb('HIPAA Policies & Procedures');
 	foreach ($policiesAndProcedures as $policiesAndProcedure): ?>
 	<tr>
 		<td><?php echo h($policiesAndProcedure['PoliciesAndProcedure']['id']); ?>&nbsp;</td>
-		<td><b><?php echo h($policiesAndProcedure['PoliciesAndProcedure']['name']); ?></b>&nbsp;</td>
+		<td><b><?php echo ($policiesAndProcedure['PoliciesAndProcedure']['name']); ?></b>&nbsp;</td>
 		<td><?php echo $policiesAndProcedure['PoliciesAndProcedure']['description']; ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a',$policiesAndProcedure['PoliciesAndProcedure']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a',$policiesAndProcedure['PoliciesAndProcedure']['modified']); ?>&nbsp;</td>
@@ -28,7 +28,7 @@ $this->Html->addCrumb('HIPAA Policies & Procedures');
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?>
 			<?php if($group == 1 ): ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $policiesAndProcedure['PoliciesAndProcedure']['id']), null, __('Are you sure you want to delete # %s?', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?>
+			<!--<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $policiesAndProcedure['PoliciesAndProcedure']['id']), null, __('Are you sure you want to delete # %s?', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?>-->
 			<?php endif; ?>
 		</td>
 	</tr>

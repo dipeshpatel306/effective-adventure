@@ -4,6 +4,7 @@ $this->Html->addCrumb('HIPAA Policies & Procedures', '/policies_and_procedures')
 $this->Html->addCrumb('Add HIPAA Policy & Procedure');
 
 	$group = $this->Session->read('Auth.User.group_id');
+
 ?>
 
 

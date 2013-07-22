@@ -200,7 +200,8 @@ class OtherContractsAndDocumentsController extends AppController {
 			$this->request->data = $this->OtherContractsAndDocument->read(null, $id);
 		}
 		$clients = $this->OtherContractsAndDocument->Client->find('list');
-		$this->set(compact('clients'));
+		$doc = $this->OtherContractsAndDocument->data['OtherContractsAndDocument']['attachment'];
+		$this->set(compact('clients', 'doc'));
 	}
 
 /**

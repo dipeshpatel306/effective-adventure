@@ -23,8 +23,11 @@ $this->Html->addCrumb('Edit Other Policy & Procedure');
 		} else {
 			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
 		}
-
-		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Attachment - (pdf, doc, docx, dot files only)'));
+?>
+		<label for='currentDoc' class='labelNew'>Current Document</label>
+		<div class='currentDoc'><?php echo $doc ?></div>
+<?php 
+		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Replace Document - (pdf, doc, docx, dot files only)'));
 		echo $this->Form->input('attachment_dir', array('type' => 'hidden'));
 		// /echo $this->Form->input('media');
 

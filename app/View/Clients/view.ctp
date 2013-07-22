@@ -13,9 +13,13 @@ if($client['Client']['active'] == 'Yes'){
 } else {
 	$active = "class='inactive'";
 }
+
+$clientId = $client['Client']['id'];
+
 ?>
 <div class="clients view">
 <h2><?php  echo __('Client'); ?></h2>
+	
 	<dl>
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
@@ -122,6 +126,11 @@ if($client['Client']['active'] == 'Yes'){
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 	</ul>
+	
+	
+	<ul>
+		<li><?php echo $this->Html->link(__('Batch Add - Policies and Procedures'), array('controller' => 'policies_and_procedures_documents', 'action' => 'batch_add', $client['Client']['id'])); ?> </li>
+	</ul>
 </div>
 
 <div class="clientPanel">
@@ -183,12 +192,12 @@ if($client['Client']['active'] == 'Yes'){
 	</div>
 </div>
 
-<!-- Policies & Procedures -->
+
 <div class="related">
 	<h3><?php echo __('HIPAA Policies & Procedures Documents'); ?></h3>
 
-	<?php if (!empty($client['PoliciesAndProceduresDocument'])): ?>
-
+	<?php if (!empty($policies)): ?>
+		
 	<table>
 	<tr>
 		<th><?php echo __('Policy'); ?></th>
@@ -198,11 +207,15 @@ if($client['Client']['active'] == 'Yes'){
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 
-	<?php
+	<?php 
 		$i = 0;
-		foreach ($client['PoliciesAndProceduresDocument'] as $pnp): ?>
+		foreach ($policies as $pnp): ?>
+		<?php $pnp = array_merge($pnp['PoliciesAndProceduresDocument'], $pnp['PoliciesAndProcedure']);?>
+		
+	
 		<tr>
-			<td><?php echo $pnp['id']; ?></td>
+			
+			<td><?php echo $pnp['policies_and_procedure_id'] . ' - ' . $pnp['name']; ?> </td>
 			<td>
 			<?php 
 			if(!empty($pnp['document'])){
@@ -215,10 +228,61 @@ if($client['Client']['active'] == 'Yes'){
 					'action' => 'sendFile', $dir, $file, $section));
 			}				
 			?>	
-		<?php
-			//$pnpLink =  preg_replace('/\/.*\//', '', $pnp['document']);
-			//echo $this->Html->link($pnpLink, $pnp['document']);
-		?>
+
+			</td>
+			<td><?php echo $this->Time->format('m/d/y g:i a', $pnp['created']); ?></td>
+			<td><?php echo $this->Time->format('m/d/y g:i a', $pnp['modified']); ?></td>
+			<td class="actions">
+				<?php echo $this->Html->link(__('View'), array('controller' => 'policies_and_procedures_documents', 'action' => 'view', $pnp['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'policies_and_procedures_documents', 'action' => 'edit', $pnp['id'])); ?>
+				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'policies_and_procedures_documents', 'action' => 'delete', $pnp['id']), null, __('Are you sure you want to delete # %s?', $pnp['id'])); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+
+	</table>
+<?php endif; ?>
+	<div class="actions">
+		<ul>
+			<li><?php echo $this->Html->link(__('New HIPAA Policies & Procedure  Document'), array('controller' => 'policies_and_procedures_documents', 'action' => 'add', $clientId)); ?> </li>
+		</ul>
+	</div>
+
+</div>
+<!--<div class="related">
+	<h3><?php echo __('HIPAA Policies & Procedures Documents'); ?></h3>
+
+	<?php if (!empty($client['PoliciesAndProceduresDocument'])): ?>
+		
+	<table>
+	<tr>
+		<th><?php echo __('Policy'); ?></th>
+		<th><?php echo __('Document'); ?></th>
+		<th><?php echo __('Created'); ?></th>
+		<th><?php echo __('Modified'); ?></th>
+		<th class="actions"><?php echo __('Actions'); ?></th>
+	</tr>
+
+	<?php 
+		$i = 0;
+		foreach ($client['PoliciesAndProceduresDocument'] as $pnp): ?>
+		<?php pr($pnp)?>
+		<tr>
+			
+			<td><?php echo $pnp['id']; ?>  </td>
+			<td>
+			<?php 
+			if(!empty($pnp['document'])){
+				$dir = $pnp['document_dir'];
+				$file = $pnp['document'];
+				$section = 'policies_and_procedure';
+				$pnpLink =  preg_replace('/\/.*\//', '', $pnp['document']);
+				echo $this->Html->link($pnp['document'], array(
+					'controller' => 'policies_and_procedures_documents',
+					'action' => 'sendFile', $dir, $file, $section));
+			}				
+			?>	
+
 			</td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $pnp['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $pnp['modified']); ?></td>
@@ -238,7 +302,7 @@ if($client['Client']['active'] == 'Yes'){
 		</ul>
 	</div>
 
-</div>
+</div>-->
 
 <!-- Other Policies & Procedures -->
 <div class="related">

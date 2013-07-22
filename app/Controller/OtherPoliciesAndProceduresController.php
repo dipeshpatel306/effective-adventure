@@ -203,7 +203,8 @@ class OtherPoliciesAndProceduresController extends AppController {
 			$this->request->data = $this->OtherPoliciesAndProcedure->read(null, $id);
 		}
 		$clients = $this->OtherPoliciesAndProcedure->Client->find('list');
-		$this->set(compact('clients'));
+		$doc = $this->OtherPoliciesAndProcedure->data['OtherPoliciesAndProcedure']['attachment'];
+		$this->set(compact('clients', 'doc'));
 	}
 
 

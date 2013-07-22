@@ -112,9 +112,15 @@ class PoliciesAndProceduresDocumentsController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($clientId = null) {
+		
+		if(isset($clientId)){
+			$this->set('clientId', $clientId);
+		}
+		
 		if ($this->request->is('post')) {
-
+			
+			// Check to make sure record doesn't already exist
 			$check = $this->PoliciesAndProceduresDocument->find('first',(array(
 				'conditions' => array(
 						'PoliciesAndProceduresDocument.client_id' => $this->request->data['PoliciesAndProceduresDocument']['client_id'],
@@ -126,7 +132,6 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 			if($check){
 				$this->request->data['PoliciesAndProceduresDocument']['id'] = $check['PoliciesAndProceduresDocument']['id'];
 			}
-
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 			if($group != 1){
@@ -144,7 +149,16 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 			$this->PoliciesAndProceduresDocument->create();
 			if ($this->PoliciesAndProceduresDocument->save($this->request->data)) {
 				$this->Session->setFlash('The policies and procedures document has been saved', 'default', array('class' => 'success message'));
+				
+				$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
+				if($group == 1){
+					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				} else {
+					$this->redirect(array('action' => 'index'));
+				}
+				
 				$this->redirect(array('action' => 'index'));
+			
 			} else {
 				$this->Session->setFlash(__('The policies and procedures document could not be saved. Please, try again.'));
 			}
@@ -153,6 +167,78 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 		$clients = $this->PoliciesAndProceduresDocument->Client->find('list');
 		$this->set(compact('policiesAndProcedures', 'clients'));
 	}
+
+/**
+ * Batch Add Method
+ * @return void
+ */
+	public function batch_add($clientId = null, $policy = null){
+		
+		if(isset($clientId)){ // Check Client ID is set
+			$this->request->data['PoliciesAndProceduresDocument']['client_id'] = $clientId;
+			
+			$clientName = $this->PoliciesAndProceduresDocument->Client->find('first', array(
+				'conditions' => array('Client.id' => $clientId),
+				'fields' => array('Client.name'),
+				'recursive' => 0	
+			
+			));
+			
+		} else {
+				$this->redirect(array('controller' => 'clients', 'action' => 'index'));
+				$this->Session->setFlash(__('There was no Client.'));
+		}
+		
+		if(!isset($policy)){
+ 			$policy = 1;
+		} elseif($policy > 18 || $policy < 1){
+				$this->redirect(array('controller' => 'clients', 'action' => 'view', $clientId));
+				$this->Session->setFlash('Policies and Procedures Batch Upload completed for ' . $clientName, 'default', 
+				array('class' => 'success message'));
+			
+		} else {
+			$policy = $policy += 1;
+		}
+		
+		if ($this->request->is('post')) {
+			pr($this->request->data);
+			exit();
+			
+			// Check to make sure record doesn't already exist
+			$check = $this->PoliciesAndProceduresDocument->find('first',(array(
+				'conditions' => array(
+						'PoliciesAndProceduresDocument.client_id' => $this->request->data['PoliciesAndProceduresDocument']['client_id'],
+						'PoliciesAndProceduresDocument.policies_and_procedure_id' => $this->request->data['PoliciesAndProceduresDocument']['policies_and_procedure_id']),
+						'fields' => array('PoliciesAndProceduresDocument.id, PoliciesAndProceduresDocument.client_id, PoliciesAndProceduresDocument.policies_and_procedure_id'),
+						'recursive' => 0
+				)));
+
+			if($check){
+				$this->request->data['PoliciesAndProceduresDocument']['id'] = $check['PoliciesAndProceduresDocument']['id'];
+			}			
+
+			
+			$this->PoliciesAndProceduresDocument->create();
+			if ($this->PoliciesAndProceduresDocument->save($this->request->data)) {
+				$this->Session->setFlash('The policies and procedures document has been saved', 'default', array('class' => 'success message'));
+				$this->redirect(array('action' => 'batch_add', $clientId, $policy));
+			} else {
+				$this->Session->setFlash(__('The policies and procedures document could not be saved. Please, try again.'));
+			}
+		}	
+		$policiesAndProcedures = $this->PoliciesAndProceduresDocument->PoliciesAndProcedure->find('list');	
+		$clients = $this->PoliciesAndProceduresDocument->Client->find('list');	
+		
+		$this->set(compact('policiesAndProcedures', 'clients' , 'clientId', 'clientName', 'policy'));
+	}
+/**
+ * Batch Add Method
+ * @return void
+ */	
+	public function batch_edit($client_id = null, $policy_id = null){
+		
+		
+	}  
 
 /**
  * edit method
@@ -193,8 +279,11 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 			$this->request->data = $this->PoliciesAndProceduresDocument->read(null, $id);
 		}
 		$policiesAndProcedures = $this->PoliciesAndProceduresDocument->PoliciesAndProcedure->find('list');
+		//$name = $this->PoliciesAndProceduresDocument['document'];
 		$clients = $this->PoliciesAndProceduresDocument->Client->find('list');
-		$this->set(compact('policiesAndProcedures', 'clients'));
+		$doc = $this->PoliciesAndProceduresDocument->data['PoliciesAndProceduresDocument']['document'];
+		$this->set(compact('policiesAndProcedures', 'clients', 'doc'));	
+
 	}
 
 /**

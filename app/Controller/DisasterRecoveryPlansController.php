@@ -201,7 +201,8 @@ class DisasterRecoveryPlansController extends AppController {
 			$this->request->data = $this->DisasterRecoveryPlan->read(null, $id);
 		}
 		$clients = $this->DisasterRecoveryPlan->Client->find('list');
-		$this->set(compact('clients'));
+		$doc = $this->DisasterRecoveryPlan->data['DisasterRecoveryPlan']['attachment'];
+		$this->set(compact('clients', 'doc'));
 	}
 
 /**

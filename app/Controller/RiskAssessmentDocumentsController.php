@@ -124,6 +124,7 @@ class RiskAssessmentDocumentsController extends AppController {
  * @return void
  */
 	public function add() {
+
 		if ($this->request->is('post')) {
 
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
@@ -190,7 +191,8 @@ class RiskAssessmentDocumentsController extends AppController {
 			$this->request->data = $this->RiskAssessmentDocument->read(null, $id);
 		}
 		$clients = $this->RiskAssessmentDocument->Client->find('list');
-		$this->set(compact('clients'));
+		$doc = $this->RiskAssessmentDocument->data['RiskAssessmentDocument']['attachment'];
+		$this->set(compact('clients', 'doc'));
 	}
 
 /**
