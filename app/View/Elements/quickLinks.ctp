@@ -2,7 +2,7 @@
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
-
+	
 ?>
 <div class='sidebarContent'>
 <h3>Quick Links: </h3>
@@ -47,3 +47,4 @@
 </ul>
 
 </div>
+skfhsdfkjdsfns

@@ -121,7 +121,7 @@ class Client extends AppModel {
 			'foreignKey' => 'client_id',
 			'dependent' => true,
 			'conditions' => '',
-			'fields' => array('OtherPoliciesAndProcedure.id, OtherPoliciesAndProcedure.name, OtherPoliciesAndProcedure.client_id, OtherPoliciesAndProcedure.created, OtherPoliciesAndProcedure.modified, OtherPoliciesAndProcedure.attachment'),
+			'fields' => array('OtherPoliciesAndProcedure.id, OtherPoliciesAndProcedure.name, OtherPoliciesAndProcedure.client_id, OtherPoliciesAndProcedure.created, OtherPoliciesAndProcedure.modified, OtherPoliciesAndProcedure.attachment, OtherPoliciesAndProcedure.attachment_dir'),
 			'order' => '',
 			'limit' => '',
 			'offset' => '',

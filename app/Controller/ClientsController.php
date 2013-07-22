@@ -82,7 +82,17 @@ class ClientsController extends AppController {
 		$this->set('users', $this->paginate($this->Client->User));
 		//$this->set('users', $users);
 	}
-
+/**
+ * SendFile Method
+ *
+ */
+	public function sendFile($dir, $file, $section) {
+    	//$file = $this->Attachment->getFile($id);
+		$file = WWW_ROOT . '/files/' . $section . '/' . $dir . '/' . $file;
+   	 	$this->response->file($file, array('download' => true));
+    	//Return reponse object to prevent controller from trying to render a view
+    	return $this->response;
+	}
 /**
  * add method
  *

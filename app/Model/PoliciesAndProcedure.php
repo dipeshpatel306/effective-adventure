@@ -55,7 +55,7 @@ class PoliciesAndProcedure extends AppModel {
 			'foreignKey' => 'policies_and_procedure_id',
 			'dependent' => false,
 			'conditions' => '',
-			'fields' => 'PoliciesAndProceduresDocument.id, PoliciesAndProceduresDocument.policies_and_procedure_id, PoliciesAndProceduresDocument.client_id, PoliciesAndProceduresDocument.document, PoliciesAndProceduresDocument.created, PoliciesAndProceduresDocument.modified',
+			'fields' => 'PoliciesAndProceduresDocument.id, PoliciesAndProceduresDocument.policies_and_procedure_id, PoliciesAndProceduresDocument.client_id, PoliciesAndProceduresDocument.document, PoliciesAndProceduresDocument.document_dir, PoliciesAndProceduresDocument.created, PoliciesAndProceduresDocument.modified',
 			'order' => '',
 			'limit' => '',
 			'offset' => '',

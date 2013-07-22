@@ -113,7 +113,7 @@ class PoliciesAndProceduresController extends AppController {
 					'PoliciesAndProceduresDocument.policies_and_procedure_id' => $id,
 				),
 				'fields' => array('PoliciesAndProceduresDocument.id','PoliciesAndProceduresDocument.policies_and_procedure_id', 'PoliciesAndProceduresDocument.client_id', 
-				'PoliciesAndProceduresDocument.document', 'PoliciesAndProceduresDocument.created', 'PoliciesAndProceduresDocument.modified')	
+				'PoliciesAndProceduresDocument.document', 'PoliciesAndProceduresDocument.document_dir', 'PoliciesAndProceduresDocument.created', 'PoliciesAndProceduresDocument.modified')	
 			
 			));
 		};

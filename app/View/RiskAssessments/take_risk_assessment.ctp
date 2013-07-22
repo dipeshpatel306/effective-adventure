@@ -26,7 +26,11 @@ $this->Html->addCrumb('Take Risk Assessment');
 <!--<div id="slides">
 <div class="slides_container">-->
 <div class="riskAssHead">
-
+	<?php 
+		if($group == 1){
+			echo $this->form->input('client_id', array('empty' => 'Select One', 'default' => 'Select One'));	
+		}
+	?>
 
 	<div>
 	<?php echo $this->Form->input('question_1', array('label' => raq(0, $RaQ), 'options' => $options));?>

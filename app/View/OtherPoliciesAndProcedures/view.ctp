@@ -20,19 +20,19 @@ $this->Html->addCrumb($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['n
 		<?php  endif; ?>
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
-			<?php echo h($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['name']); ?>
+			<?php echo ($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['name']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Description'); ?></dt>
+		<!--<dt><?php echo __('Description'); ?></dt>
 		<dd>
-			<?php echo h($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['description']); ?>
+			<?php echo ($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['description']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Details'); ?></dt>
 		<dd>
-			<?php echo h($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['details']); ?>
+			<?php echo ($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['details']); ?>
 			&nbsp;
-		</dd>
+		</dd>-->
 
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
@@ -66,6 +66,14 @@ $this->Html->addCrumb($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['n
 			&nbsp;
 		</dd>
 	</dl>
+	<h3>Description</h3>
+	<div>
+		<?php echo ($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['description']); ?>
+	</div>
+	<h3>Details</h3>
+	<div>
+		<?php echo ($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['details']); ?>
+	</div>	
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>

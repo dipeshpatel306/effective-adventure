@@ -25,11 +25,11 @@ class OtherPoliciesAndProceduresController extends AppController {
 
 		if($group == 2 || $acct == 'Initial'){ // Allow Managers to add/edit/delete their own data
 
-			if(in_array($this->action, array('index', 'view', 'add'))){  // Allow Managers to Add
+			if(in_array($this->action, array('index', 'add'))){  // Allow Managers to Add
 				return true;
 			}
 
-			if(in_array($this->action, array('edit', 'delete'))){ // Allow Managers to Edit, delete their own
+			if(in_array($this->action, array('edit', 'view', 'delete', 'sendFile'))){ // Allow Managers to Edit, delete their own
 				$id = $this->request->params['pass'][0];
 				if($this->OtherPoliciesAndProcedure->isOwnedBy($id, $client)){
 					($this->OtherPoliciesAndProcedure->isOwnedBy($id, $client));
@@ -40,7 +40,16 @@ class OtherPoliciesAndProceduresController extends AppController {
 		}
 
 		if($group == 3){
-			if(in_array($this->action, array('index', 'view'))){
+			if(in_array($this->action, array('view', 'sendFile'))){ // Allow Managers to Edit, delete their own
+				$id = $this->request->params['pass'][0];
+				if($this->OtherPoliciesAndProcedure->isOwnedBy($id, $client)){
+					($this->OtherPoliciesAndProcedure->isOwnedBy($id, $client));
+					return true;
+				}
+
+			}
+			
+			if(in_array($this->action, array('index'))){
 				return true;
 			}
 		}
@@ -54,7 +63,7 @@ class OtherPoliciesAndProceduresController extends AppController {
 	public function sendFile($dir, $file) {
     	//$file = $this->Attachment->getFile($id);
 		$file = WWW_ROOT . '/files/other_policies_and_procedure/attachment/' . $dir . '/' . $file;
-   	 	$this->response->file($file, array('download' => true, 'name' => 'file'));
+   	 	$this->response->file($file, array('download' => true));
     	//Return reponse object to prevent controller from trying to render a view
     	return $this->response;
 	}
@@ -101,6 +110,7 @@ class OtherPoliciesAndProceduresController extends AppController {
 
 		if($group == 1){
 			$this->set('otherPoliciesAndProcedure', $this->OtherPoliciesAndProcedure->read(null, $id));
+			
 		} elseif($group == 2 || $group == 3){
 			$is_authorized = $this->OtherPoliciesAndProcedure->find('first', array(
 				'conditions' => array(
@@ -108,7 +118,7 @@ class OtherPoliciesAndProceduresController extends AppController {
 					'AND' => array('OtherPoliciesAndProcedure.client_id' => $client)
 				)
 			));
-
+				
 			if($is_authorized){
 				$this->set('otherPoliciesAndProcedure', $this->OtherPoliciesAndProcedure->read(null, $id));
 			} else { // Else Banned!

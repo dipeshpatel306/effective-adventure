@@ -204,9 +204,20 @@ if($client['Client']['active'] == 'Yes'){
 		<tr>
 			<td><?php echo $pnp['id']; ?></td>
 			<td>
+			<?php 
+			if(!empty($pnp['document'])){
+				$dir = $pnp['document_dir'];
+				$file = $pnp['document'];
+				$section = 'policies_and_procedure';
+				$pnpLink =  preg_replace('/\/.*\//', '', $pnp['document']);
+				echo $this->Html->link($pnp['document'], array(
+					'controller' => 'policies_and_procedures_documents',
+					'action' => 'sendFile', $dir, $file, $section));
+			}				
+			?>	
 		<?php
-			$pnpLink =  preg_replace('/\/.*\//', '', $pnp['document']);
-			echo $this->Html->link($pnpLink, $pnp['document']);
+			//$pnpLink =  preg_replace('/\/.*\//', '', $pnp['document']);
+			//echo $this->Html->link($pnpLink, $pnp['document']);
 		?>
 			</td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $pnp['created']); ?></td>
@@ -251,10 +262,18 @@ if($client['Client']['active'] == 'Yes'){
 			<td><?php echo $opnp['name']; ?></td>
 
 			<td>
-			<?php
+			<?php 
+			if(!empty($opnp['attachment'])){
+				$dir = $opnp['attachment_dir'];
+				$file = $opnp['attachment'];
+				$section = 'other_policies_and_procedure';
+
 				$opnpLink =  preg_replace('/\/.*\//', '', $opnp['attachment']);
-				echo $this->Html->link($opnpLink, $opnp['attachment']);
-			?>
+				echo $this->Html->link($opnp['attachment'], array(
+					'controller' => 'other_policies_and_procedures',
+					'action' => 'sendFile', $dir, $file, $section));
+			}			
+			?>	
 			</td>
 
 			<td><?php echo $this->Time->format('m/d/y g:i a', $opnp['created']); ?></td>

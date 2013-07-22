@@ -31,11 +31,11 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 				return false;
 			}
-			if(in_array($this->action, array('index', 'view','add'))){  // Allow Managers to Add
+			if(in_array($this->action, array('index', 'add'))){  // Allow Managers to Add
 				return true;
 			}
 
-			if(in_array($this->action, array('edit', 'delete'))){ // Allow Managers to Edit, delete their own
+			if(in_array($this->action, array('edit', 'view','delete', 'sendFile'))){ // Allow Managers to Edit, delete their own
 				$id = $this->request->params['pass'][0];
 				if($this->PoliciesAndProceduresDocument->isOwnedBy($id, $client)){
 					return true;
@@ -55,10 +55,17 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 					return false;
 				}
-
-				if(in_array($this->action, array('index', 'view'))){
+			
+			if(in_array($this->action, array('view','sendFile'))){ // Allow Managers to Edit, delete their own
+				$id = $this->request->params['pass'][0];
+				if($this->PoliciesAndProceduresDocument->isOwnedBy($id, $client)){
 					return true;
 				}
+			}
+
+			if(in_array($this->action, array('index'))){
+					return true;
+			}
 		}
 
 		return parent::isAuthorized($user);
@@ -71,7 +78,7 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 	public function sendFile($dir, $file) {
     	//$file = $this->Attachment->getFile($id);
 		$file = WWW_ROOT . '/files/policies_and_procedures_document/document/' . $dir . '/' . $file;
-   	 	$this->response->file($file, array('download' => true, 'name' => 'file'));
+   	 	$this->response->file($file, array('download' => true));
     	//Return reponse object to prevent controller from trying to render a view
     	return $this->response;
 	}
