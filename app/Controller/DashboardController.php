@@ -70,6 +70,18 @@ class DashboardController extends AppController {
 				'client_id' => $clientId),
 				'fields' => 'RiskAssessment.id, RiskAssessment.client_id'
 		));
+		
+		// Check if RA and Org are to be displayed
+		$this->loadModel('Client');
+		$displayRaOrg = $this->Client->find('first', array('conditions' => array(
+			'Client.id' => $clientId),
+			'fields' => 'Client.id, Client.display_ra_org',
+			'recursive' => 0
+		));
+		if(isset($displayRaOrg)){
+			$this->set(compact('displayRaOrg'));
+		}
+		
 		// If Risk Assessment exists then set it
 		if(isset($risk) && !empty($risk)){
 			$this->set(compact('risk'));
@@ -140,8 +152,22 @@ class DashboardController extends AppController {
 			$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
 		}
 
-		// Check if Client already has an existing Risk Assessment
+		// Get Client Id
 		$clientId = $this->Session->read('Auth.User.client_id');
+		
+		// Check if RA and Org are to be displayed
+		$this->loadModel('Client');
+		$displayRaOrg = $this->Client->find('first', array('conditions' => array(
+			'Client.id' => $clientId),
+			'fields' => 'Client.id, Client.display_ra_org',
+			'recursive' => 0
+		));
+		if(isset($displayRaOrg)){
+			$this->set(compact('displayRaOrg'));
+		}
+		
+		
+		// Check if Client already has an existing Risk Assessment
 		$this->loadModel('RiskAssessment');
 		$risk = $this->RiskAssessment->find('first', array('conditions' => array(
 				'client_id' => $clientId),

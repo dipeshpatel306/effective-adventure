@@ -201,8 +201,6 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 		}
 		
 		if ($this->request->is('post')) {
-			pr($this->request->data);
-			exit();
 			
 			// Check to make sure record doesn't already exist
 			$check = $this->PoliciesAndProceduresDocument->find('first',(array(

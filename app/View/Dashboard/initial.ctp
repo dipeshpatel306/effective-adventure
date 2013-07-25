@@ -57,6 +57,7 @@
 			);
 
 	if($group != 3){
+	if($displayRaOrg['Client']['display_ra_org'] == 'Yes'){
 		echo $this->Html->link( // Organization Profile
 					'<div class="dashBox">' .
 					'<div class="dashHead">' .
@@ -86,6 +87,7 @@
 					$riskAss,
 					array('escape' => false)
 			);
+	}
 	}
 
 
