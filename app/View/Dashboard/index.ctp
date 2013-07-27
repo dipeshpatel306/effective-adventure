@@ -35,6 +35,9 @@
 						<div class="triangle"></div>
 						</div>
 					</div>';
+					
+	$partnerImg = '/files/partner/logo/' . $partner['Partner']['logo_dir'] . '/' . $partner['Partner']['logo'];
+	
 ?>
 
 <div class="dashboard index">
@@ -214,17 +217,26 @@
 
 
 		if(!empty($partner) && ($partner != 0)){
+				
+			if(isset($partner['Partner']['link']) && $partner['Partner']['link'] != 'http://'){
+				$partnerLink = $partner['Partner']['link'];
+			} else {
+				$partnerLink = '/#';
+			}
+			
 			echo $this->Html->link( // Partner Link
 				'<div class="dashBox">' .
 				'<div class="dashHeadLogo">' .
-				$this->Html->image($partner['Partner']['logo'], array(
+				$this->Html->image($partnerImg, array(
 							//'class' => 'dashTileLogo',
-							'alt' => 'HIPAA Partner Link'
+							'alt' => 'HIPAA Partner Link',
+							//'url' => array($partnerImg),
+							'class' => 'partnerImg'
 							)) .
 				//'<h3>' . $partner['Partner']['name'] . '</h3>' .
 				'</div>' .
 				'<div class="dashSum">' . $partner['Partner']['name'] .'</div>' . $approved .
-				'</div>', $partner['Partner']['link'],
+				'</div>', $partnerLink,
 				array('escape' => false, 'target' => '_blank')
 			);
 		}

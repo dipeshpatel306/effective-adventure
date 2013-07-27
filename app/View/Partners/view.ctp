@@ -1,6 +1,8 @@
 <?php
 $this->Html->addCrumb('Partners', '/partners');
 $this->Html->addCrumb('View Partner - ' . $partner['Partner']['company']);
+
+	$partnerImg = '/files/partner/logo/' . $partner['Partner']['logo_dir'] . '/' . $partner['Partner']['logo'];
 ?>
 
 <div class="partners view">
@@ -38,7 +40,12 @@ $this->Html->addCrumb('View Partner - ' . $partner['Partner']['company']);
 		</dd>
 	</dl>
 	<div class='partnerLogo'>
-		<?php echo $this->Html->image($partner['Partner']['logo']); ?>
+		<?php echo $this->Html->image($partnerImg, array(
+							//'class' => 'dashTileLogo',
+							'alt' => 'HIPAA Partner Link',
+							//'url' => array($partnerImg),
+							'class' => 'partnerImgLg'
+							)); ?>
 	</div>
 </div>
 <div class="actions">

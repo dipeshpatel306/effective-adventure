@@ -403,6 +403,12 @@ img.homeIcon:hover{
 	text-align: center;
 
 }
+.partnerImg{
+	height: 75px;
+}
+.partnerImgLg{
+	height: 300px;
+}
 .dashTile{ /* Icon */
 	float: left;
 	width: 60px;

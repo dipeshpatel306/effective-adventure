@@ -22,7 +22,8 @@ $this->Html->addCrumb('Edit Partner');
 		echo $this->Form->input('name');
 		echo $this->Form->input('email');
 		echo $this->Form->input('link', array('label'=> 'Link - Please include "http://" '));		
-		echo $this->Form->input('logo', array('type' => 'file', 'label' => 'Attachment - (gif, jpg, jpeg, png files only)'));
+		echo $this->Form->input('logo', array('type' => 'file', 'label' => 'Partner Logo - (gif, jpg, jpeg, png files only)'));
+		echo $this->Form->input('logo_dir', array('type' => 'hidden'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

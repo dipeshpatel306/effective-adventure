@@ -103,7 +103,7 @@ class DashboardController extends AppController {
 			$this->loadModel('Partner');
 			$partner = $this->Partner->find('first', array('conditions' => array(
 						'id' => $partnerId),
-						'fields' => 'Partner.name, Partner.link, Partner.logo',
+						'fields' => 'Partner.name, Partner.link, Partner.logo, Partner.logo_dir', 
 						));
 			$this->set(compact('partner'));
 		}
@@ -194,7 +194,7 @@ class DashboardController extends AppController {
 			$this->loadModel('Partner');
 			$partner = $this->Partner->find('first', array('conditions' => array(
 						'id' => $partnerId),
-						'fields' => 'Partner.name, Partner.link, Partner.logo',
+						'fields' => 'Partner.name, Partner.link, Partner.logo, Partner.logo_dir',
 						));
 			$this->set(compact('partner'));
 		}
