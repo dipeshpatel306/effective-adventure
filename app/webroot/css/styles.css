@@ -229,7 +229,8 @@ a.logoutLink{
 
 .actions ul li a, .actions a {
 	background: none;
-	background-color: #76BF6B;
+	/*background-color: #76BF6B;*/
+	background-color: #929AA4;
 	box-shadow: none;
 	box-shadow: none;
 	border: none;
@@ -439,7 +440,8 @@ img.homeIcon:hover{
     /*text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);*/
 }
 .dashBtn.approved{
-	 background-color: #76BF6B;   /*for ie */
+	 /*background-color: #76BF6B;*/   /*for ie */
+	 background-color: #929AA4;   /*for ie */
 	/*background-image: -webkit-gradient(linear, left top, left bottom, from(#76BF6B), to(#3B8230));
 	background-image: -webkit-linear-gradient(top, #76BF6B, #3B8230);
 	background: -moz-linear-gradient(center top , #76BF6B, #3B8230) repeat scroll 0 0 #62AF56;*/
@@ -686,5 +688,8 @@ button.prev:hover, button.next:hover{
 }
 /* Documents */
 .labelNew, .currentDoc{
+	margin-left: 10px;
+}
+.icon{
 	margin-left: 10px;
 }

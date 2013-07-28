@@ -39,7 +39,6 @@
 						</div>
 					</div>';
 					
-	$partnerImg = '/files/partner/logo/' . $partner['Partner']['logo_dir'] . '/' . $partner['Partner']['logo'];					
 ?>
 
 <div class="dashboard index">
@@ -124,8 +123,8 @@
 			);*/
 			
 			
-		if(!empty($partner) && ($partner != 0)){
-				
+		if(isset($partner)){
+			$partnerImg = '/files/partner/logo/' . $partner['Partner']['logo_dir'] . '/' . $partner['Partner']['logo'];		
 			if(isset($partner['Partner']['link']) && $partner['Partner']['link'] != 'http://'){
 				$partnerLink = $partner['Partner']['link'];
 			} else {

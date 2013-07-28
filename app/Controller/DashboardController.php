@@ -68,7 +68,8 @@ class DashboardController extends AppController {
 		$this->loadModel('RiskAssessment');
 		$risk = $this->RiskAssessment->find('first', array('conditions' => array(
 				'client_id' => $clientId),
-				'fields' => 'RiskAssessment.id, RiskAssessment.client_id'
+				'fields' => 'RiskAssessment.id, RiskAssessment.client_id',
+				'recursive' => 0
 		));
 		
 		// Check if RA and Org are to be displayed
@@ -91,7 +92,8 @@ class DashboardController extends AppController {
 		$this->loadModel('OrganizationProfile');
 		$org = $this->OrganizationProfile->find('first', array('conditions' => array(
 				'client_id' => $clientId),
-				'fields' => 'OrganizationProfile.id, OrganizationProfile.client_id'
+				'fields' => 'OrganizationProfile.id, OrganizationProfile.client_id',
+				'recursive' => 0
 		));
 		// If Org profile exists then set it
 		if(isset($org) && !empty($org)){
@@ -104,6 +106,7 @@ class DashboardController extends AppController {
 			$partner = $this->Partner->find('first', array('conditions' => array(
 						'id' => $partnerId),
 						'fields' => 'Partner.name, Partner.link, Partner.logo, Partner.logo_dir', 
+						'recursive' => 0
 						));
 			$this->set(compact('partner'));
 		}
@@ -122,7 +125,8 @@ class DashboardController extends AppController {
 		$this->loadModel('RiskAssessment');
 		$risk = $this->RiskAssessment->find('first', array('conditions' => array(
 				'client_id' => $clientId),
-				'fields' => 'RiskAssessment.id, RiskAssessment.client_id'
+				'fields' => 'RiskAssessment.id, RiskAssessment.client_id',
+				'recursive' => 0
 		));
 		// If Risk Assessment exists then set it
 		if(isset($risk) && !empty($risk)){
@@ -133,7 +137,8 @@ class DashboardController extends AppController {
 		$this->loadModel('OrganizationProfile');
 		$org = $this->OrganizationProfile->find('first', array('conditions' => array(
 				'client_id' => $clientId),
-				'fields' => 'OrganizationProfile.id, OrganizationProfile.client_id'
+				'fields' => 'OrganizationProfile.id, OrganizationProfile.client_id',
+				'recursive' => 0
 		));
 		// If Org profile exists then set it
 		if(isset($org) && !empty($org)){
@@ -171,7 +176,8 @@ class DashboardController extends AppController {
 		$this->loadModel('RiskAssessment');
 		$risk = $this->RiskAssessment->find('first', array('conditions' => array(
 				'client_id' => $clientId),
-				'fields' => 'RiskAssessment.id, RiskAssessment.client_id'
+				'fields' => 'RiskAssessment.id, RiskAssessment.client_id',
+				'recursive' => 0
 		));
 		// If Risk Assessment exists then set it
 		if(isset($risk) && !empty($risk)){
@@ -183,6 +189,7 @@ class DashboardController extends AppController {
 		$org = $this->OrganizationProfile->find('first', array('conditions' => array(
 				'client_id' => $clientId),
 				'fields' => 'OrganizationProfile.id, OrganizationProfile.client_id'
+
 		));
 		// If Org profile exists then set it
 		if(isset($org) && !empty($org)){
@@ -195,6 +202,7 @@ class DashboardController extends AppController {
 			$partner = $this->Partner->find('first', array('conditions' => array(
 						'id' => $partnerId),
 						'fields' => 'Partner.name, Partner.link, Partner.logo, Partner.logo_dir',
+						'recursive' => 0
 						));
 			$this->set(compact('partner'));
 		}
