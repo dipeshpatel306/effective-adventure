@@ -121,7 +121,11 @@ class EphiRemovedController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($clientId = null) {
+		if(isset($clientId)){		
+			$this->set('clientId', $clientId);
+		}	
+				
 		if ($this->request->is('post')) {
 					
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
@@ -133,7 +137,11 @@ class EphiRemovedController extends AppController {
 			$this->EphiRemoved->create();
 			if ($this->EphiRemoved->save($this->request->data)) {
 				$this->Session->setFlash('The ephi removed has been saved', 'default', array('class' => 'success message'));
+			if($group == 1){
+				$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+			} else {	
 				$this->redirect(array('action' => 'index'));
+			}
 			} else {
 				$this->Session->setFlash(__('The ephi removed could not be saved. Please, try again.'));
 			}
@@ -149,7 +157,11 @@ class EphiRemovedController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit($id = null, $clientId = null) {
+		if(isset($clientId)){		
+			$this->set('clientId', $clientId);
+		}	
+				
 		$this->EphiRemoved->id = $id;
 		if (!$this->EphiRemoved->exists()) {
 			throw new NotFoundException(__('Invalid ephi removed'));
@@ -162,7 +174,11 @@ class EphiRemovedController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->EphiRemoved->save($this->request->data)) {
 				$this->Session->setFlash('The ephi removed has been saved', 'default', array('class' => 'success message'));
+			if($group == 1){
+				$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+			} else {	
 				$this->redirect(array('action' => 'index'));
+			}
 			} else {
 				$this->Session->setFlash(__('The ephi removed could not be saved. Please, try again.'));
 			}

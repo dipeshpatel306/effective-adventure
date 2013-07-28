@@ -108,7 +108,11 @@ class SecurityIncidentsController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($clientId = null) {
+
+		if(isset($clientId)){		
+			$this->set('clientId', $clientId);
+		}			
 		if ($this->request->is('post')) {
 			
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
@@ -120,7 +124,11 @@ class SecurityIncidentsController extends AppController {
 			$this->SecurityIncident->create();
 			if ($this->SecurityIncident->save($this->request->data)) {
 				$this->Session->setFlash('The security incident has been saved', 'default', array('class' => 'success message'));
+			if($group == 1){
+				$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+			} else {	
 				$this->redirect(array('action' => 'index'));
+			}
 			} else {
 				$this->Session->setFlash(__('The security incident could not be saved. Please, try again.'));
 			}
@@ -136,7 +144,11 @@ class SecurityIncidentsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit($id = null, $clientId = null) {
+		
+		if(isset($clientId)){		
+			$this->set('clientId', $clientId);
+		}				
 		$this->SecurityIncident->id = $id;
 		if (!$this->SecurityIncident->exists()) {
 			throw new NotFoundException(__('Invalid security incident'));
@@ -150,7 +162,11 @@ class SecurityIncidentsController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->SecurityIncident->save($this->request->data)) {
 				$this->Session->setFlash('The security incident has been saved', 'default', array('class' => 'success message'));
+			if($group == 1){
+				$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+			} else {	
 				$this->redirect(array('action' => 'index'));
+			}
 			} else {
 				$this->Session->setFlash(__('The security incident could not be saved. Please, try again.'));
 			}

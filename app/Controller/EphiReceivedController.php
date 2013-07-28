@@ -119,7 +119,11 @@ class EphiReceivedController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($clientId = null) {
+		if(isset($clientId)){		
+			$this->set('clientId', $clientId);
+		}	
+				
 		if ($this->request->is('post')) {
 			
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
@@ -131,7 +135,11 @@ class EphiReceivedController extends AppController {
 			$this->EphiReceived->create();
 			if ($this->EphiReceived->save($this->request->data)) {
 				$this->Session->setFlash('The ephi received has been saved', 'default', array('class' => 'success message'));
+			if($group == 1){
+				$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+			} else {	
 				$this->redirect(array('action' => 'index'));
+			}
 			} else {
 				$this->Session->setFlash(__('The ephi received could not be saved. Please, try again.'));
 			}
@@ -147,7 +155,11 @@ class EphiReceivedController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit($id = null, $clientId = null) {
+		if(isset($clientId)){		
+			$this->set('clientId', $clientId);
+		}	
+		
 		$this->EphiReceived->id = $id;
 		if (!$this->EphiReceived->exists()) {
 			throw new NotFoundException(__('Invalid ephi received'));
@@ -160,7 +172,11 @@ class EphiReceivedController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->EphiReceived->save($this->request->data)) {
 				$this->Session->setFlash('The ephi received has been saved', 'default', array('class' => 'success message'));
+			if($group == 1){
+				$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+			} else {	
 				$this->redirect(array('action' => 'index'));
+			}
 			} else {
 				$this->Session->setFlash(__('The ephi received could not be saved. Please, try again.'));
 			}

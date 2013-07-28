@@ -164,7 +164,7 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['modified']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'users', 'action' => 'admin_edit', $user['User']['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'users', 'action' => 'admin_edit', $user['User']['id'], $clientId)); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'users', 'action' => 'delete', $user['User']['id']), null, __('Are you sure you want to delete # %s?', $user['User']['id'])); ?>
 			</td>
 		</tr>
@@ -187,7 +187,7 @@ $clientId = $client['Client']['id'];
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add', $clientId)); ?> </li>
 		</ul>
 	</div>
 </div>
@@ -211,10 +211,7 @@ $clientId = $client['Client']['id'];
 		$i = 0;
 		foreach ($policies as $pnp): ?>
 		<?php $pnp = array_merge($pnp['PoliciesAndProceduresDocument'], $pnp['PoliciesAndProcedure']);?>
-		
-	
 		<tr>
-			
 			<td><?php echo $pnp['policies_and_procedure_id'] . ' - ' . $pnp['name']; ?> </td>
 			<td>
 			<?php 
@@ -234,7 +231,7 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $this->Time->format('m/d/y g:i a', $pnp['modified']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'policies_and_procedures_documents', 'action' => 'view', $pnp['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'policies_and_procedures_documents', 'action' => 'edit', $pnp['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'policies_and_procedures_documents', 'action' => 'edit', $pnp['id'], $clientId)); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'policies_and_procedures_documents', 'action' => 'delete', $pnp['id']), null, __('Are you sure you want to delete # %s?', $pnp['id'])); ?>
 			</td>
 		</tr>
@@ -344,7 +341,7 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $this->Time->format('m/d/y g:i a', $opnp['modified']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'other_policies_and_procedures', 'action' => 'view', $opnp['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'other_policies_and_procedures', 'action' => 'edit', $opnp['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'other_policies_and_procedures', 'action' => 'edit', $opnp['id'], $clientId)); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'other_policies_and_procedures', 'action' => 'delete', $opnp['id']), null, __('Are you sure you want to delete # %s?', $opnp['id'])); ?>
 			</td>
 		</tr>
@@ -354,7 +351,7 @@ $clientId = $client['Client']['id'];
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Other Policies & Procedure'), array('controller' => 'other_policies_and_procedures', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Other Policies & Procedure'), array('controller' => 'other_policies_and_procedures', 'action' => 'add', $clientId)); ?> </li>
 		</ul>
 	</div>
 </div>
@@ -389,7 +386,7 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $this->Time->format('m/d/y g:i a', $rad['modified']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'risk_assessment_documents', 'action' => 'view', $rad['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'risk_assessment_documents', 'action' => 'edit', $rad['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'risk_assessment_documents', 'action' => 'edit', $rad['id'], $clientId)); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'risk_assessment_documents', 'action' => 'delete', $rad['id']), null, __('Are you sure you want to delete # %s?', $rad['id'])); ?>
 			</td>
 		</tr>
@@ -399,7 +396,7 @@ $clientId = $client['Client']['id'];
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Risk Assessment Document'), array('controller' => 'risk_assessment_documents', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Risk Assessment Document'), array('controller' => 'risk_assessment_documents', 'action' => 'add', $clientId)); ?> </li>
 		</ul>
 	</div>
 </div>
@@ -437,7 +434,7 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $this->Time->format('m/d/y g:i a', $boa['modified']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'business_associate_agreements', 'action' => 'view', $boa['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'business_associate_agreements', 'action' => 'edit', $boa['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'business_associate_agreements', 'action' => 'edit', $boa['id'], $clientId)); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'business_associate_agreements', 'action' => 'delete', $boa['id']), null, __('Are you sure you want to delete # %s?', $boa['id'])); ?>
 			</td>
 		</tr>
@@ -447,7 +444,7 @@ $clientId = $client['Client']['id'];
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Business Associate Agreement'), array('controller' => 'business_associate_agreements', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Business Associate Agreement'), array('controller' => 'business_associate_agreements', 'action' => 'add', $clientId)); ?> </li>
 		</ul>
 	</div>
 </div>
@@ -482,7 +479,7 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $this->Time->format('m/d/y g:i a', $drp['modified']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'disaster_recovery_plans', 'action' => 'view', $drp['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'disaster_recovery_plans', 'action' => 'edit', $drp['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'disaster_recovery_plans', 'action' => 'edit', $drp['id'], $clientId)); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'disaster_recovery_plans', 'action' => 'delete', $drp['id']), null, __('Are you sure you want to delete # %s?', $drp['id'])); ?>
 			</td>
 		</tr>
@@ -492,7 +489,7 @@ $clientId = $client['Client']['id'];
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Disaster Recovery Plan'), array('controller' => 'disaster_recovery_plans', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Disaster Recovery Plan'), array('controller' => 'disaster_recovery_plans', 'action' => 'add', $clientId)); ?> </li>
 		</ul>
 	</div>
 </div>
@@ -527,7 +524,7 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $this->Time->format('m/d/y g:i a', $ocad['modified']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'OtherContractsAndDocuments', 'action' => 'view', $ocad['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'OtherContractsAndDocuments', 'action' => 'edit', $ocad['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'OtherContractsAndDocuments', 'action' => 'edit', $ocad['id'], $clientId)); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'OtherContractsAndDocuments', 'action' => 'delete', $ocad['id']), null, __('Are you sure you want to delete # %s?', $ocad['id'])); ?>
 			</td>
 		</tr>
@@ -537,7 +534,7 @@ $clientId = $client['Client']['id'];
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Other Contracts & Document'), array('controller' => 'OtherContractsAndDocuments', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Other Contracts & Document'), array('controller' => 'OtherContractsAndDocuments', 'action' => 'add', $clientId)); ?> </li>
 		</ul>
 	</div>
 </div>
@@ -566,7 +563,7 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $si['description_of_incident']; ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'SecurityIncident', 'action' => 'view', $si['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'SecurityIncident', 'action' => 'edit', $si['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'SecurityIncident', 'action' => 'edit', $si['id'], $clientId)); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'SecurityIncident', 'action' => 'delete', $si['id']), null, __('Are you sure you want to delete # %s?', $si['id'])); ?>
 			</td>
 		</tr>
@@ -576,7 +573,7 @@ $clientId = $client['Client']['id'];
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Security Incident'), array('controller' => 'SecurityIncidents', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Security Incident'), array('controller' => 'SecurityIncidents', 'action' => 'add', $clientId)); ?> </li>
 		</ul>
 	</div>
 </div>
@@ -606,7 +603,7 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $sra['reason']; ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'ServerRoomAccess', 'action' => 'view', $sra['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'ServerRoomAccess', 'action' => 'edit', $sra['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'ServerRoomAccess', 'action' => 'edit', $sra['id'], $clientId)); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'ServerRoomAccess', 'action' => 'delete', $sra['id']), null, __('Are you sure you want to delete # %s?', $sra['id'])); ?>
 			</td>
 		</tr>
@@ -616,7 +613,7 @@ $clientId = $client['Client']['id'];
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Server Room Access'), array('controller' => 'ServerRoomAccess', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Server Room Access'), array('controller' => 'ServerRoomAccess', 'action' => 'add', $clientId)); ?> </li>
 		</ul>
 	</div>
 </div>
@@ -644,7 +641,7 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $erm['returned_by']; ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'EphiRemoved', 'action' => 'view', $erm['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'EphiRemoved', 'action' => 'edit', $erm['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'EphiRemoved', 'action' => 'edit', $erm['id'], $clientId)); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'EphiRemoved', 'action' => 'delete', $erm['id']), null, __('Are you sure you want to delete # %s?', $erm['id'])); ?>
 			</td>
 		</tr>
@@ -654,7 +651,7 @@ $clientId = $client['Client']['id'];
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Ephi Removed'), array('controller' => 'EphiRemoved', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Ephi Removed'), array('controller' => 'EphiRemoved', 'action' => 'add', $clientId)); ?> </li>
 		</ul>
 	</div>
 </div>
@@ -685,7 +682,7 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $this->Time->format('m/d/y', $erc['date_returned']) . ' ' . $this->Time->format('g:i a', $erc['time_returned']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'EphiReceived', 'action' => 'view', $erc['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'EphiReceived', 'action' => 'edit', $erc['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'EphiReceived', 'action' => 'edit', $erc['id'], $clientId)); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'EphiReceived', 'action' => 'delete', $erc['id']), null, __('Are you sure you want to delete # %s?', $erc['id'])); ?>
 			</td>
 		</tr>
@@ -695,7 +692,7 @@ $clientId = $client['Client']['id'];
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Ephi Received'), array('controller' => 'EphiReceived', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Ephi Received'), array('controller' => 'EphiReceived', 'action' => 'add', $clientId)); ?> </li>
 		</ul>
 	</div>
 </div>

@@ -133,7 +133,11 @@ class OtherContractsAndDocumentsController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($clientId = null) {
+			if(isset($clientId)){
+				$this->set('clientId', $clientId);
+			}
+			
 		if ($this->request->is('post')) {
 
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
@@ -153,7 +157,11 @@ class OtherContractsAndDocumentsController extends AppController {
 			$this->OtherContractsAndDocument->create();
 			if ($this->OtherContractsAndDocument->save($this->request->data)) {
 				$this->Session->setFlash('The other contracts and document has been saved', 'default', array('class' => 'success message'));
-				$this->redirect(array('action' => 'index'));
+				if($group == 1){
+					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				} else {
+					$this->redirect(array('action' => 'index'));
+				}
 			} else {
 				$this->Session->setFlash(__('The other contracts and document could not be saved. Please, try again.'));
 			}
@@ -169,7 +177,11 @@ class OtherContractsAndDocumentsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit($id = null, $clientId = null) {
+		if(isset($clientId)){		
+			$this->set('clientId', $clientId);
+		}		
+		
 		$this->OtherContractsAndDocument->id = $id;
 		if (!$this->OtherContractsAndDocument->exists()) {
 			throw new NotFoundException(__('Invalid other contracts and document'));
@@ -192,7 +204,11 @@ class OtherContractsAndDocumentsController extends AppController {
 
 			if ($this->OtherContractsAndDocument->save($this->request->data)) {
 				$this->Session->setFlash('The other contracts and document has been saved', 'default', array('class' => 'success message'));
+			if($group == 1){
+				$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+			} else {	
 				$this->redirect(array('action' => 'index'));
+			}
 			} else {
 				$this->Session->setFlash(__('The other contracts and document could not be saved. Please, try again.'));
 			}

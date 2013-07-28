@@ -8,6 +8,13 @@ $reason = array('' => '', 'Referral from another provider' => 'Referral from ano
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
+	
+	if(isset($clientId)){
+		$selected = $clientId;
+	} else{
+		$selected = '';
+		$clientId = '';
+	}	
 ?>
 <div class="ephiReceived form">
 <?php echo $this->Form->create('EphiReceived'); ?>
@@ -48,7 +55,7 @@ $reason = array('' => '', 'Referral from another provider' => 'Referral from ano
 
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		if($client == 1){  // if admin allow to choose
-			echo $this->Form->input('client_id', array('empty' => 'Please Select'));
+			echo $this->Form->input('client_id',array('selected' => $selected, 'empty' => 'Please Select'));
 		} else {
 			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
 		}

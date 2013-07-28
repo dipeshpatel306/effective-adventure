@@ -119,7 +119,11 @@ class ServerRoomAccessController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($clientId = null) {
+
+		if(isset($clientId)){		
+			$this->set('clientId', $clientId);
+		}			
 		if ($this->request->is('post')) {
 			
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
@@ -131,7 +135,11 @@ class ServerRoomAccessController extends AppController {
 			$this->ServerRoomAccess->create();
 			if ($this->ServerRoomAccess->save($this->request->data)) {
 				$this->Session->setFlash('The server room access has been saved', 'default', array('class' => 'success message'));
+			if($group == 1){
+				$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+			} else {	
 				$this->redirect(array('action' => 'index'));
+			}
 			} else {
 				$this->Session->setFlash(__('The server room access could not be saved. Please, try again.'));
 			}
@@ -147,7 +155,11 @@ class ServerRoomAccessController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit($id = null, $clientId = null) {
+		if(isset($clientId)){		
+			$this->set('clientId', $clientId);
+		}			
+		
 		$this->ServerRoomAccess->id = $id;
 		if (!$this->ServerRoomAccess->exists()) {
 			throw new NotFoundException(__('Invalid server room access'));
@@ -162,7 +174,11 @@ class ServerRoomAccessController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->ServerRoomAccess->save($this->request->data)) {
 				$this->Session->setFlash('The server room access has been saved', 'default', array('class' => 'success message'));
+			if($group == 1){
+				$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+			} else {	
 				$this->redirect(array('action' => 'index'));
+			}
 			} else {
 				$this->Session->setFlash(__('The server room access could not be saved. Please, try again.'));
 			}

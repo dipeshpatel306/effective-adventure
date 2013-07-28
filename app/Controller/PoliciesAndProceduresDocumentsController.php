@@ -245,7 +245,11 @@ class PoliciesAndProceduresDocumentsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit($id = null, $clientId = null) {
+		if(isset($clientId)){
+			$this->set('clientId', $clientId);
+		}	
+			
 		$this->PoliciesAndProceduresDocument->id = $id;
 		if (!$this->PoliciesAndProceduresDocument->exists()) {
 			throw new NotFoundException(__('Invalid policies and procedures document'));
@@ -269,7 +273,13 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 
 			if ($this->PoliciesAndProceduresDocument->save($this->request->data)) {
 				$this->Session->setFlash('The policies and procedures document has been saved', 'default', array('class' => 'success message'));
-				$this->redirect(array('controller' => 'policies_and_procedures', 'action' => 'index'));
+				if($group == 1){
+					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				} else {
+					$this->redirect(array('controller' => 'policies_and_procedures', 'action' => 'index'));
+				}
+				
+
 			} else {
 				$this->Session->setFlash(__('The policies and procedures document could not be saved. Please, try again.'));
 			}

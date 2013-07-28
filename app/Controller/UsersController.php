@@ -382,7 +382,11 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($clientId = null) {
+		if(isset($clientId)){
+			$this->set('clientId', $clientId);
+		}
+		
 		if ($this->request->is('post')) {
 
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
@@ -399,7 +403,14 @@ class UsersController extends AppController {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash('The user has been saved', 'default', array('class' => 'success message'));
-				$this->redirect(array('action' => 'index'));
+				
+				$group = $this->Session->read('Auth.User.group_id');  
+				if($group == 1)	{
+					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				} else {
+					$this->redirect(array('action' => 'index'));
+				}
+
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
@@ -407,6 +418,7 @@ class UsersController extends AppController {
 		$groups = $this->User->Group->find('list');
 		$clients = $this->User->Client->find('list');
 		$this->set(compact('groups', 'clients'));
+		
 	}
 
 /**
@@ -460,7 +472,11 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit($id = null, $clientId = null) {
+		if(isset($clientId)){
+			$this->set('clientId', $clientId);
+		}
+		
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
@@ -484,7 +500,13 @@ class UsersController extends AppController {
 
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash('The user has been saved', 'default', array('class' => 'success message'));
-				$this->redirect(array('action' => 'index'));
+				
+				if($group == 1)	{
+					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+
+				} else {
+					$this->redirect(array('action' => 'index'));
+				}
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
@@ -504,7 +526,11 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function admin_edit($id = null) {
+	public function admin_edit($id = null, $clientId = null) {
+		if(isset($clientId)){
+			$this->set('clientId', $clientId);
+		}	
+			
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
@@ -528,7 +554,12 @@ class UsersController extends AppController {
 
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash('The user has been saved', 'default', array('class' => 'success message'));
-				$this->redirect(array('action' => 'index'));
+				if($group == 1)	{
+					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+
+				} else {
+					$this->redirect(array('action' => 'index'));
+				}
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}

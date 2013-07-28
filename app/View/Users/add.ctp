@@ -13,6 +13,13 @@ $active = array('Yes' => 'Yes', 'No' => 'No');  // activate / deactivate a user
 
 $client = $this->Session->read('Auth.User.client_id');  // Test Client.  If admin allow client choosing, else hide field and set it to the current client
 
+	if(isset($clientId)){
+		$selected = $clientId;
+	} else{
+		$selected = '';
+		$clientId = '';
+	}
+
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
@@ -25,7 +32,7 @@ $client = $this->Session->read('Auth.User.client_id');  // Test Client.  If admi
 		//echo $this->Form->input('User.authCode', array('label' => 'Authorization Code'));
 
 		if($group == 1){  // if admin allow to choose
-			echo $this->Form->input('client_id', array('empty' => 'Please Select'));
+			echo $this->Form->input('client_id',array('selected' => $selected, 'empty' => 'Please Select'));
 		} else {
 			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
 		}

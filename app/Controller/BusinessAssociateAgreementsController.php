@@ -123,7 +123,11 @@ class BusinessAssociateAgreementsController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($clientId = null) {
+		if(isset($clientId)){
+			$this->set('clientId', $clientId);
+		}	
+		
 		if ($this->request->is('post')) {
 
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
@@ -146,17 +150,14 @@ class BusinessAssociateAgreementsController extends AppController {
 				//$fileKey = $this->request->data['BusinessAssociateAgreement']['file_key'];
 			}
 
-			//$this->request->data['BusinessAssociateAgreement']['attachment_dir'] = ROOT . DS . webroot . DS . files . DS . 'business_associate_agreements' . DS . $clientId . DS . $fileKey . DS;
-
-
-
-			// /debug($this->request->data['BusinessAssociateAgreement']);
-			//exit();
-
 			$this->BusinessAssociateAgreement->create();
 			if ($this->BusinessAssociateAgreement->save($this->request->data)) {
 				$this->Session->setFlash('The business associate agreement has been saved', 'default', array('class' => 'success message'));
-				$this->redirect(array('action' => 'index'));
+				if($group == 1){
+					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				} else {
+					$this->redirect(array('action' => 'index'));
+				}
 			} else {
 				$this->Session->setFlash(__('The business associate agreement could not be saved. Please, try again.'));
 			}
@@ -172,7 +173,10 @@ class BusinessAssociateAgreementsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit($id = null, $clientId = null) {
+		if(isset($clientId)){
+			$this->set('clientId', $clientId);
+		}			
 		$this->BusinessAssociateAgreement->id = $id;
 		if (!$this->BusinessAssociateAgreement->exists()) {
 			throw new NotFoundException(__('Invalid business associate agreement'));
@@ -195,7 +199,11 @@ class BusinessAssociateAgreementsController extends AppController {
 
 			if ($this->BusinessAssociateAgreement->save($this->request->data)) {
 				$this->Session->setFlash('The business associate agreement has been saved', 'default', array('class' => 'success message'));
-				$this->redirect(array('action' => 'index'));
+				if($group == 1){
+					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				} else {
+					$this->redirect(array('action' => 'index'));
+				}
 			} else {
 				$this->Session->setFlash(__('The business associate agreement could not be saved. Please, try again.'));
 			}

@@ -6,6 +6,14 @@ $this->Html->addCrumb('Add Risk Assessment Document');
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
+	
+	
+	if(isset($clientId)){
+		$selected = $clientId;
+	} else{
+		$selected = '';
+		$clientId = '';
+	}	
 ?>
 <div class="riskAssessmentDocuments form">
 <?php echo $this->Form->create('RiskAssessmentDocument', array('type' => 'file')); ?>
@@ -17,7 +25,7 @@ $this->Html->addCrumb('Add Risk Assessment Document');
 
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		if($client == 1){  // if admin allow to choose
-			echo $this->Form->input('client_id', array('empty' => 'Please Select'));
+			echo $this->Form->input('client_id',array('selected' => $selected, 'empty' => 'Please Select'));
 		} else {
 			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
 		}

@@ -133,7 +133,10 @@ class DisasterRecoveryPlansController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($clientId = null) {
+		if(isset($clientId)){
+			$this->set('clientId', $clientId);
+		}				
 		if ($this->request->is('post')) {
 
 
@@ -154,7 +157,11 @@ class DisasterRecoveryPlansController extends AppController {
 			$this->DisasterRecoveryPlan->create();
 			if ($this->DisasterRecoveryPlan->save($this->request->data)) {
 				$this->Session->setFlash('The disaster recovery plan has been saved', 'default', array('class' => 'success message'));
-				$this->redirect(array('action' => 'index'));
+				if($group == 1){
+					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				} else {
+					$this->redirect(array('action' => 'index'));
+				}
 			} else {
 				$this->Session->setFlash(__('The disaster recovery plan could not be saved. Please, try again.'));
 			}
@@ -170,7 +177,10 @@ class DisasterRecoveryPlansController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit($id = null, $clientId = null) {
+		if(isset($clientId)){
+			$this->set('clientId', $clientId);
+		}						
 		$this->DisasterRecoveryPlan->id = $id;
 		if (!$this->DisasterRecoveryPlan->exists()) {
 			throw new NotFoundException(__('Invalid disaster recovery plan'));
@@ -193,7 +203,11 @@ class DisasterRecoveryPlansController extends AppController {
 			
 			if ($this->DisasterRecoveryPlan->save($this->request->data)) {
 				$this->Session->setFlash('The disaster recovery plan has been saved', 'default', array('class' => 'success message'));
-				$this->redirect(array('action' => 'index'));
+				if($group == 1){
+					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				} else {
+					$this->redirect(array('action' => 'index'));
+				}
 			} else {
 				$this->Session->setFlash(__('The disaster recovery plan could not be saved. Please, try again.'));
 			}
