@@ -153,11 +153,17 @@ class BusinessAssociateAgreementsController extends AppController {
 			$this->BusinessAssociateAgreement->create();
 			if ($this->BusinessAssociateAgreement->save($this->request->data)) {
 				$this->Session->setFlash('The business associate agreement has been saved', 'default', array('class' => 'success message'));
-				if($group == 1){
+			if($group == 1){
+				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
-					$this->redirect(array('action' => 'index'));
+					$this->redirect(array('action' => 'index'));	
 				}
+				
+			} else {	
+				$this->redirect(array('action' => 'index'));
+			}
+
 			} else {
 				$this->Session->setFlash(__('The business associate agreement could not be saved. Please, try again.'));
 			}
@@ -199,11 +205,16 @@ class BusinessAssociateAgreementsController extends AppController {
 
 			if ($this->BusinessAssociateAgreement->save($this->request->data)) {
 				$this->Session->setFlash('The business associate agreement has been saved', 'default', array('class' => 'success message'));
-				if($group == 1){
+			if($group == 1){
+				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
-					$this->redirect(array('action' => 'index'));
+					$this->redirect(array('action' => 'index'));	
 				}
+				
+			} else {	
+				$this->redirect(array('action' => 'index'));
+			}
 			} else {
 				$this->Session->setFlash(__('The business associate agreement could not be saved. Please, try again.'));
 			}

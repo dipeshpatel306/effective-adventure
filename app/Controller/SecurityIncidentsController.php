@@ -125,7 +125,12 @@ class SecurityIncidentsController extends AppController {
 			if ($this->SecurityIncident->save($this->request->data)) {
 				$this->Session->setFlash('The security incident has been saved', 'default', array('class' => 'success message'));
 			if($group == 1){
-				$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				if(isset($clientId)){
+					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				} else {
+					$this->redirect(array('action' => 'index'));	
+				}
+				
 			} else {	
 				$this->redirect(array('action' => 'index'));
 			}
@@ -163,10 +168,16 @@ class SecurityIncidentsController extends AppController {
 			if ($this->SecurityIncident->save($this->request->data)) {
 				$this->Session->setFlash('The security incident has been saved', 'default', array('class' => 'success message'));
 			if($group == 1){
-				$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				if(isset($clientId)){
+					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				} else {
+					$this->redirect(array('action' => 'index'));	
+				}
+				
 			} else {	
 				$this->redirect(array('action' => 'index'));
 			}
+			
 			} else {
 				$this->Session->setFlash(__('The security incident could not be saved. Please, try again.'));
 			}

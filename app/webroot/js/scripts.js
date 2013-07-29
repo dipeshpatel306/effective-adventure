@@ -167,6 +167,111 @@ $(document).ready(function(){
 				$('.otherReason').hide();
 			}
 		}).change();
+		
+		// Security Incidents
+		$('#SecurityIncidentCauseOfIncident').change(function(){
+			var selected;
+			selected = $(this).val();
+			if(selected === 'Other'){
+				$('.causeOther').toggle(this.checked);
+			} else {
+				$('.causeOther').hide();
+			}
+		}).change();		
+		
+		$('#SecurityIncidentAssetsInvolved').change(function(){
+			var selected;
+			selected = $(this).val();
+			if(selected === 'Other'){
+				$('.otherAssets').toggle(this.checked);
+			} else {
+				$('.otherAssets').hide();
+			}
+		}).change();	
+		
+		$('#SecurityIncidentSystemsInvolved').change(function(){
+			var selected;
+			selected = $(this).val();
+			if(selected === 'Other'){
+				$('.otherSystemsInvolved').toggle(this.checked);
+			} else {
+				$('.otherSystemsInvolved').hide();
+			}
+		}).change();	
+		
+		$('#SecurityIncidentBreachNotificationRa').change(function(){
+			var selected;
+			selected = $(this).val();
+			if(selected === 'No'){
+					$('.breachBox').dialog({
+					height: 200,
+					width: 300,
+					modal: true,
+					resizable: false,
+				});
+				$('.breachQuestion').hide();
+			} else if (selected === 'Yes'){
+				$('.breachQuestion').toggle(this.checked);
+				
+			} else {
+				$('.breachQuestion').hide();
+			}
+		}).change();		
+		
+		$('#SecurityIncidentInformedIndividual').change(function(){
+			var selected;
+			selected = $(this).val();
+			if(selected === 'Yes'){
+				$('.breachDetails').toggle(this.checked);
+			} else {
+				$('.breachDetails').hide();
+			}
+		}).change();	
+		
+		$('#SecurityIncidentNotifyHhs').change(function(){
+			var selected;
+			selected = $(this).val();
+			if(selected === 'Yes'){
+				$('.notifyHhs').toggle(this.checked);
+			} else {
+				$('.notifyHh').hide();
+			}
+		}).change();	
+		
+		$('#SecurityIncidentNotifyMedia').change(function(){
+			var selected;
+			selected = $(this).val();
+			if(selected === 'Yes'){
+				$('.notifyMediaDate').toggle(this.checked);
+			} else {
+				$('.notifyMediaDate').hide();
+			}
+		}).change();	
+		
+		$('#SecurityIncidentEffectMoreThan500').change(function(){
+			var selected;
+			selected = $(this).val();
+			if(selected === 'Yes'){
+				$('.notifyDetails').toggle(this.checked);
+				$('.500individualsBox').dialog({
+					height: 300,
+					width: 400,
+					modal: true,
+					resizable: false,
+				});
+			} else if(selected === 'No'){
+				$('.notifyDetails').hide();
+				$('.500individualsBox').dialog({
+					height: 300,
+					width: 400,
+					modal: true,
+					resizable: false,
+				});
+			} else {
+				$('.notifyDetails').hide();
+			}
+		}).change();			
+		
 
 	// Mark Risk Assessment Complete. Modal Window
 		$('.markComplete').click(function(){

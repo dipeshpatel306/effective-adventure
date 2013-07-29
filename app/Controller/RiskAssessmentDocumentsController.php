@@ -146,11 +146,16 @@ class RiskAssessmentDocumentsController extends AppController {
 			$this->RiskAssessmentDocument->create();
 			if ($this->RiskAssessmentDocument->save($this->request->data)) {
 				$this->Session->setFlash('The risk assessment document has been saved', 'default', array('class' => 'success message'));
-				if($group == 1){
+			if($group == 1){
+				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
-					$this->redirect(array('action' => 'index'));
+					$this->redirect(array('action' => 'index'));	
 				}
+				
+			} else {	
+				$this->redirect(array('action' => 'index'));
+			}
 			} else {
 				$this->Session->setFlash(__('The risk assessment document could not be saved. Please, try again.'));
 			}
@@ -193,11 +198,16 @@ class RiskAssessmentDocumentsController extends AppController {
 
 			if ($this->RiskAssessmentDocument->save($this->request->data)) {
 				$this->Session->setFlash('The risk assessment document has been saved', 'default', array('class' => 'success message'));
-				if($group == 1){
+			if($group == 1){
+				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
-					$this->redirect(array('action' => 'index'));
+					$this->redirect(array('action' => 'index'));	
 				}
+				
+			} else {	
+				$this->redirect(array('action' => 'index'));
+			}
 			} else {
 				$this->Session->setFlash(__('The risk assessment document could not be saved. Please, try again.'));
 			}

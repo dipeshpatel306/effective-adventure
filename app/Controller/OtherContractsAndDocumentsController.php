@@ -157,11 +157,16 @@ class OtherContractsAndDocumentsController extends AppController {
 			$this->OtherContractsAndDocument->create();
 			if ($this->OtherContractsAndDocument->save($this->request->data)) {
 				$this->Session->setFlash('The other contracts and document has been saved', 'default', array('class' => 'success message'));
-				if($group == 1){
+			if($group == 1){
+				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
-					$this->redirect(array('action' => 'index'));
+					$this->redirect(array('action' => 'index'));	
 				}
+				
+			} else {	
+				$this->redirect(array('action' => 'index'));
+			}
 			} else {
 				$this->Session->setFlash(__('The other contracts and document could not be saved. Please, try again.'));
 			}
@@ -205,7 +210,12 @@ class OtherContractsAndDocumentsController extends AppController {
 			if ($this->OtherContractsAndDocument->save($this->request->data)) {
 				$this->Session->setFlash('The other contracts and document has been saved', 'default', array('class' => 'success message'));
 			if($group == 1){
-				$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				if(isset($clientId)){
+					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				} else {
+					$this->redirect(array('action' => 'index'));	
+				}
+				
 			} else {	
 				$this->redirect(array('action' => 'index'));
 			}

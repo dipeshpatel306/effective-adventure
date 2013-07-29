@@ -405,11 +405,16 @@ class UsersController extends AppController {
 				$this->Session->setFlash('The user has been saved', 'default', array('class' => 'success message'));
 				
 				$group = $this->Session->read('Auth.User.group_id');  
-				if($group == 1)	{
+			if($group == 1){
+				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
-					$this->redirect(array('action' => 'index'));
+					$this->redirect(array('action' => 'index'));	
 				}
+				
+			} else {	
+				$this->redirect(array('action' => 'index'));
+			}
 
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
@@ -501,12 +506,16 @@ class UsersController extends AppController {
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash('The user has been saved', 'default', array('class' => 'success message'));
 				
-				if($group == 1)	{
+			if($group == 1){
+				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
-
 				} else {
-					$this->redirect(array('action' => 'index'));
+					$this->redirect(array('action' => 'index'));	
 				}
+				
+			} else {	
+				$this->redirect(array('action' => 'index'));
+			}
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}

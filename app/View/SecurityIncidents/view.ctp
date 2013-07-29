@@ -39,47 +39,75 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $securityIncident['Secu
 		</p>
 		<h3 class='highlight"><?php echo __('Description Of Incident'); ?></h3>
 		<p>
-			<?php echo h($securityIncident['SecurityIncident']['description_of_incident']); ?>
+			<?php echo ($securityIncident['SecurityIncident']['description_of_incident']); ?>
 			&nbsp;
 		</p>
 		<h3 class='highlight"><?php echo __('Number of Records'); ?></h3>
 		<p>
-			<?php echo h($securityIncident['SecurityIncident']['number_of_records']); ?>
+			<?php echo ($securityIncident['SecurityIncident']['number_of_records']); ?>
 			&nbsp;
 		</p>
 		<h3 class='highlight"><?php echo __('Source'); ?></h3>
 		<p>
-			<?php echo h($securityIncident['SecurityIncident']['source']); ?>
+			<?php echo ($securityIncident['SecurityIncident']['source']); ?>
 			&nbsp;
 		</p>
+		
 		<h3 class='highlight"><?php echo __('Cause Of Incident'); ?></h3>
 		<p>
-			<?php echo h($securityIncident['SecurityIncident']['cause_of_incident']); ?>
+			<?php echo ($securityIncident['SecurityIncident']['cause_of_incident']); ?>
 			&nbsp;
 		</p>
+		<?php if(isset($securityIncident['SecurityIncident']['cause_other'])):  ?>
+			<h3 class='highlight"><?php echo __('Cause Other'); ?></h3>
+		<p>
+			<?php echo ($securityIncident['SecurityIncident']['cause_other']); ?>
+			&nbsp;
+		</p>
+		<?php endif ?>
+		
 		<h3 class='highlight"><?php echo __('Assets Involved'); ?></h3>
 		<p>
-			<?php echo h($securityIncident['SecurityIncident']['assets_involved']); ?>
+			<?php echo ($securityIncident['SecurityIncident']['assets_involved']); ?>
 			&nbsp;
 		</p>
+		
+		<?php if(isset($securityIncident['SecurityIncident']['other_assets_involved'])):  ?>
+			<h3 class='highlight"><?php echo __('Other Assets Involved'); ?></h3>
+		<p>
+			<?php echo ($securityIncident['SecurityIncident']['other_assets_involved']); ?>
+			&nbsp;
+		</p>
+		<?php endif ?>		
+		
 		<h3 class='highlight"><?php echo __('Systems Involved'); ?></h3>
 		<p>
-			<?php echo h($securityIncident['SecurityIncident']['systems_involved']); ?>
+			<?php echo ($securityIncident['SecurityIncident']['systems_involved']); ?>
 			&nbsp;
 		</p>
+		<?php if(isset($securityIncident['SecurityIncident']['other_systems_involved'])):  ?>
+			<h3 class='highlight"><?php echo __('Other Systems Involved'); ?></h3>
+		<p>
+			<?php echo ($securityIncident['SecurityIncident']['other_systems_involved']); ?>
+			&nbsp;
+		</p>
+		<?php endif ?>			
+		
+		
+		
 		<h3 class='highlight"><?php echo __('Description of Breached Information'); ?></h3>
 		<p>
-			<?php echo h($securityIncident['SecurityIncident']['description_of_breached']); ?>
+			<?php echo ($securityIncident['SecurityIncident']['description_of_breached']); ?>
 			&nbsp;
 		</p>
 		<h3 class='highlight"><?php echo __('Impact Level'); ?></h3>
 		<p>
-			<?php echo h($securityIncident['SecurityIncident']['impact_level']); ?>
+			<?php echo ($securityIncident['SecurityIncident']['impact_level']); ?>
 			&nbsp;
 		</p>
 		<h3 class='highlight"><?php echo __('Steps taken for resolution'); ?></h3>
 		<p>
-			<?php echo h($securityIncident['SecurityIncident']['steps_taken']); ?>
+			<?php echo ($securityIncident['SecurityIncident']['steps_taken']); ?>
 			&nbsp;
 		</p>
 
@@ -90,47 +118,66 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $securityIncident['Secu
 		</p>
 		<h3 class='highlight"><?php echo __('Have you done a Breach Notification Risk Assessment?'); ?></h3>
 		<p>
-			<?php echo h($securityIncident['SecurityIncident']['breach_notification_ra']); ?>
+			<?php echo ($securityIncident['SecurityIncident']['breach_notification_ra']); ?>
 			&nbsp;
 		</p>
+		
+		<?php if(isset($securityIncident['SecurityIncident']['after_completing']) && !empty($securityIncident['SecurityIncident']['after_completing'])):  ?>		
 		<h3 class='highlight"><?php echo __('After completing the assessment do you feel the disclosure compromises the Security and Privacy of the PHI AND Poses a significant risk to the financial'); ?></h3>
 		<p>
-			<?php echo h($securityIncident['SecurityIncident']['after_completing']); ?>
+			<?php echo ($securityIncident['SecurityIncident']['after_completing']); ?>
 			&nbsp;
 		</p>
+		<?php endif ?>		
+		
+		
 		<h3 class='highlight"><?php echo __('Have you informed the individuals of the breach?'); ?></h3>
 		<p>
-			<?php echo h($securityIncident['SecurityIncident']['informed_individual']); ?>
+			<?php echo ($securityIncident['SecurityIncident']['informed_individual']); ?>
 			&nbsp;
 		</p>
+		<?php if(isset($securityIncident['SecurityIncident']['breach_date_completed']) && !empty($securityIncident['SecurityIncident']['breach_date_completed'])):  ?>
+			<h3 class='highlight"><?php echo __('Date Completed'); ?></h3>
+		<p>
+			<?php echo ($securityIncident['SecurityIncident']['breach_date_completed']); ?>
+			&nbsp;
+		</p>
+		<?php endif ?>				
+		
 		<h3 class='highlight"><?php echo __('Did this effect more than 500 individuals?'); ?></h3>
 		<p>
-			<?php echo h($securityIncident['SecurityIncident']['effect_more_than_500']); ?>
+			<?php echo ($securityIncident['SecurityIncident']['effect_more_than_500']); ?>
 			&nbsp;
 		</p>
+		
+		<?php if(isset($securityIncident['SecurityIncident']['notify_individuals_date'] ) && !empty($securityIncident['SecurityIncident']['notify_individuals_date'])):  ?>
+			<h3 class='highlight"><?php echo __('Date Completed'); ?></h3>
+		<p>
+			<?php echo ($securityIncident['SecurityIncident']['notify_individuals_date']); ?>
+			&nbsp;
+		</p>
+		<?php endif ?>			
+		
 		<h3 class='highlight"><?php echo __('Did you notify HHS of security breach?'); ?></h3>
 		<p>
-			<?php echo h($securityIncident['SecurityIncident']['notify_hhs']); ?>
+			<?php echo ($securityIncident['SecurityIncident']['notify_hhs']); ?>
 			&nbsp;
 		</p>
 		<h3 class='highlight"><?php echo __('Did you notify all individuals?'); ?></h3>
 		<p>
-			<?php echo h($securityIncident['SecurityIncident']['notify_individuals']); ?>
+			<?php echo ($securityIncident['SecurityIncident']['notify_individuals']); ?>
 			&nbsp;
 		</p>
 		<h3 class='highlight"><?php echo __('Did you provide notice to prominent media outlets in surrounding area (press release)?'); ?></h3>
 		<p>
-			<?php echo h($securityIncident['SecurityIncident']['notify_media']); ?>
+			<?php echo ($securityIncident['SecurityIncident']['notify_media']); ?>
 			&nbsp;
 		</p>
-		<h3 class='highlight"><?php echo __('Date Completed'); ?></h3>
-		<p>
-			<?php echo h($securityIncident['SecurityIncident']['breach_date']); ?>
-			&nbsp;
-		</p>
+		
+
 		<h3 class='highlight"><?php echo __('Corrective Measures'); ?></h3>
 		<p>
-			<?php echo h($securityIncident['SecurityIncident']['corrective_measures']); ?>
+			<?php echo ($securityIncident['SecurityIncident']['corrective_measures']); ?>
 			&nbsp;
 		</p>
 

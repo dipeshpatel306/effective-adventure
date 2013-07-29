@@ -151,11 +151,16 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 				$this->Session->setFlash('The policies and procedures document has been saved', 'default', array('class' => 'success message'));
 				
 				$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-				if($group == 1){
+			if($group == 1){
+				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
-					$this->redirect(array('action' => 'index'));
+					$this->redirect(array('action' => 'index'));	
 				}
+				
+			} else {	
+				$this->redirect(array('action' => 'index'));
+			}
 				
 				$this->redirect(array('action' => 'index'));
 			
@@ -273,12 +278,16 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 
 			if ($this->PoliciesAndProceduresDocument->save($this->request->data)) {
 				$this->Session->setFlash('The policies and procedures document has been saved', 'default', array('class' => 'success message'));
-				if($group == 1){
+			if($group == 1){
+				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
-					$this->redirect(array('controller' => 'policies_and_procedures', 'action' => 'index'));
+					$this->redirect(array('action' => 'index'));	
 				}
 				
+			} else {	
+				$this->redirect(array('action' => 'index'));
+			}
 
 			} else {
 				$this->Session->setFlash(__('The policies and procedures document could not be saved. Please, try again.'));

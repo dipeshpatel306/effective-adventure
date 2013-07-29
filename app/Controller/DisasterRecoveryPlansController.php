@@ -157,11 +157,16 @@ class DisasterRecoveryPlansController extends AppController {
 			$this->DisasterRecoveryPlan->create();
 			if ($this->DisasterRecoveryPlan->save($this->request->data)) {
 				$this->Session->setFlash('The disaster recovery plan has been saved', 'default', array('class' => 'success message'));
-				if($group == 1){
+			if($group == 1){
+				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
-					$this->redirect(array('action' => 'index'));
+					$this->redirect(array('action' => 'index'));	
 				}
+				
+			} else {	
+				$this->redirect(array('action' => 'index'));
+			}
 			} else {
 				$this->Session->setFlash(__('The disaster recovery plan could not be saved. Please, try again.'));
 			}
@@ -203,11 +208,16 @@ class DisasterRecoveryPlansController extends AppController {
 			
 			if ($this->DisasterRecoveryPlan->save($this->request->data)) {
 				$this->Session->setFlash('The disaster recovery plan has been saved', 'default', array('class' => 'success message'));
-				if($group == 1){
+			if($group == 1){
+				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
-					$this->redirect(array('action' => 'index'));
+					$this->redirect(array('action' => 'index'));	
 				}
+				
+			} else {	
+				$this->redirect(array('action' => 'index'));
+			}
 			} else {
 				$this->Session->setFlash(__('The disaster recovery plan could not be saved. Please, try again.'));
 			}

@@ -136,7 +136,12 @@ class EphiReceivedController extends AppController {
 			if ($this->EphiReceived->save($this->request->data)) {
 				$this->Session->setFlash('The ephi received has been saved', 'default', array('class' => 'success message'));
 			if($group == 1){
-				$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				if(isset($clientId)){
+					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				} else {
+					$this->redirect(array('action' => 'index'));	
+				}
+				
 			} else {	
 				$this->redirect(array('action' => 'index'));
 			}
@@ -173,7 +178,12 @@ class EphiReceivedController extends AppController {
 			if ($this->EphiReceived->save($this->request->data)) {
 				$this->Session->setFlash('The ephi received has been saved', 'default', array('class' => 'success message'));
 			if($group == 1){
-				$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				if(isset($clientId)){
+					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				} else {
+					$this->redirect(array('action' => 'index'));	
+				}
+				
 			} else {	
 				$this->redirect(array('action' => 'index'));
 			}

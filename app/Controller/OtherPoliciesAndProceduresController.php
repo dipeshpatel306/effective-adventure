@@ -162,12 +162,16 @@ class OtherPoliciesAndProceduresController extends AppController {
 			$this->OtherPoliciesAndProcedure->create();
 			if ($this->OtherPoliciesAndProcedure->save($this->request->data)) {
 				$this->Session->setFlash('The other policies and procedure has been saved', 'default', array('class' => 'success message'));
-				if($group == 1)	{
+			if($group == 1){
+				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
-
 				} else {
-					$this->redirect(array('action' => 'index'));
+					$this->redirect(array('action' => 'index'));	
 				}
+				
+			} else {	
+				$this->redirect(array('action' => 'index'));
+			}
 			} else {
 				$this->Session->setFlash(__('The other policies and procedure could not be saved. Please, try again.'));
 			}
@@ -209,12 +213,16 @@ class OtherPoliciesAndProceduresController extends AppController {
 
 			if ($this->OtherPoliciesAndProcedure->save($this->request->data)) {
 				$this->Session->setFlash('The other policies and procedure has been saved', 'default', array('class' => 'success message'));
-				if($group == 1)	{
+			if($group == 1){
+				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
-
 				} else {
-					$this->redirect(array('action' => 'index'));
+					$this->redirect(array('action' => 'index'));	
 				}
+				
+			} else {	
+				$this->redirect(array('action' => 'index'));
+			}
 			} else {
 				$this->Session->setFlash(__('The other policies and procedure could not be saved. Please, try again.'));
 			}

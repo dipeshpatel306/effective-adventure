@@ -136,7 +136,12 @@ class ServerRoomAccessController extends AppController {
 			if ($this->ServerRoomAccess->save($this->request->data)) {
 				$this->Session->setFlash('The server room access has been saved', 'default', array('class' => 'success message'));
 			if($group == 1){
-				$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				if(isset($clientId)){
+					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				} else {
+					$this->redirect(array('action' => 'index'));	
+				}
+				
 			} else {	
 				$this->redirect(array('action' => 'index'));
 			}
@@ -175,7 +180,12 @@ class ServerRoomAccessController extends AppController {
 			if ($this->ServerRoomAccess->save($this->request->data)) {
 				$this->Session->setFlash('The server room access has been saved', 'default', array('class' => 'success message'));
 			if($group == 1){
-				$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				if(isset($clientId)){
+					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				} else {
+					$this->redirect(array('action' => 'index'));	
+				}
+				
 			} else {	
 				$this->redirect(array('action' => 'index'));
 			}
