@@ -562,9 +562,9 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $this->Time->format('m/d/y', $si['discovery_date']); ?></td>
 			<td><?php echo $si['description_of_incident']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'SecurityIncident', 'action' => 'view', $si['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'SecurityIncident', 'action' => 'edit', $si['id'], $clientId)); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'SecurityIncident', 'action' => 'delete', $si['id']), null, __('Are you sure you want to delete # %s?', $si['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'SecurityIncidents', 'action' => 'view', $si['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'SecurityIncidents', 'action' => 'edit', $si['id'], $clientId)); ?>
+				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'SecurityIncidents', 'action' => 'delete', $si['id']), null, __('Are you sure you want to delete # %s?', $si['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
