@@ -20,8 +20,7 @@
 
 	<b><span class='important'>1)</span> <?php echo $this->Html->link('Fill out the Organization Profile', $orgPro); ?></b>
 	<p>By clicking on the above link you will be brought to a page that will allow you to describe your organization.
-	</p>
-	<p>This information along with below Risk Assessment questions, will help us perform the Risk Assessment.</p>
+	This information along with below Risk Assessment questions, will help us perform the Risk Assessment.</p>
 
 	<b><span class='important'>2)</span> <?php echo $this->Html->link('Answer the Risk Assessment Questions', $riskAss) ?> </b>
 	<p>By clicking on the above link you will be brought to a page that has 44 questions to be answered. The questions will provide an insight into how you are currently protecting electronic protected health information (ePHI). We will use this information to help perform the Risk Assessment.
