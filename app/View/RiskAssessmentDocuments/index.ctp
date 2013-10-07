@@ -28,7 +28,7 @@ $this->Html->addCrumb('Risk Assessment Documents');
 			<?php echo $riskAssessmentDocument['Client']['name']; ?>
 		</td>
 		<?php endif; ?>
-		<td><?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['name']); ?>&nbsp;</td>
+		<td><?php echo ($riskAssessmentDocument['RiskAssessmentDocument']['name']); ?>&nbsp;</td>
 		<td>
 		<?php
 			if(!empty($riskAssessmentDocument['RiskAssessmentDocument']['attachment'])){

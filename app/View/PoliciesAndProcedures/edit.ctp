@@ -14,6 +14,7 @@ $this->Html->addCrumb('Edit HIPAA Policy & Procedure');
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
 		echo $this->Form->input('description', array('class' => 'ckeditor'));
+		echo $this->Form->input('details', array('class' => 'ckeditor'));		
 		echo $this->Form->input('video_summary', array('label' => "Video Summary - (enter video name without extension)"));
 	?>
 	</fieldset>

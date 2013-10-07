@@ -23,15 +23,15 @@ $this->Html->addCrumb('Clients');
 	<?php
 	foreach ($clients as $client): ?>
 	<tr>
-		<td><?php echo h($client['Client']['name']); ?>&nbsp;</td>
-		<td><?php echo h($client['Client']['email']); ?>&nbsp;</td>
-		<td><?php echo h($client['Client']['account_type']); ?>&nbsp;</td>
+		<td><?php echo ($client['Client']['name']); ?>&nbsp;</td>
+		<td><?php echo ($client['Client']['email']); ?>&nbsp;</td>
+		<td><?php echo ($client['Client']['account_type']); ?>&nbsp;</td>
 
 
-		<td><?php echo h($client['Client']['admin_account']); ?>&nbsp;</td>
-		<td><?php echo h($client['Client']['user_account']); ?>&nbsp;</td>
-		<td><?php echo h($client['Partner']['name']); ?>&nbsp;</td>
-		<!--<td><?php echo h($client['Client']['details']); ?>&nbsp;</td>-->
+		<td><?php echo ($client['Client']['admin_account']); ?>&nbsp;</td>
+		<td><?php echo ($client['Client']['user_account']); ?>&nbsp;</td>
+		<td><?php echo ($client['Partner']['name']); ?>&nbsp;</td>
+		<!--<td><?php echo ($client['Client']['details']); ?>&nbsp;</td>-->
 		<?php
 			if(!empty($client['Client']['risk_assessment_status'])){
 				$completed = 'class="completed"';
@@ -63,7 +63,7 @@ $this->Html->addCrumb('Clients');
 		}
 		?>
 		<td <?php echo $active; ?>>
-			<?php echo h($client['Client']['active']); ?>&nbsp;
+			<?php echo ($client['Client']['active']); ?>&nbsp;
 		</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $client['Client']['id'])); ?>

@@ -35,10 +35,10 @@ $this->Html->addCrumb('Server Room Access');
 				$this->Time->format('g:i a', $serverRoomAccess['ServerRoomAccess']['time']);
 			 ?>&nbsp;</td>
 
-		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['person']); ?>&nbsp;</td>
-		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['company']); ?>&nbsp;</td>
-		<!--<td><?php echo h($serverRoomAccess['ServerRoomAccess']['reason']); ?>&nbsp;</td>
-		<td><?php echo h($serverRoomAccess['ServerRoomAccess']['notes']); ?>&nbsp;</td>-->
+		<td><?php echo ($serverRoomAccess['ServerRoomAccess']['person']); ?>&nbsp;</td>
+		<td><?php echo ($serverRoomAccess['ServerRoomAccess']['company']); ?>&nbsp;</td>
+		<!--<td><?php echo ($serverRoomAccess['ServerRoomAccess']['reason']); ?>&nbsp;</td>
+		<td><?php echo ($serverRoomAccess['ServerRoomAccess']['notes']); ?>&nbsp;</td>-->
 
 		<td><?php echo $this->Time->format('m/d/y g:i a', $serverRoomAccess['ServerRoomAccess']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $serverRoomAccess['ServerRoomAccess']['modified']); ?>&nbsp;</td>

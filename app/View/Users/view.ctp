@@ -39,17 +39,17 @@ if($user['User']['active'] == 'Yes'){
 		</dd>
 		<!--<dt><?php echo __('Last Name'); ?></dt>
 		<dd>
-			<?php echo h($user['User']['last_name']); ?>
+			<?php echo ($user['User']['last_name']); ?>
 			&nbsp;
 		</dd>-->		
 		<dt><?php echo __('Phone Number'); ?></dt>
 		<dd>
-			<?php echo h($user['User']['phone_number']); ?>
+			<?php echo ($user['User']['phone_number']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Cell Number'); ?></dt>
 		<dd>
-			<?php echo h($user['User']['cell_number']); ?>
+			<?php echo ($user['User']['cell_number']); ?>
 			&nbsp;
 		</dd>
 		

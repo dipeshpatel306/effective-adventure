@@ -21,12 +21,12 @@ $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['n
 
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
-			<?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['name']); ?>
+			<?php echo ($otherContractsAndDocument['OtherContractsAndDocument']['name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Description'); ?></dt>
 		<dd>
-			<?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['description']); ?>
+			<?php echo ($otherContractsAndDocument['OtherContractsAndDocument']['description']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Date'); ?></dt>

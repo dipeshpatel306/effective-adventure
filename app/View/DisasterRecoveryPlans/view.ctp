@@ -20,12 +20,12 @@ $this->Html->addCrumb($disasterRecoveryPlan['DisasterRecoveryPlan']['name']);
 
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
-			<?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['name']); ?>
+			<?php echo ($disasterRecoveryPlan['DisasterRecoveryPlan']['name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Description'); ?></dt>
 		<dd>
-			<?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['description']); ?>
+			<?php echo ($disasterRecoveryPlan['DisasterRecoveryPlan']['description']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Date'); ?></dt>

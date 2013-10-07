@@ -10,10 +10,10 @@
 	</tr>
 	<?php foreach ($operatingSystems as $operatingSystem): ?>
 	<tr>
-		<td><?php echo h($operatingSystem['OperatingSystem']['id']); ?>&nbsp;</td>
-		<td><?php echo h($operatingSystem['OperatingSystem']['os_name']); ?>&nbsp;</td>
-		<td><?php echo h($operatingSystem['OperatingSystem']['created']); ?>&nbsp;</td>
-		<td><?php echo h($operatingSystem['OperatingSystem']['modified']); ?>&nbsp;</td>
+		<td><?php echo ($operatingSystem['OperatingSystem']['id']); ?>&nbsp;</td>
+		<td><?php echo ($operatingSystem['OperatingSystem']['os_name']); ?>&nbsp;</td>
+		<td><?php echo ($operatingSystem['OperatingSystem']['created']); ?>&nbsp;</td>
+		<td><?php echo ($operatingSystem['OperatingSystem']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $operatingSystem['OperatingSystem']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $operatingSystem['OperatingSystem']['id'])); ?>

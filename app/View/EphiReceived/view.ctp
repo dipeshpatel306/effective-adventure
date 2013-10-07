@@ -36,23 +36,23 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiReceived['EphiRece
 
 		<dt><?php echo __('Name of patient associated with ePHI? '); ?></dt>
 		<dd>
-			<?php echo h($ephiReceived['EphiReceived']['patient_name']); ?>
+			<?php echo ($ephiReceived['EphiReceived']['patient_name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Where was ePHI received from? '); ?></dt>
 		<dd>
-			<?php echo h($ephiReceived['EphiReceived']['where_received']); ?>
+			<?php echo ($ephiReceived['EphiReceived']['where_received']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Who received / accepted the ePHI?'); ?></dt>
 		<dd>
-			<?php echo h($ephiReceived['EphiReceived']['received_by']); ?>
+			<?php echo ($ephiReceived['EphiReceived']['received_by']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Reason for receiving ePHI'); ?></dt>
 		<dd>
-			<?php echo h($ephiReceived['EphiReceived']['reason']) . ' '; ?>
-			<?php echo h($ephiReceived['EphiReceived']['other_reason']); ?>
+			<?php echo ($ephiReceived['EphiReceived']['reason']) . ' '; ?>
+			<?php echo ($ephiReceived['EphiReceived']['other_reason']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Date ePHI returned '); ?></dt>

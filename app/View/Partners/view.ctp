@@ -10,7 +10,7 @@ $this->Html->addCrumb('View Partner - ' . $partner['Partner']['company']);
 	<dl>
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
-			<?php echo h($partner['Partner']['name']); ?>
+			<?php echo ($partner['Partner']['name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Email'); ?></dt>
@@ -20,7 +20,7 @@ $this->Html->addCrumb('View Partner - ' . $partner['Partner']['company']);
 		</dd>
 		<dt><?php echo __('Phone'); ?></dt>
 		<dd>
-			<?php echo h($partner['Partner']['phone']); ?>
+			<?php echo ($partner['Partner']['phone']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Link'); ?></dt>
@@ -30,12 +30,12 @@ $this->Html->addCrumb('View Partner - ' . $partner['Partner']['company']);
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
-			<?php echo h($partner['Partner']['created']); ?>
+			<?php echo ($partner['Partner']['created']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Modified'); ?></dt>
 		<dd>
-			<?php echo h($partner['Partner']['modified']); ?>
+			<?php echo ($partner['Partner']['modified']); ?>
 			&nbsp;
 		</dd>
 	</dl>

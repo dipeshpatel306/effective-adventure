@@ -21,14 +21,14 @@ $this->Html->addCrumb('SIRT Teams');
 	<?php
 	foreach ($sirtTeams as $sirtTeam): ?>
 	<tr>
-		<td><?php echo h($sirtTeam['SirtTeam']['company_name']); ?>&nbsp;</td>
-		<!--<td><?php echo h($sirtTeam['SirtTeam']['address_1']); ?>&nbsp;</td>
-		<td><?php echo h($sirtTeam['SirtTeam']['address_2']); ?>&nbsp;</td>
-		<td><?php echo h($sirtTeam['SirtTeam']['city']); ?>&nbsp;</td>
-		<td><?php echo h($sirtTeam['SirtTeam']['state']); ?>&nbsp;</td>
-		<td><?php echo h($sirtTeam['SirtTeam']['zip']); ?>&nbsp;</td>
-		<td><?php echo h($sirtTeam['SirtTeam']['phone']); ?>&nbsp;</td>
-		<td><?php echo h($sirtTeam['SirtTeam']['website']); ?>&nbsp;</td>-->
+		<td><?php echo ($sirtTeam['SirtTeam']['company_name']); ?>&nbsp;</td>
+		<!--<td><?php echo ($sirtTeam['SirtTeam']['address_1']); ?>&nbsp;</td>
+		<td><?php echo ($sirtTeam['SirtTeam']['address_2']); ?>&nbsp;</td>
+		<td><?php echo ($sirtTeam['SirtTeam']['city']); ?>&nbsp;</td>
+		<td><?php echo ($sirtTeam['SirtTeam']['state']); ?>&nbsp;</td>
+		<td><?php echo ($sirtTeam['SirtTeam']['zip']); ?>&nbsp;</td>
+		<td><?php echo ($sirtTeam['SirtTeam']['phone']); ?>&nbsp;</td>
+		<td><?php echo ($sirtTeam['SirtTeam']['website']); ?>&nbsp;</td>-->
 		<td>
 			<?php echo $sirtTeam['Client']['name']; ?>
 		</td>

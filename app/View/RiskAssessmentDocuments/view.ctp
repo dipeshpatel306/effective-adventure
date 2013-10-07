@@ -19,17 +19,17 @@ $this->Html->addCrumb($riskAssessmentDocument['RiskAssessmentDocument']['name'])
 		<?php endif; ?>
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
-			<?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['name']); ?>
+			<?php echo ($riskAssessmentDocument['RiskAssessmentDocument']['name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Description'); ?></dt>
 		<dd>
-			<?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['description']); ?>
+			<?php echo ($riskAssessmentDocument['RiskAssessmentDocument']['description']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Details'); ?></dt>
 		<dd>
-			<?php echo h($riskAssessmentDocument['RiskAssessmentDocument']['details']); ?>
+			<?php echo ($riskAssessmentDocument['RiskAssessmentDocument']['details']); ?>
 			&nbsp;
 		</dd>
 

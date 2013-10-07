@@ -21,12 +21,12 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 	<dl>
 		<dt><?php echo __('Policy'); ?></dt>
 		<dd>
-			<?php echo h($policiesAndProcedure['PoliciesAndProcedure']['id']); ?>
+			<?php echo ($policiesAndProcedure['PoliciesAndProcedure']['id']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
-			<?php echo h($policiesAndProcedure['PoliciesAndProcedure']['name']); ?>
+			<?php echo ($policiesAndProcedure['PoliciesAndProcedure']['name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
@@ -44,6 +44,8 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 	<h2><?php echo __('Description'); ?></h2>
 	<?php echo $policiesAndProcedure['PoliciesAndProcedure']['description']; ?>
 
+	<h2><?php echo __('Details'); ?></h2>
+	<?php echo $policiesAndProcedure['PoliciesAndProcedure']['details']; ?>
 
 <div class="related">
 	<h2><?php echo __('Policies And Procedures Documents'); ?></h2>

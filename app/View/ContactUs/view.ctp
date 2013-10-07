@@ -9,37 +9,37 @@ $this->Html->addCrumb('From: ' . $contactUs['ContactUs']['email'] . ' - ' . $thi
 
 		<dt><?php echo __('Email'); ?></dt>
 		<dd>
-			<?php echo h($contactUs['ContactUs']['email']); ?>
+			<?php echo ($contactUs['ContactUs']['email']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Subject'); ?></dt>
 		<dd>
-			<?php echo h($contactUs['ContactUs']['subject']); ?>
+			<?php echo ($contactUs['ContactUs']['subject']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Feedback'); ?></dt>
 		<dd>
-			<?php echo h($contactUs['ContactUs']['feedback']); ?>
+			<?php echo ($contactUs['ContactUs']['feedback']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('First Name'); ?></dt>
 		<dd>
-			<?php echo h($contactUs['ContactUs']['first_name']); ?>
+			<?php echo ($contactUs['ContactUs']['first_name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Last Name'); ?></dt>
 		<dd>
-			<?php echo h($contactUs['ContactUs']['last_name']); ?>
+			<?php echo ($contactUs['ContactUs']['last_name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Company'); ?></dt>
 		<dd>
-			<?php echo h($contactUs['ContactUs']['company']); ?>
+			<?php echo ($contactUs['ContactUs']['company']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Phone'); ?></dt>
 		<dd>
-			<?php echo h($contactUs['ContactUs']['phone']); ?>
+			<?php echo ($contactUs['ContactUs']['phone']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>

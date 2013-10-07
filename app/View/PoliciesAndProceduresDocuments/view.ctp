@@ -13,7 +13,7 @@ $this->Html->addCrumb($policiesAndProceduresDocument['PoliciesAndProcedure']['na
 	<dl>
 		<dt><?php echo __('Policy'); ?></dt>
 		<dd>
-			<?php echo h($policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id']); ?>
+			<?php echo ($policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Policies And Procedure'); ?></dt>
@@ -44,12 +44,12 @@ $this->Html->addCrumb($policiesAndProceduresDocument['PoliciesAndProcedure']['na
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
-			<?php echo h($policiesAndProceduresDocument['PoliciesAndProceduresDocument']['created']); ?>
+			<?php echo ($policiesAndProceduresDocument['PoliciesAndProceduresDocument']['created']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Modified'); ?></dt>
 		<dd>
-			<?php echo h($policiesAndProceduresDocument['PoliciesAndProceduresDocument']['modified']); ?>
+			<?php echo ($policiesAndProceduresDocument['PoliciesAndProceduresDocument']['modified']); ?>
 			&nbsp;
 		</dd>
 	</dl>

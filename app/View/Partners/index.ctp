@@ -17,9 +17,9 @@ $this->Html->addCrumb('Partners');
 	<?php
 	foreach ($partners as $partner): ?>
 	<tr>
-		<td><?php echo h($partner['Partner']['name']); ?>&nbsp;</td>
+		<td><?php echo ($partner['Partner']['name']); ?>&nbsp;</td>
 		<td><?php echo $this->Text->autoLinkEmails($partner['Partner']['email']); ?>&nbsp;</td>
-		<td><?php echo h($partner['Partner']['phone']); ?>&nbsp;</td>
+		<td><?php echo ($partner['Partner']['phone']); ?>&nbsp;</td>
 		<td><?php echo $this->Html->link($partner['Partner']['link'], null, array('target' =>'_blank')); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $partner['Partner']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $partner['Partner']['modified']); ?>&nbsp;</td>

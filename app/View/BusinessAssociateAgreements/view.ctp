@@ -21,37 +21,37 @@ $this->Html->addCrumb($businessAssociateAgreement['BusinessAssociateAgreement'][
 
 		<dt><?php echo __('Business Name'); ?></dt>
 		<dd>
-			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['business_name']); ?>
+			<?php echo ($businessAssociateAgreement['BusinessAssociateAgreement']['business_name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Business Address'); ?></dt>
 		<dd>
-			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['business_address']); ?>
+			<?php echo ($businessAssociateAgreement['BusinessAssociateAgreement']['business_address']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Business Address 2'); ?></dt>
 		<dd>
-			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['business_address2']); ?>
+			<?php echo ($businessAssociateAgreement['BusinessAssociateAgreement']['business_address2']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('City'); ?></dt>
 		<dd>
-			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['city']); ?>
+			<?php echo ($businessAssociateAgreement['BusinessAssociateAgreement']['city']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('State'); ?></dt>
 		<dd>
-			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['state']); ?>
+			<?php echo ($businessAssociateAgreement['BusinessAssociateAgreement']['state']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Zip'); ?></dt>
 		<dd>
-			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['state']); ?>
+			<?php echo ($businessAssociateAgreement['BusinessAssociateAgreement']['state']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Contact Name'); ?></dt>
 		<dd>
-			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['contact']); ?>
+			<?php echo ($businessAssociateAgreement['BusinessAssociateAgreement']['contact']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Email'); ?></dt>
@@ -61,7 +61,7 @@ $this->Html->addCrumb($businessAssociateAgreement['BusinessAssociateAgreement'][
 		</dd>
 		<dt><?php echo __('Phone'); ?></dt>
 		<dd>
-			<?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['phone']); ?>
+			<?php echo ($businessAssociateAgreement['BusinessAssociateAgreement']['phone']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Contract Date'); ?></dt>

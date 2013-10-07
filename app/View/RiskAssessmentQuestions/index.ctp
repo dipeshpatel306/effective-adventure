@@ -15,10 +15,10 @@ $this->Html->addCrumb('Risk Assessment Questions');
 	<?php
 	foreach ($riskAssessmentQuestions as $riskAssessmentQuestion): ?>
 	<tr>
-		<td><?php echo h($riskAssessmentQuestion['RiskAssessmentQuestion']['question_number']); ?>&nbsp;</td>
-		<td><?php echo h($riskAssessmentQuestion['RiskAssessmentQuestion']['question']); ?>&nbsp;</td>
-		<!--<td><?php echo h($riskAssessmentQuestion['RiskAssessmentQuestion']['additional_information']); ?>&nbsp;</td>
-		<td><?php echo h($riskAssessmentQuestion['RiskAssessmentQuestion']['how_to_answer_question']); ?>&nbsp;</td>-->
+		<td><?php echo ($riskAssessmentQuestion['RiskAssessmentQuestion']['question_number']); ?>&nbsp;</td>
+		<td><?php echo ($riskAssessmentQuestion['RiskAssessmentQuestion']['question']); ?>&nbsp;</td>
+		<!--<td><?php echo ($riskAssessmentQuestion['RiskAssessmentQuestion']['additional_information']); ?>&nbsp;</td>
+		<td><?php echo ($riskAssessmentQuestion['RiskAssessmentQuestion']['how_to_answer_question']); ?>&nbsp;</td>-->
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $riskAssessmentQuestion['RiskAssessmentQuestion']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $riskAssessmentQuestion['RiskAssessmentQuestion']['id'])); ?>

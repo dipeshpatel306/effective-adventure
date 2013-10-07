@@ -30,14 +30,14 @@ $this->Html->addCrumb('ePHI Received');
 		<td>
 			<?php echo $ephiReceived['Client']['name']; ?>
 		</td>
-		<td><?php echo h($ephiReceived['EphiReceived']['item']); ?>&nbsp;</td>
+		<td><?php echo ($ephiReceived['EphiReceived']['item']); ?>&nbsp;</td>
 		<?php endif; ?>
 		<td><?php echo $this->Time->format('m/d/y', $ephiReceived['EphiReceived']['date_received']) . ' ' .
 				$this->Time->format('g:i a', $ephiReceived['EphiReceived']['time_received']);
 		?>&nbsp;</td>
 
-		<td><?php echo h($ephiReceived['EphiReceived']['patient_name']); ?>&nbsp;</td>
-		<td><?php echo h($ephiReceived['EphiReceived']['received_by']); ?>&nbsp;</td>
+		<td><?php echo ($ephiReceived['EphiReceived']['patient_name']); ?>&nbsp;</td>
+		<td><?php echo ($ephiReceived['EphiReceived']['received_by']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y', $ephiReceived['EphiReceived']['date_returned']) . ' ' .
 				$this->Time->format('g:i a', $ephiReceived['EphiReceived']['time_returned']);
 		?>&nbsp;</td>

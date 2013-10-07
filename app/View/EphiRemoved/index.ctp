@@ -34,8 +34,8 @@ $this->Html->addCrumb('ePHI Removed');
 		<td><?php echo $this->Time->format('m/d/y', $ephiRemoved['EphiRemoved']['date']) . ' ' .
 				$this->Time->format('g:i a', $ephiRemoved['EphiRemoved']['time']);
 		?>&nbsp;</td>
-		<td><?php echo h($ephiRemoved['EphiRemoved']['removed_by']); ?>&nbsp;</td>
-		<td><?php echo h($ephiRemoved['EphiRemoved']['returned_by']); ?>&nbsp;</td>
+		<td><?php echo ($ephiRemoved['EphiRemoved']['removed_by']); ?>&nbsp;</td>
+		<td><?php echo ($ephiRemoved['EphiRemoved']['returned_by']); ?>&nbsp;</td>
 
 		<td><?php echo $this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemoved']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemoved']['modified']); ?>&nbsp;</td>

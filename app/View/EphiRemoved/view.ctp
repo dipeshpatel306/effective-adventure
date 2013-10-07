@@ -35,23 +35,23 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemov
 		</dd>
 		<dt><?php echo __('Reason for removing ePHI'); ?></dt>
 		<dd>
-			<?php echo h($ephiRemoved['EphiRemoved']['reason']) . ' '; ?>
-			<?php echo h($ephiRemoved['EphiRemoved']['other_reason']); ?>
+			<?php echo ($ephiRemoved['EphiRemoved']['reason']) . ' '; ?>
+			<?php echo ($ephiRemoved['EphiRemoved']['other_reason']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Who Removed ePHI'); ?></dt>
 		<dd>
-			<?php echo h($ephiRemoved['EphiRemoved']['removed_by']); ?>
+			<?php echo ($ephiRemoved['EphiRemoved']['removed_by']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Who approved of removal of ePHI? '); ?></dt>
 		<dd>
-			<?php echo h($ephiRemoved['EphiRemoved']['approved']); ?>
+			<?php echo ($ephiRemoved['EphiRemoved']['approved']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Who returned the ePHI?'); ?></dt>
 		<dd>
-			<?php echo h($ephiRemoved['EphiRemoved']['returned_by']); ?>
+			<?php echo ($ephiRemoved['EphiRemoved']['returned_by']); ?>
 			&nbsp;
 		</dd>
 

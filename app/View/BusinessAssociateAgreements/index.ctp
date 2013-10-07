@@ -30,9 +30,9 @@ $this->Html->addCrumb('Business Associate Agreements');
 			<?php echo $businessAssociateAgreement['Client']['name']; ?>
 		</td>
 		<?php endif; ?>
-		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['contact']); ?>&nbsp;</td>
+		<td><?php echo ($businessAssociateAgreement['BusinessAssociateAgreement']['contact']); ?>&nbsp;</td>
 		<td><?php echo $this->Text->autoLinkEmails($businessAssociateAgreement['BusinessAssociateAgreement']['email']); ?>&nbsp;</td>
-		<td><?php echo h($businessAssociateAgreement['BusinessAssociateAgreement']['phone']); ?>&nbsp;</td>
+		<td><?php echo ($businessAssociateAgreement['BusinessAssociateAgreement']['phone']); ?>&nbsp;</td>
 		<td>
 			<?php
 			if(!empty($businessAssociateAgreement['BusinessAssociateAgreement']['contract_date'])){

@@ -62,7 +62,7 @@ $this->Html->addCrumb($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['n
 		</dd>
 		<dt><?php echo __('Media'); ?></dt>
 		<dd>
-			<?php echo h($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['media']); ?>
+			<?php echo ($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['media']); ?>
 			&nbsp;
 		</dd>
 	</dl>

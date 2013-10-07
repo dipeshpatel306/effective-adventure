@@ -9,42 +9,42 @@ $this->Html->addCrumb($sirtTeam['SirtTeam']['company_name']);
 
 		<dt><?php echo __('Company Name'); ?></dt>
 		<dd>
-			<?php echo h($sirtTeam['SirtTeam']['company_name']); ?>
+			<?php echo ($sirtTeam['SirtTeam']['company_name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Address 1'); ?></dt>
 		<dd>
-			<?php echo h($sirtTeam['SirtTeam']['address_1']); ?>
+			<?php echo ($sirtTeam['SirtTeam']['address_1']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Address 2'); ?></dt>
 		<dd>
-			<?php echo h($sirtTeam['SirtTeam']['address_2']); ?>
+			<?php echo ($sirtTeam['SirtTeam']['address_2']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('City'); ?></dt>
 		<dd>
-			<?php echo h($sirtTeam['SirtTeam']['city']); ?>
+			<?php echo ($sirtTeam['SirtTeam']['city']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('State'); ?></dt>
 		<dd>
-			<?php echo h($sirtTeam['SirtTeam']['state']); ?>
+			<?php echo ($sirtTeam['SirtTeam']['state']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Zip'); ?></dt>
 		<dd>
-			<?php echo h($sirtTeam['SirtTeam']['zip']); ?>
+			<?php echo ($sirtTeam['SirtTeam']['zip']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Phone'); ?></dt>
 		<dd>
-			<?php echo h($sirtTeam['SirtTeam']['phone']); ?>
+			<?php echo ($sirtTeam['SirtTeam']['phone']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Website'); ?></dt>
 		<dd>
-			<?php echo h($sirtTeam['SirtTeam']['website']); ?>
+			<?php echo ($sirtTeam['SirtTeam']['website']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Client'); ?></dt>

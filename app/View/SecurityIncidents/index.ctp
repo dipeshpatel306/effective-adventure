@@ -39,8 +39,8 @@ $this->Html->addCrumb('Security Incidents');
 				$this->Time->format('g:i a', $securityIncident['SecurityIncident']['discovery_time']);
 		?>&nbsp;</td>
 		<td><?php echo ($securityIncident['SecurityIncident']['description_of_incident']); ?>&nbsp;</td>
-		<!--<td><?php echo h($securityIncident['SecurityIncident']['cause_of_incident']); ?>&nbsp;</td>-->
-		<!--<td><?php echo h($securityIncident['SecurityIncident']['assets_involved']); ?>&nbsp;</td>-->
+		<!--<td><?php echo ($securityIncident['SecurityIncident']['cause_of_incident']); ?>&nbsp;</td>-->
+		<!--<td><?php echo ($securityIncident['SecurityIncident']['assets_involved']); ?>&nbsp;</td>-->
 		<td><?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['modified']); ?>&nbsp;</td>
 

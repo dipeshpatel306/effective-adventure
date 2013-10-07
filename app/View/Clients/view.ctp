@@ -23,32 +23,32 @@ $clientId = $client['Client']['id'];
 	<dl>
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
-			<?php echo h($client['Client']['name']); ?>
+			<?php echo ($client['Client']['name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Email'); ?></dt>
 		<dd>
-			<?php echo h($client['Client']['email']); ?>
+			<?php echo ($client['Client']['email']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Account Type'); ?></dt>
 		<dd>
-			<?php echo h($client['Client']['account_type']); ?>
+			<?php echo ($client['Client']['account_type']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Admin Account'); ?></dt>
 		<dd>
-			<?php echo h($client['Client']['admin_account']); ?>
+			<?php echo ($client['Client']['admin_account']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('User Account'); ?></dt>
 		<dd>
-			<?php echo h($client['Client']['user_account']); ?>
+			<?php echo ($client['Client']['user_account']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Partner'); ?></dt>
 		<dd>
-			<?php echo h($client['Partner']['name']); ?>
+			<?php echo ($client['Partner']['name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Risk Assessment Completed'); ?></dt>
@@ -111,7 +111,7 @@ $clientId = $client['Client']['id'];
 
 	</dl>
 		<h2><?php echo __('Details'); ?></h2>
-		<?php echo h($client['Client']['details']); ?>
+		<?php echo ($client['Client']['details']); ?>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>

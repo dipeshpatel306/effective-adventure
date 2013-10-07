@@ -10,7 +10,7 @@
 	<?php
 	foreach ($groups as $group): ?>
 	<tr>
-		<td><?php echo h($group['Group']['name']); ?>&nbsp;</td>
+		<td><?php echo ($group['Group']['name']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $group['Group']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $group['Group']['modified']); ?>&nbsp;</td>
 		<td class="actions">

@@ -19,7 +19,7 @@ $this->Html->addCrumb('HIPAA Policies & Procedures');
 	<?php
 	foreach ($policiesAndProcedures as $policiesAndProcedure): ?>
 	<tr>
-		<td><?php echo h($policiesAndProcedure['PoliciesAndProcedure']['id']); ?>&nbsp;</td>
+		<td><?php echo ($policiesAndProcedure['PoliciesAndProcedure']['id']); ?>&nbsp;</td>
 		<td><b><?php echo ($policiesAndProcedure['PoliciesAndProcedure']['name']); ?></b>&nbsp;</td>
 		<td><?php echo $policiesAndProcedure['PoliciesAndProcedure']['description']; ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a',$policiesAndProcedure['PoliciesAndProcedure']['created']); ?>&nbsp;</td>

@@ -31,7 +31,7 @@ $this->Html->addCrumb('Other Contracts & Documents');
 		</td>
 		<?php endif; ?>
 
-		<td><?php echo h($otherContractsAndDocument['OtherContractsAndDocument']['name']); ?>&nbsp;</td>
+		<td><?php echo ($otherContractsAndDocument['OtherContractsAndDocument']['name']); ?>&nbsp;</td>
 		<td><?php
 		if(!empty($otherContractsAndDocument['OtherContractsAndDocument']['date'])){
 			echo $this->Time->format('m/d/y', $otherContractsAndDocument['OtherContractsAndDocument']['date']);

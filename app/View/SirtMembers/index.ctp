@@ -17,11 +17,11 @@ $this->Html->addCrumb('SIRT Members');
 	<?php
 	foreach ($sirtMembers as $sirtMember): ?>
 	<tr>
-		<td><?php echo h($sirtMember['SirtMember']['id']); ?>&nbsp;</td>
-		<td><?php echo h($sirtMember['SirtMember']['first_name']); ?>&nbsp;</td>
-		<td><?php echo h($sirtMember['SirtMember']['last_name']); ?>&nbsp;</td>
-		<td><?php echo h($sirtMember['SirtMember']['company']); ?>&nbsp;</td>
-		<td><?php echo h($sirtMember['SirtMember']['responsibility']); ?>&nbsp;</td>
+		<td><?php echo ($sirtMember['SirtMember']['id']); ?>&nbsp;</td>
+		<td><?php echo ($sirtMember['SirtMember']['first_name']); ?>&nbsp;</td>
+		<td><?php echo ($sirtMember['SirtMember']['last_name']); ?>&nbsp;</td>
+		<td><?php echo ($sirtMember['SirtMember']['company']); ?>&nbsp;</td>
+		<td><?php echo ($sirtMember['SirtMember']['responsibility']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($sirtMember['SirtTeam']['company_name'], array('controller' => 'sirt_teams', 'action' => 'view', $sirtMember['SirtTeam']['id'])); ?>
 		</td>

@@ -8,22 +8,22 @@ $this->Html->addCrumb($sirtMember['SirtMember']['company']);
 	<dl>
 		<dt><?php echo __('First Name'); ?></dt>
 		<dd>
-			<?php echo h($sirtMember['SirtMember']['first_name']); ?>
+			<?php echo ($sirtMember['SirtMember']['first_name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Last Name'); ?></dt>
 		<dd>
-			<?php echo h($sirtMember['SirtMember']['last_name']); ?>
+			<?php echo ($sirtMember['SirtMember']['last_name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Company'); ?></dt>
 		<dd>
-			<?php echo h($sirtMember['SirtMember']['company']); ?>
+			<?php echo ($sirtMember['SirtMember']['company']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Responsibility'); ?></dt>
 		<dd>
-			<?php echo h($sirtMember['SirtMember']['responsibility']); ?>
+			<?php echo ($sirtMember['SirtMember']['responsibility']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Sirt Team'); ?></dt>

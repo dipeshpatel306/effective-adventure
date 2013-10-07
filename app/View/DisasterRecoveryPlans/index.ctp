@@ -32,7 +32,7 @@ $this->Html->addCrumb('Disaster Recovery Plans');
 			<?php echo $disasterRecoveryPlan['Client']['name']; ?>
 		</td>
 		<?php endif; ?>
-		<td><?php echo h($disasterRecoveryPlan['DisasterRecoveryPlan']['name']); ?>&nbsp;</td>
+		<td><?php echo ($disasterRecoveryPlan['DisasterRecoveryPlan']['name']); ?>&nbsp;</td>
 		<td>
 			<?php
 			if(!empty($disasterRecoveryPlan['Client']['date'])){

@@ -24,29 +24,29 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $serverRoomAccess['Serv
 		</dd>
 		<dt><?php echo __('Person Accessing Server Roon'); ?></dt>
 		<dd>
-			<?php echo h($serverRoomAccess['ServerRoomAccess']['person']); ?>
+			<?php echo ($serverRoomAccess['ServerRoomAccess']['person']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Company of Person Accessing Server Room'); ?></dt>
 		<dd>
-			<?php echo h($serverRoomAccess['ServerRoomAccess']['company']); ?>
+			<?php echo ($serverRoomAccess['ServerRoomAccess']['company']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Reason for Access'); ?></dt>
 		<dd>
-			<?php echo h($serverRoomAccess['ServerRoomAccess']['reason']) . ' '; ?>
-			<?php echo h($serverRoomAccess['ServerRoomAccess']['other_reason']); ?>
+			<?php echo ($serverRoomAccess['ServerRoomAccess']['reason']) . ' '; ?>
+			<?php echo ($serverRoomAccess['ServerRoomAccess']['other_reason']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Items changed in server room'); ?></dt>
 		<dd>
-			<?php echo h($serverRoomAccess['ServerRoomAccess']['changed']) . ' '; ?>
-			<?php echo h($serverRoomAccess['ServerRoomAccess']['what_changed']); ?>
+			<?php echo ($serverRoomAccess['ServerRoomAccess']['changed']) . ' '; ?>
+			<?php echo ($serverRoomAccess['ServerRoomAccess']['what_changed']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Notes'); ?></dt>
 		<dd>
-			<?php echo h($serverRoomAccess['ServerRoomAccess']['notes']); ?>
+			<?php echo ($serverRoomAccess['ServerRoomAccess']['notes']); ?>
 			&nbsp;
 		</dd>
 

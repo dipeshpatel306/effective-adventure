@@ -25,6 +25,12 @@ h1, h2, h3, h4, h5, fieldset legend{
 h3{
 	font-size: 1.3em;
 }
+.bold {
+	font-weight: bold;
+}
+.redHL{
+	color: #D62738;
+}
 .index, .view, .form{
 	background-color: #ffffff;
 	min-height: 500px;

@@ -3,22 +3,22 @@
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>
-			<?php echo h($operatingSystem['OperatingSystem']['id']); ?>
+			<?php echo ($operatingSystem['OperatingSystem']['id']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Os Name'); ?></dt>
 		<dd>
-			<?php echo h($operatingSystem['OperatingSystem']['os_name']); ?>
+			<?php echo ($operatingSystem['OperatingSystem']['os_name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
-			<?php echo h($operatingSystem['OperatingSystem']['created']); ?>
+			<?php echo ($operatingSystem['OperatingSystem']['created']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Modified'); ?></dt>
 		<dd>
-			<?php echo h($operatingSystem['OperatingSystem']['modified']); ?>
+			<?php echo ($operatingSystem['OperatingSystem']['modified']); ?>
 			&nbsp;
 		</dd>
 	</dl>

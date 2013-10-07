@@ -6,22 +6,22 @@ $this->Html->addCrumb('View Risk Assessment Questions');
 	<dl>
 		<dt><?php echo __('Question Number'); ?></dt>
 		<dd>
-			<?php echo h($riskAssessmentQuestion['RiskAssessmentQuestion']['question_number']); ?>
+			<?php echo ($riskAssessmentQuestion['RiskAssessmentQuestion']['question_number']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Question'); ?></dt>
 		<dd>
-			<?php echo h($riskAssessmentQuestion['RiskAssessmentQuestion']['question']); ?>
+			<?php echo ($riskAssessmentQuestion['RiskAssessmentQuestion']['question']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Additional Information'); ?></dt>
 		<dd>
-			<?php echo h($riskAssessmentQuestion['RiskAssessmentQuestion']['additional_information']); ?>
+			<?php echo ($riskAssessmentQuestion['RiskAssessmentQuestion']['additional_information']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('How To Answer Question'); ?></dt>
 		<dd>
-			<?php echo h($riskAssessmentQuestion['RiskAssessmentQuestion']['how_to_answer_question']); ?>
+			<?php echo ($riskAssessmentQuestion['RiskAssessmentQuestion']['how_to_answer_question']); ?>
 			&nbsp;
 		</dd>
 	</dl>

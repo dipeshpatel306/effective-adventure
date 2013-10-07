@@ -29,7 +29,7 @@ $this->Html->addCrumb('Other Policies & Procedures');
 			<?php echo $otherPoliciesAndProcedure['Client']['name']; ?>
 		</td>
 		<?php endif; ?>
-		<td><?php echo h($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['name']); ?>&nbsp;</td>
+		<td><?php echo ($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['name']); ?>&nbsp;</td>
 		<td>
 		<?php
 
@@ -48,9 +48,9 @@ $this->Html->addCrumb('Other Policies & Procedures');
 		</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a',$otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a',$otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['modified']); ?>&nbsp;</td>
-		<!--<td><?php echo h($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment']); ?>&nbsp;</td>-->
+		<!--<td><?php echo ($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['attachment']); ?>&nbsp;</td>-->
 
-		<!--<td><?php echo h($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['media']); ?>&nbsp;</td>-->
+		<!--<td><?php echo ($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['media']); ?>&nbsp;</td>-->
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id'])); ?>

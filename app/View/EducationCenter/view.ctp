@@ -19,17 +19,17 @@ $this->Html->addCrumb('Education Center View' . ' ' . $educationCenter['Educatio
 	<dl>
 		<dt><?php echo __('Header'); ?></dt>
 		<dd>
-			<?php echo h($educationCenter['EducationCenter']['header']); ?>
+			<?php echo ($educationCenter['EducationCenter']['header']); ?>
 			&nbsp;
 		</dd>		
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
-			<?php echo h($educationCenter['EducationCenter']['name']); ?>
+			<?php echo ($educationCenter['EducationCenter']['name']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Media Type'); ?></dt>
 		<dd>
-			<?php echo h($educationCenter['EducationCenter']['video_link']); ?>
+			<?php echo ($educationCenter['EducationCenter']['video_link']); ?>
 			&nbsp;
 		</dd>		
 		<dt><?php echo __('Video'); ?></dt>
