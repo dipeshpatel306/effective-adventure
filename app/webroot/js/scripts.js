@@ -234,7 +234,7 @@ $(document).ready(function(){
 			if(selected === 'Yes'){
 				$('.notifyHhs').toggle(this.checked);
 			} else {
-				$('.notifyHh').hide();
+				$('.notifyHhs').hide();
 			}
 		}).change();	
 		
@@ -272,7 +272,28 @@ $(document).ready(function(){
 			}
 		}).change();			
 		
-
+		$('#SecurityIncidentAfterCompleting').change(function(){
+			var selected;
+			selected = $(this).val();
+			if(selected === 'Yes'){
+				$('.breachCompleteYes').dialog({
+					height: 630,
+					width: 700,
+					modal: true,
+					resizable: false,
+				});
+			} else if(selected === 'No'){
+				$('.breachCompleteNo').dialog({
+					height: 300,
+					width: 300,
+					modal: true,
+					resizable: false,
+				});
+			} else {
+				$('.breachCompleteYes, .breachCompleteNo').hide();
+			}
+		}).change();			
+		
 	// Mark Risk Assessment Complete. Modal Window
 		$('.markComplete').click(function(){
 			$('.completeBox').dialog({

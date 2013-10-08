@@ -105,7 +105,7 @@ $options = array('' => '', 'Yes' => 'Yes', 'No' => 'No');
 		echo $this->Form->input('notify_hhs', array('label' => 'Did you notify HHS of security breach?', 'options' => $options));
 	?>	
 	
-	<div class='notifyHhs'>
+	<div class='notifyHhs hidden'>
 		<?php echo $this->Form->input('notify_hhs_date', array('label' => 'Date Completed', 'class' => 'datePick')); ?>
 	</div>
 		
@@ -152,6 +152,46 @@ $options = array('' => '', 'Yes' => 'Yes', 'No' => 'No');
 		<p><a href='http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/brinstruction.html'>
 	http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/brinstruction.html</a></p>
 		</div>
+	
+		<div class='breachCompleteNo hidden'>
+			<p>No breach notification is required</p>	
+		</div>
+		
+		<div class='breachCompleteYes hidden'>
+			<p>To print, right click and click on print.</p>
+
+		<p>
+			Per individual, these must all be completed within 60 days of incident:
+			<ul>
+			<li>Notice in written form by 1st class mail or by email if they have agreed upon electronic mailing</li>
+			<li>Description of breach</li>
+			<li>Types of info involved  (ePHI)</li>
+			<li>Steps they should take to protect themselves</li>
+			<li>Description of what CE is doing to investigate/mitigate/prevent future occurrences</li>
+			</ul>
+		</p>
+		<p>
+			If contact information is out of date:
+			<ul>
+			<li>10 or more individuals: CE must post publicly  -website/major print/broadcast media  (Substitute Notice)</li>
+			<li>10 or fewer: This can be done by written, telephone, other means</li>
+			</ul>
+		</p>
+		<p></p>
+			Secretary notice: CE must notify secretary of breaches of unsecured protected health information, by using the Health and Human Services (HHS) website
+			<ul>
+			<li>60 days or fewer (500 individuals or more)</li>
+			<li>Fewer than 500 - once a year</li>
+			</ul>
+		</p>
+		<p>
+		For more information please visit <a href='http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/index.htm'>
+			http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/index.htm</a>
+		</p>
+
+
+		</div>
+			
 	
 	
 	</fieldset>
