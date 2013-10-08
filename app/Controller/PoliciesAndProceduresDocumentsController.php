@@ -82,6 +82,7 @@ class PoliciesAndProceduresDocumentsController extends AppController {
     	//Return reponse object to prevent controller from trying to render a view
     	return $this->response;
 	}
+	
 /**
  * index method
  *
@@ -196,13 +197,20 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 		
 		if(!isset($policy)){
  			$policy = 1;
-		} elseif($policy > 18 || $policy < 1){
+		} elseif($policy > 18 || $policy < 0){
 				$this->redirect(array('controller' => 'clients', 'action' => 'view', $clientId));
 				$this->Session->setFlash('Policies and Procedures Batch Upload completed for ' . $clientName, 'default', 
 				array('class' => 'success message'));
 			
 		} else {
-			$policy = $policy += 1;
+			if($policy == 18 ){
+				$this->redirect(array('controller' => 'clients', 'action' => 'view', $clientId));
+				$this->Session->setFlash('Policies and Procedures Batch Upload completed for ' . $clientName, 'default', 
+				array('class' => 'success message'));
+			} else {
+				$policy = $policy += 1;	
+			}
+
 		}
 		
 		if ($this->request->is('post')) {
@@ -286,7 +294,7 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 				}
 				
 			} else {	
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('controller' => 'Policies_and_procedures','action' => 'index'));
 			}
 
 			} else {

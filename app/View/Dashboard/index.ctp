@@ -35,6 +35,14 @@
 						<div class="triangle"></div>
 						</div>
 					</div>';
+	
+	$confirmBtn = '<div class="dashBtn approved">
+						<div class="btnWrapComplete">
+						<div class="btnText">Mark Complete</div>
+						<div class="triangle"></div>
+						</div>
+					</div>';
+										
 					
 	
 ?>
@@ -210,6 +218,22 @@
 						$orgPro,
 						array('escape' => false)
 				);
+				
+			echo 	'<div class="dashBox markComplete">' .
+					'<div class="dashHead">' .
+					
+					$this->Html->image('mark_comp_tile.bmp', array(
+								'class' => 'dashTile',
+								'alt' => 'HIPAA Mark Risk Assessment Complete'
+								)) . 
+					
+					'<h3>Mark Risk Assessment Complete</h3>' .
+					'</div>' .
+					'<div class="dashSum">Mark Risk Assessment Complete</div>' .
+					$approved . 
+				'</div>';
+				
+
 		}
 		}
 		if(isset($partner)){
@@ -238,7 +262,22 @@
 		}
 
 	?>
+		<div class='completeBox' title='Mark Risk Assessment Complete?'>
+			<p>Before you mark the Risk Assessment Complete, please make sure you have completed the following:</p>
+			<ul>
+				<li>Completely filled in the Organization info</li>
+				<li>Answered each of the Risk Assessment Questions</li>
+				<li>Uploaded existing Policies and Procesures</li>
+			</ul><br />
+			<p>If you have completed each of the above please mark the Risk Assessment complete</p>
+			<p>If you still have more to complete please close this dialog box and complete those sections first.</p>
 
+			<?php
+				echo $this->Html->link($confirmBtn, array('controller' => 'dashboard', 'action' => 'mark_complete'), array('class' => 'closeBox','escape' => false));
+			?>
+
+
+		</div>
 </div>
 <div class="actions">
 	<?php echo $this->element('quickLinks'); ?>

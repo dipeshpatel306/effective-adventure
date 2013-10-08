@@ -27,7 +27,7 @@ class RiskAssessmentDocumentsController extends AppController {
 				return true;
 			}
 
-			if(in_array($this->action, array('edit', 'delete'))){ // Allow Managers to Edit, delete their own
+			if(in_array($this->action, array('edit', 'delete', 'sendFile'))){ // Allow Managers to Edit, delete their own
 				$id = $this->request->params['pass'][0];
 				if($this->RiskAssessmentDocument->isOwnedBy($id, $client)){
 					return true;

@@ -173,7 +173,7 @@
 					<div class="dashSum">Mark Risk Assessment Complete</div>
 					<?php echo $dashBtn; ?>
 
-			</div>
+				</div>
 
 
 		<div class='completeBox' title='Mark Risk Assessment Complete?'>

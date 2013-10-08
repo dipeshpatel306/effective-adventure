@@ -21,7 +21,7 @@ class OtherContractsAndDocumentsController extends AppController {
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
-		$acct = $this->Session->read('Auth.User.Client.account_type');
+		$acctId = $this->Session->read('Auth.User.Client.account_type');
 
 		if($group == 2){
 			if($acctId == 'Meaningful Use'){
@@ -33,7 +33,7 @@ class OtherContractsAndDocumentsController extends AppController {
 				return true;
 			}
 
-			if(in_array($this->action, array('edit', 'delete'))){ // Allow Managers to Edit, delete their own
+			if(in_array($this->action, array('edit', 'delete', 'sendFile'))){ // Allow Managers to Edit, delete their own
 				$id = $this->request->params['pass'][0];
 				if($this->OtherContractsAndDocument->isOwnedBy($id, $client)){
 					return true;
@@ -41,7 +41,7 @@ class OtherContractsAndDocumentsController extends AppController {
 			}
 		}
 
-		if($group == 3 || $acct == 'Initial' || $acct == 'Meaningful Use'){
+		if($group == 3 || $acctId == 'Initial' || $acctId == 'Meaningful Use'){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 				return false;

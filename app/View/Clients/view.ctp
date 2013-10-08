@@ -378,9 +378,18 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $rad['name']; ?></td>
 			<td>
 			<?php
-				$radLink =  preg_replace('/\/.*\//', '', $rad['attachment']);
-				echo $this->Html->link($radLink, $rad['attachment']);
+				if(!empty($rad['attachment'])){
+					$dir = $rad['attachment_dir'];
+					$file = $rad['attachment'];
+					$radLink =  preg_replace('/\/.*\//', '', $rad['attachment']);
+					echo $this->Html->link($rad['attachment'], array(
+					'controller' => 'risk_assessment_documents',
+					'action'	=> 'sendFile', $dir, $file));
+				}
 			?>
+			
+
+			
 			</td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $rad['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $rad['modified']); ?></td>
@@ -426,9 +435,17 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $boa['contract_date']; ?></td>
 			<td>
 			<?php
-				$boaLink =  preg_replace('/\/.*\//', '', $boa['attachment']);
-				echo $this->Html->link($boaLink, $boa['attachment']);
+				if(!empty($boa['attachment'])){
+					$dir = $boa['attachment_dir'];
+					$file = $boa['attachment'];
+					$boaLink =  preg_replace('/\/.*\//', '', $boa['attachment']);
+					echo $this->Html->link($boa['attachment'], array(
+						'controller' => 'business_associate_agreements',
+						'action' => 'sendFile', $dir, $file
+					));
+				}
 			?>
+			
 			</td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $boa['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $boa['modified']); ?></td>
@@ -470,10 +487,19 @@ $clientId = $client['Client']['id'];
 		<tr>
 			<td><?php echo $drp['name']; ?></td>
 			<td>
+			
 			<?php
-				$drpLink =  preg_replace('/\/.*\//', '', $drp['attachment']);
-				echo $this->Html->link($drpLink, $drp['attachment']);
-			?>
+				if(!empty($drp['attachment'])){
+					$dir = $drp['attachment_dir'];
+					$file = $drp['attachment'];
+					$drpLink =  preg_replace('/\/.*\//', '', $drp['attachment']);
+					echo $this->Html->link($drp['attachment'], array(
+						'controller' => 'disaster_recovery_plans',
+						'action' => 'sendFile', $dir, $file
+					));
+				}
+			?>			
+			
 			</td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $drp['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $drp['modified']); ?></td>
@@ -516,9 +542,17 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $ocad['name']; ?></td>
 			<td>
 			<?php
-				$ocadLink =  preg_replace('/\/.*\//', '', $ocad['attachment']);
-				echo $this->Html->link($ocadLink, $ocad['attachment']);
-			?>
+				if(!empty($ocad['attachment'])){
+					$dir = $ocad['attachment_dir'];
+					$file = $ocad['attachment'];
+					$ocadLink =  preg_replace('/\/.*\//', '', $ocad['attachment']);
+					echo $this->Html->link($drp['attachment'], array(
+						'controller' => 'other_contracts_and_documents',
+						'action' => 'sendFile', $dir, $file
+					));
+				}
+			?>	
+						
 			</td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $ocad['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $ocad['modified']); ?></td>
