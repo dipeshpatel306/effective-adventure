@@ -94,6 +94,8 @@ table tr td{
 }
 table{
 	border-collapse: collapse;
+
+
 }
 th{
 	background-color: #4C8AB0;
@@ -116,12 +118,20 @@ table tr:nth-child(odd) {
 table tr:nth-child(2n) {
     background: #ffffff;
 }
+td{
+	word-break:break-all; 
+	word-wrap: break-word;
+}
 td.active, td.completed, dd.active, dd.completed{
 	background-color: #76BF6B;
 	color: #ffffff;
 	font-weight: bold;
 	border-top: 1px solid #ffffff;
 	border-bottom: 1px solid #ffffff;
+}
+dd.active, dd.completed{
+	font-weight: bold;
+	color: #76BF6B;
 }
 
 td.inactive, dd.inactive{

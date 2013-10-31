@@ -1,7 +1,7 @@
 <?php
 $this->Html->addCrumb('Risk Assessments', '/risk_assessments');
 $this->Html->addCrumb('Edit Risk Assessment');
-	$options = array('Please Select' => 'Please Select', 'No' => 'No', 'Yes' => 'Yes', 'N/A');
+	$options = array('Please Select' => 'Please Select', 'No' => 'No', 'Yes' => 'Yes', 'N/A' => 'N/A');
 
 	// format Risk Assessment Question
 	function raq($id, $RaQ){ //TODO replace this function with something less cpu intensive

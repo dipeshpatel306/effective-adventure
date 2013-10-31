@@ -2,12 +2,13 @@
 $this->Html->addCrumb('Clients', '/clients');
 $this->Html->addCrumb($client['Client']['name']);
 
-if(empty($client['Client']['risk_assessment_status'])){
-	$completed = '';
-} else {
-	$completed = 'class="completed"';
-}
 
+	if(!empty($client['Client']['risk_assessment_status'])){
+		$completed = 'class="completed"';
+	} else {
+		$completed = '';
+	}
+		
 if($client['Client']['active'] == 'Yes'){
 	$active = "class='active'";
 } else {
@@ -53,14 +54,11 @@ $clientId = $client['Client']['id'];
 		</dd>
 		<dt><?php echo __('Risk Assessment Completed'); ?></dt>
 		<dd <?php echo $completed; ?> >
-			<?php
-			if(empty($client['Client']['risk_assessment_status'])){
-				echo '';
-			} else {
+		<?php
+			if(!empty($client['Client']['risk_assessment_status'])){
 				echo $this->Time->format('m/d/y', $client['Client']['risk_assessment_status']);
 			}
-
-			 ?>
+		?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Last Login'); ?></dt>

@@ -2,7 +2,7 @@
 $this->Html->addCrumb('Risk Assessments', '/risk_assessments');
 $this->Html->addCrumb('Add Risk Assessment');
 
-	$options = array('Please Select' => 'Please Select', 'No' => 'No', 'Yes' => 'Yes', 'N/A');
+	$options = array('Please Select' => 'Please Select', 'No' => 'No', 'Yes' => 'Yes', 'N/A' => 'N/A');
 
 	// Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id');

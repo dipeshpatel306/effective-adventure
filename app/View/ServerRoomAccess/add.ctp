@@ -47,7 +47,7 @@ $changed = array('' => '', 'Yes' => 'Yes', 'No' => 'No');
 
 	<h2 class='highlight'>Additional Information</h2>
 	<?php
-		echo $this->Form->input('notes', array('class' => 'ckeditor'));
+		echo $this->Form->input('notes');
 
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		if($client == 1){  // if admin allow to choose

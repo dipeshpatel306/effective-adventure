@@ -103,9 +103,10 @@ class RiskAssessmentsController extends AppController {
 			if($group != 1){
 				$this->request->data['RiskAssessment']['client_id'] = $this->Auth->User('client_id');
 			}
+			//pr($this->request->data['RiskAssessment']['client_id']);
+			//exit();
 
-
-			$this->request->data['RiskAssessment']['client_id'] = $this->Auth->User('client_id');
+			//$this->request->data['RiskAssessment']['client_id'] = $this->Auth->User('client_id');
 			$this->RiskAssessment->create();
 			if ($this->RiskAssessment->save($this->request->data)) {
 

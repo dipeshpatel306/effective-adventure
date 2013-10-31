@@ -1,6 +1,6 @@
 <?php
 $this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
-$this->Html->addCrumb('Policies & Procedures', '/policies_and_procedures');
+$this->Html->addCrumb('HIPAA Policies & Procedures', '/policies_and_procedures');
 $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 
 	$group = $this->Session->read('Auth.User.group_id');

@@ -1,5 +1,5 @@
 <?php
-$this->Html->addCrumb('HIPAA Policies & Procedures', '/dashboard/policies_and_procedures');
+$this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
 $this->Html->addCrumb('HIPAA Policies & Procedures', '/policies_and_procedures');
 $this->Html->addCrumb('Edit HIPAA Policy & Procedure');
 
