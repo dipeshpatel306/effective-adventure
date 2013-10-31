@@ -12,8 +12,8 @@ $this->Html->addCrumb('HIPAA Policies & Procedures');
 			<th><?php echo $this->Paginator->sort('id', 'Policy'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
+			<!--<th><?php echo $this->Paginator->sort('created'); ?></th>
+			<th><?php echo $this->Paginator->sort('modified'); ?></th>-->
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php
@@ -22,8 +22,8 @@ $this->Html->addCrumb('HIPAA Policies & Procedures');
 		<td><?php echo ($policiesAndProcedure['PoliciesAndProcedure']['id']); ?>&nbsp;</td>
 		<td><b><?php echo ($policiesAndProcedure['PoliciesAndProcedure']['name']); ?></b>&nbsp;</td>
 		<td><?php echo $policiesAndProcedure['PoliciesAndProcedure']['description']; ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('m/d/y g:i a',$policiesAndProcedure['PoliciesAndProcedure']['created']); ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('m/d/y g:i a',$policiesAndProcedure['PoliciesAndProcedure']['modified']); ?>&nbsp;</td>
+		<!--<td><?php echo $this->Time->format('m/d/y g:i a',$policiesAndProcedure['PoliciesAndProcedure']['created']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->format('m/d/y g:i a',$policiesAndProcedure['PoliciesAndProcedure']['modified']); ?>&nbsp;</td>-->
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?>
 			<?php if($group == 1 ): ?>

@@ -45,12 +45,7 @@
 	<h2><?php echo __('Compliance Portal Dashboard'); ?></h2>
 
 
-		<div>
-			<h3>
-			<p class='bold'>The first step to getting <span class='redHL'>HIPAA Secure Now!</span> is to complete a Risk Assessment</p>
-			<p class='bold'>Click "Let's Get Started" to review the <span class='redHL'>HIPAA Secure Now!</span> process</p>
-			</h3>
-		</div>
+	<div class='initBox'>
 	
 	<?php
 		
@@ -65,8 +60,15 @@
 					array('escape' => false)
 			);
 	?>
-
-
+	
+		<div class='initTxt'>
+			<h3>
+			<p class='bold'>The first step to getting <span class='redHL'>HIPAA Secure Now!</span> is to complete a Risk Assessment</p>
+			<p class='bold'>Click "Let's Get Started" to review the <span class='redHL'>HIPAA Secure Now!</span> process</p>
+			</h3>
+		</div>
+	</div>
+<div class='clear'>
 	<?php
 	if($group != 3){
 	if($displayRaOrg['Client']['display_ra_org'] == 'Yes'){
@@ -190,7 +192,7 @@
 				echo $this->Html->link($confirmBtn, array('controller' => 'dashboard', 'action' => 'mark_complete'), array('class' => 'closeBox','escape' => false));
 			?>
 
-
+</div>
 		</div>
 </div>
 

@@ -23,7 +23,7 @@
 	This information along with below Risk Assessment questions, will help us perform the Risk Assessment.</p>
 
 	<b><span class='important'>2)</span> <?php echo $this->Html->link('Answer the Risk Assessment Questions', $riskAss) ?> </b>
-	<p>By clicking on the above link you will be brought to a page that has 44 questions to be answered. The questions will provide an insight into how you are currently protecting electronic protected health information (ePHI). We will use this information to help perform the Risk Assessment.
+	<p>By clicking on the above link you will be brought to a page that has 48 questions to be answered. The questions will provide an insight into how you are currently protecting electronic protected health information (ePHI). We will use this information to help perform the Risk Assessment.
 	</p>
 
 	<b><span class='important'>3)</span> <?php echo $this->Html->link('Upload any existing Policy or Procedure that you already have in place.', array('controller' => 'other_policies_and_procedures')) ?> </b>

@@ -29,7 +29,7 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 			<?php echo ($policiesAndProcedure['PoliciesAndProcedure']['name']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Created'); ?></dt>
+		<!--<dt><?php echo __('Created'); ?></dt>
 		<dd>
 			<?php echo $this->Time->format('m/d/y g:i a',$policiesAndProcedure['PoliciesAndProcedure']['created']); ?>
 			&nbsp;
@@ -38,7 +38,7 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 		<dd>
 			<?php echo $this->Time->format('m/d/y g:i a',$policiesAndProcedure['PoliciesAndProcedure']['modified']); ?>
 			&nbsp;
-		</dd>
+		</dd>-->
 	</dl>
 
 	<h2><?php echo __('Description'); ?></h2>

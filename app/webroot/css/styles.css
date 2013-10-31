@@ -25,6 +25,9 @@ h1, h2, h3, h4, h5, fieldset legend{
 h3{
 	font-size: 1.3em;
 }
+.clear{
+	clear: both;
+}
 .bold {
 	font-weight: bold;
 }
@@ -386,6 +389,11 @@ img.homeIcon:hover{
 	-webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
 	box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
 }
+.initTxt{
+	float: left;
+	padding: 70px 0 0 20px;;
+}
+
 .dashBox:hover{
 	background-color: #F5F9FD;
 }
@@ -522,7 +530,7 @@ img.homeIcon:hover{
     left: 50%;
     margin-left: -410px;
     position: fixed;
-    width: 820px;
+
     z-index: 10001;
 }
 #mediaplayer_wrapper{ /* fixes centering in media player */

@@ -26,6 +26,17 @@ $this->Html->addCrumb('Edit Organization Profile');
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
+	
+	if($group != 1){
+		if(!empty($this->session->read('Auth.User.Client.name'))){
+			$orgName = $this->session->read('Auth.User.Client.name');
+		} else {
+			$orgName = '';
+		}
+	} else {
+		$orgName = '';
+	}
+	
 ?>
 
 <div class="organizationProfiles form">
@@ -54,7 +65,7 @@ $this->Html->addCrumb('Edit Organization Profile');
 			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
 		}
 
-		echo $this->Form->input('organization_name', array('label' => 'Organization Name: '));
+		echo $this->Form->input('organization_name', array('label' => 'Organization Name: ', 'value' => $orgName));
 		echo $this->Form->input('administrator_name', array('label' => "Organization's Administrator Name: "));
 		echo $this->Form->input('administrator_email', array('label' =>"Organization's Adminstrator Email: "));
 		echo $this->Form->input('administrator_phone', array('label' =>"Administrator Phone (Primary Contact): "));
