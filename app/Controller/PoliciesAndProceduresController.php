@@ -90,7 +90,7 @@ class PoliciesAndProceduresController extends AppController {
 			throw new NotFoundException(__('Invalid policies and procedure'));
 		}
 		
-		if($group == 1 || $group == 2 ){
+	//	if($group == 1 || $group == 2 ){
 			$documents = $this->PoliciesAndProcedure->PoliciesAndProceduresDocument->find('all', array(
 				// /'recursive' => 2,
 				'order' => array('created' => 'desc'),
@@ -103,7 +103,7 @@ class PoliciesAndProceduresController extends AppController {
 				'PoliciesAndProceduresDocument.document', 'PoliciesAndProceduresDocument.document_dir', 'PoliciesAndProceduresDocument.created', 'PoliciesAndProceduresDocument.modified')	
 			
 			));
-		};
+		//};
 		
 		$this->set(compact('documents'));
 		//debug($documents);

@@ -37,7 +37,7 @@ $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['n
 			} ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Details'); ?></dt>
+
 
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
@@ -64,6 +64,10 @@ $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['n
 		?>
 			&nbsp;
 		</dd>
+		
+		<dt><?php echo __('Details'); ?></dt>
+		<dd><?php echo ($otherContractsAndDocument['OtherContractsAndDocument']['details']); ?>
+			&nbsp;</dd>
 	</dl>
 </div>
 <div class="actions">

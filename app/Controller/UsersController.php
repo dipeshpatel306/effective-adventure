@@ -552,7 +552,7 @@ class UsersController extends AppController {
 
 			if($group != 1){
 				$this->request->data['User']['client_id'] = $this->Auth->User('client_id');
-
+				
 				/*if($this->request->data['User']['group_id'] == 1){  // If client tries to spoof Hipaa admin group redirect them
 					$this->redirect(array('action' => 'index'));
 					$this->Session->setFlash(__('You are not authorized to do that!'));
@@ -563,7 +563,8 @@ class UsersController extends AppController {
 
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash('The user has been saved', 'default', array('class' => 'success message'));
-				if($group == 1)	{
+				if($group == 1 && isset($clientId))	{
+					
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 
 				} else {

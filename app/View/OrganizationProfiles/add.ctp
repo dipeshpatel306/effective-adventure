@@ -1,5 +1,5 @@
 <?php
-$this->Html->addCrumb('Organization Profiles', '/organization_profiles');
+//$this->Html->addCrumb('Organization Profiles', '/organization_profiles');
 $this->Html->addCrumb('Add Organization Profile');
 
 	$states = array('AL'=>"Alabama", 'AK'=>"Alaska", 'AZ'=>"Arizona", 'AR'=>"Arkansas", 'CA'=>"California", 'CO'=>"Colorado",
@@ -27,15 +27,16 @@ $this->Html->addCrumb('Add Organization Profile');
 	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 	
-	if($group != 1){
+	/*if($group != 1){
 		if(!empty($this->session->read('Auth.User.Client.name'))){
 			$orgName = $this->session->read('Auth.User.Client.name');
+			$disabled = true;
 		} else {
 			$orgName = '';
 		}
 	} else {
 		$orgName = '';
-	}
+	}*/
 	
 ?>
 
@@ -65,7 +66,7 @@ $this->Html->addCrumb('Add Organization Profile');
 			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
 		}
 
-		echo $this->Form->input('organization_name', array('label' => 'Organization Name: ', 'value' => $orgName));
+		//echo $this->Form->input('organization_name', array('label' => 'Organization Name: ', 'value' => $orgName));
 		echo $this->Form->input('administrator_name', array('label' => "Organization's Administrator Name: "));
 		echo $this->Form->input('administrator_email', array('label' =>"Organization's Adminstrator Email: "));
 		echo $this->Form->input('administrator_phone', array('label' =>"Administrator Phone (Primary Contact): "));

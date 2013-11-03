@@ -123,16 +123,13 @@ td{
 	word-wrap: break-word;
 }
 td.active, td.completed, dd.active, dd.completed{
-	background-color: #76BF6B;
-	color: #ffffff;
+	/*background-color: #76BF6B;*/
+	color: #76BF6B;
 	font-weight: bold;
 	border-top: 1px solid #ffffff;
 	border-bottom: 1px solid #ffffff;
 }
-dd.active, dd.completed{
-	font-weight: bold;
-	color: #76BF6B;
-}
+
 
 td.inactive, dd.inactive{
 	background-color: #EE5F5B;

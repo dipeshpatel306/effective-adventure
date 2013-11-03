@@ -1,5 +1,7 @@
 <?php
 $this->Html->addCrumb('Education Center');
+
+	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="educationCenter index">
 	<h2><?php echo __('Education Center'); ?></h2>
@@ -13,7 +15,59 @@ $this->Html->addCrumb('Education Center');
 		alt="" width="30" height="21" /> above to view in fullscreen mode!</p>
 
 		</div>
+	
+	
+	<?php if($acct != 'Meaningful Use'): // allow if not meaningful?>
+		
+	<a target='blank' href='http://training.hipaasecurenow.com/login/index.php'>
+	<div class='dashBox'>
+		<div class='dashHead'>
+			<?php 
+				echo $this->Html->image('training_tile.jpg', array(
+						'class' => 'dashTile',
+						'alt' => 'HIPAA Security Training'
+				));
+			?>
+			<h3>HIPAA Security Training</h3>		
+		</div>
+		<div class="dashSum">HIPAA Security Training</div>
+		<div class="dashBtn approved">
+			<div class="btnWrapMed">
+			<div class="btnText">Learn More</div>
+			<div class="triangle"></div>
+			</div>
+		</div>		
+		
+	</div>	
+	</a>
 
+	<?php else: // deny ?>
+
+	<div class='dashBox'>
+		<div class='dashHead'>
+			<?php 
+				echo $this->Html->image('training_tile.jpg', array(
+						'class' => 'dashTile',
+						'alt' => 'HIPAA Security Training'
+				));
+			?>
+			<h3>HIPAA Security Training</h3>		
+		</div>
+		<div class="dashSum">HIPAA Security Training</div>
+		<div class="dashBtn denied">
+			<div class="btnWrapWide">
+			<div class="btnText">Subscribers Only!</div>
+			<div class="triangle"></div>
+			</div>
+		</div>		
+		
+	</div>			
+		
+	<?php endif; ?>	
+	
+	
+	
+	
 	<?php foreach ($educationCenter as $educationCenter): ?>
 
 	<?php if($educationCenter['EducationCenter']['video_link'] == 'Link'):?><!-- If link wrap in link -->

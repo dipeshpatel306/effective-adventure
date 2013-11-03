@@ -1,5 +1,5 @@
 <?php
-$this->Html->addCrumb('Organization Profiles', '/organization_profiles');
+//$this->Html->addCrumb('Organization Profiles', '/organization_profiles');
 $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Client']['name']);
 
 // Conditionally load buttons based upon user role
@@ -30,11 +30,11 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 			&nbsp;
 		</p>
 
-		<h4 class='highlight'><?php echo __('Organization Name:'); ?></h4>
+		<!--<h4 class='highlight'><?php echo __('Organization Name:'); ?></h4>
 		<p>
 			<?php echo ($organizationProfile['OrganizationProfile']['organization_name']); ?>
 			&nbsp;
-		</p>
+		</p>-->
 		<h4 class='highlight'><?php echo __("Organization's Administrator Name: "); ?></h4>
 		<p>
 			<?php echo ($organizationProfile['OrganizationProfile']['administrator_name']); ?>

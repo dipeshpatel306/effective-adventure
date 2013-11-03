@@ -31,10 +31,13 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 				return false;
 			}
-			if(in_array($this->action, array('index', 'add'))){  // Allow Managers to Add
+			if(in_array($this->action, array('add'))){  // Allow Managers to Add
 				return true;
 			}
 
+			if(in_array($this->action, array('index'))){  // Clients can no longer view that index page
+				$this->redirect(array('controller' => 'policies_and_procedures', 'action' => 'index'));
+			}
 			if(in_array($this->action, array('edit', 'view','delete', 'sendFile'))){ // Allow Managers to Edit, delete their own
 				$id = $this->request->params['pass'][0];
 				if($this->PoliciesAndProceduresDocument->isOwnedBy($id, $client)){
@@ -63,8 +66,8 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 				}
 			}
 
-			if(in_array($this->action, array('index'))){
-					return true;
+			if(in_array($this->action, array('index'))){  // Clients can no longer view that index page
+				$this->redirect(array('controller' => 'policies_and_procedures', 'action' => 'index'));
 			}
 		}
 
@@ -91,6 +94,21 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 	public function index() {
 		$this->PoliciesAndProceduresDocument->recursive = 0;
 		$this->set('policiesAndProceduresDocuments', $this->paginate());
+		
+		/*if($group == 1){ No longer used. Client cannot view this page any more
+			$this->PoliciesAndProceduresDocument->recursive = 0;
+			$this->paginate = array('order' => array('PoliciesAndProceduresDocument.client_id' => 'ASC'));
+			$this->set('policiesAndProceduresDocuments', $this->paginate());
+		} elseif($group == 2){
+			$this->paginate = array(
+				'conditions' => array('PoliciesAndProceduresDocument.client_id' => $client),
+				'order' => array('PoliciesAndProceduresDocument.name' => 'ASC')
+			);
+			$this->set('policiesAndProceduresDocuments', $this->paginate());
+		} else {
+			$this->Session->setFlash('You are not authorized to view that!');
+			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+		}*/
 	}
 
 /**

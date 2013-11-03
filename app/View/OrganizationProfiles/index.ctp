@@ -11,7 +11,7 @@ $this->Html->addCrumb('Organization Profiles');
 	<tr>
 			<!--<th><?php echo $this->Paginator->sort('id'); ?></th>-->
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('organization_name'); ?></th>
+			<!--<th><?php echo $this->Paginator->sort('organization_name'); ?></th>-->
 			<th><?php echo $this->Paginator->sort('administrator_name'); ?></th>
 			<th><?php echo $this->Paginator->sort('administrator_email'); ?></th>
 			<th><?php echo $this->Paginator->sort('administrator_phone'); ?></th>
@@ -96,7 +96,7 @@ $this->Html->addCrumb('Organization Profiles');
 			$ext = '';
 		}
 		?>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['organization_name']); ?>&nbsp;</td>
+		<!--<td><?php echo ($organizationProfile['OrganizationProfile']['organization_name']); ?>&nbsp;</td>-->
 		<td><?php echo ($organizationProfile['OrganizationProfile']['administrator_name']); ?>&nbsp;</td>
 		<td><?php echo ($organizationProfile['OrganizationProfile']['administrator_email']); ?>&nbsp;</td>
 		<td><?php echo ($organizationProfile['OrganizationProfile']['administrator_phone']) . $ext; ?>&nbsp;</td>

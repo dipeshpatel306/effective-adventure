@@ -57,7 +57,9 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 		<th><?php echo __('Document'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
+		<?php if($group != 3): ?>
 		<th class="actions"><?php echo __('Actions'); ?></th>
+		<?php endif; ;?>
 	</tr>
 	<?php
 	//debug ($policiesAndProcedure['PoliciesAndProceduresDocument']);
@@ -82,13 +84,14 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 			</td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a',$policiesAndProceduresDocument['PoliciesAndProceduresDocument']['modified']); ?></td>
+		<?php if($group != 3): ?>
 			<td class="actions">
 				<!--<?php echo $this->Html->link('View', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document']); ?>-->
 				
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'policies_and_procedures_documents', 'action' => 'edit',$policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id'])); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'policies_and_procedures_documents', 'action' => 'delete', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id']), null, __('Are you sure you want to delete # %s?',  $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id'])); ?>
 			</td>
-
+		<?php endif ?>
 		</tr>
 	<?php endforeach; ?>
 	</table>

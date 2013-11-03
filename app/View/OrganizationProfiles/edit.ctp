@@ -27,7 +27,7 @@ $this->Html->addCrumb('Edit Organization Profile');
 	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 	
-	if($group != 1){
+	/*if($group != 1){
 		if(!empty($this->session->read('Auth.User.Client.name'))){
 			$orgName = $this->session->read('Auth.User.Client.name');
 		} else {
@@ -35,7 +35,7 @@ $this->Html->addCrumb('Edit Organization Profile');
 		}
 	} else {
 		$orgName = '';
-	}
+	}*/
 	
 ?>
 
