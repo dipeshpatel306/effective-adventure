@@ -27,7 +27,7 @@ $reason = array('' => '', 'Work form home' => 'Work from home', 'Transfer to ano
 	<?php
 		echo $this->Form->input('item', array('label' => 'Description of item removed', 'options' => $item, 'empty' => 'Please Select'));
 
-		echo '<div class="otherDescription">' .
+		echo '<div class="otherDescription hidden">' .
 				$this->Form->input('other_description', array('label' => 'Other Description'))
 			. "</div>";
 
@@ -38,7 +38,7 @@ $reason = array('' => '', 'Work form home' => 'Work from home', 'Transfer to ano
 	<?php
 		echo $this->Form->input('reason', array('label' => 'Reason for removing ePHI', 'options' => $reason, 'empty' => 'Please Select'));
 
-		echo '<div class="otherReason">' .
+		echo '<div class="otherReason hidden">' .
 				$this->Form->input('other_reason', array('label' => 'Other Reason'))
 			. "</div>";
 

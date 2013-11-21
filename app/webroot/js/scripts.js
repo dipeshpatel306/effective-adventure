@@ -27,7 +27,7 @@ $(document).ready(function(){
 		days: 30,
 		iconPath: '/js/jquery-social-stream/images/',
 		imagePath: '/js/jquery-social-stream/images/'
-	})
+	});
 
 	// Slide show for risk assessment
 	$(function(){
@@ -92,208 +92,97 @@ $(document).ready(function(){
   		}).change();
 
   		// toggle other email
-		$('#OrganizationProfileEmailVendor').change(function(){
-			var selected;
-			selected = $(this).val();
+  		if($('#OrganizationProfileEmailVendor').val() == 'Other'){
+  			$('.otherEmail').show();
+  		}
+		$('#OrganizationProfileEmailVendor').on('change', function(){
+			var selected = $(this).val();
 			if(selected === 'Other'){
-				$('.otherEmail').toggle(this.checked);
+				$('.otherEmail').show();
 			} else {
 				$('.otherEmail').hide();
 			}
-		}).change();
+		});
 
   		// toggle other OS
-		$('#OrganizationProfileEmrEhrOs').change(function(){
-			var selected;
-			selected = $(this).val();
+  		if($('#OrganizationProfileEmrEhrOs').val() == 'Other'){
+  			$('.otherEmrOs').show();
+  		}
+		$('#OrganizationProfileEmrEhrOs').on('change', function(){
+			var selected = $(this).val();
 			if(selected === 'Other'){
-				$('.otherEmrOs').toggle(this.checked);
+				$('.otherEmrOs').show();
 			} else {
 				$('.otherEmrOs').hide();
 			}
-		}).change();
+		});
 
   		// toggle other EMR/EHR Location
+  		if($('#OrganizationProfileEmrEhrLocation').val() == 'Other'){
+  			$('.emrEhrOtherLoc').show();
+  		}
 		$('#OrganizationProfileEmrEhrLocation').change(function(){
-			var selected;
-			selected = $(this).val();
+			var selected = $(this).val();
 			if(selected === 'Other'){
-				$('.emrEhrOtherLoc').toggle(this.checked);
+				$('.emrEhrOtherLoc').show();
 			} else {
 				$('.emrEhrOtherLoc').hide();
 			}
-		}).change();
+		});
 
 		 // toggle server room access
-		$('#ServerRoomAccessReason').change(function(){
-			var selected;
-			selected = $(this).val();
+		if($('#ServerRoomAccessReason').val() == 'Other'){
+			$('.otherReason').show();
+		}
+		$('#ServerRoomAccessReason').on('change', function(){
+			var selected = $(this).val();
 			if(selected === 'Other'){
-				$('.otherReason').toggle(this.checked);
+				$('.otherReason').show();
 			} else {
 				$('.otherReason').hide();
 			}
-		}).change();
+		});
 
 		 // toggle server room access
-		$('#ServerRoomAccessChanged').change(function(){
-			var selected;
-			selected = $(this).val();
+		if($('#ServerRoomAccessChanged').val() == 'Yes'){
+			$('.whatChanged').show();
+		}
+		$('#ServerRoomAccessChanged').on('change', function(){
+			var selected = $(this).val();
 			if(selected === 'Yes'){
-				$('.whatChanged').toggle(this.checked);
+				$('.whatChanged').show();
 			} else {
 				$('.whatChanged').hide();
 			}
-		}).change();
+		});
 
 		// toggle Ephi removed
-		$('#EphiRemovedItem, #EphiReceivedItem').change(function(){
-			var selected;
-			selected = $(this).val();
+		if($('#EphiRemovedItem, #EphiReceivedItem').val() == 'Other'){
+			$('.otherDescription').show();
+		} 
+		$('#EphiRemovedItem, #EphiReceivedItem').on('change', function(){
+			var selected = $(this).val();
 			if(selected === 'Other'){
-				$('.otherDescription').toggle(this.checked);
+				$('.otherDescription').show();
 			} else {
 				$('.otherDescription').hide();
 			}
-		}).change();
+		});
 
 		// toggle Ephi removed reason
-		$('#EphiRemovedReason, #EphiReceivedReason').change(function(){
-			var selected;
-			selected = $(this).val();
+		if($('#EphiRemovedReason, #EphiReceivedReason').val() == 'Other'){
+			$('.otherReason').show();
+		}
+		$('#EphiRemovedReason, #EphiReceivedReason').on('change', function(){
+			var selected = $(this).val();
 			if(selected === 'Other'){
-				$('.otherReason').toggle(this.checked);
+				$('.otherReason').show();
 			} else {
 				$('.otherReason').hide();
 			}
-		}).change();
-		
-		// Security Incidents
-		$('#SecurityIncidentCauseOfIncident').change(function(){
-			var selected;
-			selected = $(this).val();
-			if(selected === 'Other'){
-				$('.causeOther').toggle(this.checked);
-			} else {
-				$('.causeOther').hide();
-			}
-		}).change();		
-		
-		$('#SecurityIncidentAssetsInvolved').change(function(){
-			var selected;
-			selected = $(this).val();
-			if(selected === 'Other'){
-				$('.otherAssets').toggle(this.checked);
-			} else {
-				$('.otherAssets').hide();
-			}
-		}).change();	
-		
-		$('#SecurityIncidentSystemsInvolved').change(function(){
-			var selected;
-			selected = $(this).val();
-			if(selected === 'Other'){
-				$('.otherSystemsInvolved').toggle(this.checked);
-			} else {
-				$('.otherSystemsInvolved').hide();
-			}
-		}).change();	
-		
-		$('#SecurityIncidentBreachNotificationRa').change(function(){
-			var selected;
-			selected = $(this).val();
-			if(selected === 'No'){
-					$('.breachBox').dialog({
-					height: 200,
-					width: 300,
-					modal: true,
-					resizable: false,
-				});
-				$('.breachQuestion').hide();
-			} else if (selected === 'Yes'){
-				$('.breachQuestion').toggle(this.checked);
-				
-			} else {
-				$('.breachQuestion').hide();
-			}
-		}).change();		
-		
-		$('#SecurityIncidentInformedIndividual').change(function(){
-			var selected;
-			selected = $(this).val();
-			if(selected === 'Yes'){
-				$('.breachDetails').toggle(this.checked);
-			} else {
-				$('.breachDetails').hide();
-			}
-		}).change();	
-		
-		$('#SecurityIncidentNotifyHhs').change(function(){
-			var selected;
-			selected = $(this).val();
-			if(selected === 'Yes'){
-				$('.notifyHhs').toggle(this.checked);
-			} else {
-				$('.notifyHhs').hide();
-			}
-		}).change();	
-		
-		$('#SecurityIncidentNotifyMedia').change(function(){
-			var selected;
-			selected = $(this).val();
-			if(selected === 'Yes'){
-				$('.notifyMediaDate').toggle(this.checked);
-			} else {
-				$('.notifyMediaDate').hide();
-			}
-		}).change();	
-		
-		$('#SecurityIncidentEffectMoreThan500').change(function(){
-			var selected;
-			selected = $(this).val();
-			if(selected === 'Yes'){
-				$('.notifyDetails').toggle(this.checked);
-				$('.500individualsBox').dialog({
-					height: 300,
-					width: 400,
-					modal: true,
-					resizable: false,
-				});
-			} else if(selected === 'No'){
-				$('.notifyDetails').hide();
-				$('.500individualsBox').dialog({
-					height: 300,
-					width: 400,
-					modal: true,
-					resizable: false,
-				});
-			} else {
-				$('.notifyDetails').hide();
-			}
-		}).change();			
-		
-		$('#SecurityIncidentAfterCompleting').change(function(){
-			var selected;
-			selected = $(this).val();
-			if(selected === 'Yes'){
-				$('.breachCompleteYes').dialog({
-					height: 630,
-					width: 700,
-					modal: true,
-					resizable: false,
-				});
-			} else if(selected === 'No'){
-				$('.breachCompleteNo').dialog({
-					height: 300,
-					width: 300,
-					modal: true,
-					resizable: false,
-				});
-			} else {
-				$('.breachCompleteYes, .breachCompleteNo').hide();
-			}
-		}).change();			
-		
+		});
+
+
 	// Mark Risk Assessment Complete. Modal Window
 		$('.markComplete').click(function(){
 			$('.completeBox').dialog({
@@ -371,5 +260,168 @@ $(document).ready(function(){
 
 	// instantiate date picker and format date
 	$('.datePick').datepicker({ dateFormat: 'mm/dd/yy',  defaultDate: '' });
+	
+/** ##### Security Incidents ##### **/
+	// Show field if box is selected
+	
+		// Security Incidents
+	if ( $('.securityIncidents form #SecurityIncidentCauseOfIncident').val() === 'Other'){
+		$('.causeOther').show();
+	}
+	$('.securityIncidents form #SecurityIncidentCauseOfIncident').on('change', function(){
+		var selected = $(this).val();
+		if(selected === 'Other'){
+			$('.causeOther').show();
+		} else {
+			$('.causeOther').hide();
+		}
+	});	
+	
+	if( $('.securityIncidents form #SecurityIncidentAssetsInvolved').val() === 'Other'){
+		$('.otherAssets').show();
+	}
+	$('.securityIncidents form #SecurityIncidentAssetsInvolved').on('change', function(){
+		var selected = $(this).val();
+		if(selected === 'Other'){
+			$('.otherAssets').show();
+		} else {
+			$('.otherAssets').hide();
+		}
+	});	
+	
+	if( $('.securityIncidents form #SecurityIncidentSystemsInvolved').val() === 'Other'){
+		$('.otherSystemsInvolved').show();
+	}
+	$('.securityIncidents form #SecurityIncidentSystemsInvolved').on('change', function(){
+		var selected = $(this).val();
+		if(selected === 'Other'){
+			$('.otherSystemsInvolved').show();
+		} else {
+			$('.otherSystemsInvolved').hide();
+		}
+	});	
+
+/* ##### Breach Notification ##### */
+
+	// Show field if Yes is selected
+	
+	if( $('.securityIncidents form #SecurityIncidentBreachNotificationRa').val() === 'Yes'){
+		$('.breach_notication_yes').show();
+	}
+	$('.securityIncidents form #SecurityIncidentBreachNotificationRa').on('change', function(){  
+		var selected = $(this).val();
+		if(selected === 'No'){
+			$('.breach_notification_please_complete').dialog({
+				height: 200,
+				width: 300,
+				modal: true,
+				resizable: false,
+			});
+			$('.breach_notication_yes').hide();  
+		} else if (selected === 'Yes') {  
+			$('.breach_notication_yes').show();
+		}
+	});
+	if( $('.securityIncidents form #SecurityIncidentAfterCompleting').val() === 'Yes'){
+		$('.breach_required_yes').show();
+	}
+	$('.securityIncidents form #SecurityIncidentAfterCompleting').on('change', function(){
+		var selected = $(this).val();
+		if(selected === 'No'){
+			$('.breach_not_required').dialog({
+				height: 200,
+				width: 300,
+				modal: true,
+				resizable: false,
+			});
+			$('.breach_required_yes').hide();  
+		} else if (selected === 'Yes'){
+			$('.breach_required_yes').show();
+			
+				$('.breachCompletePop').dialog({  // pop up dialog if yes
+					height: 630,
+					width: 700,
+					modal: true,
+					resizable: false,
+				});	
+		}
+	});
+	if( $('.securityIncidents form #SecurityIncidentInformedIndividual').val() === 'Yes'){
+		$('.informed_individuals_yes').show();
+	}	
+	$('.securityIncidents form #SecurityIncidentInformedIndividual').on('change', function(){  // Informed individuals
+		var selected = $(this).val();
+		if(selected === 'Yes'){
+			$('.informed_individuals_yes').show();	
+		} else if (selected === 'No') {
+			$('.informed_individuals_yes').hide();	
+		}	
+	});
+	if( $('.securityIncidents form #SecurityIncidentEffectMoreThan500').val() === 'Yes'){
+		$('.effect_more_500_yes').show();
+	}	
+	$('.securityIncidents form #SecurityIncidentEffectMoreThan500').on('change', function(){
+		var selected = $(this).val();
+		if(selected === 'Yes'){
+			$('.effect_more_500_yes').show();	
+				$('.500individualsBox').dialog({  // pop up dialog if yes
+					height: 300,
+					width: 500,
+					modal: true,
+					resizable: false,
+				});	
+		} else if (selected === 'No'){
+			$('.effect_more_500_yes').hide();	
+				$('.500individualsBox').dialog({  // pop up dialog if yes
+					height: 300,
+					width: 500,
+					modal: true,
+					resizable: false,
+				});		
+		}
+	});
+	if( $('.securityIncidents form #SecurityIncidentNotifyIndividuals').val() === 'Yes'){
+		$('.notify_individual_date').show();		
+	}
+	$('.securityIncidents form #SecurityIncidentNotifyIndividuals').on('change', function(){
+		var selected = $(this).val();
+		if(selected === 'Yes'){
+			$('.notify_individual_date').show();
+		} else if (selected === 'No'){
+			$('.notify_individuals_date').hide();
+		}
+	});
+	
+	if( $('.securityIncidents form #SecurityIncidentNotifyMedia').val() === 'Yes'){
+		$('.notifyMediaDate').show();
+	}	
+	$('.securityIncidents form #SecurityIncidentNotifyMedia').on('change', function(){
+		var selected = $(this).val();
+		if(selected === 'Yes'){
+			$('.notifyMediaDate').show();
+		} else if (selected === 'No'){
+			$('.notifyMediaDate').hide();
+		}
+	});
+		
+	if( $('.securityIncidents form #SecurityIncidentNotifyHhs').val() === 'Yes'){
+		$('.notifyHhsDate').show();
+	}		
+	$('.securityIncidents form #SecurityIncidentNotifyHhs').on('change', function(){
+		var selected = $(this).val();
+		if(selected === 'Yes'){
+			$('.notifyHhsDate').show();
+		} else if (selected === 'No'){
+			$('.notifyHhsDate').hide();
+		}
+	});		
+	
+		
+	
 });
 
+
+
+
+
+		

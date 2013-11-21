@@ -718,3 +718,6 @@ button.prev:hover, button.next:hover{
 .hidden{
 	display: none;
 }
+.datePick{
+	width: 300px;
+}

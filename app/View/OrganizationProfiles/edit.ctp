@@ -151,14 +151,14 @@ $this->Html->addCrumb('Edit Organization Profile');
 		echo $this->Form->input('emr_ehr_internal_name', array('label' => 'What is the internal name that you use to refer to your EMR/EHR?'));
 		echo $this->Form->input('emr_ehr_os', array('label' => 'What server operating system does your EMR/EHR run on?',
 													'options' => $os, 'empty' => 'Please Select One'));
-		echo '<div class="otherEmrOs">'.
+		echo '<div class="otherEmrOs hidden">'.
 		$this->Form->input('emr_ehr_os_other', array('label' => 'Other EMR/EHR OS?'))
 		. '</div>';
 
 		echo $this->Form->input('emr_ehr_details', array('label' => 'Please enter EMR/EHR Other operating system or provide more details: '));
 		echo $this->Form->input('emr_ehr_location', array('label' => 'Where is your EMR/EHR located?', 'options' => $emrehr));
 
-		echo '<div class="emrEhrOtherLoc">'.
+		echo '<div class="emrEhrOtherLoc hidden">'.
 		$this->Form->input('emr_ehr_other_location', array('label' => 'Other EMR/EHR Location'))
 		. '</div>';
 
@@ -172,7 +172,7 @@ $this->Html->addCrumb('Edit Organization Profile');
 		echo $this->Form->input('email_vendor', array('label' => 'What Email vendor and product do you use?',
 														'options' => $emailVendor, 'empty' => 'Please Select One'));
 
-		echo '<div class="otherEmail">'.
+		echo '<div class="otherEmail hidden">'.
 		$this->Form->input('email_vendor_details', array('label' => 'List the name of the other Email vendor or provide more details: '))
 		. "</div>";
 

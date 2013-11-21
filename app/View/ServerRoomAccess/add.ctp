@@ -33,7 +33,7 @@ $changed = array('' => '', 'Yes' => 'Yes', 'No' => 'No');
 	<?php
 		echo $this->Form->input('reason', array('label' => 'Reason for Access', 'options' => $reason, 'empty' => 'Please Select'));
 	?>
-	<div class='otherReason'>
+	<div class='otherReason hidden'>
 		<?php echo $this->Form->input('other_reason', array('label' => 'Other Reasons')); ?>
 	</div>
 
@@ -41,7 +41,7 @@ $changed = array('' => '', 'Yes' => 'Yes', 'No' => 'No');
 	<?php
 		echo $this->Form->input('changed', array('label' => 'Was anything changed?', 'options' => $changed, 'empty' => 'Please Select'));
 	?>
-	<div class='whatChanged'>
+	<div class='whatChanged hidden'>
 		<?php echo $this->Form->input('what_changed', array('label' => 'What was changed?')); ?>
 	</div>
 
