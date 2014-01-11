@@ -240,7 +240,14 @@ class UsersController extends AppController {
 					$hash = sha1($foundUser['User']['first_name'].rand(0,100));
 					$url = Router::url(array('controller' => 'Users', 'action' => 'reset_password'), true) . '/' . $key . '#' . $hash;
 					$ms = $url;
-					$ms = wordwrap($ms, 1000);
+					//$ms = wordwrap($ms, 1000);
+					$message = 
+						"Click on the link below to reset Your HIPAA Password.</p><br/>
+						<a href='" .  $ms .
+						
+						"'>Reset Your Password</a><br/>
+						<p>or Visit this Link</p>
+						<p><a href='" .  $ms . "'>" .  $ms . "</a></p>";					
 
 					$foundUser['User']['tokenhash'] = $key;
 					$this->User->id = $foundUser['User']['id'];
@@ -248,12 +255,13 @@ class UsersController extends AppController {
 
 						// Send Email
 						$email = new CakeEmail('hipaaMail');
-						$email->template('resetpw');
-						//$emailFormat('both');
+						//$email->template('resetpw');
+						$email->emailFormat('html');
 						$email->from('no-reply@hipaasecurenow.com');
+						//$email->from('chris@gpointech.com');
 						$email->to($foundUser['User']['email']);
 						$email->subject('HIPAA Password Reset');
-						$email->send($ms);
+						$email->send($message);
 
 						$this->Session->setFlash('Your password reset has been sent. Please check your email', 'default', array('class' => 'success message'));
 						$this->redirect(array('controller' => 'users','action' => 'login'));
@@ -272,6 +280,7 @@ class UsersController extends AppController {
 	   }
 	}
  }
+
 
 /**
  * Reset Method

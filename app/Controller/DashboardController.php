@@ -43,15 +43,16 @@ class DashboardController extends AppController {
 			$email = new CakeEmail('hipaaMail');
 			$email->from('no-reply@hipaasecurenow.com');
 			$email->to('info@@hipaasecurenow.com');
+			//$email->to('chris@gpointech.com');
 			$email->subject('HIPAA Risk Assessment Marked Complete by Client - ' . $clientName);
 			$email->send($message);
 
 			if ($this->Client->saveField('risk_assessment_status', $completed)) {
 				$this->Session->setFlash('Thanks! Your Risk Assessment has been marked complete', 'default', array('class' => 'success message'));
-				$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
+				$this->redirect(array('controller' => 'dashboard'));
 			} else {
 				$this->Session->setFlash(__('Sorry, Risk Assessment did not complete. Please, try again.'));
-				$this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
+				$this->redirect(array('controller' => 'dashboard'));
 			}
  	}
 
