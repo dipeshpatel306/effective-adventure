@@ -154,10 +154,6 @@ class DashboardController extends AppController {
         $client = $this->Client->find('first', array('conditions' => array('Client.id' => $client_id), 'fields' => array('Client.moodle_course_id', 'Client.name')));
         $course_id = $client['Client']['moodle_course_id'];  
         $client_name = substr($client['Client']['name'], 0, 40); // mdl_user.institution is only 40 chars
-        
-        $course_id = 23;
-        $client_name = 'Central Bucks Urology';
-        
         $this->set(compact('client_name'));
         
         $moodle = ConnectionManager::getDataSource('moodle');
