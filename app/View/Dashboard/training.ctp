@@ -1,7 +1,7 @@
 <div class="dashboard index training">
     <?php
     App::uses('Group', 'Model');
-    if (true) { //}($group == Group::MANAGER) {
+    if ($group == Group::MANAGER) {
         echo "<div class='floatRight'>";
         echo $this->Html->link('Training Report', array('controller' => 'dashboard', 'action' => 'training_report'));
         echo "</div>";
@@ -16,7 +16,7 @@
       <li>Printing out your HIPAA Security Training Certificate</li>
   </ul>
   <br />
-  <p>All three sections should take about 1 hour to complete. You cna stop at any time and continue where you left off later.</p>
+  <p>All three sections should take about 1 hour to complete. You can stop at any time and continue where you left off later.</p>
   <br />
   <h3>You are about to be taken to to the <span class='important'>HIPAA Security Training</span></h3>
   <br />
