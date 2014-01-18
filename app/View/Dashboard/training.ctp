@@ -22,7 +22,7 @@
   <br />
   <p>The training will open in another window.</p><br />
   <p>When you are done please close the window to return to the HIPAA Compliance Portal.</p><br />
-  <?php echo $this->Html->link('Click here to access the HIPAA Security Training', 'http://training.hipaasecurenow.com/login/index.php', array('target' => '_blank')); ?>
+  <?php echo $this->Html->link('Click here to access the HIPAA Security Training', Configure::read('App.trainingUrl'), array('target' => '_blank')); ?>
 </div>
 <div class="actions">
     <div class='sidebarContent'>
