@@ -178,6 +178,7 @@ class UsersController extends AppController {
  * Login Method
  */
     public function login() {
+        $this->set('title_for_layout', 'HIPAA Compliance Portal');
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
                 $user = $this->User->find('first', array(

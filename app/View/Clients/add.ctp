@@ -1,5 +1,4 @@
 <?php
-App::uses('Core', 'ConnectionManager');
 $this->Html->addCrumb('Clients', '/clients');
 $this->Html->addCrumb('Add Client');
 

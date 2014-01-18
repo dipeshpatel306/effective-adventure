@@ -1,9 +1,14 @@
+<?php
+$this->Html->addCrumb('Education Center', '/education_center');
+$this->Html->addCrumb('Training');
+?>
+
 <div class="dashboard index training">
     <?php
     App::uses('Group', 'Model');
     if ($group == Group::MANAGER) {
         echo "<div class='floatRight'>";
-        echo $this->Html->link('Training Report', array('controller' => 'dashboard', 'action' => 'training_report'));
+        echo $this->Html->link('Training Report', array('controller' => 'education_center', 'action' => 'training_report'));
         echo "</div>";
     }
     ?>

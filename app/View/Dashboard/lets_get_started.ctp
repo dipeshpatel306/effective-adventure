@@ -1,4 +1,6 @@
 <?php
+    $this->Html->addCrumb("Let's Get Started");
+
 	if(isset($risk) && !empty($risk)){  // if already filled out then give edit link
 		$riskAss = array('controller' => 'risk_assessments', 'action' => 'edit', $risk['RiskAssessment']['id']);
 	} else {
@@ -14,7 +16,7 @@
 ?>
 
 <div class="dashboard index getStarted">
-	<h2><?php echo __('Lets Get Started'); ?></h2>
+	<h2><?php echo __("Let's Get Started"); ?></h2>
 
 <b>The Risk Assessment is a four step process:</b><br /><br />
 

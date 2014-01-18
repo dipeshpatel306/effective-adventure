@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('QuickBase', 'Vendor');
 /**
  * RiskAssessments Controller
  *
@@ -218,4 +219,32 @@ class RiskAssessmentsController extends AppController {
 		$this->Session->setFlash(__('Risk assessment was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+    
+    public function export($id = null) {
+        if ($this->request->is('post')) {
+            $ra = $this->RiskAssessment->read(null, $id);
+            
+            $this->RiskAssessment->Client->id = $ra['Client']['id'];
+            $this->RiskAssessment->Client->save($this->request->data);
+            
+            $dbid = $this->request->data['Client']['ra_dbid'];
+            $qdb = new QuickBase(Configure::read('QuickBase.user'), Configure::read('QuickBase.password'), true, $dbid, '', 'entegrationinc');
+            
+            set_time_limit(0);
+            if (!($qdb->get_schema())) {
+                $this->Session->setFlash('Could not find the V&C QuickBase DB. Check the DBID.');   
+            } else {
+                foreach (range(1, 48) as $qnum) {
+                    $qnum = (string)$qnum;
+                    $ans = $ra['RiskAssessment']['question_'.$qnum];
+                    $res = $qdb->do_query(array(array('fid' => '19', 'ev' => 'EX', 'cri' => $qnum)), 0, 0, '3');   
+                    $vul_ctrl_rid = (string) $res->table->records->record[0]->f[0];
+                    $qdb->edit_record($vul_ctrl_rid, array(array('fid' => '10', 'value' => $ans)));
+                }
+                $this->Session->setFlash('Risk Assessment exported!', 'default', array('class' => 'success message'));
+                $this->redirect(array('action' => 'view', $id));
+            }
+        }
+        $this->set('riskAssessment', $this->RiskAssessment->read(null, $id));
+    }
 }

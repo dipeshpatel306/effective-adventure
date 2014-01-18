@@ -1,4 +1,5 @@
 <?php
+App::uses('Group', 'Model');
 $this->Html->addCrumb('View Risk Assessment - ' . $riskAssessment['Client']['name']);
 
 // Conditionally load buttons based upon user role
@@ -271,11 +272,11 @@ $this->Html->addCrumb('View Risk Assessment - ' . $riskAssessment['Client']['nam
 	<h4 class='highlight'><?php echo __('Actions'); ?></h4>
 	<ul>
 
-		<?php if($group == 1): ?>
+		<?php if($group == Group::ADMIN): ?>
 		<li><?php echo $this->Html->link(__('List Risk Assessments'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('Edit Risk Assessment'), array('action' => 'edit', $riskAssessment['RiskAssessment']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Risk Assessment'), array('action' => 'delete', $riskAssessment['RiskAssessment']['id']), null, __('Are you sure you want to delete # %s?', $riskAssessment['RiskAssessment']['id'])); ?> </li>
-
+        <li><?php echo $this->Html->link(__('Export Risk Assessment'), array('action' => 'export', $riskAssessment['RiskAssessment']['id'])); ?></li>
 		<?php endif; ?>
 
 	</ul>

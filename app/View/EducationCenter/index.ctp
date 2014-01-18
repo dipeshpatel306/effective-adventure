@@ -19,7 +19,7 @@ $this->Html->addCrumb('Education Center');
 	
 	<?php if($acct != 'Meaningful Use'): // allow if not meaningful?>
 		
-	<a href='/dashboard/training'>
+	<a href='/education_center/training'>
 	<div class='dashBox'>
 		<div class='dashHead'>
 			<?php 

@@ -128,7 +128,7 @@ class ClientsController extends AppController {
         }
         $partners = $this->Client->Partner->find('list');
         $this->set(compact('partners'));
-        $this->set(compact('moodle_courses', $this->_getMoodleCourses()));
+        $this->set('moodle_courses', $this->_getMoodleCourses());
     }
    
     public function _getMoodleCourses() {
@@ -169,7 +169,7 @@ class ClientsController extends AppController {
         }
         $partners = $this->Client->Partner->find('list');
         $this->set(compact('partners'));
-        $this->set(compact('moodle_courses', $this->_getMoodleCourses()));
+        $this->set('moodle_courses', $this->_getMoodleCourses());
     }
 
 /**

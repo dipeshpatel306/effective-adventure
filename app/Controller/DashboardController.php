@@ -27,29 +27,27 @@ class DashboardController extends AppController {
  *
  */
     public function mark_complete(){
-            $completed = date('Y-m-d'); // Get DateTime
-            $client = $this->Session->read('Auth.User.client_id');
-            $clientName = $this->Session->read('Auth.User.Client.name');
-            $message = 'New Risk Assessment Completed by Client ' . $clientName . ' - Completed on ' . $completed;
-            $this->loadModel('Client');
-            $this->Client->id = $client;
-            $this->render(false); // tell cake to not use a view
+        $completed = date('Y-m-d'); // Get DateTime
+        $client = $this->Session->read('Auth.User.client_id');
+        $clientName = $this->Session->read('Auth.User.Client.name');
+        $message = 'New Risk Assessment Completed by Client ' . $clientName . ' - Completed on ' . $completed;
+        $this->loadModel('Client');
+        $this->Client->id = $client;
+        $this->render(false); // tell cake to not use a view
 
-            // Send Email
-            $email = new CakeEmail('hipaaMail');
-            $email->from('no-reply@hipaasecurenow.com');
-            $email->to('info@@hipaasecurenow.com');
-            //$email->to('chris@gpointech.com');
-            $email->subject('HIPAA Risk Assessment Marked Complete by Client - ' . $clientName);
-            $email->send($message);
+        // Send Email
+        $email = new CakeEmail('hipaaMail');
+        $email->to('danf@entegration.net') //to('info@hipaasecurenow.com')
+            ->subject('HIPAA Risk Assessment Marked Complete by Client - ' . $clientName)
+            ->send($message);
 
-            if ($this->Client->saveField('risk_assessment_status', $completed)) {
-                $this->Session->setFlash('Thanks! Your Risk Assessment has been marked complete', 'default', array('class' => 'success message'));
-                $this->redirect(array('controller' => 'dashboard'));
-            } else {
-                $this->Session->setFlash(__('Sorry, Risk Assessment did not complete. Please, try again.'));
-                $this->redirect(array('controller' => 'dashboard'));
-            }
+        if ($this->Client->saveField('risk_assessment_status', $completed)) {
+            $this->Session->setFlash('Thanks! Your Risk Assessment has been marked complete.', 'default', array('class' => 'success message'));
+            $this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+        } else {
+            $this->Session->setFlash(__('Sorry, Risk Assessment did not complete. Please, try again.'));
+            $this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+        }
     }
 
 
@@ -143,38 +141,6 @@ class DashboardController extends AppController {
         }
     }
  
-    public function training() {
-        $group = $this->Session->read('Auth.User.group_id');
-        $this->set(compact('group'));
-    }
- 
-    public function _training_report() {
-        $client_id = $this->Session->read('Auth.User.client_id');
-        $this->loadModel('Client');
-        $client = $this->Client->find('first', array('conditions' => array('Client.id' => $client_id), 'fields' => array('Client.moodle_course_id', 'Client.name')));
-        $course_id = $client['Client']['moodle_course_id'];  
-        $client_name = substr($client['Client']['name'], 0, 40); // mdl_user.institution is only 40 chars
-        $this->set(compact('client_name'));
-        
-        $moodle = ConnectionManager::getDataSource('moodle');
-        $sql = "SELECT mdl_user.firstname, mdl_user.lastname, mdl_quiz_grades.grade, mdl_quiz_grades.timemodified
-                FROM mdl_user, mdl_quiz_grades WHERE mdl_quiz_grades.quiz IN 
-                  (SELECT mdl_quiz.id FROM mdl_quiz WHERE mdl_quiz.course = :course_id) 
-                AND mdl_quiz_grades.userid = mdl_user.id AND mdl_user.institution = :client_name AND mdl_user.deleted = 0 ORDER BY mdl_user.lastname ASC";
-        $rows = $moodle->fetchAll($sql, array(':course_id' => $course_id, ':client_name' => $client_name));
-        $this->set(compact('rows'));
-    }
- 
-    public function training_report() {
-        $this->_training_report();
-    }
-
-   public function training_report_csv() {
-       Configure::write('debug',0);
-       $this->layout = 'empty';
-       $this->_training_report();
-   }
-
 /**
  * index method
  *

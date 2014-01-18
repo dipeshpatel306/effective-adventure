@@ -1,3 +1,9 @@
+<?php
+$this->Html->addCrumb('Education Center', '/education_center');
+$this->Html->addCrumb('Training', '/education_center/training');
+$this->Html->addCrumb('Training Report');
+?>
+
 <div class="index">
     <h2><?php echo __('Training Report'); ?> - <?php echo $client_name ?></h2>
     <table>
@@ -15,7 +21,7 @@
       <?php endforeach; ?>
     </table>
     <br />
-    <p><?php echo $this->Html->link('Export to Excel', array('controller' => 'dashboard', 'action' => 'training_report_csv')); ?></p>
+    <p><?php echo $this->Html->link('Export to Excel', array('controller' => 'education_center', 'action' => 'training_report_csv')); ?></p>
 </div>
 <div class="actions">
     <div class='sidebarContent'>
