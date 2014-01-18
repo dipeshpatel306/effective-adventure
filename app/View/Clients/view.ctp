@@ -9,7 +9,7 @@ $this->Html->addCrumb($client['Client']['name']);
 		$completed = '';
 	}
 		
-if($client['Client']['active'] == 'Yes'){
+if($client['Client']['active']){
 	$active = "class='active'";
 } else {
 	$active = "class='inactive'";
@@ -36,6 +36,11 @@ $clientId = $client['Client']['id'];
 		<dd>
 			<?php echo ($client['Client']['account_type']); ?>
 			&nbsp;
+		</dd>
+		<dt><?php echo __('Training Course')?></dt>
+		<dd>
+		    <?php echo ($client['Client']['moodle_course_name']); ?>
+		    &nbsp;
 		</dd>
 		<dt><?php echo __('Admin Account'); ?></dt>
 		<dd>
@@ -74,7 +79,7 @@ $clientId = $client['Client']['id'];
 		</dd>
 		<dt><?php echo __('Account Active'); ?></dt>
 		<dd <?php echo $active; ?>>
-			<?php echo $client['Client']['active']; ?>
+			<?php echo ($client['Client']['active'] ? 'Yes' : 'No'); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>

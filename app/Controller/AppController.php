@@ -14,54 +14,62 @@ class AppController extends Controller {
     public $components = array(
         'Acl',
         'Auth' => array(
-        	'authorize' => array(
-			'Actions' => array('actionPath' => 'controllers/'),
-			'Controller'
-			),
+            'authorize' => array(
+            'Actions' => array('actionPath' => 'controllers/'),
+            'Controller'
+            ),
         ),
         'Session',
-		'Security',
+        'Security',
         'Cookie',
         'DebugKit.Toolbar'
     );
-    public $helpers = array('Html', 'Form', 'Session');
+    public $helpers = array('Html', 'Form', 'Session', 'Csv');
 
     public function beforeFilter() {
-    	parent::beforeFilter();
-		$this->Auth->authenticate = array( // Use email as the login username
-    		'Form' => array(
-        	'fields' => array('username' => 'email', 'password' => 'password')
-    		),
-		);
+        parent::beforeFilter();
+        $this->Auth->authenticate = array( // Use email as the login username
+            'Form' => array(
+            'fields' => array('username' => 'email', 'password' => 'password')
+            ),
+        );
 
         $this->Auth->authorize = array('controller');
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
-		$this->Auth->loginRedirect = array('controller' => 'dashboard', 'action' => 'index');
+        $this->Auth->loginRedirect = array('controller' => 'dashboard', 'action' => 'index');
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
-		//$this->Auth->allow('display');
-		// Login information
-    	$this->set('logged_in', $this->Auth->loggedIn());
-		//$this->set('current_user', $this->Auth->user());
+        //$this->Auth->allow('display');
+        // Login information
+        $this->set('logged_in', $this->Auth->loggedIn());
+        //$this->set('current_user', $this->Auth->user());
 
-		// Moodle Cookie. Move it to login?
-		$email = $this->Session->read('Auth.User.email');
-		//$this->Cookie->write('u', $email, 0, '/', '.hipaasecurenow');
-		// /setcookie('u', $email, 0, '/', '.hipaasecurenow.com');
-		$this->Security->blackHoleCallback = 'blackhole';
-		// needed? without causing blackhole errors, likely because no data is required in some forms as per request which is a bad idea.
-		$this->Security->csrfCheck = false;
+        $this->Security->blackHoleCallback = 'blackhole';
+        // needed? without causing blackhole errors, likely because no data is required in some forms as per request which is a bad idea.
+        $this->Security->csrfCheck = false;
+        //$this->Auth->allow();
     }
 
-	public function blackhole($type) {
-    	debug($type);
-	}
-	public function isAuthorized($user){
-		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-		if (isset($group) && $group == 1){ // is admin allow all
- 			return true;
- 		}
-		$this->Session->setFlash('You are not authorized to view that!');
-		$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
-		return false;
-	}
+    public function blackhole($type) {
+        debug($type);
+    }
+    public function isAuthorized($user){
+        $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
+        if (isset($group) && $group == 1){ // is admin allow all
+            return true;
+        }
+        $this->Session->setFlash('You are not authorized to view that!');
+        $this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+        return false;
+    }
+    
+    public static function _randomStr($length) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+        $string = "";    
+    
+        for ($p = 0; $p < $length; $p++) {
+             $string .= $characters[mt_rand(0, strlen($characters)-1)];
+        }
+
+        return $string; 
+    }
 }

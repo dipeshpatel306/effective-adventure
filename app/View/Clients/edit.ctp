@@ -3,7 +3,7 @@ $this->Html->addCrumb('Clients', '/clients');
 $this->Html->addCrumb('Edit Client');
 
 $acctType = array('Initial' => 'Initial', 'Subscription' => 'Subscription', 'Meaningful Use' => 'Meaningful Use', 'HIPAA' => 'HIPAA');
-$active = array('Yes' => 'Yes', 'No' => 'No');
+$active = array(true => 'Yes', false => 'No');
 $risk = array('' => '', 'Completed' => 'Completed');
 ?>
 <div class="clients form">
@@ -15,6 +15,7 @@ $risk = array('' => '', 'Completed' => 'Completed');
 		echo $this->Form->input('name');
 		echo $this->Form->input('email');
 		echo $this->Form->input('account_type', array('options' => $acctType, 'default' => 'Pending'));
+        echo $this->Form->input('moodle_course_id', array('label' => 'Training Course', 'options' => $moodle_courses));
 		echo $this->Form->input('active', array('label' => 'Account Active?', 'options' => $active, 'empty' => ''));
 		echo $this->Form->input('display_ra_org', array('label' => 'Display RA/Org?', 'options' => $active, 'default' => 'Yes'));
 		echo $this->Form->input('partner_id', array('empty' => 'No Partner', 'value' => ''));

@@ -694,6 +694,15 @@ button.prev:hover, button.next:hover{
 .getStarted b a:link{
 	font-weight: bold;
 }
+.training b a:link h2{
+    font-weight: bold;
+}
+.training h2{
+    color: red
+}
+.floatRight {
+    float: right;
+}
 .important{
 	color: red;
 }

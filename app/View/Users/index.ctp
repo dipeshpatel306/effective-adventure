@@ -51,7 +51,7 @@ $this->Html->addCrumb('Users');
 		?>
 		<td <?php echo $active; ?>>
 			<?php
-			echo $user['User']['active'];
+			echo ($user['User']['active'] ? 'Yes' : 'No');
 			?>&nbsp;
 		</td>
 		<td class="actions">

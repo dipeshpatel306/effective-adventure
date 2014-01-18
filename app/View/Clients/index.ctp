@@ -56,14 +56,14 @@ $this->Html->addCrumb('Clients');
 		<td><?php echo $this->Time->format('m/d/y g:i a', $client['Client']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $client['Client']['modified']); ?>&nbsp;</td>
 
-		<?php if($client['Client']['active'] != 'Yes'){
+		<?php if(!$client['Client']['active']){
 			$active = 'class="inactive"';
 		} else {
 			$active = 'class="active"';
 		}
 		?>
 		<td <?php echo $active; ?>>
-			<?php echo ($client['Client']['active']); ?>&nbsp;
+			<?php echo ($client['Client']['active'] ? 'Yes' : 'No'); ?>&nbsp;
 		</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $client['Client']['id'])); ?>
