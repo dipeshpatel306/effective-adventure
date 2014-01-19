@@ -8,7 +8,7 @@ echo $this->Form->create();
 echo $this->Form->input('Client.ra_dbid', array('label' => 'Risk Assessment Tool V&C Dbid', 'maxlength' => 12, 'size' => 12));
 echo $this->Form->end('Export');
 ?>
-<p>Export will take several minutes to complete.</p>
+<p>Export will take a couple minutes to complete.</p>
 </div>
 <div class="actions">
     <h4 class='highlight'><?php echo __('Actions'); ?></h4>

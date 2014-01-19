@@ -37,7 +37,7 @@ class DashboardController extends AppController {
 
         // Send Email
         $email = new CakeEmail('hipaaMail');
-        $email->to('danf@entegration.net') //to('info@hipaasecurenow.com')
+        $email->to(Configure::read('App.adminEmailTo'))
             ->subject('HIPAA Risk Assessment Marked Complete by Client - ' . $clientName)
             ->send($message);
 

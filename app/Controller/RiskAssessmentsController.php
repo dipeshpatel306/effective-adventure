@@ -234,12 +234,12 @@ class RiskAssessmentsController extends AppController {
             if (!($qdb->get_schema())) {
                 $this->Session->setFlash('Could not find the V&C QuickBase DB. Check the DBID.');   
             } else {
-                foreach (range(1, 48) as $qnum) {
-                    $qnum = (string)$qnum;
+                $questions = $qdb->do_query(0, 1, 0, '3.19');
+                foreach ($questions->table->records->record as $question) {
+                    $rid = (string) $question->f[0];
+                    $qnum = (string) $question->f[1];
                     $ans = $ra['RiskAssessment']['question_'.$qnum];
-                    $res = $qdb->do_query(array(array('fid' => '19', 'ev' => 'EX', 'cri' => $qnum)), 0, 0, '3');   
-                    $vul_ctrl_rid = (string) $res->table->records->record[0]->f[0];
-                    $qdb->edit_record($vul_ctrl_rid, array(array('fid' => '10', 'value' => $ans)));
+                    $qdb->edit_record($rid, array(array('fid' => '10', 'value' => $ans)));
                 }
                 $this->Session->setFlash('Risk Assessment exported!', 'default', array('class' => 'success message'));
                 $this->redirect(array('action' => 'view', $id));
