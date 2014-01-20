@@ -1,20 +1,11 @@
 <?php
-$this->Html->addCrumb('Risk Assessments', '/risk_assessments');
-$this->Html->addCrumb('Export');
+$this->csv->addRow(array('Question #', 'Control Implemented'));
+    
+foreach (range(1,48) as $qnum) {
+    $qnum = (string) $qnum;
+    $this->csv->addField($qnum);
+    $this->csv->addField($ra['RiskAssessment']['question_'.$qnum]);
+    $this->csv->endRow();
+}
+echo $this->csv->render('risk_assessment.csv');
 ?>
-<div class="form">
-<?php 
-echo $this->Form->create(); 
-echo $this->Form->input('Client.ra_dbid', array('label' => 'Risk Assessment Tool V&C Dbid', 'maxlength' => 12, 'size' => 12));
-echo $this->Form->end('Export');
-?>
-<p>Export will take a couple minutes to complete.</p>
-</div>
-<div class="actions">
-    <h4 class='highlight'><?php echo __('Actions'); ?></h4>
-    <ul>
-        <li><?php echo $this->Html->link(__('List Risk Assessments'), array('action' => 'index')); ?> </li>
-        <li><?php echo $this->Html->link(__('Edit Risk Assessment'), array('action' => 'edit', $riskAssessment['RiskAssessment']['id'])); ?> </li>
-        <li><?php echo $this->Form->postLink(__('Delete Risk Assessment'), array('action' => 'delete', $riskAssessment['RiskAssessment']['id']), null, __('Are you sure you want to delete # %s?', $riskAssessment['RiskAssessment']['id'])); ?> </li>
-    </ul>
-</div>

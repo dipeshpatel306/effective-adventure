@@ -131,4 +131,14 @@ class OrganizationProfilesController extends AppController {
 		$this->Session->setFlash(__('Organization profile was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+
+    public function export($id = null) {
+        $this->OrganizationProfile->id = $id;
+        if (!$this->OrganizationProfile->exists()) {
+            throw new NotFoundException(__('Invalid organization profile'));
+        }
+        Configure::write('debug', 0);
+        $this->layout = 'empty';
+        $this->set('org_prof', $this->OrganizationProfile->read(null, $id));
+    }
 }

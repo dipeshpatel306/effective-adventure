@@ -221,30 +221,13 @@ class RiskAssessmentsController extends AppController {
 	}
     
     public function export($id = null) {
-        if ($this->request->is('post')) {
-            $ra = $this->RiskAssessment->read(null, $id);
-            
-            $this->RiskAssessment->Client->id = $ra['Client']['id'];
-            $this->RiskAssessment->Client->save($this->request->data);
-            
-            $dbid = $this->request->data['Client']['ra_dbid'];
-            $qdb = new QuickBase(Configure::read('QuickBase.user'), Configure::read('QuickBase.password'), true, $dbid, '', 'entegrationinc');
-            
-            set_time_limit(0);
-            if (!($qdb->get_schema())) {
-                $this->Session->setFlash('Could not find the V&C QuickBase DB. Check the DBID.');   
-            } else {
-                $questions = $qdb->do_query(0, 1, 0, '3.19');
-                foreach ($questions->table->records->record as $question) {
-                    $rid = (string) $question->f[0];
-                    $qnum = (string) $question->f[1];
-                    $ans = $ra['RiskAssessment']['question_'.$qnum];
-                    $qdb->edit_record($rid, array(array('fid' => '10', 'value' => $ans)));
-                }
-                $this->Session->setFlash('Risk Assessment exported!', 'default', array('class' => 'success message'));
-                $this->redirect(array('action' => 'view', $id));
-            }
+        $this->RiskAssessment->id = $id;
+        if (!$this->RiskAssessment->exists()) {
+            throw new NotFoundException(__('Invalid risk assessment'));
         }
-        $this->set('riskAssessment', $this->RiskAssessment->read(null, $id));
+        
+        Configure::write('debug',0);
+        $this->layout = 'empty';
+        $this->set('ra', $this->RiskAssessment->read(null, $id));
     }
 }
