@@ -167,7 +167,7 @@ $this->Html->addCrumb('Organization Profiles');
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $organizationProfile['OrganizationProfile']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $organizationProfile['OrganizationProfile']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $organizationProfile['OrganizationProfile']['id']), null, __('Are you sure you want to delete # %s?', $organizationProfile['OrganizationProfile']['id'])); ?>
-		    <?php echo $this->Html->link(__('Export'), array('action' => 'export', $organizationProfile['OrganizationProfile']['id'])); ?>
+		    <?php echo $this->Html->link(__('Export'), array('action' => 'view', $organizationProfile['OrganizationProfile']['id'], 'ext' => 'csv')); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

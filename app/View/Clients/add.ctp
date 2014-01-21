@@ -16,7 +16,7 @@ $risk = array('' => '', 'Completed' => 'Completed');
         echo $this->Form->input('account_type', array('options' => $acctType, 'default' => 'Pending'));
         echo $this->Form->input('moodle_course_id', array('label' => 'Training Course', 'options' => $moodle_courses));
         echo $this->Form->input('active', array('label' => 'Account Active?', 'options' => $active, 'default' => 'Yes'));
-        echo $this->Form->input('display_ra_org', array('label' => 'Display RA/Org?', 'options' => $active, 'default' => 'Yes'));
+        echo $this->Form->input('display_ra_org', array('label' => 'Display RA/Org?', 'options' => $active, 'default' => true));
         echo $this->Form->input('partner_id', array('empty' => 'No Partner', 'value' => ''));
         echo $this->Form->input('risk_assessment_status', array('label' => 'Risk Assessment Completed', 'class' => 'datePick'));
         echo $this->Form->input('details', array('class' => 'ckeditor'));

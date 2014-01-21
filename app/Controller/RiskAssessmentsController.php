@@ -53,13 +53,12 @@ class RiskAssessmentsController extends AppController {
 	public function view($id = null) {
 		$this->RiskAssessment->id = $id;
 		$this->loadModel('RiskAssessmentQuestions');
-		$ra = $this->RiskAssessmentQuestions->find('all');
-		$this->set(compact('ra'));
+		$this->set('questions', $this->RiskAssessmentQuestions->find('all'));
 
 		if (!$this->RiskAssessment->exists()) {
 			throw new NotFoundException(__('Invalid risk assessment'));
 		}
-		$this->set('riskAssessment', $this->RiskAssessment->read(null, $id));
+		$this->set('ra', $this->RiskAssessment->read(null, $id));
 	}
 
 /**
@@ -220,14 +219,4 @@ class RiskAssessmentsController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
     
-    public function export($id = null) {
-        $this->RiskAssessment->id = $id;
-        if (!$this->RiskAssessment->exists()) {
-            throw new NotFoundException(__('Invalid risk assessment'));
-        }
-        
-        Configure::write('debug',0);
-        $this->layout = 'empty';
-        $this->set('ra', $this->RiskAssessment->read(null, $id));
-    }
 }

@@ -1,12 +1,15 @@
 @media print {
 .navWrap { display:none }
-#header .logo{
+/*#header .logo{
 	width:141px;
 	height: 35px;
 }
 #header{
 	height: 50px;
 	padding: 0;
+}*/
+#header {
+    display: none;
 }
 h2{
 	font-size: 150%;
@@ -17,6 +20,7 @@ div.view{
 	box-shadow: none;
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
+	font-size: 75%;
 }
 dl{
 	line-height: 1em;
@@ -26,7 +30,22 @@ dl{
 }
 .actions { display:none }
 .userBox  { display:none }
-}
 #debug-kit-toolbar{
 	display: none;
+}
+th {
+    background-color: #ffffff;
+    color: #000000;
+}
+table, th, tr, td {
+    border: 1px solid #929AA4;
+    page-break-inside: avoid;
+}
+h2 {
+    color: #000000;
+}
+.avoidBreak {
+    page-break-inside: avoid !important;
+    margin: 4px 0 4px 0;  /* to keep the page break from cutting too close to the text in the div */
+}
 }

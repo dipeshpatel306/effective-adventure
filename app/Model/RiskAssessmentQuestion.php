@@ -12,6 +12,7 @@ class RiskAssessmentQuestion extends AppModel {
  * @var string
  */
 	public $displayField = 'question';
+    public $order = 'RiskAssessmentQuestion.question_number ASC';
 
 
 /**

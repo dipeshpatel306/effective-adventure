@@ -155,7 +155,7 @@ class EducationCenterController extends AppController {
         $this->set(compact('group'));
     }
  
-    public function _training_report() {
+    public function training_report() {
         $client_id = $this->Session->read('Auth.User.client_id');
         $this->loadModel('Client');
         $client = $this->Client->find('first', array('conditions' => array('Client.id' => $client_id), 'fields' => array('Client.moodle_course_id', 'Client.name')));
@@ -170,16 +170,5 @@ class EducationCenterController extends AppController {
                 AND mdl_quiz_grades.userid = mdl_user.id AND mdl_user.institution = :client_name AND mdl_user.deleted = 0 ORDER BY mdl_user.lastname ASC";
         $rows = $moodle->fetchAll($sql, array(':course_id' => $course_id, ':client_name' => $client_name));
         $this->set(compact('rows'));
-    }
- 
-    public function training_report() {
-        $this->_training_report();
-    }
-
-   public function training_report_csv() {
-       Configure::write('debug',0);
-       $this->layout = 'empty';
-       $this->_training_report();
-   }
-    
+    }    
 }

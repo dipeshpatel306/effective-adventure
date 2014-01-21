@@ -186,7 +186,7 @@
 
 		if($group != 3){
 			//pr($displayRaOrg);
-		if($displayRaOrg['Client']['display_ra_org'] == 'Yes'){
+		if($displayRaOrg['Client']['display_ra_org']){
 				echo $this->Html->link( // Risk Assessment Questionnaire
 						'<div class="dashBox">' .
 						'<div class="dashHead">' .

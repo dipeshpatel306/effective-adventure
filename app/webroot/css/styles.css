@@ -118,10 +118,10 @@ table tr:nth-child(odd) {
 table tr:nth-child(2n) {
     background: #ffffff;
 }
-td{
+/*td{
 	word-break:break-all; 
 	word-wrap: break-word;
-}
+}*/
 td.active, td.completed, dd.active, dd.completed{
 	/*background-color: #76BF6B;*/
 	color: #76BF6B;

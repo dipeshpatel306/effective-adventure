@@ -1,5 +1,5 @@
 <?php
-$data = $org_prof['OrganizationProfile'];
+$data = $organizationProfile['OrganizationProfile'];
 
 $this->csv->addRow(array('Organization Name', $data['organization_name']));
 $this->csv->addRow(array('Location 1 Address 1', $data['address_1']));

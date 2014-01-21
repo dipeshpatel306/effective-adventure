@@ -71,7 +71,7 @@
 <div class='clear'>
 	<?php
 	if($group != 3){
-	if($displayRaOrg['Client']['display_ra_org'] == 'Yes'){
+	if($displayRaOrg['Client']['display_ra_org']){
 		echo $this->Html->link( // Organization Profile
 					'<div class="dashBox">' .
 					'<div class="dashHead">' .

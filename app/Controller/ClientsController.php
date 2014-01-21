@@ -90,10 +90,15 @@ class ClientsController extends AppController {
     }
 
     public function _updateMoodleCourseName($course_id) {
-        $moodle = ConnectionManager::getDataSource('moodle');
-        $moodle->rawQuery('SELECT shortname FROM mdl_course WHERE id=' . $course_id);
-        $row = $moodle->fetchRow();
-        $this->Client->saveField('moodle_course_name', $row['mdl_course']['shortname']);
+        if (!isset($course_id) || empty($course_id)) {
+            $name = '';
+        } else {
+            $moodle = ConnectionManager::getDataSource('moodle');
+            $moodle->rawQuery('SELECT shortname FROM mdl_course WHERE id=' . $course_id);
+            $row = $moodle->fetchRow();
+            $name = $row['mdl_course']['shortname'];
+        }
+        $this->Client->saveField('moodle_course_name', $name);
     }
 
 /**
@@ -159,7 +164,7 @@ class ClientsController extends AppController {
                     $course_id = $this->request->data['Client']['moodle_course_id'];
                     $this->_updateMoodleCourseName($course_id);
                 }
-                $this->Session->setFlash('The client has been saved', 'default', array('class' => 'success message'));
+                $this->Session->setFlash('The client has been saved.', 'default', array('class' => 'success message'));
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('The client could not be saved. Please, try again.'));

@@ -22,7 +22,8 @@ class AppController extends Controller {
         'Session',
         'Security',
         'Cookie',
-        'DebugKit.Toolbar'
+        'DebugKit.Toolbar',
+        'RequestHandler'
     );
     public $helpers = array('Html', 'Form', 'Session', 'Csv');
 

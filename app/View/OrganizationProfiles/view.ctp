@@ -524,7 +524,7 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 		<li><?php echo $this->Html->link(__('New Organization Profile'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('Edit Organization Profile'), array('action' => 'edit', $organizationProfile['OrganizationProfile']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Organization Profile'), array('action' => 'delete', $organizationProfile['OrganizationProfile']['id']), null, __('Are you sure you want to delete # %s?', $organizationProfile['OrganizationProfile']['id'])); ?> </li>
-        <li><?php echo $this->Html->link(__('Export Organization Profile'), array('action' => 'export', $organizationProfile['OrganizationProfile']['id'])); ?></li>
+        <li><?php echo $this->Html->link(__('Export Organization Profile CSV'), array('action' => 'view', $organizationProfile['OrganizationProfile']['id'], 'ext' => 'csv')); ?></li>
 		<?php endif; ?>
 	</ul>
 </div>
