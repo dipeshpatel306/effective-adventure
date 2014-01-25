@@ -44,7 +44,7 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 	<hr />
 	<h3 class='highlight'>Information Relating to Incident</h3>
 	<?php
-		echo $this->Form->input('description_of_incident', array('class' => 'ckeditor'));
+		echo $this->Form->input('description_of_incident', array('type' => 'text', 'rows' => '5', 'cols' => '40'));
 
 		echo $this->Form->input('number_of_records');
 		echo $this->Form->input('source', array('options' => $source, 'empty' => 'Please Select'));
@@ -69,7 +69,7 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 		</div>
 	
 	<?php	
-		echo $this->Form->input('description_of_breached', array('label' => 'Description of Breached Information', 'class' => 'ckeditor'));
+		echo $this->Form->input('description_of_breached', array('label' => 'Description of Breached Information', 'type' => 'text', 'rows' => '5', 'cols' => '40'));
 	?>
 	<hr />
 	<h3 class='highlight'>Impact Level</h3>
@@ -161,7 +161,7 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 		<hr />
 		<h3 class='highlight'>Corrective Measures</h3>
 		<?php
-		echo $this->Form->input('corrective_measures', array('class' => 'ckeditor'));
+		echo $this->Form->input('corrective_measures', array('type' => 'text', 'rows' => '5', 'cols' => '40'));
 		?>
 	
 		<div class='breach_notification_please_complete hidden'><!-- Have you done a Breach Notification Risk Assessment? = No -->

@@ -44,7 +44,7 @@ $reason = array('' => '', 'Referral from another provider' => 'Referral from ano
 		echo $this->Form->input('time_returned');
 		echo $this->Form->input('returned_to', array('label' => 'Who was the ePhi returned to?'));
 		echo $this->Form->input('returned_by', array('label' => 'Who was the person who returned the ePHI? '));
-		echo $this->Form->input('notes', array('class' => 'ckeditor'));
+		echo $this->Form->input('notes', array('type' => 'text', 'rows' => '5', 'cols' => '40'));
 
 
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.

@@ -49,7 +49,7 @@ $reason = array('' => '', 'Work form home' => 'Work from home', 'Transfer to ano
 	<?php
 		echo $this->Form->input('returned_by', array('label' => 'Who returned ePHI?'));
 		echo $this->Form->input('when_returned', array('label' => 'When was ePHI Returned?', 'class' => 'datePick'));
-		echo $this->Form->input('notes', array('class' => 'ckeditor'));
+		echo $this->Form->input('notes', array('type' => 'text', 'rows' => '5', 'cols' => '40'));
 
 
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.

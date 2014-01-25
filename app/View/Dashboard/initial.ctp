@@ -56,7 +56,7 @@
 	<?php
 		
 		echo $this->Html->link( // Upload Other Policies and Procedures
-					'<div class="dashBox getStarted">' .
+					'<div class="dashBox getStartedDashBox">' .
 					'<div class="dashHead">' .
 					"<h3><center>Let's Get Started<center></h3>" .
 					'</div>' .

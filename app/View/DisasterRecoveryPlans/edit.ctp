@@ -13,7 +13,7 @@ $this->Html->addCrumb('Edit Disaster Recovery Plan');
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
-		echo $this->Form->input('description', array('class' => 'ckeditor'));
+		echo $this->Form->input('description', array('type' => 'text', 'rows' => '5', 'cols' => '40'));
 		echo $this->Form->input('date', array('class' => 'datePick'));
 
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.

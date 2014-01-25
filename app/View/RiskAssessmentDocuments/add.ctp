@@ -21,7 +21,7 @@ $this->Html->addCrumb('Add Risk Assessment Document');
 		<legend><?php echo __('Add Risk Assessment Document'); ?></legend>
 	<?php
 		echo $this->Form->input('name');
-		echo $this->Form->input('description', array('class' => 'ckeditor'));
+		echo $this->Form->input('description', array('type' => 'text', 'rows' => '5', 'cols' => '40'));
 
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		if($client == 1){  // if admin allow to choose
