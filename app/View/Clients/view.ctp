@@ -214,8 +214,8 @@ $clientId = $client['Client']['id'];
 		$i = 0;
 		foreach ($policies as $pnp): ?>
 		<?php 
-		  $pnp = array_merge($pnp['PoliciesAndProceduresDocument'], $pnp['PoliciesAndProcedure']);
 		  $id = $pnp['PoliciesAndProceduresDocument']['id'];
+		  $pnp = array_merge($pnp['PoliciesAndProceduresDocument'], $pnp['PoliciesAndProcedure']);
         ?>
 		<tr>
 			<td><?php echo $pnp['policies_and_procedure_id'] . ' - ' . $pnp['name']; ?> </td>

@@ -13,7 +13,7 @@ $this->Html->addCrumb($policiesAndProceduresDocument['PoliciesAndProcedure']['na
 	<dl>
 		<dt><?php echo __('Policy'); ?></dt>
 		<dd>
-			<?php echo ($policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id']); ?>
+			<?php echo ($policiesAndProceduresDocument['PoliciesAndProceduresDocument']['policies_and_procedure_id']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Policies And Procedure'); ?></dt>
