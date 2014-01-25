@@ -20,8 +20,8 @@ $this->Html->addCrumb('Add Other Policy & Procedure');
 		<legend><?php echo __('Add Other Policies And Procedure'); ?></legend>
 	<?php
 		echo $this->Form->input('name');
-		echo $this->Form->input('description', array('class' => 'ckeditor'));
-		echo $this->Form->input('details', array('class' => 'ckeditor'));
+		echo $this->Form->input('description', array('type' => 'text', 'rows' => '5', 'cols' => '50'));
+		echo $this->Form->input('details', array('type' => 'text', 'rows' => '5', 'cols' => '50'));
 
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		if($client == 1){  // if admin allow to choose

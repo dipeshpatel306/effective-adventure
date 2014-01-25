@@ -15,7 +15,7 @@ $reason = array('' => '', 'Referral from another provider' => 'Referral from ano
 <?php echo $this->Form->create('EphiReceived'); ?>
 	<h2>Track ePHI received into organization </h2>
 	<fieldset>
-		<legend><?php echo __('Add Ephi Received'); ?></legend>
+		<legend><?php echo __('Add ePHI Received'); ?></legend>
 
 	<h2 class='highlight'>Description and Date Received</h2>
 	<?php
@@ -61,7 +61,7 @@ $reason = array('' => '', 'Referral from another provider' => 'Referral from ano
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('List Ephi Received'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('List ePHI Received'), array('action' => 'index')); ?></li>
 
 		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('EphiReceived.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('EphiReceived.id'))); ?></li>
 

@@ -213,7 +213,10 @@ $clientId = $client['Client']['id'];
 	<?php 
 		$i = 0;
 		foreach ($policies as $pnp): ?>
-		<?php $pnp = array_merge($pnp['PoliciesAndProceduresDocument'], $pnp['PoliciesAndProcedure']);?>
+		<?php 
+		  $pnp = array_merge($pnp['PoliciesAndProceduresDocument'], $pnp['PoliciesAndProcedure']);
+		  $id = $pnp['PoliciesAndProceduresDocument']['id'];
+        ?>
 		<tr>
 			<td><?php echo $pnp['policies_and_procedure_id'] . ' - ' . $pnp['name']; ?> </td>
 			<td>
@@ -233,9 +236,9 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $this->Time->format('m/d/y g:i a', $pnp['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $pnp['modified']); ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'policies_and_procedures_documents', 'action' => 'view', $pnp['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'policies_and_procedures_documents', 'action' => 'edit', $pnp['id'], $clientId)); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'policies_and_procedures_documents', 'action' => 'delete', $pnp['id']), null, __('Are you sure you want to delete # %s?', $pnp['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'policies_and_procedures_documents', 'action' => 'view', $id)); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'policies_and_procedures_documents', 'action' => 'edit', $id, $clientId)); ?>
+				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'policies_and_procedures_documents', 'action' => 'delete', $id), null, __('Are you sure you want to delete # %s?', $id)); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -549,7 +552,7 @@ $clientId = $client['Client']['id'];
 					$dir = $ocad['attachment_dir'];
 					$file = $ocad['attachment'];
 					$ocadLink =  preg_replace('/\/.*\//', '', $ocad['attachment']);
-					echo $this->Html->link($drp['attachment'], array(
+					echo $this->Html->link($ocad['attachment'], array(
 						'controller' => 'other_contracts_and_documents',
 						'action' => 'sendFile', $dir, $file
 					));

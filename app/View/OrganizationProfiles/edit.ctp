@@ -142,6 +142,13 @@ $this->Html->addCrumb('Edit Organization Profile');
         echo $this->Form->input('phi_on_workstations', array('label' => 'Do you have patient information on any workstations?', 'options' => $choice));
 		echo $this->Form->input('number_laptops', array('label' =>'How many laptops do you have?', 'min' => 0));
         echo $this->Form->input('phi_on_laptops', array('label' => 'Do you have patient information on any laptops?', 'options' => $choice));
+        echo $this->Form->label(null, 'Please check any operating systems your workstations and laptops are running: ');
+        echo $this->Form->input('os_win8', array('label' => 'Windows 8', 'div' => 'input checkbox inlinebox'));
+        echo $this->Form->input('os_win7', array('label' => 'Windows 7', 'div' => 'input checkbox inlinebox'));
+        echo $this->Form->input('os_winvista', array('label' => 'Windows Vista', 'div' => 'input checkbox inlinebox'));
+        echo $this->Form->input('os_winxp', array('label' => 'Windows XP', 'div' => 'input checkbox inlinebox'));
+        echo $this->Form->input('os_winold', array('label' => 'Older Windows (ME, 2000, NT)', 'div' => 'input checkbox inlinebox'));
+        echo $this->Form->input('os_mac', array('label' => 'Apple/MAC', 'div' => 'input checkbox inlinebox'));
 	?>
 	</div>
 
@@ -187,7 +194,7 @@ $this->Html->addCrumb('Edit Organization Profile');
 	<?php
 		echo $this->Form->input('portable_media_devices', array('label' => 'Do you use portable media devices?',
 																'options' => $choice, 'empty' => 'Please Select One'));
-        echo $this->Form->input('phi_on_portable_media', array('label' => 'Do you have patient information on any portable media (including USB drives, CDs, DVD, Tablets, etc.)?', 'options' => $chocie));
+        echo $this->Form->input('phi_on_portable_media', array('label' => 'Do you have patient information on any portable media (including USB drives, CDs, DVD, Tablets, etc.)?', 'options' => $choice));
 		echo $this->Form->input('tablets', array('label' => 'Do you use Tablets?', 'options' => $choice, 'empty' => 'Please Select One'));
 		echo $this->Form->input('list_portable_devices', array('label' => 'List the portable media devices you are currently using:'));
 	?>
@@ -209,35 +216,40 @@ $this->Html->addCrumb('Edit Organization Profile');
 
 	<div id='tab8' class='tabBox'>
 	<?php
-		echo $this->Form->input('system_1_name', array('label' => 'System 1 Name: '));
+	    echo $this->Form->label('system_1_name', '<h3><b>System 1 Name: </b></h3>');
+		echo $this->Form->input('system_1_name', array('label' => false));
 		echo $this->Form->input('system_1_os', array('label' => 'System 1 Operating System: ', 'options' => $os, 'empty' => 'Please Select One'));
 		echo $this->Form->input('system_1_vendor', array('label' => 'System 1 Vendor: '));
 		echo $this->Form->input('system_1_location', array('label' => 'System 1 Location: ', 'options' => $host, 'empty' => 'Please Select One'));
 		echo $this->Form->input('system_1_ephi', array('label' => 'System 1 # of ePHI Records (estimate):'));
 		echo $this->Form->input('system_1_details', array('label' => 'System 1 - Please provide details of the system (how it is used, who uses it, etc.): '));
 
-		echo $this->Form->input('system_2_name', array('label' => 'System 2 Name: '));
+		echo $this->Form->label('system_2_name', '<h3><b>System 2 Name: </b></h3>');
+        echo $this->Form->input('system_2_name', array('label' => false));
 		echo $this->Form->input('system_2_os', array('label' => 'System 2 Operating System: ', 'options' => $os, 'empty' => 'Please Select One'));
 		echo $this->Form->input('system_2_vendor', array('label' => 'System 2 Vendor: '));
 		echo $this->Form->input('system_2_location', array('label' => 'System 2 Location: ', 'options' => $host, 'empty' => 'Please Select One'));
 		echo $this->Form->input('system_2_ephi', array('label' => 'System 2 # of ePHI Records (estimate):'));
 		echo $this->Form->input('system_2_details', array('label' => 'System 2 - Please provide details of the system (how it is used, who uses it, etc.): '));
 
-		echo $this->Form->input('system_3_name', array('label' => 'System 3 Name: '));
+		echo $this->Form->label('system_3_name', '<h3><b>System 3 Name: </b></h3>');
+        echo $this->Form->input('system_3_name', array('label' => false));
 		echo $this->Form->input('system_3_os', array('label' => 'System 3 Operating System: ', 'options' => $os, 'empty' => 'Please Select One'));
 		echo $this->Form->input('system_3_vendor', array('label' => 'System 3 Vendor: '));
 		echo $this->Form->input('system_3_location', array('label' => 'System 3 Location: ', 'options' => $host, 'empty' => 'Please Select One'));
 		echo $this->Form->input('system_3_ephi', array('label' => 'System 3 # of ePHI Records (estimate):'));
 		echo $this->Form->input('system_3_details', array('label' => 'System 3 - Please provide details of the system (how it is used, who uses it, etc.): '));
 
-		echo $this->Form->input('system_4_name', array('label' => 'System 4 Name: '));
+		echo $this->Form->label('system_4_name', '<h3><b>System 4 Name: </b></h3>');
+        echo $this->Form->input('system_4_name', array('label' => false));
 		echo $this->Form->input('system_4_os', array('label' => 'System 4 Operating System: ', 'options' => $os, 'empty' => 'Please Select One'));
 		echo $this->Form->input('system_4_vendor', array('label' => 'System 4 Vendor: '));
 		echo $this->Form->input('system_4_location', array('label' => 'System 4 Location: ', 'options' => $host, 'empty' => 'Please Select One'));
 		echo $this->Form->input('system_4_ephi', array('label' => 'System 4 # of ePHI Records (estimate):'));
 		echo $this->Form->input('system_4_details', array('label' => 'System 4 - Please provide details of the system (how it is used, who uses it, etc.): '));
 
-		echo $this->Form->input('system_5_name', array('label' => 'System 5 Name: '));
+		echo $this->Form->label('system_5_name', '<h3><b>System 5 Name: </b></h3>');
+        echo $this->Form->input('system_5_name', array('label' => false));
 		echo $this->Form->input('system_5_os', array('label' => 'System 5 Operating System: ', 'options' => $os, 'empty' => 'Please Select One'));
 		echo $this->Form->input('system_5_vendor', array('label' => 'System 5 Vendor: '));
 		echo $this->Form->input('system_5_location', array('label' => 'System 5 Location: ', 'options' => $host, 'empty' => 'Please Select One'));

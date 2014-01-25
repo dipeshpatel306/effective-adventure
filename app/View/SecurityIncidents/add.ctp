@@ -56,7 +56,7 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 	<hr />
 	<h3 class='highlight'>Information Relating to Incident</h3>
 	<?php
-		echo $this->Form->input('description_of_incident', array('class' => 'ckeditor'));
+		echo $this->Form->input('description_of_incident', array('type' => 'text', 'rows' => '5', 'cols' => '50'));
 
 		echo $this->Form->input('number_of_records');
 		echo $this->Form->input('source', array('options' => $source, 'empty' => 'Please Select'));
@@ -81,7 +81,7 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 		</div>
 	
 	<?php	
-		echo $this->Form->input('description_of_breached', array('label' => 'Description of Breached Information', 'class' => 'ckeditor'));
+		echo $this->Form->input('description_of_breached', array('label' => 'Description of Breached Information', 'type' => 'text', 'rows' => '5', 'cols' => '50'));
 	?>
 	<hr />
 	<h3 class='highlight'>Impact Level</h3>
@@ -132,6 +132,12 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 		echo $this->Form->input('effect_more_than_500', array('label' => 'Did this effect more than 500 individuals?', 'options' => $options, 'empty' => 'Please Select'));
 		?>
 			<div class='effect_more_500_yes hidden'>
+			    <?php
+                echo $this->Form->input('notify_hhs', array('label' => 'Did you notify HHS of security breach?', 'options' => $options, 'empty' => 'Please Select'));
+                ?>
+                <div class='notifyHhsDate hidden'>
+                    <?php echo $this->Form->input('notify_hhs_date', array('label' => 'Date Completed', 'class' => 'datePick')); ?>
+                </div>
 			
 				<?php	
 					echo $this->Form->input('notify_individuals', array('label' => 'Did you notify all individuals?', 'options' => $options, 'empty' => 'Please Select'));
@@ -157,12 +163,7 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 			</div>
 		
 		
-		<?php
-		echo $this->Form->input('notify_hhs', array('label' => 'Did you notify HHS of security breach?', 'options' => $options, 'empty' => 'Please Select'));
-		?>
-			<div class='notifyHhsDate hidden'>
-				<?php echo $this->Form->input('notify_hhs_date', array('label' => 'Date Completed', 'class' => 'datePick')); ?>
-			</div>
+		
 				
 			
 		</div>
@@ -173,7 +174,7 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 		<hr />
 		<h3 class='highlight'>Corrective Measures</h3>
 		<?php
-		echo $this->Form->input('corrective_measures', array('class' => 'ckeditor'));
+		echo $this->Form->input('corrective_measures', array('type' => 'text', 'rows' => '5', 'cols' => '50'));
 		?>	
 	
 	

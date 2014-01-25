@@ -8,7 +8,7 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemov
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="ephiRemoved view">
-<h2><?php  echo __('Ephi Removed'); ?></h2>
+<h2><?php  echo __('ePHI Removed'); ?></h2>
 	<dl>
 		<?php if($group == 1): ?>
 		<dt><?php echo __('Client'); ?></dt>
@@ -80,10 +80,10 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemov
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('List Ephi Removed'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Ephi Removed'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('Edit Ephi Removed'), array('action' => 'edit', $ephiRemoved['EphiRemoved']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Ephi Removed'), array('action' => 'delete', $ephiRemoved['EphiRemoved']['id']), null, __('Are you sure you want to delete # %s?', $ephiRemoved['EphiRemoved']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('List ePHI Removed'), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New ePHI Removed'), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit ePHI Removed'), array('action' => 'edit', $ephiRemoved['EphiRemoved']['id'])); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete ePHI Removed'), array('action' => 'delete', $ephiRemoved['EphiRemoved']['id']), null, __('Are you sure you want to delete # %s?', $ephiRemoved['EphiRemoved']['id'])); ?> </li>
 
 	</ul>
 </div>

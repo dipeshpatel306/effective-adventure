@@ -138,8 +138,13 @@ $this->Html->addCrumb('Add Organization Profile');
 		echo $this->Form->input('network_details', array('label' =>'Please provide details of your network: '));
 		echo $this->Form->input('number_workstations', array('label' =>'How many workstations(desktops) do you have?'));
 		echo $this->Form->input('number_laptops', array('label' =>'How many laptops do you have?'));
-		echo $this->Form->input('OperatingSystem', array('label' => 'Please select the operating systems your workstations and laptiops are running: ',
-								 'multiple' => 'checkbox', 'class' => 'inlinebox'));
+		echo $this->Form->label(null, 'Please check any operating systems your workstations and laptops are running: ');
+        echo $this->Form->input('os_win8', array('label' => 'Windows 8', 'div' => 'input checkbox inlinebox'));
+        echo $this->Form->input('os_win7', array('label' => 'Windows 7', 'div' => 'input checkbox inlinebox'));
+        echo $this->Form->input('os_winvista', array('label' => 'Windows Vista', 'div' => 'input checkbox inlinebox'));
+        echo $this->Form->input('os_winxp', array('label' => 'Windows XP', 'div' => 'input checkbox inlinebox'));
+        echo $this->Form->input('os_winold', array('label' => 'Older Windows (ME, 2000, NT)', 'div' => 'input checkbox inlinebox'));
+        echo $this->Form->input('os_mac', array('label' => 'Apple/MAC', 'div' => 'input checkbox inlinebox'));
 	?>
 	</div>
 

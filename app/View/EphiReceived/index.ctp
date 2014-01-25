@@ -1,4 +1,5 @@
 <?php
+App::uses('Group', 'Model');
 $this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
 $this->Html->addCrumb('ePHI Received');
 
@@ -7,10 +8,10 @@ $this->Html->addCrumb('ePHI Received');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="ephiReceived index">
-	<h2><?php echo __('Ephi Received'); ?></h2>
+	<h2><?php echo __('ePHI Received'); ?></h2>
 	<table>
 	<tr>
-			<?php if($group == 1): ?>
+			<?php if($group == Group::ADMIN): ?>
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
 			<?php endif; ?>
 			<th><?php echo $this->Paginator->sort('item'); ?></th>
@@ -26,12 +27,12 @@ $this->Html->addCrumb('ePHI Received');
 	<?php
 	foreach ($ephiReceived as $ephiReceived): ?>
 	<tr>
-		<?php if($group == 1): ?>
+		<?php if($group == Group::ADMIN): ?>
 		<td>
 			<?php echo $ephiReceived['Client']['name']; ?>
 		</td>
-		<td><?php echo ($ephiReceived['EphiReceived']['item']); ?>&nbsp;</td>
 		<?php endif; ?>
+		<td><?php echo ($ephiReceived['EphiReceived']['item']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y', $ephiReceived['EphiReceived']['date_received']) . ' ' .
 				$this->Time->format('g:i a', $ephiReceived['EphiReceived']['time_received']);
 		?>&nbsp;</td>
@@ -70,7 +71,7 @@ $this->Html->addCrumb('ePHI Received');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('New Ephi Received'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('New ePHI Received'), array('action' => 'add')); ?></li>
 
 	</ul>
 </div>

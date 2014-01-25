@@ -1,6 +1,8 @@
 <?php
 App::uses('AppController', 'Controller');
-/**
+App::uses('Group', 'Model');
+/*
+ *//**
  * ServerRoomAccess Controller
  *
  * @property ServerRoomAccess $ServerRoomAccess
@@ -172,7 +174,7 @@ class ServerRoomAccessController extends AppController {
 		
 		// If user is a client automatically set the client id accordingly. Admin can change client ids
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-		if($group != 1){
+		if($group != Group::ADMIN){
 			$this->request->data['ServerRoomAccess']['client_id'] = $this->Auth->User('client_id');
 		}	
 					

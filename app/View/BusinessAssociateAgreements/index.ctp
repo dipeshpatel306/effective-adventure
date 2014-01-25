@@ -13,6 +13,7 @@ $this->Html->addCrumb('Business Associate Agreements');
 			<?php if($group == 1): ?>
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
 			<?php endif; ?>
+			<th><?php echo $this->Paginator->sort('business_name'); ?></th>
 			<th><?php echo $this->Paginator->sort('contact'); ?></th>
 			<th><?php echo $this->Paginator->sort('email'); ?></th>
 			<th><?php echo $this->Paginator->sort('phone'); ?></th>
@@ -30,6 +31,7 @@ $this->Html->addCrumb('Business Associate Agreements');
 			<?php echo $businessAssociateAgreement['Client']['name']; ?>
 		</td>
 		<?php endif; ?>
+		<td><?php echo $businessAssociateAgreement['BusinessAssociateAgreement']['business_name']; ?></td>
 		<td><?php echo ($businessAssociateAgreement['BusinessAssociateAgreement']['contact']); ?>&nbsp;</td>
 		<td><?php echo $this->Text->autoLinkEmails($businessAssociateAgreement['BusinessAssociateAgreement']['email']); ?>&nbsp;</td>
 		<td><?php echo ($businessAssociateAgreement['BusinessAssociateAgreement']['phone']); ?>&nbsp;</td>

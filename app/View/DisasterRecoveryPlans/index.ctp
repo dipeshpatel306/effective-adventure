@@ -1,4 +1,5 @@
 <?php
+App::uses('Group', 'Model');
 $this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
 $this->Html->addCrumb('Disaster Recovery Plans');
 
@@ -10,7 +11,7 @@ $this->Html->addCrumb('Disaster Recovery Plans');
 	<h2><?php echo __('Disaster Recovery Plans'); ?></h2>
 	<table>
 	<tr>
-		<?php if($group == 1): ?>
+		<?php if($group == Group::ADMIN): ?>
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
 
 		<?php endif; ?>
@@ -25,7 +26,7 @@ $this->Html->addCrumb('Disaster Recovery Plans');
 	<?php
 	foreach ($disasterRecoveryPlans as $disasterRecoveryPlan): ?>
 	<tr>
-		<?php if($group == 1): ?>
+		<?php if($group == Group::ADMIN): ?>
 
 
 		<td>
@@ -35,8 +36,8 @@ $this->Html->addCrumb('Disaster Recovery Plans');
 		<td><?php echo ($disasterRecoveryPlan['DisasterRecoveryPlan']['name']); ?>&nbsp;</td>
 		<td>
 			<?php
-			if(!empty($disasterRecoveryPlan['Client']['date'])){
-							echo $this->Time->format('m/d/y', $disasterRecoveryPlan['Client']['date']);
+			if(!empty($disasterRecoveryPlan['DisasterRecoveryPlan']['date'])){
+							echo $this->Time->format('m/d/y', $disasterRecoveryPlan['DisasterRecoveryPlan']['date']);
 			}
 			?>
 		</td>
@@ -88,7 +89,7 @@ $this->Html->addCrumb('Disaster Recovery Plans');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<?php if($group == 1 || $group == 2): ?>
+		<?php if($group == Group::ADMIN || $group == Group::MANAGER): ?>
 		<li><?php echo $this->Html->link(__('New Disaster Recovery Plan'), array('action' => 'add')); ?></li>
 		<?php endif; ?>
 	</ul>

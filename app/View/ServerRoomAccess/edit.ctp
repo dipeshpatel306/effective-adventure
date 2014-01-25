@@ -3,7 +3,7 @@ $this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
 $this->Html->addCrumb('Server Room Access', '/server_room_access');
 $this->Html->addCrumb('Edit Server Room Access');
 
-$reason = array('' => '', 'Change Backup Tape' => 'Change Backup Tape', 'Maintenance' => 'Maintenance', 'It Support' => 'It Support');
+$reason = array('' => '', 'Change Backup Tape' => 'Change Backup Tape', 'Maintenance' => 'Maintenance', 'It Support' => 'It Support', 'Other' => 'Other');
 $changed = array('' => '', 'Yes' => 'Yes', 'No' => 'No');
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id');

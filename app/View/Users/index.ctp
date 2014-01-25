@@ -1,4 +1,5 @@
 <?php
+App::uses('Group', 'Model');
 $this->Html->addCrumb('Users');
 
 // Conditionally load buttons based upon user role
@@ -57,7 +58,7 @@ $this->Html->addCrumb('Users');
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
 			<?php
-			if($group == 1 ){
+			if($group == Group::ADMIN ){
 				echo $this->Html->link(__('Edit'), array('action' => 'admin_edit', $user['User']['id']));
 			} else {
 				echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id']));

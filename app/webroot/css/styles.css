@@ -396,6 +396,9 @@ img.homeIcon:hover{
 	-webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
 	box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
 }
+.getStarted {
+    margin-left: 290px;
+}
 .initTxt{
 	float: left;
 	padding: 70px 0 0 20px;;
@@ -702,6 +705,9 @@ button.prev:hover, button.next:hover{
 }
 .floatRight {
     float: right;
+}
+.floatLeft {
+    float: left;
 }
 .important{
 	color: red;

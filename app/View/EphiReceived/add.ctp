@@ -68,7 +68,7 @@ $reason = array('' => '', 'Referral from another provider' => 'Referral from ano
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('List Ephi Received'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('List ePHI Received'), array('action' => 'index')); ?></li>
 
 	</ul>
 </div>

@@ -7,7 +7,7 @@ $this->Html->addCrumb('ePHI Removed');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="ephiRemoved index">
-	<h2><?php echo __('Ephi Removed'); ?></h2>
+	<h2><?php echo __('ePHI Removed'); ?></h2>
 	<table>
 	<tr>
 			<?php if($group == 1): ?>
@@ -66,7 +66,7 @@ $this->Html->addCrumb('ePHI Removed');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('New Ephi Removed'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('New ePHI Removed'), array('action' => 'add')); ?></li>
 
 	</ul>
 </div>

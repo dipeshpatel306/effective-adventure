@@ -46,11 +46,17 @@
 
 
 	<div class='initBox'>
+	    <div class='initTxt floatLeft'>
+            <h3>
+            <p class='bold'>The first step to getting <span class='redHL'>HIPAA Secure Now!</span> is to complete a Risk Assessment</p>
+            <p class='bold'>Click "Let's Get Started" to review the <span class='redHL'>HIPAA Secure Now!</span> process</p>
+            </h3>
+        </div>
 	
 	<?php
 		
 		echo $this->Html->link( // Upload Other Policies and Procedures
-					'<div class="dashBox">' .
+					'<div class="dashBox getStarted">' .
 					'<div class="dashHead">' .
 					"<h3><center>Let's Get Started<center></h3>" .
 					'</div>' .
@@ -61,12 +67,7 @@
 			);
 	?>
 	
-		<div class='initTxt'>
-			<h3>
-			<p class='bold'>The first step to getting <span class='redHL'>HIPAA Secure Now!</span> is to complete a Risk Assessment</p>
-			<p class='bold'>Click "Let's Get Started" to review the <span class='redHL'>HIPAA Secure Now!</span> process</p>
-			</h3>
-		</div>
+		
 	</div>
 <div class='clear'>
 	<?php

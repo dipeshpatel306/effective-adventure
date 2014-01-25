@@ -1,6 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
 App::uses('QuickBase', 'Vendor');
+App::uses('Group', 'Model');
 /**
  * RiskAssessments Controller
  *
@@ -121,44 +122,6 @@ class RiskAssessmentsController extends AppController {
 	}
 
 /**
- * edit Risk Assessment method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function edit_risk_assessment($id = null) {
-		$this->RiskAssessment->id = $id;
-		if (!$this->RiskAssessment->exists()) {
-			throw new NotFoundException(__('Invalid risk assessment'));
-		}
-		$this->loadModel('RiskAssessmentQuestion');
-		$RaQ = $this->RiskAssessmentQuestion->find('all');
-		$this->set('RaQ', $RaQ);
-
-
-		// If user is a client automatically set the client id accordingly. Admin can change client ids
-		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-		if($group != 1){
-			$this->request->data['RiskAssessment']['client_id'] = $this->Auth->User('client_id');
-		}
-
-		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->RiskAssessment->save($this->request->data)) {
-				$this->Session->setFlash('The risk assessment has been saved', 'default', array('class' => 'success message'));
-				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The risk assessment could not be saved. Please, try again.'));
-			}
-		} else {
-			$this->request->data = $this->RiskAssessment->read(null, $id);
-		}
-		$clients = $this->RiskAssessment->Client->find('list');
-		$this->set(compact('clients'));
-	}
-
-
-/**
  * edit method
  *
  * @throws NotFoundException
@@ -171,13 +134,11 @@ class RiskAssessmentsController extends AppController {
 			throw new NotFoundException(__('Invalid risk assessment'));
 		}
 		$this->loadModel('RiskAssessmentQuestion');
-		$RaQ = $this->RiskAssessmentQuestion->find('all');
-		$this->set('RaQ', $RaQ);
-
+		$this->set('questions', $this->RiskAssessmentQuestion->find('all'));
 
 		// If user is a client automatically set the client id accordingly. Admin can change client ids
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-		if($group != 1){
+		if($group != Group::ADMIN){
 			$this->request->data['RiskAssessment']['client_id'] = $this->Auth->User('client_id');
 		}
 

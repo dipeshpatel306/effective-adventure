@@ -639,7 +639,7 @@ class UsersController extends AppController {
 
             $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 
-            if($group != 1){
+            if($group != Group::ADMIN){
                 $this->request->data['User']['client_id'] = $this->Auth->User('client_id');
                 
                 /*if($this->request->data['User']['group_id'] == 1){  // If client tries to spoof Hipaa admin group redirect them
@@ -652,7 +652,7 @@ class UsersController extends AppController {
 
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash('The user has been saved', 'default', array('class' => 'success message'));
-                if($group == 1 && isset($clientId)) {
+                if($group == Group::ADMIN && isset($clientId)) {
                     
                     $this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 

@@ -15,7 +15,7 @@ $reason = array('' => '', 'Work form home' => 'Work from home', 'Transfer to ano
 <?php echo $this->Form->create('EphiRemoved'); ?>
 	<h2><strong>Tracked ePHI removed from organization </strong></h2>
 	<fieldset>
-		<legend><?php echo __('Add Ephi Removed'); ?></legend>
+		<legend><?php echo __('Add ePHI Removed'); ?></legend>
 
 	<h2 class='highlight'>Description and Date Removed</h2>
 	<?php
@@ -60,7 +60,7 @@ $reason = array('' => '', 'Work form home' => 'Work from home', 'Transfer to ano
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('List Ephi Removed'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('List ePHI Removed'), array('action' => 'index')); ?></li>
 		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('EphiRemoved.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('EphiRemoved.id'))); ?></li>
 
 	</ul>

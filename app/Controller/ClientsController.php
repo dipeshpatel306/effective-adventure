@@ -65,12 +65,12 @@ class ClientsController extends AppController {
         
         $this->loadModel('PoliciesAndProceduresDocument');
         $policies = $this->PoliciesAndProceduresDocument->find('all', array(
-                        'conditions' => array(
-                            'Client.id' => $id),
+                        'conditions' => array('Client.id' => $id),
                         'fields' => array(
-                        'PoliciesAndProceduresDocument.id', 'PoliciesAndProceduresDocument.policies_and_procedure_id, PoliciesAndProceduresDocument.client_id', 'PoliciesAndProceduresDocument.document', 'PoliciesAndProceduresDocument.document_dir', 'PoliciesAndProceduresDocument.created', 'PoliciesAndProceduresDocument.modified',
-                        
-                        'PoliciesAndProcedure.id', 'PoliciesAndProcedure.name'
+                            'PoliciesAndProceduresDocument.id', 'PoliciesAndProceduresDocument.policies_and_procedure_id', 
+                            'PoliciesAndProceduresDocument.client_id', 'PoliciesAndProceduresDocument.document', 
+                            'PoliciesAndProceduresDocument.document_dir', 'PoliciesAndProceduresDocument.created', 
+                            'PoliciesAndProceduresDocument.modified', 'PoliciesAndProcedure.id', 'PoliciesAndProcedure.name'
                         )
                     ));
         $this->set(compact('policies'));        
