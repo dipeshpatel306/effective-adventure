@@ -67,12 +67,15 @@ class ContactUsController extends AppController {
 			$this->ContactUs->create();
 			if ($this->ContactUs->save($this->request->data)) {
 				// Send Email
+				$data = $this->request->data['ContactUs'];
 				$email = new CakeEmail('hipaaMail');
-				$email->from('no-reply@hipaasecurenow.com');
-				$email->to('info@hipaasecurenow.com');
-				$email->subject('HIPAA Contact Form - ' . $this->request->data['ContactUs']['subject']);
-				$email->send($this->request->data['ContactUs']['feedback']);
-				
+				$email->subject('HIPAA Compliance Portal - Contact Form Submission - ' . $data['subject'])
+                    ->to(Configure::read('App.adminEmailTo'))
+                    ->template('contact')
+                    ->viewVars($data)
+                    ->emailFormat('text')
+                    ->send();
+
 				$this->Session->setFlash('Your message has been sent! Someone will get back to you shortly.', 'default', array('class' => 'success message'));
 				$this->redirect(array('controller' => 'dashboard','action' => 'index'));
 			} else {
