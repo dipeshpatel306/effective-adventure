@@ -1,4 +1,5 @@
 <?php
+App::uses('Group', 'Model');
 $this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
 $this->Html->addCrumb('Other Policies & Procedures');
 
@@ -53,8 +54,10 @@ $this->Html->addCrumb('Other Policies & Procedures');
 		<!--<td><?php echo ($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['media']); ?>&nbsp;</td>-->
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id']), null, __('Are you sure you want to delete # %s?', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id'])); ?>
+			<?php if($group == Group::ADMIN || $group == GROUP::MANAGER) {
+			    echo $this->Html->link(__('Edit'), array('action' => 'edit', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id']));
+                echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id']), null, __('Are you sure you want to delete # %s?', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id']));
+			} ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -78,7 +81,7 @@ $this->Html->addCrumb('Other Policies & Procedures');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<?php if($group == 1 || $group == 2): ?>
+		<?php if($group == Group::ADMIN || $group == GROUP::MANAGER): ?>
 		<li><?php echo $this->Html->link(__('New Other Policies And Procedure'), array('action' => 'add')); ?></li>
 		<?php endif; ?>
 
