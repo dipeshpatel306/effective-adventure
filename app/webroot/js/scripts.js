@@ -223,36 +223,18 @@ $(document).ready(function(){
 	// Jwplayer
 	function showVideo(mp4Name) {
 		jwplayer("mediaplayer").setup({
-			'autostart' : 'true',
-			'id' : 'playerID',
-			'width' : '800',
-			'height' : '480',
-			'provider' : 'rtmp',
-			'streamer' : 'rtmp://stream.entegration.net/vod',
-			'file' : 'http://stream.entegration.net/vod/' + mp4Name + '.mp4',
-			'modes' : [
-				{
-					type : 'flash',
-					src : 'https://www.hipaasecurenow.com/jwplayer/player.swf'
-				},
-				{
-					type : 'html5',
-					config : {
-						'file' : 'http://stream.entegration.net/vod/' + mp4Name + '.mp4',
-						'provider' : 'video',
-						'autostart' : 'true'
-					}
-				},
-				{
-					type : 'download',
-					config : {
-						'file' : 'http://stream.entegration.net/vod/' + mp4Name + '.mp4',
-						'provider' : 'video'
-					}
-				}
-			]
+		    playlist: [{
+		        sources: [{
+		            file: "rtmp://stream.entegration.net/vod/mp4:" + mp4Name + ".mp4",
+		        },{
+		            file: "http://stream.entegration.net/vod/mp4:" + mp4Name + ".mp4",
+		        }]
+		    }],
+		    width: '800',
+		    height: '480',
+		    autostart : 'true',
+		    primary : 'flash'
 		});
-
 		$('#videooverlay').css('display', 'inline');
 		$('#videocontainer').css('display', 'inline');
 	}
