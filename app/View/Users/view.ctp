@@ -1,5 +1,5 @@
 <?php
-App:uses('Group', 'Model');
+App::uses('Group', 'Model');
 $this->Html->addCrumb('Users', '/users');
 $this->Html->addCrumb($user['User']['last_name'] . ', ' . $user['User']['first_name']);
 
