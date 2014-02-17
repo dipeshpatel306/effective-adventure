@@ -69,8 +69,12 @@ $this->Html->addCrumb('Add Business Associate Agreement');
 	<br />
 	<h2 class='highlight'>Business Associate Agreement Info</h2>
 	<?php
-		echo $this->Form->input('business_associate_relationship', array('options' => $relationship));
-
+		echo $this->Form->input('relationship', array('options' => $relationship));
+    ?>
+    <div class='otherRelationship hidden'>
+        <?php echo $this->Form->input('relationship_other', array('label' => 'Other Relationship')); ?>
+    </div>
+    <?php
 		echo $this->Form->input('contract_date', array('class' => 'datePick'));
 
 		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Attachment - (pdf, doc, docx, dot files only)'));
