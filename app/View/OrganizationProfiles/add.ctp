@@ -26,18 +26,7 @@ $this->Html->addCrumb('Add Organization Profile');
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
-	
-	/*if($group != 1){
-		if(!empty($this->session->read('Auth.User.Client.name'))){
-			$orgName = $this->session->read('Auth.User.Client.name');
-			$disabled = true;
-		} else {
-			$orgName = '';
-		}
-	} else {
-		$orgName = '';
-	}*/
-	
+
 ?>
 
 <div class="organizationProfiles form">
@@ -55,7 +44,6 @@ $this->Html->addCrumb('Add Organization Profile');
 		<li><a href='#tab8'>Additional Systems</a></li>
 		<li><a href='#tab9'>Additional Information</a></li>
 	</ul>
-
 	<div id='tab1' class='tabBox'>
 	<?php
 
@@ -79,6 +67,7 @@ $this->Html->addCrumb('Add Organization Profile');
 		echo $this->Form->input('state', array('label' => 'State: ', 'options' => $states, 'empty' => 'Please Select One'));
 		echo $this->Form->input('zip', array('label' => 'Zip: '));
 		echo $this->Form->input('number_employees', array('label' =>'How many employees(total in the Organization?):'));
+        echo $this->Form->input('mu_incentive_program', array('label' => 'If you are a HIPAA Covered Entity are you participating in the Meaningful Use Incentive Program?', 'options' => $choice));
 		echo $this->Form->input('second_location', array('label' =>'Do you have a second location?', 'type' => 'checkbox', 'value' => 'Yes', 'hiddenField' => 'No', 'class' => 'orgCheck2'));
 	?>
 
@@ -134,10 +123,13 @@ $this->Html->addCrumb('Add Organization Profile');
 	<div id='tab2' class='tabBox'>
 	<?php
 		echo $this->Form->input('number_of_servers', array('label' =>'How many servers do you have?'));
+        echo $this->Form->input('phi_on_servers', array('label' => 'Do you have patient information on any servers?', 'options' => $choice));
 		echo $this->Form->input('network_operating_system', array('label' =>'What is the network operating system?', 'options' => $os, 'empty' => 'Please Select One'));
 		echo $this->Form->input('network_details', array('label' =>'Please provide details of your network: '));
 		echo $this->Form->input('number_workstations', array('label' =>'How many workstations(desktops) do you have?'));
+        echo $this->Form->input('phi_on_workstations', array('label' => 'Do you have patient information on any workstations?', 'options' => $choice));
 		echo $this->Form->input('number_laptops', array('label' =>'How many laptops do you have?'));
+        echo $this->Form->input('phi_on_laptops', array('label' => 'Do you have patient information on any laptops?', 'options' => $choice));
 		echo $this->Form->label(null, 'Please check any operating systems your workstations and laptops are running: ');
         echo $this->Form->input('os_win8', array('label' => 'Windows 8', 'div' => 'input checkbox inlinebox'));
         echo $this->Form->input('os_win7', array('label' => 'Windows 7', 'div' => 'input checkbox inlinebox'));
@@ -174,6 +166,7 @@ $this->Html->addCrumb('Add Organization Profile');
 	<div id='tab4' class='tabBox'>
 	<?php
 		echo $this->Form->input('email', array('label' => 'Do you utilize Email in your organization?', 'options' => $choice, 'empty' => 'Please Select One'));
+        echo $this->Form->input('phi_on_email', array('label' => 'Do you have patient information in any email accounts?', 'options' => $choice));
 		echo $this->Form->input('email_vendor', array('label' => 'What Email vendor and product do you use?',
 														'options' => $emailVendor, 'empty' => 'Please Select One'));
 
@@ -190,6 +183,7 @@ $this->Html->addCrumb('Add Organization Profile');
 	<?php
 		echo $this->Form->input('portable_media_devices', array('label' => 'Do you use portable media devices?',
 																'options' => $choice, 'empty' => 'Please Select One'));
+        echo $this->Form->input('phi_on_portable_media', array('label' => 'Do you have patient information on any portable media (including USB drives, CDs, DVD, Tablets, etc.)?', 'options' => $choice));                                                        
 		echo $this->Form->input('tablets', array('label' => 'Do you use Tablets?', 'options' => $choice, 'empty' => 'Please Select One'));
 		echo $this->Form->input('list_portable_devices', array('label' => 'List the portable media devices you are currently using:'));
 	?>
@@ -204,6 +198,7 @@ $this->Html->addCrumb('Add Organization Profile');
 	<div id='tab7' class='tabBox'>
 	<?php
 		echo $this->Form->input('smartphones', array('label' => 'Do you utilize smartphones?', 'options' => $choice, 'empty' => 'Please Select One'));
+        echo $this->Form->input('phi_on_smartphones', array('label' => 'Do you have patient information on any Smartphones (including emails, text messages, etc)?', 'options' => $choice));
 		echo $this->Form->input('list_smartphone_vendors', array('label' => 'List the smartphone vendors and/or phones: '));
 	?>
 	</div>
@@ -258,8 +253,7 @@ $this->Html->addCrumb('Add Organization Profile');
 		echo $this->Form->input('additional_info', array('label' => 'Additional Information: '));
 
 	?>
-	</div>
-
+    </div>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
 </div>

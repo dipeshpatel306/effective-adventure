@@ -78,6 +78,7 @@ $this->Html->addCrumb('Edit Organization Profile');
 		echo $this->Form->input('state', array('label' => 'State: ', 'options' => $states, 'empty' => 'Please Select One'));
 		echo $this->Form->input('zip', array('label' => 'Zip: '));
 		echo $this->Form->input('number_employees', array('label' =>'How many employees(total in the Organization?):', 'min' => 0));
+        echo $this->Form->input('mu_incentive_program', array('label' => 'If you are a HIPAA Covered Entity are you participating in the Meaningful Use Incentive Program?', 'options' => $choice));
 		echo $this->Form->input('second_location', array('label' =>'Do you have a second location?', 'type' => 'checkbox', 'value' => 'Yes', 'hiddenField' => 'No', 'class' => 'orgCheck2'));
 	?>
 
@@ -129,9 +130,7 @@ $this->Html->addCrumb('Edit Organization Profile');
 		echo $this->Form->input('fifth_zip', array('label' => 'Zip: '));
 		?>
 	</div>
-
 	</div>
-
 	<div id='tab2' class='tabBox'>
 	<?php
 		echo $this->Form->input('number_of_servers', array('label' =>'How many servers do you have?', 'min' => 0));
