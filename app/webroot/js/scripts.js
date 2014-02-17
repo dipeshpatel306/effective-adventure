@@ -71,10 +71,10 @@ $(document).ready(function(){
 	        e.preventDefault();
 	    });
 	});
-
+	
 	// Toggle div based upon checkbox (org profile)
 
-		$('.orgSecondLocation, .orgThirdLocation, .orgFourthLocation, .orgFifthLocation, .otherEmail, .otherReason, .otherDescription, .otherReason').hide(); // first hide fields
+		$('.orgSecondLocation, .orgThirdLocation, .orgFourthLocation, .orgFifthLocation, .otherEmail, .otherReason, .otherDescription, .otherRelationship').hide(); // first hide fields
 		// toggle field visibility
   		$('.orgCheck2').change(function () {
      		$('.orgSecondLocation').toggle(this.checked);
@@ -129,6 +129,18 @@ $(document).ready(function(){
 				$('.emrEhrOtherLoc').hide();
 			}
 		});
+
+        if($('#BusinessAssociateAgreementRelationship').val() == 'Other'){
+            $('.otherRelationship').show();
+        }
+        $('#BusinessAssociateAgreementRelationship').on('change', function(){
+           var selected = $(this).val();
+           if (selected === 'Other') {
+               $('.otherRelationship').show();
+           } else {
+               $('.otherRelationship').hide();
+           }
+        });
 
 		 // toggle server room access
 		if($('#ServerRoomAccessReason').val() == 'Other'){
@@ -193,9 +205,18 @@ $(document).ready(function(){
 			});
 		});
 
-		$('.closeBox').click(function(){
+		$('.completeClose').click(function(){
 			$('.completeBox').dialog('close');
+			$('.thanksBox').dialog({
+			    height: 270,
+			    width: 675,
+			    modal: true,
+			    resizable: false
+			});
+		});
 
+		$('.dialogClose').click(function(){
+		    $(this).parent().closest('.dialogBox').dialog('close');
 		});
 
 
@@ -416,7 +437,9 @@ $(document).ready(function(){
 		}
 	});		
 	
-		
+	$('.checkall').on('click', function () {
+        $(this).closest('fieldset').find(':checkbox').prop('checked', this.checked);
+    });	
 	
 });
 

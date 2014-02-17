@@ -383,7 +383,7 @@ img.homeIcon:hover{
 	float: left;
 	background-color: #ffffff;
 	/*border: 1px solid #888888;*/
-	border: 1px solid #e6e6e6;
+	border: 1px solid #CFCFCF;
 	width: 300px;
 	height: 200px;
 	margin: 8px;
@@ -392,9 +392,9 @@ img.homeIcon:hover{
 	border-radius: 5px;
 	text-decoration: none; // fixes IE < 7 bug
 
-	-moz-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
-	box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
+	box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
 }
 .getStartedDashBox {
     margin-left: 290px;
@@ -718,6 +718,12 @@ button.prev:hover, button.next:hover{
 .completeBox .btnText{
 
 }
+.thanksBox {
+    display:none;
+}
+.thanksBox .btnText{
+    
+}
 /* ##### Risk Assessment ###### */
 .riskAssHead h3{
 	color: #4C8AB0;
@@ -735,4 +741,25 @@ button.prev:hover, button.next:hover{
 }
 .datePick{
 	width: 300px;
+}
+.subcheck {
+    margin-left: 20px;
+}
+.policiesAndProcedures.view dt{
+    width : 8%;
+}
+.dashboard.index.initial h2{
+    margin-left : 18px;
+}
+.breachQuestion {
+    padding: 0; !important
+}
+.breachQuestion div{
+    padding: 0; !important
+}
+.dialogClose {
+    cursor : pointer;
+}
+.dialogBox a {
+    word-wrap : break-word;  
 }
