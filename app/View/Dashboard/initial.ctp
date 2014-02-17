@@ -38,10 +38,10 @@
 						<div class="triangle"></div>
 						</div>
 					</div>';
-					
+                   				
 ?>
 
-<div class="dashboard index">
+<div class="dashboard index initial">
 	<h2><?php echo __('Compliance Portal Dashboard'); ?></h2>
 
 
@@ -179,7 +179,7 @@
 				</div>
 
 
-		<div class='completeBox' title='Mark Risk Assessment Complete?'>
+		<div class='completeBox dialogBox' title='Mark Risk Assessment Complete?'>
 			<p>Before you mark the Risk Assessment Complete, please make sure you have completed the following:</p>
 			<ul>
 				<li>Completely filled in the Organization info</li>
@@ -190,10 +190,18 @@
 			<p>If you still have more to complete please close this dialog box and complete those sections first.</p>
 
 			<?php
-				echo $this->Html->link($confirmBtn, array('controller' => 'dashboard', 'action' => 'mark_complete'), array('class' => 'closeBox','escape' => false));
+				echo $this->Html->link($confirmBtn, array('controller' => 'dashboard', 'action' => 'mark_complete'), array('class' => 'completeClose','escape' => false));
 			?>
+		</div>
+			
+	    <div class='thanksBox dialogBox' title='Complete'>
+	        <p>Thanks for completing the Risk Assessment.</p>
+	        &nbsp;
+	        <p>We will send you an email when the Risk Assessment Reports are complete.</p>
+	        <p>We will contact you if we need any additional information.</p>
+	        <?php echo $this->element('dialogok'); ?>
+	    </div>
 
-</div>
 		</div>
 </div>
 
