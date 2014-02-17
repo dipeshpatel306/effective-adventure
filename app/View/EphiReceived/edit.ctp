@@ -14,6 +14,8 @@ $reason = array('' => '', 'Referral from another provider' => 'Referral from ano
 <div class="ephiReceived form">
 <?php echo $this->Form->create('EphiReceived'); ?>
 	<h2>Track ePHI received into organization </h2>
+	<h3>Do not put any information that can identify patients in the below fields</h3>
+    &nbsp;
 	<fieldset>
 		<legend><?php echo __('Add ePHI Received'); ?></legend>
 
@@ -28,7 +30,6 @@ $reason = array('' => '', 'Referral from another provider' => 'Referral from ano
 	?>
 	<h2 class='highlight'>Description and Date Received</h2>
 	<?php
-		echo $this->Form->input('patient_name', array('label' => 'Name of patient associated with ePHI'));
 		echo $this->Form->input('where_received', array('label' => 'Where was ePHI received from?'));
 		echo $this->Form->input('received_by', array('label' => 'Who received / accepted the ePHI? '));
 		echo $this->Form->input('reason', array('label' => 'Reason for receiving ePHI', 'options' => $reason, 'empty' => 'Please Select'));

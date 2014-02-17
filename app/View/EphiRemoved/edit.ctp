@@ -14,6 +14,8 @@ $reason = array('' => '', 'Work form home' => 'Work from home', 'Transfer to ano
 <div class="ephiRemoved form">
 <?php echo $this->Form->create('EphiRemoved'); ?>
 	<h2><strong>Tracked ePHI removed from organization </strong></h2>
+	<h3>Do not put any information that can identify patients in the below fields</h3>
+    &nbsp;
 	<fieldset>
 		<legend><?php echo __('Add ePHI Removed'); ?></legend>
 
