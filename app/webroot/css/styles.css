@@ -748,6 +748,9 @@ button.prev:hover, button.next:hover{
 .policiesAndProcedures.view dt{
     width : 8%;
 }
+.policiesAndProcedures.view dd{
+    margin-left : 8%;
+}
 .dashboard.index.initial h2{
     margin-left : 18px;
 }
