@@ -24,7 +24,7 @@ class EducationCenterController extends AppController {
 		    return true;
         }
         
-        if ($group == Group::USER && $this->action == 'index') {
+        if ($group == Group::USER && in_array($this->action, array('index', 'training'))) {
             return true;
         }
 		
