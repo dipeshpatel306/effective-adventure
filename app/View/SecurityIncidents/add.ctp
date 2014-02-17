@@ -131,14 +131,7 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 		<?php
 		echo $this->Form->input('effect_more_than_500', array('label' => 'Did this effect more than 500 individuals?', 'options' => $options, 'empty' => 'Please Select'));
 		?>
-			<div class='effect_more_500_yes hidden'>
-			    <?php
-                echo $this->Form->input('notify_hhs', array('label' => 'Did you notify HHS of security breach?', 'options' => $options, 'empty' => 'Please Select'));
-                ?>
-                <div class='notifyHhsDate hidden'>
-                    <?php echo $this->Form->input('notify_hhs_date', array('label' => 'Date Completed', 'class' => 'datePick')); ?>
-                </div>
-			
+              <div class='effect_more_500_yes hidden'>
 				<?php	
 					echo $this->Form->input('notify_individuals', array('label' => 'Did you notify all individuals?', 'options' => $options, 'empty' => 'Please Select'));
 				?>
@@ -161,6 +154,12 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 				
 				
 			</div>
+			<?php
+                echo $this->Form->input('notify_hhs', array('label' => 'Did you notify HHS of security breach?', 'options' => $options, 'empty' => 'Please Select'));
+                ?>
+            <div class='notifyHhsDate hidden'>
+                    <?php echo $this->Form->input('notify_hhs_date', array('label' => 'Date Completed', 'class' => 'datePick')); ?>
+                </div>
 		
 		
 		
@@ -178,24 +177,27 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 		?>	
 	
 	
-		<div class='breach_notification_please_complete hidden'><!-- Have you done a Breach Notification Risk Assessment? = No -->
+		<div class='breach_notification_please_complete dialogBox hidden'><!-- Have you done a Breach Notification Risk Assessment? = No -->
 		
 			<p>Please complete a Breach Notification Risk Assessment before continuing.</p>	
+			<?php echo $this->element('dialogok'); ?>
 		</div>
 	
-		<div class='breach_not_required hidden'><!-- if After Completing == No -->
+		<div class='breach_not_required dialogBox hidden'><!-- if After Completing == No -->
 			<p>No breach notification is required</p>	
+			<?php echo $this->element('dialogok'); ?>
 		</div>	
 		
-		<div class='500individualsBox hidden'> <!
+		<div class='500individualsBox dialogBox hidden'> <!
 			<p>CE must notify secretary of breaches of unsecured protected health information, by using the HHS website
 -60 days or fewer (500 individuals or more)</p>
 
 		<p><a href='http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/brinstruction.html'>
 	http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/brinstruction.html</a></p>
+	    <?php echo $this->element('dialogok'); ?>
 		</div>
 		
-		<div class='breachCompletePop hidden'>
+		<div class='breachCompletePop dialogBox hidden'>
 			<p>To print, right click and click on print.</p>
 
 		<p>
@@ -227,7 +229,7 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 			http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/index.htm</a>
 		</p>
 
-
+        <?php echo $this->element('dialogok'); ?>
 		</div>
 		
 			

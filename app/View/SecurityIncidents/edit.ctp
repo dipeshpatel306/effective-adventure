@@ -160,61 +160,65 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 
 		<hr />
 		<h3 class='highlight'>Corrective Measures</h3>
-		<?php
-		echo $this->Form->input('corrective_measures', array('type' => 'text', 'rows' => '5', 'cols' => '40'));
-		?>
-	
-		<div class='breach_notification_please_complete hidden'><!-- Have you done a Breach Notification Risk Assessment? = No -->
-		
-			<p>Please complete a Breach Notification Risk Assessment before continuing.</p>	
-		</div>
-	
-		<div class='breach_not_required hidden'><!-- if After Completing == No -->
-			<p>No breach notification is required</p>	
-		</div>	
-		
-		<div class='500individualsBox hidden'> <!
-			<p>CE must notify secretary of breaches of unsecured protected health information, by using the HHS website
+        <?php
+        echo $this->Form->input('corrective_measures', array('type' => 'text', 'rows' => '5', 'cols' => '50'));
+        ?>  
+    
+    
+        <div class='breach_notification_please_complete dialogBox hidden'><!-- Have you done a Breach Notification Risk Assessment? = No -->
+        
+            <p>Please complete a Breach Notification Risk Assessment before continuing.</p> 
+            <?php echo $this->element('dialogok'); ?>
+        </div>
+    
+        <div class='breach_not_required dialogBox hidden'><!-- if After Completing == No -->
+            <p>No breach notification is required</p>   
+            <?php echo $this->element('dialogok'); ?>
+        </div>  
+        
+        <div class='500individualsBox dialogBox hidden'> <!
+            <p>CE must notify secretary of breaches of unsecured protected health information, by using the HHS website
 -60 days or fewer (500 individuals or more)</p>
 
-		<p><a href='http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/brinstruction.html'>
-	http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/brinstruction.html</a></p>
-		</div>
-		
-		<div class='breachCompletePop hidden'>
-			<p>To print, right click and click on print.</p>
+        <p><a href='http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/brinstruction.html'>
+    http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/brinstruction.html</a></p>
+        <?php echo $this->element('dialogok'); ?>
+        </div>
+        
+        <div class='breachCompletePop dialogBox hidden'>
+            <p>To print, right click and click on print.</p>
 
-		<p>
-			Per individual, these must all be completed within 60 days of incident:
-			<ul>
-			<li>Notice in written form by 1st class mail or by email if they have agreed upon electronic mailing</li>
-			<li>Description of breach</li>
-			<li>Types of info involved  (ePHI)</li>
-			<li>Steps they should take to protect themselves</li>
-			<li>Description of what CE is doing to investigate/mitigate/prevent future occurrences</li>
-			</ul>
-		</p>
-		<p>
-			If contact information is out of date:
-			<ul>
-			<li>10 or more individuals: CE must post publicly  -website/major print/broadcast media  (Substitute Notice)</li>
-			<li>10 or fewer: This can be done by written, telephone, other means</li>
-			</ul>
-		</p>
-		<p></p>
-			Secretary notice: CE must notify secretary of breaches of unsecured protected health information, by using the Health and Human Services (HHS) website
-			<ul>
-			<li>60 days or fewer (500 individuals or more)</li>
-			<li>Fewer than 500 - once a year</li>
-			</ul>
-		</p>
-		<p>
-		For more information please visit <a href='http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/index.htm'>
-			http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/index.htm</a>
-		</p>
+        <p>
+            Per individual, these must all be completed within 60 days of incident:
+            <ul>
+            <li>Notice in written form by 1st class mail or by email if they have agreed upon electronic mailing</li>
+            <li>Description of breach</li>
+            <li>Types of info involved  (ePHI)</li>
+            <li>Steps they should take to protect themselves</li>
+            <li>Description of what CE is doing to investigate/mitigate/prevent future occurrences</li>
+            </ul>
+        </p>
+        <p>
+            If contact information is out of date:
+            <ul>
+            <li>10 or more individuals: CE must post publicly  -website/major print/broadcast media  (Substitute Notice)</li>
+            <li>10 or fewer: This can be done by written, telephone, other means</li>
+            </ul>
+        </p>
+        <p></p>
+            Secretary notice: CE must notify secretary of breaches of unsecured protected health information, by using the Health and Human Services (HHS) website
+            <ul>
+            <li>60 days or fewer (500 individuals or more)</li>
+            <li>Fewer than 500 - once a year</li>
+            </ul>
+        </p>
+        <p>
+        For more information please visit <a href='http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/index.htm'>
+            http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/index.htm</a>
+        </p>
 
-
-		</div>
+        <?php echo $this->element('dialogok'); ?>
+        </div>
 		
 			
 	</fieldset>
