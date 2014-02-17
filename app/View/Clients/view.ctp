@@ -706,7 +706,6 @@ $clientId = $client['Client']['id'];
 	<table>
 	<tr>
 		<th><?php echo __('Received Date/Time'); ?></th>
-		<th><?php echo __('Patient Name'); ?></th>
 		<th><?php echo __('received By'); ?></th>
 		<th><?php echo __('Returned Date/Time'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
@@ -717,7 +716,6 @@ $clientId = $client['Client']['id'];
 		foreach ($client['EphiReceived'] as $erc): ?>
 		<tr>
 			<td><?php echo $this->Time->format('m/d/y', $erc['date_received']) . ' ' . $this->Time->format('g:i a', $erc['time_received']); ?></td>
-			<td><?php echo $erc['patient_name']; ?></td>
 			<td><?php echo $erc['received_by']; ?></td>
 			<td><?php echo $this->Time->format('m/d/y', $erc['date_returned']) . ' ' . $this->Time->format('g:i a', $erc['time_returned']); ?></td>
 			<td class="actions">

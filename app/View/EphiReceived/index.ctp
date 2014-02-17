@@ -16,7 +16,6 @@ $this->Html->addCrumb('ePHI Received');
 			<?php endif; ?>
 			<th><?php echo $this->Paginator->sort('item'); ?></th>
 			<th><?php echo $this->Paginator->sort('date_received', 'Receieved Date/Time'); ?></th>
-			<th><?php echo $this->Paginator->sort('patient_name'); ?></th>
 			<th><?php echo $this->Paginator->sort('received_by'); ?></th>
 			<th><?php echo $this->Paginator->sort('date_returned', 'Returned Date/Time'); ?></th>
 
@@ -37,7 +36,6 @@ $this->Html->addCrumb('ePHI Received');
 				$this->Time->format('g:i a', $ephiReceived['EphiReceived']['time_received']);
 		?>&nbsp;</td>
 
-		<td><?php echo ($ephiReceived['EphiReceived']['patient_name']); ?>&nbsp;</td>
 		<td><?php echo ($ephiReceived['EphiReceived']['received_by']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y', $ephiReceived['EphiReceived']['date_returned']) . ' ' .
 				$this->Time->format('g:i a', $ephiReceived['EphiReceived']['time_returned']);

@@ -212,7 +212,7 @@ class Client extends AppModel {
 			'foreignKey' => 'client_id',
 			'dependent' => true,
 			'conditions' => '',
-			'fields' => 'EphiReceived.id, EphiReceived.client_id, EphiReceived.date_received, EphiReceived.received_by, EphiReceived.time_received, EphiReceived.patient_name, EphiReceived.date_returned, EphiReceived.time_returned, EphiReceived.created, EphiReceived.modified',
+			'fields' => 'EphiReceived.id, EphiReceived.client_id, EphiReceived.date_received, EphiReceived.received_by, EphiReceived.time_received, EphiReceived.date_returned, EphiReceived.time_returned, EphiReceived.created, EphiReceived.modified',
 			'order' => '',
 			'limit' => '',
 			'offset' => '',

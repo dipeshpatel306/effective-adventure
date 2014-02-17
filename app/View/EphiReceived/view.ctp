@@ -33,12 +33,6 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiReceived['EphiRece
 			<?php echo $this->Time->format('g:i a', $ephiReceived['EphiReceived']['time_received']); ?>
 			&nbsp;
 		</dd>
-
-		<dt><?php echo __('Name of patient associated with ePHI? '); ?></dt>
-		<dd>
-			<?php echo ($ephiReceived['EphiReceived']['patient_name']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Where was ePHI received from? '); ?></dt>
 		<dd>
 			<?php echo ($ephiReceived['EphiReceived']['where_received']); ?>
