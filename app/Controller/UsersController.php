@@ -636,9 +636,12 @@ class UsersController extends AppController {
 
 
         if ($this->request->is('post') || $this->request->is('put')) {
-
             $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 
+            if (empty($this->request->data['User']['password'])) {
+                unset($this->request->data['User']['password']);
+            }
+            
             if($group != Group::ADMIN){
                 $this->request->data['User']['client_id'] = $this->Auth->User('client_id');
                 

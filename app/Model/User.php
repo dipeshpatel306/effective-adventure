@@ -22,6 +22,21 @@ class User extends AppModel {
  *
  * @var array
  */
+    public $validateAdminEdit = array(
+        'password' => array(
+            array(
+                'rule' => array('passCompare'),
+                'message' => 'The Passwords do not match.'
+            ),
+        ),
+        'password2' => array(
+            array(
+                'rule' => array('passCompare'),
+                'message' => 'The Passwords do not match.'
+            ),
+        )
+    );
+ 
     public $validate = array(
         'authCode' => array(
             'notempty' => array(
@@ -207,6 +222,9 @@ class User extends AppModel {
  * Compare and Verify Password
  */
  public function passCompare(){
+    if (empty($this->data['User']['password']) && empty($this->data['User']['password2'])) {
+        return true; // for admin_edit
+    }
     return $this->data['User']['password'] === $this->data['User']['password2'];
  }
 
