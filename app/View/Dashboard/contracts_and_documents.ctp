@@ -57,21 +57,36 @@ $this->Html->addCrumb('Contracts & Documents');
 	<?php 
 	
 		// Risk Assessment Documents. If user deny
-		if($group == 3){
+		if ($acct == 'Training') {
+		    echo $this->Html->link( 
+                    '<div class="dashBox">' . 
+                    '<div class="dashHead">' .
+                    $this->Html->image('ra_tile.jpg', array(
+                                'class' => 'dashTile', 
+                                'alt' => 'HIPAA Risk Assessment Documents'
+                                )) .
+                    '<h3>Risk Assessment Documents</h3>' .
+                    '</div>' .
+                    '<div class="dashSum">Risk Assessment Documents</div>' . $banned .
+                    '</div>',
+                    array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
+                    array('escape' => false)
+            );
+		} elseif($group == 3){
 			echo $this->Html->link( 
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('ra_tile.jpg', array(
-								'class' => 'dashTile', 
-								'alt' => 'HIPAA Risk Assessment Documents'
-								)) .
-					'<h3>Risk Assessment Documents</h3>' .
-					'</div>' .
-					'<div class="dashSum">Risk Assessment Documents</div>' . $noAuth .
-					'</div>',
-					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
-					array('escape' => false)
-			);
+                    '<div class="dashBox">' . 
+                    '<div class="dashHead">' .
+                    $this->Html->image('ra_tile.jpg', array(
+                                'class' => 'dashTile', 
+                                'alt' => 'HIPAA Risk Assessment Documents'
+                                )) .
+                    '<h3>Risk Assessment Documents</h3>' .
+                    '</div>' .
+                    '<div class="dashSum">Risk Assessment Documents</div>' . $noAuth .
+                    '</div>',
+                    array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
+                    array('escape' => false)
+            );
 		} else {
 		echo $this->Html->link( 
 					'<div class="dashBox">' . 
@@ -125,7 +140,7 @@ $this->Html->addCrumb('Contracts & Documents');
 		}
 		
 		// Disaster Recovery Plans. Only Sub Manager can use. Sub User is not authorized. MU is banned
-		if($acct == 'Meaningful Use'){ // ban if MU
+		if($acct == 'Meaningful Use' || $acct == 'Training'){ // ban if MU
 			echo $this->Html->link( 
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
@@ -175,7 +190,7 @@ $this->Html->addCrumb('Contracts & Documents');
 			
 		// Other Contracts & Documents . Only SUB Managers can use. Employees is noauth. MU is banned
 			
-		if($acct == 'Meaningful Use'){
+		if($acct == 'Meaningful Use' || $acct == 'Training'){
 		echo $this->Html->link( 
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .

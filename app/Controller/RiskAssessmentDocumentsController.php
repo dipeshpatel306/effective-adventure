@@ -22,6 +22,10 @@ class RiskAssessmentDocumentsController extends AppController {
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		$acct = $this->Session->read('Auth.User.Client.account_type');
 
+        if ($acct == 'Training') {
+            return false;
+        }
+
 		if($group == 2){
 			if(in_array($this->action, array('index', 'view','add'))){  // Allow Managers to Add
 				return true;

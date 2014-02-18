@@ -71,7 +71,7 @@ $this->Html->addCrumb('Track & Document');
 			
 		// Server Room Access. Only Managers see everything. User is noauth. MU is banned
 		
-		if($acct == 'Meaningful Use'){
+		if($acct == 'Meaningful Use' || $acct == 'Training'){
 			echo $this->Html->link( 
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
@@ -119,7 +119,7 @@ $this->Html->addCrumb('Track & Document');
 		}
 		
 		// ePHI Removed. SU Manager can use. SU User is no auth. MU is banned
-		if($acct == 'Meaningful Use'){
+		if($acct == 'Meaningful Use' || $acct == 'Training'){
 		echo $this->Html->link( 
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
@@ -168,7 +168,7 @@ $this->Html->addCrumb('Track & Document');
 		}
 
 		// ePHI Recieved. SU Manager can use. SU User is no auth. MU is banned
-		if($acct == 'Meaningful Use'){
+		if($acct == 'Meaningful Use' || $acct == 'Training'){
 		echo $this->Html->link( 
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .

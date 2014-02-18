@@ -26,7 +26,7 @@ class ServerRoomAccessController extends AppController {
 		$acct = $this->Session->read('Auth.User.Client.account_type');
 		
 		if($group == 2){
-			if($acct == 'Meaningful Use'){
+			if($acct == 'Meaningful Use' || $acct == 'Training'){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 				return false;
@@ -43,7 +43,7 @@ class ServerRoomAccessController extends AppController {
 			}
 		}
 		
-		if($group == 3 || $acct == 'Initial' || $acct == 'Meaningful Use'){
+		if($group == 3 || $acct == 'Initial' || $acct == 'Meaningful Use' || $acct == 'Training'){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 				return false;

@@ -26,7 +26,7 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 		$acct = $this->Session->read('Auth.User.Client.account_type');
 
 		if($group == 2){ // Allow Managers to add/edit/delete their own data
-			if($acct == 'Meaningful Use' || $acct == 'Initial'){
+			if($acct == 'Meaningful Use' || $acct == 'Initial' || $acct == 'Training'){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 				return false;
@@ -47,7 +47,7 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 		}
 
 		if($group == 3){
-			if($acct == 'Meaningful Use' || $acct == 'Initial'){
+			if($acct == 'Meaningful Use' || $acct == 'Initial' || $acct == 'Training'){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 				return false;

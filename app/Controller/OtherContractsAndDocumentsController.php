@@ -24,7 +24,7 @@ class OtherContractsAndDocumentsController extends AppController {
 		$acctId = $this->Session->read('Auth.User.Client.account_type');
 
 		if($group == 2){
-			if($acctId == 'Meaningful Use'){
+			if($acctId == 'Meaningful Use' || $acctId == 'Training'){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 				return false;
@@ -41,7 +41,7 @@ class OtherContractsAndDocumentsController extends AppController {
 			}
 		}
 
-		if($group == 3 || $acctId == 'Initial' || $acctId == 'Meaningful Use'){
+		if($group == 3 || $acctId == 'Initial' || $acctId == 'Meaningful Use' || $acctId == 'Training'){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 				return false;
