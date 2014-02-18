@@ -23,10 +23,15 @@ $(document).ready(function(){
 			facebook: {
 				id: '132416226824065,Facebook Timeline/132416226824065'
 			},
+			twitter: {
+			    id: 'hipaasecurenow',
+                thumb: true
+			}
 		},
 		days: 30,
-		iconPath: '/js/jquery-social-stream/images/',
-		imagePath: '/js/jquery-social-stream/images/'
+		iconPath: '/js/jquery-social-stream/images/dcsns-dark/',
+		imagePath: '/js/jquery-social-stream/images/dcsns-light-1/',
+		height: '635'
 	});
 
 	// Slide show for risk assessment

@@ -295,7 +295,6 @@ div.newsFeed {
 }
 .dcsns .dcsns-toolbar{
 	position: relative;
-	top: -210px;
 	z-index: 1000;
 	overflow: visible;
 }
@@ -303,8 +302,11 @@ div.newsFeed {
 	margin-bottom: 15px;
 }
 #social-wall.dcsns{
-	height: 500px;
+	height: 675px;
 	margin-bottom: 20px;
+}
+#social-wall.dcsns-content {
+    height : 650px;
 }
 /*.newsFeed{
 	width: 100%;

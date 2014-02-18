@@ -562,7 +562,8 @@
 									}
 									z += m;
 								} else {
-									z = item[o.text].replace(/\/l.php/gi,'http://www.facebook.com/l.php').replace(/href="\//gi,'href="http://www.facebook.com/').replace('<br><br>','');
+								    z = item[o.text];
+								    //z = item[o.text].replace(/\/l.php/gi,'http://www.facebook.com/l.php').replace(/href="\//gi,'href="http://www.facebook.com/').replace('<br><br>','');
 								}
 								break;
 								
