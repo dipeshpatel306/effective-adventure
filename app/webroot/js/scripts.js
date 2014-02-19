@@ -14,8 +14,8 @@ $(document).ready(function(){
 		},
 		twitterId: 'HIPAASecureNow',
 		days: 30,
-		iconPath: '/js/jquery-social-stream/images/',
-		imagePath: '/js/jquery-social-stream/images/'
+		iconPath: '/js/jquery-social-stream/images/dcsns-dark/',
+		imagePath: '/js/jquery-social-stream/images/dcsns-light-1/'
 	});
 
 	$('#social-wall').dcSocialStream({
@@ -52,7 +52,7 @@ $(document).ready(function(){
 	    $active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
 	    $active.addClass('active');
 	    $content = $($active.attr('href'));
-
+	    
 	    // Hide the remaining content
 	    $links.not($active).each(function () {
 	        $($(this).attr('href')).hide();
@@ -75,6 +75,21 @@ $(document).ready(function(){
 	        // Prevent the anchor's default click action
 	        e.preventDefault();
 	    });
+	    
+	    $('.nexttab').click(function(e){
+	        $active.removeClass('active');
+	        $content.hide();
+	        
+	        $active = $($links.filter("[href=" + $(this).attr('href') + "]")[0]);
+	        $content = $($(this).attr('href'));
+	        
+	        $active.addClass('active');
+	        $content.show(); 
+	        
+	        window.scrollTo(0,0);
+	        
+	        e.preventDefault();
+        });
 	});
 	
 	// Toggle div based upon checkbox (org profile)
