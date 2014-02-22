@@ -21,7 +21,7 @@ $reason = array('' => '', 'Referral from another provider' => 'Referral from ano
 
 	<h2 class='highlight'>Description and Date Received</h2>
 	<?php
-		echo $this->Form->input('item', array('Desciprtion of item received', 'options' => $item, 'empty' => 'Please Select'));
+		echo $this->Form->input('item', array('label' => 'Description of Item Received', 'options' => $item, 'empty' => 'Please Select'));
 		echo '<div class="otherDescription">' .
 				$this->Form->input('other_description', array('label' => 'Other Description'))
 			. "</div>";
