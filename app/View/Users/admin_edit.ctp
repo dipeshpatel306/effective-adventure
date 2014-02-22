@@ -41,8 +41,8 @@ $client = $this->Session->read('Auth.User.client_id');  // Test Client.  If admi
 		echo $this->Form->input('password2', array('label' => 'Verify Password', 'value' => null, 'type' => 'password', 'required' => false));
 		echo $this->Form->input('first_name');
 		echo $this->Form->input('last_name');
-		echo $this->Form->input('phone_number');
-		echo $this->Form->input('cell_number');
+		echo $this->Form->input('phone_number', array('type' => 'tel'));
+		echo $this->Form->input('cell_number', array('type' => 'tel'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

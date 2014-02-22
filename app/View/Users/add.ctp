@@ -48,8 +48,8 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
         echo $this->Form->input('password2', array('label' => 'Verify Password', 'type' => 'password'));
         echo $this->Form->input('first_name');
         echo $this->Form->input('last_name');
-        echo $this->Form->input('phone_number');
-        echo $this->Form->input('cell_number');
+        echo $this->Form->input('phone_number', array('type' => 'tel'));
+        echo $this->Form->input('cell_number', array('type' => 'tel'));
     ?>
     </fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

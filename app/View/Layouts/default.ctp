@@ -74,6 +74,7 @@
 										 'jwplayer/jwplayer.js',
 										 'slides.min.jquery.js',
 										 'jquery-social-stream/js/jquery.social.stream.1.5.min.js',
+										 'jquery.maskedinput.min.js',
 										 'scripts',
 	)); ?>
 	<?php

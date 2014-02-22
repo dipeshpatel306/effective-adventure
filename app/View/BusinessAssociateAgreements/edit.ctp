@@ -55,7 +55,7 @@ $this->Html->addCrumb('Edit Business Associate Agreement');
 		echo $this->Form->input('zip');
 		echo $this->Form->input('contact', array('label' => 'Business Associate Contact'));
 		echo $this->Form->input('email', array('label' => 'Business Associate Email'));
-		echo $this->Form->input('phone', array('label' => 'Business Associate Contact Phone'));
+		echo $this->Form->input('phone', array('type' => 'tel', 'label' => 'Business Associate Contact Phone'));
 	?>
 
 	<hr>

@@ -56,17 +56,18 @@ $this->Html->addCrumb('Add Organization Profile');
         //echo $this->Form->input('organization_name', array('label' => 'Organization Name: ', 'value' => $orgName));
         echo $this->Form->input('administrator_name', array('label' => "Organization's Administrator Name: "));
         echo $this->Form->input('administrator_email', array('label' =>"Organization's Adminstrator Email: "));
-        echo $this->Form->input('administrator_phone', array('label' =>"Administrator Phone (Primary Contact): "));
+        echo $this->Form->input('administrator_phone', array('type' => 'tel', 'label' =>"Administrator Phone (Primary Contact): "));
         echo $this->Form->input('administrator_phone_ext', array('label' =>"Ext."));
-        echo $this->Form->input('administrator_phone_alt', array('label' =>"Administrator Phone (Alternative): "));
-        echo $this->Form->input('administrator_phone_ext', array('label' =>"Ext."));
+        echo $this->Form->input('administrator_phone_alt', array('type' => 'tel', 'label' =>"Administrator Phone (Alternative): "));
+        echo $this->Form->input('administrator_phone_alt_ext', array('label' =>"Ext."));
         echo $this->Form->input('address_1', array('label' => 'Address 1: '));
         echo $this->Form->input('address_2', array('label' => 'Address 2: '));
         echo $this->Form->input('city', array('label' => 'City: '));
         echo $this->Form->input('state', array('label' => 'State: ', 'options' => $states, 'empty' => 'Please Select One'));
         echo $this->Form->input('zip', array('label' => 'Zip: '));
         echo $this->Form->input('number_employees', array('label' =>'How many employees(total in the Organization?):'));
-        echo $this->Form->input('mu_incentive_program', array('label' => 'If you are a HIPAA Covered Entity are you participating in the Meaningful Use Incentive Program?', 'options' => $choice));
+        echo $this->Form->input('mu_incentive_program', array('label' => 'If you are a HIPAA Covered Entity are you participating in the Meaningful Use Incentive Program?', 
+                                                              'options' => array('' => '', 'Yes' => 'Yes', 'No' => 'No', )));
         echo $this->Form->input('second_location', array('label' =>'Do you have a second location?', 'type' => 'checkbox', 'value' => 'Yes', 'hiddenField' => 'No', 'class' => 'orgCheck2'));
     ?>
 
@@ -118,8 +119,6 @@ $this->Html->addCrumb('Add Organization Profile');
         echo $this->Form->input('fifth_zip', array('label' => 'Zip: '));
         ?>
     </div>
-    <?php echo $this->Html->link('Next', '#tab2', array( 'class' => 'nexttab')); ?>
-    <div class='clear'></div>
     </div>
     <div id='tab2' class='tabBox'>
     <?php
@@ -138,9 +137,7 @@ $this->Html->addCrumb('Add Organization Profile');
         echo $this->Form->input('os_winxp', array('label' => 'Windows XP', 'div' => 'input checkbox inlinebox'));
         echo $this->Form->input('os_winold', array('label' => 'Older Windows (ME, 2000, NT)', 'div' => 'input checkbox inlinebox'));
         echo $this->Form->input('os_mac', array('label' => 'Apple/MAC', 'div' => 'input checkbox inlinebox'));
-        echo $this->Html->link('Next', '#tab3', array( 'class' => 'nexttab'));
     ?>
-    <div class='clear'></div>
     </div>
     <div id='tab3' class='tabBox'>
     <?php
@@ -162,9 +159,7 @@ $this->Html->addCrumb('Add Organization Profile');
         . '</div>';
 
         echo $this->Form->input('emr_ehr_description', array('label' => 'Please describe where your EMR/EHR is located: '));
-        echo $this->Html->link('Next', '#tab4', array( 'class' => 'nexttab'));
     ?>
-    <div class='clear'></div>
     </div>
 
     <div id='tab4' class='tabBox'>
@@ -180,9 +175,7 @@ $this->Html->addCrumb('Add Organization Profile');
 
         echo $this->Form->input('email_server_location', array('label' => 'Where is your Email Server?', 'options' => $emailHost, 'empty' => 'Please Select One'));
         echo $this->Form->input('email_details', array('label' => 'Please provide us with any additional details regarding your Email: '));
-        echo $this->Html->link('Next', '#tab5', array( 'class' => 'nexttab'));
     ?>
-    <div class='clear'></div>
     </div>
 
     <div id='tab5' class='tabBox'>
@@ -192,17 +185,13 @@ $this->Html->addCrumb('Add Organization Profile');
         echo $this->Form->input('phi_on_portable_media', array('label' => 'Do you have patient information on any portable media (including USB drives, CDs, DVD, Tablets, etc.)?', 'options' => $choice));                                                        
         echo $this->Form->input('tablets', array('label' => 'Do you use Tablets?', 'options' => $choice, 'empty' => 'Please Select One'));
         echo $this->Form->input('list_portable_devices', array('label' => 'List the portable media devices you are currently using:'));
-        echo $this->Html->link('Next', '#tab6', array( 'class' => 'nexttab'));
     ?>
-    <div class='clear'></div>
     </div>
 
     <div id='tab6' class='tabBox'>
     <?php
         echo $this->Form->input('back_up_tapes', array('label' => 'Do you utilize backup tapes?', 'options' => $choice, 'empty' => 'Please Select One'));
-        echo $this->Html->link('Next', '#tab7', array( 'class' => 'nexttab'));
     ?>
-    <div class='clear'></div>
     </div>
 
     <div id='tab7' class='tabBox'>
@@ -210,9 +199,7 @@ $this->Html->addCrumb('Add Organization Profile');
         echo $this->Form->input('smartphones', array('label' => 'Do you utilize smartphones?', 'options' => $choice, 'empty' => 'Please Select One'));
         echo $this->Form->input('phi_on_smartphones', array('label' => 'Do you have patient information on any Smartphones (including emails, text messages, etc)?', 'options' => $choice));
         echo $this->Form->input('list_smartphone_vendors', array('label' => 'List the smartphone vendors and/or phones: '));
-        echo $this->Html->link('Next', '#tab8', array( 'class' => 'nexttab'));
     ?>
-    <div class='clear'></div>
     </div>
 
     <div id='tab8' class='tabBox'>
@@ -256,20 +243,22 @@ $this->Html->addCrumb('Add Organization Profile');
         echo $this->Form->input('system_5_location', array('label' => 'System 5 Location: ', 'options' => $host, 'empty' => 'Please Select One'));
         echo $this->Form->input('system_5_ephi', array('label' => 'System 5 # of ePHI Records (estimate):'));
         echo $this->Form->input('system_5_details', array('label' => 'System 5 - Please provide details of the system (how it is used, who uses it, etc.): '));
-        echo $this->Html->link('Next', '#tab9', array( 'class' => 'nexttab'));
     ?>
-    <div class='clear'></div>
     </div>
-	<div id="tab9" class='tabBox'>
+    <div id="tab9" class='tabBox'>
 
-	<?php
+    <?php
 
-		echo $this->Form->input('additional_info', array('label' => 'Additional Information: '));
+        echo $this->Form->input('additional_info', array('label' => 'Additional Information: '));
 
-	?>
+    ?>
     </div>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+    </fieldset>
+    <div class='submit'>
+        <?php echo $this->Form->submit('Submit', array('div' => false)); ?>
+       <?php echo $this->Html->link('Next', '#', array( 'class' => 'nexttab')); ?>
+    </div>
+    <?php echo $this->Form->end(); ?>
 </div>
 <?php if($group == 1): ?>
 <div class="actions">

@@ -42,10 +42,13 @@ $(document).ready(function(){
 		});
 	});
 
+    $('input[type=tel]').mask('999-999-9999');
+
 	$('.organizationProfiles ul.tabs').each(function(){
 	    // For each set of tabs, we want to keep track of
 	    // which tab is active and it's associated content
 	    var $active, $content, $links = $(this).find('a');
+	    var nextIdx;
 
 	    // If the location.hash matches one of the links, use that as the active tab.
 	    // If no match is found, use the first link as the initial active tab.
@@ -57,6 +60,14 @@ $(document).ready(function(){
 	    $links.not($active).each(function () {
 	        $($(this).attr('href')).hide();
 	    });
+	    
+	    nextIdx = parseInt($active.attr('href').charAt($active.attr('href').length-1)) + 1;
+	    if (nextIdx > $links.length) {
+	        $('.nexttab').hide();
+	    } else {
+	        $('.nexttab').show();
+	        $('.nexttab').attr('href', '#tab' + nextIdx);
+	    }
 
 	    // Bind the click event handler
 	    $(this).on('click', 'a', function(e){
@@ -71,6 +82,14 @@ $(document).ready(function(){
 	        // Make the tab active.
 	        $active.addClass('active');
 	        $content.show();
+
+            nextIdx = parseInt($active.attr('href').charAt($active.attr('href').length-1)) + 1;
+            if (nextIdx > $links.length) {
+                $('.nexttab').hide();
+            } else {
+                $('.nexttab').show();
+                $('.nexttab').attr('href', '#tab' + nextIdx);
+            }
 
 	        // Prevent the anchor's default click action
 	        e.preventDefault();
@@ -88,6 +107,14 @@ $(document).ready(function(){
 	        
 	        window.scrollTo(0,0);
 	        
+	        nextIdx = parseInt($active.attr('href').charAt($active.attr('href').length-1)) + 1;
+            if (nextIdx > $links.length) {
+                $('.nexttab').hide();
+            } else {
+                $('.nexttab').show();
+                $('.nexttab').attr('href', '#tab' + nextIdx);
+            }
+    	        
 	        e.preventDefault();
         });
 	});
