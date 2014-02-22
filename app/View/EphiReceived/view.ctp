@@ -17,10 +17,10 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiReceived['EphiRece
 			&nbsp;
 		</dd>
 		<?php endif; ?>
-		<dt><?php echo __('Description of item received'); ?></dt>
+		<dt><?php echo __('Description of Item Received'); ?></dt>
 		<dd>
-			<?php echo $this->Time->format('m/d/y', $ephiReceived['EphiReceived']['item']) . ' '; ?>
-			<?php echo $this->Time->format('m/d/y', $ephiReceived['EphiReceived']['other_description']) . ' '; ?>
+			<?php echo $ephiReceived['EphiReceived']['item'] . ' '; ?>
+			<?php echo $ephiReceived['EphiReceived']['other_description']; ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Date Received'); ?></dt>
