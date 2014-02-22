@@ -96,6 +96,7 @@ class OrganizationProfilesController extends AppController {
 			throw new NotFoundException(__('Invalid organization profile'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
+		    $this->OrganizationProfile->id = $id;
 			if ($this->OrganizationProfile->save($this->request->data)) {
 				$this->Session->setFlash('The organization profile has been saved', 'default', array('class' => 'success message'));
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
