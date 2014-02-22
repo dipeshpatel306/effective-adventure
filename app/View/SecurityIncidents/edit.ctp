@@ -31,7 +31,9 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 	<fieldset>
 		<legend><?php echo __('Edit Security Incident'); ?></legend>
 	<?php
-		echo $this->Form->input('client_id');
+		if ($group == 1) {
+		  echo $this->Form->input('client_id');
+		}
 	?>
 	
 	<h3 class='highlight'>Dates Relating to Incident</h3>
