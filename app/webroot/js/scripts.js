@@ -293,6 +293,12 @@ $(document).ready(function(){
 		showVideo(eduVideo);
 	});
 
+    $('.staticvideo').each(function(){
+       var eduVideo = $(this).attr('id');
+       eduVideo = encodeURIComponent(eduVideo);
+       showVideo(eduVideo); 
+    });
+
 	// Policies and Procedures Video
 	$('.papVideo a.policyName').click(function(){
 		var videoName = $('span.videoName').text();

@@ -20,11 +20,11 @@ class EducationCenterController extends AppController {
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		$acct = $this->Session->read('Auth.User.Client.account_type'); // Get account type 
 		
-		if ($group == Group::MANAGER && in_array($this->action, array('training', 'training_report', 'training_report_csv', 'index'))) {
+		if ($group == Group::MANAGER && in_array($this->action, array('training', 'training_report', 'training_report_csv', 'index', 'video'))) {
 		    return true;
         }
         
-        if ($group == Group::USER && in_array($this->action, array('index', 'training'))) {
+        if ($group == Group::USER && in_array($this->action, array('index', 'training', 'video'))) {
             return true;
         }
 		
@@ -171,4 +171,8 @@ class EducationCenterController extends AppController {
         $rows = $moodle->fetchAll($sql, array(':course_id' => $course_id, ':client_name' => $client_name));
         $this->set(compact('rows'));
     }    
+
+    public function video($video) {
+        $this->set(compact('video'));
+    }
 }

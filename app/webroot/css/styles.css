@@ -554,6 +554,11 @@ img.homeIcon:hover{
     padding-top: 10px;  
 }
 
+.staticvideo p {
+    text-align: center;
+    padding-top: 10px;
+}
+
 #videocontainer a:link {
     color: #000;
     text-decoration: none;
