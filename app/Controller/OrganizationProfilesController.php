@@ -64,12 +64,13 @@ class OrganizationProfilesController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
-
-
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 			if($group != 1){
 				$this->request->data['OrganizationProfile']['client_id'] = $this->Auth->User('client_id');
 			}
+            $client_id = $this->request->data['OrganizationProfile']['client_id'];
+            $client = $this->OrganizationProfile->Client->find('first', array('conditions' => array('Client.id' => $client_id)));
+            $this->request->data['OrganizationProfile']['organization_name'] = $client['Client']['name'];
 
 			$this->OrganizationProfile->create();
 			if ($this->OrganizationProfile->save($this->request->data)) {
