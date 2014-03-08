@@ -8,6 +8,15 @@ App::uses('Group', 'Model');
  * @property User $User
  */
 class UsersController extends AppController {
+    public $components = array('Paginator');
+    
+    public $paginate = array(
+        'limit' => 100,
+        'order' => array(
+            'User.client_id' => 'asc'
+        )
+    );
+    
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('login', 'register', 'logout', 'forgot_password', 'reset_password');//, 'validate_email', 'resend_validation');
@@ -346,8 +355,8 @@ class UsersController extends AppController {
 
         if($group == Group::ADMIN){ // If Hipaa Admin then show all users
             $this->User->recursive = 0;
-            $this->paginate = array('order' => array('User.client_id' => 'ASC'));
-            $this->set('users', $this->paginate());
+            $users = $this->Paginator->paginate('User');
+            $this->set(compact('users'));
 
         } elseif ($group == Group::MANAGER){ // If Manager display only users from that client
             $this->paginate = array(
