@@ -9,15 +9,8 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 <div class="policiesAndProcedures view">
 <h2><?php  echo __('HIPAA Policies And Procedures'); ?></h2>
 
-	<div id="videooverlay"></div>
-		<div id="videocontainer">
-		<div class='closeVideo'>Close [x]</div>
-
-		<div id="mediaplayer"></div>
-		<p class='imgsub'>Click on <img title="Fullscreen" src="http://www.hipaasecurenow.com/wp-content/uploads/2011/05/Fullscreen.png"
-		alt="" width="30" height="21" /> above to view in fullscreen mode!</p>
-		</div>
-
+	<?php echo $this->element('video_overlay'); ?>
+	
 	<dl>
 		<dt><?php echo __('Policy'); ?></dt>
 		<dd>
@@ -96,21 +89,14 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 	<?php endforeach; ?>
 	</table>
 <?php  endif; ?>
-
-	<?php  if(!empty($policiesAndProcedure['PoliciesAndProcedure']['video_summary'])): ?>
 		<div class='papVideo' >
 		<h2><?php echo __('Video Summary'); ?></h2>
 
 			<?php echo $this->Html->image('movie2.png')?>
 			 Watch a short interactive movie that summarizes this policy or procedure. <br />
 
-			<a class="policyName">View Movie for
-				<span class='videoName'><?php echo ucwords($policiesAndProcedure['PoliciesAndProcedure']['video_summary']); ?></span>
-			</a>
+			<a class="policyName" id='<?php echo $policiesAndProcedure['PoliciesAndProcedure']['id']; ?>'>View Movie for Policy <?php echo $policiesAndProcedure['PoliciesAndProcedure']['id']; ?></a>
 		</div>
-
-
-	<?php  endif; ?>
 	<br /><br />
 </div>
 

@@ -272,15 +272,16 @@ $(document).ready(function(){
 		jwplayer("mediaplayer").setup({
 		    playlist: [{
 		        sources: [{
-		            file: "rtmp://stream.entegration.net/vod/mp4:" + mp4Name + ".mp4",
+		            file: "rtmp://stream.entegration.net/vod/mp4:" + encodeURIComponent(mp4Name) + ".mp4",
 		        },{
-		            file: "http://stream.entegration.net/vod/mp4:" + mp4Name + ".mp4",
+		            file: "http://stream.entegration.net/vod/mp4:" + encodeURIComponent(mp4Name) + ".mp4",
 		        }]
 		    }],
 		    width: '800',
 		    height: '480',
 		    autostart : 'true',
-		    primary : 'flash'
+		    primary : 'flash',
+		    flashplayer : '/js/jwplayer/jwplayer.flash.swf'
 		});
 		$('#videooverlay').css('display', 'inline');
 		$('#videocontainer').css('display', 'inline');
@@ -288,22 +289,16 @@ $(document).ready(function(){
 
 	// load education videos
 	$('.educationCenter .dashBox.eduVideo, .educationCenter dd.eduVideo a').click(function(){
-		var eduVideo = $(this).attr('id');
-		eduVideo = encodeURIComponent(eduVideo);
-		showVideo(eduVideo);
+		showVideo($(this).attr('id'));
 	});
 
     $('.staticvideo').each(function(){
-       var eduVideo = $(this).attr('id');
-       eduVideo = encodeURIComponent(eduVideo);
-       showVideo(eduVideo); 
+       showVideo($(this).attr('id')); 
     });
 
 	// Policies and Procedures Video
 	$('.papVideo a.policyName').click(function(){
-		var videoName = $('span.videoName').text();
-		videoName = encodeURIComponent(videoName);
-		showVideo(videoName);
+		showVideo('Policy' + $(this).attr('id'));
 	});
 
 	// Stop and Close Video Player. Hide pop up region

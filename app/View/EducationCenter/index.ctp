@@ -6,15 +6,7 @@ $this->Html->addCrumb('Education Center');
 <div class="educationCenter index">
 	<h2><?php echo __('Education Center'); ?></h2>
 
-	<div id="videooverlay"></div>
-<div id="videocontainer">
-<p><a href="#" class='closeVideo'>Close [x]</a></p>
-<center>
-<div id="mediaplayer"></div>
-<p class='imgsub'>Click on <img title="Fullscreen" src="/img/Fullscreen.png" alt="" width="30" height="21" /> above to view in fullscreen mode!</p>
-</center>
-</div>
-	
+    <?php echo $this->element('video_overlay'); ?>
 	
 	<?php if($acct != 'Meaningful Use'): // allow if not meaningful?>
 		
