@@ -187,52 +187,66 @@
 		if($group != 3){
 			//pr($displayRaOrg);
 		if($displayRaOrg['Client']['display_ra_org']){
-				echo $this->Html->link( // Risk Assessment Questionnaire
-						'<div class="dashBox">' .
-						'<div class="dashHead">' .
-						$this->Html->image('raq_tile.jpg', array(
-									'class' => 'dashTile',
-									'alt' => 'HIPAA Risk Assessment Questionnaire'
-									)) .
-						'<h3>Risk Assessment Questionnaire</h3>' .
-						'</div>' .
-						'<div class="dashSum">Risk Assessment Questionnaire</div>' . $approved .
-						'</div>',
-						$riskAss,
-						array('escape' => false)
-				);
-				
-
-
-			echo $this->Html->link( // Organization Profile
-						'<div class="dashBox">' .
-						'<div class="dashHead">' .
-						$this->Html->image('org_prof_tile.jpg', array(
-									'class' => 'dashTile',
-									'alt' => 'HIPAA Organization Profile'
-									)) .
-						'<h3>Organization Profile</h3>' .
-						'</div>' .
-						'<div class="dashSum">Organization Profile</div>' . $approved .
-						'</div>',
-						$orgPro,
-						array('escape' => false)
-				);
-				
-			echo 	'<div class="dashBox markComplete">' .
-					'<div class="dashHead">' .
-					
-					$this->Html->image('mark_comp_tile.bmp', array(
-								'class' => 'dashTile',
-								'alt' => 'HIPAA Mark Risk Assessment Complete'
-								)) . 
-					
-					'<h3>Mark Risk Assessment Complete</h3>' .
-					'</div>' .
-					'<div class="dashSum">Mark Risk Assessment Complete</div>' .
-					$approved . 
-				'</div>';
-				
+		    echo $this->Html->link(
+            '<div class="dashBox">' .
+            '<div class="dashHead">' .
+            $this->Html->image('raq_tile.jpg', array(
+                        'class' => 'dashTile',
+                        'alt' => 'Perform Your Risk Assessment'
+                        )) .
+            '<h3>Risk Assessment</h3>' .
+            '</div>' .
+            '<div class="dashSum">Perform Your Risk Assessment</div>' . $approved .
+            '</div>',
+            array('controller' => 'dashboard', 'action' => 'initial'),
+            array('escape' => false)
+        );
+				// echo $this->Html->link( // Risk Assessment Questionnaire
+						// '<div class="dashBox">' .
+						// '<div class="dashHead">' .
+						// $this->Html->image('raq_tile.jpg', array(
+									// 'class' => 'dashTile',
+									// 'alt' => 'HIPAA Risk Assessment Questionnaire'
+									// )) .
+						// '<h3>Risk Assessment Questionnaire</h3>' .
+						// '</div>' .
+						// '<div class="dashSum">Risk Assessment Questionnaire</div>' . $approved .
+						// '</div>',
+						// $riskAss,
+						// array('escape' => false)
+				// );
+// 				
+// 
+// 
+			// echo $this->Html->link( // Organization Profile
+						// '<div class="dashBox">' .
+						// '<div class="dashHead">' .
+						// $this->Html->image('org_prof_tile.jpg', array(
+									// 'class' => 'dashTile',
+									// 'alt' => 'HIPAA Organization Profile'
+									// )) .
+						// '<h3>Organization Profile</h3>' .
+						// '</div>' .
+						// '<div class="dashSum">Organization Profile</div>' . $approved .
+						// '</div>',
+						// $orgPro,
+						// array('escape' => false)
+				// );
+// 				
+			// echo 	'<div class="dashBox markComplete">' .
+					// '<div class="dashHead">' .
+// 					
+					// $this->Html->image('mark_comp_tile.bmp', array(
+								// 'class' => 'dashTile',
+								// 'alt' => 'HIPAA Mark Risk Assessment Complete'
+								// )) . 
+// 					
+					// '<h3>Mark Risk Assessment Complete</h3>' .
+					// '</div>' .
+					// '<div class="dashSum">Mark Risk Assessment Complete</div>' .
+					// $approved . 
+				// '</div>';
+// 				
 
 		}
 		}

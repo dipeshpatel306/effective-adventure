@@ -16,7 +16,7 @@
 	}
 
 
-	if($acct == 'Initial'){
+	if($acct == 'Initial' || $acct == 'Subscription'){
 		$dashBtn = '<div class="dashBtn approved">
 						<div class="btnWrapNarrow">
 						<div class="btnText">Click Here</div>
