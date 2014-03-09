@@ -16,7 +16,7 @@
 	}
 
 
-	if($acct == 'Initial' || $acct == 'Subscription'){
+	if($acct == 'Initial' || $acct == 'Subscription' || $acct == 'HIPAA'){
 		$dashBtn = '<div class="dashBtn approved">
 						<div class="btnWrapNarrow">
 						<div class="btnText">Click Here</div>
