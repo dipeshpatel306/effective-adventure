@@ -75,6 +75,9 @@ div.actions, div.login, div.loginBox{
 	-webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
 	box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
 }
+div.actions h3{
+    color: #bc1310;
+}
 hr { display: block; height: 1px;
     border: 0; border-top: 1px solid #d7d7d7;
     margin: 1em 0; padding: 0; }
@@ -98,7 +101,7 @@ table{
 
 }
 th{
-	background-color: #4C8AB0;
+	background-color: #7d7d7d;
 	border-bottom: none;
 	border-right: 1px solid #e6e6e6;
 	color: #ffffff;
@@ -113,7 +116,7 @@ table tr td{
 	border-bottom: none;
 }
 table tr:nth-child(odd) {
-	background: #F5F9FD;
+	background: #f0f0f0;
 }
 table tr:nth-child(2n) {
     background: #ffffff;
@@ -208,7 +211,7 @@ a.logoutLink{
 	padding-bottom: 5px;
 }
 .userBox .highlight, .highlight{
-	color: #4C8AB0;
+	color: #bc1310;
 	/*color: #76BF6B;*/
 	font-weight: bold;
 }
@@ -246,7 +249,7 @@ a.logoutLink{
 .actions ul li a, .actions a {
 	background: none;
 	/*background-color: #76BF6B;*/
-	background-color: #929AA4;
+	background-color: #7d7d7d;
 	box-shadow: none;
 	box-shadow: none;
 	border: none;
@@ -319,7 +322,7 @@ div.newsFeed {
 	width:100%;
 	height:60px;			/* Height of the footer */
 	/*background:#6B6B6B;*/
-	background:#33454E;
+	background:#bc1310;
 	padding: 0;
 	text-align: left;
 }
@@ -337,7 +340,7 @@ div.newsFeed {
 	/*clear: both;*/
 	/*background-color: #a1a1a1;*/
 	/*background: #5199B5;*/
-	background: #4C8AB0;
+	background: #7D7D7D;
 	height: 40px;
 	/*border-top: 2px solid #767676;
 	border-bottom: 2px solid #767676;*/
@@ -383,7 +386,7 @@ img.homeIcon:hover{
 /* ##### Dashboard ##### */
 .dashBox{
 	float: left;
-	background-color: #ffffff;
+	background-color: #f0f0f0;
 	/*border: 1px solid #888888;*/
 	border: 1px solid #CFCFCF;
 	width: 300px;
@@ -418,7 +421,7 @@ img.homeIcon:hover{
 	padding-top: 8px;
 	font-size: 1.3em;
 	font-weight: bold;
-	color: #4C8AB0;
+	color: #bc1310;
 }
 .dashHead{
 	height: 65px;
@@ -468,7 +471,7 @@ img.homeIcon:hover{
 }
 .dashBtn.approved{
 	 /*background-color: #76BF6B;*/   /*for ie */
-	 background-color: #929AA4;   /*for ie */
+	 background-color: #7d7d7d;   /*for ie */
 	/*background-image: -webkit-gradient(linear, left top, left bottom, from(#76BF6B), to(#3B8230));
 	background-image: -webkit-linear-gradient(top, #76BF6B, #3B8230);
 	background: -moz-linear-gradient(center top , #76BF6B, #3B8230) repeat scroll 0 0 #62AF56;*/
@@ -761,8 +764,11 @@ button.prev:hover, button.next:hover{
 }
 /* ##### Risk Assessment ###### */
 .riskAssHead h3{
-	color: #4C8AB0;
+	color: #BC1310;
 	font-weight: bold;
+}
+.riskAssHead {
+    font-size: 90%;
 }
 /* Documents */
 .labelNew, .currentDoc{
