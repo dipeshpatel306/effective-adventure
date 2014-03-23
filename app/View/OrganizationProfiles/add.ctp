@@ -256,7 +256,7 @@ $this->Html->addCrumb('Add Organization Profile');
     </fieldset>
     <div class='submit'>
         <?php echo $this->Form->submit('Submit', array('div' => false)); ?>
-       <?php echo $this->Html->link('Next', '#', array( 'class' => 'nexttab')); ?>
+       <?php echo $this->Html->link('Next', '#', array( 'class' => 'nexttab orgProfNextTab')); ?>
     </div>
     <?php echo $this->Form->end(); ?>
 </div>

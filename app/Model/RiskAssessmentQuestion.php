@@ -13,6 +13,14 @@ class RiskAssessmentQuestion extends AppModel {
  */
 	public $displayField = 'question';
     public $order = 'RiskAssessmentQuestion.question_number ASC';
+    public $belongsTo = array(
+        'RiskAssessmentQuestionSubCategory' => array(
+            'foreignKey' => 'category_id'
+        ),
+        'RiskAssessmentQuestionSafeguardCategory' => array(
+            'foreignKey' => 'safeguard_category_id'
+        )
+    );
 
 
 /**

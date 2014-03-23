@@ -44,6 +44,39 @@ $(document).ready(function(){
 
     $('input[type=tel]').mask('999-999-9999');
 
+    $('.raTabs').tabs({
+        activate: function(event, ui) {
+            $('.raNextTab').show();
+            if (ui.newTab.hasClass('outerTab')) {
+                // always make the first inner tab active when switch outer tabs
+                ui.newPanel.tabs('option', 'active', 0);
+            } else {
+                var active_outer = $('.raTabs').tabs('option', 'active');
+                if (active_outer == $('.raTabs.tabsOuter >ul >li').size() - 1 &&
+                    ui.newTab.index() == $('#outerTab' + (active_outer + 1) + ' >ul >li').size() - 1) {
+                    $('.raNextTab').hide();
+                }
+            }
+        }
+    });
+    
+    $('.raNextTab').click(function(){
+        var active_outer = $('.raTabs').tabs('option', 'active'); 
+        var $inner_tab = $('#outerTab' + (active_outer + 1));
+        var active_inner = $inner_tab.tabs('option', 'active');
+        var len_outer = $('.raTabs.tabsOuter >ul >li').size();
+        var len_inner = $('#outerTab' + (active_outer + 1) + ' >ul >li').size();
+        if (active_inner + 1 < len_inner) {
+            // next inner tab
+            $inner_tab.tabs('option', 'active', active_inner + 1);
+        } else if (active_outer + 1 < len_outer) {
+            // on the last inner tab, switch the outer tab
+            $('.raTabs').tabs('option', 'active', active_outer + 1);
+            $('#outerTab' + (active_outer + 2)).tabs('option', 'active', 0);
+        }
+        window.scrollTo(0,0);
+    });
+
 	$('.organizationProfiles ul.tabs').each(function(){
 	    // For each set of tabs, we want to keep track of
 	    // which tab is active and it's associated content
@@ -63,10 +96,10 @@ $(document).ready(function(){
 	    
 	    nextIdx = parseInt($active.attr('href').charAt($active.attr('href').length-1)) + 1;
 	    if (nextIdx > $links.length) {
-	        $('.nexttab').hide();
+	        $('.orgProfNextTab').hide();
 	    } else {
-	        $('.nexttab').show();
-	        $('.nexttab').attr('href', '#tab' + nextIdx);
+	        $('.orgProfNextTab').show();
+	        $('.orgProfNextTab').attr('href', '#tab' + nextIdx);
 	    }
 
 	    // Bind the click event handler
@@ -85,17 +118,17 @@ $(document).ready(function(){
 
             nextIdx = parseInt($active.attr('href').charAt($active.attr('href').length-1)) + 1;
             if (nextIdx > $links.length) {
-                $('.nexttab').hide();
+                $('.orgProfNextTab').hide();
             } else {
-                $('.nexttab').show();
-                $('.nexttab').attr('href', '#tab' + nextIdx);
+                $('.orgProfNextTab').show();
+                $('.orgProfNextTab').attr('href', '#tab' + nextIdx);
             }
 
 	        // Prevent the anchor's default click action
 	        e.preventDefault();
 	    });
 	    
-	    $('.nexttab').click(function(e){
+	    $('.orgProfNextTab').click(function(e){
 	        $active.removeClass('active');
 	        $content.hide();
 	        
@@ -109,10 +142,10 @@ $(document).ready(function(){
 	        
 	        nextIdx = parseInt($active.attr('href').charAt($active.attr('href').length-1)) + 1;
             if (nextIdx > $links.length) {
-                $('.nexttab').hide();
+                $('.orgProfNextTab').hide();
             } else {
-                $('.nexttab').show();
-                $('.nexttab').attr('href', '#tab' + nextIdx);
+                $('.orgProfNextTab').show();
+                $('.orgProfNextTab').attr('href', '#tab' + nextIdx);
             }
     	        
 	        e.preventDefault();
@@ -268,8 +301,12 @@ $(document).ready(function(){
 
 
 	// Jwplayer
-	function showVideo(mp4Name) {
-		jwplayer("mediaplayer").setup({
+	function showVideo(mp4Name, containerid, autostart, width, height) {
+	    containerid = (typeof containerid === "undefined") ? "mediaplayer" : containerid;
+	    autostart = (typeof autostart === "undefined") ? "true" : autostart;
+	    width = (typeof width === "undefined") ? "800" : width;
+	    height = (typeof height === "undefined") ? "480" : height;
+		jwplayer(containerid).setup({
 		    playlist: [{
 		        sources: [{
 		            file: "rtmp://stream.entegration.net/vod/mp4:" + encodeURIComponent(mp4Name) + ".mp4",
@@ -277,9 +314,9 @@ $(document).ready(function(){
 		            file: "http://stream.entegration.net/vod/mp4:" + encodeURIComponent(mp4Name) + ".mp4",
 		        }]
 		    }],
-		    width: '800',
-		    height: '480',
-		    autostart : 'true',
+		    width: width,
+		    height: height,
+		    autostart : autostart,
 		    primary : 'flash',
 		    flashplayer : '/js/jwplayer/jwplayer.flash.swf'
 		});
@@ -294,6 +331,10 @@ $(document).ready(function(){
 
     $('.staticvideo').each(function(){
        showVideo($(this).attr('id')); 
+    });
+    
+    $('.raVideo').each(function() {
+       showVideo($(this).attr('id'), $(this).attr('id'), 'false', '600', '300'); 
     });
 
 	// Policies and Procedures Video
@@ -470,6 +511,25 @@ $(document).ready(function(){
 	$('.checkall').on('click', function () {
         $(this).closest('fieldset').find(':checkbox').prop('checked', this.checked);
     });	
+    
+    $('#RiskAssessmentTakeRiskAssessmentForm, #RiskAssessmentEditForm').find('select').each(function(){
+        $(this).on('change', function(){
+            var $tab_parent = $(this).parent().parent();
+            var selected = $(this).val();
+            if (selected != '') {
+                $(this).next().attr('src', '/img/yes.png');
+                var tab_done = true;
+                $tab_parent.find('select').each(function(){
+                    tab_done = tab_done && ($(this).val() != '');
+                });
+                if (tab_done) {
+                    //console.log('tab is done');
+                }
+            } else {
+                $(this).next().attr('src', '/img/no.png');
+            }
+        }); 
+    });
 	
 });
 
