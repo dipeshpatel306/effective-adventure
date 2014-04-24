@@ -22,7 +22,7 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $serverRoomAccess['Serv
 			<?php echo $this->Time->format('m/d/y', $serverRoomAccess['ServerRoomAccess']['date']) . ' ' . $this->Time->format('g:i a', $serverRoomAccess['ServerRoomAccess']['time']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Person Accessing Server Roon'); ?></dt>
+		<dt><?php echo __('Person Accessing Server Room'); ?></dt>
 		<dd>
 			<?php echo ($serverRoomAccess['ServerRoomAccess']['person']); ?>
 			&nbsp;

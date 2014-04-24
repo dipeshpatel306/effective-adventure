@@ -359,11 +359,11 @@ class UsersController extends AppController {
             $this->set(compact('users'));
 
         } elseif ($group == Group::MANAGER){ // If Manager display only users from that client
-            $this->paginate = array(
+            $this->Paginator->settings = array(
                 'conditions' => array('User.client_id' => $client),
                 'order' => array('User.username' => 'ASC')
             );
-            $this->set('users', $this->paginate());
+            $this->set('users', $this->Paginator->paginate('User'));
         } else { // Else Banned!
             $this->Session->setFlash('You are not authorized to view that!');
             $this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
