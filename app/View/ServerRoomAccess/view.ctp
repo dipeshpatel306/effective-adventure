@@ -65,14 +65,9 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $serverRoomAccess['Serv
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-
 		<li><?php echo $this->Html->link(__('List Server Room Access'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Server Room Access'), array('action' => 'add')); ?> </li>
-
 		<li><?php echo $this->Html->link(__('Edit Server Room Access'), array('action' => 'edit', $serverRoomAccess['ServerRoomAccess']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Server Room Access'), array('action' => 'delete', $serverRoomAccess['ServerRoomAccess']['id']), null, __('Are you sure you want to delete # %s?', $serverRoomAccess['ServerRoomAccess']['id'])); ?> </li>
-
-
-
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete Server Room Access', 'name' => 'Server Room Access', 'id' => $serverRoomAccess['ServerRoomAccess']['id'])); ?></li>
 	</ul>
 </div>

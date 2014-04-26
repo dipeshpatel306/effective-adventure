@@ -56,7 +56,7 @@ $this->Html->addCrumb('Other Policies & Procedures');
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id'])); ?>
 			<?php if($group == Group::ADMIN || $group == GROUP::MANAGER) {
 			    echo $this->Html->link(__('Edit'), array('action' => 'edit', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id']));
-                echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id']), null, __('Are you sure you want to delete # %s?', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id']));
+                echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Other Policy & Procedure', 'id' => $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id']));
 			} ?>
 		</td>
 	</tr>

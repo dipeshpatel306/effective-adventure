@@ -63,8 +63,7 @@ $reason = array('' => '', 'Referral from another provider' => 'Referral from ano
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('List ePHI Received'), array('action' => 'index')); ?></li>
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('EphiReceived.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('EphiReceived.id'))); ?></li>
+        <li><?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'ePHI Received', 'id' => $this->Form->value('EphiReceived.id'))); ?></li>
 
 
 	</ul>

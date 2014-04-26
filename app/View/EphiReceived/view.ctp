@@ -94,7 +94,7 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiReceived['EphiRece
 		<li><?php echo $this->Html->link(__('New ePHI Received'), array('action' => 'add')); ?> </li>
 
 		<li><?php echo $this->Html->link(__('Edit ePHI Received'), array('action' => 'edit', $ephiReceived['EphiReceived']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete ePHI Received'), array('action' => 'delete', $ephiReceived['EphiReceived']['id']), null, __('Are you sure you want to delete # %s?', $ephiReceived['EphiReceived']['id'])); ?> </li>
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete ePHI Received', 'name' => 'ePHI Received', 'id' => $ephiReceived['EphiReceived']['id'])); ?></li>
 
 
 	</ul>

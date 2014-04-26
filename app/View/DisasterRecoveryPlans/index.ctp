@@ -66,7 +66,7 @@ $this->Html->addCrumb('Disaster Recovery Plans');
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $disasterRecoveryPlan['DisasterRecoveryPlan']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $disasterRecoveryPlan['DisasterRecoveryPlan']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $disasterRecoveryPlan['DisasterRecoveryPlan']['id']), null, __('Are you sure you want to delete # %s?', $disasterRecoveryPlan['DisasterRecoveryPlan']['id'])); ?>
+			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Disaster Recovery Plan', 'id' => $disasterRecoveryPlan['DisasterRecoveryPlan']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

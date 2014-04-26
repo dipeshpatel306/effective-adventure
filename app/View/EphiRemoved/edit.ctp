@@ -63,7 +63,7 @@ $reason = array('' => '', 'Work form home' => 'Work from home', 'Transfer to ano
 	<ul>
 
 		<li><?php echo $this->Html->link(__('List ePHI Removed'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('EphiRemoved.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('EphiRemoved.id'))); ?></li>
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'ePHI Removed', 'id' => $this->Form->value('EphiRemoved.id'))); ?></li>
 
 	</ul>
 </div>

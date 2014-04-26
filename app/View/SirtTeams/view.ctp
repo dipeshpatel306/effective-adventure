@@ -68,7 +68,7 @@ $this->Html->addCrumb($sirtTeam['SirtTeam']['company_name']);
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('Edit Sirt Team'), array('action' => 'edit', $sirtTeam['SirtTeam']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Sirt Team'), array('action' => 'delete', $sirtTeam['SirtTeam']['id']), null, __('Are you sure you want to delete # %s?', $sirtTeam['SirtTeam']['id'])); ?> </li>
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete Sirt Team', 'name' => 'SIRT Team', 'id' => $sirtTeam['SirtTeam']['id'])); ?></li>
 		<li><?php echo $this->Html->link(__('List Sirt Teams'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Sirt Team'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
@@ -107,7 +107,7 @@ $this->Html->addCrumb($sirtTeam['SirtTeam']['company_name']);
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'sirt_members', 'action' => 'view', $sirtMember['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'sirt_members', 'action' => 'edit', $sirtMember['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'sirt_members', 'action' => 'delete', $sirtMember['id']), null, __('Are you sure you want to delete # %s?', $sirtMember['id'])); ?>
+				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'SIRT Member', 'id' => $sirtMember['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>

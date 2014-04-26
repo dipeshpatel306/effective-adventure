@@ -83,7 +83,7 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiRemoved['EphiRemov
 		<li><?php echo $this->Html->link(__('List ePHI Removed'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New ePHI Removed'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('Edit ePHI Removed'), array('action' => 'edit', $ephiRemoved['EphiRemoved']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete ePHI Removed'), array('action' => 'delete', $ephiRemoved['EphiRemoved']['id']), null, __('Are you sure you want to delete # %s?', $ephiRemoved['EphiRemoved']['id'])); ?> </li>
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete ePHI Removed', 'name' => 'ePHI Removed', 'id' => $ephiRemoved['EphiRemoved']['id'])); ?></li>
 
 	</ul>
 </div>

@@ -68,7 +68,7 @@ $this->Html->addCrumb($riskAssessmentDocument['RiskAssessmentDocument']['name'])
 		<?php if($group == 1 || $group == 2): ?>
 		<li><?php echo $this->Html->link(__('New Risk Assessment Document'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('Edit Risk Assessment Document'), array('action' => 'edit', $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Risk Assessment Document'), array('action' => 'delete', $riskAssessmentDocument['RiskAssessmentDocument']['id']), null, __('Are you sure you want to delete # %s?', $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?> </li>
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete Risk Assessment Document', 'name' => 'Risk Assessment Document', 'id' => $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?></li>
 
 		<?php endif; ?>
 

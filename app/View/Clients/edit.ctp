@@ -29,7 +29,7 @@ $risk = array('' => '', 'Completed' => 'Completed');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('List Clients'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Form->postLink(__('Delete Client'), array('action' => 'delete', $this->Form->value('Client.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Client.id'))); ?></li>
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete Client', 'name' => 'Client', 'id' => $this->Form->value('Client.id'))); ?></li>
 	</ul>
 	<ul>
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>

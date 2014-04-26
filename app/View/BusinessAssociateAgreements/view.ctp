@@ -114,8 +114,7 @@ $this->Html->addCrumb($businessAssociateAgreement['BusinessAssociateAgreement'][
 		<?php if($group == 1 || $group == 2): ?>
 		<li><?php echo $this->Html->link(__('New Business Associate Agreement'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('Edit Business Associate Agreement'), array('action' => 'edit', $businessAssociateAgreement['BusinessAssociateAgreement']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Business Associate Agreement'), array('action' => 'delete', $businessAssociateAgreement['BusinessAssociateAgreement']['id']), null, __('Are you sure you want to delete # %s?', $businessAssociateAgreement['BusinessAssociateAgreement']['id'])); ?> </li>
-
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete Business Associate Agreement', 'name' => 'Business Associate Agreement', 'id' => $businessAssociateAgreement['BusinessAssociateAgreement']['id'])); ?></li>
 		<?php endif; ?>
 	</ul>
 </div>

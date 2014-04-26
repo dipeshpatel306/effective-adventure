@@ -47,7 +47,7 @@ $this->Html->addCrumb($sirtMember['SirtMember']['company']);
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('Edit Sirt Member'), array('action' => 'edit', $sirtMember['SirtMember']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Sirt Member'), array('action' => 'delete', $sirtMember['SirtMember']['id']), null, __('Are you sure you want to delete # %s?', $sirtMember['SirtMember']['id'])); ?> </li>
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete SIRT Member', 'name' => 'SIRT Member', 'id' => $sirtMember['SirtMember']['id'])); ?></li>
 		<li><?php echo $this->Html->link(__('List Sirt Members'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Sirt Member'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Sirt Teams'), array('controller' => 'sirt_teams', 'action' => 'index')); ?> </li>

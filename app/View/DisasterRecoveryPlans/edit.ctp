@@ -39,7 +39,7 @@ $this->Html->addCrumb('Edit Disaster Recovery Plan');
 
 		<li><?php echo $this->Html->link(__('List Disaster Recovery Plans'), array('action' => 'index')); ?></li>
 		<?php if($group == 1 || $group == 2): ?>
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('DisasterRecoveryPlan.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('DisasterRecoveryPlan.id'))); ?></li>
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Disaster Recovery Plan', 'id' => $this->Form->value('DisasterRecoveryPlan.id'))); ?></li>
 		<?php endif; ?>
 
 	</ul>

@@ -203,7 +203,7 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $securityIncident['Secu
 
 		<li><?php echo $this->Html->link(__('New Security Incident'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('Edit Security Incident'), array('action' => 'edit', $securityIncident['SecurityIncident']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Security Incident'), array('action' => 'delete', $securityIncident['SecurityIncident']['id']), null, __('Are you sure you want to delete # %s?', $securityIncident['SecurityIncident']['id'])); ?> </li>
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete Security Incident', 'name' => 'Security Incident', 'id' => $securityIncident['SecurityIncident']['id'])); ?></li>
 
 
 	</ul>

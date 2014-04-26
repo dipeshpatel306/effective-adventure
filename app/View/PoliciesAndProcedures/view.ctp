@@ -82,7 +82,7 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 				<!--<?php echo $this->Html->link('View', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document']); ?>-->
 				
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'policies_and_procedures_documents', 'action' => 'edit',$policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'policies_and_procedures_documents', 'action' => 'delete', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id']), null, __('Are you sure you want to delete # %s?',  $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id'])); ?>
+				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Policy & Procedure Document', 'id' => $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id'])); ?>
 			</td>
 		<?php endif ?>
 		</tr>
@@ -113,7 +113,7 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 		<?php if($group == 1): ?>
 		<!--<li><?php echo $this->Html->link(__('New Policies and Procedures'), array('action' => 'add')); ?> </li>-->
 		<li><?php echo $this->Html->link(__('Edit Policies And Procedures'), array('action' => 'edit', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Policies And Procedure'), array('action' => 'delete', $policiesAndProcedure['PoliciesAndProcedure']['id']), null, __('Are you sure you want to delete # %s?', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?> </li>
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete Policy & Procedure', 'name' => 'Policy & Procedure', 'id' => $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?></li>
 		<?php endif; ?>
 	</ul>
 	

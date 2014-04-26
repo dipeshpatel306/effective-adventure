@@ -58,7 +58,7 @@ $this->Html->addCrumb('Other Contracts & Documents');
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $otherContractsAndDocument['OtherContractsAndDocument']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $otherContractsAndDocument['OtherContractsAndDocument']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $otherContractsAndDocument['OtherContractsAndDocument']['id']), null, __('Are you sure you want to delete # %s?', $otherContractsAndDocument['OtherContractsAndDocument']['id'])); ?>
+			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Other Contract & Document', 'id' => $otherContractsAndDocument['OtherContractsAndDocument']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

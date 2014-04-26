@@ -64,7 +64,7 @@ $this->Html->addCrumb('Users');
 				echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id']));
 			}
 			?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['id']), null, __('Are you sure you want to delete # %s?', $user['User']['id'])); ?>
+			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'User', 'id' => $user['User']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

@@ -41,7 +41,7 @@ $this->Html->addCrumb('Edit Other Policy & Procedure');
 		<li><?php echo $this->Html->link(__('List Other Policies And Procedures'), array('action' => 'index')); ?></li>
 
 		<?php if($group == 1 || $group == 2): ?>
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('OtherPoliciesAndProcedure.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('OtherPoliciesAndProcedure.id'))); ?></li>
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Other Policy & Procedure', 'id' => $this->Form->value('OtherPoliciesAndProcedure.id'))); ?></li>
 		<?php endif; ?>
 
 	</ul>

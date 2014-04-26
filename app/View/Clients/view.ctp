@@ -123,7 +123,7 @@ $clientId = $client['Client']['id'];
 		<li><?php echo $this->Html->link(__('List Clients'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Client'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('Edit Client'), array('action' => 'edit', $client['Client']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Client'), array('action' => 'delete', $client['Client']['id']), null, __('Are you sure you want to delete # %s?', $client['Client']['id'])); ?> </li>
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete Client', 'name' => 'Client', 'id' => $client['Client']['id'])); ?></li>
 	</ul>
 	<ul>
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
@@ -168,7 +168,7 @@ $clientId = $client['Client']['id'];
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'users', 'action' => 'admin_edit', $user['User']['id'], $clientId)); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'users', 'action' => 'delete', $user['User']['id']), null, __('Are you sure you want to delete # %s?', $user['User']['id'])); ?>
+				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'User', 'id' => $user['User']['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -238,7 +238,7 @@ $clientId = $client['Client']['id'];
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'policies_and_procedures_documents', 'action' => 'view', $id)); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'policies_and_procedures_documents', 'action' => 'edit', $id, $clientId)); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'policies_and_procedures_documents', 'action' => 'delete', $id), null, __('Are you sure you want to delete # %s?', $id)); ?>
+				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Policy & Procedure Document', 'id' => $id)); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -348,7 +348,7 @@ $clientId = $client['Client']['id'];
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'other_policies_and_procedures', 'action' => 'view', $opnp['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'other_policies_and_procedures', 'action' => 'edit', $opnp['id'], $clientId)); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'other_policies_and_procedures', 'action' => 'delete', $opnp['id']), null, __('Are you sure you want to delete # %s?', $opnp['id'])); ?>
+				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Other Policy & Procedure', 'id' => $opnp['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -402,7 +402,7 @@ $clientId = $client['Client']['id'];
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'risk_assessment_documents', 'action' => 'view', $rad['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'risk_assessment_documents', 'action' => 'edit', $rad['id'], $clientId)); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'risk_assessment_documents', 'action' => 'delete', $rad['id']), null, __('Are you sure you want to delete # %s?', $rad['id'])); ?>
+				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Risk Assessment Document', 'id' => $rad['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -458,7 +458,7 @@ $clientId = $client['Client']['id'];
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'business_associate_agreements', 'action' => 'view', $boa['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'business_associate_agreements', 'action' => 'edit', $boa['id'], $clientId)); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'business_associate_agreements', 'action' => 'delete', $boa['id']), null, __('Are you sure you want to delete # %s?', $boa['id'])); ?>
+				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Business Associate Agreement', 'id' => $boa['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -512,7 +512,7 @@ $clientId = $client['Client']['id'];
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'disaster_recovery_plans', 'action' => 'view', $drp['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'disaster_recovery_plans', 'action' => 'edit', $drp['id'], $clientId)); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'disaster_recovery_plans', 'action' => 'delete', $drp['id']), null, __('Are you sure you want to delete # %s?', $drp['id'])); ?>
+				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Disaster Recovery Plan', 'id' => $drp['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -565,7 +565,7 @@ $clientId = $client['Client']['id'];
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'OtherContractsAndDocuments', 'action' => 'view', $ocad['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'OtherContractsAndDocuments', 'action' => 'edit', $ocad['id'], $clientId)); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'OtherContractsAndDocuments', 'action' => 'delete', $ocad['id']), null, __('Are you sure you want to delete # %s?', $ocad['id'])); ?>
+				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Other Contract & Document', 'id' => $ocad['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -604,7 +604,7 @@ $clientId = $client['Client']['id'];
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'SecurityIncidents', 'action' => 'view', $si['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'SecurityIncidents', 'action' => 'edit', $si['id'], $clientId)); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'SecurityIncidents', 'action' => 'delete', $si['id']), null, __('Are you sure you want to delete # %s?', $si['id'])); ?>
+				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Security Incident', 'id' => $si['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -644,7 +644,7 @@ $clientId = $client['Client']['id'];
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'ServerRoomAccess', 'action' => 'view', $sra['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'ServerRoomAccess', 'action' => 'edit', $sra['id'], $clientId)); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'ServerRoomAccess', 'action' => 'delete', $sra['id']), null, __('Are you sure you want to delete # %s?', $sra['id'])); ?>
+				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Server Room Access', 'id' => $sra['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -682,7 +682,7 @@ $clientId = $client['Client']['id'];
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'EphiRemoved', 'action' => 'view', $erm['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'EphiRemoved', 'action' => 'edit', $erm['id'], $clientId)); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'EphiRemoved', 'action' => 'delete', $erm['id']), null, __('Are you sure you want to delete # %s?', $erm['id'])); ?>
+				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'ePHI Removed', 'id' => $erm['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -721,7 +721,7 @@ $clientId = $client['Client']['id'];
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'EphiReceived', 'action' => 'view', $erc['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'EphiReceived', 'action' => 'edit', $erc['id'], $clientId)); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'EphiReceived', 'action' => 'delete', $erc['id']), null, __('Are you sure you want to delete # %s?', $erc['id'])); ?>
+				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'ePHI Received', 'id' => $erc['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>

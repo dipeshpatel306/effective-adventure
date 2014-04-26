@@ -31,8 +31,7 @@ $this->Html->addCrumb('Edit SIRT Team');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('SirtTeam.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('SirtTeam.id'))); ?></li>
+        <li><?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'SIRT Team', 'id' => $this->Form->value('SirtTeam.id'))); ?></li>
 		<li><?php echo $this->Html->link(__('List Sirt Teams'), array('action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link(__('List Clients'), array('controller' => 'clients', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Client'), array('controller' => 'clients', 'action' => 'add')); ?> </li>

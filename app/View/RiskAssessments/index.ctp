@@ -121,7 +121,7 @@ $this->Html->addCrumb('Risk Assessments');
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $riskAssessment['RiskAssessment']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $riskAssessment['RiskAssessment']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $riskAssessment['RiskAssessment']['id']), null, __('Are you sure you want to delete # %s?', $riskAssessment['RiskAssessment']['id'])); ?>
+			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Risk Assessment', 'id' => $riskAssessment['RiskAssessment']['id'])); ?>
 		    <?php echo $this->Html->link(__('Export'), array('action' => 'view', $riskAssessment['RiskAssessment']['id'], 'ext' => 'csv')); ?>
 		</td>
 	</tr>

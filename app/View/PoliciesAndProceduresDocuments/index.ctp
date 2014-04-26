@@ -49,7 +49,7 @@ $this->Html->addCrumb('Policies & Procedures Documents');
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id']), null, __('Are you sure you want to delete # %s?', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id'])); ?>
+			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Document', 'id' => $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

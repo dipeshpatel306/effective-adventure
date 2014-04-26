@@ -45,7 +45,7 @@ $this->Html->addCrumb('Server Room Access');
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $serverRoomAccess['ServerRoomAccess']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $serverRoomAccess['ServerRoomAccess']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $serverRoomAccess['ServerRoomAccess']['id']), null, __('Are you sure you want to delete # %s?', $serverRoomAccess['ServerRoomAccess']['id'])); ?>
+			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Server Room Access', 'id' => $serverRoomAccess['ServerRoomAccess']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

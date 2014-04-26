@@ -42,7 +42,7 @@ $this->Html->addCrumb('ePHI Removed');
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $ephiRemoved['EphiRemoved']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $ephiRemoved['EphiRemoved']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $ephiRemoved['EphiRemoved']['id']), null, __('Are you sure you want to delete # %s?', $ephiRemoved['EphiRemoved']['id'])); ?>
+			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'ePHI Removed', 'id' => $ephiRemoved['EphiRemoved']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

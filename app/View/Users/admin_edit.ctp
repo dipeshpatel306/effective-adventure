@@ -52,7 +52,7 @@ $client = $this->Session->read('Auth.User.client_id');  // Test Client.  If admi
 	<ul>
 		<?php if($group == 1 || $group == 2): ?>
 		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('User.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('User.id'))); ?></li>
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'User', 'id' => $this->Form->value('User.id'))); ?></li>
 
 		<?php endif; ?>
 

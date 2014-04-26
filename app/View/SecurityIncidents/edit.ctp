@@ -230,11 +230,6 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('List Security Incidents'), array('action' => 'index')); ?></li>
-
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('SecurityIncident.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('SecurityIncident.id'))); ?></li>
-
-
-
+        <li><?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Security Incident', 'id' => $this->Form->value('SecurityIncident.id'))); ?></li>
 	</ul>
 </div>

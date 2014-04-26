@@ -96,7 +96,7 @@ if($user['User']['active']){
 
 		<?php if($group == Group::ADMIN || $group == Group::MANAGER): ?>
 		<li><?php echo $this->Html->link(__('Edit User'), array('action' => 'edit', $user['User']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete User'), array('action' => 'delete', $user['User']['id']), null, __('Are you sure you want to delete # %s?', $user['User']['id'])); ?> </li>
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete User', 'name' => 'User', 'id' => $user['User']['id'])); ?></li>
 
 		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?> </li>
 		<?php endif; ?>				

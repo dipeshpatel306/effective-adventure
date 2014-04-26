@@ -38,7 +38,7 @@ $this->Html->addCrumb('Edit Other Contract & Document');
 	<ul>
 		<li><?php echo $this->Html->link(__('List Other Contracts And Documents'), array('action' => 'index')); ?></li>
 		<?php if($group == 1 || $group == 2): ?>
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('OtherContractsAndDocument.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('OtherContractsAndDocument.id'))); ?></li>
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Other Contract & Document', 'id' => $this->Form->value('OtherContractsAndDocument.id'))); ?></li>
 
 		<?php endif; ?>
 

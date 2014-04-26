@@ -64,7 +64,7 @@ $this->Html->addCrumb('Business Associate Agreements');
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $businessAssociateAgreement['BusinessAssociateAgreement']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $businessAssociateAgreement['BusinessAssociateAgreement']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $businessAssociateAgreement['BusinessAssociateAgreement']['id']), null, __('Are you sure you want to delete # %s?', $businessAssociateAgreement['BusinessAssociateAgreement']['id'])); ?>
+			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Business Associate Agreement', 'id' => $businessAssociateAgreement['BusinessAssociateAgreement']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

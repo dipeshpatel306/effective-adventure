@@ -50,7 +50,7 @@ $this->Html->addCrumb('Risk Assessment Documents');
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $riskAssessmentDocument['RiskAssessmentDocument']['id']), null, __('Are you sure you want to delete # %s?', $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?>
+			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Risk Assessment Document', 'id' => $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

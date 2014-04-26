@@ -83,7 +83,7 @@ $this->Html->addCrumb($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['n
 		<?php if($group == 1 || $group == 2): ?>
 		<li><?php echo $this->Html->link(__('New Other Policies And Procedure'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('Edit Other Policies And Procedure'), array('action' => 'edit', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Other Policies And Procedure'), array('action' => 'delete', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id']), null, __('Are you sure you want to delete # %s?', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id'])); ?> </li>
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete Other Policy & Procedure', 'name' => 'Other Policy & Procedure', 'id' => $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id'])); ?></li>
 
 		<?php endif; ?>
 

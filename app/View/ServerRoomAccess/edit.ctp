@@ -57,11 +57,6 @@ $changed = array('' => '', 'Yes' => 'Yes', 'No' => 'No');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('List Server Room Access'), array('action' => 'index')); ?></li>
-
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('ServerRoomAccess.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('ServerRoomAccess.id'))); ?></li>
-
-
-
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Server Room Access', 'id' => $this->Form->value('ServerRoomAccess.id'))); ?></li>
 	</ul>
 </div>

@@ -47,7 +47,7 @@ $this->Html->addCrumb('Security Incidents');
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $securityIncident['SecurityIncident']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $securityIncident['SecurityIncident']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $securityIncident['SecurityIncident']['id']), null, __('Are you sure you want to delete # %s?', $securityIncident['SecurityIncident']['id'])); ?>
+			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Security Incident', 'id' => $securityIncident['SecurityIncident']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
