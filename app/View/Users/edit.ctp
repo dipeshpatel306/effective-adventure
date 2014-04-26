@@ -34,8 +34,8 @@ $client = $this->Session->read('Auth.User.client_id');  // Test Client.  If admi
 			echo $this->Form->input('active', array('options' => $active, 'default' => 1));
 		}
 
-		echo $this->Form->input('email', array('allowEmpty' => true));
-		echo $this->Form->input('email2', array('label' => 'Confirm Email'));
+		//echo $this->Form->input('email', array('allowEmpty' => true));
+		//echo $this->Form->input('email2', array('label' => 'Confirm Email'));
 		echo $this->Form->input('password');
 		echo $this->Form->input('password2', array('label' => 'Verify Password', 'type' => 'password', 'allowEmpty' => true));
 		echo $this->Form->input('first_name');
