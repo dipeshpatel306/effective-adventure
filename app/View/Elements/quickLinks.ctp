@@ -30,15 +30,8 @@
 		<li><?php echo $this->Html->link('Security Incidents', array('controller' => 'security_incidents', 'action' => 'index'));?></li>
 	<?php endif; ?>
 	
-	<?php if($acct == 'Training' && $group == 2): ?>
-	    <li><?php echo $this->Html->link('Business Associate Agreements', array('controller' => 'business_associate_agreements', 'action' => 'index')); ?></li>
+	<?php if($acct == 'Training'): ?>
         <li><?php echo $this->Html->link('HIPAA Security Training', array('controller' => 'education_center', 'action' => 'training')); ?></li>
-        <li><?php echo $this->Html->link('Security Incidents', array('controller' => 'security_incidents', 'action' => 'index'));?></li>
-	<?php endif; ?>
-	
-	<?php if($acct == 'Training' && $group == 3): ?>
-        <li><?php echo $this->Html->link('HIPAA Security Training', array('controller' => 'education_center', 'action' => 'training')); ?></li>
-        <li><?php echo $this->Html->link('Security Incidents', array('controller' => 'security_incidents', 'action' => 'index'));?></li>
 	<?php endif; ?>
 
 	<?php if($acct == 'Meaningful Use' && $group == 3): ?>

@@ -121,6 +121,21 @@ $this->Html->addCrumb('Contracts & Documents');
 					array('escape' => false)
 			);			
 			
+		} else if ($acct == 'Training') {
+		    echo $this->Html->link( 
+                    '<div class="dashBox">' . 
+                    '<div class="dashHead">' .
+                    $this->Html->image('ba_tile.jpg', array(
+                                'class' => 'dashTile', 
+                                'alt' => 'HIPAA Business Associate Agreements'
+                                )) .
+                    '<h3>Business Associate Agreements</h3>' .
+                    '</div>' .
+                    '<div class="dashSum">Business Associate Agreements</div>' . $banned .
+                    '</div>',
+                    array('controller' => 'business_associate_agreements', 'action' => 'index'),
+                    array('escape' => false)
+            );
 		} else {
 			echo $this->Html->link( 
 					'<div class="dashBox">' . 

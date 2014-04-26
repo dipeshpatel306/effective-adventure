@@ -54,7 +54,23 @@ $this->Html->addCrumb('Track & Document');
 	<?php 
 	
 		// Security Incidents. Everyone sees
-		echo $this->Html->link( 
+		if ($acct == 'Training') {
+		    echo $this->Html->link( 
+                    '<div class="dashBox">' . 
+                    '<div class="dashHead">' .
+                    $this->Html->image('si_tile.png', array(
+                                'class' => 'dashTile', 
+                                'alt' => 'HIPAA Security Incidents'
+                                )) .
+                    '<h3>Security Incidents</h3>' .
+                    '</div>' .
+                    '<div class="dashSum">Security Incidents</div>' . $banned .
+                    '</div>',
+                    array('controller' => 'security_incidents', 'action' => 'index'),
+                    array('escape' => false)
+            );
+		} else {
+		  echo $this->Html->link( 
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
 					$this->Html->image('si_tile.png', array(
@@ -68,7 +84,8 @@ $this->Html->addCrumb('Track & Document');
 					array('controller' => 'security_incidents', 'action' => 'index'),
 					array('escape' => false)
 			);
-			
+		}
+        
 		// Server Room Access. Only Managers see everything. User is noauth. MU is banned
 		
 		if($acct == 'Meaningful Use' || $acct == 'Training'){
