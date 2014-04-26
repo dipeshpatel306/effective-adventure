@@ -1,4 +1,3 @@
-<h3>Question <?php echo $question["category_question_number"]; ?> of <?php echo $num_category_questions; ?><br /><?php echo $question['question']; ?></h3>
 <?php 
 $options = array('Yes' => 'Yes', 'No' => 'No', 'N/A' => 'N/A');
 $qnum = $question['question_number'];
@@ -7,6 +6,7 @@ if (isset($q_video_name) && !empty($q_video_name)) {
     echo "<center><div id='$q_video_name' class='raVideo'></div></center>";
 }
 ?>
+<h3>Question <?php echo $question["category_question_number"]; ?> of <?php echo $num_category_questions; ?><br /><?php echo $question['question']; ?></h3>
 <p><b>Additional Information</b><br /><?php echo $question['additional_information']; ?></p>
 <p><b>How to Answer Question</b><br /><?php echo $question['how_to_answer_question']; ?></p>
 <?php
