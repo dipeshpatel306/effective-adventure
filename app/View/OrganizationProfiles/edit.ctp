@@ -57,16 +57,16 @@ $this->Html->addCrumb('Edit Organization Profile');
         //echo $this->Form->input('organization_name', array('label' => 'Organization Name: ', 'value' => $orgName));
         echo $this->Form->input('administrator_name', array('label' => "Organization's Administrator Name: "));
         echo $this->Form->input('administrator_email', array('label' =>"Organization's Adminstrator Email: "));
-        echo $this->Form->input('administrator_phone', array('type' => 'tel', 'label' =>"Administrator Phone (Primary Contact): "));
-        echo $this->Form->input('administrator_phone_ext', array('label' =>"Ext."));
-        echo $this->Form->input('administrator_phone_alt', array('type' => 'tel', 'label' =>"Administrator Phone (Alternative): "));
-        echo $this->Form->input('administrator_phone_alt_ext', array('label' =>"Ext."));
+        echo $this->Form->input('administrator_phone', array('type' => 'tel', 'class' => 'tel', 'label' =>"Administrator Phone (Primary Contact): "));
+        echo $this->Form->input('administrator_phone_ext', array('label' =>"Ext.", 'class' => 'num'));
+        echo $this->Form->input('administrator_phone_alt', array('type' => 'tel', 'label' =>"Administrator Phone (Alternative): ", 'class' => 'tel'));
+        echo $this->Form->input('administrator_phone_alt_ext', array('label' =>"Ext.", 'class' => 'num'));
         echo $this->Form->input('address_1', array('label' => 'Address 1: '));
         echo $this->Form->input('address_2', array('label' => 'Address 2: '));
         echo $this->Form->input('city', array('label' => 'City: '));
         echo $this->Form->input('state', array('label' => 'State: ', 'options' => $states, 'empty' => 'Please Select One'));
-        echo $this->Form->input('zip', array('label' => 'Zip: '));
-        echo $this->Form->input('number_employees', array('label' =>'How many employees(total in the Organization?):'));
+        echo $this->Form->input('zip', array('label' => 'Zip: ', 'class' => 'num'));
+        echo $this->Form->input('number_employees', array('label' =>'How many employees(total in the Organization?):', 'class' => 'num', 'min' => '1'));
         echo $this->Form->input('mu_incentive_program', array('label' => 'If you are a HIPAA Covered Entity are you participating in the Meaningful Use Incentive Program?', 
                                                               'options' => array('' => '', 'Yes' => 'Yes', 'No' => 'No', )));
         echo $this->Form->input('second_location', array('label' =>'Do you have a second location?', 'type' => 'checkbox', 'value' => 'Yes', 'hiddenField' => 'No', 'class' => 'orgCheck2'));
@@ -80,7 +80,7 @@ $this->Html->addCrumb('Edit Organization Profile');
         echo $this->Form->input('second_address_2', array('label' => 'Address 2: '));
         echo $this->Form->input('second_city', array('label' => 'City: '));
         echo $this->Form->input('second_state', array('label' => 'State: ', 'options' => $states, 'empty' => 'Please Select One'));
-        echo $this->Form->input('second_zip', array('label' => 'Zip: '));
+        echo $this->Form->input('second_zip', array('label' => 'Zip: ', 'class' => 'num'));
         echo $this->Form->input('third_location', array('label' =>'Do you have a third location?', 'type' => 'checkbox', 'value' => 'Yes', 'hiddenField' => 'No', 'class' => 'orgCheck3'));
         ?>
     </div>
@@ -93,7 +93,7 @@ $this->Html->addCrumb('Edit Organization Profile');
         echo $this->Form->input('third_address_2', array('label' => 'Address 2: '));
         echo $this->Form->input('third_city', array('label' => 'City: '));
         echo $this->Form->input('third_state', array('label' => 'State: ', 'options' => $states, 'empty' => 'Please Select One'));
-        echo $this->Form->input('third_zip', array('label' => 'Zip: '));
+        echo $this->Form->input('third_zip', array('label' => 'Zip: ', 'class' => 'num'));
         echo $this->Form->input('fourth_location', array('label' =>'Do you have a fourth location?', 'type' => 'checkbox', 'value' => 'Yes', 'hiddenField' => 'No', 'class' => 'orgCheck4'));
         ?>
     </div>
@@ -105,7 +105,7 @@ $this->Html->addCrumb('Edit Organization Profile');
         echo $this->Form->input('fourth_address_2', array('label' => 'Address 2: '));
         echo $this->Form->input('fourth_city', array('label' => 'City: '));
         echo $this->Form->input('fourth_state', array('label' => 'State: ', 'options' => $states, 'empty' => 'Please Select One'));
-        echo $this->Form->input('fourth_zip', array('label' => 'Zip: '));
+        echo $this->Form->input('fourth_zip', array('label' => 'Zip: ', 'class' => 'num'));
         echo $this->Form->input('fifth_location', array('label' =>'Do you have a fifth location?', 'type' => 'checkbox', 'value' => 'Yes', 'hiddenField' => 'No', 'class' => 'orgCheck5'));
         ?>
     </div>
@@ -117,19 +117,19 @@ $this->Html->addCrumb('Edit Organization Profile');
         echo $this->Form->input('fifth_address_2', array('label' => 'Address 2: '));
         echo $this->Form->input('fifth_city', array('label' => 'City: '));
         echo $this->Form->input('fifth_state', array('label' => 'State: ', 'options' => $states, 'empty' => 'Please Select One'));
-        echo $this->Form->input('fifth_zip', array('label' => 'Zip: '));
+        echo $this->Form->input('fifth_zip', array('label' => 'Zip: ', 'class' => 'num'));
         ?>
     </div>
     </div>
     <div id='tab2' class='tabBox'>
     <?php
-        echo $this->Form->input('number_of_servers', array('label' =>'How many servers do you have?'));
+        echo $this->Form->input('number_of_servers', array('label' =>'How many servers do you have?', 'class' => 'num', 'min' => '0'));
         echo $this->Form->input('phi_on_servers', array('label' => 'Do you have patient information on any servers?', 'options' => $choice));
         echo $this->Form->input('network_operating_system', array('label' =>'What is the network operating system?', 'options' => $os, 'empty' => 'Please Select One'));
         echo $this->Form->input('network_details', array('label' =>'Please provide details of your network: '));
-        echo $this->Form->input('number_workstations', array('label' =>'How many workstations(desktops) do you have?'));
+        echo $this->Form->input('number_workstations', array('label' =>'How many workstations(desktops) do you have?', 'class' => 'num', 'min' => '0'));
         echo $this->Form->input('phi_on_workstations', array('label' => 'Do you have patient information on any workstations?', 'options' => $choice));
-        echo $this->Form->input('number_laptops', array('label' =>'How many laptops do you have?'));
+        echo $this->Form->input('number_laptops', array('label' =>'How many laptops do you have?', 'class' => 'num', 'min' => '0'));
         echo $this->Form->input('phi_on_laptops', array('label' => 'Do you have patient information on any laptops?', 'options' => $choice));
         echo $this->Form->label(null, 'Please check any operating systems your workstations and laptops are running: ');
         echo $this->Form->input('os_win8', array('label' => 'Windows 8', 'div' => 'input checkbox inlinebox'));

@@ -544,7 +544,9 @@ img.homeIcon:hover{
     z-index: 10001;
     display: none;
     position: fixed;
+    top: 50%; 
     left: 50%;
+    margin-top: -292px;
     margin-left: -410px;
     width: 820px;
     height: 585px;
@@ -826,5 +828,21 @@ a.nexttab {
 a.nexttab:hover {
     background: #5BA150;
     cursor: default;
+}
+input[type='tel'] {
+    width: 175px;
+    length: 12;
+}
+
+input.num {
+    width: 60px !important;
+}
+
+input[type='number'] {
+    width: 60px !important;
+}
+
+input[type='text'] {
+    width: 500px;
 }
 
