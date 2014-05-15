@@ -843,6 +843,21 @@ input[type='number'] {
 }
 
 input[type='text'] {
-    width: 500px;
+    width: 425px;
 }
 
+textarea {
+    width: 700px;
+}
+
+input[type='email'] {
+    width: 425px;
+}
+
+input[type='password'] {
+    width: 425px;
+}
+
+input.datePick {
+    width: 120px !important;
+}

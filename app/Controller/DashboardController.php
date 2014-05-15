@@ -148,7 +148,8 @@ class DashboardController extends AppController {
  */
     public function index() {
         $acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
-        if($acct == 'Initial'){
+        $group = $this->Session->read('Auth.User.group_id');
+        if($acct == 'Initial' && $group != Group::USER){
             $this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
         }
 
@@ -210,10 +211,10 @@ class DashboardController extends AppController {
  * @return void
  */
     public function policies_and_procedures() {
-        $acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
-        if($acct == 'Initial'){
-            $this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
-        }
+        // $acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
+        // if($acct == 'Initial'){
+            // $this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
+        // }
         //$this->Dashboard->recursive = 0;
         //$this->set('dashboard', $this->paginate());
     }
@@ -224,10 +225,10 @@ class DashboardController extends AppController {
  * @return void
  */
     public function contracts_and_documents() {
-        $acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
-        if($acct == 'Initial'){
-            $this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
-        }
+        // $acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
+        // if($acct == 'Initial'){
+            // $this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
+        // }
         //$this->Dashboard->recursive = 0;
         //$this->set('dashboard', $this->paginate());
     }
@@ -237,10 +238,10 @@ class DashboardController extends AppController {
  * @return void
  */
     public function track_and_document() {
-        $acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
-        if($acct == 'Initial'){
-            $this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
-        }
+        // $acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
+        // if($acct == 'Initial'){
+            // $this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
+        // }
         //$this->Dashboard->recursive = 0;
         //$this->set('dashboard', $this->paginate());
     }
@@ -250,10 +251,10 @@ class DashboardController extends AppController {
  * @return void
  */
     public function social_center() {
-        $acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
-        if($acct == 'Initial'){
-            $this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
-        }
+        // $acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
+        // if($acct == 'Initial'){
+            // $this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
+        // }
         //$this->Dashboard->recursive = 0;
         //$this->set('dashboard', $this->paginate());
     }
@@ -263,10 +264,10 @@ class DashboardController extends AppController {
  * @return void
  */
     public function education_center() {
-        $acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
-        if($acct == 'Initial'){
-            $this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
-        }
+        // $acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
+        // if($acct == 'Initial'){
+            // $this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
+        // }
         //$this->Dashboard->recursive = 0;
         //$this->set('dashboard', $this->paginate());
     }
@@ -276,10 +277,10 @@ class DashboardController extends AppController {
  * @return void
  */
     public function information_center() {
-        $acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
-        if($acct == 'Initial'){
-            $this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
-        }
+        // $acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
+        // if($acct == 'Initial'){
+            // $this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
+        // }
         //$this->Dashboard->recursive = 0;
         //$this->set('dashboard', $this->paginate());
     }
@@ -289,10 +290,10 @@ class DashboardController extends AppController {
  * @return void
  */
     public function sirp() {
-        $acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
-        if($acct == 'Initial'){
-            $this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
-        }
+        // $acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
+        // if($acct == 'Initial'){
+            // $this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
+        // }
         //$this->Dashboard->recursive = 0;
         //$this->set('dashboard', $this->paginate());
     }

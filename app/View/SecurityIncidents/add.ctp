@@ -58,7 +58,7 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 	<?php
 		echo $this->Form->input('description_of_incident', array('type' => 'text', 'rows' => '5', 'cols' => '50'));
 
-		echo $this->Form->input('number_of_records');
+		echo $this->Form->input('number_of_records', array('min' => '0'));
 		echo $this->Form->input('source', array('options' => $source, 'empty' => 'Please Select'));
 		echo $this->Form->input('cause_of_incident', array('options' => $cause, 'empty' => 'Please Select'));
 	?>

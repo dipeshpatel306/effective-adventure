@@ -119,10 +119,10 @@ $this->Html->addCrumb('Risk Assessments');
 		<td><?php echo ($riskAssessment['RiskAssessment']['question_47']); ?>&nbsp;</td>
 		<td><?php echo ($riskAssessment['RiskAssessment']['question_48']); ?>&nbsp;</td>-->
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $riskAssessment['RiskAssessment']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $riskAssessment['RiskAssessment']['id'])); ?>
+			<?php echo $this->Html->link(__('View/Edit'), array('action' => 'edit', $riskAssessment['RiskAssessment']['id'])); ?>
 			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Risk Assessment', 'id' => $riskAssessment['RiskAssessment']['id'])); ?>
 		    <?php echo $this->Html->link(__('Export'), array('action' => 'view', $riskAssessment['RiskAssessment']['id'], 'ext' => 'csv')); ?>
+		    <?php echo $this->Html->link(__('Print'), array('action' => 'view_print', $riskAssessment['RiskAssessment']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

@@ -62,6 +62,11 @@ $group = $this->Session->read('Auth.User.group_id');
     <h3><?php echo __('Actions'); ?></h3>
     <ul>
         <li><?php echo $this->Html->link(__('List Risk Assessments'), array('action' => 'index')); ?></li>
+        <?php if (isset($riskAssessment)): ?>
+        <li><?php echo $this->element('delete_link', array('title' => 'Delete Risk Assessment', 'name' => 'Risk Assessment', 'id' => $riskAssessment['RiskAssessment']['id'])); ?></li>
+        <li><?php echo $this->Html->link(__('Export Risk Assessment CSV'), array('action' => 'view', $riskAssessment['RiskAssessment']['id'], 'ext' => 'csv')); ?></li>
+        <li><?php echo $this->Html->link(__('Print Risk Assessment'), array('action' => 'view_print', $riskAssessment['RiskAssessment']['id'])); ?></li>
+        <?php endif; ?>
     </ul>
 </div>
 <?php endif; ?>
