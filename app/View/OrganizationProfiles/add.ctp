@@ -38,7 +38,7 @@ $this->Html->addCrumb('Add Organization Profile');
 		<li><a href='#tab3'>EMR/EHR</a></li>
 		<li><a href='#tab4'>Email</a></li>
 		<li><a href='#tab5'>Portable Media</a></li>
-		<li><a href='#tab6'>Backup Tapes</a></li>
+		<li><a href='#tab6'>Backup Media</a></li>
 		<li><a href='#tab7'>SmartPhones</a></li>
 		<li><a href='#tab8'>Additional Systems</a></li>
 		<li><a href='#tab9'>Additional Information</a></li>
@@ -190,8 +190,11 @@ $this->Html->addCrumb('Add Organization Profile');
 
     <div id='tab6' class='tabBox'>
     <?php
-        echo $this->Form->input('back_up_tapes', array('label' => 'Do you utilize backup tapes?', 'options' => $choice, 'empty' => 'Please Select One'));
+        echo $this->Form->input('backup_media', array('label' => 'Do you utilize backup media?', 'options' => $choice, 'empty' => 'Please Select One'));
     ?>
+      <div class="backupMediaDetails hidden">
+          <?php echo $this->Form->input('backup_media_details', array('label' => 'Please provide us with any additional details regarding your Backup Media')) ?>
+      </div>
     </div>
 
     <div id='tab7' class='tabBox'>

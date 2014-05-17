@@ -207,7 +207,7 @@
 			<td><?php echo $organizationProfile['portable_media_devices']; ?></td>
 			<td><?php echo $organizationProfile['tablets']; ?></td>
 			<td><?php echo $organizationProfile['list_portable_devices']; ?></td>
-			<td><?php echo $organizationProfile['back_up_tapes']; ?></td>
+			<td><?php echo $organizationProfile['backup_media']; ?></td>
 			<td><?php echo $organizationProfile['smartphones']; ?></td>
 			<td><?php echo $organizationProfile['list_smartphone_vendors']; ?></td>
 			<td><?php echo $organizationProfile['system_1_name']; ?></td>

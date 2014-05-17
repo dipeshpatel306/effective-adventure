@@ -346,7 +346,7 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 		</p>
 		<h4 class='highlight'><?php echo __('Do you utilize backup tapes?'); ?></h4>
 		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['back_up_tapes']); ?>
+			<?php echo ($organizationProfile['OrganizationProfile']['backup_media']); ?>
 			&nbsp;
 		</p>
 		<h4 class='highlight'><?php echo __('Do you utilize smartphones?'); ?></h4>

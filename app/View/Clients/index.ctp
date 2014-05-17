@@ -6,7 +6,6 @@ $this->Html->addCrumb('Clients');
 	<table>
 	<tr>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('email'); ?></th>
 			<th><?php echo $this->Paginator->sort('account_type'); ?></th>
 
 			<th><?php echo $this->Paginator->sort('admin_account', 'Admin Code'); ?></th>
@@ -24,7 +23,6 @@ $this->Html->addCrumb('Clients');
 	foreach ($clients as $client): ?>
 	<tr>
 		<td><?php echo ($client['Client']['name']); ?>&nbsp;</td>
-		<td><?php echo ($client['Client']['email']); ?>&nbsp;</td>
 		<td><?php echo ($client['Client']['account_type']); ?>&nbsp;</td>
 
 

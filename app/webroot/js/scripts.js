@@ -209,6 +209,18 @@ $(document).ready(function(){
 				$('.emrEhrOtherLoc').hide();
 			}
 		});
+		
+		if ($('#OrganizationProfileBackupMedia').val() == 'Yes'){
+		    $('.backupMediaDetails').show();
+		}
+		$('#OrganizationProfileBackupMedia').on('change', function(){
+		    var selected = $(this).val();
+		    if (selected === 'Yes') {
+		        $('.backupMediaDetails').show();
+		    } else {
+		        $('.backupMediaDetails').hide();   
+		    }   
+		});
 
         if($('#BusinessAssociateAgreementRelationship').val() == 'Other'){
             $('.otherRelationship').show();

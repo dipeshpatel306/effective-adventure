@@ -82,20 +82,37 @@ $this->Html->addCrumb('Policies & Procedures');
 
 		}
 		// Other policies & procedures. Subscribers and MU are allowed. Users are read only
-		echo $this->Html->link(
-					'<div class="dashBox">' .
-					'<div class="dashHead">' .
-					$this->Html->image('opnp_tile.jpg', array(
-								'class' => 'dashTile',
-								'alt' => 'HIPAA Other Policies & Procedures'
-								)) .
-					'<h3>Other Policies & Procedures</h3>' .
-					'</div>' .
-					'<div class="dashSum">Other Policies & Procedures</div>' . $approved .
-					'</div>',
-					array('controller' => 'other_policies_and_procedures', 'action' => 'index'),
-					array('escape' => false)
-			);
+		if ($acct == 'Training') {
+		    echo $this->Html->link(
+                    '<div class="dashBox">' .
+                    '<div class="dashHead">' .
+                    $this->Html->image('opnp_tile.jpg', array(
+                                'class' => 'dashTile',
+                                'alt' => 'HIPAA Other Policies & Procedures'
+                                )) .
+                    '<h3>Other Policies & Procedures</h3>' .
+                    '</div>' .
+                    '<div class="dashSum">Other Policies & Procedures</div>' . $banned .
+                    '</div>',
+                    array('controller' => 'other_policies_and_procedures', 'action' => 'index'),
+                    array('escape' => false)
+            );
+        } else {
+            echo $this->Html->link(
+                    '<div class="dashBox">' .
+                    '<div class="dashHead">' .
+                    $this->Html->image('opnp_tile.jpg', array(
+                                'class' => 'dashTile',
+                                'alt' => 'HIPAA Other Policies & Procedures'
+                                )) .
+                    '<h3>Other Policies & Procedures</h3>' .
+                    '</div>' .
+                    '<div class="dashSum">Other Policies & Procedures</div>' . $approved .
+                    '</div>',
+                    array('controller' => 'other_policies_and_procedures', 'action' => 'index'),
+                    array('escape' => false)
+            );
+        }
 
 	?>
 

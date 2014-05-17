@@ -44,7 +44,7 @@ $this->Html->addCrumb('Organization Profiles');
 			<th><?php echo $this->Paginator->sort('portable_media_devices'); ?></th>
 			<th><?php echo $this->Paginator->sort('tables'); ?></th>
 			<th><?php echo $this->Paginator->sort('list_portable_devices'); ?></th>
-			<th><?php echo $this->Paginator->sort('back_up_tapes'); ?></th>
+			<th><?php echo $this->Paginator->sort('backup_media'); ?></th>
 			<th><?php echo $this->Paginator->sort('smartphones'); ?></th>
 			<th><?php echo $this->Paginator->sort('list_smartphone_vendors'); ?></th>
 			<th><?php echo $this->Paginator->sort('system_1_name'); ?></th>
@@ -129,7 +129,7 @@ $this->Html->addCrumb('Organization Profiles');
 		<td><?php echo ($organizationProfile['OrganizationProfile']['portable_media_devices']); ?>&nbsp;</td>
 		<td><?php echo ($organizationProfile['OrganizationProfile']['tables']); ?>&nbsp;</td>
 		<td><?php echo ($organizationProfile['OrganizationProfile']['list_portable_devices']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['back_up_tapes']); ?>&nbsp;</td>
+		<td><?php echo ($organizationProfile['OrganizationProfile']['backup_media']); ?>&nbsp;</td>
 		<td><?php echo ($organizationProfile['OrganizationProfile']['smartphones']); ?>&nbsp;</td>
 		<td><?php echo ($organizationProfile['OrganizationProfile']['list_smartphone_vendors']); ?>&nbsp;</td>
 		<td><?php echo ($organizationProfile['OrganizationProfile']['system_1_name']); ?>&nbsp;</td>
