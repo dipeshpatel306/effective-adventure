@@ -17,7 +17,9 @@ $group = $this->Session->read('Auth.User.group_id');
     <ul>
         <?php   
             foreach ($questions as $item) {
-                echo "<li class='outerTab'><a href='#outerTab" . $item['RiskAssessmentQuestionSafeguardCategory']['id'] ."'>" . $item['RiskAssessmentQuestionSafeguardCategory']['name'] . "</a></li>";
+                echo "<li class='outerTab'><a href='#outerTab" . $item['RiskAssessmentQuestionSafeguardCategory']['id'] ."'>" . 
+                    $item['RiskAssessmentQuestionSafeguardCategory']['name'] . 
+                    "<img class='icon tabIcon' alt></a></li>";
             }
         ?>
     </ul>
@@ -27,7 +29,7 @@ $group = $this->Session->read('Auth.User.group_id');
             <ul>
                 <?php 
                     foreach ($item['RiskAssessmentQuestionSubCategory'] as $idx=>$subitem) {
-                        echo "<li class='innerTab'><a href='#innerTab" . ($idx + 1) ."-". $outer_id ."'>" . $subitem['name'] . "</a></li>";
+                        echo "<li class='innerTab'><a class='innerTabLink' href='#innerTab" . ($idx + 1) ."-". $outer_id ."'>" . $subitem['name'] . "<img class='icon tabIcon' alt></a></li>";
                     }   
                 ?>
             </ul>
@@ -41,6 +43,7 @@ $group = $this->Session->read('Auth.User.group_id');
                     $subcategory_questions = $subitem['RiskAssessmentQuestion'];
                     foreach ($subcategory_questions as $q) {
                         echo $this->element('ra_question', array('question' => $q, 'num_category_questions' => $num_questions));
+                        echo "<hr>";
                         //echo $this->Form->input('question_'.$q['question_number'], array('label' => 'Question '.$q['category_question_number'], 'options' => $options, 'empty' => 'Please Select'));
                     }
                 ?>

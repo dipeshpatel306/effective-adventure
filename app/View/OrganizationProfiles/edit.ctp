@@ -32,19 +32,20 @@ $this->Html->addCrumb('Edit Organization Profile');
 <?php echo $this->Form->create('OrganizationProfile'); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Organization Profile'); ?></legend>
-	<ul class='tabs'>
-		<li><a href='#tab1'>Name and Location</a></li>
-		<li><a href='#tab2'>Network</a></li>
-		<li><a href='#tab3'>EMR/EHR</a></li>
-		<li><a href='#tab4'>Email</a></li>
-		<li><a href='#tab5'>Portable Media</a></li>
-		<li><a href='#tab6'>Backup Media</a></li>
-		<li><a href='#tab7'>SmartPhones</a></li>
-		<li><a href='#tab8'>Additional Systems</a></li>
-		<li><a href='#tab9'>Additional Information</a></li>
-	</ul>
+	<div class='orgProfTabs'>
+	  <ul>
+        <li><a href='#tab1' class='orgProfTab'>Name and Location</a></li>
+        <li><a href='#tab2' class='orgProfTab'>Network</a></li>
+        <li><a href='#tab3' class='orgProfTab'>EMR/EHR</a></li>
+        <li><a href='#tab4' class='orgProfTab'>Email</a></li>
+        <li><a href='#tab5' class='orgProfTab'>Portable Media</a></li>
+        <li><a href='#tab6' class='orgProfTab'>Backup Media</a></li>
+        <li><a href='#tab7' class='orgProfTab'>SmartPhones</a></li>
+        <li><a href='#tab8' class='orgProfTab'>Additional Systems</a></li>
+        <li><a href='#tab9' class='orgProfTab'>Additional Information</a></li>
+    </ul>
 
-	<div id='tab1' class='tabBox'>
+    <div id='tab1' class='tabBox'>
     <?php
 
         $client = $this->Session->read('Auth.User.client_id');  // Test Client.
@@ -257,6 +258,7 @@ $this->Html->addCrumb('Edit Organization Profile');
 
     ?>
     </div>
+	</div>
 	</fieldset>
 	<div class='submit'>
 	    <?php echo $this->Form->submit('Save', array('div' => false)); ?>

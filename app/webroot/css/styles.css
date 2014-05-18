@@ -861,3 +861,36 @@ input[type='password'] {
 input.datePick {
     width: 120px !important;
 }
+
+a.orgProfTab {
+    font-size: 95%;
+}
+
+a.innerTabLink {
+    font-size: 90%;
+}
+
+.orgProfTabs li.ui-state-active {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #D62738;
+}
+
+.orgProfTabs li a:focus {
+    outline: none;
+}
+
+.raTabs li.ui-state-active {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #D62738;
+}
+
+.raTabs li a:focus {
+    outline: none;
+}
+
+img.tabIcon {
+    width: 20px;
+    height : 18px;
+}

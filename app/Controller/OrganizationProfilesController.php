@@ -83,6 +83,7 @@ class OrganizationProfilesController extends AppController {
 		$clients = $this->OrganizationProfile->Client->find('list');
 		$operatingSystems = $this->OrganizationProfile->OperatingSystem->find('list');
 		$this->set(compact('clients', 'operatingSystems'));
+        $this->render('edit');
 	}
 
 /**

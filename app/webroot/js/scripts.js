@@ -76,82 +76,15 @@ $(document).ready(function(){
         }
         window.scrollTo(0,0);
     });
+    
+    $('.orgProfTabs').tabs();
+    $('.orgProfNextTab').click(function(){
+       var active = $('.orgProfTabs').tabs('option', 'active');
+       var next_tab = (active + 1) % $('.orgProfTabs >ul>li').size();
+       $('.orgProfTabs').tabs('option', 'active', next_tab);
+       window.scrollTo(0,0); 
+    });
 
-	$('.organizationProfiles ul.tabs').each(function(){
-	    // For each set of tabs, we want to keep track of
-	    // which tab is active and it's associated content
-	    var $active, $content, $links = $(this).find('a');
-	    var nextIdx;
-
-	    // If the location.hash matches one of the links, use that as the active tab.
-	    // If no match is found, use the first link as the initial active tab.
-	    $active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
-	    $active.addClass('active');
-	    $content = $($active.attr('href'));
-	    
-	    // Hide the remaining content
-	    $links.not($active).each(function () {
-	        $($(this).attr('href')).hide();
-	    });
-	    
-	    nextIdx = parseInt($active.attr('href').charAt($active.attr('href').length-1)) + 1;
-	    if (nextIdx > $links.length) {
-	        $('.orgProfNextTab').hide();
-	    } else {
-	        $('.orgProfNextTab').show();
-	        $('.orgProfNextTab').attr('href', '#tab' + nextIdx);
-	    }
-
-	    // Bind the click event handler
-	    $(this).on('click', 'a', function(e){
-	        // Make the old tab inactive.
-	        $active.removeClass('active');
-	        $content.hide();
-
-	        // Update the variables with the new link and content
-	        $active = $(this);
-	        $content = $($(this).attr('href'));
-
-	        // Make the tab active.
-	        $active.addClass('active');
-	        $content.show();
-
-            nextIdx = parseInt($active.attr('href').charAt($active.attr('href').length-1)) + 1;
-            if (nextIdx > $links.length) {
-                $('.orgProfNextTab').hide();
-            } else {
-                $('.orgProfNextTab').show();
-                $('.orgProfNextTab').attr('href', '#tab' + nextIdx);
-            }
-
-	        // Prevent the anchor's default click action
-	        e.preventDefault();
-	    });
-	    
-	    $('.orgProfNextTab').click(function(e){
-	        $active.removeClass('active');
-	        $content.hide();
-	        
-	        $active = $($links.filter("[href=" + $(this).attr('href') + "]")[0]);
-	        $content = $($(this).attr('href'));
-	        
-	        $active.addClass('active');
-	        $content.show(); 
-	        
-	        window.scrollTo(0,0);
-	        
-	        nextIdx = parseInt($active.attr('href').charAt($active.attr('href').length-1)) + 1;
-            if (nextIdx > $links.length) {
-                $('.orgProfNextTab').hide();
-            } else {
-                $('.orgProfNextTab').show();
-                $('.orgProfNextTab').attr('href', '#tab' + nextIdx);
-            }
-    	        
-	        e.preventDefault();
-        });
-	});
-	
 	// Toggle div based upon checkbox (org profile)
 
 		$('.orgSecondLocation, .orgThirdLocation, .orgFourthLocation, .orgFifthLocation, .otherEmail, .otherReason, .otherDescription, .otherRelationship').hide(); // first hide fields
@@ -525,20 +458,64 @@ $(document).ready(function(){
     });	
     
     $('#RiskAssessmentTakeRiskAssessmentForm, #RiskAssessmentEditForm').find('select').each(function(){
+        var $tab_parent = $(this).parent().parent();
+        var tab_done = true;
+        $tab_parent.find('select').each(function(){
+            tab_done = tab_done && ($(this).val() != '');
+        });
+        var tab_id = $tab_parent.attr('id');
+        var $outer_img = $("a[href='#outerTab" + tab_id.slice(-1) + "'] >img");
+        var $inner_img = $("a[href='#" + $tab_parent.attr('id') + "'] >img");
+        
+        if (tab_done) {
+            $inner_img.attr('src', '/img/yes.png');
+        } else {
+            $inner_img.attr('src', '/img/no.png');
+        }
+        
+        inner_tabs_done = true;
+        $('#outerTab' + tab_id.slice(-1) + '>ul >li >a >img').each(function(){
+            inner_tabs_done = inner_tabs_done && ($(this).attr('src') === '/img/yes.png');
+        });
+        
+        if (inner_tabs_done) {
+            $outer_img.attr('src', '/img/yes.png');
+        } else {
+            $outer_img.attr('src', '/img/no.png');
+        }
+        
         $(this).on('change', function(){
-            var $tab_parent = $(this).parent().parent();
             var selected = $(this).val();
             if (selected != '') {
                 $(this).next().attr('src', '/img/yes.png');
-                var tab_done = true;
-                $tab_parent.find('select').each(function(){
-                    tab_done = tab_done && ($(this).val() != '');
-                });
-                if (tab_done) {
-                    //console.log('tab is done');
-                }
             } else {
                 $(this).next().attr('src', '/img/no.png');
+            }
+            
+            var tab_done = true;
+            $tab_parent.find('select').each(function(){
+                tab_done = tab_done && ($(this).val() != '');
+            });
+            
+            var tab_id = $tab_parent.attr('id');
+            var $outer_img = $("a[href='#outerTab" + tab_id.slice(-1) + "'] >img");
+            var $inner_img = $("a[href='#" + $tab_parent.attr('id') + "'] >img");
+            
+            if (tab_done) {
+                $inner_img.attr('src', '/img/yes.png');
+            } else {
+                $inner_img.attr('src', '/img/no.png');
+            }
+            
+            inner_tabs_done = true;
+            $('#outerTab' + tab_id.slice(-1) + '>ul >li >a >img').each(function(){
+                inner_tabs_done = inner_tabs_done && ($(this).attr('src') === '/img/yes.png');
+            });
+            
+             if (inner_tabs_done) {
+                $outer_img.attr('src', '/img/yes.png');
+            } else {
+                $outer_img.attr('src', '/img/no.png');
             }
         }); 
     });
