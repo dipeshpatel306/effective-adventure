@@ -12,7 +12,7 @@ $group = $this->Session->read('Auth.User.group_id');
 <div class='riskAssessments form'>
 <?php echo $this->Form->create('RiskAssessment'); ?>
     <fieldset>
-        <legend><?php echo __('Take Risk Assessment'); ?></legend>
+        <legend><?php echo __('Risk Assessment Questions'); ?></legend>
     <div class='raTabs tabsOuter'>
     <ul>
         <?php   
