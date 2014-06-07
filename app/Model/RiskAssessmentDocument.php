@@ -54,23 +54,14 @@ class RiskAssessmentDocument extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'1' => array(
-				'rule' => array('isValidExtension', array('doc', 'docx', 'dot', 'dotx', 'pdf'), false),
-        		'message' => 'File type must be doc, docx, dot, dotx, pdf'
+				'rule' => array('isValidExtension', array('doc', 'docx', 'dot', 'dotx', 'pdf', 'xls', 'xlsx'), false),
+        		'message' => 'File type must be doc, docx, dot, dotx, pdf, xls, xlsx'
 			),
 			'2' => array(
-        		'rule' => array('isValidMimeType', array(
-				'application/msword',
-				'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-				'application/vnd.openxmlformats-officedocument.wordprocessingml.template',
-				'application/pdf'
-			), false),
-       	 		'message' => 'File type must be doc, docx, dot, dotx, pdf'
-			),
-			'3' => array(
         		'rule' => 'isUnderFormSizeLimit',
         		'message' => 'File exceeds form upload filesize limit'
 			),
-			'4' => array(
+			'3' => array(
         		'rule' => 'isCompletedUpload',
         		'message' => 'File was not successfully uploaded'
 			),
