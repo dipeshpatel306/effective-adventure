@@ -208,7 +208,7 @@ dl dt:nth-of-type(odd), dl dd:nth-of-type(odd) {
 }
 a.logoutLink{
 	/*float: right;*/
-	font-size: .8em;
+	font-size: 1em;
 	padding-bottom: 5px;
 }
 .userBox .highlight, .highlight{
@@ -810,7 +810,7 @@ button.prev:hover, button.next:hover{
 .dialogBox a {
     word-wrap : break-word;  
 }
-a.nexttab {
+a.submitbtn {
     display: inline;
     font-size: 110%;
     width: auto;
@@ -826,7 +826,7 @@ a.nexttab {
     border-radius: 4px;
     text-decoration: none;
 }
-a.nexttab:hover {
+a.submitbtn:hover {
     background: #5BA150;
     cursor: default;
 }
@@ -905,3 +905,21 @@ img.tabIcon {
     margin-right: 0 !important;
     width: 100% !important;
 }
+
+.js .fouc { 
+    display: none;
+}
+
+.trainingContent {
+    width: 680px;
+    text-align: center;
+}
+
+.trainingContent ul {
+    list-style-position: inside;
+}
+
+.savenext {
+    margin-left: 4px;
+}
+

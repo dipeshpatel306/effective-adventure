@@ -23,6 +23,9 @@
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
+	<script type="text/javascript">
+	    document.documentElement.className = 'js';
+	</script>
 </head>
 <body>
 	<div id="container">
@@ -77,6 +80,11 @@
 										 'jquery.maskedinput.min.js',
 										 'scripts',
 	)); ?>
+	<script type='text/javascript'>
+	    $(document).ready(function() {
+	        $('.fouc').show();
+	    });
+	</script>
 	<?php
 	//echo Configure::version();
 	//echo $this->element('sql_dump');
