@@ -75,7 +75,7 @@ $this->Html->addCrumb('Edit Business Associate Agreement');
 			
 		</div>
 	<?php	
-		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Replace Document - (pdf, doc, docx, dot files only)'));
+		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Replace Document'));
 		echo $this->Form->input('attachment_dir', array('type' => 'hidden'));
 
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.

@@ -30,7 +30,7 @@ $this->Html->addCrumb('Add Other Policy & Procedure');
 			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
 		}
 
-		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Attachment - (pdf, doc, docx, dot files only)'));
+		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Attachment'));
 		echo $this->Form->input('attachment_dir', array('type' => 'hidden'));
 		// /echo $this->Form->input('media');
 	?>

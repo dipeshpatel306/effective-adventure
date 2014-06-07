@@ -77,7 +77,7 @@ $this->Html->addCrumb('Add Business Associate Agreement');
     <?php
 		echo $this->Form->input('contract_date', array('class' => 'datePick'));
 
-		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Attachment - (pdf, doc, docx, dot files only)'));
+		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Attachment'));
 		echo $this->Form->input('attachment_dir', array('type' => 'hidden'));
 
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.

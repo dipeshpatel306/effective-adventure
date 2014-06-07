@@ -27,7 +27,7 @@ $this->Html->addCrumb('Edit Disaster Recovery Plan');
 		<div class='currentDoc'><?php echo $doc ?></div>
 	<?php
 
-		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Replace Document - (pdf, doc, docx, dot files only)'));
+		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Replace Document'));
 		echo $this->Form->input('attachment_dir', array('type' => 'hidden'));
 	?>
 	</fieldset>
