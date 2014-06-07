@@ -256,7 +256,7 @@ $(document).ready(function(){
 		        sources: [{
 		            file: "rtmp://stream.entegration.net/vod/mp4:" + encodeURIComponent(mp4Name) + ".mp4",
 		        },{
-		            file: "http://stream.entegration.net/vod/mp4:" + encodeURIComponent(mp4Name) + ".mp4",
+		            file: "http://stream.entegration.net/vod/" + encodeURIComponent(mp4Name) + ".mp4",
 		        }]
 		    }],
 		    width: width,
