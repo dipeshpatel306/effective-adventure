@@ -54,7 +54,7 @@ class RiskAssessmentsController extends AppController {
 	public function view($id = null) {
 		$this->RiskAssessment->id = $id;
 		$this->loadModel('RiskAssessmentQuestions');
-		$this->set('questions', $this->RiskAssessmentQuestions->find('all'));
+		$this->set('questions', $this->RiskAssessmentQuestions->find('all', array('order' => array('RiskAssessmentQuestions.category_question_number'))));
 
 		if (!$this->RiskAssessment->exists()) {
 			throw new NotFoundException(__('Invalid risk assessment'));
@@ -90,7 +90,7 @@ class RiskAssessmentsController extends AppController {
 			$this->RiskAssessment->create();
 			if ($this->RiskAssessment->save($this->request->data)) {
 				$this->Session->setFlash('The risk assessment has been saved', 'default', array('class' => 'success message'));
-				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+				$this->redirect($this->referrer());
 			} else {
 				$this->Session->setFlash(__('The risk assessment could not be saved. Please, try again.'));
 			}
@@ -117,7 +117,7 @@ class RiskAssessmentsController extends AppController {
             if ($this->RiskAssessment->save($this->request->data)) {
 
                 $this->Session->setFlash('Your risk assessment has been saved', 'default', array('class' => 'success message'));
-                $this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+                $this->redirect($this->referrer());
             } else {
                 $this->Session->setFlash(__('Your risk assessment could not be saved. Please, try again.'));
             }
@@ -157,7 +157,7 @@ class RiskAssessmentsController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->RiskAssessment->save($this->request->data)) {
 				$this->Session->setFlash('The risk assessment has been saved', 'default', array('class' => 'success message'));
-				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+				$this->redirect($this->referrer());
 			} else {
 				$this->Session->setFlash(__('The risk assessment could not be saved. Please, try again.'));
 			}

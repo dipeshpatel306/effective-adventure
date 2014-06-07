@@ -9,7 +9,7 @@ $this->Html->addCrumb('Take Risk Assessment');
 $group = $this->Session->read('Auth.User.group_id');
 ?>
 
-<div class='riskAssessments form'>
+<div class='fouc riskAssessments form'>
 <?php echo $this->Form->create('RiskAssessment'); ?>
     <fieldset>
         <legend><?php echo __('Risk Assessment Questions'); ?></legend>
@@ -55,7 +55,7 @@ $group = $this->Session->read('Auth.User.group_id');
     </fieldset>
     <div class='submit'>
         <?php echo $this->Form->submit('Submit', array('div' => false)); ?>
-       <?php echo $this->Html->link('Next', '#', array( 'class' => 'nexttab raNextTab')); ?>
+       <?php echo $this->Html->link('Next', '#', array( 'class' => 'submitbtn raNextTab')); ?>
     </div>
     <?php echo $this->Form->end(); ?>
 </div>
@@ -74,7 +74,7 @@ $group = $this->Session->read('Auth.User.group_id');
 </div>
 <?php endif; ?>
 
-<div class='newsFeed'>
+<div class='fouc newsFeed'>
     <h3><?php echo __('Latest News'); ?></h3>
     <?php echo $this->element('feeds'); ?>
 </div>

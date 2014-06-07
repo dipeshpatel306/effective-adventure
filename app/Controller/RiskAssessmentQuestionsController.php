@@ -20,8 +20,8 @@ class RiskAssessmentQuestionsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->RiskAssessmentQuestion->recursive = 0;
-		$this->set('riskAssessmentQuestions', $this->paginate());
+        $questions = $this->RiskAssessmentQuestion->RiskAssessmentQuestionSafeguardCategory->find('all', array('recursive' => 2));
+        $this->set(compact('questions'));
 	}
 
 /**
