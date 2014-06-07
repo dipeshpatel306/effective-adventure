@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('Group', 'Model');
 /**
  * RiskAssessmentDocuments Controller
  *
@@ -149,14 +150,13 @@ class RiskAssessmentDocumentsController extends AppController {
 
 			$this->RiskAssessmentDocument->create();
 			if ($this->RiskAssessmentDocument->save($this->request->data)) {
-				$this->Session->setFlash('The risk assessment document has been saved', 'default', array('class' => 'success message'));
-			if($group == 1){
-				if(isset($clientId)){
-					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
-				} else {
-					$this->redirect(array('action' => 'index'));	
-				}
-				
+				$this->Session->setFlash('The risk assessment document has been saved.', 'default', array('class' => 'success message'));
+			if($group == Group::ADMIN){
+			    if (isset($this->request->data['next'])) {
+			         $this->redirect(array('action' => 'add'));   
+                } else {
+					$this->redirect(array('controller' => 'clients', 'action' => 'view', $this->request->data['RiskAssessmentDocument']['client_id']));	
+                }			
 			} else {	
 				$this->redirect(array('action' => 'index'));
 			}
