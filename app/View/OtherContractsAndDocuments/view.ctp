@@ -53,14 +53,10 @@ $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['n
 		<dd>
 		<?php
 			if(!empty($otherContractsAndDocument['OtherContractsAndDocument']['attachment'])){
-				$attr_dir = '/files/other_contracts_and_document/attachment/'.
-				$otherContractsAndDocument['OtherContractsAndDocument']['attachment_dir'] . '/' .
-				$otherContractsAndDocument['OtherContractsAndDocument']['attachment'];
-
-				$opnpLink =  preg_replace('/\/.*\//', '', $otherContractsAndDocument['OtherContractsAndDocument']['attachment']);
-				echo $this->Html->link($otherContractsAndDocument['OtherContractsAndDocument']['attachment'], $attr_dir);
-
-			}
+                $dir = $otherContractsAndDocument['OtherContractsAndDocument']['attachment_dir'];
+                $file = $otherContractsAndDocument['OtherContractsAndDocument']['attachment'];
+                echo $this->Html->link($otherContractsAndDocument['OtherContractsAndDocument']['attachment'], array('action' => 'sendFile', $dir, $file));
+            }
 		?>
 			&nbsp;
 		</dd>

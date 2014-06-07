@@ -1,4 +1,5 @@
 <?php
+App::uses('Group', 'Model');
 $this->Html->addCrumb('Other Contracts & Documents', '/other_contracts_and_documents');
 $this->Html->addCrumb('Add Other Contract & Document');
 
@@ -29,11 +30,19 @@ $this->Html->addCrumb('Add Other Contract & Document');
 			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
 		}
 
-		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Attachment - (pdf, doc, docx, dot files only)'));
+		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Attachment'));
 		echo $this->Form->input('attachment_dir', array('type' => 'hidden'));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+    <div class='submit'>
+        <?php 
+             echo $this->Form->submit('Save', array('div' => false));
+             if ($group == Group::ADMIN) {
+                 echo $this->Form->submit('Save and next', array('div' => false, 'class' => 'savenext', 'name' => 'next'));
+             }
+        ?>
+    </div>
+    <?php echo $this->Form->end(); ?>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
