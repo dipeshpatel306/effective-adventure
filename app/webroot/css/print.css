@@ -1,4 +1,5 @@
 @media print {
+@page { size: landscape; }
 .navWrap { display:none }
 /*#header .logo{
 	width:141px;
@@ -15,12 +16,12 @@ h2{
 	font-size: 150%;
 }
 div.view{
-	width: 100%;
 	border: none;
 	box-shadow: none;
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
 	font-size: 75%;
+	float: none;
 }
 dl{
 	line-height: 1em;
