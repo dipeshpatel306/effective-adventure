@@ -1,17 +1,13 @@
 <?php
 App::uses('AppController', 'Controller');
 App::uses('Group', 'Model');
-App::uses('Core', 'ConnectionManager');
+
 /**
  * Clients Controller
  *
  * @property Client $Client
  */
 class ClientsController extends AppController {
- public function beforeFilter(){
-    parent::beforeFilter();
- }
-
 /**
  * isAuthorized Method
  * Allows Hippa Admin to Add, Edit, Delete Everything
@@ -21,7 +17,8 @@ class ClientsController extends AppController {
     public function isAuthorized($user){
         $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 
-        if ($group == Group::MANAGER || $group == Group::USER){ // Deny Managers and Users
+        if (($this->action == 'migrate_from_qb' && $group != Group::ADMIN) ||
+            ($group == Group::MANAGER || $group == Group::USER)) {
                 $this->Session->setFlash('You are not authorized to view that!');
                 $this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
                 return false;
@@ -89,18 +86,6 @@ class ClientsController extends AppController {
         return $this->response;
     }
 
-    public function _updateMoodleCourseName($course_id) {
-        if (!isset($course_id) || empty($course_id)) {
-            $name = '';
-        } else {
-            $moodle = ConnectionManager::getDataSource('moodle');
-            $moodle->rawQuery('SELECT shortname FROM mdl_course WHERE id=' . $course_id);
-            $row = $moodle->fetchRow();
-            $name = $row['mdl_course']['shortname'];
-        }
-        $this->Client->saveField('moodle_course_name', $name);
-    }
-
 /**
  * add method
  *
@@ -121,10 +106,6 @@ class ClientsController extends AppController {
                 $securityString = self::_randomStr(10);
                 $this->Client->saveField('file_key', $securityString);
                 
-                if (array_key_exists('moodle_course_id', $this->request->data['Client'])) {
-                    $this->_updateMoodleCourseName($this->request->data['Client']['moodle_course_id']);
-                }
-
                 $this->Session->setFlash('The client has been saved', 'default', array('class' => 'success message'));
                 $this->redirect(array('action' => 'index'));
             } else {
@@ -133,19 +114,9 @@ class ClientsController extends AppController {
         }
         $partners = $this->Client->Partner->find('list');
         $this->set(compact('partners'));
-        $this->set('moodle_courses', $this->_getMoodleCourses());
+        $this->set('moodle_courses', $this->Client->getMoodleCourses());
     }
    
-    public function _getMoodleCourses() {
-        $moodle = ConnectionManager::getDataSource('moodle');
-        $moodle->rawQuery('SELECT id, shortname FROM mdl_course');
-        $moodle_courses = array('' => '');
-        while ($course = $moodle->fetchRow()) {
-            $moodle_courses[$course['mdl_course']['id']] = $course['mdl_course']['shortname'];
-        }
-        return $moodle_courses;
-   }
-
 /**
  * edit method
  *
@@ -160,10 +131,6 @@ class ClientsController extends AppController {
         }
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Client->save($this->request->data)) {
-                if (array_key_exists('moodle_course_id', $this->request->data['Client'])) {
-                    $course_id = $this->request->data['Client']['moodle_course_id'];
-                    $this->_updateMoodleCourseName($course_id);
-                }
                 $this->Session->setFlash('The client has been saved.', 'default', array('class' => 'success message'));
                 $this->redirect(array('action' => 'index'));
             } else {
@@ -174,7 +141,7 @@ class ClientsController extends AppController {
         }
         $partners = $this->Client->Partner->find('list');
         $this->set(compact('partners'));
-        $this->set('moodle_courses', $this->_getMoodleCourses());
+        $this->set('moodle_courses', $this->Client->getMoodleCourses());
     }
 
 /**
@@ -199,6 +166,15 @@ class ClientsController extends AppController {
         }
         $this->Session->setFlash(__('Client was not deleted'));
         $this->redirect(array('action' => 'index'));
+    }
+    
+    public function migrate_from_qb() {
+        if ($this->request->is('post')) {
+            if ($this->Client->migrateFromQB($this->request->data['Client']['rid'])) {
+                $this->Session->setFlash(__('Client migrated.'), 'default', array('class' => 'success message'));
+            }
+        }
+        $this->set('qb_clients', $this->Client->getQBClients());   
     }
 
 }

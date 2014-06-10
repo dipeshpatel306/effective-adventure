@@ -21,6 +21,7 @@
  */
 
 App::uses('Model', 'Model');
+require_once(APP . 'Vendor' . DS . 'quickbase.php');
 
 /**
  * Application model for Cake.
@@ -56,5 +57,54 @@ class AppModel extends Model {
             return count($errors) === 0;
         }
         return $errors;
-    }   
+    }
+    
+    public $qbFieldMap = array();
+    
+    function _mapQBFields($qb_rec) {
+        $data = array();
+        foreach ($qb_rec->f as $field) {
+            $fid = (string) $field['id'];
+            if (array_key_exists($fid, $this->qbFieldMap)) {
+                $map_info = $this->qbFieldMap[$fid];
+                $field_name = $map_info[0];
+                $map_fn = $map_info[1];
+                $val = (string) $field;
+                if ($map_fn === null) {
+                    $data[$field_name] = $val;
+                } else {
+                    $data[$field_name] = $this->$map_fn($val);
+                }
+            }
+        }
+        return $data;
+    }
+    
+    function qbConn() {
+        return new QuickBase(Configure::read('QuickBase.user'), Configure::read('QuickBase.password'), true, $this->qbDbid, '', 'entegrationinc');
+    }
+    
+    function newFromQB($rid, $qb_rec, $client_id=null) {
+        return;
+    }
+    
+    function migrateFromQB($rid, $client_id=null) {
+        $qdb = $this->qbConn();
+        $qb_data = $qdb->do_query(array(array('fid' => '3', 'ev' => 'EX', 'cri' => $rid)));
+        $rec = $qb_data->table->records->record[0];
+        if (!isset($rec)) {
+            $dbid = $this->qbDbid;
+            throw NotFoundException('QB record not found for $rid in $dbid');
+        }
+        $this->newFromQB($rid, $rec, $client_id);
+    }
+    
+    function migrateForQBClient($client_rid, $fid, $client_id) {
+        $qdb = $this->qbConn();
+        $qb_data = $qdb->do_query(array(array('fid' => $fid, 'ev' => 'EX', 'cri' => $client_rid)), 0, 0, '3');
+        debug($client_id);
+        foreach ($qb_data->table->records->record as $rec) {
+            $this->migrateFromQB((string) $rec->f[0], $client_id);
+        }
+    }
 }

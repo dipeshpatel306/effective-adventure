@@ -27,7 +27,7 @@ $this->Html->addCrumb('Users');
 	foreach ($users as $user): ?>
 	<tr>
 		<?php if($group == 1): ?>
-		<td><?php echo $user['Client']['name']; ?></td>
+		<td><?php echo $this->Html->link($user['Client']['name'], array('controller' => 'clients', 'action' => 'view', $user['Client']['id'])); ?></td>
 		<?php endif; ?>
 		<td><?php echo $user['User']['last_name'] . ', ' . $user['User']['first_name']; ?>&nbsp;</td>
 		<td><?php echo $this->Text->autoLinkEmails($user['User']['email']); ?>&nbsp;</td>

@@ -1,5 +1,7 @@
 <?php
 App::uses('AppModel', 'Model');
+App::uses('Core', 'ConnectionManager');
+require_once(APP . 'Vendor' . DS . 'constants.php');
 /**
  * Client Model
  *
@@ -13,6 +15,8 @@ class Client extends AppModel {
  * @var string
  */
 	public $displayField = 'name';
+
+    public $qbDbid = CLIENTS_DBID;
 
 /**
  * Validation rules
@@ -88,7 +92,8 @@ class Client extends AppModel {
 			'offset' => '',
 			'exclusive' => '',
 			'finderQuery' => '',
-			'counterQuery' => ''
+			'counterQuery' => '',
+			'qbFid' => USERS_RELATED_CLIENT
 		),
 /*		'PoliciesAndProcedure' => array(
 			'className' => 'PoliciesAndProcedure',
@@ -114,7 +119,7 @@ class Client extends AppModel {
 			'offset' => '',
 			'exclusive' => '',
 			'finderQuery' => '',
-			'counterQuery' => ''
+			'counterQuery' => '',
 		),
 		'OtherPoliciesAndProcedure' => array(
 			'className' => 'OtherPoliciesAndProcedure',
@@ -127,7 +132,8 @@ class Client extends AppModel {
 			'offset' => '',
 			'exclusive' => '',
 			'finderQuery' => '',
-			'counterQuery' => ''
+			'counterQuery' => '',
+			#'qbFid' => OPNP_RELATED_CLIENT
 		),
 		'RiskAssessmentDocument' => array(
 			'className' => 'RiskAssessmentDocument',
@@ -140,7 +146,8 @@ class Client extends AppModel {
 			'offset' => '',
 			'exclusive' => '',
 			'finderQuery' => '',
-			'counterQuery' => ''
+			'counterQuery' => '',
+			#'qbFid' => RA_RELATED_CLIENT
 		),
 		'BusinessAssociateAgreement' => array(
 			'className' => 'BusinessAssociateAgreement',
@@ -153,7 +160,8 @@ class Client extends AppModel {
 			'offset' => '',
 			'exclusive' => '',
 			'finderQuery' => '',
-			'counterQuery' => ''
+			'counterQuery' => '',
+			#'qbFid' => BAA_RELATED_CLIENT
 		),
 		'DisasterRecoveryPlan' => array(
 			'className' => 'DisasterRecoveryPlan',
@@ -166,7 +174,8 @@ class Client extends AppModel {
 			'offset' => '',
 			'exclusive' => '',
 			'finderQuery' => '',
-			'counterQuery' => ''
+			'counterQuery' => '',
+			#'qbFid' => DRP_RELATED_CLIENT
 		),
 		'OtherContractsAndDocument' => array(
 			'className' => 'OtherContractsAndDocument',
@@ -179,7 +188,8 @@ class Client extends AppModel {
 			'offset' => '',
 			'exclusive' => '',
 			'finderQuery' => '',
-			'counterQuery' => ''
+			'counterQuery' => '',
+			#'qbFid' => OCND_RELATED_CLIENT
 		),
 		'SecurityIncident' => array(
 			'className' => 'SecurityIncident',
@@ -192,7 +202,8 @@ class Client extends AppModel {
 			'offset' => '',
 			'exclusive' => '',
 			'finderQuery' => '',
-			'counterQuery' => ''
+			'counterQuery' => '',
+			#'qbFid' => SI_RELATED_CLIENT
 		),
 		'ServerRoomAccess' => array(
 			'className' => 'ServerRoomAccess',
@@ -205,7 +216,8 @@ class Client extends AppModel {
 			'offset' => '',
 			'exclusive' => '',
 			'finderQuery' => '',
-			'counterQuery' => ''
+			'counterQuery' => '',
+			#'qbFid' => SRA_RELATED_CLIENT
 		),
 		'EphiReceived' => array(
 			'className' => 'EphiReceived',
@@ -218,7 +230,8 @@ class Client extends AppModel {
 			'offset' => '',
 			'exclusive' => '',
 			'finderQuery' => '',
-			'counterQuery' => ''
+			'counterQuery' => '',
+			#'qbFid' => EPHIREC_RELATED_CLIENT
 		),
 		'EphiRemoved' => array(
 			'className' => 'EphiRemoved',
@@ -231,7 +244,8 @@ class Client extends AppModel {
 			'offset' => '',
 			'exclusive' => '',
 			'finderQuery' => '',
-			'counterQuery' => ''
+			'counterQuery' => '',
+			#'qbFid' => EPHIREM_RELATED_CLIENT
 		),
 		'SirtTeam' => array(
 			'className' => 'SirtTeam',
@@ -248,4 +262,72 @@ class Client extends AppModel {
 		),
 
 	);
+    
+    public function beforeSave($options=array()) {
+        if (array_key_exists('moodle_course_id', $this->data['Client'])) {
+            $course_id = $this->data['Client']['moodle_course_id'];
+            $this->data['Client']['moodle_course_name'] = $this->getMoodleCourseName($course_id);
+        }  
+        parent::beforeSave($options);
+    }
+    
+    public function getMoodleCourseName($course_id) {
+        if (!isset($course_id) || empty($course_id)) {
+            $name = '';
+        } else {
+            $moodle = ConnectionManager::getDataSource('moodle');
+            $moodle->rawQuery('SELECT shortname FROM mdl_course WHERE id=' . $course_id);
+            $row = $moodle->fetchRow();
+            $name = $row['mdl_course']['shortname'];
+        }
+        return $name;
+    }
+    
+    public function getMoodleCourses() {
+        $moodle = ConnectionManager::getDataSource('moodle');
+        $moodle->rawQuery('SELECT id, shortname FROM mdl_course');
+        $moodle_courses = array('' => '');
+        while ($course = $moodle->fetchRow()) {
+            $moodle_courses[$course['mdl_course']['id']] = $course['mdl_course']['shortname'];
+        }
+        return $moodle_courses;
+   }
+
+    // QB Migration Vars
+    public $qbFieldMap = array(
+        CLIENTS_NAME => array('name', null),
+        CLIENTS_CONTACT_EMAIL => array('email', null),
+        CLIENTS_SERVICE_TYPE => array('account_type', null),
+        CLIENTS_MOODLE_COURSE_ID => array('moodle_course_id', null),
+        CLIENTS_ACTIVE => array('active', null),
+        CLIENTS_ADMIN_CODE => array('admin_account', null),
+        CLIENTS_USER_CODE => array('user_account', null),
+    );
+    
+    public function getQBClients() {
+        /**
+         * Returns an array of QB RID to client name sorted by name
+         */
+        $qdb = $this->qbConn();
+        $query_data = $qdb->do_query(0, 1, 0, RECORD_ID . "." . CLIENTS_NAME);
+        $qb_clients = array();
+        foreach ($query_data->table->records->record as $client)   {
+            $rid = (string) $client->f[0];
+            $name = (string) $client->f[1];
+            $qb_clients[$rid] = $name;
+        }
+        uasort($qb_clients, function($a,$b){ if ( $a==$b ) return 0; else return ($a > $b) ? 1 : -1; });
+        return $qb_clients;
+    }
+    
+    public function newFromQB($rid, $qb_rec, $client_id=null) {
+        $this->create();
+        $data = $this->_mapQBFields($qb_rec);
+        $this->save(array('Client' => $data), false);
+        foreach ($this->hasMany as $key=>$association) {
+            if (!isset($association['qbFid'])) continue;
+            $model = $association['className'];
+            $this->$model->migrateForQBClient($rid, $association['qbFid'], $this->id);
+        }
+    }
 }
