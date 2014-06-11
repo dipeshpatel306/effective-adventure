@@ -201,7 +201,7 @@ class RiskAssessmentDocumentsController extends AppController {
 				}
 
 			if ($this->RiskAssessmentDocument->save($this->request->data)) {
-				$this->Session->setFlash('The risk assessment document has been saved', 'default', array('class' => 'success message'));
+				$this->Session->setFlash('The risk assessment document has been saved.', 'default', array('class' => 'success message'));
 			if($group == 1){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
@@ -240,10 +240,10 @@ class RiskAssessmentDocumentsController extends AppController {
 			throw new NotFoundException(__('Invalid risk assessment document'));
 		}
 		if ($this->RiskAssessmentDocument->delete()) {
-			$this->Session->setFlash(__('Risk assessment document deleted'));
+			$this->Session->setFlash(__('Risk assessment document deleted.'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Risk assessment document was not deleted'));
+		$this->Session->setFlash(__('Risk assessment document was not deleted.'));
 		$this->redirect(array('action' => 'index'));
 	}
 }

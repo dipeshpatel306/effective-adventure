@@ -161,7 +161,7 @@ class OtherPoliciesAndProceduresController extends AppController {
 
 			$this->OtherPoliciesAndProcedure->create();
 			if ($this->OtherPoliciesAndProcedure->save($this->request->data)) {
-				$this->Session->setFlash('The other policies and procedure has been saved', 'default', array('class' => 'success message'));
+				$this->Session->setFlash('The other policies and procedure has been saved.', 'default', array('class' => 'success message'));
 			if($group == 1){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
@@ -212,7 +212,7 @@ class OtherPoliciesAndProceduresController extends AppController {
 				}
 
 			if ($this->OtherPoliciesAndProcedure->save($this->request->data)) {
-				$this->Session->setFlash('The other policies and procedure has been saved', 'default', array('class' => 'success message'));
+				$this->Session->setFlash('The other policies and procedure has been saved.', 'default', array('class' => 'success message'));
 			if($group == 1){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
@@ -252,10 +252,10 @@ class OtherPoliciesAndProceduresController extends AppController {
 			throw new NotFoundException(__('Invalid other policies and procedure'));
 		}
 		if ($this->OtherPoliciesAndProcedure->delete()) {
-			$this->Session->setFlash(__('Other policies and procedure deleted'));
+			$this->Session->setFlash(__('Other policies and procedure deleted.'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Other policies and procedure was not deleted'));
+		$this->Session->setFlash(__('Other policies and procedure was not deleted.'));
 		$this->redirect(array('action' => 'index'));
 	}
 }

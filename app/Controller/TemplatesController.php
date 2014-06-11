@@ -29,7 +29,7 @@ class TemplatesController extends AppController {
 
         if($group == Group::USER || $acct == 'Initial' || $acct == 'Training'){
             $this->Session->setFlash('You are not authorized to view that!');
-            $this->redirect($this->referrer());
+            $this->redirect($this->referer());
             return false;
         }
 
@@ -67,7 +67,7 @@ class TemplatesController extends AppController {
             $this->set('templates', $this->paginate());
         } else {
             $this->Session->setFlash('You are not authorized to view that!');
-            $this->redirect($this->referrer());
+            $this->redirect($this->referer());
         }
     }
 
@@ -101,11 +101,11 @@ class TemplatesController extends AppController {
                 $this->set('template', $this->Template->read(null, $id));
             } else { // Else Banned!
                 $this->Session->setFlash('You are not authorized to view that!');
-                $this->redirect($this->referrer());
+                $this->redirect($this->referer());
             }
         } else {
             $this->Session->setFlash('You are not authorized to view that!');
-            $this->redirect($this->referrer());
+            $this->redirect($this->referer());
         }
     }
 

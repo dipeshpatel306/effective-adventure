@@ -73,4 +73,12 @@ class AppController extends Controller {
 
         return $string; 
     }
+    
+    public function setReferer() {
+        $this->Session->write('referer', $this->referer());
+    }
+    
+    public function origReferer() {
+        return $this->Session->read('referer');
+    }
 }

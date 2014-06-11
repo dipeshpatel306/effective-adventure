@@ -156,7 +156,7 @@ class DisasterRecoveryPlansController extends AppController {
 
 			$this->DisasterRecoveryPlan->create();
 			if ($this->DisasterRecoveryPlan->save($this->request->data)) {
-				$this->Session->setFlash('The disaster recovery plan has been saved', 'default', array('class' => 'success message'));
+				$this->Session->setFlash('The disaster recovery plan has been saved.', 'default', array('class' => 'success message'));
 			if($group == 1){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
@@ -207,7 +207,7 @@ class DisasterRecoveryPlansController extends AppController {
 				}				
 			
 			if ($this->DisasterRecoveryPlan->save($this->request->data)) {
-				$this->Session->setFlash('The disaster recovery plan has been saved', 'default', array('class' => 'success message'));
+				$this->Session->setFlash('The disaster recovery plan has been saved.', 'default', array('class' => 'success message'));
 			if($group == 1){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
@@ -246,10 +246,10 @@ class DisasterRecoveryPlansController extends AppController {
 			throw new NotFoundException(__('Invalid disaster recovery plan'));
 		}
 		if ($this->DisasterRecoveryPlan->delete()) {
-			$this->Session->setFlash(__('Disaster recovery plan deleted'));
+			$this->Session->setFlash(__('Disaster recovery plan deleted.'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Disaster recovery plan was not deleted'));
+		$this->Session->setFlash(__('Disaster recovery plan was not deleted.'));
 		$this->redirect(array('action' => 'index'));
 	}
 }

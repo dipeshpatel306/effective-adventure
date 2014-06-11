@@ -125,7 +125,7 @@ class ClientsController extends AppController {
                     $this->_updateMoodleCourseName($this->request->data['Client']['moodle_course_id']);
                 }
 
-                $this->Session->setFlash('The client has been saved', 'default', array('class' => 'success message'));
+                $this->Session->setFlash('The client has been saved.', 'default', array('class' => 'success message'));
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('The client could not be saved. Please, try again.'));
@@ -194,10 +194,10 @@ class ClientsController extends AppController {
             throw new NotFoundException(__('Invalid client'));
         }
         if ($this->Client->delete()) {
-            $this->Session->setFlash(__('Client deleted'));
+            $this->Session->setFlash(__('Client deleted.'));
             $this->redirect(array('action' => 'index'));
         }
-        $this->Session->setFlash(__('Client was not deleted'));
+        $this->Session->setFlash(__('Client was not deleted.'));
         $this->redirect(array('action' => 'index'));
     }
 

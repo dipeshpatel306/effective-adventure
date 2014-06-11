@@ -136,7 +136,7 @@ class EphiRemovedController extends AppController {
 
 			$this->EphiRemoved->create();
 			if ($this->EphiRemoved->save($this->request->data)) {
-				$this->Session->setFlash('The ephi removed has been saved', 'default', array('class' => 'success message'));
+				$this->Session->setFlash('The ePHI removed has been saved.', 'default', array('class' => 'success message'));
 			if($group == 1){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
@@ -148,7 +148,7 @@ class EphiRemovedController extends AppController {
 				$this->redirect(array('action' => 'index'));
 			}
 			} else {
-				$this->Session->setFlash(__('The ephi removed could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The ePHI removed could not be saved. Please, try again.'));
 			}
 		}
 		$clients = $this->EphiRemoved->Client->find('list');
@@ -178,7 +178,7 @@ class EphiRemovedController extends AppController {
 		}		
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->EphiRemoved->save($this->request->data)) {
-				$this->Session->setFlash('The ephi removed has been saved', 'default', array('class' => 'success message'));
+				$this->Session->setFlash('The ePHI removed has been saved.', 'default', array('class' => 'success message'));
 			if($group == 1){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
@@ -190,7 +190,7 @@ class EphiRemovedController extends AppController {
 				$this->redirect(array('action' => 'index'));
 			}
 			} else {
-				$this->Session->setFlash(__('The ephi removed could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The ePHI removed could not be saved. Please, try again.'));
 			}
 		} else {
 			$this->request->data = $this->EphiRemoved->read(null, $id);
@@ -216,10 +216,10 @@ class EphiRemovedController extends AppController {
 			throw new NotFoundException(__('Invalid ephi removed'));
 		}
 		if ($this->EphiRemoved->delete()) {
-			$this->Session->setFlash(__('Ephi removed deleted'));
+			$this->Session->setFlash(__('ePHI removed deleted.'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Ephi removed was not deleted'));
+		$this->Session->setFlash(__('ePHI removed was not deleted.'));
 		$this->redirect(array('action' => 'index'));
 	}
 

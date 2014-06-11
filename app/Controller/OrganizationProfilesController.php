@@ -75,11 +75,12 @@ class OrganizationProfilesController extends AppController {
 			$this->OrganizationProfile->create();
 			if ($this->OrganizationProfile->save($this->request->data)) {
 				$this->Session->setFlash('The organization profile has been saved.', 'default', array('class' => 'success message'));
-				$this->redirect($this->referrer());
+				$this->redirect($this->origReferer());
 			} else {
 				$this->Session->setFlash(__('The organization profile could not be saved. Please, try again.'));
 			}
 		}
+        $this->setReferer();
 		$clients = $this->OrganizationProfile->Client->find('list');
 		$operatingSystems = $this->OrganizationProfile->OperatingSystem->find('list');
 		$this->set(compact('clients', 'operatingSystems'));
@@ -100,8 +101,9 @@ class OrganizationProfilesController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 		    $this->OrganizationProfile->id = $id;
 			if ($this->OrganizationProfile->save($this->request->data)) {
-				$this->Session->setFlash('The organization profile has been saved', 'default', array('class' => 'success message'));
-				$this->redirect($this->referrer());
+				$this->Session->setFlash('The organization profile has been saved.', 'default', array('class' => 'success message'));
+                debug($this->request->referrer);
+				$this->redirect($this->origReferer());
 			} else {
 				$this->Session->setFlash(__('The organization profile could not be saved. Please, try again.'));
 			}
@@ -109,6 +111,7 @@ class OrganizationProfilesController extends AppController {
 			$options = array('conditions' => array('OrganizationProfile.' . $this->OrganizationProfile->primaryKey => $id));
 			$this->request->data = $this->OrganizationProfile->find('first', $options);
 		}
+        $this->setReferer();
 		$clients = $this->OrganizationProfile->Client->find('list');
 		$operatingSystems = $this->OrganizationProfile->OperatingSystem->find('list');
 		$this->set(compact('clients', 'operatingSystems'));
@@ -128,10 +131,10 @@ class OrganizationProfilesController extends AppController {
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->OrganizationProfile->delete()) {
-			$this->Session->setFlash(__('Organization profile deleted'));
+			$this->Session->setFlash(__('Organization profile deleted.'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Organization profile was not deleted'));
+		$this->Session->setFlash(__('Organization profile was not deleted.'));
 		$this->redirect(array('action' => 'index'));
 	}
 }

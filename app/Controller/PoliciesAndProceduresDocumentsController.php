@@ -167,7 +167,7 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 
 			$this->PoliciesAndProceduresDocument->create();
 			if ($this->PoliciesAndProceduresDocument->save($this->request->data)) {
-				$this->Session->setFlash('The policies and procedures document has been saved', 'default', array('class' => 'success message'));
+				$this->Session->setFlash('The policies and procedures document has been saved.', 'default', array('class' => 'success message'));
 				
 				$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 			if($group == 1){
@@ -303,7 +303,7 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 				}
 
 			if ($this->PoliciesAndProceduresDocument->save($this->request->data)) {
-				$this->Session->setFlash('The policies and procedures document has been saved', 'default', array('class' => 'success message'));
+				$this->Session->setFlash('The policies and procedures document has been saved.', 'default', array('class' => 'success message'));
 			if($group == 1){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
@@ -346,10 +346,10 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 			throw new NotFoundException(__('Invalid policies and procedures document'));
 		}
 		if ($this->PoliciesAndProceduresDocument->delete()) {
-			$this->Session->setFlash(__('Policies and procedures document deleted'));
+			$this->Session->setFlash(__('Policies and procedures document deleted.'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Policies and procedures document was not deleted'));
+		$this->Session->setFlash(__('Policies and procedures document was not deleted.'));
 		$this->redirect(array('action' => 'index'));
 	}
 }

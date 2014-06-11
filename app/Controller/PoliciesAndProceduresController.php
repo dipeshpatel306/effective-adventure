@@ -121,7 +121,7 @@ class PoliciesAndProceduresController extends AppController {
 		if ($this->request->is('post')) {
 			$this->PoliciesAndProcedure->create();
 			if ($this->PoliciesAndProcedure->save($this->request->data)) {
-				$this->Session->setFlash('The policies and procedure has been saved', 'default', array('class' => 'success message'));
+				$this->Session->setFlash('The policies and procedure has been saved.', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The policies and procedure could not be saved. Please, try again.'));
@@ -143,7 +143,7 @@ class PoliciesAndProceduresController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {			
 			if ($this->PoliciesAndProcedure->save($this->request->data)) {
-				$this->Session->setFlash('The policies and procedure has been saved', 'default', array('class' => 'success message'));
+				$this->Session->setFlash('The policies and procedure has been saved.', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The policies and procedure could not be saved. Please, try again.'));
@@ -170,10 +170,10 @@ class PoliciesAndProceduresController extends AppController {
 			throw new NotFoundException(__('Invalid policies and procedure'));
 		}
 		if ($this->PoliciesAndProcedure->delete()) {
-			$this->Session->setFlash(__('Policies and procedure deleted'));
+			$this->Session->setFlash(__('Policies and procedure deleted.'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Policies and procedure was not deleted'));
+		$this->Session->setFlash(__('Policies and procedure was not deleted.'));
 		$this->redirect(array('action' => 'index'));
 	}
 }

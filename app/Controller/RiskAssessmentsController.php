@@ -89,12 +89,13 @@ class RiskAssessmentsController extends AppController {
 
 			$this->RiskAssessment->create();
 			if ($this->RiskAssessment->save($this->request->data)) {
-				$this->Session->setFlash('The risk assessment has been saved', 'default', array('class' => 'success message'));
-				$this->redirect($this->referrer());
+				$this->Session->setFlash('The risk assessment has been saved.', 'default', array('class' => 'success message'));
+				$this->redirect($this->origReferer());
 			} else {
 				$this->Session->setFlash(__('The risk assessment could not be saved. Please, try again.'));
 			}
 		}
+        $this->setReferer();
 		$clients = $this->RiskAssessment->Client->find('list');
 		$this->set(compact('clients'));
 	}
@@ -117,11 +118,12 @@ class RiskAssessmentsController extends AppController {
             if ($this->RiskAssessment->save($this->request->data)) {
 
                 $this->Session->setFlash('Your risk assessment has been saved', 'default', array('class' => 'success message'));
-                $this->redirect($this->referrer());
+                $this->redirect($this->origReferer());
             } else {
                 $this->Session->setFlash(__('Your risk assessment could not be saved. Please, try again.'));
             }
         }
+        $this->setReferer();
         $clients = $this->RiskAssessment->Client->find('list');
         $this->set(compact('clients'));
     }
@@ -156,14 +158,15 @@ class RiskAssessmentsController extends AppController {
 
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->RiskAssessment->save($this->request->data)) {
-				$this->Session->setFlash('The risk assessment has been saved', 'default', array('class' => 'success message'));
-				$this->redirect($this->referrer());
+				$this->Session->setFlash('The risk assessment has been saved.', 'default', array('class' => 'success message'));
+				$this->redirect($this->origReferer());
 			} else {
 				$this->Session->setFlash(__('The risk assessment could not be saved. Please, try again.'));
 			}
 		} else {
 			$this->request->data = $this->RiskAssessment->read(null, $id);
 		}
+        $this->setReferer();
 		$clients = $this->RiskAssessment->Client->find('list');
 		$this->set(compact('clients'));
         $this->render('take_risk_assessment');
@@ -186,10 +189,10 @@ class RiskAssessmentsController extends AppController {
 			throw new NotFoundException(__('Invalid risk assessment'));
 		}
 		if ($this->RiskAssessment->delete()) {
-			$this->Session->setFlash(__('Risk assessment deleted'));
+			$this->Session->setFlash(__('Risk assessment deleted.'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Risk assessment was not deleted'));
+		$this->Session->setFlash(__('Risk assessment was not deleted.'));
 		$this->redirect(array('action' => 'index'));
 	}
     

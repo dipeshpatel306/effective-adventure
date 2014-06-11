@@ -60,7 +60,7 @@ class PartnersController extends AppController {
 		if ($this->request->is('post')) {			
 			$this->Partner->create();
 			if ($this->Partner->save($this->request->data)) {
-				$this->Session->setFlash('The partner has been saved', 'default', array('class' => 'success message'));
+				$this->Session->setFlash('The partner has been saved.', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The partner could not be saved. Please, try again.'));
@@ -82,7 +82,7 @@ class PartnersController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Partner->save($this->request->data)) {
-				$this->Session->setFlash('The partner has been saved', 'default', array('class' => 'success message'));
+				$this->Session->setFlash('The partner has been saved.', 'default', array('class' => 'success message'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The partner could not be saved. Please, try again.'));
@@ -109,10 +109,10 @@ class PartnersController extends AppController {
 			throw new NotFoundException(__('Invalid partner'));
 		}
 		if ($this->Partner->delete()) {
-			$this->Session->setFlash(__('Partner deleted'));
+			$this->Session->setFlash(__('Partner deleted.'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Partner was not deleted'));
+		$this->Session->setFlash(__('Partner was not deleted.'));
 		$this->redirect(array('action' => 'index'));
 	}
 }

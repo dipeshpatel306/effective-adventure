@@ -123,7 +123,7 @@ class SecurityIncidentsController extends AppController {
 							
 			$this->SecurityIncident->create();
 			if ($this->SecurityIncident->save($this->request->data)) {
-				$this->Session->setFlash('The security incident has been saved', 'default', array('class' => 'success message'));
+				$this->Session->setFlash('The security incident has been saved.', 'default', array('class' => 'success message'));
 			if($group == 1){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
@@ -205,10 +205,10 @@ class SecurityIncidentsController extends AppController {
 			throw new NotFoundException(__('Invalid security incident'));
 		}
 		if ($this->SecurityIncident->delete()) {
-			$this->Session->setFlash(__('Security incident deleted'));
+			$this->Session->setFlash(__('Security incident deleted.'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Security incident was not deleted'));
+		$this->Session->setFlash(__('Security incident was not deleted.'));
 		$this->redirect(array('action' => 'index'));
 	}
 }

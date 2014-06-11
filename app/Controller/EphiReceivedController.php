@@ -134,7 +134,7 @@ class EphiReceivedController extends AppController {
 
 			$this->EphiReceived->create();
 			if ($this->EphiReceived->save($this->request->data)) {
-				$this->Session->setFlash('The ephi received has been saved', 'default', array('class' => 'success message'));
+				$this->Session->setFlash('The ePHI received has been saved.', 'default', array('class' => 'success message'));
 			if($group == 1){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
@@ -146,7 +146,7 @@ class EphiReceivedController extends AppController {
 				$this->redirect(array('action' => 'index'));
 			}
 			} else {
-				$this->Session->setFlash(__('The ephi received could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The ePHI received could not be saved. Please, try again.'));
 			}
 		}
 		$clients = $this->EphiReceived->Client->find('list');
@@ -176,7 +176,7 @@ class EphiReceivedController extends AppController {
 		}			
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->EphiReceived->save($this->request->data)) {
-				$this->Session->setFlash('The ephi received has been saved', 'default', array('class' => 'success message'));
+				$this->Session->setFlash('The ePHI received has been saved.', 'default', array('class' => 'success message'));
 			if($group == 1){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
@@ -188,7 +188,7 @@ class EphiReceivedController extends AppController {
 				$this->redirect(array('action' => 'index'));
 			}
 			} else {
-				$this->Session->setFlash(__('The ephi received could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The ePHI received could not be saved. Please, try again.'));
 			}
 		} else {
 			$this->request->data = $this->EphiReceived->read(null, $id);
@@ -214,10 +214,10 @@ class EphiReceivedController extends AppController {
 			throw new NotFoundException(__('Invalid ephi received'));
 		}
 		if ($this->EphiReceived->delete()) {
-			$this->Session->setFlash(__('Ephi received deleted'));
+			$this->Session->setFlash(__('ePHI received deleted.'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Ephi received was not deleted'));
+		$this->Session->setFlash(__('ePHI received was not deleted.'));
 		$this->redirect(array('action' => 'index'));
 	}
 

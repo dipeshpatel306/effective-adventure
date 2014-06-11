@@ -136,7 +136,7 @@ class ServerRoomAccessController extends AppController {
 
 			$this->ServerRoomAccess->create();
 			if ($this->ServerRoomAccess->save($this->request->data)) {
-				$this->Session->setFlash('The server room access has been saved', 'default', array('class' => 'success message'));
+				$this->Session->setFlash('The server room access has been saved.', 'default', array('class' => 'success message'));
 			if($group == 1){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
@@ -218,10 +218,10 @@ class ServerRoomAccessController extends AppController {
 			throw new NotFoundException(__('Invalid server room access'));
 		}
 		if ($this->ServerRoomAccess->delete()) {
-			$this->Session->setFlash(__('Server room access deleted'));
+			$this->Session->setFlash(__('Server room access deleted.'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Server room access was not deleted'));
+		$this->Session->setFlash(__('Server room access was not deleted.'));
 		$this->redirect(array('action' => 'index'));
 	}
 

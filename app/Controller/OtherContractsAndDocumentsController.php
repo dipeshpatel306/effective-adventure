@@ -140,7 +140,7 @@ class OtherContractsAndDocumentsController extends AppController {
 			}
 			
 		if ($this->request->is('post')) {
-
+            debug($this->request->data);
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 			if($group != 1){
@@ -165,7 +165,7 @@ class OtherContractsAndDocumentsController extends AppController {
 					$this->redirect(array('controller' => 'clients', 'action' => 'view', $this->request->data['OtherContractsAndDocument']['client_id']));
 				}
 			} else {	
-				$this->redirect(array('action' => 'index'));
+				//$this->redirect(array('action' => 'index'));
 			}
 			} else {
 				$this->Session->setFlash(__('The other contracts and document could not be saved. Please, try again.'));
@@ -247,10 +247,10 @@ class OtherContractsAndDocumentsController extends AppController {
 			throw new NotFoundException(__('Invalid other contracts and document'));
 		}
 		if ($this->OtherContractsAndDocument->delete()) {
-			$this->Session->setFlash(__('Other contracts and document deleted'));
+			$this->Session->setFlash(__('Other contracts and document deleted.'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Other contracts and document was not deleted'));
+		$this->Session->setFlash(__('Other contracts and document was not deleted.'));
 		$this->redirect(array('action' => 'index'));
 	}
 }
