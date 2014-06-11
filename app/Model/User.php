@@ -270,7 +270,7 @@ class User extends AppModel {
         USERS_RELATED_ROLE => array('group_id', 'mapQBRole')
     );
     
-    public function mapQBRole($qb_val) {
+    public function mapQBRole($qb_val, $qb_rec) {
         if ($qb_val == '1') {
             return Group::ADMIN;
         } elseif (in_array($qb_val, array('2', '3', '5', '7', '9'))) {
@@ -284,7 +284,8 @@ class User extends AppModel {
         $this->create();
         $data = $this->_mapQBFields($qb_rec);
         $data['client_id'] = $client_id;
-        $this->save(array('User' => $data), false);
+        $this->set($data);
+        $this->save(null, false);
     }
 
 }

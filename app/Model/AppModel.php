@@ -22,6 +22,7 @@
 
 App::uses('Model', 'Model');
 require_once(APP . 'Vendor' . DS . 'quickbase.php');
+require_once(APP . 'Vendor' . DS . 'S3.php');
 
 /**
  * Application model for Cake.
@@ -63,8 +64,7 @@ class AppModel extends Model {
     
     function _mapQBFields($qb_rec) {
         $data = array();
-        foreach ($qb_rec->f as $field) {
-            $fid = (string) $field['id'];
+        foreach ($qb_rec as $fid=>$field) {
             if (array_key_exists($fid, $this->qbFieldMap)) {
                 $map_info = $this->qbFieldMap[$fid];
                 $field_name = $map_info[0];
@@ -73,11 +73,16 @@ class AppModel extends Model {
                 if ($map_fn === null) {
                     $data[$field_name] = $val;
                 } else {
-                    $data[$field_name] = $this->$map_fn($val);
+                    $data[$field_name] = $this->$map_fn($val, $qb_rec);
                 }
             }
         }
         return $data;
+    }
+    
+    function getQBS3AttachmentURL($rid, $qb_rec) {
+        $s3 = new S3(AWS_ACCESS_KEY, AWS_SECRET_KEY);
+        return $s3->getAuthenticatedURL('hipaasecurenow', $this->qbDbid . '_' . $rid, 3600);
     }
     
     function qbConn() {
@@ -96,7 +101,12 @@ class AppModel extends Model {
             $dbid = $this->qbDbid;
             throw NotFoundException('QB record not found for $rid in $dbid');
         }
-        $this->newFromQB($rid, $rec, $client_id);
+        $qb_rec = array();
+        foreach ($rec->f as $field) {
+            $fid = (string) $field['id'];
+            $qb_rec[$fid] = $field;
+        }
+        $this->newFromQB($rid, $qb_rec, $client_id);
     }
     
     function migrateForQBClient($client_rid, $fid, $client_id) {
