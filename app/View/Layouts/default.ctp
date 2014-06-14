@@ -78,11 +78,13 @@
 										 'slides.min.jquery.js',
 										 'jquery-social-stream/js/jquery.social.stream.1.5.min.js',
 										 'jquery.maskedinput.min.js',
+										 'ui.tabs.paging.js',
 										 'scripts',
 	)); ?>
 	<script type='text/javascript'>
 	    $(document).ready(function() {
 	        $('.fouc').show();
+	        $('.raTabs.tabsInner').tabs('paging', {followOnActive : true, follow: true});
 	    });
 	</script>
 	<?php

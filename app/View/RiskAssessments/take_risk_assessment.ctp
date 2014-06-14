@@ -25,7 +25,7 @@ $group = $this->Session->read('Auth.User.group_id');
     </ul>
     <?php foreach ($questions as $item): ?>
         <?php $outer_id = $item['RiskAssessmentQuestionSafeguardCategory']['id']; ?>
-        <div id='outerTab<?php echo $outer_id; ?>' class='raTabs'>
+        <div id='outerTab<?php echo $outer_id; ?>' class='raTabs tabsInner'>
             <ul>
                 <?php 
                     foreach ($item['RiskAssessmentQuestionSubCategory'] as $idx=>$subitem) {

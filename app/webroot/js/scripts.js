@@ -78,6 +78,7 @@ $(document).ready(function(){
     });
     
     $('.orgProfTabs').tabs();
+    $('.orgProfTabs').tabs('paging', {followOnActive : true, follow: true});
     $('.orgProfNextTab').click(function(){
        var active = $('.orgProfTabs').tabs('option', 'active');
        var next_tab = (active + 1) % $('.orgProfTabs >ul>li').size();

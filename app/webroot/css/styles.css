@@ -6,7 +6,7 @@ body {
 	padding:0;
 	height:100%;
 	background-color: #e1e6e9;
-	min-width: 1803px;
+	min-width: 1200px;
 }
 body{
 	background-color: #ffffff;
@@ -288,7 +288,7 @@ div.newsFeed{
 }
 div.newsFeed {
     float: left;
-    padding: 10px 1.5%;
+    padding: 6px 1%;
     width: 16%;
     padding-bottom: 40px;
 }
@@ -390,10 +390,10 @@ img.homeIcon:hover{
 	background-color: #f0f0f0;
 	/*border: 1px solid #888888;*/
 	border: 1px solid #CFCFCF;
-	width: 300px;
+	width: 275px;
 	height: 200px;
-	margin: 8px;
-	padding: 8px;
+	margin: 6px;
+	padding: 6px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	text-decoration: none; // fixes IE < 7 bug
@@ -420,7 +420,7 @@ img.homeIcon:hover{
 }
 .dashBox h3 {
 	padding-top: 8px;
-	font-size: 1.3em;
+	font-size: 1.2em;
 	font-weight: bold;
 	color: #bc1310;
 }
@@ -460,7 +460,7 @@ img.homeIcon:hover{
 .dashBtn{
 	width: 200px;
 	height: 20px;
-	margin: 20px auto 0 auto;
+	margin: 25px auto 0 auto;
 	padding: 10px 0 10px 0;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -867,9 +867,9 @@ a.orgProfTab {
     font-size: 95%;
 }
 
-a.innerTabLink {
+/*a.innerTabLink {
     font-size: 80%;
-}
+}*/
 
 .orgProfTabs li.ui-state-active {
     border-style: solid;
@@ -923,3 +923,35 @@ img.tabIcon {
     margin-left: 4px;
 }
 
+.ui-tabs-paging-prev a,
+.ui-tabs-paging-next a {
+   display: block; 
+   position: relative; 
+   top: 1px; 
+   border: 0;
+   z-index: 2; 
+   padding: 0px; 
+   color: #444; 
+   text-decoration: none;
+   background: #eee; 
+   cursor: pointer;
+}
+.ui-tabs-paging-next a:hover,
+.ui-tabs-paging-next a:focus,
+.ui-tabs-paging-next a:active,
+.ui-tabs-paging-prev a:hover,
+.ui-tabs-paging-prev a:focus,
+.ui-tabs-paging-prev a:active { 
+   background: #eee; 
+}
+.ui-tabs-paging-disabled {
+   display: none;
+}
+
+.tabsInner li {
+    font-size: 80%;    
+}
+
+.ui-tabs-paging-next {
+    padding: 0 !important;
+}
