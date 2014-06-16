@@ -466,7 +466,7 @@ class UsersController extends AppController {
  *
  * @return void
  */
-    public function register() {
+    public function register($code=null) {
         if ($this->request->is('post')) {
             $authCode = $this->request->data['User']['authCode'];  // get submited authCode
 
@@ -516,6 +516,7 @@ class UsersController extends AppController {
                 $this->Session->setFlash(__('Your new account could not be created. Please, try again.'));
             }
         }
+        $this->set(compact('code'));
     }
 
     /*private function _sendNewUserEmail($id) {
