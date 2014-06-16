@@ -254,6 +254,23 @@ $this->Html->addCrumb('Contracts & Documents');
 			);			
 		}
 
+        if (($group == Group::ADMIN) || (($acct == 'Meaningful Use' || $acct == 'Subscription') && $group == Group::MANAGER)) {
+            echo $this->Html->link(
+                '<div class="dashBox">' . 
+                '<div class="dashHead">' .
+                $this->Html->image('ocnd_tile.jpg', array(
+                            'class' => 'dashTile', 
+                            'alt' => 'Templates'
+                            )) .
+                '<h3>Templates</h3>' .
+                '</div>' .
+                '<div class="dashSum">Templates</div>' . $approved .
+                '</div>',
+                array('controller' => 'templates', 'action' => 'index'),
+                array('escape' => false)
+            );
+        }
+
 
 
 	?>

@@ -74,7 +74,5 @@ $this->Html->addCrumb('Templates');
 		<?php if($group == 1): ?>
 		<li><?php echo $this->Html->link(__('New Template'), array('action' => 'add')); ?></li>
 		<?php endif; ?>
-
-
 	</ul>
 </div>

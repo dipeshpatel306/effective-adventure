@@ -1,10 +1,6 @@
 <?php
 $this->Html->addCrumb('Templates', '/templates');
 $this->Html->addCrumb('Edit Template');
-
-// Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id');
-	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="templates form">
 <?php echo $this->Form->create('Template', array('type' => 'file')); ?>
@@ -13,7 +9,6 @@ $this->Html->addCrumb('Edit Template');
 	<?php
 		echo $this->Form->input('name');
 		echo $this->Form->input('description', array('type' => 'text', 'rows' => '5', 'cols' => '40'));
-	    echo $this->Form->input('client_id', array('empty' => 'Please Select'));
 	?>
 		<label for='currentDoc' class='labelNew'>Current Document</label>
 		<div class='currentDoc'><?php echo $doc ?></div>
