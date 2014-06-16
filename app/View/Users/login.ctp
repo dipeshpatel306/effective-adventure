@@ -3,7 +3,7 @@
 
 <?php
 	echo $this->Form->create('User');
-	echo $this->Form->input('email');
+	echo $this->Form->input('email', array('value' => $email));
 	echo $this->Form->input('password');
 	echo $this->Html->link($this->Html->tag('span', 'New User?'),
 		array('controller' => 'Users', 'action' => 'register'),

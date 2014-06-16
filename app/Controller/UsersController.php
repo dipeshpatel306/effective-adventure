@@ -186,7 +186,7 @@ class UsersController extends AppController {
 /**
  * Login Method
  */
-    public function login() {
+    public function login($email=null) {
         $this->set('title_for_layout', 'HIPAA Compliance Portal');
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
@@ -232,6 +232,7 @@ class UsersController extends AppController {
                 $this->Session->setFlash('Your username or password was incorrect.');
             }
         }
+        $this->set(compact('email'));
         //if ($this->Session->read('Auth.User')) {
             //$this->Session->setFlash('You are logged in!', 'default', array('class' => 'success message'));
             //$this->Session->write('User.id', $userId);
