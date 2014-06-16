@@ -48,8 +48,8 @@
 	<div class='initBox'>
 	    <div class='initTxt floatLeft'>
             <h3>
-            <p class='bold'>The first step to getting <span class='redHL'>HIPAA Secure Now!</span> is to complete a Risk Assessment</p>
-            <p class='bold'>Click "Let's Get Started" to review the <span class='redHL'>HIPAA Secure Now!</span> process</p>
+            <p>The first step to getting <span class='redHL'>HIPAA Secure Now!</span> is to complete a Risk Assessment</p>
+            <p>Click "Let's Get Started" to review the <span class='redHL'>HIPAA Secure Now!</span> process</p>
             </h3>
         </div>
 	
@@ -69,7 +69,7 @@
 	
 		
 	</div>
-<div class='clear'>
+<div class='initTiles clear'>
 	<?php
 	if($group != 3){
 	if($displayRaOrg['Client']['display_ra_org']){

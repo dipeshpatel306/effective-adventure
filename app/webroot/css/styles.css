@@ -402,14 +402,18 @@ img.homeIcon:hover{
 	-webkit-box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
 	box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
 }
-.getStartedDashBox {
-    margin-left: 290px;
-}
 .initTxt{
 	float: left;
-	padding: 70px 0 0 20px;;
+	width: 562px;
+	padding: 70px 20px 0 20px;;
 }
-
+.initTiles {
+    max-width: 950px;
+}
+.initTxt p {
+    font-size: 0.95em;
+    text-align: center;
+}
 .dashBox:hover{
 	background-color: #F5F9FD;
 }
