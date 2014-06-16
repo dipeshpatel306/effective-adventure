@@ -68,30 +68,4 @@ class Template extends AppModel {
         ),
     );
 
-    //The Associations below have been created with all possible keys, those that are not needed can be removed
-
-/**
- * belongsTo associations
- *
- * @var array
- */
-    public $belongsTo = array(
-        'Client' => array(
-            'className' => 'Client',
-            'foreignKey' => 'client_id',
-            'conditions' => '',
-            'fields' => '',
-            'order' => ''
-        )
-    );
-
-
-/**
- * Check Client Owner
- */
-    public function isOwnedBy($id, $client){
-        return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
-
-    }
-
 }
