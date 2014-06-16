@@ -80,6 +80,11 @@ $(document).ready(function(){
     $('.orgProfTabs').tabs();
     $('.orgProfTabs').tabs('paging', {followOnActive : true, follow: true});
     $('.orgProfNextTab').click(function(){
+       $.ajax({
+            data: $(this).closest("form").serialize(),
+            dataType: "html",
+            type: "post",
+        });
        var active = $('.orgProfTabs').tabs('option', 'active');
        var next_tab = (active + 1) % $('.orgProfTabs >ul>li').size();
        $('.orgProfTabs').tabs('option', 'active', next_tab);
@@ -520,7 +525,6 @@ $(document).ready(function(){
             }
         }); 
     });
-	
 });
 
 
