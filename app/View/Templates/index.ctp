@@ -11,10 +11,6 @@ $this->Html->addCrumb('Templates');
 	<h2><?php echo __('Templates'); ?></h2>
 	<table>
 	<tr>
-			<?php if($group ==1): ?>
-			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
-			<?php endif; ?>
-
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('attachment'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
@@ -24,12 +20,6 @@ $this->Html->addCrumb('Templates');
 	<?php
 	foreach ($templates as $template): ?>
 	<tr>
-		<?php if($group == 1 ): ?>
-		<td>
-			<?php echo $template['Client']['name']; ?>
-		</td>
-		<?php endif; ?>
-
 		<td><?php echo ($template['Template']['name']); ?>&nbsp;</td>
 		<td>
 		<?php
