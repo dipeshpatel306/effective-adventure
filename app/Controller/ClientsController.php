@@ -11,7 +11,7 @@ class ClientsController extends AppController {
  public function beforeFilter(){
     parent::beforeFilter();
  }
-
+ 
 /**
  * isAuthorized Method
  * Allows Hippa Admin to Add, Edit, Delete Everything
@@ -37,6 +37,10 @@ class ClientsController extends AppController {
  */
     public function index() {
         $this->Client->recursive = 0;
+        $this->paginate = array(
+            'limit' => 100,
+            'order' => array('Client.name' => 'asc')
+        );
         $this->set('clients', $this->paginate());
     }
 
