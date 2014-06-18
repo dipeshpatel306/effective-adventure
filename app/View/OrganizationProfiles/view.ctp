@@ -99,12 +99,7 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 			<?php echo ($organizationProfile['OrganizationProfile']['number_employees']); ?>
 			&nbsp;
 		</p>
-		<h4 class='highlight'><?php echo __('Do you have a second location?'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['second_location']); ?>
-			&nbsp;
-		</p>
-
+		<?php if ($organizationProfile['OrganizationProfile']['second_location'] == 'Yes'): ?>
 		<h4 class='highlight'><?php echo __('Second Address 1: '); ?></h4>
 		<p>
 			<?php echo ($organizationProfile['OrganizationProfile']['second_address_1']); ?>
@@ -130,12 +125,8 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 			<?php echo ($organizationProfile['OrganizationProfile']['second_zip']); ?>
 			&nbsp;
 		</p>
-		<h4 class='highlight'><?php echo __('Do you have a third location?'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['third_location']); ?>
-			&nbsp;
-		</p>
-
+		<?php endif; ?>
+		<?php if ($organizationProfile['OrganizationProfile']['third_location'] == 'Yes'): ?>
 		<h4 class='highlight'><?php echo __('Third Address 1: '); ?></h4>
 		<p>
 			<?php echo ($organizationProfile['OrganizationProfile']['third_address_1']); ?>
@@ -161,12 +152,8 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 			<?php echo ($organizationProfile['OrganizationProfile']['third_zip']); ?>
 			&nbsp;
 		</p>
-		<h4 class='highlight'><?php echo __('Do you have a fourth location?'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['fourth_location']); ?>
-			&nbsp;
-		</p>
-
+		<?php endif; ?>
+        <?php if ($organizationProfile['OrganizationProfile']['fourth_location'] == 'Yes'): ?>
 		<h4 class='highlight'><?php echo __('Fourth Address 1: '); ?></h4>
 		<p>
 			<?php echo ($organizationProfile['OrganizationProfile']['fourth_address_1']); ?>
@@ -192,12 +179,8 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 			<?php echo ($organizationProfile['OrganizationProfile']['fourth_zip']); ?>
 			&nbsp;
 		</p>
-		<h4 class='highlight'><?php echo __('Do you have a fifth location?'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['fifth_location']); ?>
-			&nbsp;
-		</p>
-
+		<?php endif; ?>
+        <?php if ($organizationProfile['OrganizationProfile']['fifth_location'] == 'Yes'): ?>
 		<h4 class='highlight'><?php echo __('Fifth Address 1: '); ?></h4>
 		<p>
 			<?php echo ($organizationProfile['OrganizationProfile']['fifth_address_1']); ?>
@@ -223,7 +206,7 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 			<?php echo ($organizationProfile['OrganizationProfile']['fifth_zip']); ?>
 			&nbsp;
 		</p>
-
+        <?php endif; ?>
 		<h4 class='highlight'><?php echo __('How many servers do you have?'); ?></h4>
 		<p>
 			<?php echo ($organizationProfile['OrganizationProfile']['number_of_servers']); ?>
