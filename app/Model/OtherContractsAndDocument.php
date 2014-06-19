@@ -100,13 +100,13 @@ class OtherContractsAndDocument extends AppModel {
         '6' => array('name', null),
         '7' => array('description', null),
         '8' => array('date', null),
+        '12' => array('attachment', 'mapQBAttachment')
     );
     
     public function newFromQB($rid, $qb_rec, $client_id=null) {
         $this->create();
         $data = $this->_mapQBFields($qb_rec);
         $data['client_id'] = $client_id;
-        $data['attachment'] = $this->getQBS3AttachmentURL($rid, $qb_rec);
         $this->set($data);
         $this->save(null, false);
     }

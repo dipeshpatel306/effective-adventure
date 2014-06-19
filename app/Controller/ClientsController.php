@@ -170,6 +170,7 @@ class ClientsController extends AppController {
     
     public function migrate_from_qb() {
         if ($this->request->is('post')) {
+            set_time_limit(0);
             if ($this->Client->migrateFromQB($this->request->data['Client']['rid'])) {
                 $this->Session->setFlash(__('Client migrated.'), 'default', array('class' => 'success message'));
             }

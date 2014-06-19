@@ -189,7 +189,7 @@ class Client extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => '',
-			#'qbFid' => OCND_RELATED_CLIENT
+			'qbFid' => OCND_RELATED_CLIENT
 		),
 		'SecurityIncident' => array(
 			'className' => 'SecurityIncident',
@@ -323,7 +323,8 @@ class Client extends AppModel {
     public function newFromQB($rid, $qb_rec, $client_id=null) {
         $this->create();
         $data = $this->_mapQBFields($qb_rec);
-        $this->save(array('Client' => $data), false);
+        $this->set($data);
+        $this->save(null, false);
         foreach ($this->hasMany as $key=>$association) {
             if (!isset($association['qbFid'])) continue;
             $model = $association['className'];

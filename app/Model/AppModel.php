@@ -21,6 +21,7 @@
  */
 
 App::uses('Model', 'Model');
+App::uses('HttpSocket', 'Network/Http');
 require_once(APP . 'Vendor' . DS . 'quickbase.php');
 require_once(APP . 'Vendor' . DS . 'S3.php');
 
@@ -80,9 +81,22 @@ class AppModel extends Model {
         return $data;
     }
     
-    function getQBS3AttachmentURL($rid, $qb_rec) {
+    function mapQBAttachment($name, $qb_rec) {
         $s3 = new S3(AWS_ACCESS_KEY, AWS_SECRET_KEY);
-        return $s3->getAuthenticatedURL('hipaasecurenow', $this->qbDbid . '_' . $rid, 3600);
+        $url = $s3->getAuthenticatedURL('hipaasecurenow', $this->qbDbid . '_' . $qb_rec[RECORD_ID], 3600);
+        $socket = new HttpSocket();
+        $response = $socket->get($url);
+        $tmp_name = sys_get_temp_dir() . '/' . $name;
+        file_put_contents($tmp_name, $response->body);
+        $attachment = array(
+            'name' => $name,
+            'type' => $response->getHeader('Content-Type'),
+            'tmp_name' => $tmp_name,
+            'error' => 0,
+            'size' => strlen($response->body)
+        );
+        debug($attachment);
+        return $attachment;
     }
     
     function qbConn() {
@@ -95,7 +109,9 @@ class AppModel extends Model {
     
     function migrateFromQB($rid, $client_id=null) {
         $qdb = $this->qbConn();
-        $qb_data = $qdb->do_query(array(array('fid' => '3', 'ev' => 'EX', 'cri' => $rid)));
+        $clist = array_keys($this->qbFieldMap);
+        array_push($clist, RECORD_ID);
+        $qb_data = $qdb->do_query(array(array('fid' => '3', 'ev' => 'EX', 'cri' => $rid)), 0, 0, join('.', $clist));
         $rec = $qb_data->table->records->record[0];
         if (!isset($rec)) {
             $dbid = $this->qbDbid;
@@ -112,7 +128,6 @@ class AppModel extends Model {
     function migrateForQBClient($client_rid, $fid, $client_id) {
         $qdb = $this->qbConn();
         $qb_data = $qdb->do_query(array(array('fid' => $fid, 'ev' => 'EX', 'cri' => $client_rid)), 0, 0, '3');
-        debug($client_id);
         foreach ($qb_data->table->records->record as $rec) {
             $this->migrateFromQB((string) $rec->f[0], $client_id);
         }
