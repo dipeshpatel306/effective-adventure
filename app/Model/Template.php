@@ -55,17 +55,6 @@ class Template extends AppModel {
                 'message' => 'File was not successfully uploaded'
             ),
         ),
-
-        'client_id' => array(
-            'numeric' => array(
-                'rule' => array('numeric'),
-                'message' => 'Your forgot the client',
-                'allowEmpty' => false,
-                'required' => true,
-                //'last' => false, // Stop validation after this rule
-                //'on' => 'create', // Limit validation to 'create' or 'update' operations
-            ),
-        ),
     );
 
 }

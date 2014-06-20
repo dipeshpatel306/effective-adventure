@@ -10,14 +10,6 @@ $this->Html->addCrumb($template['Template']['name']);
 <div class="templates view">
 <h2><?php  echo __('Template'); ?></h2>
 	<dl>
-		<?php if($group == 1): ?>
-		<dt><?php echo __('Client'); ?></dt>
-		<dd>
-			<?php echo $template['Client']['name']; ?>
-			&nbsp;
-		</dd>
-		<?php endif; ?>
-
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
 			<?php echo ($template['Template']['name']); ?>
