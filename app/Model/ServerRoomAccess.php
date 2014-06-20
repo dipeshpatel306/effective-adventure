@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+require_once(APP . 'Vendor' . DS . 'constants.php');
 /**
  * ServerRoomAccess Model
  *
@@ -20,6 +21,8 @@ class ServerRoomAccess extends AppModel {
  * @var string
  */
 	public $displayField = 'reason';
+    
+    public $qbDbid = SRA_DBID;
 
 /**
  * Validation rules
@@ -85,6 +88,17 @@ class ServerRoomAccess extends AppModel {
 			'order' => ''
 		)
 	);
+    
+    public $qbFieldMap = array(
+        '6' => array('date', null),
+        '7' => array('person', null),
+        '8' => array('company', null),
+        '9' => array('reason', null),
+        '10' => array('changed', null),
+        '11' => array('what_changed', null),
+        '12' => array('other_reason', null),
+        '13' => array('notes', null)
+    );
 /**
  * Check Client Owner
  */

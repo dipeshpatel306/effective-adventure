@@ -95,8 +95,13 @@ class AppModel extends Model {
             'error' => 0,
             'size' => strlen($response->body)
         );
-        debug($attachment);
         return $attachment;
+    }
+    
+    function mapQBDate($qb_date, $qb_rec) {
+        $timestamp = (((float) $qb_date) + 14400) / 1000;
+        $date = gmdate("Y-m-d\TH:i:s\Z", $timestamp);
+        return $date;
     }
     
     function qbConn() {
@@ -104,7 +109,13 @@ class AppModel extends Model {
     }
     
     function newFromQB($rid, $qb_rec, $client_id=null) {
-        return;
+        $this->create();
+        $data = $this->_mapQBFields($qb_rec);
+        if ($client_id) {
+            $data['client_id'] = $client_id;
+        }
+        $this->set($data);
+        $this->save(null, false);
     }
     
     function migrateFromQB($rid, $client_id=null) {

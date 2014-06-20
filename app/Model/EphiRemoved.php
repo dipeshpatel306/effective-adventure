@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+require_once(APP . 'Vendor' . DS . 'constants.php');
 /**
  * EphiRemoved Model
  *
@@ -20,6 +21,8 @@ class EphiRemoved extends AppModel {
  * @var string
  */
 	public $displayField = 'description';
+    
+    public $qbDbid = EPHIREM_DBID;
 
 /**
  * Validation rules
@@ -85,6 +88,20 @@ class EphiRemoved extends AppModel {
 			'order' => ''
 		)
 	);
+    
+    public $qbFieldMap = array(
+        '6' => array('date', 'mapQBDate'),
+        '22' => array('other_description', null),
+        '8' => array('removed_by', null),
+        '9' => array('when_returned', 'mapQBDate'),
+        '7' => array('item', null),
+        '19' => array('approved', null),
+        '18' => array('reason', null),
+        '23' => array('other_reason', null),
+        '21' => array('returned_by', null),
+        '25' => array('notes', null)
+    );
+    
 /**
  * Check Client Owner
  */

@@ -161,7 +161,7 @@ class Client extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => '',
-			#'qbFid' => BAA_RELATED_CLIENT
+			'qbFid' => BAA_RELATED_CLIENT
 		),
 		'DisasterRecoveryPlan' => array(
 			'className' => 'DisasterRecoveryPlan',
@@ -175,7 +175,7 @@ class Client extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => '',
-			#'qbFid' => DRP_RELATED_CLIENT
+			'qbFid' => DRP_RELATED_CLIENT
 		),
 		'OtherContractsAndDocument' => array(
 			'className' => 'OtherContractsAndDocument',
@@ -217,7 +217,7 @@ class Client extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => '',
-			#'qbFid' => SRA_RELATED_CLIENT
+			'qbFid' => SRA_RELATED_CLIENT
 		),
 		'EphiReceived' => array(
 			'className' => 'EphiReceived',
@@ -231,7 +231,7 @@ class Client extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => '',
-			#'qbFid' => EPHIREC_RELATED_CLIENT
+			'qbFid' => EPHIREC_RELATED_CLIENT
 		),
 		'EphiRemoved' => array(
 			'className' => 'EphiRemoved',
@@ -245,7 +245,7 @@ class Client extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => '',
-			#'qbFid' => EPHIREM_RELATED_CLIENT
+			'qbFid' => EPHIREM_RELATED_CLIENT
 		),
 		'SirtTeam' => array(
 			'className' => 'SirtTeam',

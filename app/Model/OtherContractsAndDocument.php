@@ -99,17 +99,10 @@ class OtherContractsAndDocument extends AppModel {
     public $qbFieldMap = array(
         '6' => array('name', null),
         '7' => array('description', null),
-        '8' => array('date', null),
+        '8' => array('date', 'mapQBDate'),
         '12' => array('attachment', 'mapQBAttachment')
     );
     
-    public function newFromQB($rid, $qb_rec, $client_id=null) {
-        $this->create();
-        $data = $this->_mapQBFields($qb_rec);
-        $data['client_id'] = $client_id;
-        $this->set($data);
-        $this->save(null, false);
-    }
 
 /**
  * Check Client Owner
