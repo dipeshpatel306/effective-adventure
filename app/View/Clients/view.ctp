@@ -97,7 +97,7 @@ $clientId = $client['Client']['id'];
 		<dd>
 			<?php
 			if(!empty($client['RiskAssessment']['id'])){
- 			echo $this->Html->link(__('View'), array('controller' => 'risk_assessments', 'action' => 'view', $client['RiskAssessment']['id']));
+ 			echo $this->Html->link(__('View'), array('controller' => 'risk_assessments', 'action' => 'edit', $client['RiskAssessment']['id']));
 			}
 			?>
 			&nbsp;
