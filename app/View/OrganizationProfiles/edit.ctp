@@ -123,6 +123,7 @@ $this->Html->addCrumb('Edit Organization Profile');
     </div>
     </div>
     <div id='tab2' class='tabBox'>
+        <p class='highlight'>In this section we will ask you questions about your network including your servers, desktops, laptops, etc. This will help us get an overview of your network and assist with the Risk Assessment.</p>
     <?php
         echo $this->Form->input('number_of_servers', array('label' =>'How many servers do you have?', 'class' => 'num', 'min' => '0'));
         echo $this->Form->input('phi_on_servers', array('label' => 'Do you have patient information on any servers?', 'options' => $choice));
@@ -142,6 +143,7 @@ $this->Html->addCrumb('Edit Organization Profile');
     ?>
     </div>
     <div id='tab3' class='tabBox'>
+        <p class='highlight'>In this section we will ask you questions about your Electronic Medical Records (EMR) or Electronic Health Records (EHR)</p>
     <?php
         echo $this->Form->input('emr_ehr_implemented', array('label' => 'Do you have an EMR/EHR implemented?', 'options' => $choice, 'empty' => 'Please Select One' ));
         echo $this->Form->input('emr_ehr_vendor', array('label' => 'What is the name of your EMR/EHR Vendor?'));
@@ -181,6 +183,7 @@ $this->Html->addCrumb('Edit Organization Profile');
     </div>
 
     <div id='tab5' class='tabBox'>
+        <p class='highlight'>Portable media includes: USB drives, CD-ROM, DVD-ROM, Floppy Drives, Tablet Computers (iPad), etc.</p>
     <?php
         echo $this->Form->input('portable_media_devices', array('label' => 'Do you use portable media devices?',
                                                                 'options' => $choice, 'empty' => 'Please Select One'));
@@ -208,6 +211,7 @@ $this->Html->addCrumb('Edit Organization Profile');
     </div>
 
     <div id='tab8' class='tabBox'>
+        <p class='highlight'>Please list any other systems that contain patient information or electronic protected health information (ePHI). Systems may include Digital x-ray, Billing, Practice Management, etc.</p>
     <?php
         echo '<h3 class="highlight">System 1</h3>';
         echo $this->Form->input('system_1_name', array('label' => 'System 1 Name: '));
@@ -251,7 +255,12 @@ $this->Html->addCrumb('Edit Organization Profile');
     ?>
     </div>
     <div id="tab9" class='tabBox'>
-
+        <p class='highlight'>Please provide any additional information that will help us understand your network/computer environment.</p>
+        <ul>
+            <li><p class='highlight'>List any additional systems that contain patient information or electronic protected health information (ePHI).</p></li>
+            <li><p class='highlight'>List any known threats or issues that you have experienced in the past (floods, crimes, etc.)</p></li>
+            <li><p class='highlight'>Use this section to provide anything that you feel will help us with the Risk Assessment</p></li>
+        </ul>
     <?php
 
         echo $this->Form->input('additional_info', array('label' => 'Additional Information: '));
