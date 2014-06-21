@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+require_once(APP . 'Vendor' . DS . 'constants.php');
 /**
  * OtherPoliciesAndProcedure Model
  *
@@ -14,6 +15,8 @@ class OtherPoliciesAndProcedure extends AppModel {
  * @var string
  */
 	public $displayField = 'name';
+
+    public $qbDbid = OPNP_DBID;
 
 	public $actsAs = array(
 		'Upload.Upload' => array(
@@ -92,6 +95,13 @@ class OtherPoliciesAndProcedure extends AppModel {
 			'order' => ''
 		)
 	);
+    
+    public $qbFieldMap = array(
+        '6' => array('name', null),
+        '7' => array('description', null),
+        '8' => array('details', null),
+        '17' => array('attachment', 'mapQBAttachment')
+    );
 
 
 /**

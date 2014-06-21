@@ -49,8 +49,9 @@ class Client extends AppModel {
 		'OrganizationProfile' => array(
 			'className' => 'OrganizationProfile',
 			'dependent' => true,
-			'fields' => array('OrganizationProfile.id, OrganizationProfile.client_id')
-		),
+			'fields' => array('OrganizationProfile.id, OrganizationProfile.client_id'),
+		    'qbFId' => ORG_INFO_DBID
+        ),
 		'RiskAssessment' => array(
 			'className' => 'RiskAssessment',
 			'dependent' => true,
@@ -95,19 +96,6 @@ class Client extends AppModel {
 			'counterQuery' => '',
 			'qbFid' => USERS_RELATED_CLIENT
 		),
-/*		'PoliciesAndProcedure' => array(
-			'className' => 'PoliciesAndProcedure',
-			'foreignKey' => 'client_id',
-			'dependent' => true,
-			'conditions' => '',
-			'fields' => array('PoliciesAndProcedure.id, PoliciesAndProcedure.name, PoliciesAndProcedure.client_id, PoliciesAndProcedure.created, PoliciesAndProcedure.modified, PoliciesAndProcedure.attachment'),
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),*/
 		'PoliciesAndProceduresDocument' => array(
 			'className' => 'PoliciesAndProceduresDocument',
 			'foreignKey' => 'client_id',
@@ -120,6 +108,7 @@ class Client extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => '',
+			'qbFid' => HPNP_DBID
 		),
 		'OtherPoliciesAndProcedure' => array(
 			'className' => 'OtherPoliciesAndProcedure',
@@ -133,7 +122,7 @@ class Client extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => '',
-			#'qbFid' => OPNP_RELATED_CLIENT
+			'qbFid' => OPNP_RELATED_CLIENT
 		),
 		'RiskAssessmentDocument' => array(
 			'className' => 'RiskAssessmentDocument',
@@ -147,7 +136,7 @@ class Client extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => '',
-			#'qbFid' => RA_RELATED_CLIENT
+			'qbFid' => RA_RELATED_CLIENT
 		),
 		'BusinessAssociateAgreement' => array(
 			'className' => 'BusinessAssociateAgreement',
@@ -203,7 +192,7 @@ class Client extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => '',
-			#'qbFid' => SI_RELATED_CLIENT
+			'qbFid' => SI_RELATED_CLIENT
 		),
 		'ServerRoomAccess' => array(
 			'className' => 'ServerRoomAccess',
@@ -325,7 +314,8 @@ class Client extends AppModel {
         $data = $this->_mapQBFields($qb_rec);
         $this->set($data);
         $this->save(null, false);
-        foreach ($this->hasMany as $key=>$association) {
+        $children = array_merge($this->hasMany, $this->hasOne);
+        foreach ($children as $key=>$association) {
             if (!isset($association['qbFid'])) continue;
             $model = $association['className'];
             $this->$model->migrateForQBClient($rid, $association['qbFid'], $this->id);

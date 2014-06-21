@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+require_once(APP . 'Vendor' . DS . 'constants.php');
 /**
  * RiskAssessmentDocument Model
  *
@@ -13,6 +14,8 @@ class RiskAssessmentDocument extends AppModel {
  * @var string
  */
 	public $displayField = 'name';
+    
+    public $qbDbid = RA_DBID;
 
 /**
  * Upload Plugin Behavior
@@ -95,6 +98,12 @@ class RiskAssessmentDocument extends AppModel {
 			'order' => ''
 		)
 	);
+    
+    public $qbFieldMap = array(
+        '6' => array('name', null),
+        '7' => array('description', null),
+        '12' => array('attachment', 'mapQBAttachment')
+    );
 
 /**
  * Check Client Owner

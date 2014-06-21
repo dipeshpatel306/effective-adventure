@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+require_once(APP . 'Vendor' . DS . 'constants.php');
 /**
  * PoliciesAndProceduresDocument Model
  *
@@ -14,6 +15,8 @@ class PoliciesAndProceduresDocument extends AppModel {
  * @var string
  */
 	public $displayField = 'client_id';
+
+    public $qbDbid = HPNP_DBID;
 
 /**
  * Upload Plugin Behavior
@@ -112,6 +115,11 @@ class PoliciesAndProceduresDocument extends AppModel {
 			'order' => ''
 		)
 	);
+    
+    public $qbFieldMap = array(
+        '9' => array('policies_and_procedures_id', null),
+        '23' => array('document', 'mapQBAttachment')
+    );
 
 
 /**
