@@ -292,7 +292,14 @@ class Client extends AppModel {
         CLIENTS_ACTIVE => array('active', null),
         CLIENTS_ADMIN_CODE => array('admin_account', null),
         CLIENTS_USER_CODE => array('user_account', null),
+        '32' => array('risk_assessment_status', 'mapRAComplete')
     );
+    
+    function mapRAComplete($val, $qb_rec, $field_name, $data) {
+        if ($val == '1') {
+            $data[$field_name] = date("Y-m-d");
+        }
+    }
     
     public function getQBClients() {
         /**
@@ -313,6 +320,7 @@ class Client extends AppModel {
     public function newFromQB($rid, $qb_rec, $client_id=null) {
         $this->create();
         $data = $this->_mapQBFields($qb_rec);
+        $data['moodle_course_name'] = $this->getMoodleCourseName($data['moodle_course_id']);
         $this->set($data);
         $this->save(null, false);
         $children = array_merge($this->hasMany, $this->hasOne);

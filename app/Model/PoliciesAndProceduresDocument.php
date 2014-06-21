@@ -117,7 +117,7 @@ class PoliciesAndProceduresDocument extends AppModel {
 	);
     
     public $qbFieldMap = array(
-        '9' => array('policies_and_procedures_id', null),
+        '9' => array('policies_and_procedure_id', null),
         '23' => array('document', 'mapQBAttachment')
     );
 

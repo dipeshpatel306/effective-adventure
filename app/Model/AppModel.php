@@ -74,14 +74,14 @@ class AppModel extends Model {
                 if ($map_fn === null) {
                     $data[$field_name] = $val;
                 } else {
-                    $data[$field_name] = $this->$map_fn($val, $qb_rec);
+                    $this->$map_fn($val, $qb_rec, $field_name, $data);
                 }
             }
         }
         return $data;
     }
     
-    function mapQBAttachment($name, $qb_rec) {
+    function mapQBAttachment($name, $qb_rec, $field_name, $data) {
         $s3 = new S3(AWS_ACCESS_KEY, AWS_SECRET_KEY);
         $url = $s3->getAuthenticatedURL('hipaasecurenow', $this->qbDbid . '_' . $qb_rec[RECORD_ID], 3600);
         $socket = new HttpSocket();
@@ -95,13 +95,21 @@ class AppModel extends Model {
             'error' => 0,
             'size' => strlen($response->body)
         );
-        return $attachment;
+        $data[$field_name] = $attachment;
     }
     
-    function mapQBDate($qb_date, $qb_rec) {
+    function mapQBDate($qb_date, $qb_rec, $field_name, $data) {
         $timestamp = (((float) $qb_date) + 14400) / 1000;
         $date = gmdate("Y-m-d\TH:i:s\Z", $timestamp);
-        return $date;
+        $data[$field_name] = $date;
+    }
+    
+    function mapQBPhone($qb_phone, $qb_rec, $field_name, $data) {
+        $parts = explode(' x', $qb_phone);
+        $data[$field_name] = $parts[0];
+        if (count($parts) > 1) {
+            $data[$field_name . '_ext'] = $parts[1];
+        }
     }
     
     function qbConn() {
