@@ -50,12 +50,13 @@ class Client extends AppModel {
 			'className' => 'OrganizationProfile',
 			'dependent' => true,
 			'fields' => array('OrganizationProfile.id, OrganizationProfile.client_id'),
-		    'qbFId' => ORG_INFO_DBID
+		    'qbFid' => ORG_INFO_DBID
         ),
 		'RiskAssessment' => array(
 			'className' => 'RiskAssessment',
 			'dependent' => true,
-			'fields' => array('RiskAssessment.id, RiskAssessment.client_id, RiskAssessment.created, RiskAssessment.modified')
+			'fields' => array('RiskAssessment.id, RiskAssessment.client_id, RiskAssessment.created, RiskAssessment.modified'),
+			'qbFid' => RA_ANSWERS_DBID
 		)
 	);
 
