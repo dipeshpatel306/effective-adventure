@@ -328,5 +328,6 @@ class Client extends AppModel {
             $model = $association['className'];
             $this->$model->migrateForQBClient($rid, $association['qbFid'], $this->id);
         }
+        return true;
     }
 }

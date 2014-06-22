@@ -11,6 +11,7 @@ $this->Html->addCrumb('Migrate QB Client');
     ?>
    </fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
+<p>Client migration may take a couple minutes to complete.</p>
 </div>
 <div class="actions">
     <h3><?php echo __('Actions'); ?></h3>

@@ -127,7 +127,7 @@ class AppModel extends Model {
             $data['client_id'] = $client_id;
         }
         $this->set($data);
-        $this->save(null, false);
+        return $this->save(null, false);
     }
     
     function migrateFromQB($rid, $client_id=null) {
@@ -145,7 +145,7 @@ class AppModel extends Model {
             $fid = (string) $field['id'];
             $qb_rec[$fid] = $field;
         }
-        $this->newFromQB($rid, $qb_rec, $client_id);
+        return $this->newFromQB($rid, $qb_rec, $client_id);
     }
     
     function migrateForQBClient($client_rid, $fid, $client_id) {
