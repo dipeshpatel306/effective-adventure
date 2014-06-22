@@ -1,6 +1,7 @@
 <?php
 App::uses('AppModel', 'Model');
 App::uses('AuthComponent', 'Controller/Component');
+require_once(APP . 'Vendor' . DS . 'constants.php');
 /**
  * User Model
  *
@@ -17,6 +18,7 @@ class User extends AppModel {
  */
     public $displayField = 'email';
 
+    public $qbDbid = USERS_DBID;
 /**
  * Validation rules
  *
@@ -254,6 +256,36 @@ class User extends AppModel {
             return false;
         }
         return substr(Security::hash(Configure::read('Security.salt').$this->field('created').date(Ymd)), 0, 8);
+    }
+    
+    public $qbFieldMap = array(
+        USERS_FIRST_NAME => array('first_name', null),
+        USERS_LAST_NAME => array('last_name', null),
+        USERS_EMAIL_ADDRESS => array('email', null),
+        USERS_EMAIL_VALIDATED => array('email_validated', null),
+        USERS_PHONE_NUMBER => array('phone_number', null),
+        USERS_CELL_PHONE => array('cell_number', null),
+        USERS_ACTIVE => array('active', null),
+        USERS_PASSWORD => array('password_old', null),
+        USERS_RELATED_ROLE => array('group_id', 'mapQBRole')
+    );
+    
+    public function mapQBRole($qb_val, $qb_rec, $field_name, &$data) {
+        if ($qb_val === '1') {
+            $data[$field_name] = Group::ADMIN;
+        } elseif (in_array($qb_val, array('2', '3', '5', '7', '9'))) {
+            $data[$field_name] = Group::MANAGER;
+        } elseif (in_array($qb_val, array('4', '6', '8'))) {
+            $data[$field_name] = Group::USER;
+        }
+    }
+    
+    public function newFromQB($rid, $qb_rec, $client_id=null) {
+        $this->create();
+        $data = $this->_mapQBFields($qb_rec);
+        $data['client_id'] = $client_id;
+        $this->set($data);
+        $this->save(null, false);
     }
 
 }

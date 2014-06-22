@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+require_once(APP . 'Vendor' . DS . 'constants.php');
 /**
  * EphiReceived Model
  *
@@ -20,6 +21,8 @@ class EphiReceived extends AppModel {
  * @var string
  */
 	public $displayField = 'description';
+    
+    public $qbDbid = EPHIREC_DBID;
 
 /**
  * Validation rules
@@ -95,6 +98,20 @@ class EphiReceived extends AppModel {
 			'order' => ''
 		)
 	);
+    
+    public $qbFieldMap = array(
+        '7' => array('item', null),
+        '8' => array('date_received', 'mapQBDate'),
+        '10' => array('where_received', null),
+        '11' => array('received_by', null),
+        '12' => array('reason', null),
+        '13' => array('date_returned', 'mapQBDate'),
+        '14' => array('returned_to', null),
+        '15' => array('returned_by', null),
+        '17' => array('other_description', null),
+        '18' => array('other_reason', null),
+        '24' => array('notes', null)
+    );
 /**
  * Check Client Owner
  */

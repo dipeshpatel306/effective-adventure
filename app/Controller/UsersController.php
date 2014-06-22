@@ -8,7 +8,7 @@ App::uses('Group', 'Model');
  * @property User $User
  */
 class UsersController extends AppController {
-    public $components = array('Paginator');
+    public $components = array('Paginator', 'Security');
     
     public $paginate = array(
         'limit' => 100,
@@ -189,12 +189,23 @@ class UsersController extends AppController {
     public function login($email=null) {
         $this->set('title_for_layout', 'HIPAA Compliance Portal');
         if ($this->request->is('post')) {
+            $user = $this->User->find(
+                'first', 
+                array(
+                    'conditions' => array('User.email' => $this->request->data['User']['email']),
+                    'fields' => array('User.active','Client.active', 'User.id', 'User.email_validated', 'User.password_old'),
+                )
+            ); 
+                    
+            if (isset($user) && isset($user['User']['password_old'])) {
+                # migrate password to new hash format the first time a migrated QB user logs in
+                if (md5($this->request->data['User']['password']) === $user['User']['password_old']) {
+                    $this->User->id = $user['User']['id'];
+                    $this->User->saveField('password', $this->request->data['User']['password']);
+                }
+            }
+            
             if ($this->Auth->login()) {
-                $user = $this->User->find('first', array(
-                        'conditions' => array('User.email' => $this->request->data['User']['email']),
-                                            'fields' => array('User.active','Client.active', 'User.id', 'User.email_validated'),
-                ));
-
                 // Check to make sure both client and user are active
                 if(!$user['Client']['active'] || !$user['User']['active']){
                     $this->Session->setFlash('Your account is not active!');

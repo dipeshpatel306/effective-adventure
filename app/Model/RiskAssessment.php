@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+require_once(APP . 'Vendor' . DS . 'constants.php');
 /**
  * RiskAssessment Model
  *
@@ -13,6 +14,8 @@ class RiskAssessment extends AppModel {
  * @var string
  */
 	public $displayField = 'client_id';
+    
+    public $qbDbid = RA_ANSWERS_DBID;
 
 /**
  * Validation rules
@@ -48,6 +51,19 @@ class RiskAssessment extends AppModel {
 			'order' => ''
 		)
 	);
+    
+    function migrateForQBClient($client_rid, $fid, $client_id) {
+        $qdb = $this->qbConn();
+        $qb_data = $qdb->do_query(array(array('fid' => $fid, 'ev' => 'EX', 'cri' => $client_rid)), 0, 0, '9.7');   
+        $data = array('client_id' => $client_id);
+        foreach ($qb_data->table->records->record as $qrec) {
+            $qnum = (string) $qrec->f[0];
+            $data['question_' . $qnum] = (string) $qrec->f[1];
+        }
+        $this->create();
+        $this->set($data);
+        $this->save(null, false);
+    }
 	
 /**
  * Check Client Owner

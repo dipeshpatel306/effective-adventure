@@ -42,6 +42,7 @@ if($user['User']['active']){
 		<dt><?php echo __('Training Course'); ?></dt>
 		<dd>
 		    <?php echo $user['Client']['moodle_course_name']; ?>
+		    &nbsp;
 		</dd>
 		<!--<dt><?php echo __('Last Name'); ?></dt>
 		<dd>

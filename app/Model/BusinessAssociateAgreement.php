@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+require_once(APP . 'Vendor' . DS . 'constants.php');
 //App::uses('Upload', 'UploadBehavior.Model');
 /**
  * BusinessAssociateAgreement Model
@@ -14,6 +15,8 @@ class BusinessAssociateAgreement extends AppModel {
  * @var string
  */
 	public $displayField = 'name';
+    
+    public $qbDbid = BAA_DBID;
 
 /**
  * Upload Plugin Behavior
@@ -185,6 +188,20 @@ class BusinessAssociateAgreement extends AppModel {
 			'order' => ''
 		)
 	);
+    
+    public $qbFieldMap = array(
+        '6' => array('business_name', null),
+        '7' => array('business_address', null),
+        '8' => array('business_address2', null),
+        '9' => array('city', null),
+        '10' => array('state', null),
+        '11' => array('contact', null),
+        '12' => array('email', null),
+        '13' => array('phone', null),
+        '14' => array('relationship', null),
+        '15' => array('contract_date', 'mapQBDate'),
+        '24' => array('attachment', null)
+    );
 
 
 /**

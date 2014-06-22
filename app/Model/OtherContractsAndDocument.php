@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+require_once(APP . 'Vendor' . DS . 'constants.php');
 /**
  * OtherContractsAndDocument Model
  *
@@ -14,6 +15,7 @@ class OtherContractsAndDocument extends AppModel {
  */
 	public $displayField = 'name';
 
+    public $qbDbid = OCND_DBID;
 
 	public $actsAs = array(
 		'Upload.Upload' => array(
@@ -93,6 +95,14 @@ class OtherContractsAndDocument extends AppModel {
 			'order' => ''
 		)
 	);
+    
+    public $qbFieldMap = array(
+        '6' => array('name', null),
+        '7' => array('description', null),
+        '8' => array('date', 'mapQBDate'),
+        '12' => array('attachment', 'mapQBAttachment')
+    );
+    
 
 /**
  * Check Client Owner
