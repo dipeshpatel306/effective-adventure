@@ -258,7 +258,7 @@ $this->Html->addCrumb('Contracts & Documents');
             echo $this->Html->link(
                 '<div class="dashBox">' . 
                 '<div class="dashHead">' .
-                $this->Html->image('ocnd_tile.jpg', array(
+                $this->Html->image('templates_tile.png', array(
                             'class' => 'dashTile', 
                             'alt' => 'Templates'
                             )) .
