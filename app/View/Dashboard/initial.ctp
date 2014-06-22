@@ -185,6 +185,7 @@
 				<li>Completely filled in the Organization info</li>
 				<li>Answered each of the Risk Assessment Questions</li>
 				<li>Uploaded existing Policies and Procesures</li>
+				<li>I certify that I have provided information to the best of my knowledge and have utilized all appropriate resources necessary to complete the Risk Assessment information. HIPAA Secure Now! has provided me with the appropriate level of information and I was made aware of the proper requirements necessary to complete the Risk Assessment.</li>
 			</ul><br />
 			<p>If you have completed each of the above please mark the Risk Assessment complete</p>
 			<p>If you still have more to complete please close this dialog box and complete those sections first.</p>
