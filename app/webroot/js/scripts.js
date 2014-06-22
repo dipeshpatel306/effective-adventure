@@ -525,6 +525,29 @@ $(document).ready(function(){
             }
         }); 
     });
+    
+    $(document).tooltip({
+        track: true,
+        items: 'input, select',
+        content: function() {
+            $tooltip = $(".tooltip[for='" + $(this).attr('id') + "']").html();
+            if ($tooltip) {
+                return $tooltip;
+            }    
+        }
+    });
+    
+    if ($('#EphiReceivedWasReturned').val() == 'Yes') {
+        $('.ephiReturnedInfo').show();
+    }
+    
+    $('#EphiReceivedWasReturned').on('change', function(){
+       if ($(this).val() == 'Yes') {
+            $('.ephiReturnedInfo').show();
+       } else {
+            $('.ephiReturnedInfo').hide();
+       }
+    });
 });
 
 

@@ -46,22 +46,27 @@ $reason = array('' => '', 'Referral from another provider' => 'Referral from ano
 			. "</div>";
 	?>
 	<h2 class='highlight'>ePHI Returned</h2>
-	<?php
-		echo $this->Form->input('date_returned', array('label' => 'Date ePHI Returned', 'class' => 'datePick'));
-		echo $this->Form->input('time_returned');
-		echo $this->Form->input('returned_to', array('label' => 'Who was the ePhi returned to?'));
-		echo $this->Form->input('returned_by', array('label' => 'Who was the person who returned the ePHI? '));
-		echo $this->Form->input('notes', array('type' => 'text', 'rows' => '5', 'cols' => '40'));
+	<?php echo $this->Form->input('was_returned', array('label' => 'Was the ePHI returned?', 'options' => array('Yes' => 'Yes', 'No' => 'No'), 'empty' => '')); ?>
+    <div class='ephiReturnedInfo hidden'>
+    <?php
+        echo $this->Form->input('date_returned', array('label' => 'Date ePHI Returned', 'class' => 'datePick'));
+        echo $this->Form->input('time_returned');
+        echo $this->Form->input('returned_to', array('label' => 'Who was the ePhi returned to?'));
+        echo $this->Form->input('returned_by', array('label' => 'Who was the person who returned the ePHI? '));
+    ?>
+    </div>
+    <?php
+        echo $this->Form->input('notes', array('type' => 'text', 'rows' => '5', 'cols' => '40'));
 
 
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
-		if($client == 1){  // if admin allow to choose
-			echo $this->Form->input('client_id',array('selected' => $selected, 'empty' => 'Please Select'));
-		} else {
-			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
-		}
+        $client = $this->Session->read('Auth.User.client_id');  // Test Client.
+        if($client == 1){  // if admin allow to choose
+            echo $this->Form->input('client_id', array('empty' => 'Please Select'));
+        } else {
+            echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
+        }
 
-	?>
+    ?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
 </div>

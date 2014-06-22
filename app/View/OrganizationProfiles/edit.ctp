@@ -44,7 +44,19 @@ $this->Html->addCrumb('Edit Organization Profile');
         <li><a href='#tab8' class='orgProfTab'>Additional Systems</a></li>
         <li><a href='#tab9' class='orgProfTab'>Additional Information</a></li>
     </ul>
-
+    <div class='hidden tooltip', for="OrganizationProfilePhiOnServers">
+        <p><strong>For Covered Entities: </strong>This may include EHR/EMR, Practice Management Systems, Digital X-rays, PACS, Lab Results, Billing Systems, Spreadsheets, Documents, Databases, Emails, etc.</p>
+        <p><strong>For Business Associates: </strong>This may include Spreadsheets, Documents, Data Backups, Databases, Emails, Order Management Systems, Customer Relationship Management Systems, etc.</p>
+    </div>
+    <div class='hidden tooltip', for='OrganizationProfileNetworkOperatingSystem'>
+        <p>This is the operating system used on your servers.</p>
+    </div>
+    <div class='hidden tooltip', for='OrganizationProfilePhiOnWorkstations'>
+        <p>Keep in mind, patient information may be in Documents, Spreadsheets, PDFs, Email Attachments, Screenshots, Audio/Videos, etc.</p>
+    </div>
+    <div class='hidden tooltip', for='OrganizationProfilePhiOnLaptops'>
+        <p>Keep in mind, patient information may be in Documents, Spreadsheets, PDFs, Email Attachments, Screenshots, Audio/Videos, etc.</p>
+    </div>
     <div id='tab1' class='tabBox'>
     <?php
 
@@ -55,7 +67,6 @@ $this->Html->addCrumb('Edit Organization Profile');
             echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
         }
 
-        //echo $this->Form->input('organization_name', array('label' => 'Organization Name: ', 'value' => $orgName));
         echo $this->Form->input('administrator_name', array('label' => "Organization's Administrator Name: "));
         echo $this->Form->input('administrator_email', array('label' =>"Organization's Adminstrator Email: "));
         echo $this->Form->input('administrator_phone', array('type' => 'tel', 'class' => 'tel', 'label' =>"Administrator Phone (Primary Contact): "));
@@ -123,7 +134,7 @@ $this->Html->addCrumb('Edit Organization Profile');
     </div>
     </div>
     <div id='tab2' class='tabBox'>
-        <p class='highlight'>In this section we will ask you questions about your network including your servers, desktops, laptops, etc. This will help us get an overview of your network and assist with the Risk Assessment.</p>
+        <p class='highlight'>In this section we will ask you questions about your network including your servers, desktops, laptops, etc. This will help us get an overview of your network and assist with the Risk Assessment.</p>   
     <?php
         echo $this->Form->input('number_of_servers', array('label' =>'How many servers do you have?', 'class' => 'num', 'min' => '0'));
         echo $this->Form->input('phi_on_servers', array('label' => 'Do you have patient information on any servers?', 'options' => $choice));

@@ -40,11 +40,16 @@ $reason = array('' => '', 'Referral from another provider' => 'Referral from ano
 	?>
 
 	<h2 class='highlight'>ePHI Returned</h2>
+	<?php echo $this->Form->input('was_returned', array('label' => 'Was the ePHI returned?', 'options' => array('Yes' => 'Yes', 'No' => 'No'), 'empty' => '')); ?>
+	<div class='ephiReturnedInfo hidden'>
 	<?php
 		echo $this->Form->input('date_returned', array('label' => 'Date ePHI Returned', 'class' => 'datePick'));
 		echo $this->Form->input('time_returned');
 		echo $this->Form->input('returned_to', array('label' => 'Who was the ePhi returned to?'));
 		echo $this->Form->input('returned_by', array('label' => 'Who was the person who returned the ePHI? '));
+    ?>
+    </div>
+    <?php
 		echo $this->Form->input('notes', array('type' => 'text', 'rows' => '5', 'cols' => '40'));
 
 

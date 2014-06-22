@@ -49,6 +49,12 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiReceived['EphiRece
 			<?php echo ($ephiReceived['EphiReceived']['other_reason']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Was ePHI returned?'); ?></dt>
+		<dd>
+		    <?php echo ($ephiReceived['EphiReceived']['was_returned']); ?>
+		    &nbsp;
+		</dd>
+		<?php if ($ephiReceived['EphiReceived']['was_returned'] === 'Yes'): ?>
 		<dt><?php echo __('Date ePHI returned '); ?></dt>
 		<dd>
 			<?php echo $this->Time->format('m/d/y', $ephiReceived['EphiReceived']['date_returned']); ?>
@@ -69,6 +75,7 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $ephiReceived['EphiRece
 			<?php echo $ephiReceived['EphiReceived']['returned_by']; ?>
 			&nbsp;
 		</dd>
+		<?php endif; ?>
 		<dt><?php echo __('Notes'); ?></dt>
 		<dd>
 			<?php echo $ephiReceived['EphiReceived']['notes']; ?>
