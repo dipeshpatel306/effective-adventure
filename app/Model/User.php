@@ -270,13 +270,13 @@ class User extends AppModel {
         USERS_RELATED_ROLE => array('group_id', 'mapQBRole')
     );
     
-    public function mapQBRole($qb_val, $qb_rec) {
-        if ($qb_val == '1') {
-            return Group::ADMIN;
+    public function mapQBRole($qb_val, $qb_rec, $field_name, &$data) {
+        if ($qb_val === '1') {
+            $data[$field_name] = Group::ADMIN;
         } elseif (in_array($qb_val, array('2', '3', '5', '7', '9'))) {
-            return Group::MANAGER;
+            $data[$field_name] = Group::MANAGER;
         } elseif (in_array($qb_val, array('4', '6', '8'))) {
-            return Group::USER;
+            $data[$field_name] = Group::USER;
         }
     }
     

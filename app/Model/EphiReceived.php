@@ -103,7 +103,7 @@ class EphiReceived extends AppModel {
         '7' => array('item', null),
         '8' => array('date_received', 'mapQBDate'),
         '10' => array('where_received', null),
-        '11' => array('recevied_by', null),
+        '11' => array('received_by', null),
         '12' => array('reason', null),
         '13' => array('date_returned', 'mapQBDate'),
         '14' => array('returned_to', null),

@@ -63,10 +63,10 @@ class OrganizationProfile extends AppModel {
 	);
     
     public $qbFieldMap = array(
-        '7' => array('second_location', null),
-        '8' => array('third_location', null),
-        '9' => array('fourth_location', null),
-        '10' => array('fifth_location', null),
+        '7' => array('second_location', 'mapQBBool'),
+        '8' => array('third_location', 'mapQBBool'),
+        '9' => array('fourth_location', 'mapQBBool'),
+        '10' => array('fifth_location', 'mapQBBool'),
         '11' => array('address_1', null),
         '12' => array('address_2', null),
         '13' => array('city', null),

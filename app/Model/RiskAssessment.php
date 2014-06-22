@@ -51,10 +51,10 @@ class RiskAssessment extends AppModel {
 			'order' => ''
 		)
 	);
-        
-    function migrateFromQB($rid, $client_id=null) {
+    
+    function migrateForQBClient($client_rid, $fid, $client_id) {
         $qdb = $this->qbConn();
-        $qb_data = $qdb->do_query(array(array('fid' => RA_RELATED_CLIENT, 'ev' => 'EX', 'cri' => $client_id)), 0, 0, '9.7');
+        $qb_data = $qdb->do_query(array(array('fid' => $fid, 'ev' => 'EX', 'cri' => $client_rid)), 0, 0, '9.7');   
         $data = array('client_id' => $client_id);
         foreach ($qb_data->table->records->record as $qrec) {
             $qnum = (string) $qrec->f[0];

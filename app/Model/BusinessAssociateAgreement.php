@@ -195,9 +195,11 @@ class BusinessAssociateAgreement extends AppModel {
         '8' => array('business_address2', null),
         '9' => array('city', null),
         '10' => array('state', null),
+        '11' => array('contact', null),
         '12' => array('email', null),
         '13' => array('phone', null),
         '14' => array('relationship', null),
+        '15' => array('contract_date', 'mapQBDate'),
         '24' => array('attachment', null)
     );
 
