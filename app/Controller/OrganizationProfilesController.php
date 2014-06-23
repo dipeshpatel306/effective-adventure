@@ -63,28 +63,11 @@ class OrganizationProfilesController extends AppController {
  * @return void
  */
 	public function add() {
-		if ($this->request->is('post')) {
-			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-			if($group != 1){
-				$this->request->data['OrganizationProfile']['client_id'] = $this->Auth->User('client_id');
-			}
-            $client_id = $this->request->data['OrganizationProfile']['client_id'];
-            $client = $this->OrganizationProfile->Client->find('first', array('conditions' => array('Client.id' => $client_id)));
-            $this->request->data['OrganizationProfile']['organization_name'] = $client['Client']['name'];
-
-			$this->OrganizationProfile->create();
-			if ($this->OrganizationProfile->save($this->request->data)) {
-				$this->Session->setFlash('The organization profile has been saved.', 'default', array('class' => 'success message'));
-				$this->redirect($this->origReferer());
-			} else {
-				$this->Session->setFlash(__('The organization profile could not be saved. Please, try again.'));
-			}
-		}
-        $this->setReferer();
-		$clients = $this->OrganizationProfile->Client->find('list');
-		$operatingSystems = $this->OrganizationProfile->OperatingSystem->find('list');
-		$this->set(compact('clients', 'operatingSystems'));
-        $this->render('edit');
+	    $client = $this->Auth->User('client_id');
+	    $this->OrganizationProfile->create();
+        $this->OrganizationProfile->set(array('client_id' => $client));
+        $this->OrganizationProfile->save();
+        $this->redirect(array('action' => 'edit', $this->OrganizationProfile->id));
 	}
 
 /**
