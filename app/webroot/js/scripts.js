@@ -9,7 +9,7 @@ $(document).ready(function(){
 			},
 			twitter:{
 				id: 'HIPAASecureNow',
-				url: '/webroot/js/jquery-social-stream/twitter.php'
+				url: '/js/jquery-social-stream/twitter.php'
 			}
 		},
 		twitterId: 'HIPAASecureNow',
