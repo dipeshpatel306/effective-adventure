@@ -17,7 +17,7 @@ $this->Html->addCrumb('Edit Organization Profile');
 				'Older Windows (ME, 2000, NT)' => 'Older Windows (ME, 2000, NT)', 'Mac OS' => 'Mac OS', 'UNIX/Linux' => 'UNIX/Linux', 'Other' => 'Other');
 	$os = array('Windows' => 'Windows', 'UNIX' => 'UNIX', 'Linux' => 'Linux', 'Mac OS' => 'Mac OS', 'Other' => 'Other');
 	$emailVendor = array('Microsoft Exchange' => 'Microsoft Exchange', 'Google Gmail' => 'Google Gmail',
-						'Yahoo! Mail' => 'Yahoo Mail!', 'Hotmail' => 'Hotmail', 'Other' => 'Other');
+						'Yahoo! Mail' => 'Yahoo! Mail', 'Hotmail' => 'Hotmail', 'Other' => 'Other');
 	$emailHost = array('Onsite' => 'Onsite', 'Hosted by a 3rd party' => 'Hosted by a 3rd party',
 					'Cloud(Google, Yahoo!, Hotmail)' => 'Cloud(Google, Yahoo!, Hotmail)', 'Other' => 'Other' );
 	$host = array('Onsite' => 'Onsite', 'Vendor Hosted' => 'Vendor Hosted', 'Hosted by a 3rd party' => 'Hosted by a 3rd party', 'Other' => 'Other' );
@@ -28,7 +28,7 @@ $this->Html->addCrumb('Edit Organization Profile');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 
-<div class="organizationProfiles form">
+<div class="fouc organizationProfiles form">
 <?php echo $this->Form->create('OrganizationProfile'); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Organization Profile'); ?></legend>
@@ -229,7 +229,7 @@ $this->Html->addCrumb('Edit Organization Profile');
         echo $this->Form->input('system_1_os', array('label' => 'System 1 Operating System: ', 'options' => $os, 'empty' => 'Please Select One'));
         echo $this->Form->input('system_1_vendor', array('label' => 'System 1 Vendor: '));
         echo $this->Form->input('system_1_location', array('label' => 'System 1 Location: ', 'options' => $host, 'empty' => 'Please Select One'));
-        echo $this->Form->input('system_1_ephi', array('label' => 'System 1 # of ePHI Records (estimate):', 'min' => 0));
+        echo $this->Form->input('system_1_ephi', array('label' => 'System 1 # of ePHI Records (estimate):', 'min' => 0, 'class' => 'numwide'));
         echo $this->Form->input('system_1_details', array('label' => 'System 1 - Please provide details of the system (how it is used, who uses it, etc.): '));
 
         echo '<h3 class="highlight">System 2</h3>';
@@ -237,7 +237,7 @@ $this->Html->addCrumb('Edit Organization Profile');
         echo $this->Form->input('system_2_os', array('label' => 'System 2 Operating System: ', 'options' => $os, 'empty' => 'Please Select One'));
         echo $this->Form->input('system_2_vendor', array('label' => 'System 2 Vendor: '));
         echo $this->Form->input('system_2_location', array('label' => 'System 2 Location: ', 'options' => $host, 'empty' => 'Please Select One'));
-        echo $this->Form->input('system_2_ephi', array('label' => 'System 2 # of ePHI Records (estimate):', 'min' => 0));
+        echo $this->Form->input('system_2_ephi', array('label' => 'System 2 # of ePHI Records (estimate):', 'min' => 0, 'class' => 'numwide'));
         echo $this->Form->input('system_2_details', array('label' => 'System 2 - Please provide details of the system (how it is used, who uses it, etc.): '));
 
         echo '<h3 class="highlight">System 3</h3>';
@@ -245,7 +245,7 @@ $this->Html->addCrumb('Edit Organization Profile');
         echo $this->Form->input('system_3_os', array('label' => 'System 3 Operating System: ', 'options' => $os, 'empty' => 'Please Select One'));
         echo $this->Form->input('system_3_vendor', array('label' => 'System 3 Vendor: '));
         echo $this->Form->input('system_3_location', array('label' => 'System 3 Location: ', 'options' => $host, 'empty' => 'Please Select One'));
-        echo $this->Form->input('system_3_ephi', array('label' => 'System 3 # of ePHI Records (estimate):', 'min' => 0));
+        echo $this->Form->input('system_3_ephi', array('label' => 'System 3 # of ePHI Records (estimate):', 'min' => 0, 'class' => 'numwide'));
         echo $this->Form->input('system_3_details', array('label' => 'System 3 - Please provide details of the system (how it is used, who uses it, etc.): '));
 
         echo '<h3 class="highlight">System 4</h3>';
@@ -253,7 +253,7 @@ $this->Html->addCrumb('Edit Organization Profile');
         echo $this->Form->input('system_4_os', array('label' => 'System 4 Operating System: ', 'options' => $os, 'empty' => 'Please Select One'));
         echo $this->Form->input('system_4_vendor', array('label' => 'System 4 Vendor: '));
         echo $this->Form->input('system_4_location', array('label' => 'System 4 Location: ', 'options' => $host, 'empty' => 'Please Select One'));
-        echo $this->Form->input('system_4_ephi', array('label' => 'System 4 # of ePHI Records (estimate):', 'min' => 0));
+        echo $this->Form->input('system_4_ephi', array('label' => 'System 4 # of ePHI Records (estimate):', 'min' => 0, 'class' => 'numwide'));
         echo $this->Form->input('system_4_details', array('label' => 'System 4 - Please provide details of the system (how it is used, who uses it, etc.): '));
 
         echo '<h3 class="highlight">System 5</h3>';
@@ -261,7 +261,7 @@ $this->Html->addCrumb('Edit Organization Profile');
         echo $this->Form->input('system_5_os', array('label' => 'System 5 Operating System: ', 'options' => $os, 'empty' => 'Please Select One'));
         echo $this->Form->input('system_5_vendor', array('label' => 'System 5 Vendor: '));
         echo $this->Form->input('system_5_location', array('label' => 'System 5 Location: ', 'options' => $host, 'empty' => 'Please Select One'));
-        echo $this->Form->input('system_5_ephi', array('label' => 'System 5 # of ePHI Records (estimate):', 'min' => 0));
+        echo $this->Form->input('system_5_ephi', array('label' => 'System 5 # of ePHI Records (estimate):', 'min' => 0, 'class' => 'numwide'));
         echo $this->Form->input('system_5_details', array('label' => 'System 5 - Please provide details of the system (how it is used, who uses it, etc.): '));
     ?>
     </div>

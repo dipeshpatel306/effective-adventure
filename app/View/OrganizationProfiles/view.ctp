@@ -19,16 +19,6 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 			<?php echo $this->Html->link($organizationProfile['Client']['name'], array('controller' => 'clients', 'action' => 'view', $organizationProfile['Client']['id'])); ?>
 			&nbsp;
 		</p>
-		<h4 class='highlight'><?php echo __('Created'); ?></h4>
-		<p>
-			<?php echo $this->Time->format('m/d/y g:i a',$organizationProfile['Client']['created'], array('controller' => 'clients', 'action' => 'view', $organizationProfile['Client']['id'])); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Modified'); ?></h4>
-		<p>
-			<?php echo $this->Time->format('m/d/y g:i a',$organizationProfile['Client']['modified'], array('controller' => 'clients', 'action' => 'view', $organizationProfile['Client']['id'])); ?>
-			&nbsp;
-		</p>
 
 		<!--<h4 class='highlight'><?php echo __('Organization Name:'); ?></h4>
 		<p>

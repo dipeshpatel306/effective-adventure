@@ -11,7 +11,7 @@ $this->csv->addRow(
             'PHIEmail', 'PHIWorkstations', 'PHISmartphones'));
             
 $this->csv->addRow(
-    array($data['organization_name'], $data['address_1'], $data['address_2'],
+    array($organizationProfile['Client']['name'], $data['address_1'], $data['address_2'],
             $data['city'], $data['state'], $data['zip'], $data['emr_ehr_implemented'],
             $data['emr_ehr_internal_name'], $data['email'], $data['number_of_servers'], 
             $data['number_laptops'], $data['portable_media_devices'], 
