@@ -140,7 +140,6 @@ class OtherContractsAndDocumentsController extends AppController {
 			}
 			
 		if ($this->request->is('post')) {
-            debug($this->request->data);
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 			if($group != 1){
@@ -158,15 +157,15 @@ class OtherContractsAndDocumentsController extends AppController {
 			$this->OtherContractsAndDocument->create();
 			if ($this->OtherContractsAndDocument->save($this->request->data)) {
 				$this->Session->setFlash('The other contracts and document has been saved.', 'default', array('class' => 'success message'));
-			if($group == Group::ADMIN){
-			    if (isset($this->request->data['next'])) {
-			        $this->redirect(array('action' => 'add'));
-			    } else {
-					$this->redirect(array('controller' => 'clients', 'action' => 'view', $this->request->data['OtherContractsAndDocument']['client_id']));
-				}
-			} else {	
-				//$this->redirect(array('action' => 'index'));
-			}
+    			if($group == Group::ADMIN){
+    			    if (isset($this->request->data['next'])) {
+    			        $this->redirect(array('action' => 'add'));
+    			    } else {
+    					$this->redirect(array('controller' => 'clients', 'action' => 'view', $this->request->data['OtherContractsAndDocument']['client_id']));
+    				}
+    			} else {	
+    				//$this->redirect(array('action' => 'index'));
+    			}
 			} else {
 				$this->Session->setFlash(__('The other contracts and document could not be saved. Please, try again.'));
 			}
