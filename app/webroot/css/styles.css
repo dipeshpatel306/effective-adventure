@@ -843,8 +843,12 @@ input.num {
     width: 60px !important;
 }
 
+input.numwide {
+    width: 100px !important;
+}
+
 input[type='number'] {
-    width: 60px !important;
+    width: 60px;
 }
 
 input[type='text'] {
@@ -958,4 +962,16 @@ img.tabIcon {
 
 .ui-tabs-paging-next {
     padding: 0 !important;
+}
+
+th.raqQuestionNum {
+    width: 10%;
+}
+
+th.raqQuestion {
+    width: 75%;
+}
+
+th.raQuestionActions {
+    width: 15%;
 }

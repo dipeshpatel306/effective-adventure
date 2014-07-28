@@ -85,6 +85,7 @@
 	    $(document).ready(function() {
 	        $('.fouc').show();
 	        $('.raTabs.tabsInner').tabs('paging', {followOnActive : true, follow: true});
+	        $('.orgProfTabs').tabs('paging', {followOnActive : true, follow: true});
 	    });
 	</script>
 	<?php

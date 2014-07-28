@@ -11,7 +11,6 @@ echo $this->Html->css(array('print'), 'stylesheet', array('media' => 'print'));
     window.onload = function () { window.print(); }
 </script>
 <div class="riskAssessments view">
-<h2><?php  echo __('Risk Assessment - '. $ra['Client']['name']); ?></h2>
     <table>
         <tr>
             <th>Question #</th>

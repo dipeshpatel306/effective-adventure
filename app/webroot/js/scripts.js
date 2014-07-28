@@ -77,7 +77,15 @@ $(document).ready(function(){
         window.scrollTo(0,0);
     });
     
-    $('.orgProfTabs').tabs();
+    $('.orgProfTabs').tabs({
+        activate: function(event, ui) {
+            $('.orgProfNextTab').show();
+            var active = $('.orgProfTabs').tabs('option', 'active');
+            if (active + 1 == $('.orgProfTabs >ul >li').size()) {
+                $('.orgProfNextTab').hide();
+            }
+        }
+    });
     $('.orgProfTabs').tabs('paging', {followOnActive : true, follow: true});
     $('.orgProfNextTab').click(function(){
        $.ajax({

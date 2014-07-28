@@ -10,9 +10,9 @@ $this->Html->addCrumb('Risk Assessment Questions');
 	        <?php echo "<h4>" . $subitem['name'] . "</h4>"; ?>
 	        <table>
 	        <tr>
-                <th><?php echo __('Question Number'); ?></th>
-                <th><?php echo __('Question'); ?></th>
-                <th class="actions"><?php echo __('Actions'); ?></th>
+                <th class="raqQuestionNum"><?php echo __('Question Number'); ?></th>
+                <th class="raqQuestion"><?php echo __('Question'); ?></th>
+                <th class="actions raqActions"><?php echo __('Actions'); ?></th>
             </tr>
 	        <?php foreach ($subitem['RiskAssessmentQuestion'] as $q) : ?>
                 <tr>
