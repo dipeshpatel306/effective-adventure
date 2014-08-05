@@ -153,7 +153,7 @@ class RiskAssessmentDocumentsController extends AppController {
 				$this->Session->setFlash('The risk assessment document has been saved.', 'default', array('class' => 'success message'));
 			if($group == Group::ADMIN){
 			    if (isset($this->request->data['next'])) {
-			         $this->redirect(array('action' => 'add'));   
+			         $this->redirect(array('action' => 'add', $this->request->data['RiskAssessmentDocument']['client_id']));   
                 } else {
 					$this->redirect(array('controller' => 'clients', 'action' => 'view', $this->request->data['RiskAssessmentDocument']['client_id']));	
                 }			
