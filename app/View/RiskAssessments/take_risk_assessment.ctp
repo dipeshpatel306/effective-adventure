@@ -1,12 +1,14 @@
 <?php
 App::uses('Group', 'Model');
+$acct = $this->Session->read('Auth.User.Client.account_type');
+
+if ($acct == 'Subscription') {
+    $this->Html->addCrumb('Risk Assessment', array('controller' => 'dashboard', 'action' => 'initial'));    
+}
 $this->Html->addCrumb('Take Risk Assessment');
 
-//print_r($safeguard_categories);
-//print_r($sub_categories);
-//print_r($questions);
-
 $group = $this->Session->read('Auth.User.group_id');
+
 ?>
 
 <div class='fouc riskAssessments form'>
