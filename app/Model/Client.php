@@ -17,6 +17,8 @@ class Client extends AppModel {
 	public $displayField = 'name';
 
     public $qbDbid = CLIENTS_DBID;
+    
+    public $order = 'Client.name asc';
 
 /**
  * Validation rules
