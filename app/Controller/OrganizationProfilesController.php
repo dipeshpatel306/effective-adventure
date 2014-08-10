@@ -39,6 +39,15 @@ class OrganizationProfilesController extends AppController {
  */
 	public function index() {
 		$this->OrganizationProfile->recursive = 0;
+        $this->paginate = array(
+            'fields' => array(
+                'OrganizationProfile.id', 'OrganizationProfile.administrator_name',
+                'OrganizationProfile.administrator_email', 'OrganizationProfile.administrator_phone',
+                'OrganizationProfile.created', 'OrganizationProfile.modified', 'OrganizationProfile.client_id',
+                'Client.name', 'Client.id'
+            ),
+            'order' => array('Client.name' => 'ASC')
+        );
 		$this->set('organizationProfiles', $this->paginate());
 	}
 
@@ -83,12 +92,20 @@ class OrganizationProfilesController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 		    $this->OrganizationProfile->id = $id;
-			if ($this->OrganizationProfile->save($this->request->data)) {
-				$this->Session->setFlash('The organization profile has been saved.', 'default', array('class' => 'success message'));
-                debug($this->request->referrer);
-				$this->redirect($this->origReferer());
+		    if ($this->request->is('ajax')) {
+		        $this->autoRender = false;
+                $this->OrganizationProfile->set($this->request->data);
+                if ($this->OrganizationProfile->validates()) {
+                    $this->OrganizationProfile->save(null, false);
+                }
+                $errors = $this->OrganizationProfile->validationErrors;
+                $this->set(compact('errors'));
+                $this->render('ajax_edit', 'ajax');
+		    } elseif ($this->OrganizationProfile->save($this->request->data)) {
+			    $this->Session->setFlash(__('The organization profile has been saved.'), 'default', array('class' => 'success message'));
+                $this->redirect($this->origReferer());
 			} else {
-				$this->Session->setFlash(__('The organization profile could not be saved. Please, try again.'));
+			    $this->Session->setFlash(__('The organization profile could not be saved. Please, try again.'));
 			}
 		} else {
 			$options = array('conditions' => array('OrganizationProfile.' . $this->OrganizationProfile->primaryKey => $id));

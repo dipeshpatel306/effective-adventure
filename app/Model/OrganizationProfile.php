@@ -33,6 +33,11 @@ class OrganizationProfile extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'administrator_email' => array(
+            'rule' => 'email',
+            'allowEmpty' => 'true',
+            'message' => 'Please enter a valid email address.'
+        )
 		/*'organization_name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),

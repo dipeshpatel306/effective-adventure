@@ -57,7 +57,7 @@ $group = $this->Session->read('Auth.User.group_id');
     </fieldset>
     <div class='submit'>
         <?php echo $this->Form->submit('Submit', array('div' => false)); ?>
-       <?php echo $this->Html->link('Next', '#', array( 'class' => 'submitbtn raNextTab')); ?>
+       <?php echo $this->Html->link('Save and next', '#', array( 'class' => 'submitbtn raNextTab')); ?>
     </div>
     <?php echo $this->Form->end(); ?>
 </div>

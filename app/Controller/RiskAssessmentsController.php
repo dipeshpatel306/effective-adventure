@@ -41,6 +41,14 @@ class RiskAssessmentsController extends AppController {
  */
 	public function index() {
 		$this->RiskAssessment->recursive = 0;
+        $this->paginate = array(
+            'fields' => array(
+                'RiskAssessment.client_id', 'RiskAssessment.created',
+                'RiskAssessment.modified', 'Client.name', 'Client.id',
+                'RiskAssessment.id'
+            ),
+            'order' => array('Client.name' => 'ASC')
+        );
 		$this->set('riskAssessments', $this->paginate());
 	}
 
@@ -109,6 +117,9 @@ class RiskAssessmentsController extends AppController {
         $questions = $this->RiskAssessmentQuestionSafeguardCategory->find('all', array('recursive' => 2));
         $this->set(compact('questions'));
         if ($this->request->is('post')) {
+            if ($this->request->is('ajax')) {
+                $this->autoRender = false;
+            }
             // If user is a client automatically set the client id accordingly. Admin can change client ids
             $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
             if($group != Group::ADMIN){

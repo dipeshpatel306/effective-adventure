@@ -1,3 +1,13 @@
+function camelize(string) {
+    var a = string.split('_'), i;
+    s = [];
+    for (i=0; i<a.length; i++){
+        s.push(a[i].charAt(0).toUpperCase() + a[i].substring(1));
+    }
+    s = s.join('');
+    return s;
+}
+
 $(document).ready(function(){
 
 	$('#social-stream').dcSocialStream({
@@ -57,10 +67,18 @@ $(document).ready(function(){
                     $('.raNextTab').hide();
                 }
             }
+        },
+        beforeActivate: function(event, ui) {
+            if (event.originalEvent !== undefined) {
+                var $form = $('#RiskAssessmentEditForm');
+                $.post($form.attr('action'), $form.serialize());
+            }
         }
     });
     
     $('.raNextTab').click(function(){
+        $form = $(this).closest('form');
+        $.post($form.attr('action'), $form.serialize());
         var active_outer = $('.raTabs').tabs('option', 'active'); 
         var $inner_tab = $('#outerTab' + (active_outer + 1));
         var active_inner = $inner_tab.tabs('option', 'active');
@@ -77,6 +95,39 @@ $(document).ready(function(){
         window.scrollTo(0,0);
     });
     
+    function submitOrgProf($form) {
+        var success = true;
+        function onSuccess(data) {
+            $('.error-message').remove();
+            $('.error').each(function() {
+                $(this).removeClass('error');
+            });
+            $.each(data, function(field, errors){
+                var $field = $("#OrganizationProfile" + camelize(field));
+                $error_div = $(document.createElement('div')).insertAfter($field);
+                $error_div.addClass('error-message').text(errors[0]);
+                $error_div.parent().addClass('error');
+                $field.focus();
+                success = false;
+            });
+        }
+        if ($form[0].checkValidity()) { // check html5 form validation
+            $.ajax({
+                type: 'post',
+                url: $form.attr('action'),
+                data:  $form.serialize(),
+                success: onSuccess,
+                dataType: 'json',
+                async: false
+            });
+            return success;
+        } else {
+            // click submit here to show html5 form validation errors
+            $form.find(':submit').click(); 
+            return false;
+        }
+    }
+    
     $('.orgProfTabs').tabs({
         activate: function(event, ui) {
             $('.orgProfNextTab').show();
@@ -84,19 +135,22 @@ $(document).ready(function(){
             if (active + 1 == $('.orgProfTabs >ul >li').size()) {
                 $('.orgProfNextTab').hide();
             }
+        },
+        beforeActivate: function(event, ui) {
+            if (event.originalEvent !== undefined) {
+                return submitOrgProf($('#OrganizationProfileEditForm'));
+            }
+            return true;
         }
     });
     $('.orgProfTabs').tabs('paging', {followOnActive : true, follow: true});
     $('.orgProfNextTab').click(function(){
-       $.ajax({
-            data: $(this).closest("form").serialize(),
-            dataType: "html",
-            type: "post",
-        });
-       var active = $('.orgProfTabs').tabs('option', 'active');
-       var next_tab = (active + 1) % $('.orgProfTabs >ul>li').size();
-       $('.orgProfTabs').tabs('option', 'active', next_tab);
-       window.scrollTo(0,0); 
+        if (submitOrgProf($(this).closest("form"))) {
+            var active = $('.orgProfTabs').tabs('option', 'active');
+            var next_tab = (active + 1) % $('.orgProfTabs >ul>li').size();
+            $('.orgProfTabs').tabs('option', 'active', next_tab);
+            window.scrollTo(0,0);
+        }
     });
 
 	// Toggle div based upon checkbox (org profile)

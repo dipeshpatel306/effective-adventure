@@ -40,7 +40,7 @@ th {
 }
 table, th, tr, td {
     border: 1px solid #929AA4;
-    page-break-inside: avoid;
+    page-break-inside: avoid !important;
 }
 h2 {
     color: #000000;
