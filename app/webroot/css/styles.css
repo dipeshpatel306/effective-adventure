@@ -157,12 +157,20 @@ dd{
 dl dt:nth-of-type(odd), dl dd:nth-of-type(odd) {
     background: #F5F9FD;
 }
-.organizationProfiles dt, .riskAssessments dt{
+.organizationProfiles dt{
+    width: 30%;
+}
+
+.organizationProfiles dd{
+    margin-left: 30%;
+}
+
+.riskAssessments dt{
 	width: 50%;
 	padding-left: 5px;
 	height: 30px;
 }
-.organizationProfiles dd, .riskAssessments dd{
+.riskAssessments dd{
 	margin-left: 50%;
 
 	height: 30px;

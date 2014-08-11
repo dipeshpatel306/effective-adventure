@@ -1,5 +1,5 @@
 @media print {
-@page { size: landscape; }
+/*@page { size: landscape; }*/
 .navWrap { display:none }
 /*#header .logo{
 	width:141px;
@@ -23,8 +23,11 @@ div.view{
 	font-size: 75%;
 	float: none;
 }
-dl{
+/*dl{
 	line-height: 1em;
+}*/
+h1, h2, h3, h4, h5 {
+    color: #000000;
 }
 #footer{
 	display: none;
@@ -41,9 +44,6 @@ th {
 table, th, tr, td {
     border: 1px solid #929AA4;
     page-break-inside: avoid !important;
-}
-h2 {
-    color: #000000;
 }
 .avoidBreak {
     page-break-inside: avoid !important;
