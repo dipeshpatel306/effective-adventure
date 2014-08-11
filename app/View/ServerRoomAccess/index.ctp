@@ -16,8 +16,6 @@ $this->Html->addCrumb('Server Room Access');
 			<th><?php echo $this->Paginator->sort('date', 'Date/Time'); ?></th>
 			<th><?php echo $this->Paginator->sort('person'); ?></th>
 			<th><?php echo $this->Paginator->sort('company'); ?></th>
-			<!--<th><?php echo $this->Paginator->sort('reason'); ?></th>
-			<th><?php echo $this->Paginator->sort('notes'); ?></th>-->
 
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>

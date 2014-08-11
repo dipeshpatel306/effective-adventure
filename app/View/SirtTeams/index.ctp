@@ -6,13 +6,6 @@ $this->Html->addCrumb('SIRT Teams');
 	<table>
 	<tr>
 			<th><?php echo $this->Paginator->sort('company_name'); ?></th>
-			<!--<th><?php echo $this->Paginator->sort('address_1'); ?></th>
-			<th><?php echo $this->Paginator->sort('address_2'); ?></th>
-			<th><?php echo $this->Paginator->sort('city'); ?></th>
-			<th><?php echo $this->Paginator->sort('state'); ?></th>
-			<th><?php echo $this->Paginator->sort('zip'); ?></th>
-			<th><?php echo $this->Paginator->sort('phone'); ?></th>
-			<th><?php echo $this->Paginator->sort('website'); ?></th>-->
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -22,13 +15,6 @@ $this->Html->addCrumb('SIRT Teams');
 	foreach ($sirtTeams as $sirtTeam): ?>
 	<tr>
 		<td><?php echo ($sirtTeam['SirtTeam']['company_name']); ?>&nbsp;</td>
-		<!--<td><?php echo ($sirtTeam['SirtTeam']['address_1']); ?>&nbsp;</td>
-		<td><?php echo ($sirtTeam['SirtTeam']['address_2']); ?>&nbsp;</td>
-		<td><?php echo ($sirtTeam['SirtTeam']['city']); ?>&nbsp;</td>
-		<td><?php echo ($sirtTeam['SirtTeam']['state']); ?>&nbsp;</td>
-		<td><?php echo ($sirtTeam['SirtTeam']['zip']); ?>&nbsp;</td>
-		<td><?php echo ($sirtTeam['SirtTeam']['phone']); ?>&nbsp;</td>
-		<td><?php echo ($sirtTeam['SirtTeam']['website']); ?>&nbsp;</td>-->
 		<td>
 			<?php echo $sirtTeam['Client']['name']; ?>
 		</td>

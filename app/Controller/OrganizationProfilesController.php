@@ -46,6 +46,7 @@ class OrganizationProfilesController extends AppController {
                 'OrganizationProfile.created', 'OrganizationProfile.modified', 'OrganizationProfile.client_id',
                 'Client.name', 'Client.id'
             ),
+            'limit' => 100,
             'order' => array('Client.name' => 'ASC')
         );
 		$this->set('organizationProfiles', $this->paginate());

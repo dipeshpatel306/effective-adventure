@@ -9,83 +9,17 @@ $this->Html->addCrumb('Organization Profiles');
 	<h2><?php echo __('Organization Profiles'); ?></h2>
 	<table>
 	<tr>
-			<!--<th><?php echo $this->Paginator->sort('id'); ?></th>-->
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
-			<!--<th><?php echo $this->Paginator->sort('organization_name'); ?></th>-->
 			<th><?php echo $this->Paginator->sort('administrator_name'); ?></th>
 			<th><?php echo $this->Paginator->sort('administrator_email'); ?></th>
 			<th><?php echo $this->Paginator->sort('administrator_phone'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<!--<th><?php echo $this->Paginator->sort('address_1'); ?></th>
-			<th><?php echo $this->Paginator->sort('address_2'); ?></th>
-			<th><?php echo $this->Paginator->sort('city'); ?></th>
-			<th><?php echo $this->Paginator->sort('state'); ?></th>
-			<th><?php echo $this->Paginator->sort('zip'); ?></th>
-			<th><?php echo $this->Paginator->sort('number_employees'); ?></th>
-			<th><?php echo $this->Paginator->sort('second_location'); ?></th>
-			<th><?php echo $this->Paginator->sort('number_of_servers'); ?></th>
-			<th><?php echo $this->Paginator->sort('network_operating_system'); ?></th>
-			<th><?php echo $this->Paginator->sort('network_details'); ?></th>
-			<th><?php echo $this->Paginator->sort('number_workstations'); ?></th>
-			<th><?php echo $this->Paginator->sort('number_laptops'); ?></th>
-			<th><?php echo $this->Paginator->sort('os_installed'); ?></th>
-			<th><?php echo $this->Paginator->sort('emr_ehr_implemented'); ?></th>
-			<th><?php echo $this->Paginator->sort('emr_ehr_vendor'); ?></th>
-			<th><?php echo $this->Paginator->sort('emr_ehr_internal_name'); ?></th>
-			<th><?php echo $this->Paginator->sort('emr_ehr_os'); ?></th>
-			<th><?php echo $this->Paginator->sort('emr_ehr_details'); ?></th>
-			<th><?php echo $this->Paginator->sort('emr_ehr_location'); ?></th>
-			<th><?php echo $this->Paginator->sort('emr_ehr_description'); ?></th>
-			<th><?php echo $this->Paginator->sort('email'); ?></th>
-			<th><?php echo $this->Paginator->sort('email_vendor'); ?></th>
-			<th><?php echo $this->Paginator->sort('email_server_location'); ?></th>
-			<th><?php echo $this->Paginator->sort('email_details'); ?></th>
-			<th><?php echo $this->Paginator->sort('portable_media_devices'); ?></th>
-			<th><?php echo $this->Paginator->sort('tables'); ?></th>
-			<th><?php echo $this->Paginator->sort('list_portable_devices'); ?></th>
-			<th><?php echo $this->Paginator->sort('backup_media'); ?></th>
-			<th><?php echo $this->Paginator->sort('smartphones'); ?></th>
-			<th><?php echo $this->Paginator->sort('list_smartphone_vendors'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_1_name'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_1_os'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_1_vendor'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_1_location'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_1_ephi'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_1_details'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_2_name'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_2_os'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_2_vendor'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_2_location'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_2_ephi'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_2_details'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_3_name'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_3_os'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_3_vendor'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_3_location'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_3_ephi'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_3_details'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_4_name'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_4_os'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_4_vendor'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_4_location'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_4_ephi'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_4_details'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_5_name'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_5_os'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_5_vendor'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_5_location'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_5_ephi'); ?></th>
-			<th><?php echo $this->Paginator->sort('system_5_details'); ?></th>
-			<th><?php echo $this->Paginator->sort('additional_info'); ?></th>-->
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php
 	foreach ($organizationProfiles as $organizationProfile): ?>
 	<tr>
-		<!--<td><?php echo ($organizationProfile['OrganizationProfile']['id']); ?>&nbsp;</td>-->
-
-
 		<td>
 			<?php echo $this->Html->link($organizationProfile['Client']['name'], array('controller' => 'clients', 'action' => 'view', $organizationProfile['Client']['id'])); ?>
 		</td>
@@ -96,73 +30,11 @@ $this->Html->addCrumb('Organization Profiles');
 			$ext = '';
 		}
 		?>
-		<!--<td><?php echo ($organizationProfile['OrganizationProfile']['organization_name']); ?>&nbsp;</td>-->
 		<td><?php echo ($organizationProfile['OrganizationProfile']['administrator_name']); ?>&nbsp;</td>
 		<td><?php echo ($organizationProfile['OrganizationProfile']['administrator_email']); ?>&nbsp;</td>
 		<td><?php echo ($organizationProfile['OrganizationProfile']['administrator_phone']) . $ext; ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', ($organizationProfile['OrganizationProfile']['created'])); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', ($organizationProfile['OrganizationProfile']['modified'])); ?>&nbsp;</td>
-		<!--<td><?php echo ($organizationProfile['OrganizationProfile']['address_1']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['address_2']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['city']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['state']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['zip']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['number_employees']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['second_location']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['number_of_servers']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['network_operating_system']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['network_details']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['number_workstations']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['number_laptops']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['os_installed']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_implemented']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_vendor']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_internal_name']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_os']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_details']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_location']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_description']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['email']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['email_vendor']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['email_server_location']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['email_details']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['portable_media_devices']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['tables']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['list_portable_devices']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['backup_media']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['smartphones']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['list_smartphone_vendors']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_1_name']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_1_os']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_1_vendor']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_1_location']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_1_ephi']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_1_details']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_2_name']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_2_os']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_2_vendor']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_2_location']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_2_ephi']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_2_details']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_3_name']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_3_os']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_3_vendor']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_3_location']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_3_ephi']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_3_details']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_4_name']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_4_os']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_4_vendor']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_4_location']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_4_ephi']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_4_details']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_5_name']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_5_os']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_5_vendor']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_5_location']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_5_ephi']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['system_5_details']); ?>&nbsp;</td>
-		<td><?php echo ($organizationProfile['OrganizationProfile']['additional_info']); ?>&nbsp;</td>-->
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $organizationProfile['OrganizationProfile']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $organizationProfile['OrganizationProfile']['id'])); ?>

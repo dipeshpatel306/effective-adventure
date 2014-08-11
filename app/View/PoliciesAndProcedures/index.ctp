@@ -12,8 +12,6 @@ $this->Html->addCrumb('HIPAA Policies & Procedures');
 			<th><?php echo $this->Paginator->sort('id', 'Policy'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
-			<!--<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>-->
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php
@@ -22,13 +20,10 @@ $this->Html->addCrumb('HIPAA Policies & Procedures');
 		<td><?php echo ($policiesAndProcedure['PoliciesAndProcedure']['id']); ?>&nbsp;</td>
 		<td><b><?php echo ($policiesAndProcedure['PoliciesAndProcedure']['name']); ?></b>&nbsp;</td>
 		<td><?php echo $policiesAndProcedure['PoliciesAndProcedure']['description']; ?>&nbsp;</td>
-		<!--<td><?php echo $this->Time->format('m/d/y g:i a',$policiesAndProcedure['PoliciesAndProcedure']['created']); ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('m/d/y g:i a',$policiesAndProcedure['PoliciesAndProcedure']['modified']); ?>&nbsp;</td>-->
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?>
 			<?php if($group == 1 ): ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?>
-			<!--<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $policiesAndProcedure['PoliciesAndProcedure']['id']), null, __('Are you sure you want to delete # %s?', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?>-->
 			<?php endif; ?>
 		</td>
 	</tr>
@@ -57,7 +52,6 @@ $this->Html->addCrumb('HIPAA Policies & Procedures');
 	
 	<?php if($group == 1): ?>
 	<ul>
-		<!--<li><?php echo $this->Html->link(__('New Policies And Procedures'), array('action' => 'add')); ?></li>-->
 		<li><?php echo $this->Html->link(__('List Documents'), array('controller' => 'policies_and_procedures_documents', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Documents'), array('controller' => 'policies_and_procedures_documents', 'action' => 'add')); ?> </li>
 	</ul>

@@ -42,7 +42,5 @@ $this->Html->addCrumb('Risk Assessment Question Categories');
 </div>
 <div class="actions">
     <h3><?php echo __('Actions'); ?></h3>
-    <ul>
-        <!--<li><?php echo $this->Html->link(__('New Risk Assessment Question'), array('action' => 'add')); ?></li>-->
-    </ul>
+    <ul></ul>
 </div>

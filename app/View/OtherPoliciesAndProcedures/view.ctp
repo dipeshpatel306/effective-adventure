@@ -23,16 +23,6 @@ $this->Html->addCrumb($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['n
 			<?php echo ($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['name']); ?>
 			&nbsp;
 		</dd>
-		<!--<dt><?php echo __('Description'); ?></dt>
-		<dd>
-			<?php echo ($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['description']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Details'); ?></dt>
-		<dd>
-			<?php echo ($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['details']); ?>
-			&nbsp;
-		</dd>-->
 
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>

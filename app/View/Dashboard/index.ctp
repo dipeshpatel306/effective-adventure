@@ -50,8 +50,6 @@
 <div class="dashboard index">
 	<h2><?php echo __('Compliance Portal Dashboard'); ?></h2>
 
-	<!--<?php echo $this->Html->link('Risk Assessment Questionnaire', array('controller' => 'riskassessments', 'action' => 'take_risk_assessment'))?><br /><br />-->
-
 	<?php
 		// policies & procedures. everyone sees this
 		echo $this->Html->link(

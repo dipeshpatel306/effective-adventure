@@ -22,16 +22,6 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 			<?php echo ($policiesAndProcedure['PoliciesAndProcedure']['name']); ?>
 			&nbsp;
 		</dd>
-		<!--<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo $this->Time->format('m/d/y g:i a',$policiesAndProcedure['PoliciesAndProcedure']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
-			<?php echo $this->Time->format('m/d/y g:i a',$policiesAndProcedure['PoliciesAndProcedure']['modified']); ?>
-			&nbsp;
-		</dd>-->
 	</dl>
 
 	<h2><?php echo __('Description'); ?></h2>
@@ -46,7 +36,6 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 	<table>
 	<tr>
 
-		<!--<th><?php echo __('Client'); ?></th>-->
 		<th><?php echo __('Document'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
@@ -55,13 +44,9 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 		<?php endif; ;?>
 	</tr>
 	<?php
-	//debug ($policiesAndProcedure['PoliciesAndProceduresDocument']);
 		$i = 0;
-		/*foreach ($policiesAndProcedure['PoliciesAndProceduresDocument'] as $policiesAndProceduresDocument): ?>*/
 		foreach ($documents as $policiesAndProceduresDocument): ?>
-		<?php //debug($policiesAndProceduresDocument['PoliciesAndProceduresDocument']);?>
 		<tr>
-			<!--<td><?php echo $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['client_id']; ?></td>-->
 			<td>
 		<?php
 			if(!empty($policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document'])){
@@ -79,7 +64,6 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 			<td><?php echo $this->Time->format('m/d/y g:i a',$policiesAndProceduresDocument['PoliciesAndProceduresDocument']['modified']); ?></td>
 		<?php if($group != 3): ?>
 			<td class="actions">
-				<!--<?php echo $this->Html->link('View', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document']); ?>-->
 				
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'policies_and_procedures_documents', 'action' => 'edit',$policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id'])); ?>
 				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Policy & Procedure Document', 'id' => $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id'])); ?>
@@ -111,16 +95,10 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 	<ul>
 		
 		<?php if($group == 1): ?>
-		<!--<li><?php echo $this->Html->link(__('New Policies and Procedures'), array('action' => 'add')); ?> </li>-->
 		<li><?php echo $this->Html->link(__('Edit Policies And Procedures'), array('action' => 'edit', $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?> </li>
 		<li><?php echo $this->element('delete_link', array('title' => 'Delete Policy & Procedure', 'name' => 'Policy & Procedure', 'id' => $policiesAndProcedure['PoliciesAndProcedure']['id'])); ?></li>
 		<?php endif; ?>
 	</ul>
-	
-	<!--<ul>
-		<li><?php echo $this->Html->link(__('List Documents'), array('controller' => 'policies_and_procedures_documents', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Document'), array('controller' => 'policies_and_procedures_documents', 'action' => 'add')); ?> </li>
-	</ul>-->
 	<?php endif; ?>
 </div>
 

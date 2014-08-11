@@ -43,12 +43,7 @@ if($user['User']['active']){
 		<dd>
 		    <?php echo $user['Client']['moodle_course_name']; ?>
 		    &nbsp;
-		</dd>
-		<!--<dt><?php echo __('Last Name'); ?></dt>
-		<dd>
-			<?php echo ($user['User']['last_name']); ?>
-			&nbsp;
-		</dd>-->		
+		</dd>	
 		<dt><?php echo __('Phone Number'); ?></dt>
 		<dd>
 			<?php echo ($user['User']['phone_number']); ?>

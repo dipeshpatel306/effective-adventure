@@ -74,7 +74,6 @@
 
 
 		
-		<!--<li><?php echo $this->Html->link('What You Can Do With The HIPAA Secure Now! Compliance Portal', array('controller' => 'dashboard', 'action' => ''))?></li>-->
 		<li><?php echo $this->Html->link('Contact', array('controller' => 'contact_us', 'action' => 'contact'))?></li>
 		
 		<?php  // Allow Managers to see users from their own client. TODO set restriction in controller 

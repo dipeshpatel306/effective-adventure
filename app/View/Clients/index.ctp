@@ -10,10 +10,7 @@ $this->Html->addCrumb('Clients');
 
 			<th><?php echo $this->Paginator->sort('admin_account', 'Admin Code'); ?></th>
 			<th><?php echo $this->Paginator->sort('user_account', 'User Code'); ?></th>
-			<!--<th><?php echo $this->Paginator->sort('body'); ?></th>-->
-			<!--<th><?php echo $this->Paginator->sort('Partner'); ?></th>-->
 			<th><?php echo $this->Paginator->sort('risk_assessment_status', 'RA Completed'); ?></th>
-			<!--<th><?php echo $this->Paginator->sort('last_login'); ?></th>-->
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th><?php echo $this->Paginator->sort('active', 'Active?'); ?></th>
@@ -28,8 +25,6 @@ $this->Html->addCrumb('Clients');
 
 		<td><?php echo ($client['Client']['admin_account']); ?>&nbsp;</td>
 		<td><?php echo ($client['Client']['user_account']); ?>&nbsp;</td>
-		<!--<td><?php echo ($client['Partner']['name']); ?>&nbsp;</td>-->
-		<!--<td><?php echo ($client['Client']['details']); ?>&nbsp;</td>-->
 		<?php
 			if(!empty($client['Client']['risk_assessment_status'])){
 				$completed = 'class="completed"';
@@ -44,13 +39,6 @@ $this->Html->addCrumb('Clients');
 			}
 		?>
 		&nbsp;</td>
-		<!--<td><?php
-		if($client['Client']['last_login'] == '0000-00-00 00:00:00'){
-			echo '';
-		} else {
-			echo $this->Time->format('m/d/y g:i a', $client['Client']['last_login']);
-		}
-		 ?>&nbsp;</td>-->
 		<td><?php echo $this->Time->format('m/d/y g:i a', $client['Client']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $client['Client']['modified']); ?>&nbsp;</td>
 

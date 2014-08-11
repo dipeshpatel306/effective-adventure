@@ -252,60 +252,6 @@ $clientId = $client['Client']['id'];
 	</div>
 
 </div>
-<!--<div class="related">
-	<h3><?php echo __('HIPAA Policies & Procedures Documents'); ?></h3>
-
-	<?php if (!empty($client['PoliciesAndProceduresDocument'])): ?>
-		
-	<table>
-	<tr>
-		<th><?php echo __('Policy'); ?></th>
-		<th><?php echo __('Document'); ?></th>
-		<th><?php echo __('Created'); ?></th>
-		<th><?php echo __('Modified'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-
-	<?php 
-		$i = 0;
-		foreach ($client['PoliciesAndProceduresDocument'] as $pnp): ?>
-		<?php pr($pnp)?>
-		<tr>
-			
-			<td><?php echo $pnp['id']; ?>  </td>
-			<td>
-			<?php 
-			if(!empty($pnp['document'])){
-				$dir = $pnp['document_dir'];
-				$file = $pnp['document'];
-				$section = 'policies_and_procedure';
-				$pnpLink =  preg_replace('/\/.*\//', '', $pnp['document']);
-				echo $this->Html->link($pnp['document'], array(
-					'controller' => 'policies_and_procedures_documents',
-					'action' => 'sendFile', $dir, $file, $section));
-			}				
-			?>	
-
-			</td>
-			<td><?php echo $this->Time->format('m/d/y g:i a', $pnp['created']); ?></td>
-			<td><?php echo $this->Time->format('m/d/y g:i a', $pnp['modified']); ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'policies_and_procedures_documents', 'action' => 'view', $pnp['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'policies_and_procedures_documents', 'action' => 'edit', $pnp['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'policies_and_procedures_documents', 'action' => 'delete', $pnp['id']), null, __('Are you sure you want to delete # %s?', $pnp['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-
-	</table>
-<?php endif; ?>
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New HIPAA Policies & Procedure  Document'), array('controller' => 'policies_and_procedures_documents', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
-
-</div>-->
 
 <!-- Other Policies & Procedures -->
 <div class="related">
