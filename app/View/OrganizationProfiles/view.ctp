@@ -8,222 +8,237 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 ?>
 <div class="organizationProfiles view">
 <h2><?php  echo __('Organization Profile'); ?></h2>
+    <h3>Name and Location</h3>
 	<dl>
-		<!--<h4 class='highlight'><?php echo __('Id'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['id']); ?>
-			&nbsp;
-		</p>-->
-		<h4 class='highlight'><?php echo __('Client'); ?></h4>
-		<p>
-			<?php echo $this->Html->link($organizationProfile['Client']['name'], array('controller' => 'clients', 'action' => 'view', $organizationProfile['Client']['id'])); ?>
-			&nbsp;
-		</p>
+	    <dt>Client</dt>
+	    <dd><?php echo ($organizationProfile['Client']['name']); ?>&nbsp;</dd>
+	    
+	    <dt>Administrator Name</dt>
+	    <dd><?php echo ($organizationProfile['OrganizationProfile']['administrator_name']); ?>&nbsp;</dd>
+	    
+	    <dt>Administrator Email</dt>
+	    <dd><?php echo ($organizationProfile['OrganizationProfile']['administrator_email']); ?>&nbsp;</dd>
+        
+        <dt>Administrator Phone (Primary Contact)</dt>
+        <dd>
+            <?php
 
-		<!--<h4 class='highlight'><?php echo __('Organization Name:'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['organization_name']); ?>
-			&nbsp;
-		</p>-->
-		<h4 class='highlight'><?php echo __("Organization's Administrator Name: "); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['administrator_name']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __("Organization's Adminstrator Email:"); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['administrator_email']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'>
-			<?php echo __('Administrator Phone (Primary Contact): '); ?></h4>
-		<p>
-			<?php
+                if(!empty($organizationProfile['OrganizationProfile']['administrator_phone_ext'])){
+                    $ext = ' ext. ' . $organizationProfile['OrganizationProfile']['administrator_phone_ext'];
+                } else {
+                $ext = '';
+                }
+            echo ($organizationProfile['OrganizationProfile']['administrator_phone'] . $ext); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Administrator Phone (Alternative)</dt>
+        <dd>
+            <?php
+                if(!empty($organizationProfile['OrganizationProfile']['administrator_phone_alt_ext'])){
+                    $altExt = ' ext. ' . $organizationProfile['OrganizationProfile']['administrator_phone_alt_ext'];
+                } else {
+                $altExt = '';
+                }
+            echo ($organizationProfile['OrganizationProfile']['administrator_phone_alt']) . $altExt; ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Address 1</dt>
+        <dd><?php echo ($organizationProfile['OrganizationProfile']['address_1']); ?>&nbsp;</dd>
+        
+        <dt>Address 2</dt>
+        <dd><?php echo ($organizationProfile['OrganizationProfile']['address_2']); ?>&nbsp;</dd>
+        
+        <dt>City</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['city']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>State</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['state']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Zip</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['zip']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Number of Employees</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['number_employees']); ?>
+            &nbsp;
+        </dd>
 
-				if(!empty($organizationProfile['OrganizationProfile']['administrator_phone_ext'])){
-					$ext = ' ext. ' . $organizationProfile['OrganizationProfile']['administrator_phone_ext'];
-				} else {
-				$ext = '';
-				}
-			echo ($organizationProfile['OrganizationProfile']['administrator_phone'] . $ext); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Administrator Phone (Alternative): '); ?></h4>
-		<p>
-			<?php
-				if(!empty($organizationProfile['OrganizationProfile']['administrator_phone_alt_ext'])){
-					$altExt = ' ext. ' . $organizationProfile['OrganizationProfile']['administrator_phone_alt_ext'];
-				} else {
-				$altExt = '';
-				}
-			echo ($organizationProfile['OrganizationProfile']['administrator_phone_alt']) . $altExt; ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Address 1: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['address_1']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Address 2: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['address_2']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('City:'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['city']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('State:'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['state']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Zip:'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['zip']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('How many employees(total in the Organization?):'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['number_employees']); ?>
-			&nbsp;
-		</p>
 		<?php if ($organizationProfile['OrganizationProfile']['second_location'] == 'Yes'): ?>
-		<h4 class='highlight'><?php echo __('Second Address 1: '); ?></h4>
-		<p>
+		<br /> <h4 class='strong'>Second Location</h4>   
+		<dt>Address 1</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['second_address_1']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Second Address 2: '); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>Address 2</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['second_address_2']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Second City:'); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>City</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['second_city']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Second State:'); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>State</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['second_state']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Second Zip:'); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>Zip</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['second_zip']); ?>
 			&nbsp;
-		</p>
+		</dd>
 		<?php endif; ?>
+		
 		<?php if ($organizationProfile['OrganizationProfile']['third_location'] == 'Yes'): ?>
-		<h4 class='highlight'><?php echo __('Third Address 1: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['third_address_1']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Third Address 2: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['third_address_2']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Third City:'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['third_city']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Third State:'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['third_state']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Third Zip:'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['third_zip']); ?>
-			&nbsp;
-		</p>
-		<?php endif; ?>
-        <?php if ($organizationProfile['OrganizationProfile']['fourth_location'] == 'Yes'): ?>
-		<h4 class='highlight'><?php echo __('Fourth Address 1: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['fourth_address_1']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Fourth Address 2: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['fourth_address_2']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Fourth City:'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['fourth_city']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Fourth State:'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['fourth_state']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Fourth Zip:'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['fourth_zip']); ?>
-			&nbsp;
-		</p>
-		<?php endif; ?>
-        <?php if ($organizationProfile['OrganizationProfile']['fifth_location'] == 'Yes'): ?>
-		<h4 class='highlight'><?php echo __('Fifth Address 1: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['fifth_address_1']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Fifth Address 2: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['fifth_address_2']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Fifth City:'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['fifth_city']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Fifth State:'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['fifth_state']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Fifth Zip:'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['fifth_zip']); ?>
-			&nbsp;
-		</p>
+        <br /><h4 class='strong'>Third Location</h4> 
+        <dt>Address 1</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['third_address_1']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Address 2</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['third_address_2']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>City</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['third_city']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>State</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['third_state']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Zip</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['third_zip']); ?>
+            &nbsp;
+        </dd>
         <?php endif; ?>
-		<h4 class='highlight'><?php echo __('How many servers do you have?'); ?></h4>
-		<p>
+        
+        <?php if ($organizationProfile['OrganizationProfile']['fourth_location'] == 'Yes'): ?>
+        <br /><h4 class='strong'>Fourth Location</h4>
+        <dt>Address 1</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['fourth_address_1']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Address 2</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['fourth_address_2']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>City</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['fourth_city']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>State</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['fourth_state']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Zip</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['fourth_zip']); ?>
+            &nbsp;
+        </dd>
+        <?php endif; ?>
+        
+        <?php if ($organizationProfile['OrganizationProfile']['fifth_location'] == 'Yes'): ?>
+        <br /><h4 class='strong'>Fifth Location</h4>
+        <dt>Address 1</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['fifth_address_1']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Address 2</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['fifth_address_2']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>City</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['fifth_city']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>State</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['fifth_state']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Zip</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['fifth_zip']); ?>
+            &nbsp;
+        </dd>
+        <?php endif; ?>
+   
+		<br /><h3>Network</h3>
+		<dt>Number of Servers</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['number_of_servers']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('What is the network operating system?'); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>Network Operating System</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['network_operating_system']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Please provide details of your network: '); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>Network Details</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['network_details']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('How many workstations(desktops) do you have?'); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>Number of Workstations</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['number_workstations']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('How many laptops do you have?'); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>Number of Laptops</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['number_laptops']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Please select the operating systems your workstations and laptiops are running: '); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>Workstation/Laptop Operating System</dt>
+		<dd>
 			<?php // Get OS list, comma separate except last result
 			if (!empty($organizationProfile['OperatingSystem'])){
 				$i = 0;
@@ -236,257 +251,331 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 			?>
 
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Do you have an EMR/EHR implemented?'); ?></h4>
-		<p>
+		</dd>
+		
+		<br /><h3>EMR/EHR</h3>
+		<dt>EMR/EHR Implemented</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_implemented']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('What is the name of your EMP/EHR Vendor?'); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>EMP/EHR Vendor</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_vendor']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('What is the internal name that you use to refer to your EMR/EHR?'); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>EMR/EHR Internal Name</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_internal_name']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('What server operating system does your EMR/EHR run on?'); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>EMR/EHR Operating System</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_os']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Please enter EMR/EHR Other operating system or provide more details: '); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>EMR/EHR Details</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_details']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Where is your EMR/EHR located?'); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>EMR/EHR Location</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_location']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Please describe where your EMR/EHR is located: '); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>EMR/EHR Location Description</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_description']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Do you utilize Email in your organization?'); ?></h4>
-		<p>
+		</dd>
+		
+		<br /><h3>Email</h3>
+		
+		<dt>Email</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['email']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('What Email vendor and product do you use?'); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>Email Vendor</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['email_vendor']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('List the name of the other Email vendor or provide more details: '); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>Email Vendor Details</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['email_vendor_details']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('What Email vendor and product do you use? '); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>Email Vendor Other</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['email_vendor_other']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Where is your Email Server?'); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>Email Server Location</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['email_server_location']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Please provide us with any additional details regarding your Email: '); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>Additional Email Details</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['email_details']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Do you use portable media devices?'); ?></h4>
-		<p>
+		</dd>
+		
+		<br /><h3>Portable Media</h3>
+		<dt>Portable Media</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['portable_media_devices']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Do you use Tablets?'); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>Tablets</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['tablets']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('List the portable media devices you are currently using:'); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>Portable Media Devices</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['list_portable_devices']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Do you utilize backup tapes?'); ?></h4>
-		<p>
+		</dd>
+		
+		<br /><h3>Backup Media</h3>
+		<dt>Backup Tapes</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['backup_media']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Do you utilize smartphones?'); ?></h4>
-		<p>
+		</dd>
+		
+		<br /><h3>Smartphones</h3>
+		<dt>Smartphones</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['smartphones']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('List the smartphone vendors and/or phones: '); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>Smartphone Vendors</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['list_smartphone_vendors']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 1 Name: '); ?></h4>
-		<p>
+		</dd>
+		
+		<?php if ($organizationProfile['OrganizationProfile']['system_1_name']): ?>
+		<br /><h3>Additional Systems</h3>
+		
+		<br /><h4>System 1</h4>
+		<dt>Name</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['system_1_name']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 1 Operating System: '); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>Operating System</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['system_1_os']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 1 Vendor: '); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>Vendor</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['system_1_vendor']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 1 Location: '); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>Location</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['system_1_location']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 1 # of ePHI Records (estimate):'); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>Number of ePHI Records</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['system_1_ephi']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 1 - Please provide details of the system (how it is used, who uses it, etc.): '); ?></h4>
-		<p>
+		</dd>
+		
+		<dt>System Details</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['system_1_details']); ?>
 			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 2 Name: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_2_name']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 2 Operating System: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_2_os']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 2 Vendor: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_2_vendor']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 2 Location: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_2_location']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 2 # of ePHI Records (estimate):'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_2_ephi']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 2 - Please provide details of the system (how it is used, who uses it, etc.): '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_2_details']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 3 Name: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_3_name']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 3 Operating System: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_3_os']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 3 Vendor: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_3_vendor']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 3 Location: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_3_location']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 3 # of ePHI Records (estimate):'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_3_ephi']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 3 - Please provide details of the system (how it is used, who uses it, etc.): '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_3_details']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 4 Name: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_4_name']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 4 Operating System: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_4_os']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 4 Vendor: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_4_vendor']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 4 Location:'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_4_location']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 4 # of ePHI Records (estimate):'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_4_ephi']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 4 - Please provide details of the system (how it is used, who uses it, etc.): '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_4_details']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 5 Name: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_5_name']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 5 Operating System: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_5_os']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 5 Vendor: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_5_vendor']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 5 Location: '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_5_location']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 5 # of ePHI Records (estimate):'); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_5_ephi']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('System 5 - Please provide details of the system (how it is used, who uses it, etc.): '); ?></h4>
-		<p>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_5_details']); ?>
-			&nbsp;
-		</p>
-		<h4 class='highlight'><?php echo __('Additional Info:'); ?></h4>
-		<p>
+		</dd>
+		
+		<?php if ($organizationProfile['OrganizationProfile']['system_2_name']): ?>
+        <br /><h4>System 2</h4>
+        <dt>Name</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_2_name']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Operating System</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_2_os']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Vendor</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_2_vendor']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Location</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_2_location']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Number of ePHI Records</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_2_ephi']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>System Details</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_2_details']); ?>
+            &nbsp;
+        </dd>
+        <?php endif; ?>
+        
+        <?php if ($organizationProfile['OrganizationProfile']['system_3_name']): ?>
+        <br /><h4>System 3</h4>
+        <dt>Name</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_3_name']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Operating System</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_3_os']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Vendor</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_3_vendor']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Location</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_3_location']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Number of ePHI Records</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_3_ephi']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>System Details</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_3_details']); ?>
+            &nbsp;
+        </dd>
+        <?php endif; ?>
+        
+        <?php if ($organizationProfile['OrganizationProfile']['system_4_name']): ?>
+        <br /><h4>System 4</h4>
+        <dt>Name</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_4_name']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Operating System</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_4_os']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Vendor</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_4_vendor']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Location</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_4_location']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Number of ePHI Records</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_4_ephi']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>System Details</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_4_details']); ?>
+            &nbsp;
+        </dd>
+        <?php endif; ?>
+        
+        <?php if ($organizationProfile['OrganizationProfile']['system_5_name']): ?>
+        <br /><h4>System 5</h4>
+        <dt>Name</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_5_name']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Operating System</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_5_os']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Vendor</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_5_vendor']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Location</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_5_location']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>Number of ePHI Records</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_5_ephi']); ?>
+            &nbsp;
+        </dd>
+        
+        <dt>System Details</dt>
+        <dd>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_5_details']); ?>
+            &nbsp;
+        </dd>
+        <?php endif; ?>
+        <?php endif; ?>
+        
+        <br /><h3>Additional Information</h3>
+		<dt>Additional Info</dt>
+		<dd>
 			<?php echo ($organizationProfile['OrganizationProfile']['additional_info']); ?>
 			&nbsp;
-		</p>
+		</dd>
 	</dl>
 </div>
 <div class="actions">
