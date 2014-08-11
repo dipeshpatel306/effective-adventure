@@ -12,9 +12,6 @@
 #header {
     display: none;
 }
-h2{
-	font-size: 150%;
-}
 div.view{
 	border: none;
 	box-shadow: none;
@@ -28,6 +25,7 @@ div.view{
 }*/
 h1, h2, h3, h4, h5 {
     color: #000000;
+    font-size: 250%;
 }
 #footer{
 	display: none;
@@ -49,4 +47,23 @@ table, th, tr, td {
     page-break-inside: avoid !important;
     margin: 4px 0 4px 0;  /* to keep the page break from cutting too close to the text in the div */
 }
+.organizationPofiles dt {
+    width: 50% !important;
+    line-height: 3em !important;
+}
+
+.organizationProfiles dd {
+    margin-left: 50% !important;
+    line-height: 3em !important;
+    background: #FFFFFF !important;
+}
+.organizationProfiles p, dt, dd {
+    font-size: 175% !important;
+    background: #FFFFFF !important;
+}
+.riskAssessments {
+    padding: 0; !important;
+    margin: 0; !important;
+    width: 90% !important;   
+}   
 }
