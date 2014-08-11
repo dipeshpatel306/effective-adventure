@@ -92,7 +92,7 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 	<p>This section will determine if a breach notification to individuals affected by the breach is required.</p>
 
 	<p>Please read and complete the following Breach Notification Risk Assessment before proceeding. </p>
-	<p><a href='http://www.hipaasecurenow.com/portal/Improper_Disclosures_Assessment.doc' target='_blank'>Breach Notification Risk Assessment</a></p>
+	<p><a href='http://www.hipaasecurenow.com/portal/Breach Risk Assessment.docx' target='_blank'>Breach Notification Risk Assessment</a></p>
 
 	<?php
 		echo $this->Form->input('breach_notification_ra', array('label' => 'Have you done a Breach Notification Risk Assessment?', 'options' => $options, 'empty' => 'Please Select'));
