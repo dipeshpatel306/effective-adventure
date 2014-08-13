@@ -9,9 +9,9 @@ $this->Html->addCrumb('Edit Risk Assessment Question');
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('question_number', array('options' => array_combine(range(1,48,1), range(1,48,1))));
-		echo $this->Form->input('question');
-		echo $this->Form->input('additional_information');
-		echo $this->Form->input('how_to_answer_question');
+		echo $this->Form->input('question', array('class' => 'textLong'));
+		echo $this->Form->input('additional_information', array('class' => 'ckeditor'));
+		echo $this->Form->input('how_to_answer_question', array('class' => 'ckeditor'));
         echo $this->Form->input('video_name');
 	?>
 	</fieldset>

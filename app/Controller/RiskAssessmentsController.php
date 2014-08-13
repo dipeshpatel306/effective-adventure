@@ -67,6 +67,7 @@ class RiskAssessmentsController extends AppController {
 		if (!$this->RiskAssessment->exists()) {
 			throw new NotFoundException(__('Invalid risk assessment'));
 		}
+        $this->pdfConfig = array('orientation' => 'landscape');
 		$this->set('ra', $this->RiskAssessment->read(null, $id));
 	}
 

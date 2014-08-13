@@ -36,7 +36,7 @@ $this->Html->addCrumb('View Risk Assessment - ' . $ra['Client']['name']);
 		<li><?php echo $this->Html->link(__('Edit Risk Assessment'), array('action' => 'edit', $ra['RiskAssessment']['id'])); ?> </li>
 		<li><?php echo $this->element('delete_link', array('title' => 'Delete Risk Assessment', 'name' => 'Risk Assessment', 'id' => $ra['RiskAssessment']['id'])); ?></li>
         <li><?php echo $this->Html->link(__('Export Risk Assessment CSV'), array('action' => 'view', $ra['RiskAssessment']['id'], 'ext' => 'csv')); ?></li>
-        <li><a href="javascript:if(window.print)window.print()">Print Risk Assessment</a></li>
+        <li><?php echo $this->Html->link(__('Export Risk Assessment PDF'), array('action' => 'view', $ra['RiskAssessment']['id'], 'ext' => 'pdf')); ?></li>
 		<?php endif; ?>
 
 	</ul>

@@ -862,6 +862,9 @@ input[type='number'] {
 input[type='text'] {
     width: 425px;
 }
+input.textLong {
+    width: 100% !important;
+}
 
 textarea {
     width: 700px;
