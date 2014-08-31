@@ -44,13 +44,13 @@ $(document).ready(function(){
 		height: '635'
 	});
 
-	// Slide show for risk assessment
-	$(function(){
-		$('#slides').slides({
-			preload: true,
-			//generateNextPrev: true
-		});
-	});
+	// // Slide show for risk assessment
+	// $(function(){
+		// $('#slides').slides({
+			// preload: true,
+			// //generateNextPrev: true
+		// });
+	// });
 
     $('input[type=tel]').mask('999-999-9999');
 

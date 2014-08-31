@@ -52,6 +52,11 @@ class AppController extends Controller {
         if (Configure::read('LogRequests')) {
             $this->capture_request_head_for_log();
         }
+		
+		if (!$this->javascriptModule) {
+			$moduleName = Inflector::underscore($this->name);
+			$this->javascriptModule = $moduleName;
+		}
     }
 
     public function blackhole($type) {
@@ -158,6 +163,10 @@ class AppController extends Controller {
             $this->log_request_tail();  
         }
     }
+
+	public function beforeRender() {
+		$this->set(array('javascriptModule' => $this->javascriptModule));
+	}
     
 }
 

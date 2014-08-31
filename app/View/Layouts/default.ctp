@@ -15,7 +15,7 @@
 	</title>
 	<?php
 		echo $this->Html->meta('favicon.ico', $this->webroot . '/img/favicon.ico', array('type' => 'icon'));
-		echo $this->Html->css(array('base', '/js/jquery-social-stream/css/dcsns_light.css', 'styles', 'http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css'));
+		echo $this->Html->css(array('base', '/js/lib/jquery-social-stream/css/dcsns_light.css', 'styles', 'http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css'));
     	if(($this->params['controller']=='risk_assessments'||$this->params['controller']=='organization_profiles')&&$this->params['action']=='view'){
       		echo $this->Html->css(array('print'), 'stylesheet', array('media' => 'print'));
     	}		
@@ -63,7 +63,13 @@
 		</div>
 
 	</div>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<?php echo $this->Html->script("require.js"); ?>
+	<script>
+		require(['/js/bootstrap.js'], function(){
+			require(['app/<?php echo $javascriptModule; ?>', 'app/social']);
+		});
+	</script>
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
   	<script>window.jQuery || document.write('<script src="../js/jquery-1.9.0.min.js"><\/script>')</script>
 	<?php echo $this->Html->script(array(
 										 '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js',
@@ -82,7 +88,7 @@
 	        $('.raTabs.tabsInner').tabs('paging', {followOnActive : true, follow: true});
 	        $('.orgProfTabs').tabs('paging', {followOnActive : true, follow: true});
 	    });
-	</script>
+	</script> -->
 	<?php
 	//echo Configure::version();
 	//echo $this->element('sql_dump');
