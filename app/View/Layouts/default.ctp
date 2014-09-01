@@ -69,26 +69,6 @@
 			require(['app/<?php echo $javascriptModule; ?>', 'app/social']);
 		});
 	</script>
-	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-  	<script>window.jQuery || document.write('<script src="../js/jquery-1.9.0.min.js"><\/script>')</script>
-	<?php echo $this->Html->script(array(
-										 '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js',
-										 //'jquery-ui-1.10.0.custom/js/jquery-ui-1.10.0.custom.min.js',
-										 'ckeditor/ckeditor.js',
-										 'jwplayer/jwplayer.js',
-										 'slides.min.jquery.js',
-										 'jquery-social-stream/js/jquery.social.stream.1.5.min.js',
-										 'jquery.maskedinput.min.js',
-										 'ui.tabs.paging.js',
-										 'scripts',
-	)); ?>
-	<script type='text/javascript'>
-	    $(document).ready(function() {
-	        $('.fouc').show();
-	        $('.raTabs.tabsInner').tabs('paging', {followOnActive : true, follow: true});
-	        $('.orgProfTabs').tabs('paging', {followOnActive : true, follow: true});
-	    });
-	</script> -->
 	<?php
 	//echo Configure::version();
 	//echo $this->element('sql_dump');

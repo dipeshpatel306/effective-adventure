@@ -21,7 +21,8 @@ requirejs.config({
 			deps : ['jquery']
 		},
 		jwplayer : {
-			deps : ['jquery']
+			deps : ['jquery'],
+			exports : 'jwplayer'
 		},
 		tabspaging : {
 			deps : ['jquery', 'jqueryui']
