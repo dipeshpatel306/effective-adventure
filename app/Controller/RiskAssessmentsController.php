@@ -129,7 +129,7 @@ class RiskAssessmentsController extends AppController {
             $this->RiskAssessment->create();
             if ($this->RiskAssessment->save($this->request->data)) {
 
-                $this->Session->setFlash('Your risk assessment has been saved', 'default', array('class' => 'success message'));
+                $this->Session->setFlash('Your risk assessment has been saved.', 'default', array('class' => 'success message'));
                 $this->redirect($this->origReferer());
             } else {
                 $this->Session->setFlash(__('Your risk assessment could not be saved. Please, try again.'));

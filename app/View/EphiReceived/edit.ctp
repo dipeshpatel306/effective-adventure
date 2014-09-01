@@ -22,7 +22,7 @@ $reason = array('' => '', 'Referral from another provider' => 'Referral from ano
 	<h2 class='highlight'>Description and Date Received</h2>
 	<?php
 		echo $this->Form->input('item', array('label' => 'Description of Item Received', 'options' => $item, 'empty' => 'Please Select'));
-		echo '<div class="otherDescription">' .
+		echo '<div class="otherDescription hidden">' .
 				$this->Form->input('other_description', array('label' => 'Other Description'))
 			. "</div>";
 		echo $this->Form->input('date_received', array('class' => 'datePick'));
@@ -34,7 +34,7 @@ $reason = array('' => '', 'Referral from another provider' => 'Referral from ano
 		echo $this->Form->input('received_by', array('label' => 'Who received / accepted the ePHI? '));
 		echo $this->Form->input('reason', array('label' => 'Reason for receiving ePHI', 'options' => $reason, 'empty' => 'Please Select'));
 
-		echo '<div class="otherReason">' .
+		echo '<div class="otherReason hidden">' .
 				$this->Form->input('other_reason', array('label' => 'Other Reason'))
 			. "</div>";
 	?>

@@ -84,7 +84,7 @@ $this->Html->addCrumb('Edit Organization Profile');
         echo $this->Form->input('second_location', array('label' =>'Do you have a second location?', 'type' => 'checkbox', 'value' => 'Yes', 'hiddenField' => 'No', 'class' => 'orgCheck2'));
     ?>
 
-    <div class='orgSecondLocation'>
+    <div class='orgSecondLocation hidden'>
         <hr />
         <h3>Second Location</h3>
         <?php
@@ -97,7 +97,7 @@ $this->Html->addCrumb('Edit Organization Profile');
         ?>
     </div>
 
-    <div class='orgThirdLocation'>
+    <div class='orgThirdLocation hidden'>
         <hr />
         <h3>Third Location</h3>
         <?php
@@ -109,7 +109,7 @@ $this->Html->addCrumb('Edit Organization Profile');
         echo $this->Form->input('fourth_location', array('label' =>'Do you have a fourth location?', 'type' => 'checkbox', 'value' => 'Yes', 'hiddenField' => 'No', 'class' => 'orgCheck4'));
         ?>
     </div>
-    <div class='orgFourthLocation'>
+    <div class='orgFourthLocation hidden'>
         <hr />
         <h3>Fourth Location</h3>
         <?php
@@ -121,7 +121,7 @@ $this->Html->addCrumb('Edit Organization Profile');
         echo $this->Form->input('fifth_location', array('label' =>'Do you have a fifth location?', 'type' => 'checkbox', 'value' => 'Yes', 'hiddenField' => 'No', 'class' => 'orgCheck5'));
         ?>
     </div>
-    <div class='orgFifthLocation'>
+    <div class='orgFifthLocation hidden'>
         <hr />
         <h3>Fifth Location</h3>
         <?php

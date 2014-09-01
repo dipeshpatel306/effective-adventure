@@ -1,6 +1,5 @@
 require(['jquery', 'app/form', 'app/video', 'tabspaging'], function($, formhelper, videohelper) {
 	$(document).ready(function(){
-		$('.fouc').show();
 		$('.raTabs').tabs({
 	        activate: function(event, ui) {
 	            $('.raNextTab').show();
@@ -18,14 +17,14 @@ require(['jquery', 'app/form', 'app/video', 'tabspaging'], function($, formhelpe
 	        beforeActivate: function(event, ui) {
 	            if (event.originalEvent !== undefined) {
 	                var $form = $('#RiskAssessmentEditForm');
-	                $.post($form.attr('action'), $form.serialize());
+	                $.post($form.attr('action'), $form.serialize()); // submit form with ajax
 	            }
 	        }
 	    });
 	    
 	    $('.raNextTab').click(function(){
 	        $form = $(this).closest('form');
-	        $.post($form.attr('action'), $form.serialize());
+	        $.post($form.attr('action'), $form.serialize()); // submit form with ajax
 	        var active_outer = $('.raTabs').tabs('option', 'active'); 
 	        var $inner_tab = $('#outerTab' + (active_outer + 1));
 	        var active_inner = $inner_tab.tabs('option', 'active');
@@ -42,6 +41,7 @@ require(['jquery', 'app/form', 'app/video', 'tabspaging'], function($, formhelpe
 	        window.scrollTo(0,0);
 	    });
 	    
+	    // handle yes/no icon changes
 	    $('#RiskAssessmentTakeRiskAssessmentForm, #RiskAssessmentEditForm').find('select').each(function(){
 	        var $tab_parent = $(this).parent().parent();
 	        var tab_done = true;
@@ -104,7 +104,11 @@ require(['jquery', 'app/form', 'app/video', 'tabspaging'], function($, formhelpe
 	            }
 	        }); 
 	    });
+	    
+	    $('.fouc').show(); // content hidden until here to avoid FOUC
 	    $('.raTabs.tabsInner').tabs('paging', {followOnActive : true, follow: true});
+	    
+	    // embedded videos
 	    $('.raVideo').each(function() {
        		videohelper.showVideo($(this).attr('id'), $(this).attr('id'), 'false', '600', '300'); 
     	});

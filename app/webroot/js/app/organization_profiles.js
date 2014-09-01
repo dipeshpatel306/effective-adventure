@@ -9,6 +9,7 @@ require(['jquery', 'app/form', 'tabspaging', 'ckeditor'], function($, formhelper
 	    return s;
 	}
 	
+	// ajax form submission for org prof tabs
 	function submitOrgProf($form) {
         var success = true;
         function onSuccess(data) {
@@ -43,7 +44,6 @@ require(['jquery', 'app/form', 'tabspaging', 'ckeditor'], function($, formhelper
     }
     
     $(document).ready(function() {
-    	$('.fouc').show();
     	$('.orgProfTabs').tabs({
 	        activate: function(event, ui) {
 	            $('.orgProfNextTab').show();
@@ -59,6 +59,8 @@ require(['jquery', 'app/form', 'tabspaging', 'ckeditor'], function($, formhelper
 	            return true;
 	        }
 	    });
+	    
+	    $('.fouc').show(); // content hidden until here to avoid FOUC
 	    $('.orgProfTabs').tabs('paging', {followOnActive : true, follow: true});
 	    $('.orgProfNextTab').click(function(){
 	        if (submitOrgProf($(this).closest("form"))) {
@@ -69,7 +71,6 @@ require(['jquery', 'app/form', 'tabspaging', 'ckeditor'], function($, formhelper
 	        }
 	    });
 	    
-	    $('.orgSecondLocation, .orgThirdLocation, .orgFourthLocation, .orgFifthLocation, .otherEmail, .otherReason, .otherDescription, .otherRelationship').hide(); // first hide fields
 		// toggle field visibility
   		$('.orgCheck2').change(function () {
      		$('.orgSecondLocation').toggle(this.checked);
