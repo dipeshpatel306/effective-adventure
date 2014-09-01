@@ -4,5 +4,8 @@ require(['jquery', 'app/video', 'app/form', 'ckeditor'], function($, videohelper
 		$('.papVideo a.policyName').click(function(){
 			videohelper.showVideo('Policy' + $(this).attr('id'));
 		});
+		
+		// Stop and Close Video Player. Hide pop up region
+		$('.closeVideo').click(videohelper.closeVideo);
 	});
 });
