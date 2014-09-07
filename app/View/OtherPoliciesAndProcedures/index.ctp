@@ -1,11 +1,14 @@
 <?php
 App::uses('Group', 'Model');
-$this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
-$this->Html->addCrumb('Other Policies & Procedures');
 
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id');
-	$acct = $this->Session->read('Auth.User.Client.account_type');
+$group = $this->Session->read('Auth.User.group_id');
+$acct = $this->Session->read('Auth.User.Client.account_type');
+
+if ($acct != 'Initial') {
+	$this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
+}
+$this->Html->addCrumb('Other Policies & Procedures');
 ?>
 <div class="otherPoliciesAndProcedures index">
 	<h2><?php echo __('Other Policies And Procedures'); ?></h2>

@@ -1,12 +1,15 @@
 <?php
-$this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
+// Conditionally load buttons based upon user role
+$group = $this->Session->read('Auth.User.group_id');
+$acct = $this->Session->read('Auth.User.Client.account_type');
+
+if ($acct != 'Initial') {
+	$this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
+}
 $this->Html->addCrumb('Other Policies & Procedures', '/other_policies_and_procedures');
 $this->Html->addCrumb('Add Other Policy & Procedure');
 
-// Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id');
-	$acct = $this->Session->read('Auth.User.Client.account_type');
-	
+
 	if(isset($clientId)){
 		$selected = $clientId;
 	} else{
