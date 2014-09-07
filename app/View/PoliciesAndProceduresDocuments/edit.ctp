@@ -26,8 +26,8 @@ $this->Html->addCrumb('Edit Policy & Procedure Document');
 	<div class='currentDoc'><?php echo $doc ?></div>
 	<?php
 	 	
-		echo $this->Form->input('document', array('label' => 'Replace Document', 'type' => 'file'));
-		echo $this->Form->input('document_dir', array('type' => 'hidden'));
+		echo $this->Form->input('attachment', array('label' => 'Replace Document', 'type' => 'file'));
+		echo $this->Form->input('attachment_dir', array('type' => 'hidden'));
 		
 	?>
 	</fieldset>

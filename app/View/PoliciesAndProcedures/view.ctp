@@ -49,12 +49,12 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 		<tr>
 			<td>
 		<?php
-			if(!empty($policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document'])){
-				$dir = $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document_dir'];
-				$file = $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document'];
+			if(!empty($policiesAndProceduresDocument['PoliciesAndProceduresDocument']['attachment'])){
+				$dir = $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['attachment_dir'];
+				$file = $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['attachment'];
 
-				$opnpLink =  preg_replace('/\/.*\//', '', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document']);
-				echo $this->Html->link($policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document'], array(
+				$opnpLink =  preg_replace('/\/.*\//', '', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['attachment']);
+				echo $this->Html->link($policiesAndProceduresDocument['PoliciesAndProceduresDocument']['attachment'], array(
 					'controller' => 'policies_and_procedures_documents',
 					'action' => 'sendFile', $dir, $file));
 			}

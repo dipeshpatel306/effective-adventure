@@ -168,6 +168,22 @@ class AppController extends Controller {
 	public function beforeRender() {
 		$this->set(array('javascriptModule' => $this->javascriptModule));
 	}
+	
+	public function sendFile($dir, $filename) {
+		// hack to overcome router extension parsing
+		if ($this->viewClass == 'Pdf') {
+			$filename .= '.pdf';
+		} elseif ($this->viewClass == 'Csv') {
+			$filename .= '.csv';
+		}
+
+		$path = '/files/' . Inflector::underscore($this->{$this->modelClass}->alias) . '/attachment/';
+
+		$file = WWW_ROOT . $path . $dir . '/' . $filename;
+   	 	$this->response->file($file, array('download' => true));
+    	//Return reponse object to prevent controller from trying to render a view
+    	return $this->response;
+	}
     
 }
 

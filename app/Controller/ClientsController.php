@@ -83,23 +83,12 @@ class ClientsController extends AppController {
                         'conditions' => array('Client.id' => $id),
                         'fields' => array(
                             'PoliciesAndProceduresDocument.id', 'PoliciesAndProceduresDocument.policies_and_procedure_id', 
-                            'PoliciesAndProceduresDocument.client_id', 'PoliciesAndProceduresDocument.document', 
-                            'PoliciesAndProceduresDocument.document_dir', 'PoliciesAndProceduresDocument.created', 
+                            'PoliciesAndProceduresDocument.client_id', 'PoliciesAndProceduresDocument.attachment', 
+                            'PoliciesAndProceduresDocument.attachment_dir', 'PoliciesAndProceduresDocument.created', 
                             'PoliciesAndProceduresDocument.modified', 'PoliciesAndProcedure.id', 'PoliciesAndProcedure.name'
                         )
                     ));
         $this->set(compact('policies'));        
-    }
-/**
- * SendFile Method
- *
- */
-    public function sendFile($dir, $file, $section) {
-        //$file = $this->Attachment->getFile($id);
-        $file = WWW_ROOT . '/files/' . $section . '/' . $dir . '/' . $file;
-        $this->response->file($file, array('download' => true));
-        //Return reponse object to prevent controller from trying to render a view
-        return $this->response;
     }
 
 /**

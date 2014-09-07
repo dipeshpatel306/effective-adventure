@@ -74,17 +74,6 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 		return parent::isAuthorized($user);
  	}
 
-/**
- * SendFile Method
- *
- */
-	public function sendFile($dir, $file) {
-    	//$file = $this->Attachment->getFile($id);
-		$file = WWW_ROOT . '/files/policies_and_procedures_document/document/' . $dir . '/' . $file;
-   	 	$this->response->file($file, array('download' => true));
-    	//Return reponse object to prevent controller from trying to render a view
-    	return $this->response;
-	}
 	
 /**
  * index method

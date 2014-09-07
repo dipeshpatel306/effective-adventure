@@ -51,18 +51,6 @@ class DisasterRecoveryPlansController extends AppController {
  	}
 
 /**
- * SendFile Method
- *
- */
-	public function sendFile($dir, $file) {
-    	//$file = $this->Attachment->getFile($id);
-		$file = WWW_ROOT . '/files/disaster_recovery_plan/attachment/' . $dir . '/' . $file;
-   	 	$this->response->file($file, array('download' => true));
-    	//Return reponse object to prevent controller from trying to render a view
-    	return $this->response;
-	}
-
-/**
  * index method
  *
  * @return void

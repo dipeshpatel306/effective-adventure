@@ -41,8 +41,8 @@
 	<?php
 		echo $this->Form->input('policies_and_procedure_id', array('label' => 'Policies And Procedures ' . $policy, 'selected' => $policy));
 		echo $this->Form->input('client_id', array( 'selected' => $clientId, 'disabled' => true));
-		echo $this->Form->input('document', array('type' => 'file'));
-		echo $this->Form->input('document_dir', array('type' => 'hidden'));
+		echo $this->Form->input('attachment', array('type' => 'file'));
+		echo $this->Form->input('attachment_dir', array('type' => 'hidden'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

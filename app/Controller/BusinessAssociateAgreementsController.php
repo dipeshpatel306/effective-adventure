@@ -6,10 +6,9 @@ App::uses('AppController', 'Controller');
  * @property BusinessAssociateAgreement $BusinessAssociateAgreement
  */
 class BusinessAssociateAgreementsController extends AppController {
-
- public function beforeFilter(){
-	parent::beforeFilter();
- }
+	public function beforeFilter(){
+		parent::beforeFilter();
+ 	}
 
 /**
  * isAuthorized Method
@@ -44,17 +43,7 @@ class BusinessAssociateAgreementsController extends AppController {
 
 		return parent::isAuthorized($user);
  	}
-/**
- * SendFile Method
- *
- */
-	public function sendFile($dir, $file) {
-    	//$file = $this->Attachment->getFile($id);
-		$file = WWW_ROOT . '/files/business_associate_agreement/attachment/' . $dir . '/' . $file;
-   	 	$this->response->file($file, array('download' => true));
-    	//Return reponse object to prevent controller from trying to render a view
-    	return $this->response;
-	}
+
 /**
  * index method
  *

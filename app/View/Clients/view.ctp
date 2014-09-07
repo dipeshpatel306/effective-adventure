@@ -221,14 +221,13 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $pnp['policies_and_procedure_id'] . ' - ' . $pnp['name']; ?> </td>
 			<td>
 			<?php 
-			if(!empty($pnp['document'])){
-				$dir = $pnp['document_dir'];
-				$file = $pnp['document'];
-				$section = 'policies_and_procedure';
-				$pnpLink =  preg_replace('/\/.*\//', '', $pnp['document']);
-				echo $this->Html->link($pnp['document'], array(
+			if(!empty($pnp['attachment'])){
+				$dir = $pnp['attachment_dir'];
+				$file = $pnp['attachment'];
+				$pnpLink =  preg_replace('/\/.*\//', '', $pnp['attachment']);
+				echo $this->Html->link($pnp['attachment'], array(
 					'controller' => 'policies_and_procedures_documents',
-					'action' => 'sendFile', $dir, $file, $section));
+					'action' => 'sendFile', $dir, $file));
 			}				
 			?>	
 
@@ -279,12 +278,11 @@ $clientId = $client['Client']['id'];
 			if(!empty($opnp['attachment'])){
 				$dir = $opnp['attachment_dir'];
 				$file = $opnp['attachment'];
-				$section = 'other_policies_and_procedure';
 
 				$opnpLink =  preg_replace('/\/.*\//', '', $opnp['attachment']);
 				echo $this->Html->link($opnp['attachment'], array(
 					'controller' => 'other_policies_and_procedures',
-					'action' => 'sendFile', $dir, $file, $section));
+					'action' => 'sendFile', $dir, $file));
 			}			
 			?>	
 			</td>

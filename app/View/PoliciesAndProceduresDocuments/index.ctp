@@ -13,7 +13,7 @@ $this->Html->addCrumb('Policies & Procedures Documents');
 			<th><?php echo $this->Paginator->sort('client_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('policies_and_procedure_id'); ?></th>
 
-			<th><?php echo $this->Paginator->sort('document'); ?></th>
+			<th><?php echo $this->Paginator->sort('attachment'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -30,12 +30,12 @@ $this->Html->addCrumb('Policies & Procedures Documents');
 
 		<td>
 		<?php
-			if(!empty($policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document'])){
-				$dir = $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document_dir'];
-				$file = $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document'];
+			if(!empty($policiesAndProceduresDocument['PoliciesAndProceduresDocument']['attachment'])){
+				$dir = $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['attachment_dir'];
+				$file = $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['attachment'];
 
-				$opnpLink =  preg_replace('/\/.*\//', '', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document']);
-				echo $this->Html->link($policiesAndProceduresDocument['PoliciesAndProceduresDocument']['document'], array(
+				$opnpLink =  preg_replace('/\/.*\//', '', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['attachment']);
+				echo $this->Html->link($policiesAndProceduresDocument['PoliciesAndProceduresDocument']['attachment'], array(
 					'controller' => 'policies_and_procedures_documents',
 					'action' => 'sendFile', $dir, $file));
 			}

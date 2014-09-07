@@ -23,9 +23,9 @@ class PoliciesAndProceduresDocument extends AppModel {
  */
 	public $actsAs = array(
 		'Upload.Upload' => array(
-			'document' => array(
+			'attachment' => array(
 				'fields' => array(
-					'dir' => 'document_dir'
+					'dir' => 'attachment_dir'
 				),
 
 			)
