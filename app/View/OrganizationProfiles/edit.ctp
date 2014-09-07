@@ -80,7 +80,7 @@ $this->Html->addCrumb('Edit Organization Profile');
         echo $this->Form->input('zip', array('label' => 'Zip: ', 'class' => 'num'));
         echo $this->Form->input('number_employees', array('label' =>'How many employees(total in the Organization?):', 'class' => 'num', 'min' => '1'));
         echo $this->Form->input('mu_incentive_program', array('label' => 'If you are a HIPAA Covered Entity are you participating in the Meaningful Use Incentive Program?', 
-                                                              'options' => array('' => '', 'Yes' => 'Yes', 'No' => 'No', )));
+                                                              'options' => array('' => '', true => 'Yes', false => 'No', )));
         echo $this->Form->input('second_location', array('label' =>'Do you have a second location?', 'type' => 'checkbox', 'value' => 'Yes', 'hiddenField' => 'No', 'class' => 'orgCheck2'));
     ?>
 
