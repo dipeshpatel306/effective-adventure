@@ -94,7 +94,7 @@ $this->Html->addCrumb('Policies & Procedures');
                     '</div>' .
                     '<div class="dashSum">Other Policies & Procedures</div>' . $banned .
                     '</div>',
-                    array('controller' => 'other_policies_and_procedures', 'action' => 'index'),
+                    array('controller' => 'dashboard', 'action' => 'policies_and_procedures'),
                     array('escape' => false)
             );
         } else {

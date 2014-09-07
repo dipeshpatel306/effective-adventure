@@ -117,7 +117,7 @@ $this->Html->addCrumb('Contracts & Documents');
 					'</div>' .
 					'<div class="dashSum">Business Associate Agreements</div>' . $noAuth .
 					'</div>',
-					array('controller' => 'business_associate_agreements', 'action' => 'index'),
+					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
 					array('escape' => false)
 			);			
 			
@@ -133,7 +133,7 @@ $this->Html->addCrumb('Contracts & Documents');
                     '</div>' .
                     '<div class="dashSum">Business Associate Agreements</div>' . $banned .
                     '</div>',
-                    array('controller' => 'business_associate_agreements', 'action' => 'index'),
+                    array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
                     array('escape' => false)
             );
 		} else {

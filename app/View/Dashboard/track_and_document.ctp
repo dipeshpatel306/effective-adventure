@@ -53,7 +53,7 @@ $this->Html->addCrumb('Track & Document');
 
 	<?php 
 	
-		// Security Incidents. Everyone sees
+		// Security Incidents
 		if ($acct == 'Training') {
 		    echo $this->Html->link( 
                     '<div class="dashBox">' . 
@@ -66,7 +66,7 @@ $this->Html->addCrumb('Track & Document');
                     '</div>' .
                     '<div class="dashSum">Security Incidents</div>' . $banned .
                     '</div>',
-                    array('controller' => 'security_incidents', 'action' => 'index'),
+                    array('controller' => 'dashboard', 'action' => 'track_and_document'),
                     array('escape' => false)
             );
 		} else {
