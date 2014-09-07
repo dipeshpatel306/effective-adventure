@@ -2,7 +2,19 @@
 $this->Html->addCrumb('Clients');
 ?>
 <div class="clients index">
-	<h2><?php echo __('Clients'); ?></h2>
+	<h2 class='floatLeft'><?php echo __('Clients'); ?></h2>
+	<div class='floatRight indexSearch'>
+		<?php 
+			echo $this->Form->create();
+			echo $this->Form->input('search', array('label' => false, 'div' => false)); 
+			echo $this->Form->end(array(
+				'label' => 'Search',
+				'div' => 'floatRight submit'
+				// 'class' => 'submit'
+			));
+		?>
+	</div>
+	<div class='clear'></div>
 	<table>
 	<tr>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>

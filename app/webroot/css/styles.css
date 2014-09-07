@@ -986,3 +986,14 @@ th.raqQuestion {
 th.raQuestionActions {
     width: 15%;
 }
+
+.indexSearch form {
+	width: 101%;
+	margin-right: 0;
+}
+
+.indexSearch .submit {
+	margin-top: 0;
+	padding-top: 2px;
+	padding-left: 2px;
+}

@@ -23,8 +23,9 @@ class AppController extends Controller {
         'Security',
         'Cookie',
         'DebugKit.Toolbar',
-        'RequestHandler'
-    );
+        'RequestHandler',
+    	'Paginator'
+	);
     public $helpers = array('Html', 'Form', 'Session', 'Csv');
 
     public function beforeFilter() {

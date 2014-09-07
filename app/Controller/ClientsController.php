@@ -8,6 +8,12 @@ App::uses('Group', 'Model');
  * @property Client $Client
  */
 class ClientsController extends AppController {
+	
+	public $paginate = array(
+    	'limit' => 100,	
+        'order' => array('Client.name' => 'asc')
+    );
+			
 /**
  * isAuthorized Method
  * Allows Hippa Admin to Add, Edit, Delete Everything
@@ -34,11 +40,15 @@ class ClientsController extends AppController {
  */
     public function index() {
         $this->Client->recursive = 0;
-        $this->paginate = array(
-            'limit' => 100,
-            'order' => array('Client.name' => 'asc')
-        );
-        $this->set('clients', $this->paginate());
+		
+		if (isset($this->request->data['Client']['search'])) {
+			$search = $this->request->data['Client']['search'];	
+			$conditions = array('Client.name LIKE' => "%$search%");
+		} else {
+			$conditions = array();
+		}
+		
+        $this->set('clients', $this->Paginator->paginate('Client', $conditions));
     }
 
 /**
@@ -57,12 +67,16 @@ class ClientsController extends AppController {
         $this->set('client', $this->Client->read(null, $id));
 
         // Paginate Users and Get Group Role
-        $this->paginate = array('conditions' => array('User.client_id' => $id),
-                                'order' => array('User.last_name' => 'ASC'),
-                                'fields' => array('User.id', 'User.first_name', 'User.last_name', 'User.email', 'User.group_id', 'User.client_id',
-                                            'User.last_login', 'User.created', 'User.modified', 'Client.id', 'Group.id', 'Group.name'
-                                ),'limit' => 50);
-        $this->set('users', $this->paginate($this->Client->User));
+        $this->Paginator->settings = array(
+        	'conditions' => array('User.client_id' => $id),
+            'order' => array('User.last_name' => 'ASC'),
+            'fields' => array(
+            	'User.id', 'User.first_name', 'User.last_name', 'User.email', 'User.group_id', 'User.client_id',
+               	'User.last_login', 'User.created', 'User.modified', 'Client.id', 'Group.id', 'Group.name'
+            ),
+            'limit' => 50
+		);
+        $this->set('users', $this->Paginator->paginate('User'));
         
         $this->loadModel('PoliciesAndProceduresDocument');
         $policies = $this->PoliciesAndProceduresDocument->find('all', array(
@@ -75,8 +89,6 @@ class ClientsController extends AppController {
                         )
                     ));
         $this->set(compact('policies'));        
-        //pr($policies);        
-        //$this->set('users', $users);
     }
 /**
  * SendFile Method
