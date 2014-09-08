@@ -40,6 +40,7 @@ class ClientsController extends AppController {
  */
     public function index() {
         $this->Client->recursive = 0;
+		$this->Paginator->settings['limit'] = 100;
 		
 		if (isset($this->request->data['Client']['search'])) {
 			$search = $this->request->data['Client']['search'];	
@@ -47,7 +48,7 @@ class ClientsController extends AppController {
 		} else {
 			$conditions = array();
 		}
-		
+
         $this->set('clients', $this->Paginator->paginate('Client', $conditions));
     }
 
