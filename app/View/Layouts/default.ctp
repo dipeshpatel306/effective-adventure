@@ -14,7 +14,7 @@
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
-		echo $this->Html->meta('favicon.ico', $this->webroot . '/img/favicon.ico', array('type' => 'icon'));
+		echo $this->Html->meta('favicon.ico', '/img/favicon.ico', array('type' => 'icon'));
 		echo $this->Html->css(array('base', '/js/lib/jquery-social-stream/css/dcsns_light.css', 'styles', 'http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css'));
     	if(($this->params['controller']=='risk_assessments'||$this->params['controller']=='organization_profiles')&&$this->params['action']=='view'){
       		echo $this->Html->css(array('print'), 'stylesheet', array('media' => 'print'));
