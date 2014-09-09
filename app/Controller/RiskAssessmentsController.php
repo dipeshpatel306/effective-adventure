@@ -110,34 +110,9 @@ class RiskAssessmentsController extends AppController {
 	}
 
     public function take_risk_assessment() {
-        $this->loadModel('RiskAssessmentQuestion');
-        $num_questions = $this->RiskAssessmentQuestion->find('count');
-        $this->set(compact('num_questions'));
-        
-        $this->loadModel('RiskAssessmentQuestionSafeguardCategory');
-        $questions = $this->RiskAssessmentQuestionSafeguardCategory->find('all', array('recursive' => 2));
-        $this->set(compact('questions'));
-        if ($this->request->is('post')) {
-            if ($this->request->is('ajax')) {
-                $this->autoRender = false;
-            }
-            // If user is a client automatically set the client id accordingly. Admin can change client ids
-            $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-            if($group != Group::ADMIN){
-                $this->request->data['RiskAssessment']['client_id'] = $this->Auth->User('client_id');
-            }
-            $this->RiskAssessment->create();
-            if ($this->RiskAssessment->save($this->request->data)) {
-
-                $this->Session->setFlash('Your risk assessment has been saved.', 'default', array('class' => 'success message'));
-                $this->redirect($this->origReferer());
-            } else {
-                $this->Session->setFlash(__('Your risk assessment could not be saved. Please, try again.'));
-            }
-        }
-        $this->setReferer();
-        $clients = $this->RiskAssessment->Client->find('list');
-        $this->set(compact('clients'));
+    	$this->RiskAssessment->create();
+		$this->RiskAssessment->save(array('client_id' => $this->Auth->User('client_id')));
+		$this->redirect(array('action' => 'edit', $this->RiskAssessment->id));
     }
 
 /**
