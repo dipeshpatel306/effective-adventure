@@ -2,6 +2,12 @@
 App::uses('Group', 'Model');
 $this->Html->addCrumb('Templates', '/templates');
 $this->Html->addCrumb('Add Template');
+
+if (isset($categoryId)) {
+	$selected = $categoryId;
+} else {
+	$selected = '';
+}	
 ?>
 <div class="templates form">
 <?php echo $this->Form->create('Template', array('type' => 'file')); ?>
@@ -11,6 +17,7 @@ $this->Html->addCrumb('Add Template');
 
 		echo $this->Form->input('name');
 		echo $this->Form->input('description', array('type' => 'text', 'rows' => '5', 'cols' => '40'));
+		echo $this->Form->input('category_id', array('selected' => $selected, 'empty' => 'Please Select'));
 		echo $this->Form->input('attachment', array('type' => 'file', 'label' => 'Attachment'));
 		echo $this->Form->input('attachment_dir', array('type' => 'hidden'));
 	?>

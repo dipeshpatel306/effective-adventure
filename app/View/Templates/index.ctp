@@ -9,59 +9,51 @@ $this->Html->addCrumb('Templates');
 
 <div class="templates index">
 	<h2><?php echo __('Templates'); ?></h2>
-	<table>
-	<tr>
-			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('attachment'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php
-	foreach ($templates as $template): ?>
-	<tr>
-		<td><?php echo ($template['Template']['name']); ?>&nbsp;</td>
-		<td>
-		<?php
-
-			if(!empty($template['Template']['attachment'])){
-				$dir = $template['Template']['attachment_dir'];
-				$file = $template['Template']['attachment'];
-				echo $this->Html->link($template['Template']['attachment'], array('action' => 'sendFile', $dir, $file));
-			}
-
-		?>
-		&nbsp;</td>
-		<td><?php echo $this->Time->format('m/d/y g:i a', $template['Template']['created']); ?>&nbsp;</td>
-		<td><?php echo $this->Time->format('m/d/y g:i a', $template['Template']['modified']); ?>&nbsp;</td>
-
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $template['Template']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $template['Template']['id'])); ?>
-			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Template', 'id' => $template['Template']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
+	<?php foreach ($categories as $category) : ?>
+	    <?php echo "<hr><h3>" . $this->Html->link($category['TemplateCategory']['name'], array('controller' => 'template_categories', 'action' => 'view', $category['TemplateCategory']['id'])) . "</h3>"; ?>
+        <table>
+        <tr>
+            <th class='templateName'><?php echo __('Name'); ?></th>
+			<th class='templateDescription'><?php echo __('Description'); ?></th>
+			<th class='templateAttachment'><?php echo __('Attachment'); ?></th>
+			<th class='templateCreated'><?php echo __('Created'); ?></th>
+			<th class='templateModified'><?php echo __('Modified'); ?></th>
+			<th class="actions templateActions"><?php echo __('Actions'); ?></th>
+        </tr>
+        <?php foreach ($category['Template'] as $template) : ?>
+            <tr>
+                <td><?php echo $template['name']; ?></td>
+				<td><?php echo $template['description']; ?></td>
+				<td>
+				<?php
+		
+					if(!empty($template['attachment'])){
+						$dir = $template['attachment_dir'];
+						$file = $template['attachment'];
+						echo $this->Html->link($template['attachment'], array('action' => 'sendFile', $dir, $file));
+					}
+		
+				?>
+				&nbsp;</td>
+				<td><?php echo $this->Time->format('m/d/y g:i a', $template['created']); ?></td>
+				<td><?php echo $this->Time->format('m/d/y g:i a', $template['modified']); ?></td>
+				<td class="actions">
+					<?php echo $this->Html->link(__('View'), array('controller' => 'templates', 'action' => 'view', $template['id'])); ?>
+					<?php echo $this->Html->link(__('Edit'), array('controller' => 'templates', 'action' => 'edit', $template['id'])); ?>
+					<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Template', 'id' => $template['id'])); ?>
+				</td>
+            </tr>
+        <?php endforeach; ?>
+        </table><br />
+	    <?php endforeach; ?>
 	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<?php if($group == 1): ?>
+		<li><?php echo $this->Html->link(__('List Template Categories'), array('controller' => 'template_categories', 'action' => 'index')); ?></li>
+		<lI><?php echo $this->Html->link(__('New Template Category'), array('controller' => 'template_categories', 'action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('New Template'), array('action' => 'add')); ?></li>
 		<?php endif; ?>
 	</ul>

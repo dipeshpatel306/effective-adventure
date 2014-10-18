@@ -56,5 +56,11 @@ class Template extends AppModel {
             ),
         ),
     );
+	
+	public $belongsTo = array(
+        'TemplateCategory' => array(
+            'foreignKey' => 'category_id'
+        )
+    );
 
 }

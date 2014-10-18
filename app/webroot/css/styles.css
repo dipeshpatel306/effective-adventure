@@ -997,3 +997,27 @@ th.raQuestionActions {
 	padding-top: 2px;
 	padding-left: 2px;
 }
+
+th.templateName {
+    width: 19%;
+}
+
+th.templateDescription {
+    width: 20%;
+}
+
+th.templateAttachment {
+    width: 24%;
+}
+
+th.templateCreated {
+    width: 11%;
+}
+
+th.templateModified {
+    width: 11%;
+}
+
+th.templateActions {
+    width: 15%;
+}

@@ -4,7 +4,7 @@ App::uses('Group', 'Model');
 /**
  * Templates Controller
  **/
-class TemplatesController extends AppController {
+class TemplateCategoriesController extends AppController {
 /**
  * isAuthorized Method
  * @return void
@@ -32,8 +32,9 @@ class TemplatesController extends AppController {
  * @return void
  */
     public function index() {
-        $categories = $this->Template->TemplateCategory->find('all', array('recursive' => 2));
-        $this->set(compact('categories'));
+        $this->TemplateCategory->recursive = 0;
+        $this->paginate = array('order' => array('TemplateCategory.name' => 'ASC'));
+        $this->set('categories', $this->paginate());
     }
 
 /**
@@ -44,11 +45,11 @@ class TemplatesController extends AppController {
  * @return void
  */
     public function view($id = null) {
-        $this->Template->id = $id;
-        if (!$this->Template->exists()) {
-            throw new NotFoundException(__('Invalid Template'));
+        $this->TemplateCategory->id = $id;
+        if (!$this->TemplateCategory->exists()) {
+            throw new NotFoundException(__('Invalid Template Catgegory'));
         }
-        $this->set('template', $this->Template->read(null, $id));
+        $this->set('category', $this->TemplateCategory->read(null, $id));
     }
 
 /**
@@ -56,25 +57,20 @@ class TemplatesController extends AppController {
  *
  * @return void
  */
-    public function add($categoryId = null) {
-    	if(isset($categoryId)){
-			$this->set('categoryId', $categoryId);
-		}
+    public function add() {
         if ($this->request->is('post')) {
-            $this->Template->create();
-            if ($this->Template->save($this->request->data)) {
-                $this->Session->setFlash('The template has been saved.', 'default', array('class' => 'success message'));
+            $this->TemplateCategory->create();
+            if ($this->TemplateCategory->save($this->request->data)) {
+                $this->Session->setFlash('The template category has been saved.', 'default', array('class' => 'success message'));
                 if (isset($this->request->data['next'])) {
-                    $this->redirect(array('action' => 'add', $this->request->data['Template']['category_id']));
+                    $this->redirect(array('action' => 'add'));
                 } else {
                     $this->redirect(array('action' => 'index'));
                 }
             } else {
-                $this->Session->setFlash(__('The template could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The template category could not be saved. Please, try again.'));
             }
         }
-		$categories = $this->Template->TemplateCategory->find('list');
-		$this->set(compact('categories'));
     }
 
 /**
@@ -85,27 +81,25 @@ class TemplatesController extends AppController {
  * @return void
  */
     public function edit($id = null) {
-        $this->Template->id = $id;
-        if (!$this->Template->exists()) {
-            throw new NotFoundException(__('Invalid template'));
+        $this->TemplateCategory->id = $id;
+        if (!$this->TemplateCategory->exists()) {
+            throw new NotFoundException(__('Invalid template category'));
         }
 
         if ($this->request->is('post') || $this->request->is('put')) {
-            if ($this->Template->save($this->request->data)) {
-                $this->Session->setFlash('The template has been saved.', 'default', array('class' => 'success message'));
+            if ($this->TemplateCategory->save($this->request->data)) {
+                $this->Session->setFlash('The template category has been saved.', 'default', array('class' => 'success message'));
                 if (isset($this->request->data['next'])) {
                     $this->redirect(array('action' => 'add'));
                 } else {
                     $this->redirect(array('controller' => 'index'));
                 }   
             } else {
-                $this->Session->setFlash(__('The template could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('The template category could not be saved. Please, try again.'));
             }
         } else {
-            $this->request->data = $this->Template->read(null, $id);
+            $this->request->data = $this->TemplateCategory->read(null, $id);
         }
-        $doc = $this->Template->data['Template']['attachment'];
-        $this->set(compact('doc'));
     }
 
 /**
@@ -120,15 +114,15 @@ class TemplatesController extends AppController {
         if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }
-        $this->Template->id = $id;
-        if (!$this->Template->exists()) {
-            throw new NotFoundException(__('Invalid template'));
+        $this->TemplateCategory->id = $id;
+        if (!$this->TemplateCategory->exists()) {
+            throw new NotFoundException(__('Invalid template category'));
         }
-        if ($this->Template->delete()) {
-            $this->Session->setFlash(__('Template deleted.'));
+        if ($this->TemplateCategory->delete()) {
+            $this->Session->setFlash(__('Template category deleted.'));
             $this->redirect(array('action' => 'index'));
         }
-        $this->Session->setFlash(__('Template was not deleted.'));
+        $this->Session->setFlash(__('Template category was not deleted.'));
         $this->redirect(array('action' => 'index'));
     }
 }
