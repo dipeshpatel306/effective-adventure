@@ -183,5 +183,19 @@ class ClientsController extends AppController {
         }
         $this->set('qb_clients', $this->Client->getQBClients());   
     }
+	
+	public function appendix($id = null) {
+		$this->Client->id = $id;
+        if (!$this->Client->exists()) {
+            throw new NotFoundException(__('Invalid client'));
+        }
+		$this->loadModel('RiskAssessmentQuestions');
+		$raQuestions = $this->RiskAssessmentQuestions->find('all', 
+			array('order' => array('RiskAssessmentQuestions.category_question_number'))
+		);
+		$this->autoRender=False;
+		$this->response->type('pdf');
+		$this->Client->createAppendix($raQuestions);
+	}
 
 }

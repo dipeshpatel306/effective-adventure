@@ -191,7 +191,6 @@ class OrganizationProfile extends AppModel {
 		)
 	);
 
-
 /**
  * Check Client Owner
  */

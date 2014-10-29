@@ -102,13 +102,22 @@ $clientId = $client['Client']['id'];
 			?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Organization Profiles'); ?></dt>
+		<dt><?php echo __('Organization Profile'); ?></dt>
 		<dd>
 			<?php
 			if(!empty($client['OrganizationProfile']['id'])){
  			echo $this->Html->link(__('View'), array('controller' => 'organization_profiles', 'action' => 'view', $client['OrganizationProfile']['id']));
 			}
 			?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Appendix'); ?></dt>
+		<dd>
+			<?php 
+				if (!empty($client['OrganizationProfile']['id']) && !empty($client['RiskAssessment']['id'])) {
+					echo $this->Html->link(__('View'), array('action' => 'appendix', $client['Client']['id']));
+				}
+				 ?>
 			&nbsp;
 		</dd>
 

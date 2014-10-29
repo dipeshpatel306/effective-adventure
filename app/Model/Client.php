@@ -1,6 +1,7 @@
 <?php
 App::uses('AppModel', 'Model');
 App::uses('Core', 'ConnectionManager');
+App::import('Vendor', 'appendix_pdf');
 require_once(APP . 'Vendor' . DS . 'constants.php');
 /**
  * Client Model
@@ -52,13 +53,13 @@ class Client extends AppModel {
 			'className' => 'OrganizationProfile',
 			'dependent' => true,
 			'fields' => array('OrganizationProfile.id, OrganizationProfile.client_id'),
-		    'qbFid' => ORG_INFO_DBID
+		    'qbFid' => ORG_INFO_RELATED_CLIENT
         ),
 		'RiskAssessment' => array(
 			'className' => 'RiskAssessment',
 			'dependent' => true,
 			'fields' => array('RiskAssessment.id, RiskAssessment.client_id, RiskAssessment.created, RiskAssessment.modified'),
-			'qbFid' => RA_ANSWERS_DBID
+			'qbFid' => RA_ANSWERS_RELATED_CLIENT
 		)
 	);
 
@@ -332,4 +333,12 @@ class Client extends AppModel {
         }
         return true;
     }
+	
+	public function createAppendix($raQuestions) {
+		$client = $this->read();
+		$orgProfile = $this->OrganizationProfile->find('first', array('conditions' => array('Client.id' => $this->id)));
+		$riskAssessment = $this->RiskAssessment->find('first', array('conditions' => array('Client.id' => $this->id)));
+		$pdf = new AppendixPDF();
+		$pdf->Create($client, $orgProfile, $riskAssessment, $raQuestions);
+	}
 }
