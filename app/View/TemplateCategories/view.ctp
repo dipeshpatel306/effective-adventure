@@ -55,7 +55,7 @@ $this->Html->addCrumb($category['TemplateCategory']['name']);
 				if(!empty($template['attachment'])){
 					$dir = $template['attachment_dir'];
 					$file = $template['attachment'];
-					echo $this->Html->link($template['attachment'], array('action' => 'sendFile', $dir, $file));
+					echo $this->Html->link($template['attachment'], array('controller' => 'templates', 'action' => 'sendFile', $dir, $file));
 				}
 	
 			?>

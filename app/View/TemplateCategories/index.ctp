@@ -50,6 +50,7 @@ $this->Html->addCrumb('Template Categories');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+		<li><?php echo $this->Html->link(__('List Templates'), array('controller' => 'templates', 'action' => 'index')); ?></li>
 		<?php if($group == 1): ?>
 		<li><?php echo $this->Html->link(__('New Template Category'), array('action' => 'add')); ?></li>
 		<?php endif; ?>
