@@ -147,7 +147,7 @@ class OtherContractsAndDocumentsController extends AppController {
 				$this->Session->setFlash('The other contracts and document has been saved.', 'default', array('class' => 'success message'));
     			if($group == Group::ADMIN){
     			    if (isset($this->request->data['next'])) {
-    			        $this->redirect(array('action' => 'add', $this->request->data['OtherContractsAndDocuments']['client_id']));
+    			        $this->redirect(array('action' => 'add', $this->request->data['OtherContractsAndDocument']['client_id']));
     			    } else {
     					$this->redirect(array('controller' => 'clients', 'action' => 'view', $this->request->data['OtherContractsAndDocument']['client_id']));
     				}
