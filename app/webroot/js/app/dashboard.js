@@ -3,7 +3,7 @@ require(['jquery', 'jqueryui', 'ckeditor'], function($) {
 		// Mark Risk Assessment Complete. Modal Window
 		$('.markComplete').click(function(){
 			$('.completeBox').dialog({
-				height: 400,
+				height: 500,
 				width: 600,
 				modal: true,
 				resizable: false,
