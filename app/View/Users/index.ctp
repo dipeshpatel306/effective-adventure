@@ -7,7 +7,19 @@ $this->Html->addCrumb('Users');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="users index">
-	<h2><?php echo __('Users'); ?></h2>
+	<h2 class='floatLeft'><?php echo __('Users'); ?></h2>
+	<div class='floatRight indexSearch'>
+		<?php 
+			echo $this->Form->create();
+			echo $this->Form->input('search', array('label' => false, 'div' => false)); 
+			echo $this->Form->end(array(
+				'label' => 'Search',
+				'div' => 'floatRight submit'
+				// 'class' => 'submit'
+			));
+		?>
+	</div>
+	<div class='clear'></div>
 	<table>
 	<tr>
 			<?php if($group == 1): ?>

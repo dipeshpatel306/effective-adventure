@@ -365,17 +365,30 @@ class UsersController extends AppController {
         $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
         $client = $this->Session->read('Auth.User.client_id');  // Test Client.
 
+        $this->User->recursive = 0;
+        $this->Paginator->settings['limit'] = 100;
+		
+		if (isset($this->request->data['User']['search'])) {
+			$search = $this->request->data['User']['search'];	
+			$conditions = array('OR' => array(
+				'User.first_name LIKE' => "%$search%",
+				'User.last_name LIKE' => "%$search%",
+				'User.email LIKE' => "%$search%",
+				'Client.name LIKE' => "%$search%"
+			));
+		} else {
+			$conditions = array();
+		}
+        
         if($group == Group::ADMIN){ // If Hipaa Admin then show all users
-            $this->User->recursive = 0;
-            $users = $this->Paginator->paginate('User');
-            $this->set(compact('users'));
-
+            $this->set('users', $this->Paginator->paginate('User', $conditions));
         } elseif ($group == Group::MANAGER){ // If Manager display only users from that client
-            $this->Paginator->settings = array(
-                'conditions' => array('User.client_id' => $client),
-                'order' => array('User.username' => 'ASC')
-            );
-            $this->set('users', $this->Paginator->paginate('User'));
+        	if (!isset($conditions['OR'])) {
+        		$conditions = array('User.client_id' => $client);
+			} else {
+				$conditions['OR'][] = array('User.client_id' => $client);
+			}
+            $this->set('users', $this->Paginator->paginate('User', $conditions));
         } else { // Else Banned!
             $this->Session->setFlash('You are not authorized to view that!');
             $this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
