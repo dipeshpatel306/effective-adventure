@@ -92,7 +92,7 @@ class TemplateCategoriesController extends AppController {
                 if (isset($this->request->data['next'])) {
                     $this->redirect(array('action' => 'add'));
                 } else {
-                    $this->redirect(array('controller' => 'index'));
+                    $this->redirect(array('action' => 'index'));
                 }   
             } else {
                 $this->Session->setFlash(__('The template category could not be saved. Please, try again.'));
