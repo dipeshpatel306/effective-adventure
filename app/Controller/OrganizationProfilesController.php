@@ -112,7 +112,9 @@ class OrganizationProfilesController extends AppController {
 			$options = array('conditions' => array('OrganizationProfile.' . $this->OrganizationProfile->primaryKey => $id));
 			$this->request->data = $this->OrganizationProfile->find('first', $options);
 		}
-        $this->setReferer();
+		if (!$this->request->is('ajax')) {
+			$this->setReferer();
+		}
 		$clients = $this->OrganizationProfile->Client->find('list');
 		$operatingSystems = $this->OrganizationProfile->OperatingSystem->find('list');
 		$this->set(compact('clients', 'operatingSystems'));
