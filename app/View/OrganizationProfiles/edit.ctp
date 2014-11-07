@@ -157,24 +157,28 @@ $this->Html->addCrumb('Edit Organization Profile');
         <p class='highlight'>In this section we will ask you questions about your Electronic Medical Records (EMR) or Electronic Health Records (EHR)</p>
     <?php
         echo $this->Form->input('emr_ehr_implemented', array('label' => 'Do you have an EMR/EHR implemented?', 'options' => $choice, 'empty' => 'Please Select One' ));
-        echo $this->Form->input('emr_ehr_vendor', array('label' => 'What is the name of your EMR/EHR Vendor?'));
-        echo $this->Form->input('emr_ehr_internal_name', array('label' => 'What is the internal name that you use to refer to your EMR/EHR?'));
-        echo $this->Form->input('emr_ehr_os', array('label' => 'What server operating system does your EMR/EHR run on?',
-                                                    'options' => $os, 'empty' => 'Please Select One'));
-        echo '<div class="otherEmrOs hidden">'.
-        $this->Form->input('emr_ehr_os_other', array('label' => 'Other EMR/EHR OS?'))
-        . '</div>';
-
-
-        echo $this->Form->input('emr_ehr_details', array('label' => 'Please enter EMR/EHR Other operating system or provide more details: '));
-        echo $this->Form->input('emr_ehr_location', array('label' => 'Where is your EMR/EHR located?', 'options' => $emrehr, 'empty' => 'Please Select One'));
-
-        echo '<div class="emrEhrOtherLoc hidden">'.
-        $this->Form->input('emr_ehr_other_location', array('label' => 'Other EMR/EHR Location'))
-        . '</div>';
-
-        echo $this->Form->input('emr_ehr_description', array('label' => 'Please describe where your EMR/EHR is located: '));
+	?>
+		<div class='emrDetails hidden'>
+	<?php
+	        echo $this->Form->input('emr_ehr_vendor', array('label' => 'What is the name of your EMR/EHR Vendor?'));
+	        echo $this->Form->input('emr_ehr_internal_name', array('label' => 'What is the internal name that you use to refer to your EMR/EHR?'));
+	        echo $this->Form->input('emr_ehr_os', array('label' => 'What server operating system does your EMR/EHR run on?',
+	                                                    'options' => $os, 'empty' => 'Please Select One'));
+	        echo '<div class="otherEmrOs hidden">'.
+	        $this->Form->input('emr_ehr_os_other', array('label' => 'Other EMR/EHR OS?'))
+	        . '</div>';
+	
+	
+	        echo $this->Form->input('emr_ehr_details', array('label' => 'Please enter EMR/EHR Other operating system or provide more details: '));
+	        echo $this->Form->input('emr_ehr_location', array('label' => 'Where is your EMR/EHR located?', 'options' => $emrehr, 'empty' => 'Please Select One'));
+	
+	        echo '<div class="emrEhrOtherLoc hidden">'.
+	        $this->Form->input('emr_ehr_other_location', array('label' => 'Other EMR/EHR Location'))
+	        . '</div>';
+	
+	        echo $this->Form->input('emr_ehr_description', array('label' => 'Please describe where your EMR/EHR is located: '));
     ?>
+    	</div>
     </div>
 
     <div id='tab4' class='tabBox'>

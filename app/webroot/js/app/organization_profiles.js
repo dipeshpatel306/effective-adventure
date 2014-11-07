@@ -93,6 +93,9 @@ require(['jquery', 'app/form', 'tabspaging', 'ckeditor'], function($, formhelper
   		// toggle other OS
   		formhelper.conditional($('#OrganizationProfileEmrEhrOs'), 'Other', $('.otherEmrOs'));
   		
+  		// toggle EMR/EHR details
+  		formhelper.conditional($('#OrganizationProfileEmrEhrImplemented'), 'Yes', $('.emrDetails'));
+  		
   		// toggle other EMR/EHR Location
   		formhelper.conditional($('#OrganizationProfileEmrEhrLocation'), 'Other', $('.emrEhrOtherLoc'));
   	
