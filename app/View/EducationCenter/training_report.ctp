@@ -15,7 +15,7 @@ $this->Html->addCrumb('Training Report');
       <?php foreach ($rows as $row): ?>
       <tr>
         <td><?php echo $row['mdl_user']['lastname'].', '.$row['mdl_user']['firstname']; ?>&nbsp;</td>
-        <td><?php echo $row['mdl_quiz_grades']['grade']; ?>&nbsp;</td>
+        <td><?php echo ((string) (floatval($row['mdl_quiz_grades']['grade']) * 10)) . '%' ; ?>&nbsp;</td>
         <td><?php echo date('jS F Y', $row['mdl_quiz_grades']['timemodified']); ?>&nbsp;</td>
       </tr>
       <?php endforeach; ?>
