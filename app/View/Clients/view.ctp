@@ -177,7 +177,7 @@ $clientId = $client['Client']['id'];
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'users', 'action' => 'admin_edit', $user['User']['id'], $clientId)); ?>
-				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'User', 'id' => $user['User']['id'])); ?>
+				<?php echo $this->element('delete_link', array('controller' => 'users', 'title' => 'Delete', 'name' => 'User', 'id' => $user['User']['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -246,7 +246,7 @@ $clientId = $client['Client']['id'];
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'policies_and_procedures_documents', 'action' => 'view', $id)); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'policies_and_procedures_documents', 'action' => 'edit', $id, $clientId)); ?>
-				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Policy & Procedure Document', 'id' => $id)); ?>
+				<?php echo $this->element('delete_link', array('controller' => 'policies_and_procedures_documents', 'title' => 'Delete', 'name' => 'Policy & Procedure Document', 'id' => $id)); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -301,7 +301,7 @@ $clientId = $client['Client']['id'];
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'other_policies_and_procedures', 'action' => 'view', $opnp['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'other_policies_and_procedures', 'action' => 'edit', $opnp['id'], $clientId)); ?>
-				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Other Policy & Procedure', 'id' => $opnp['id'])); ?>
+				<?php echo $this->element('delete_link', array('controller' => 'other_policies_and_procedures', 'title' => 'Delete', 'name' => 'Other Policy & Procedure', 'id' => $opnp['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -355,7 +355,7 @@ $clientId = $client['Client']['id'];
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'risk_assessment_documents', 'action' => 'view', $rad['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'risk_assessment_documents', 'action' => 'edit', $rad['id'], $clientId)); ?>
-				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Risk Assessment Document', 'id' => $rad['id'])); ?>
+				<?php echo $this->element('delete_link', array('controller' => 'risk_assessment_documents', 'title' => 'Delete', 'name' => 'Risk Assessment Document', 'id' => $rad['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -411,7 +411,7 @@ $clientId = $client['Client']['id'];
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'business_associate_agreements', 'action' => 'view', $boa['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'business_associate_agreements', 'action' => 'edit', $boa['id'], $clientId)); ?>
-				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Business Associate Agreement', 'id' => $boa['id'])); ?>
+				<?php echo $this->element('delete_link', array('controller' => 'business_associate_agreements', 'title' => 'Delete', 'name' => 'Business Associate Agreement', 'id' => $boa['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -465,7 +465,7 @@ $clientId = $client['Client']['id'];
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'disaster_recovery_plans', 'action' => 'view', $drp['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'disaster_recovery_plans', 'action' => 'edit', $drp['id'], $clientId)); ?>
-				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Disaster Recovery Plan', 'id' => $drp['id'])); ?>
+				<?php echo $this->element('delete_link', array('controller' => 'disaster_recovery_plans', 'title' => 'Delete', 'name' => 'Disaster Recovery Plan', 'id' => $drp['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -516,9 +516,9 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $this->Time->format('m/d/y g:i a', $ocad['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $ocad['modified']); ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'OtherContractsAndDocuments', 'action' => 'view', $ocad['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'OtherContractsAndDocuments', 'action' => 'edit', $ocad['id'], $clientId)); ?>
-				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Other Contract & Document', 'id' => $ocad['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'other_contracts_and_documents', 'action' => 'view', $ocad['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'other_contracts_and_documents', 'action' => 'edit', $ocad['id'], $clientId)); ?>
+				<?php echo $this->element('delete_link', array('controller' => 'other_contracts_and_documents', 'title' => 'Delete', 'name' => 'Other Contract & Document', 'id' => $ocad['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -555,9 +555,9 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $this->Time->format('m/d/y', $si['discovery_date']); ?></td>
 			<td><?php echo $si['description_of_incident']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'SecurityIncidents', 'action' => 'view', $si['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'SecurityIncidents', 'action' => 'edit', $si['id'], $clientId)); ?>
-				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Security Incident', 'id' => $si['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'security_incidents', 'action' => 'view', $si['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'security_incidents', 'action' => 'edit', $si['id'], $clientId)); ?>
+				<?php echo $this->element('delete_link', array('controller' => 'security_incidents', 'title' => 'Delete', 'name' => 'Security Incident', 'id' => $si['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -595,9 +595,9 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $sra['company']; ?></td>
 			<td><?php echo $sra['reason']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'ServerRoomAccess', 'action' => 'view', $sra['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'ServerRoomAccess', 'action' => 'edit', $sra['id'], $clientId)); ?>
-				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Server Room Access', 'id' => $sra['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'server_room_access', 'action' => 'view', $sra['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'server_room_access', 'action' => 'edit', $sra['id'], $clientId)); ?>
+				<?php echo $this->element('delete_link', array('controller' => 'server_room_access', 'title' => 'Delete', 'name' => 'Server Room Access', 'id' => $sra['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -633,9 +633,9 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $erm['removed_by']; ?></td>
 			<td><?php echo $erm['returned_by']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'EphiRemoved', 'action' => 'view', $erm['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'EphiRemoved', 'action' => 'edit', $erm['id'], $clientId)); ?>
-				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'ePHI Removed', 'id' => $erm['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'ephi_removed', 'action' => 'view', $erm['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'ephi_removed', 'action' => 'edit', $erm['id'], $clientId)); ?>
+				<?php echo $this->element('delete_link', array('controller' => 'ephi_removed', 'title' => 'Delete', 'name' => 'ePHI Removed', 'id' => $erm['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -672,9 +672,9 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $erc['received_by']; ?></td>
 			<td><?php echo $this->Time->format('m/d/y', $erc['date_returned']) . ' ' . $this->Time->format('g:i a', $erc['time_returned']); ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'EphiReceived', 'action' => 'view', $erc['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'EphiReceived', 'action' => 'edit', $erc['id'], $clientId)); ?>
-				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'ePHI Received', 'id' => $erc['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'ephi_received', 'action' => 'view', $erc['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'ephi_received', 'action' => 'edit', $erc['id'], $clientId)); ?>
+				<?php echo $this->element('delete_link', array('controller' => 'ephi_received', 'title' => 'Delete', 'name' => 'ePHI Received', 'id' => $erc['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
