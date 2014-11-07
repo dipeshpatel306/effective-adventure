@@ -69,7 +69,7 @@
 
 
 		// 	// contracts and documents. managers see this. Users do not
-		if($group == '3'){
+		if($group == '3' && $acct != 'Training'){
 			echo $this->Html->link(
 					'<div class="dashBox">' .
 					'<div class="dashHead">' .
