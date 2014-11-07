@@ -113,7 +113,7 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 	<div class='breach_notication_yes hidden'><!-- If yes is selected --> 
 		
 	<div class='breachQuestion'>
-		<?php echo $this->Form->input('after_completing', array('label' => 'After completing the assessment do you feel the disclosure compromises the Security and Privacy of the PHI AND Poses a significant risk to the financial, reputational or other harm to the individual to the extent it would require a notification to the affected individuals?', 'options' => $options, 'empty' => 'Please Select')); ?>
+		<?php echo $this->Form->input('after_completing', array('label' => 'After completing the assessment do you feel there is a medium or high probability that the PHI has been compromised?', 'options' => $options, 'empty' => 'Please Select')); ?>
 		
 		<div class='breach_required_yes hidden'><!-- if Yes -->
 		<?php	
