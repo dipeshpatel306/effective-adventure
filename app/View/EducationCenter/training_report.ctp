@@ -16,7 +16,7 @@ $this->Html->addCrumb('Training Report');
       <tr>
         <td><?php echo $row['mdl_user']['lastname'].', '.$row['mdl_user']['firstname']; ?>&nbsp;</td>
         <td><?php echo $row['mdl_quiz_grades']['grade']; ?>&nbsp;</td>
-        <td><?php echo date('jS F Y h:i:s A (T)', $row['mdl_quiz_grades']['timemodified']); ?>&nbsp;</td>
+        <td><?php echo date('jS F Y', $row['mdl_quiz_grades']['timemodified']); ?>&nbsp;</td>
       </tr>
       <?php endforeach; ?>
     </table>
