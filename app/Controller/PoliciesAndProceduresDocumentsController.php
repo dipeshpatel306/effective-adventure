@@ -313,7 +313,7 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 		$policiesAndProcedures = $this->PoliciesAndProceduresDocument->PoliciesAndProcedure->find('list');
 		//$name = $this->PoliciesAndProceduresDocument['document'];
 		$clients = $this->PoliciesAndProceduresDocument->Client->find('list');
-		$doc = $this->PoliciesAndProceduresDocument->data['PoliciesAndProceduresDocument']['document'];
+		$doc = $this->PoliciesAndProceduresDocument->data['PoliciesAndProceduresDocument']['attachment'];
 		$this->set(compact('policiesAndProcedures', 'clients', 'doc'));	
 
 	}
