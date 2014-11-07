@@ -30,12 +30,21 @@ class DashboardController extends AppController {
         $completed = date('Y-m-d'); // Get DateTime
         $client = $this->Session->read('Auth.User.client_id');
         $clientName = $this->Session->read('Auth.User.Client.name');
-        $message = 'New Risk Assessment Completed by Client ' . $clientName . ' - Completed on ' . $completed;
+        
         $this->loadModel('Client');
         $this->Client->id = $client;
         $this->render(false); // tell cake to not use a view
 
+        $existing_completion_date = $this->Client->field('risk_assessment_status');
+        
+        if ($existing_completion_date != '') {
+        	$this->Session->setFlash(__('Your Risk Assessment was already marked complete on ') . $existing_completion_date . '.');
+			$this->redirect(array('action' => 'index'));
+			return;
+        }
+        
         // Send Email
+        $message = 'New Risk Assessment Completed by Client ' . $clientName . ' - Completed on ' . $completed;
         $email = new CakeEmail('hipaaMail');
         $email->to(Configure::read('App.adminEmailTo'))
             ->subject('HIPAA Risk Assessment Marked Complete by Client - ' . $clientName)
