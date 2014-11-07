@@ -1,4 +1,5 @@
 <?php
+App::uses('Group', 'Model');
 $this->Html->addCrumb('Templates', '/templates');
 $this->Html->addCrumb('Templates');
 
@@ -10,7 +11,13 @@ $this->Html->addCrumb('Templates');
 <div class="templates index">
 	<h2><?php echo __('Templates'); ?></h2>
 	<?php foreach ($categories as $category) : ?>
-	    <?php echo "<hr><h3>" . $this->Html->link($category['TemplateCategory']['name'], array('controller' => 'template_categories', 'action' => 'view', $category['TemplateCategory']['id'])) . "</h3>"; ?>
+	    <?php 
+	    	$txt = $category['TemplateCategory']['name'];
+	    	if ($group == Group::ADMIN) {
+	    		$txt = $this->Html->link($txt, array('controller' => 'template_categories', 'action' => 'view', $category['TemplateCategory']['id']));
+			}
+	    	echo "<hr><h3>$txt</h3>"; 
+	    ?>
         <table>
         <tr>
             <th class='templateName'><?php echo __('Name'); ?></th>
@@ -39,8 +46,12 @@ $this->Html->addCrumb('Templates');
 				<td><?php echo $this->Time->format('m/d/y g:i a', $template['modified']); ?></td>
 				<td class="actions">
 					<?php echo $this->Html->link(__('View'), array('controller' => 'templates', 'action' => 'view', $template['id'])); ?>
-					<?php echo $this->Html->link(__('Edit'), array('controller' => 'templates', 'action' => 'edit', $template['id'])); ?>
-					<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Template', 'id' => $template['id'])); ?>
+					<?php 
+						if ($group == Group::ADMIN) {
+							echo $this->Html->link(__('Edit'), array('controller' => 'templates', 'action' => 'edit', $template['id']));
+							echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Template', 'id' => $template['id']));
+						}
+					 ?>
 				</td>
             </tr>
         <?php endforeach; ?>

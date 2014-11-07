@@ -13,7 +13,7 @@ class TemplatesController extends AppController {
         $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
         $acct = $this->Session->read('Auth.User.Client.account_type'); // Get account type
 
-        if($group == Group::MANAGER && in_array($this->action, array('index', 'view'))){
+        if($group == Group::MANAGER && in_array($this->action, array('index', 'view', 'sendFile'))){
             return true;
         }
 
