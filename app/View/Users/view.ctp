@@ -1,11 +1,22 @@
 <?php
 App::uses('Group', 'Model');
-$this->Html->addCrumb('Users', '/users');
-$this->Html->addCrumb($user['User']['last_name'] . ', ' . $user['User']['first_name']);
 
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id'); 
-	$acct = $this->Session->read('Auth.User.Client.account_type');
+$group = $this->Session->read('Auth.User.group_id'); 
+$acct = $this->Session->read('Auth.User.Client.account_type');
+
+if ($group == Group::ADMIN) {
+	$userTypeName = 'User';
+	$usersTypeName = 'Users';
+} else {
+	$userTypeName = 'Employee';
+	$usersTypeName = 'Employees';
+}
+
+$this->Html->addCrumb($usersTypeName, '/users');
+$this->Html->addCrumb($user['User']['last_name'] . ', ' . $user['User']['first_name']);
+
+
 	
 if($user['User']['active']){
 	$active = "class='active'";
@@ -15,9 +26,9 @@ if($user['User']['active']){
 
 ?>
 <div class="users view">
-<h2><?php  echo __('User'); ?></h2>
+<h2><?php  echo __($userTypeName); ?></h2>
 	<dl>
-		<?php if($group == 1): ?>
+		<?php if($group == Group::ADMIN): ?>
 		<dt><?php echo __('Client'); ?></dt>
 		<dd>
 			<?php echo $user['Client']['name']; ?>
@@ -88,13 +99,13 @@ if($user['User']['active']){
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('List ' . $usersTypeName), array('action' => 'index')); ?> </li>
 
 		<?php if($group == Group::ADMIN || $group == Group::MANAGER): ?>
-		<li><?php echo $this->Html->link(__('Edit User'), array('action' => 'edit', $user['User']['id'])); ?> </li>
-		<li><?php echo $this->element('delete_link', array('title' => 'Delete User', 'name' => 'User', 'id' => $user['User']['id'])); ?></li>
+		<li><?php echo $this->Html->link(__('Edit ' . $userTypeName), array('action' => 'edit', $user['User']['id'])); ?> </li>
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete ' . $userTypeName, 'name' => $userTypeName, 'id' => $user['User']['id'])); ?></li>
 
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('New ' . $userTypeName), array('action' => 'add')); ?> </li>
 		<?php endif; ?>				
 
 	</ul>

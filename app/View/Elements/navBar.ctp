@@ -36,7 +36,7 @@
 		$userId = $this->Session->read('Auth.User.id');
 		echo $this->Html->link('Profile', array('controller' => 'users', 'action' => 'edit', $userId)) . ' | ';		
 		echo $this->Html->link('About HIPAA Secure Now!', array('controller' => 'dashboard', 'action' => 'about_hipaa')) . ' | ';	
-		echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')) . ' | ';
+		echo $this->Html->link('Employees', array('controller' => 'users', 'action' => 'index')) . ' | ';
 		echo $this->Html->link('Contact Us', array('controller' => 'contact_us', 'action' => 'contact' ));
 	}
 		

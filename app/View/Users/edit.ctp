@@ -1,13 +1,21 @@
 <?php
-$this->Html->addCrumb('Users', '/users');
-$this->Html->addCrumb('Edit User');
+App::uses('Group', 'Model');
 
 $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-if($group == 1){ // If admin allow creating another Hipaa administrator
+if($group == Group::ADMIN){ // If admin allow creating another Hipaa administrator
 	$groupOption = array(3 => 'User', 2 => 'Manager', 1 => 'HIPAA Administrator');
+	$userTypeName = 'User';
+	$usersTypeName = 'Users';
 } else {
-	$groupOption = array(3 => 'User', 2 => 'Manager');
+	$groupOption = array(3 => 'Employee', 2 => 'Manager');
+	$userTypeName = 'Employee';
+	$usersTypeName = 'Employees';
 }
+
+$this->Html->addCrumb($usersTypeName, '/users');
+$this->Html->addCrumb('Edit ' . $userTypeName);
+
+
 
 $active = array('Yes' => 'Yes', 'No' => 'No');  // activate / deactivate a user
 
@@ -20,7 +28,7 @@ $client = $this->Session->read('Auth.User.client_id');  // Test Client.  If admi
 <div class="users form">
 <?php echo $this->Form->create('User'); ?>
 	<fieldset>
-		<legend><?php echo __('Edit User'); ?></legend>
+		<legend><?php echo __('Edit ' . $userTypeName); ?></legend>
 	<?php
 		//echo $this->Form->input('User.authCode', array('label' => 'Authorization Code'));
 		if($group == 1){  // if admin allow to choose
@@ -49,9 +57,9 @@ $client = $this->Session->read('Auth.User.client_id');  // Test Client.  If admi
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<?php if($group == 1 || $group == 2): ?>
-		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'User', 'id' => $this->Form->value('User.id'))); ?></li>
+		<?php if($group == Group::ADMIN || $group == Group::MANAGER): ?>
+		<li><?php echo $this->Html->link(__('List ' . $usersTypeName), array('action' => 'index')); ?></li>
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => $userTypeName, 'id' => $this->Form->value('User.id'))); ?></li>
 
 		<?php endif; ?>
 

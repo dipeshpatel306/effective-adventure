@@ -1,13 +1,23 @@
 <?php
 App::uses('Group', 'Model');
-$this->Html->addCrumb('Users');
+
 
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id');
-	$acct = $this->Session->read('Auth.User.Client.account_type');
+$group = $this->Session->read('Auth.User.group_id');
+$acct = $this->Session->read('Auth.User.Client.account_type');
+
+if ($group != Group::ADMIN) {
+	$usersTypeName = 'Employees';
+	$userTypeName = 'Employee';
+} else {
+	$usersTypeName = 'Users';	
+	$userTypeName = 'User';
+}
+	
+$this->Html->addCrumb($userTypeName);
 ?>
 <div class="users index">
-	<h2 class='floatLeft'><?php echo __('Users'); ?></h2>
+	<h2 class='floatLeft'><?php echo $usersTypeName; ?></h2>
 	<div class='floatRight indexSearch'>
 		<?php 
 			echo $this->Form->create();
@@ -76,7 +86,7 @@ $this->Html->addCrumb('Users');
 				echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id']));
 			}
 			?>
-			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'User', 'id' => $user['User']['id'])); ?>
+			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => $userTypeName, 'id' => $user['User']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -100,8 +110,8 @@ $this->Html->addCrumb('Users');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<?php if($group == 1 || $group == 2): ?>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?></li>
+		<?php if($group == Group::ADMIN || $group == Group::MANAGER): ?>
+		<li><?php echo $this->Html->link(__('New ' . $userTypeName ), array('action' => 'add')); ?></li>
 		<?php endif; ?>
 
 	</ul>

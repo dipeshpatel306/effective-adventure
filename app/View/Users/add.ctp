@@ -1,14 +1,19 @@
 <?php
 App::uses('Group', 'Model');
-$this->Html->addCrumb('Users', '/users');
-$this->Html->addCrumb('Add User');
 
 $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 if ($group == Group::ADMIN){ // If admin allow creating another Hipaa administrator
+	$userTypeName = 'User';
+	$usersTypeName = 'Users';
     $groupOption = array(Group::USER => 'User', Group::MANAGER => 'Manager', Group::ADMIN => 'HIPAA Administrator');
 } else {
-    $groupOption = array(Group::USER => 'User', Group::MANAGER => 'Manager');
+	$userTypeName = 'Employee';
+	$usersTypeName = 'Employees';
+    $groupOption = array(Group::USER => 'Employee', Group::MANAGER => 'Manager');
 }
+
+$this->Html->addCrumb($usersTypeName, '/users');
+$this->Html->addCrumb('Add ' . $userTypeName);
 
 $active = array(true => 'Yes', false => 'No');  // activate / deactivate a user
 
@@ -27,7 +32,7 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
 <div class="users form">
 <?php echo $this->Form->create('User'); ?>
     <fieldset>
-        <legend><?php echo __('Add User'); ?></legend>
+        <legend><?php echo __('Add ' . $userTypeName); ?></legend>
     <?php
         //echo $this->Form->input('User.authCode', array('label' => 'Authorization Code'));
 
@@ -58,7 +63,7 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
     <h3><?php echo __('Actions'); ?></h3>
     <ul>
 
-        <li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?></li>
+        <li><?php echo $this->Html->link(__('List ' . $usersTypeName), array('action' => 'index')); ?></li>
 
     </ul>
 </div>
