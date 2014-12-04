@@ -60,7 +60,7 @@
 	padding: 10px 10px 0 10px;
 	margin: 0;
 	position: relative;
-	line-height: 1.4em;
+	line-height: 1.5em;
 }
 .stream li .icon {
 	position: absolute;
@@ -388,6 +388,10 @@
 	border: 1px solid #ddd;
 	padding: 1px;
 	background: #fff;
+	max-width: 98%;
+}
+.stream li.dcsns-facebook .section-text-fb a {
+	display:none;
 }
 .stream li.dcsns-facebook .meta {
 	display: block;

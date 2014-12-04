@@ -41,8 +41,8 @@
 	<div class="info">
 		Plugin: jQuery Social Stream<br />
 		By: <a href="http://codecanyon.net/user/designchemical">designchemical</a><br />
-		Created: 24th February 2013<br>
-		Version: 1.5
+		Created: 24th November 2014<br>
+		Version: 1.5.7
 	</div>
 	</div>
 	<div class="col-main">
@@ -81,9 +81,9 @@
 	<div>
 		<p>The files that make up the plugin are:</p>
 		<ol>
-			<li>js/jquery.social.stream.1.5.js - main jQuery plugin file</li>
-			<li>js/jquery.social.stream.1.5.min.js - minified version of plugin file (37.3 kb vs 26.4 kb)</li>
-			<li>js/jquery.social.stream.wall.1.3.js - Additional file to be included when creating the social network wall</li>
+			<li>js/jquery.social.stream.1.5.7.js - main jQuery plugin file</li>
+			<li>js/jquery.social.stream.1.5.7.min.js - minified version of plugin file (37.3 kb vs 26.4 kb)</li>
+			<li>js/jquery.social.stream.wall.1.5.js - Additional file to be included when creating the social network wall</li>
 			<li>twitter.php - PHP file for Twitter authentication - required if creating a Twitter stream</li>
 			<li>css/dcsns_dark.css - plugin css style sheet for creating the dark skin rotating feed</li>
 			<li>css/dcsns_light.css - plugin css style sheet for creating the light skin rotating feed</li>
@@ -107,9 +107,9 @@
 		<p>The plugin requires the jQuery javascript library. So first thing is to add the jquery library from your preferred source. There are no specific requirements for this plugin so you are free to use any of the latest versions:</p>
 		<pre>&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"&gt;&lt;/script&gt;</pre>
 		<p>If you wish to display a social network wall include the following file:</p>
-		<pre>&lt;script type="text/javascript" src="js/jquery.social.stream.wall.1.3.js"&gt;&lt;/script&gt;</pre>
+		<pre>&lt;script type="text/javascript" src="js/jquery.social.stream.wall.1.5.js"&gt;&lt;/script&gt;</pre>
 		<p>Include the social stream plugin file:</p>
-		<pre>&lt;script type="text/javascript" src="js/jquery.social.stream.1.5.js"&gt;&lt;/script&gt;</pre>
+		<pre>&lt;script type="text/javascript" src="js/jquery.social.stream.1.5.7.js"&gt;&lt;/script&gt;</pre>
 		<p>Finally, if you want to use the default styles then either include the dcsns.css file or copy/paste the CSS code to your site's style sheet:</p>
 		<pre>&lt;link rel="stylesheet" type="text/css" href="css/dcsns_dark.css" media="all" /&gt;</pre>
 		<h4>Twitter Stream</h4>
@@ -158,7 +158,7 @@
 				id: 'brad'
 			},
 			youtube: {
-				id: 'wired'
+				id: 'FilmTrailerZone'
 			},
 			pinterest: {
 				id: 'designchemical'
@@ -173,7 +173,7 @@
 				id: 'frogandcode'
 			},
 			deviantart: {
-				id: 'wyv1'
+				id: 'isacg'
 			},
 			tumblr: {
 				id: 'designchemical'
@@ -230,6 +230,8 @@
 		</tr>
 		</thead>
 		<tbody>
+		<tr><td>remove:</td><td> '',</td><td></td><td>This option allows you to remove specific posts from the stream. To remove posts enter the URL of the post.  To remove multiple posts enter each URL separated by a comma - e.g<br /><br />
+		remove: 'https://twitter.com/designchemical/status/364012915533164544'</td></tr>
 <tr><td>twitterId:</td><td> '',</td><td></td><td>Enter your twitter username to be used when sharing posts via twitter - this will be added to the tweets as "via @username"</td></tr>
 <tr><td>days:</td><td> 30,</td><td></td><td>Maximum age of stream items in days'</td></tr>
 <tr><td>limit:</td><td> 50,</td><td></td><td>Maximum number of results to check/return for each social network'</td></tr>
@@ -245,6 +247,10 @@
 <tr><td>direction:</td><td>'up',</td><td>up, down</td><td>Direction for content rotation'</td></tr>
 <tr><td>delay:</td><td>8000,</td><td></td><td>Delay in milliseconds between rotations - if set to 0 the automatic rotation effect is disabled'</td></tr>
 <tr><td>},</td><td>&nbsp;</td><td></td><td>'</td></tr>
+
+<tr><td>transition:</td><td>'0.8s',</td><td></td><td>Time in seconds for the isotope animation speed</td></tr>
+<tr><td>},</td><td>&nbsp;</td><td></td><td>'</td></tr>
+
 <tr><td>cache:</td><td> true,</td><td>true, false</td><td>Set to true to cache AJAX response, set to false to force response not to be cached by the browser'</td></tr>
 <tr><td>container:</td><td> 'dcsns',</td><td></td><td>CSS class of main element'</td></tr>
 <tr><td>cstream:</td><td> 'stream',</td><td></td><td>CSS class of stream ul tag'</td></tr>
@@ -306,7 +312,11 @@
 <ol><li><strong>Facebook page wall posts -</strong><br />Enter the page ID</li>
 <li><strong>Facebook page gallery images -</strong><br />Enter the text you would like to show for the facebook gallery name followed by "/" followed by the page gallery ID -<br />e.g. "Facebook Timeline/376995711728"</li></ol></td></tr>
 <tr><td>intro:</td><td> 'Posted to wall',</td><td></td><td>Feed item intro text'</td></tr>
-<tr><td>out:</td><td> 'intro,title,text,user,share',</td><td>intro, title, text, user, share</td><td>Stream item output - content blocks &amp; order'</td></tr>
+<tr><td>out:</td><td> 'intro,thumb,title,text,user,share',</td><td>intro, thumb, title, text, user, share</td><td>Stream item output - content blocks &amp; order'</td></tr>
+
+<tr><td>thumb:</td><td> true,</td><td>true, false</td><td>Set to "false" to disable larger image for facebook. To show inline thumbnail images in facebook posts set "thumb" to "false" and "text" option to "content"</td></tr>
+
+
 <tr><td>text:</td><td>'content'</td><td>'content', 'contentSnippet'</td><td>Select the RSS element to use in the feed output. 'content' (default) will output complete wall post text including any images. 'contentSnippet' shows brief introduction.</td></tr>
 <tr><td>comments:</td><td>3</td><td></td><td>Enter the maximum number of comments to display for facebook page gallery images - maximum value = 25.</td></tr>
 <tr><td>image_width:</td><td>6</td><td>3, 4, 5, 6</td><td>Enter the image size for facebook gallery images:<br />
@@ -365,7 +375,7 @@
 <tr><td>search:</td><td> 'Search',</td><td></td><td>Search item intro text</td></tr>
 <tr><td>out:</td><td> 'intro,thumb,title,text,share',</td><td>intro, thumb, title, text, user, share</td><td>Stream item output - content blocks & order'</td></tr>
 <tr><td>feed:</td><td> 'uploads,favorites,newsubscriptionvideos', </td><td>uploads, favorites, newsubscriptionvideos</td><td>Feed options: uploads, favorites or new subscription videos - only applies to user names</td></tr>
-<tr><td>thumb:</td><td> 'default',</td><td>0, 1, 2, 3</td><td>Size of thumbnail image - 0 = 480px, default = 120px</td></tr>
+<tr><td>thumb:</td><td> 'default',</td><td>default, 0</td><td>Size of thumbnail image - 0 = 480px, default = 120px</td></tr>
 <tr><td>icon:</td><td> 'youtube.png'</td><td></td><td>Icon file name'</td></tr>
 <tr><td>},</td><td>&nbsp;</td><td></td><td>'</td></tr>
 </tbody>
@@ -811,14 +821,27 @@
 			<li>Go to <a href="https://code.google.com/apis/console#access" target="_blank">https://code.google.com/apis/console#access</a></li>
 			<li>Login to your google account</li>
 			<li>Click "Create Project"</li>
+			<li>In the left-hand side menu click "APIs & auth" then "APIs"</li>
+			<li>Find the "Google + API" listing and set to "on"</li>
 		</ul>
 		<p><img src="inc/images/google_api_key.png" alt="Google API Key" /></p>
 		<ul>
-			<li>Under service list, click the "off" button next to "Google+ API" to turn it on.</li>
-			<li>Accept both agreements.</li>
-			<li>From the left menu, Go to "API Access"</li>
+			<li>In the left-hand side menu click "Credentials"</li>
+			<li>Click "Create New Key"</li>
+		</ul>
+		<p><img src="inc/images/google_api_key_1.png" alt="Google API Key" /></p>
+		<ul>
+			<li>In the pop-up window select "Server key"</li>
+
+</ul>
+<p><img src="inc/images/google_api_key_2.png" alt="Google API Key" /></p>
+<ul>
+<li>Leave the "Accept requests from these server IP addresses" box blank</li>
+			<li>Click "Create"</li>
 			<li>Copy your API key and paste into the social stream settings</li>
 		</ul>
+		
+		<p><img src="inc/images/google_api_key_3.png" alt="Google API Key" /></p>
 	</div>
 	</div>
 </div>
@@ -1200,7 +1223,7 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
 				id: 'brad'
 			},
 			youtube: {
-				id: 'wired',
+				id: 'FilmTrailerZone',
 				thumb: '0'
 			},
 			pinterest: {
@@ -1216,7 +1239,7 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
 				id: 'frogandcode'
 			},
 			deviantart: {
-				id: 'wyv1'
+				id: 'isacg'
 			},
 			tumblr: {
 				id: 'richters',
@@ -1298,7 +1321,7 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
 				out: 'intro,title,user,share'
 			},
 			youtube: {
-				id: 'wired',
+				id: 'FilmTrailerZone',
 				out: 'intro,title,user,share'
 			},
 			pinterest: {
@@ -1318,7 +1341,7 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
 				out: 'intro,title,user,share'
 			},
 			deviantart: {
-				id: 'wyv1',
+				id: 'isacg',
 				out: 'intro,title,user,share'
 			}
 		},
@@ -1365,7 +1388,7 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
 				id: 'brad'
 			},
 			youtube: {
-				id: 'wired'
+				id: 'FilmTrailerZone'
 			},
 			pinterest: {
 				id: 'jaffrey,designchemical/design-ideas'
@@ -1380,7 +1403,7 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
 				id: 'frogandcode'
 			},
 			deviantart: {
-				id: 'wyv1'
+				id: 'isacg'
 			},
 			tumblr: {
 				id: 'richters',
@@ -1437,7 +1460,7 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
 				id: 'brad'
 			},
 			youtube: {
-				id: 'wired'
+				id: 'FilmTrailerZone'
 			},
 			pinterest: {
 				id: 'jaffrey,designchemical/design-ideas',
@@ -1452,7 +1475,7 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
 				id: 'frogandcode'
 			},
 			deviantart: {
-				id: 'wyv1'
+				id: 'isacg'
 			},
 			tumblr: {
 				id: 'richters',
@@ -1642,6 +1665,23 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
 
 <!-- Begin Question Block -->
 <div class="toggle">
+	<h2 class="trigger"><span></span>How To Remove Specific Posts From The Stream</h2>
+	<div class="togglebox">
+	<div> 
+		<p>If you wish to remove specific posts from a stream you can use the "remove" option</p>
+		<p>Enter the URL's of the posts you wish to remove separated by a comma</p>
+		<p>Example - to remove the following 2 posts:</p>
+		<p>https://twitter.com/designchemical/status/364012915533164544</p>
+		<p>http://www.facebook.com/DesignChemical/posts/575999262459900</p>
+		<p>Add the following option to your initialisation code:</p>
+		<pre>remove: 'https://twitter.com/designchemical/status/364012915533164544,http://www.facebook.com/DesignChemical/posts/575999262459900'</pre>
+	</div>
+	</div>
+</div>
+<!-- End Question Block -->
+
+<!-- Begin Question Block -->
+<div class="toggle">
 	<h2 class="trigger"><span></span>Advanced Customisation - Using The Plugin With A Lightbox</h2>
 	<div class="togglebox">
 	<div> 
@@ -1736,7 +1776,78 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
   </div>
   
 	<div>
+	<p><strong>v1.5.7 24th November 2014 Current Version</strong></p>
 	
+
+<ul>
+<li>Added: Larger images for facebook posts</li>
+<li>Added: Automatically remove empty facebook event posts</li>
+<li>Added: Sorting after wall has loaded</li>
+<li>Updated: Reset image layout on page load</li>
+</ul>
+
+
+
+		<p><strong>v1.5.6 10th November 2014</strong></p>
+	
+
+<ul>
+<li>Updated: Youtube feed bug</li>
+<li>Added: transition time option for isotope animation</li>
+	</ul>
+	<p><strong>v1.5.5 7th November 2014</strong></p>
+	
+
+<ul>
+<li>Updated: time function for IE 11</li>
+<li>Updated: Remove special characters from tumblr feed</li>
+<li>
+Updated: Use "standard_resolution" size for instagram image link</li>
+<li>
+Updated: jQuery isotope v 2</li>
+<li>
+Updated: Include default image_width for facebook albums</li>
+<li>
+Updated: Facebook album title link</li>
+<li>
+Updated: Remove facebook redirect link</li>
+<li>
+Updated: Use https for flickr</li>
+<li>
+Updated: Add num parameter to tumblr API call</li>
+<li>
+Added: code to rewrite facebook image links</li>
+<li>
+Added: Decode text for youtube searches</li>
+</ul>
+
+	<p><strong>v1.5.4 9th August 2013</strong></p>
+	
+
+<ul>
+<li>Added: Option to remove specific posts</li>
+<li>Updated: time function for IE</li>
+</ul>
+	<p><strong>v1.5.3 3rd August 2013</strong></p>
+<ul>
+<li>Added: title attributes for youtube and vimeo links</li>
+<li>Updated: Tumblr profile link</li>
+<li>Updated: Remove $.browser function for jQuery 1.9+ support</li>
+<li>Updated: nicetime function</li>
+</ul>
+	
+<p><strong>v1.5.2 7th May 2013</strong></p>
+<ul>
+<li>Updated: URL for facebook album API</li>
+</ul>
+
+<p><strong>v1.5.1 12th March 2013</strong></p>
+<ul>
+<li>Updated: https for google feed API</li>
+<li>Updated: delicious post link</li>
+<li>Updated: clean facebook links</li>
+</ul>
+ 
 <p><strong>v1.5 24th February 2013</strong></p>
 <ul>
 <li>Added: Share feed items via google + & linkedIn</li>

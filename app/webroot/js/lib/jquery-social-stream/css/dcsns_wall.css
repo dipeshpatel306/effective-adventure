@@ -104,6 +104,9 @@
 	float: left;
 	margin: 0 7px 0 0;
 }
+.stream li .section-thumb img, .stream li .section-text img {
+	display: none;
+}
 .stream li .section-thumb img {
 	border: 1px solid #ccc;
 	padding: 1px;
@@ -390,7 +393,7 @@
 
 /* Facebook */
 .stream li.dcsns-facebook .section-thumb img {
-	width: 75px;
+	max-width: 192px;
 }
 .stream li.dcsns-facebook .section-text img {
 	margin: 5px 7px 5px 0;
@@ -398,9 +401,13 @@
 	border: 1px solid #ddd;
 	padding: 1px;
 	background: #fff;
+	max-width: 192px;
 }
 .stream li.dcsns-facebook .section-text a {
 	margin-right: 4px;
+}
+.stream li.dcsns-facebook .section-text-fb a {
+	display:none;
 }
 .stream li.dcsns-facebook .section-intro a {
 	margin-left: 25px;
@@ -423,6 +430,11 @@
 /* twitter */
 .stream li.dcsns-twitter .section-thumb {
 	margin-top: 3px;
+}
+.stream li.dcsns-twitter .section-thumb img {
+	width: 48px; 
+	height: 48px;
+	display: block;
 }
 .stream li.dcsns-twitter .section-user {
 	padding: 0;
@@ -482,6 +494,9 @@
 	padding-left: 0;
 }
 /* rss */
+.stream li.dcsns-rss .section-thumb img {
+	max-width: 192px;
+}
 .stream li.dcsns-rss .section-text img {
 	border: 1px solid #ddd;
 	padding: 1px;

@@ -1,3 +1,44 @@
+v1.5.7
+Added: Larger images for facebook posts
+Added: Automatically remove empty facebook event posts
+Added: Sorting after wall has loaded
+Updated: Reset image layout on page load
+
+v1.5.6 10/11/2014
+Added: include option to change animation transition time
+Updated: Fix bug with youtube feed
+
+v1.5.5 07/11/2014
+Added: code to rewrite facebook image links
+Added: Decode text for youtube searches
+Updated: time function for IE 11
+Updated: Remove special characters from tumblr feed
+Updated: Use "standard_resolution" size for instagram image link
+Updated: jQuery isotope v 2
+Updated: Include default image_width for facebook albums
+Updated: Facebook album title link
+Updated: Remove facebook redirect link
+Updated: Use https for flickr
+Updated: Add num parameter to tumblr API call
+
+v1.5.4 08/08/2013
+Added: Option to remove specific posts
+Updated: time function for IE
+
+v1.5.3 03/08/2013
+Added: title attributes for youtube and vimeo links
+Updated: Tumblr profile link
+Updated: Remove $.browser function for jQuery 1.9+ support
+Updated: nicetime function
+
+v1.5.2 07/05/2013
+Updated: URL for facebook album feeds
+
+v1.5.1 12/03/2013
+Updated: https for google feed API
+Updated: delicious post link
+Updated: clean facebook links
+
 v1.5 24/02/2013
 Added: Share feed items via google + & linkedIn
 Added: Flickr title
@@ -8,12 +49,12 @@ Updated: remove : characters from Tumblr links
 Updated: decode intro text
 Updated: Force orderby published date for youtube playlists
 
-v1.4.3 18/11/2012
+v1.5.3 18/11/2012
 Updated: Added check for Instagram caption text
 Updated: Add max limit of 100 to google + feeds
 Updated: Facebook album date in Safari
 
-v1.4.2 12/11/2012
+v1.5.2 12/11/2012
 Added: Show feeds from pinterest boards
 Added: Show feeds from facebook galleries including latest comments
 Added: Show feeds from youtube playlists
@@ -30,11 +71,11 @@ Updated: Change item selector for isotope
 Updated: Facebook relative links
 Updated: Add max limit of 50 to youtube feeds
 
-v1.4.1 31/08/2012
+v1.5.1 31/08/2012
 Fixed: Rotating feed date order in Safari
 Fixed: Facebook user link for rotating feed
 
-v1.4 23/08/2012
+v1.5 23/08/2012
 Added: Instagram network
 
 v1.3.1 16/08/2012
