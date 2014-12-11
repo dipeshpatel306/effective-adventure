@@ -383,11 +383,7 @@ class UsersController extends AppController {
         if($group == Group::ADMIN){ // If Hipaa Admin then show all users
             $this->set('users', $this->Paginator->paginate('User', $conditions));
         } elseif ($group == Group::MANAGER){ // If Manager display only users from that client
-        	if (!isset($conditions['OR'])) {
-        		$conditions = array('User.client_id' => $client);
-			} else {
-				$conditions['OR']['User.client_id'] = $client;
-			}
+        	$conditions['AND'] = array('User.client_id' => $client);
             $this->set('users', $this->Paginator->paginate('User', $conditions));
         } else { // Else Banned!
             $this->Session->setFlash('You are not authorized to view that!');
