@@ -386,7 +386,7 @@ class UsersController extends AppController {
         	if (!isset($conditions['OR'])) {
         		$conditions = array('User.client_id' => $client);
 			} else {
-				$conditions['OR'][] = array('User.client_id' => $client);
+				$conditions['OR']['User.client_id'] = $client;
 			}
             $this->set('users', $this->Paginator->paginate('User', $conditions));
         } else { // Else Banned!
