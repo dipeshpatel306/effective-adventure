@@ -23,7 +23,7 @@ class ClientsController extends AppController {
     public function isAuthorized($user){
         $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 
-        if (($this->action == 'migrate_from_qb' && $group != Group::ADMIN) ||
+        if ((in_array($this->action, array('migrate_from_qb', 'purge')) && $group != Group::ADMIN) ||
             ($group == Group::MANAGER || $group == Group::USER)) {
                 $this->Session->setFlash('You are not authorized to view that!');
                 $this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
@@ -196,6 +196,21 @@ class ClientsController extends AppController {
 		$this->autoRender=False;
 		$this->response->type('pdf');
 		$this->Client->createAppendix($raQuestions);
+	}
+
+	public function purge() {
+		return;
+		set_time_limit(1200);
+		$clients = $this->Client->find('all', array('conditions' => array('Client.name !=' => 'HIPAA')));
+		if ($this->request->is('post')) {
+			foreach ($clients as $client) {
+				$this->Client->id = $client['Client']['id'];
+				$this->Client->delete();
+			}
+			$this->Session->setFlash(__('Clients purged.'));
+            $this->redirect(array('action' => 'index'));
+		}	
+		$this->set(compact('clients'));
 	}
 
 }
