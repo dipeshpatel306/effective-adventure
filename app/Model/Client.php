@@ -314,7 +314,7 @@ class Client extends AppModel {
         foreach ($query_data->table->records->record as $client)   {
             $rid = (string) $client->f[0];
             $name = (string) $client->f[1];
-            $qb_clients[$rid] = $name;
+            $qb_clients[$rid] = $name . " ($rid)";
         }
         uasort($qb_clients, function($a,$b){ if ( $a==$b ) return 0; else return ($a > $b) ? 1 : -1; });
         return $qb_clients;
