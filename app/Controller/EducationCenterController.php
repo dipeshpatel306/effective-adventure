@@ -161,9 +161,9 @@ class EducationCenterController extends AppController {
         $client = $this->Client->find('first', array('conditions' => array('Client.id' => $client_id)));
 		$moodle_ids = array();
 		foreach ($client['User'] as $user) {
-			$moodle_ids[] = 'n' . $user['id'];
+			$moodle_ids[] = "'n" . $user['id'] . "'";
 		}
-		$moodle_ids = implode(',', $moodle_ids);
+		$moodle_ids = implode(', ', $moodle_ids);
         $course_id = $client['Client']['moodle_course_id'];  
         $client_name = substr($client['Client']['name'], 0, 40); // mdl_user.institution is only 40 chars
         $this->set(compact('client_name'));
@@ -173,9 +173,9 @@ class EducationCenterController extends AppController {
                 FROM mdl_user, mdl_quiz_grades WHERE mdl_quiz_grades.quiz IN 
                   (SELECT mdl_quiz.id FROM mdl_quiz WHERE mdl_quiz.course = :course_id) 
                 AND mdl_quiz_grades.userid = mdl_user.id AND mdl_user.institution = :client_name 
-                AND mdl_user.idnumber in (:moodle_ids)
+                AND mdl_user.idnumber in ($moodle_ids)
                 AND mdl_user.deleted = 0 ORDER BY mdl_user.lastname ASC";
-        $rows = $moodle->fetchAll($sql, array(':course_id' => $course_id, ':client_name' => $client_name, ':moodle_ids' => $moodle_ids));
+        $rows = $moodle->fetchAll($sql, array(':course_id' => $course_id, ':client_name' => $client_name));
         $this->set(compact('rows'));
     }    
 
