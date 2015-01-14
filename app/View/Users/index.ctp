@@ -42,7 +42,7 @@ $this->Html->addCrumb($userTypeName);
 			<th><?php echo $this->Paginator->sort('last_login'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th><?php echo $this->Paginator->sort('active', 'Account Active'); ?></th>
+			<th><?php echo $this->Paginator->sort('active_real', 'Account Active'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php
@@ -66,7 +66,7 @@ $this->Html->addCrumb($userTypeName);
 		<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['modified']); ?>&nbsp;</td>
 		<?php
-			if($user['User']['active'] == 'Yes'){
+			if($user['User']['active_real']){
 				$active = "class='active'";
 			} else {
 				$active = "class='inactive'";
@@ -74,7 +74,7 @@ $this->Html->addCrumb($userTypeName);
 		?>
 		<td <?php echo $active; ?>>
 			<?php
-			echo ($user['User']['active'] && $user['Client']['active'] ? 'Yes' : 'No');
+			echo ($user['User']['active_real'] ? 'Yes' : 'No');
 			?>&nbsp;
 		</td>
 		<td class="actions">

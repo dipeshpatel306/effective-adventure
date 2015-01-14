@@ -19,6 +19,8 @@ class User extends AppModel {
     public $displayField = 'email';
 
     public $qbDbid = USERS_DBID;
+	
+	public $virtualFields = array('active_real' => 'User.active && Client.active');
 /**
  * Validation rules
  *
