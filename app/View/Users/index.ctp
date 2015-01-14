@@ -74,7 +74,7 @@ $this->Html->addCrumb($userTypeName);
 		?>
 		<td <?php echo $active; ?>>
 			<?php
-			echo ($user['User']['active'] ? 'Yes' : 'No');
+			echo ($user['User']['active'] && $user['Client']['active'] ? 'Yes' : 'No');
 			?>&nbsp;
 		</td>
 		<td class="actions">
