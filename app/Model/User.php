@@ -1,7 +1,7 @@
 <?php
 App::uses('AppModel', 'Model');
 App::uses('AuthComponent', 'Controller/Component');
-require_once(APP . 'Vendor' . DS . 'constants.php');
+App::import('Vendor', 'constants');
 /**
  * User Model
  *

@@ -1,6 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
-require_once(APP . 'Vendor' . DS . 'constants.php');
+App::import('Vendor', 'constants');
 /**
  * OtherContractsAndDocument Model
  *

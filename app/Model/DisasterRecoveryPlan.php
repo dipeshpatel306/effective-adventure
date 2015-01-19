@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+App::import('Vendor', 'constants');
 require_once(APP . 'Vendor' . DS . 'constants.php');
 /**
  * DisasterRecoveryPlan Model

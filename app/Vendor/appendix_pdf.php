@@ -1,6 +1,6 @@
 <?php
 ini_set('date.timezone', 'America/New_York');
-require_once(APP . 'Vendor' . DS . 'fpdf' . DS . 'fpdf.php');
+require_once(dirname(__file__) . DS . 'fpdf' . DS . 'fpdf.php');
 
 class AppendixPDF extends FPDF {
 	public $margin = 15;

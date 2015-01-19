@@ -22,8 +22,8 @@
 
 App::uses('Model', 'Model');
 App::uses('HttpSocket', 'Network/Http');
-require_once(APP . 'Vendor' . DS . 'quickbase.php');
-require_once(APP . 'Vendor' . DS . 'S3.php');
+App::uses('QuickBase', 'Vendor');
+App::uses('S3', 'Vendor');
 
 /**
  * Application model for Cake.

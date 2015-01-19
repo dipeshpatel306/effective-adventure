@@ -2,7 +2,7 @@
 App::uses('AppModel', 'Model');
 App::uses('Core', 'ConnectionManager');
 App::import('Vendor', 'appendix_pdf');
-require_once(APP . 'Vendor' . DS . 'constants.php');
+App::import('Vendor', 'constants');
 /**
  * Client Model
  *
