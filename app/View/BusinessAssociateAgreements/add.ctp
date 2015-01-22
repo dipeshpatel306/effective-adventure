@@ -32,7 +32,8 @@ $this->Html->addCrumb('Add Business Associate Agreement');
 	'A company who provides document shredding services' => 'A company who provides document shredding services',
 	'A person who provides medical transcription services' => 'A person who provides medical transcription services',
 	'A vendor who provides billing or collection services' => 'A vendor who provides billing or collection services',
-	'Other' => 'Other'
+	'Other' => 'Other',
+	'Client' => 'Client'
 	);
 
 // Conditionally load buttons based upon user role
