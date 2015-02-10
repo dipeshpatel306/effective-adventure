@@ -1,12 +1,12 @@
 <?php
 $this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
-$this->Html->addCrumb('HIPAA Policies & Procedures');
+$this->Html->addCrumb('Security Policies & Procedures');
 
 	$group = $this->Session->read('Auth.User.group_id');
 ?>
 
 <div class="policiesAndProcedures index">
-	<h2><?php echo __('HIPAA Policies And Procedures'); ?></h2>
+	<h2><?php echo __('Security Policies And Procedures'); ?></h2>
 	<table>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id', 'Policy'); ?></th>

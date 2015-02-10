@@ -63,7 +63,7 @@ $this->Html->addCrumb('Contracts & Documents');
                     '<div class="dashHead">' .
                     $this->Html->image('ra_tile.jpg', array(
                                 'class' => 'dashTile', 
-                                'alt' => 'HIPAA Risk Assessment Documents'
+                                'alt' => 'Risk Assessment Documents'
                                 )) .
                     '<h3>Risk Assessment Documents</h3>' .
                     '</div>' .
@@ -78,7 +78,7 @@ $this->Html->addCrumb('Contracts & Documents');
                     '<div class="dashHead">' .
                     $this->Html->image('ra_tile.jpg', array(
                                 'class' => 'dashTile', 
-                                'alt' => 'HIPAA Risk Assessment Documents'
+                                'alt' => 'Risk Assessment Documents'
                                 )) .
                     '<h3>Risk Assessment Documents</h3>' .
                     '</div>' .
@@ -93,7 +93,7 @@ $this->Html->addCrumb('Contracts & Documents');
 					'<div class="dashHead">' .
 					$this->Html->image('ra_tile.jpg', array(
 								'class' => 'dashTile', 
-								'alt' => 'HIPAA Risk Assessment Documents'
+								'alt' => 'Risk Assessment Documents'
 								)) .
 					'<h3>Risk Assessment Documents</h3>' .
 					'</div>' .
@@ -111,7 +111,7 @@ $this->Html->addCrumb('Contracts & Documents');
 					'<div class="dashHead">' .
 					$this->Html->image('ba_tile.jpg', array(
 								'class' => 'dashTile', 
-								'alt' => 'HIPAA Business Associate Agreements'
+								'alt' => 'Business Associate Agreements'
 								)) .
 					'<h3>Business Associate Agreements</h3>' .
 					'</div>' .
@@ -127,7 +127,7 @@ $this->Html->addCrumb('Contracts & Documents');
                     '<div class="dashHead">' .
                     $this->Html->image('ba_tile.jpg', array(
                                 'class' => 'dashTile', 
-                                'alt' => 'HIPAA Business Associate Agreements'
+                                'alt' => 'Business Associate Agreements'
                                 )) .
                     '<h3>Business Associate Agreements</h3>' .
                     '</div>' .
@@ -142,7 +142,7 @@ $this->Html->addCrumb('Contracts & Documents');
 					'<div class="dashHead">' .
 					$this->Html->image('ba_tile.jpg', array(
 								'class' => 'dashTile', 
-								'alt' => 'HIPAA Business Associate Agreements'
+								'alt' => 'Business Associate Agreements'
 								)) .
 					'<h3>Business Associate Agreements</h3>' .
 					'</div>' .
@@ -161,7 +161,7 @@ $this->Html->addCrumb('Contracts & Documents');
 					'<div class="dashHead">' .
 					$this->Html->image('dr_tile.bmp', array(
 								'class' => 'dashTile', 
-								'alt' => 'HIPAA Disaster Recovery Plans'
+								'alt' => 'Disaster Recovery Plans'
 								)) .
 					'<h3>Disaster Recovery Plans</h3>' .
 					'</div>' .
@@ -177,7 +177,7 @@ $this->Html->addCrumb('Contracts & Documents');
 					'<div class="dashHead">' .
 					$this->Html->image('dr_tile.bmp', array(
 								'class' => 'dashTile', 
-								'alt' => 'HIPAA Disaster Recovery Plans'
+								'alt' => 'Disaster Recovery Plans'
 								)) .
 					'<h3>Disaster Recovery Plans</h3>' .
 					'</div>' .
@@ -192,7 +192,7 @@ $this->Html->addCrumb('Contracts & Documents');
 					'<div class="dashHead">' .
 					$this->Html->image('dr_tile.bmp', array(
 								'class' => 'dashTile', 
-								'alt' => 'HIPAA Disaster Recovery Plans'
+								'alt' => 'Disaster Recovery Plans'
 								)) .
 					'<h3>Disaster Recovery Plans</h3>' .
 					'</div>' .
@@ -211,7 +211,7 @@ $this->Html->addCrumb('Contracts & Documents');
 					'<div class="dashHead">' .
 					$this->Html->image('ocnd_tile.jpg', array(
 								'class' => 'dashTile', 
-								'alt' => 'HIPAA Other Contracts & Documents'
+								'alt' => 'Other Contracts & Documents'
 								)) .
 					'<h3>Other Contracts & Documents</h3>' .
 					'</div>' .
@@ -227,7 +227,7 @@ $this->Html->addCrumb('Contracts & Documents');
 					'<div class="dashHead">' .
 					$this->Html->image('ocnd_tile.jpg', array(
 								'class' => 'dashTile', 
-								'alt' => 'HIPAA Other Contracts & Documents'
+								'alt' => 'Other Contracts & Documents'
 								)) .
 					'<h3>Other Contracts & Documents</h3>' .
 					'</div>' .
@@ -243,7 +243,7 @@ $this->Html->addCrumb('Contracts & Documents');
 					'<div class="dashHead">' .
 					$this->Html->image('ocnd_tile.jpg', array(
 								'class' => 'dashTile', 
-								'alt' => 'HIPAA Other Contracts & Documents'
+								'alt' => 'Other Contracts & Documents'
 								)) .
 					'<h3>Other Contracts & Documents</h3>' .
 					'</div>' .

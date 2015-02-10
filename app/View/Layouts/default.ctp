@@ -31,11 +31,15 @@
 	<div id="container">
 		<div id="wrapper">
 		<div id="header">
-			<?php echo $this->Html->image('hipaa_logo.png', array(
-					'alt' => 'HIPAA',
+			<?php echo $this->Html->image('pii_protect_logo.png', array(
+					'alt' => 'PII-Protect',
 					'url' => array('controller' => '/'),
-					'class' => 'logo'
-					))
+					'class' => 'logo floatLeft'
+					));
+				  echo $this->Html->image('yourLogoHere.png', array(
+				  	'alt' => 'Your Logo Here',
+				  	'class' => 'logo partnerLogo'
+				  ));
 			?>
 
 			<?php // Load User Box if logged in
@@ -58,7 +62,7 @@
 		</div><!--wrapper -->
 		<div id="footer">
 			<div class='footerContent'>
-				HIPAA Secure Now! Copyright &copy; <?php echo $year; ?>
+				PII Protect Copyright &copy; <?php echo $year; ?>
 			</div>
 		</div>
 

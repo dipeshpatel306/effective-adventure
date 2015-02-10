@@ -60,7 +60,7 @@ $this->Html->addCrumb('Track & Document');
                     '<div class="dashHead">' .
                     $this->Html->image('si_tile.png', array(
                                 'class' => 'dashTile', 
-                                'alt' => 'HIPAA Security Incidents'
+                                'alt' => 'Security Incidents'
                                 )) .
                     '<h3>Security Incidents</h3>' .
                     '</div>' .
@@ -75,7 +75,7 @@ $this->Html->addCrumb('Track & Document');
 					'<div class="dashHead">' .
 					$this->Html->image('si_tile.png', array(
 								'class' => 'dashTile', 
-								'alt' => 'HIPAA Security Incidents'
+								'alt' => 'Security Incidents'
 								)) .
 					'<h3>Security Incidents</h3>' .
 					'</div>' .
@@ -94,7 +94,7 @@ $this->Html->addCrumb('Track & Document');
 					'<div class="dashHead">' .
 					$this->Html->image('sra_tile.jpg', array(
 								'class' => 'dashTile', 
-								'alt' => 'HIPAA Server Room Access'
+								'alt' => 'Server Room Access'
 								)) .
 					'<h3>Server Room Access</h3>' .
 					'</div>' .
@@ -109,7 +109,7 @@ $this->Html->addCrumb('Track & Document');
 					'<div class="dashHead">' .
 					$this->Html->image('sra_tile.jpg', array(
 								'class' => 'dashTile', 
-								'alt' => 'HIPAA Server Room Access'
+								'alt' => 'Server Room Access'
 								)) .
 					'<h3>Server Room Access</h3>' .
 					'</div>' .
@@ -124,7 +124,7 @@ $this->Html->addCrumb('Track & Document');
 					'<div class="dashHead">' .
 					$this->Html->image('sra_tile.jpg', array(
 								'class' => 'dashTile', 
-								'alt' => 'HIPAA Server Room Access'
+								'alt' => 'Server Room Access'
 								)) .
 					'<h3>Server Room Access</h3>' .
 					'</div>' .
@@ -142,7 +142,7 @@ $this->Html->addCrumb('Track & Document');
 					'<div class="dashHead">' .
 					$this->Html->image('ephirem_tile.jpg', array(
 								'class' => 'dashTile', 
-								'alt' => 'HIPAA ePHI Removed'
+								'alt' => 'ePHI Removed'
 								)) .
 					'<h3>ePHI Removed</h3>' .
 					'</div>' .
@@ -158,7 +158,7 @@ $this->Html->addCrumb('Track & Document');
 					'<div class="dashHead">' .
 					$this->Html->image('ephirem_tile.jpg', array(
 								'class' => 'dashTile', 
-								'alt' => 'HIPAA ePHI Removed'
+								'alt' => 'ePHI Removed'
 								)) .
 					'<h3>ePHI Removed</h3>' .
 					'</div>' .
@@ -173,7 +173,7 @@ $this->Html->addCrumb('Track & Document');
 					'<div class="dashHead">' .
 					$this->Html->image('ephirem_tile.jpg', array(
 								'class' => 'dashTile', 
-								'alt' => 'HIPAA ePHI Removed'
+								'alt' => 'ePHI Removed'
 								)) .
 					'<h3>ePHI Removed</h3>' .
 					'</div>' .
@@ -191,7 +191,7 @@ $this->Html->addCrumb('Track & Document');
 					'<div class="dashHead">' .
 					$this->Html->image('ephirec_tile.png', array(
 								'class' => 'dashTile', 
-								'alt' => 'HIPAA ePHI Recieved'
+								'alt' => 'ePHI Recieved'
 								)) .
 					'<h3>ePHI Received</h3>' .
 					'</div>' .
@@ -207,7 +207,7 @@ $this->Html->addCrumb('Track & Document');
 					'<div class="dashHead">' .
 					$this->Html->image('ephirec_tile.png', array(
 								'class' => 'dashTile', 
-								'alt' => 'HIPAA ePHI Recieved'
+								'alt' => 'ePHI Recieved'
 								)) .
 					'<h3>ePHI Received</h3>' .
 					'</div>' .
@@ -223,7 +223,7 @@ $this->Html->addCrumb('Track & Document');
 					'<div class="dashHead">' .
 					$this->Html->image('ephirec_tile.png', array(
 								'class' => 'dashTile', 
-								'alt' => 'HIPAA ePHI Recieved'
+								'alt' => 'ePHI Recieved'
 								)) .
 					'<h3>ePHI Received</h3>' .
 					'</div>' .

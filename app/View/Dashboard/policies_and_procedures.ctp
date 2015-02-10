@@ -44,7 +44,7 @@ $this->Html->addCrumb('Policies & Procedures');
 ?>
 
 <div class="dashboard index">
-	<h2><?php echo __('HIPAA Policies & Procedures'); ?></h2>
+	<h2><?php echo __('Security Policies & Procedures'); ?></h2>
 
 	<?php
 		// policies & procedures . If Manager allow, If employee read only. MU hidden
@@ -54,11 +54,11 @@ $this->Html->addCrumb('Policies & Procedures');
 					'<div class="dashHead">' .
 					$this->Html->image('pnp_tile.jpg', array(
 								'class' => 'dashTile',
-								'alt' => 'HIPAA Policies & Procedures'
+								'alt' => 'Security Policies & Procedures'
 								)) .
-					'<h3>HIPAA Policies & Procedures</h3>' .
+					'<h3>Security Policies & Procedures</h3>' .
 					'</div>' .
-					'<div class="dashSum">HIPAA Policies and Procedures</div>'  . $banned .
+					'<div class="dashSum">Security Policies and Procedures</div>'  . $banned .
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'policies_and_procedures'),
 					array('escape' => false)
@@ -70,11 +70,11 @@ $this->Html->addCrumb('Policies & Procedures');
 					'<div class="dashHead">' .
 					$this->Html->image('pnp_tile.jpg', array(
 								'class' => 'dashTile',
-								'alt' => 'HIPAA Policies & Procedures'
+								'alt' => 'Security Policies & Procedures'
 								)) .
-					'<h3>HIPAA Policies & Procedures</h3>' .
+					'<h3>Security Policies & Procedures</h3>' .
 					'</div>' .
-					'<div class="dashSum">HIPAA Policies and Procedures</div>'  . $approved .
+					'<div class="dashSum">Security Policies and Procedures</div>'  . $approved .
 					'</div>',
 					array('controller' => 'policies_and_procedures', 'action' => 'index'),
 					array('escape' => false)
@@ -88,7 +88,7 @@ $this->Html->addCrumb('Policies & Procedures');
                     '<div class="dashHead">' .
                     $this->Html->image('opnp_tile.jpg', array(
                                 'class' => 'dashTile',
-                                'alt' => 'HIPAA Other Policies & Procedures'
+                                'alt' => 'Other Policies & Procedures'
                                 )) .
                     '<h3>Other Policies & Procedures</h3>' .
                     '</div>' .
@@ -103,7 +103,7 @@ $this->Html->addCrumb('Policies & Procedures');
                     '<div class="dashHead">' .
                     $this->Html->image('opnp_tile.jpg', array(
                                 'class' => 'dashTile',
-                                'alt' => 'HIPAA Other Policies & Procedures'
+                                'alt' => 'Other Policies & Procedures'
                                 )) .
                     '<h3>Other Policies & Procedures</h3>' .
                     '</div>' .

@@ -16,12 +16,12 @@ $this->Html->addCrumb('Education Center');
 			<?php 
 				echo $this->Html->image('training_tile.jpg', array(
 						'class' => 'dashTile',
-						'alt' => 'HIPAA Security Training'
+						'alt' => 'Security Training'
 				));
 			?>
-			<h3>HIPAA Security Training</h3>		
+			<h3>Security Training</h3>		
 		</div>
-		<div class="dashSum">HIPAA Security Training</div>
+		<div class="dashSum">Security Training</div>
 		<div class="dashBtn approved">
 			<div class="btnWrapMed">
 			<div class="btnText">Learn More</div>
@@ -39,12 +39,12 @@ $this->Html->addCrumb('Education Center');
 			<?php 
 				echo $this->Html->image('training_tile.jpg', array(
 						'class' => 'dashTile',
-						'alt' => 'HIPAA Security Training'
+						'alt' => 'Security Training'
 				));
 			?>
-			<h3>HIPAA Security Training</h3>		
+			<h3>Security Training</h3>		
 		</div>
-		<div class="dashSum">HIPAA Security Training</div>
+		<div class="dashSum">Security Training</div>
 		<div class="dashBtn denied">
 			<div class="btnWrapWide">
 			<div class="btnText">Subscribers Only!</div>
@@ -78,19 +78,34 @@ $this->Html->addCrumb('Education Center');
 
 		<div class="dashHead">
 			<?php
+				$name_mapping = array(
+					'What is HIPAA? Part 1' => 'PII Security Part 1',
+					'What is HIPAA? Part 2' => 'PII Security Part 2',
+					'10 Things you can do to protect patient data' => '10 things you can do to protect PII',
+					'HIPAA Security Tips and Reminders' => 'Security Tips and Reminders',
+					'Service Overview' => 'Service Overview'
+				);
 				if($educationCenter['EducationCenter']['name'] == 'HIPAA Security Training'){
 					echo $this->Html->image('training_tile.jpg', array(
 							'class' => 'dashTile',
-							'alt' => 'HIPAA Security Training'
+							'alt' => 'Security Training'
 					));
 				} else {
 					echo  $this->Html->image('movie.png', array('class' => 'dashTile'));
 				}
 
 			 ?>
-			<h3><?php echo $educationCenter['EducationCenter']['header']; ?></h3>
+			<h3>
+			<?php 
+				$header = $educationCenter['EducationCenter']['header'];
+				if ($header == 'HIPAA Secure Now! Video') {
+					$header = 'PII Protect Video';
+				}
+				echo $header;
+			?>
+			</h3>
 		</div>
-		<div class="dashSum"><?php echo $educationCenter['EducationCenter']['name']; ?></div>
+		<div class="dashSum"><?php echo $name_mapping[$educationCenter['EducationCenter']['name']]; ?></div>
 		<div class="dashBtn approved">
 			<div class="btnWrapMed">
 			<div class="btnText"><?php echo $watchLearn; ?></div>

@@ -48,7 +48,7 @@
 ?>
 
 <div class="dashboard index">
-	<h2><?php echo __('Compliance Portal Dashboard'); ?></h2>
+	<h2><?php echo __('Security Portal Dashboard'); ?></h2>
 
 	<?php
 		// policies & procedures. everyone sees this
@@ -75,7 +75,7 @@
 					'<div class="dashHead">' .
 					$this->Html->image('cnd_tile.jpg', array(
 								'class' => 'dashTile',
-								'alt' => 'HIPAA Contracts and Documents'
+								'alt' => 'Contracts and Documents'
 								)) .
 					'<h3>Contracts & Documents</h3>' .
 					'</div>' .
@@ -90,7 +90,7 @@
 					'<div class="dashHead">' .
 					$this->Html->image('cnd_tile.jpg', array(
 								'class' => 'dashTile',
-								'alt' => 'HIPAA Contracts and Documents'
+								'alt' => 'Contracts and Documents'
 								)) .
 					'<h3>Contracts & Documents</h3>' .
 					'</div>' .
@@ -109,7 +109,7 @@
 					'<div class="dashHead">' .
 					$this->Html->image('tnd_tile.jpg', array(
 								'class' => 'dashTile',
-								'alt' => 'HIPAA Track and Document'
+								'alt' => 'Track and Document'
 								)) .
 					'<h3>Track and Document</h3>' .
 					'</div>' .
@@ -125,7 +125,7 @@
 					'<div class="dashHead">' .
 					$this->Html->image('social.png', array(
 								'class' => 'dashTile',
-								'alt' => 'HIPAA Social Center'
+								'alt' => 'Social Center'
 								)) .
 					'<h3>Social Center</h3>' .
 					'</div>' .
@@ -141,7 +141,7 @@
 					'<div class="dashHead">' .
 					$this->Html->image('edcenter.png', array(
 								'class' => 'dashTile',
-								'alt' => 'HIPAA Education Center'
+								'alt' => 'Education Center'
 								)) .
 					'<h3>Education Center</h3>' .
 					'</div>' .
@@ -157,7 +157,7 @@
 					'<div class="dashHead">' .
 					$this->Html->image('infocenter.png', array(
 								'class' => 'dashTile',
-								'alt' => 'HIPAA Information Center'
+								'alt' => 'Information Center'
 								)) .
 					'<h3>Information Center</h3>' .
 					'</div>' .
@@ -172,7 +172,7 @@
 					'<div class="dashHead">' .
 					$this->Html->image('sirp.png', array(
 								'class' => 'dashTile',
-								'alt' => 'HIPAA SIRP'
+								'alt' => 'SIRP'
 								)) .
 					'<h3>SIRP</h3>' .
 					'</div>' .
@@ -204,7 +204,7 @@
 						// '<div class="dashHead">' .
 						// $this->Html->image('raq_tile.jpg', array(
 									// 'class' => 'dashTile',
-									// 'alt' => 'HIPAA Risk Assessment Questionnaire'
+									// 'alt' => 'Risk Assessment Questionnaire'
 									// )) .
 						// '<h3>Risk Assessment Questionnaire</h3>' .
 						// '</div>' .
@@ -221,7 +221,7 @@
 						// '<div class="dashHead">' .
 						// $this->Html->image('org_prof_tile.jpg', array(
 									// 'class' => 'dashTile',
-									// 'alt' => 'HIPAA Organization Profile'
+									// 'alt' => 'Organization Profile'
 									// )) .
 						// '<h3>Organization Profile</h3>' .
 						// '</div>' .
@@ -236,7 +236,7 @@
 // 					
 					// $this->Html->image('mark_comp_tile.bmp', array(
 								// 'class' => 'dashTile',
-								// 'alt' => 'HIPAA Mark Risk Assessment Complete'
+								// 'alt' => 'Mark Risk Assessment Complete'
 								// )) . 
 // 					
 					// '<h3>Mark Risk Assessment Complete</h3>' .
@@ -261,7 +261,7 @@
 				'<div class="dashHeadLogo">' .
 				$this->Html->image($partnerImg, array(
 							//'class' => 'dashTileLogo',
-							'alt' => 'HIPAA Partner Link',
+							'alt' => 'Partner Link',
 							//'url' => array($partnerImg),
 							'class' => 'partnerImg'
 							)) .
