@@ -1,5 +1,4 @@
-/app/Config
-/app/tmp
+/app/tmp/*
 /lib/Cake/Console/Templates/skel/tmp/
 /plugins
 /vendors
@@ -10,7 +9,5 @@
 *.class
 *.pyc
 *.pyo
-app/webroot/documents
-app/webroot/files
 app/webroot/documents
 app/webroot/files

@@ -1,0 +1,209 @@
+name;description;details
+"Administrative - Security Management Policy";"<p>An overall requirement to implement policies and procedures to prevent, detect, contain, and correct security violations.</p>
+";"<p>Policy 1 - Security Management Policy - discusses that an organization must develop policies and procedures that will protect electronic protected health information (ePHI).</p>
+
+<p>Policy 1.1 - Risk Analysis (Required) - discusses the required Risk Assessment that an organization must perform. The Risk Assessment is explained and the procedure for performing the Risk Assessment is defined. Purpose: identify where ePHI is located, the threats to ePHI, the risks to ePHI and determine safeguards to better protect ePHI.</p>
+
+<p>Policy 1.2 - Risk Management (Required) - discusses implementing the recommend safeguards that where identified in the Risk Assessment. For example, if the Risk Assessment identified that there is no employee termination procedure in place, the organization should implement an employee termination procedure as part of the Risk Management procedure.<br />
+The policy also states that the organization will review and update the Risk Assessment periodically. See Policy 1.4 below</p>
+
+<p>Policy 1.3 - Sanctions for Noncompliance (Required) - discusses putting in place a sanction procedure to handle situations where employees violate the HIPAA Security Policies and Procedures. Purpose: ensure that employees know that there are negative consequences for violating the HIPAA Security Policies and Procedures.</p>
+
+<p>Procedure 1.3.1.i and 1.3.1.ii - states that employees as well as supervisors may be disciplined.</p>
+
+<p>Procedure 1.2.2.i and 1.2.2.ii - states that the HIPAA Security Officer will investigate and review the facts surrounding any violations.</p>
+
+<p>Procedure 1.2.3.i - Human Resources or a department / person with similar responsibilities will impose any disciplinary actions for violations.</p>
+
+<p>Procedure 1.2.4 - states that failing to report security violations will lead to disciplinary actions.</p>
+
+<p>Policy 1.4 - Information System Activity Review (Required) - discusses implementing procedures to review security logs, audit logs and system use activity logs. In addition the Risk Assessment (see Policy 1.1 above) must be performed and updated regularly.</p>
+
+<p>Policy 1.4.2.i - states the reviews of security logs, audit logs, etc. will be reviewed at least every 90 days. It is recommended that these reviews occur more frequently to ensure there are no security breaches.</p>
+
+<p>Policy 1.4.3 - states that a Risk Assessment should be done annually but not more than every two years.</p>
+"
+"Administrative - Security Officer Policy";"<p>A single individual must be designated as having overall responsibility for the security of a organization&#39;s ePHI.</p>
+";"<p>Policy 2 - Security Officer Policy (Required) - an organization must assign a person to the role of HIPAA Security Officer.</p>
+
+<p>Policy 2.1 - a person must be named as the HIPAA Security Officer.</p>
+
+<p>Procedure 2.1 - lists the responsibilities of the Security Officer.</p>
+"
+"Administrative - Workforce Security";"<p>Policies, procedures, and processes must be developed and implemented that ensure only properly-authorized workforce members have access to ePHI.</p>
+";"<p>Policy 3 - Workforce Security - states that only authorized workforce members will be allowed to access ePHI, workforce members will be supervised, workforce members will be screened during the hiring process and a documented process for terminating access to ePHI will be developed.</p>
+
+<p>Policy 3.1 - Authorization and Supervision (Addressable) - states that there will be a procedure put in place that gives access to ePHI only to workforce members who need access to ePHI to do their job. The organization will keep documented records of who has access, what access level they have and why they have access to ePHI. Workforce members who access ePHI will be supervised</p>
+
+<p>Policy 3.2 - Workforce Clearance Procedures (Addressable) - the organization will ensure that access to ePHI is reviewed on and on-going basis. Supervisors will periodically review the list of who has access to ePHI and what the level of access is. Supervisors will request changes to ePHI access if current access is inappropriate. It is recommended to do this at least annually. Workforce members who have access to ePHI should be screened during the hiring process.</p>
+
+<p>Policy 3.3 - Termination Procedure (Addressable) - the organization will ensure that a workforce member&#39;s access to ePHI is terminated when it is no longer appropriate. This could be when the employee is terminated from the organization or when they switch to another job function within the organization.</p>
+
+<p>Procedure 3.3.1 - some recommended termination steps are listed including: disabling workforce member&#39;s network and system accounts, disabling remote access, recovery of badges and keys.</p>
+"
+"Administrative - Information Access Management";"<p>Policies, procedures, and processes must be developed and implemented for authorizing, establishing, and modifying access to ePHI.</p>
+";"<p>Policy 4 - Information Access Management - goes into more details about granting and reviewing access to ePHI.</p>
+
+<p>Policy 4.1 - Access Authorization (Addressable) - states that supervisors will initially grant access to ePHI based on job function, then review the access periodically and then change or terminate the access when it is no longer appropriate.</p>
+
+<p>Procedure 4.1.1.i - only supervisors can request workforce member&#39;s access to ePHI.</p>
+
+<p>Procedure 4.1.1.ii - request for access should only be the minimal access necessary for a workforce member to do their job.</p>
+
+<p>Procedure 4.1.1.iii - supervisors should periodically review workforce member&#39;s access and modify access where appropriate.</p>
+
+<p>Policy 4.2 - Access Establishment and Modification (Addressable) - organizations will create procedures for granting, reviewing and changing access to ePHI.</p>
+
+<p>Procedure 4.2.1.i - system managers should define appropriate access levels to access ePHI.</p>
+
+<p>Procedure 4.2.1.ii - all requests for access to ePHI should be documented (written or electronic) and kept for at least 6 years.</p>
+
+<p>Procedure 4.2.1.iii - system managers should periodically review who has access to ePHI.</p>
+
+<p>Procedure 4.2.1.iv - system managers should request modifications to access based on the review in Procedure 4.2.1.iii.</p>
+"
+"Administrative - Security Awareness and Training";"<p>A security awareness and training program for the entire workforce must be developed and implemented.</p>
+";"<p>Policy 5 - Security Awareness and Training - discusses security training and awareness. Items include training the entire staff on how to protect ePHI, providing security reminders to the employees, implementing anti-virus software, monitoring employee logins to systems that contain ePHI, and to make sure you have password policies in place to protect ePHI.</p>
+
+<p>Policy 5.1 - Security Reminders (Addressable) - discusses implementing a procedure for keeping workforce members informed on how to protect ePHI.</p>
+
+<p>Procedure 5.1.2 - security reminders can be in the form of emails, videos, face to face presentations, posters or other methods.</p>
+
+<p>Policy 5.2 - Protection from Malicious Software (Addressable) - discusses putting in place procedures for guarding against and detecting viruses, worms, and other malware. Also discusses training workforce members on identifying and protecting against malware. The policy also discusses a procedure for notifying appropriate personnel about systems that are infected with malware. And states that all systems that contain or access ePHI should have anti-malware software installed on them. Procedure 5.2.4 - states that workforce members should not disable or bypass the anti-virus / anti-malware software.</p>
+
+<p>Policy 5.3 - Log-in Monitoring (Addressable) - discusses implementing a procedure to track login attempts to systems that contain ePHI. Login tracking gives the organization the ability to see who has logged into a system and failed login attempts that might signal that someone is trying to gain unauthorized access to ePHI. The policy states that the organization should review the system logs of systems containing ePHI on a regular basis and any suspicious activity should be reported to the HIPAA Security Officer immediately.</p>
+
+<p>Policy 5.4 - Password Management (Addressable) - discusses implementing procedures for creating, changing and safeguarding passwords. All workforce members need a unique userid and password when accessing systems containing ePHI. No access to ePHI is permitted without a userid and password. Passwords should be complex and not easily guessed. Workforce members should be properly trained on password policies. Passwords should expire at predetermined intervals (i.e. 90 days) to further protect systems containing ePHI. Workforce members should not share userids and password, nor write them down or post on their monitors. Workforce members should protect userids and passwords.</p>
+"
+"Administrative - Security Incident Procedures";"<p>Policies, procedures, and processes must be developed and implemented for reporting, responding to, and managing security incidents.</p>
+";"<p>Policy 6 - Security Incident Procedures - discusses how an organization will implement procedures to address identifying, reporting, mitigating and documenting security incidents concerning ePHI.</p>
+
+<p>Policy 6.1 - Reporting and Response (Required) - discusses that any incident including (viruses, malware, denial of service, system intrusions, lost or stolen laptops, etc.) must be reported and addressed. The organization will create a security incident response team (ï¿½SIRTï¿½) to investigate and respond to security incidents.</p>
+
+<p>Procedure 6.1.2 - discusses that every security incident should be documented. Appendix A is a sample log that can be used to record a security incident.</p>
+"
+"Administrative - Contingency Plan";"<p style=""font-size: 13px;"">Policies, procedures, and processes must be developed and implemented for responding to a disaster or emergency that damages information systems containing EPHI.</p>
+";"<p style=""font-size: 13px;"">Policy 7 - Contingency plan - discusses what a organization will do in the event of an emergency, disaster or other event that effects systems that contain ePHI.<br />
+<br />
+Policy 7.1 - Data Backup Plan (Required) - discusses ensuring that data is backed up for each of the systems that contain ePHI. &nbsp;If the backups are to media such as tape or disk, they should be stored in a safe location and not stored in the same location as the systems that contain ePHI. &nbsp;Ensure that a Business Associates agreement is in place with any company that stores backup data offsite from the organization. &nbsp;The organization should periodically perform a test restore of data to ensure that the backup is valid and data can be successfully retrieved.<br />
+<br />
+Policy 7.2 - Disaster Recovery Plan (Required) - discusses creating a disaster recovery (DR) plan that can be used in the event of a disaster or some other event that affects accessing systems that contain ePHI. &nbsp;The DR plan should include logging system outages and training the staff to implement the DR plan. &nbsp;The DR plan should be stored in a place that can easily be accessed by the workforce staff if the plan needs to be used. &nbsp;The DR plan should be tested on a periodic basic to ensure that system containing EPHI are recoverable in the event of an outage.<br />
+<br />
+Policy 7.3 - Emergency Mode Operation Plan (Required) - discusses making sure that ePHI is protected while operating in an emergency mode or DR mode. &nbsp;The Emergency Mode Operation Plan should be documented and accessible. &nbsp;Organizations should test the Emergency Mode Operation Plans on a periodic basis.</p>
+
+<p style=""font-size: 13px;"">Policy 7.4 - Testing and Revision Procedures (Addressable) - organizations should test the Disaster Recovery and Emergency Mode Operation Plans on a periodic basis. &nbsp;All revisions that are discovered during testing of the plans should be documented.<br />
+<br />
+Policy 7.5 - Applications and Data Criticality Analysis (Required) - discusses taking inventory of the systems that contain ePHI and determining each systems criticality. &nbsp;The determination will allow the organization to take appropriate steps to ensure that backup or disaster recovery plans are in place in the event of an emergency. &nbsp;The organization should update the inventory at least annually.</p>
+"
+"Administrative - Evaluation";"<p>Organizations must perform periodic technical and non-technical evaluations that determine the extent to which an organization&#39;s security policies, procedures, and processes meet the ongoing requirements of the Security Rule.</p>
+";"<p>Policy 8 - Evaluation - discusses reviewing the HIPAA Security Policies and Procedures on a periodic basis and making the necessary updates to them to reflect new laws, technology, etc.</p>
+
+<p>Procedure 8.3 - discusses that reviews should occur if there are changes to the HIPAA regulations, new federal or state laws, changes in technologies or if a serious security breach has occurred.</p>
+"
+"Administrative - Business Associate Contracts";"<p>Organizations must, when dealing with business associates that create, receive, maintain, or transmit ePHI on the organizations&#39;&nbsp;behalf,&nbsp; develop and implement contracts that ensure the business associate will appropriately safeguard the information.</p>
+";"<p>Policy 9 - Business Associate Contracts - discusses that all Business Associates (BA) that create, receive, maintain or transmit ePHI must have a signed Business Associates Agreement in place.</p>
+
+<p>Procedure 9.1 - discusses that the Security Officer is responsible for ensuring that each BA has a BA Agreement in place.</p>
+
+<p>Procedure 9.2 - each BA Agreement should state that the BA is responsible for adhering to the HIPAA Security Rule and needs to protect EPHI in accordance to the Security Rule. It also addresses enforcement of the agreement as well as termination of the agreement.</p>
+"
+"Physical - Facility Access Controls";"<p>An overall requirement to implement policies, procedures, and processes that limit physical access to electronic information systems while ensuring that properly-authorized access is allowed.</p>
+";"<p>&nbsp; Policy 10 - Facility Access Controls - discusses ensuring that systems that contain ePHI are properly secured so unauthorized persons can not access the ePHI.</p>
+
+<p>Policy 10.1 - Contingency Operations (Addressable) - discusses procedures to protect ePHI in the event of an emergency. Access will be granted to all persons that need access to repair equipment or restore operations.</p>
+
+<p>Policy 10.2 - Facility Security Plan (Addressable) - discusses ensuring that servers, database and network equipment should be stored in a secure location and only authorized personnel should have access to the secure location.</p>
+
+<p>Procedure 10.2.3.i - discusses that all personnel that have been granted access to the secure location of the servers should be recorded and logged.</p>
+
+<p>Policy 10.3 - Access Control and Validation (Addressable) - discusses implementing procedures to limit access to systems containing ePHI to only authorized personnel.</p>
+
+<p>Procedure 10.3.1.ii - all access to the secure location of the servers should be logged including the person&#39;s name, date of access and reason for access.</p>
+
+<p>Procedures 10.3.1.iii and 10.3.1.iv - discusses that guests and patients should not be given access to locations that store ePHI.</p>
+
+<p>Policy 10.4 - Maintenance Records - discusses implementing procedures to log all maintenance to facilities containing ePHI including air conditioning, electrical repair, etc. Logs should contain: who performed the maintenance, date maintenance was performed and reason for maintenance.</p>
+"
+"Physical - Workstation Use";"<p>Policies and procedures must be developed and implemented that specify appropriate use of workstations and the characteristics of the physical environment of workstations that can access ePHI.</p>
+";"<p>Policy 11.1 - Workstation Use - discusses ensuring that employees are aware of what is acceptable and unacceptable use of workstations.</p>
+
+<p>Policy 11.1.1 - Appendix A contains a sample Computer Use Policy. All workforce members should sign and comply with a Computer Use Policy.</p>
+
+<p>Policy 11.1.3 - discusses that workforce member&#39;s access may be removed to protect ePHI.</p>
+
+<p>Policy 11.1.4 - discusses that all workforce members that access ePHI must have a unique userid and password.</p>
+
+<p>Policy 11.1.5 - discusses that workforce member&#39;s access to ePHI will be monitored.</p>
+"
+"Physical - Workstation Security";"<p>Organizations must implement physical safeguards for all workstations that can access ePHI in order to limit access to only authorized users.</p>";"<p>Policy 12 - Workstation Security -discusses steps that must be taken to protect workstations, servers, wireless networks, etc. that contain ePHI.</p>
+
+<p>Policy 12.1 - discusses appropriate safeguards to protect ePHI on workstations, service, portable devices and media including laptops, smartphones, CD-ROMs, DVDs, USB Drives, etc.</p>
+
+<p>Policies 12.1.i, 12.1.ii and 12.1.iii - discuss safeguards including protecting ePHI on computers that are in common areas by: facing the monitor so ePHI and passwords can not be seen, use of privacy screen on monitors, securing workstations and laptops with security cables.</p>
+
+<p>Policy 12.1.iv - laptops and portable media including backup tapes should utilize encryption to protect ePHI.</p>
+
+<p>Policy 12.2 - discusses that steps should be taken to protect servers and systems that contain ePHI from water damage, fire, electrical outages (by utilizing Uninterrupted Power Supply (UPS) ), and electrical surges (by utilizing surge protectors).</p>
+"
+"Physical - Device and Media Controls";"<p>Policies, procedures, and processes must be developed and implemented for the receipt and removal of hardware and electronic media that contain ePHI into and out of an organization, and the movement of those items within an organization.</p>
+";"<p>Policy 13 - Device and Media Controls - discusses protecting, tracking and destroying ePHI on portable media and devices.</p>
+
+<p>Policy 13.1 - Disposal (Required) - discusses the need for procedures to be used when destroying ePHI from media. An example would be an old laptop that contains patient records that is no longer needed and needs to be disposed of. Any ePHI on the laptop would need to be copied onto another system (if it is the only copy of the ePHI). A destruction tool (software) must be used to ensure that all ePHI is erased from the device. Deleting the file or formatting the drive is not enough because data is still recoverable. Special software ensures that data is erased and is unrecoverable.</p>
+
+<p>Policy 13.2 - Media Re-use (Required) - discusses that all ePHI must be copied off of the media (if it is the only copy of ePHI) and a destruction tool (software) must be used to ensure that all ePHI is erased from the device before re-use.</p>
+
+<p>Policy 13.3 - Accountability (Addressable) - logs should be kept of all portable media that contains ePHI that is received into and removed from an organization. Sample log forms are attached in Appendix A and B.</p>
+
+<p>Policy 13.4 - Data Backup and Storage (Addressable) - discusses creating a procedure to ensure that ePHI is properly backed up prior to moving any equipment that contains ePHI. The overall objective is to make sure you have a copy of any ePHI before you move a server, for example. This ensures if something happens to the server in transit, you have a copy of the ePHI that was stored on the server.</p>
+"
+"Technical - Access Control ";"<p>Policies, procedures, and processes must be developed and implemented for electronic information systems that contain ePHI to only allow access to persons or software programs that have appropriate access rights.</p>
+";"<p>Policy 14 - Access Control - addresses how an organization will protect access to systems that contain ePHI.</p>
+
+<p>Policy 14.1 - Unique User Identification (Required) - discusses that every workforce member that requires access to the network or to systems that contain ePHI must be given and use a unique userid and password.</p>
+
+<p>Procedure 14.1.4 - discusses the complexity requirements of the password. The more complex the password the harder it is for someone to guess or crack the password.</p>
+
+<p>Procedure 14.1.5 - discusses that passwords should not be written down or shared with other workforce members. If a workforce member thinks their password has been compromised they should report the incident immediately.</p>
+
+<p>Procedure 14.1.6 - states that workforce members should change their passwords at a maximum of 90 days to further protect ePHI.</p>
+
+<p>Policy 14.2 - Emergency Access Procedure (Required) - discusses that in emergency situations, access to systems that contain ePHI will be given to caregivers to allow them to provide patient care. This policy basically states that in emergency situations the priority is providing patient care and that if access to ePHI will inhibit this from occurring then it is acceptable to loosen or provide increased access to the caregiver and allow them to access ePHI. Access will only be giving to systems that are necessary to provide patient care.</p>
+
+<p>Policy 14.3 - Automatic Logoff (Addressable) - discusses implementing automatic logoff or screen locking on systems that contain ePHI after a period of inactivity. Workforce members should logoff or lock their screen when they leave their system unattended.</p>
+
+<p>Policy 14.4 - Encryption and Decryption (Addressable) - discusses using encryption technology for systems that contain ePHI.</p>
+
+<p>Procedure 14.4.2 - all Portable Devices and Media should be encrypted to protect ePHI if the device or media is lost or stolen.</p>
+
+<p>Procedure 14.4.3 - all Backup Tapes should be encrypted to protect ePHI if the tape is lost or stolen</p>
+
+<p>Procedure 14.4.4 - any remote access solutions should implement secure encrypted connections to protect ePHI.</p>
+
+<p>Procedure 14.4.5 - any wireless access to networks that contain ePHI should be done over encrypted wireless access. Workforce members should not access ePHI over public non-encrypted wireless networks.</p>
+"
+"Technical - Audit Controls";"<p>Policies, procedures, and processes must be developed and implemented to record and examine access and other activity in information systems that contain or use ePHI.</p>
+";"<p>Policy 15 - Audit Controls (Required) - states that the organization will implement mechanisms to monitor (audit) system activity on systems that contain ePHI. By implementing and reviewing system activity logs, an organization can ensure that only approved access to ePHI is occurring and can identify when security breaches or attempts have occurred.</p>
+
+<p>Policy 15.1 - states that all systems that contain ePHI will implement a log of system activity, discusses what elements will be in the activity log, and that the logs will be reviewed on a regular basis. Any activity exceptions and unauthorized access attempts should be reported immediately.</p>
+"
+"Technical - Integrity Policy";"<p>Policies, procedures, and processes must be developed and implemented that protect ePHI from improper modification or destruction.</p>
+";"<p>Policy 16 - Integrity Policy - discusses how to ensure that ePHI is not altered or destroyed.</p>
+
+<p>Policy 16.1 - Mechanism to Authenticate ePHI (Addressable) - discusses methods that can be used to ensure that ePHI is not improperly altered or destroyed. Methods include encryption, RAID disk drives, etc.</p>
+"
+"Technical - Person or Entity Authentication ";"<p>Policies, procedures, and processes must be developed and implemented that verify persons or entities seeking access to ePHI are who or what they claim to be.</p>
+";"<p>Policy 17 - Person or Entity Authentication - discusses the procedures to be implemented by an organization to verify that a person or entity seeking access to ePHI is the person or entity claimed.<br />
+<br />
+Policy 17.1 - states that all workforce members will utilize a unique userid and password to access systems that contain ePHI. All passwords must meet the requirement of the <b>Access Control </b> policy.<br />
+<br />
+Policy 17.2 - states that every workforce member must use their own userid and password and that they should not share userids and passwords.<br />
+<br />
+Policy 17.3 - states that if a workforce member thinks their userid or password is being used improperly they should report the incident immediately.</p>
+"
+"Technical - Transmission Security";"<p>Policies, procedures, and processes must be developed and implemented that prevent unauthorized access to ePHI that is being transmitted over an electronic communications network (e.g., the Internet).</p>
+";"<p>Policy 18 - Transmission Security - discusses transmitting or sending ePHI over various networks or media and the steps that should be taken to protect the ePHI from unauthorized access.</p>
+
+<p>Policy 18.1 - Integrity Controls (Addressable) - discusses using secure methods that protect ePHI during transmission. For example, the use of Secure Sockets Layer (SSL) when transmitting ePHI via an Internet Browser.</p>
+
+<p>Policy 18.2 - Encryption (Addressable) - discusses using encryption to protect ePHI. Encryption should be used when: transmitting ePHI outside the organization, storing ePHI on Portable Media or Devices, sending ePHI via email or a messaging system and when sending or accessing ePHI over a wireless network (workforce members should not access or send ePHI over public non-encrypted wireless networks).</p>
+"
