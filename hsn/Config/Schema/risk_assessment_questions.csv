@@ -1,0 +1,308 @@
+id;question_number;category_question_number;category_id;safeguard_category_id;question;additional_information;how_to_answer_question;video_name
+1;1;31;10;3;"Do employees protect passwords and do not share with other employees?";"When accessing ePHI every member of the workforce must use an unique userid and password.  Workforce members should not share passwords with each other.  This includes leaving passwords in plain sight, posting them on notes and sticking them to the monitor, leaving passwords written under the keyboard, etc.";"Answer 'YES' if workforce members protect userids and passwords and do not share userids and passwords. 
+Answer 'NO' if workforce members use shared userids and passwords or if workforce members at times share userids and passwords among themselves or if workforce members post passwords on monitors or under keyboards.
+";RAQPW1
+2;2;32;10;3;"Are workforce members required to create a complex password?";"A complex password, sometime known as a strong password is a password that consists of at least six characters (and the more characters, the stronger the password) that are a combination of letters, numbers and symbols (@, #, $, %, etc) if allowed.  Passwords are typically case-sensitive, so a complex password contains letters in both uppercase and lowercase.  Complex passwords also do not contain words that can be found in a dictionary or parts of the users own name.";"Answer ""Yes"" if the organization has implemented procedures to require workforce members to create complex passwords for all systems that contain ePHI.
+Answer ""No"" if workforce members are allowed to use non-complex passwords.
+";RAQPW2
+3;3;33;10;3;"Are workforce members required to change their passwords periodically?";"Requiring workforce members to change passwords every 30 or 60 or 90 days will help secure their user account.  Password changes prevent breached accounts from being access over a long period of time.";"Answer ""Yes"" if the organization has procedures in place that require workforce members to change their passwords on a periodic basis for all systems that contain ePHI.
+Answer ""No"" if the organization does not have procedures in place that require workforce members to change their passwords on a periodic basis.
+";RAQPW3
+4;4;34;10;3;"Will workforce member accounts get disabled or locked if they mistype or incorrectly put in their password numerous times?";"Disabling or locking user accounts protects user accounts from being compromised.  Hackers, either human or malware, usually try to guess passwords or use brute force programs to continually try to guess a password.  By disabling accounts after a certain number of failed passwords attempts it makes it extremely difficult for hackers to compromise accounts.";"Answer 'YES' if workforce members accounts get disabled or locked after failed password attempts for all systems that contain ePHI.  
+Answer 'NO' if workforce members accounts do not get disabled or locked after failed password attempts.
+";RAQPW4
+5;5;35;11;3;"Does the organization have system auditing setup to facilitate the detection of unauthorized access?";"The HIPAA Security Rule requires that all access to ePHI be logged or audited.  Information that is usually collected is:
+Who is the person or userid that is accessing ePHI?
+When did the person or userid access ePHI?
+What ePHI was accessed?
+EMRs, network shares and other server based systems need to have system auditing setup and configured.
+";"Answer ""YES"" if the organization does have system auditing setup.  
+Answer ""NO"" if the organization does not have system auditing setup.
+";RAQSA
+6;6;36;11;3;"Does the organization, on a regular basis review audit logs?";"The HIPAA Security Rule requires that system audit logs be periodically reviewed to ensure that only appropriate access to ePHI is occurring.  The review would ensure that only appropriate userids are accessing ePHI and that the userids are only accessing the ePHI that they are authorized to access.  Regular review of system audit logs can detect data breaches and unauthorized access to ePHI.";"Answer ""YES"" if the organization does review audit logs.
+Answer ""NO"" if the organization does not have a procedure to review audit logs.
+";RAQSAR
+7;7;5;2;1;"Have your Business Associates signed Business Associate agreements?";"HIPAA defines a ""Business Associate"" as:
+A person or entity that performs certain functions or activities that involve the use or disclosure of protected health information on behalf of, or provides services to, a covered entity. 
+The HIPAA Security Rule requires that all Business Associates have signed agreements with covered entities (i.e. practices) stating that they will protect ePHI and comply with the HIPAA Security Rule.
+";"Answer ""YES"" if all your Business Associates have signed Business Associate agreements.
+Answer ""NO"" if all your Business Associates have not signed Business Associate agreements.
+";RAQBA1
+8;8;6;2;1;"Have your Business Associates been trained on the HIPAA Security Rule and how to protect ePHI?";"In order for Business Associates to protect ePHI and to comply with the HIPAA Security Rule, they need to understand the HIPAA Security Rule.  Ensuring that Business Associates are trained on the HIPAA Security Rule will help protect ePHI.";"Answer ""YES"" if your Business Associates have been trained on the HIPAA Security Rule and protecting ePHI.
+Answer ""NO"" if your Business Associates have not been trained on the HIPAA Security Rule and protecting ePHI.
+";RAQBA2
+9;9;7;3;1;"Does the organization have documented disaster recovery procedures in place?";"The HIPAA Security Rule states the following as a requirement:
+ (7)(i) Standard: Contingency plan. Establish (and implement as needed) policies and procedures for responding to an emergency or other occurrence (for example, fire, vandalism, system failure, and natural disaster) that damages systems that contain electronic protected health information.
+
+Disaster recovery plan (Required). Establish (and implement as needed) procedures to restore any loss of data.
+";"Answer ""YES"" if the organization has documented disaster recovery procedures in place and regularly test the procedures.
+Answer ""NO"" if the organization does not have documented recovery procedures in place or does not test the procedures regularly.
+";RAQDR
+10;10;8;3;1;"Does the organization have documented data backup procedures in place?";"The HIPAA Security Rule states the following as a requirement:
+ (7)(i) Standard: Contingency plan. Establish (and implement as needed) policies and procedures for responding to an emergency or other occurrence (for example, fire, vandalism, system failure, and natural disaster) that damages systems that contain electronic protected health information.
+
+Data backup plan (Required). Establish and implement procedures to create and maintain retrievable exact copies of electronic protected health information.
+";"Answer ""YES"" if the organization does have a documented and tested data backup procedure in place.
+Answer ""NO"" if the organization does not have a documented data backup procedure in place or does not test the backup procedure.
+";RAQDB
+11;11;17;7;2;"Are servers protected from water damage and not located near a water source?";"In order to protect ePHI it is important to ensure that systems containing ePHI are protected from environmental danger.  Co-locating servers containing ePHI by water sources may lead to damage or destruction of ePHI.";"Answer ""YES"" if servers are not located near a water source.
+Answer ""NO"" if the servers are located anywhere near a water source, Ex: water pipes going through the room, servers located near bathrooms or kitchens.
+";RAQWD
+12;12;18;7;2;"Does the organization use any methods to track who or when someone enters the room(s) where the servers are located?";"The HIPAA Security Rule states:
+
+Â§ 164.310 Physical safeguards. 
+A covered entity must, in accordance with Â§ 164.306: 
+(a)(1)  Standard: Facility access controls.  Implement policies and procedures to limit physical access to its electronic information systems and the facility or facilities in which they are housed, while ensuring that properly authorized access is allowed. 
+
+(ii)  Facility security plan  (Addressable). Implement policies and procedures to safeguard the facility and the equipment therein from unauthorized physical access, tampering, and theft. 
+(iii) Access control and validation procedures  (Addressable). Implement procedures to control and validate a personâ€™s access to facilities based on their role or function, including visitor control, and control of access to software 
+programs for testing and revision. 
+(iv)  Maintenance records  (Addressable). Implement policies and procedures to document repairs and modifications to the physical components of a facility which are related to security (for example, hardware, walls, doors, and locks).
+";"Answer ""YES"" if the organization tracks who and when someone enters the room(s) where servers are located.  Note:  Servers may be located in multiple locations.
+Answer ""NO"" if the organization does not track access to the room(s) where servers are located.
+";RAQTSRA
+13;13;19;7;2;"Is the location(s) where the organization keeps their servers locked at all times?";"The HIPAA Security Rule states:
+
+Â§ 164.310 Physical safeguards. 
+A covered entity must, in accordance with Â§ 164.306: 
+(a)(1)  Standard: Facility access controls.  Implement policies and procedures to limit physical access to its electronic information systems and the facility or facilities in which they are housed, while ensuring that properly authorized access is allowed. 
+
+(ii)  Facility security plan  (Addressable). Implement policies and procedures to safeguard the facility and the equipment therein from unauthorized physical access, tampering, and theft.
+";"Answer ""YES"" if the location(s) where the organization keeps their servers is locked at all times.  Note:  Servers may be located in multiple locations.
+Answer ""NO"" if the location(s) where the organization keeps their servers is not locked at all times and the servers are accessible to workforce members, visitors, and patients.
+";RAQLSL
+14;14;20;7;2;"Does the organization restrict access to the room(s) or location where servers are located?";"The HIPAA Security Rule states:
+
+Â§ 164.310 Physical safeguards. 
+A covered entity must, in accordance with Â§ 164.306: 
+(a)(1)  Standard: Facility access controls.  Implement policies and procedures to limit physical access to its electronic information systems and the facility or facilities in which they are housed, while ensuring that properly authorized access is allowed. 
+
+(ii)  Facility security plan  (Addressable). Implement policies and procedures to safeguard the facility and the equipment therein from unauthorized physical access, tampering, and theft. 
+(iii) Access control and validation procedures  (Addressable). Implement procedures to control and validate a personâ€™s access to facilities based on their role or function, including visitor control, and control of access to software 
+programs for testing and revision. 
+(iv)  Maintenance records  (Addressable). Implement policies and procedures to document repairs and modifications to the physical components of a facility which are related to security (for example, hardware, walls, doors, and locks).
+";"Answer ""YES"" if the organization restricts access to the room(s) or location where servers are located.  Note:  Servers may be located in multiple locations.
+Answer ""NO"" if the access to the room(s) or location where servers are located is not restricted.
+";RAQRATS
+15;15;9;3;1;"Does the organization have redundancy in place for all critical systems?";"The HIPAA Security Rule states the following as a requirement:
+ (7)(i) Standard: Contingency plan. Establish (and implement as needed) policies and procedures for responding to an emergency or other occurrence (for example, fire, vandalism, system failure, and natural disaster) that damages systems that contain electronic protected health information.
+";"Answer ""YES"" if the organization has redundancy in place, including spare equipment, for all critical systems.
+Answer ""NO"" if the organization does not have redundancy in place including spare equipment that can be used in case of disaster or hardware failure.
+";RAQSR
+16;16;10;3;1;"Does the organization have redundant data circuits in place in case of circuit failure?";"The HIPAA Security Rule states the following as a requirement:
+ (7)(i) Standard: Contingency plan. Establish (and implement as needed) policies and procedures for responding to an emergency or other occurrence (for example, fire, vandalism, system failure, and natural disaster) that damages systems that contain electronic protected health information.
+
+An outage of a data circuit may prevent access to ePHI.  Having redundant circuits such as a T-1 with a backup DSL or Cable Modem can minimize or reduce the chances of outages that can prevent access to ePHI.
+";"Answer ""YES"" if the organization has redundant data circuits in place in case of a circuit failure.
+Answer ""NO"" if the organization does not have redundant circuits in place in case of a circuit failure.
+";RAQRDC
+17;17;43;13;3;"Is the organization's remote access secured to prevent unauthorized access?";"The Department of Health and Human Services states the following about remote access to ePHI.
+
+""We group some of the risks associated with remote access and offsite use of EPHI into three areas: access, storage and transmission. Risk management planning takes all three areas into account, based on the unique vulnerabilities they introduce to covered entities that rely on remote operations involving EPHI.""
+
+It is critical to ensure that an organization's remote access is properly protected.  Remote Access should be secure, require proper authentication and utilize encryption to protect the data.
+";"Answer ""YES"" if the organization's remote access is secured to prevent unauthorized access.
+Answer ""NO"" if the remote access is unsecured and could be susceptible to unauthorized access.
+";RAQRAS
+18;18;44;13;3;"Is the organization's wireless access properly secured?";"In order to protect ePHI from authorized access it is critical to ensure that wireless access requires authentication (proper login) and utilizes encryption to prevent ePHI from being accessed, modified or stolen.
+
+One way to tell if your organization's wireless is not secured is if visitors can bring in a laptop and connect to your wireless network without a password.
+";"Answer ""YES"" if the organization's wireless connection is properly secured with encryption and authentication to prevent unauthorized access.
+Answer ""NO"" if the organization's wireless connection is not properly secured  with encryption and authentication and could allow unauthorized access.
+";RAQSWA
+19;19;37;12;3;"Are all the organization's laptops encrypted to protect the data stored on them?";"One of the leading causes of ePHI data breaches is lost laptops and portable media.  Laptops that contain ePHI should be encrypted to prevent access to ePHI in the event a laptop if lost or stolen.";"Answer ""YES"" if all of the organization's laptops are encrypted to protect the data stored on them.
+Answer ""NO"" if the organization's laptops are not encrypted and the data is not protected in case of loss or theft.
+";RAQEL
+20;20;38;12;3;"Is backup media encrypted to protect the data?";"Backup media may hold a large amount of ePHI.  Lost backup media could result in a large scale breach of ePHI.  Ensuring that your backup media is encrypted is critical in preventing data breaches.";"Answer ""YES"" if backup media is encrypted to protect their data.
+Answer ""NO"" if the backup media is not encrypted and the data is not protected in case of loss or theft.
+";RAQEBM
+21;21;39;12;3;"Is portable media (USB drives, CDs, DVDs, etc) encrypted to protect the data stored on them?";"One of the leading causes of ePHI data breaches is lost laptops and portable media.  Portable media that contains ePHI should be encrypted to prevent access to ePHI in the event the media is lost or stolen.
+
+Portable media includes USB drives, USB thumb drives, USB flash drives, CDs, DVDs, floppy drives, etc.
+";"Answer ""YES"" if all portable media is encrypted to protect the data stored on them.
+Answer ""NO"" if the all portable media is not encrypted and the data is not protected in case of loss or theft.
+";RAQEPM
+22;22;40;12;3;"Does the organization encrypt email to protect ePHI and important information sent through email?";"The security risks for email commonly include unauthorized interception of messages en route to recipient and messages being delivered to unauthorized recipients. These risks in using the Internet are addressed in the Security Rules technical safeguards section, particularly:
+
+- Person or Entity Authentication required procedures must be implemented for identification verification of entity or party requesting access to PHI. This means the identity of the person seeking information must be confirmed within the information system being utilized.
+- Transmission Security addressable data integrity controls and encryption reasonable and appropriate safeguards.
+
+All ePHI sent via email should be encrypted.
+";"Answer ""YES"" if the organization implements a procedure to encrypt email to protect ePHI.
+Answer ""NO"" if the organization does not implement or enforce a procedure that requires encryption for all email to protect ePHI and important data sent through email.
+";RAQEE
+23;23;41;12;3;"Are smartphones encrypted to protect ePHI data stored on them?";"Smartphones include Blackberries, iPhones, Android phones, etc.  Smartphones may contain ePHI (in emails, attachments, spreadsheets, documents, etc.).
+
+Smartphone like laptops and portable media are easily lost or stolen.
+
+It is critical to ensure that all ePHI on smartphones are encrypted to prevent access to ePHI in the event the phone is lost.
+";"Answer ""YES"" if the organization implements a procedure to encrypt all smartphones to protect data stored on them.
+Answer ""NO"" if the organization does not have a procedure to encrypt all smartphones to protect the 
+";RAQES
+24;24;42;12;3;"Does the organization encrypt all devices that store ePHI?";"Encryption is the best way to protect ePHI in the event the device is lost or stolen.  Devices include laptops, portable media, desktops, and even servers.  Each of the devices might be stolen in the event of a theft or break-in.";"Answer ""YES"" if the organization has a procedure to encrypt all devices that store ePHI.
+Answer ""NO"" if the organization does not have a procedure to ensure all devices that store ePHI are encrypted.
+";RAQEAD
+25;25;13;4;1;"Is there a procedure in place to facilitate proper ePHI access being granted?";"The HIPAA Security Rule - Information Access Management Standard states that all users that access ePHI must have the proper authority.  Initial access to ePHI must be granted (i.e. to a new workforce member) and periodic review of access must be performed.  Any changes in job functions should result in a review of the person's access to ePHI.  Upon termination a person's access to ePHI should be immediately revoked.";"Answer ""YES"" if there is a procedure or policy in place that facilitates and verifies proper ePHI access is being granted to appropriate members.
+Answer ""NO"" if there is not a procedure or policy that facilitates or verifies that ePHI access is being granted to the proper workforce members.
+";RAQFPA
+26;26;22;8;2;"Are workforce members aware of workstation use policies that prohibit online activities such as email, social networks, etc.?";"The HIPAA Security Rule states that all workforce members should be made aware of proper workstation use.
+
+Workstation use:  Implement policies and procedures that specify the proper functions to be performed, the manner in which those functions are to be performed, and the physical attributes of the surroundings of a specific workstation or class of workstation that can access electronic 
+protected health information.
+";"Answer ""YES"" if workforce members have been made aware of what is allowed or not allowed in regards to posting or mentioning ePHI.  Would they know that posting ePHI data on a social network would be prohibited?
+Answer ""NO"" if workforce members have not been informed of ePHI data restrictions and would be unaware that posting ePHI on a social network would be prohibited.
+";RAQWUP1
+27;27;23;8;2;"Are workforce members advised on what is a permitted use of a workstation, are they required to sign off on that?";"The HIPAA Security Rule states that all workforce members should be made aware of proper workstation use.
+
+Workstation use.  Implement policies and procedures that specify the proper functions to be performed, the manner in which those functions are to be performed, and the physical attributes of the surroundings of a specific workstation or class of workstation that can access electronic 
+protected health information.
+";"Answer ""YES"" if workforce members are advised and instructed on what is permiited use of a workstation, what is not allowed use and are they required to sign off that they have been informed of what is allowed use.
+Answer ""NO"" if workforce members are not advised or instructed on what they are allowed and not allowed to do on a workstation.
+";RAQWUP2
+28;28;28;9;2;"Does the organization track the movement and ownership of portable media?";"One of the leading causes of ePHI data breaches is lost laptops and portable media.  Portable media that contains ePHI should be tracked and records maintained of the movement of all portable media.
+
+Portable media includes USB drives, USB thumb drives, USB flash drives, CDs, DVDs, floppy drives, etc.
+
+The HIPAA Security Rule states:
+
+Standard: Device and media controls.  Implement policies and procedures that govern the receipt and removal of hardware and electronic media that contain electronic protected health information into and out of a facility, and the movement of these items within the facility. 
+
+Accountability  (Addressable). Maintain a record of the movements of hardware and electronic media and any 
+person responsible therefore.
+";"Answer ""YES"" if the organization tracks the movement (in and out of an organization) and ownership of portable media and if records are kept with this information.
+Answer ""NO"" if the organization does not track movement or ownership of portable media and records of this are not kept.
+";RAQTPD
+29;29;29;9;2;"Does the organization have a procedure for the disposal of electronic media that stores ePHI?";"Media that contains ePHI must be properly disposed of.  All ePHI must be removed prior to disposing.  Simply deleting the ePHI from the media is not enough to safeguard the data.  Special programs that totally eliminate the data from the media must be used.
+
+The HIPAA Security Rule states:
+
+Disposal  (Required). Implement policies and procedures to address the final disposition of electronic protected health information, and/or the hardware or electronic media on which it is 
+stored. 
+
+Media re-use  (Required). Implement procedures for removal of electronic protected health information from electronic media before the media are made available for re-use.
+";"Answer ""YES"" if the organization has a documented procedure for steps to follow for the disposal of electronic media that stores ePHI.
+Answer ""NO"" if the organization does not document a procedure to be followed when disposing of electronic media that stores ePHI.
+";RAQDP
+30;30;30;9;2;"Do workforce members with laptops take the system home, or out of the office?";"One of the leading causes of ePHI data breaches is lost laptops and portable media.  Laptops that contain ePHI should be tracked and only authorized workforce members should be allowed to remove them from an organization's offices.";"Answer ""YES"" if workforce members take laptops out of the office at anytime.
+Answer ""NO"" if workforce members laptops are never removed from the organization.
+";RAQTLOO
+31;31;14;4;1;"Is there a documented and adhered to procedure for terminating a workforce member's access including physical network and data access?";"It is important to implement procedures that remove physical, network and data access to all workforce members when their employment is terminated.  
+
+The HIPAA Security Rule states:
+
+Standard: Workforce security. Implement policies and procedures to ensure that all members of its workforce have appropriate access to electronic protected health information, as provided under paragraph (a)(4) of this section, and to prevent those workforce members who do not have access under paragraph (a)(4) of this section from obtaining access to electronic protected health information.
+
+Termination procedures  (Addressable). Implement procedures for terminating access to electronic protected health information when the employment of a workforce member ends.
+";"Answer ""YES"" if there is a documented and followed procedure for terminating a workforce member.  Does the procedure cover removing all access and ID's from all systems in a timely manner?
+Answer ""NO"" if there is not an actual documented procedure that is to be followed in the event of a workforce member termination.  Answer ""NO"" if the procedure is not performed on a constant or timely basis.
+";RAQTP
+32;32;15;5;1;"Does the organization have an incident response procedure to follow in the event of a security breach?";"Organizations should be prepared in the event of a data breach containing ePHI.  There should be a detailed procedure on the steps that should be taken in the event of a breach.  The procedure should include the steps to respond to the breach and breach notification procedures.
+
+The HIPAA Security Rule states:
+
+Standard: Security incident procedures.  Implement policies and procedures to address security incidents. 
+
+Response and Reporting  (Required). Identify and respond to suspected or known security incidents; mitigate, to the extent practicable, harmful effects of security incidents that are known to the covered entity; and document security incidents and their outcomes.
+";"Answer ""YES"" if the organization has a documented incident response procedure to follow in the event of a security breach.  A documented procedure that outlines the steps to be taken if a security breach occurs.
+Answer ""NO"" if the organization does not have a documented procedure for handling security breaches.
+";RAQIRP
+33;33;25;8;2;"Are all systems and servers fully patched for OS vulnerabilities and updated with all required application updates and service packs?";"Hackers and malware exploit system vulnerabilities in operating systems (Windows XP, Vista, 7 and 2003 and 2008 Server) as well as applications such as Adobe Acrobat and Microsoft Office.  It is important to keep all operating systems and applications up to date with security patches.";"Answer ""YES"" if you have an implemented procedure for patching all systems\servers with required application and OS updates.
+Answer ""NO"" if you do not have an implemented procedure for keeping all systems\servers updated with the required application and OS updates.
+";RAQPATCHING
+34;34;26;8;2;"Is anti-malware (anti-virus and anti-spyware) installed and updated on each of the organizations workstations and servers?";"Malware (computer viruses and spyware) is one of the leading cause of data being stolen or breached.  It is critical to have anti-malware installed on all systems including workstations, laptops, servers, etc.  The anti-malware should be automatically updated with new definition files.";"Answer ""YES"" if the organization has implemented anti-malware protection on all systems to prevent malicious intrusions.
+Answer ""NO"" if the organization does not have anti-malware on all systems to protect from malicious intrusions.
+";RAQMALWARE
+35;35;45;13;3;"Do workstations, laptops, and servers have inactivity timers to prevent unauthorized access to systems storing ePHI?";"Every system that contains ePHI should have an inactivity timeout that locks the screen or prevents access to the system.  When a workforce member leaves their workstation another person could access ePHI without proper authorization.  Inactivity timeouts prevents this from occurring.";"Answer ""YES"" if the organization has implemented a procedure to have all systems setup with inactivity timers to prevent unauthorized access.
+Answer ""NO"" if the organization does not have a procedure to have inactivity timers on all systems.
+";RAQALIT
+36;36;47;13;3;"Does the organization have a technical access control policy that is closely adhered to, to prevent unauthorized access to systems?";"The HIPAA Security Rule requires that technical access controls be implemented to protect ePHI.  Technical access controls limit access to information.  On a network share, technical access controls, may limit access to a patient folder to only those workforce members who are authorized.  Other workforce members would not have the ability to access the information.  The same is true for an EMR/EHR where technical access controls will limit who can access patient records.  It is critical to implement strong technical access controls to protect ePHI.
+
+
+The HIPAA Security Rule states:
+
+Standard: Access control.  Implement technical policies and procedures for electronic information systems 
+that maintain electronic protected health information to allow access only to those persons or software programs that have been granted access rights.
+";"Answer ""YES"" if the organization has implemented a technical access control policy to help prevent unauthorized access to systems and files, hackers, or intentional destruction of data.
+Answer ""NO"" if the organization does not have an implemented technical access control policy to facilitate specific security measures.
+";RAQTAC
+37;37;48;13;3;"Does the organization have a firewall in place on the network?";"Network firewalls protect organizations and ePHI from unauthorized access.  Firewalls stop hackers and malware from entering a network.  If an organization has an Internet connection such as a T-1, DSL or cable modem it is critical to have the connection protected by a firewall.";"Answer ""YES"" if the organization has implemented secure firewalls to prevent outside intrusions on the network.
+Answer ""NO"" if the organization has not implemented secure firewalls.
+";RAQFW
+38;38;12;3;1;"Does the organization have emergency operations procedures in place in the event of an emergency?";"The HIPAA Security Rule states the following as a requirement:
+ (7)(i) Standard: Contingency plan. Establish (and implement as needed) policies and procedures for responding to an emergency or other occurrence (for example, fire, vandalism, system failure, and natural disaster) that damages systems that contain electronic protected health information.
+
+Emergency Mode Operations Plan (Required).  Establish (and implement as needed) procedures to enable continuation of critical business processes for protection of the security of electronic protected health information while operating in emergency mode.
+
+When operating in an emergency mode it is important to protect ePHI.
+";"Answer ""YES"" if the organization has implemented and tested a documented procedure for emergency operations in case of disasters such as floods, tornados, hurricanes or power failures.  A documented process for handling a possible disaster.
+Answer ""NO"" if the organization does not have a documented emergency operations plan in case of a disaster.
+";RAQEOP
+39;39;11;3;1;"Does the organization have hardware support contracts in place on all critical systems?";"The HIPAA Security Rule states the following as a requirement:
+ (7)(i) Standard: Contingency plan. Establish (and implement as needed) policies and procedures for responding to an emergency or other occurrence (for example, fire, vandalism, system failure, and natural disaster) that damages systems that contain electronic protected health information.
+
+Disaster recovery plan (Required). Establish (and implement as needed) procedures to restore any loss of data.
+
+Having hardware support contracts in place will help in the event of a disaster.  If equipment if damaged, hardware contracts can speed up the process of replacing the hardware.
+";"Answer ""YES"" if the organization has hardware support contracts in place in case of critical server/system failures due to hardware failures or caused by disaster.
+Answer ""NO"" if the organization does not have any hardware support contracts already in place.
+";RAQHSC
+40;40;24;8;2;"Does the organization employ the use of privacy screen for monitors?";"The HIPAA Security Rule states the following as a requirement:
+
+Standard:  Workstation Use (Required).  Implement policies and procedures that specify the proper functions to be performed, the manner in which those functions are to be performed, and the physical attributes of the surroundings of a specific workstation or class of workstation that can access electronic protected health information.
+
+Privacy screens can help prevent unauthorized access or viewing of ePHI.  This is especially true when workstations that access ePHI are located in common areas that patients or visitors might access.
+";"Answer ""YES"" if the organization uses privacy screens for monitors to protect ePHI from being displayed on the screens.
+Answer ""NO"" if the organization does not use privacy screens on monitors.
+";RAQPPM
+41;41;21;7;2;"Does the organization track the movement of visitors and patients while they are in the organization's facility?";"The HIPAA Security Rule states the following as a requirement:
+
+Standard: Facility Access Control.  Implement policies and procedures to limit physical access to its electronic information systems and the facility or facilities in which they are housed, while ensuring that properly authorized access is allowed.
+
+Implementation specific: Facility Security Plan (Addressable).  Implement  policies and procedures to safeguard the facility and the equipment therein from unauthorized physical access, tampering, and theft.
+
+Tracking visitors is a key part of a Facility Security Plan.
+";"Answer ""YES"" if the organization has a procedure implemented to track the movement of individuals inside the organization.  I.E. security cameras or restricted access between rooms.
+Answer ""NO"" if the organization does not track the movement of individuals inside the organization.
+";RAQTVP
+42;42;46;13;3;"Do all smartphones employ startup passwords and timeout locks?";"The HIPAA Security Rule states the following as a requirement:
+
+Standard: Person or Entity Authentication.  Implement procedures to verify that a person or entity seeking access to electronic protected health information is the one claimed.
+
+If smartphones contain ePHI it is important to implement startup passwords and timeout locks to ensure that only authorized persons can access the contents of the smartphone.  Due to the likelihood that smartphones may be lost or stolen, passwords can protect the contents of the smartphone.
+";"Answer ""YES"" if the organization has a procedure to implement startup passwords and timeout locks on all smartphones to help prevent against unauthorized access.  
+Answer ""NO"" if the organization does not implement a procedure to employ startup passwords and timeout locks on all smartphones.
+";RAQSSP
+43;43;27;8;2;"Do all servers use a Uninterrupted Power Supply (UPS)?";"The HIPAA Security Rule states that covered entities must ensure that ePHI is protected to ensure confidentiality, integrity, and availability.
+
+Installing a Uninterrupted Power Supply (UPS) can help ensure access (availability) to ePHI in the event of a power loss.  A UPS should be installed on every system that contains ePHI as well as network equipment.
+";"Answer ""YES"" if all systems that contain ePHI use a UPS (Uninterrupted Power Supply) in case of power failures to maintain system uptime.
+Answer ""NO"" if all systems that contain ePHI do not use a UPS in case of power failure.
+";RAQUPS
+44;44;16;6;1;"Are all workforce members required to go through security training?";"The HIPAA Security Rule Security Awareness and Training Standard states that an organization must implement a security awareness and training program for all members of its workforce (including management).  The organization must also provide workforce members with periodic security reminders.";"Answer ""YES"" if all workforce members are required to go through security training to increase their awareness of HIPAA security requirements and protecting ePHI
+Answer ""NO"" if all workforce members are not required to go through HIPAA security training.
+";RAQST
+45;45;1;1;1;"Have you completed a Risk Assessment?";"The HIPAA Security Rule requires that a Risk Assessment be completed.  The purpose of a Risk Assessment is to: identify where ePHI is located, the threats to ePHI, the risks to ePHI and determine safeguards to better protect ePHI.";"Answer 'YES' if the organization has previously completed a Risk Assessment.
+Answer 'NO' if the organization has not completed a Risk Assessment.
+";RAQRA1
+46;46;2;1;1;"Have you implemented a Risk Management program?";"The HIPAA Security Rule requires that a Risk Management program be implemented.  The Risk Management program evaluates and implements the recommended safeguards of a Risk Assessment to reduce risks and vulnerabilities to a reasonable and appropriate level.  In addition, a Risk Management program periodically reviews system audit logs and activity.
+
+The HIPAA Security Rule further states that an organization should:
+
+Perform a periodic technical and nontechnical evaluation, based initially 
+upon the standards implemented under this rule and subsequently, in 
+response to environmental or operational changes affecting the security of 
+[EPHI], that establishes the extent to which an entity's security polices 
+and procedures meet the requirements of [the Security Rule].
+";"Answer ""YES"" if the organization has implemented a Risk Management program
+Answer ""NO"" if the organization has not implemented a Risk Management program or has not implemented a periodic review of system audit logs and activity or has not performed periodic technical and nontechnical evaluations.
+";RAQRA2
+47;47;3;1;1;"Does the organization have a Sanction Policy?";"The HIPAA Security Rule requires that a formal Sanction Policy be implemented to address situations where workforce members violate the HIPAA Security policies and procedures.
+
+Consequences for non-compliance could include retraining the workforce member who violated the policies and procedures, or perhaps terminating the 
+individual if the violation is serious.
+";"Answer ""YES"" if the organization has implement and enforces a Sanction Policy for non-compliance with the HIPAA Security Rule
+Answer ""NO"" if the organization does not have a formal Sanction Policy or does not enforce the Sanction Policy.
+";RAQSP
+48;48;4;1;1;"Has the organization appointed a security officer?";"The HIPAA Security Rule requires that an organization appoint an individual that will be responsible for developing, implementing, maintaining and monitoring adherence to the HIPAA Security policies and procedures.";"Answer ""YES"" if the organization has appointed a HIPAA security officer.
+Answer ""NO"" if the organization has not appointed a HIPAA security officer.
+";RAQSO
