@@ -100,8 +100,7 @@ Cache::config('default', array('engine' => 'File'));
 
 /**
  * The settings below can be used to set additional paths to models, views and controllers.
- *
- * App::build(array(
+ *App::build(array(
  *     'Model'                     => array('/path/to/models', '/next/path/to/models'),
  *     'Model/Behavior'            => array('/path/to/behaviors', '/next/path/to/behaviors'),
  *     'Model/Datasource'          => array('/path/to/datasources', '/next/path/to/datasources'),
@@ -123,6 +122,19 @@ Cache::config('default', array('engine' => 'File'));
  * ));
  *
  */
+App::build(array(
+	'Model'                => array(APP_CORE_PATH . 'Model' . DS),
+	'Controller'           => array(APP_CORE_PATH . 'Controller' . DS),
+	'View'                 => array(APP_CORE_PATH . 'View' . DS),
+	'View/Helper'          => array(APP_CORE_PATH . 'View' . DS .'Helper' . DS),
+	'Console'              => array(APP_CORE_PATH . 'Console' . DS),
+	'Console/Command'      => array(APP_CORE_PATH . 'Console' . DS . 'Command' . DS),
+	'Console/Command/Task' => array(APP_CORE_PATH . 'Console' . DS . 'Command' . DS . 'Task' . DS),
+	'Lib'                  => array(APP_CORE_PATH . 'Lib' . DS),
+	'Locale'               => array(APP_CORE_PATH . 'Locale' . DS),
+	'Vendor'               => array(APP_CORE_PATH . 'Vendor' . DS),
+	'Plugin'               => array(APP_CORE_PATH . 'Plugin' . DS)
+));
 
 /**
  * Custom Inflector rules, can be set to correctly pluralize or singularize table, model, controller names or whatever other
