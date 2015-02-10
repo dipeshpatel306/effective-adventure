@@ -247,12 +247,6 @@
 	Configure::write('Acl.database', 'default');
 
 /**
- * Branding
- *
- */
-	Configure::writer('App.brand', APP_BRAND);
-
-/**
  * Uncomment this line and correct your server timezone to fix
  * any date & time related errors.
  */
