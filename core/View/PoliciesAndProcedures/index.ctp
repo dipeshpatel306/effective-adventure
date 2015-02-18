@@ -1,12 +1,12 @@
 <?php
+$pnp_name = Configure::read('Theme.pnp_name');
 $this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
-$this->Html->addCrumb('Security Policies & Procedures');
-
-	$group = $this->Session->read('Auth.User.group_id');
+$this->Html->addCrumb($pnp_name);
+$group = $this->Session->read('Auth.User.group_id');
 ?>
 
 <div class="policiesAndProcedures index">
-	<h2><?php echo __('Security Policies And Procedures'); ?></h2>
+	<h2><?php echo __($pnp_name); ?></h2>
 	<table>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id', 'Policy'); ?></th>

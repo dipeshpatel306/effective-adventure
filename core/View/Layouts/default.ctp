@@ -15,7 +15,13 @@
 	</title>
 	<?php
 		echo $this->Html->meta('favicon.ico', '/img/favicon.ico', array('type' => 'icon'));
-		echo $this->Html->css(array('base', '/js/lib/jquery-social-stream/css/dcsns_light.css', 'styles', 'https://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css'));
+		echo $this->Html->css(array(
+			'base',
+			'styles',
+			Configure::read('App.brand'),
+			'/js/lib/jquery-social-stream/css/dcsns_light.css',
+			'https://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css'
+		));
     	if(($this->params['controller']=='risk_assessments'||$this->params['controller']=='organization_profiles')&&$this->params['action']=='view'){
       		echo $this->Html->css(array('print'), 'stylesheet', array('media' => 'print'));
     	}		
@@ -31,8 +37,8 @@
 	<div id="container">
 		<div id="wrapper">
 		<div id="header">
-			<?php echo $this->Html->image('pii_protect_logo.png', array(
-					'alt' => 'PII-Protect',
+			<?php echo $this->Html->image(Configure::read('Theme.logo'), array(
+					'alt' => Configure::read('Theme.copyright'),
 					'url' => array('controller' => '/'),
 					'class' => 'logo floatLeft'
 					));
@@ -62,7 +68,7 @@
 		</div><!--wrapper -->
 		<div id="footer">
 			<div class='footerContent'>
-				PII Protect Copyright &copy; <?php echo $year; ?>
+				<?php echo Configure::read('Theme.copyright'); ?> Copyright &copy; <?php echo $year; ?>
 			</div>
 		</div>
 

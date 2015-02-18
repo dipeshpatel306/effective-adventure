@@ -184,6 +184,12 @@ Configure::write('Dispatcher.filters', array(
 ));
 
 /**
+ * Brand
+ */
+Configure::write('App.brand', APP_BRAND);
+Configure::load(APP_BRAND);
+
+/**
  * Configures default file logging options
  */
 App::uses('CakeLog', 'Log');

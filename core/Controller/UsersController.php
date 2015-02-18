@@ -187,7 +187,7 @@ class UsersController extends AppController {
  * Login Method
  */
     public function login($email=null) {
-        $this->set('title_for_layout', 'PII Protect Portal');
+        $this->set('title_for_layout', Configure::read('Theme.title'));
         if ($this->request->is('post')) {
             $user = $this->User->find(
                 'first', 

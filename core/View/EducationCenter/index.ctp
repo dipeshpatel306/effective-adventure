@@ -2,6 +2,7 @@
 $this->Html->addCrumb('Education Center');
 
 	$acct = $this->Session->read('Auth.User.Client.account_type');
+	$training_name = Configure::read('Theme.training_name');
 ?>
 <div class="educationCenter index">
 	<h2><?php echo __('Education Center'); ?></h2>
@@ -16,12 +17,12 @@ $this->Html->addCrumb('Education Center');
 			<?php 
 				echo $this->Html->image('training_tile.jpg', array(
 						'class' => 'dashTile',
-						'alt' => 'Security Training'
+						'alt' => $training_name
 				));
 			?>
-			<h3>Security Training</h3>		
+			<h3><?php echo $training_name; ?></h3>		
 		</div>
-		<div class="dashSum">Security Training</div>
+		<div class="dashSum"><?php echo $training_name; ?></div>
 		<div class="dashBtn approved">
 			<div class="btnWrapMed">
 			<div class="btnText">Learn More</div>
@@ -39,12 +40,12 @@ $this->Html->addCrumb('Education Center');
 			<?php 
 				echo $this->Html->image('training_tile.jpg', array(
 						'class' => 'dashTile',
-						'alt' => 'Security Training'
+						'alt' => $training_name
 				));
 			?>
-			<h3>Security Training</h3>		
+			<h3><?php echo $training_name; ?></h3>		
 		</div>
-		<div class="dashSum">Security Training</div>
+		<div class="dashSum"><?php echo $training_name; ?></div>
 		<div class="dashBtn denied">
 			<div class="btnWrapWide">
 			<div class="btnText">Subscribers Only!</div>
@@ -88,7 +89,7 @@ $this->Html->addCrumb('Education Center');
 				if($educationCenter['EducationCenter']['name'] == 'HIPAA Security Training'){
 					echo $this->Html->image('training_tile.jpg', array(
 							'class' => 'dashTile',
-							'alt' => 'Security Training'
+							'alt' => $training_name
 					));
 				} else {
 					echo  $this->Html->image('movie.png', array('class' => 'dashTile'));

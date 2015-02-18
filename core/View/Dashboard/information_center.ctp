@@ -69,7 +69,7 @@ $this->Html->addCrumb('Information Center');
 								)) .
 					'<h3>HIPAA Information</h3>' .
 					'</div>' .
-					'<div class="dashSum">Security Training</div>' . $approved .
+					'<div class="dashSum">' . Configure::read('Theme.training_name') . '</div>' . $approved .
 					'</div>', 'http://www.hipaasecurenow.com/?cat=9', 
 					array('escape' => false, 'target'=>'_blank')
 			);

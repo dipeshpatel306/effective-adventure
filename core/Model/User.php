@@ -191,7 +191,7 @@ class User extends AppModel {
 /**
  * Associate users and groups to Acl table
  */
-    public $actsAs = array('Acl' => array('type' => 'requester'));
+    //public $actsAs = array('Acl' => array('type' => 'requester'));
 
     public function parentNode() {
         if (!$this->id && empty($this->data)) {

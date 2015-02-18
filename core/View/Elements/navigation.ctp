@@ -1,4 +1,7 @@
-<?php if($this->Session->read('Auth.User')): ?>
+<?php 
+$training_name = Configure::read('Theme.training_name');
+if($this->Session->read('Auth.User')): 
+?>
 	
 <div class="nav">
 	<ul>
@@ -39,7 +42,7 @@
 
 		<li><?php echo $this->Html->link('Education Center', array('controller' => '/', 'action' => ''));?> <!-- TODO Add Videos -->
 			<ul>
-				<li><?php echo $this->Html->link('HIPAA Security Training', 'https://www.hipaasecurenow.com/portal/', array('target' => '_blank')); ?></li>
+				<li><?php echo $this->Html->link($training_name, 'https://www.hipaasecurenow.com/portal/', array('target' => '_blank')); ?></li>
 				<li><?php echo $this->Html->link('What is HIPAA? (Part 1)', array('controller' => '/', 'action' => '')); ?></li>
 				<li><?php echo $this->Html->link('What is HIPAA? (Part 2)', array('controller' => '/', 'action' => '')); ?></li>
 				<li><?php echo $this->Html->link('10 Things You Can Do To Protect Patient Data', array('controller' => '/', 'action' => '')); ?></li>
@@ -53,7 +56,7 @@
 			<ul>
 				<li><?php echo $this->Html->link('Policies & Procedures', 'http://www.hipaasecurenow.com/?cat=10', array('target' => '_blank')); ?></li>
 				<li><?php echo $this->Html->link('Risk Assessments', 'http://www.hipaasecurenow.com/?cat=8', array('target' => '_blank')); ?></li>
-				<li><?php echo $this->Html->link('Security Training', 'http://www.hipaasecurenow.com/?cat=9', array('target' => '_blank')); ?></li>
+				<li><?php echo $this->Html->link($training_name, 'http://www.hipaasecurenow.com/?cat=9', array('target' => '_blank')); ?></li>
 				<li><?php echo $this->Html->link('HIPAA Audits', 'http://www.hipaasecurenow.com/?s=HIPAA+Audits', array('target' => '_blank')); ?></li>
 				<li><?php echo $this->Html->link('What to Do If You Get Audited', 				'http://www.hipaasecurenow.com/index.php/you-received-a-hipaa-audit-notification-now-what/', array('target' => '_blank')); ?></li>
 				<li><?php echo $this->Html->link('Practice Administrators Role w/HIPAA', 				'http://www.hipaasecurenow.com/index.php/practice-administrators-are-the-key-to-hipaa-security/', array('target' => '_blank')); ?></li>
