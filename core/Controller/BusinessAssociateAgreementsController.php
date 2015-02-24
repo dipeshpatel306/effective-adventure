@@ -157,8 +157,10 @@ class BusinessAssociateAgreementsController extends AppController {
 				$this->Session->setFlash(__('The business associate agreement could not be saved. Please, try again.'));
 			}
 		}
+		$this->loadModel('State');
+		$states = $this->State->getStates();
 		$clients = $this->BusinessAssociateAgreement->Client->find('list');
-		$this->set(compact('clients'));
+		$this->set(compact('clients', 'states'));
 	}
 
 /**
@@ -210,9 +212,11 @@ class BusinessAssociateAgreementsController extends AppController {
 		} else {
 			$this->request->data = $this->BusinessAssociateAgreement->read(null, $id);
 		}
+		$this->loadModel('State');
+		$states = $this->State->getStates();
 		$clients = $this->BusinessAssociateAgreement->Client->find('list');
 		$doc = $this->BusinessAssociateAgreement->data['BusinessAssociateAgreement']['attachment'];
-		$this->set(compact('clients', 'doc'));
+		$this->set(compact('clients', 'doc', 'states'));
 	}
 
 /**

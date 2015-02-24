@@ -1,31 +1,19 @@
 <?php
-//$this->Html->addCrumb('Organization Profiles', '/organization_profiles');
 $this->Html->addCrumb('Edit Organization Profile');
-
-	$states = array('AL'=>"Alabama", 'AK'=>"Alaska", 'AZ'=>"Arizona", 'AR'=>"Arkansas", 'CA'=>"California", 'CO'=>"Colorado",
-					'CT'=>"Connecticut", 'DE'=>"Delaware", 'DC'=>"District Of Columbia", 'FL'=>"Florida", 'GA'=>"Georgia",
-					'HI'=>"Hawaii", 'ID'=>"Idaho", 'IL'=>"Illinois", 'IN'=>"Indiana", 'IA'=>"Iowa", 'KS'=>"Kansas",
-					'KY'=>"Kentucky", 'LA'=>"Louisiana", 'ME'=>"Maine", 'MD'=>"Maryland", 'MA'=>"Massachusetts", 'MI'=>"Michigan",
-					'MN'=>"Minnesota", 'MS'=>"Mississippi", 'MO'=>"Missouri", 'MT'=>"Montana", 'NE'=>"Nebraska", 'NV'=>"Nevada",
-					'NH'=>"New Hampshire", 'NJ'=>"New Jersey", 'NM'=>"New Mexico", 'NY'=>"New York", 'NC'=>"North Carolina",
-					'ND'=>"North Dakota", 'OH'=>"Ohio", 'OK'=>"Oklahoma", 'OR'=>"Oregon", 'PA'=>"Pennsylvania", 'RI'=>"Rhode Island",
-					'SC'=>"South Carolina", 'SD'=>"South Dakota", 'TN'=>"Tennessee", 'TX'=>"Texas", 'UT'=>"Utah", 'VT'=>"Vermont",
-					'VA'=>"Virginia", 'WA'=>"Washington", 'WV'=>"West Virginia", 'WI'=>"Wisconsin", 'WY'=>"Wyoming"
-					);
-	$choice = array('Yes' => 'Yes', 'No' => 'No');
-	$osLong = array('Windows 8' => 'Windows 8', 'Windows 7' => 'Windows 7', 'Windows Vista' => 'Windows Vista', 'Windows XP' => 'Windows XP',
+$choice = array('Yes' => 'Yes', 'No' => 'No');
+$osLong = array('Windows 8' => 'Windows 8', 'Windows 7' => 'Windows 7', 'Windows Vista' => 'Windows Vista', 'Windows XP' => 'Windows XP',
 				'Older Windows (ME, 2000, NT)' => 'Older Windows (ME, 2000, NT)', 'Mac OS' => 'Mac OS', 'UNIX/Linux' => 'UNIX/Linux', 'Other' => 'Other');
-	$os = array('Windows' => 'Windows', 'UNIX' => 'UNIX', 'Linux' => 'Linux', 'Mac OS' => 'Mac OS', 'Other' => 'Other');
-	$emailVendor = array('Microsoft Exchange' => 'Microsoft Exchange', 'Google Gmail' => 'Google Gmail',
-						'Yahoo! Mail' => 'Yahoo! Mail', 'Hotmail' => 'Hotmail', 'Other' => 'Other');
-	$emailHost = array('Onsite' => 'Onsite', 'Hosted by a 3rd party' => 'Hosted by a 3rd party',
+$os = array('Windows' => 'Windows', 'UNIX' => 'UNIX', 'Linux' => 'Linux', 'Mac OS' => 'Mac OS', 'Other' => 'Other');
+$emailVendor = array('Microsoft Exchange' => 'Microsoft Exchange', 'Google Gmail' => 'Google Gmail',
+					'Yahoo! Mail' => 'Yahoo! Mail', 'Hotmail' => 'Hotmail', 'Other' => 'Other');
+$emailHost = array('Onsite' => 'Onsite', 'Hosted by a 3rd party' => 'Hosted by a 3rd party',
 					'Cloud(Google, Yahoo!, Hotmail)' => 'Cloud(Google, Yahoo!, Hotmail)', 'Other' => 'Other' );
-	$host = array('Onsite' => 'Onsite', 'Vendor Hosted' => 'Vendor Hosted', 'Hosted by a 3rd party' => 'Hosted by a 3rd party', 'Other' => 'Other' );
-	$emrehr = array('Running on a server in office' => 'Running on a server in office', 'Hosted by vendor(Cloud/SaaS)' => 'Hosted by vendor(Cloud/SaaS)', 'Hosted by third party(Not EMR vendor)' => 'Hosted by third party(Not EMR vendor)', 'Other' => 'Other');
+$host = array('Onsite' => 'Onsite', 'Vendor Hosted' => 'Vendor Hosted', 'Hosted by a 3rd party' => 'Hosted by a 3rd party', 'Other' => 'Other' );
+$emrehr = array('Running on a server in office' => 'Running on a server in office', 'Hosted by vendor(Cloud/SaaS)' => 'Hosted by vendor(Cloud/SaaS)', 'Hosted by third party(Not EMR vendor)' => 'Hosted by third party(Not EMR vendor)', 'Other' => 'Other');
 
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id');
-	$acct = $this->Session->read('Auth.User.Client.account_type');
+$group = $this->Session->read('Auth.User.group_id');
+$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 
 <div class="fouc organizationProfiles form">

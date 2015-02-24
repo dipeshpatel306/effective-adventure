@@ -751,17 +751,11 @@ button.prev:hover, button.next:hover{
 .training b a:link h2{
     font-weight: bold;
 }
-.training h2{
-    color: red
-}
 .floatRight {
     float: right;
 }
 .floatLeft {
     float: left;
-}
-.important{
-	color: red;
 }
 .completeBox{
 	display:none;

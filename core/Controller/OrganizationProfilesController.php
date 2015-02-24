@@ -115,9 +115,10 @@ class OrganizationProfilesController extends AppController {
 		if (!$this->request->is('ajax')) {
 			$this->setReferer();
 		}
+		$this->loadModel('State');
+		$states = $this->State->getStates();
 		$clients = $this->OrganizationProfile->Client->find('list');
-		$operatingSystems = $this->OrganizationProfile->OperatingSystem->find('list');
-		$this->set(compact('clients', 'operatingSystems'));
+		$this->set(compact('clients', 'states'));
 	}
 
 /**

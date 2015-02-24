@@ -5,7 +5,6 @@ App::import('Vendor', 'constants');
  * OrganizationProfile Model
  *
  * @property Client $Client
- * @property OperatingSystem $OperatingSystem
  */
 class OrganizationProfile extends AppModel {
 
@@ -167,29 +166,6 @@ class OrganizationProfile extends AppModel {
         '117' => array('phi_on_smartphones', null),
         '118' => array('mu_incentive_program', null)
     );
-
-/**
- * hasAndBelongsToMany associations
- *
- * @var array
- */
-	public $hasAndBelongsToMany = array(
-		'OperatingSystem' => array(
-			'className' => 'OperatingSystem',
-			'joinTable' => 'operating_systems_organization_profiles',
-			'foreignKey' => 'organization_profile_id',
-			'associationForeignKey' => 'operating_system_id',
-			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		)
-	);
 
 /**
  * Check Client Owner

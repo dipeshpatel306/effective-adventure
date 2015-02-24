@@ -1,5 +1,5 @@
-/hsn/tmp
-/bsn/tmp
+/hsn/app/tmp
+/bsn/app/tmp
 /core/Cake/Console/Templates/skel/tmp/
 /plugins
 /vendors
