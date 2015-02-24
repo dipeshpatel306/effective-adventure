@@ -12,7 +12,7 @@ $this->Html->addCrumb('Training');
   <br />
   <p>All three sections should take about 1 hour to complete. You can stop at any time and continue where you left off later.</p>
   <br />
-  <b><h3>You are about to be taken to to the <span class='important'>HIPAA Security Training</span></h3></b>
+  <b><h3>You are about to be taken to the <span class='important'>HIPAA Security Training</span></h3></b>
   <br />
   <p>The training will open in another window.</p><br />
   <p>When you are done please close the window to return to the HIPAA Compliance Portal.</p><br />
