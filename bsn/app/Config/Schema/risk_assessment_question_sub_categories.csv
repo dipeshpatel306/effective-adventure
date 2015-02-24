@@ -1,0 +1,14 @@
+id,name,video_name,safeguard_category_id
+1,"Security Management",,1
+2,"Business Associates",,1
+3,"Contingency Planning",,1
+4,"Information Access",,1
+5,"Security Response",,1
+6,"Security Awareness",,1
+7,"Facility Access Control",,2
+8,"Workstation Security",,2
+9,"Device and Media Control",,2
+10,"Password Control",,3
+11,"Audit Controls",,3
+12,Encryption,,3
+13,"Access Control",,3

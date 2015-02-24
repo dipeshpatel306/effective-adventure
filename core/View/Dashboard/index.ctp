@@ -119,8 +119,9 @@
 					array('escape' => false)
 			);
 
-		// Social Center Every one sees
-		echo $this->Html->link(
+		if (Configure::read('Theme.display_social_center')) {
+			// Social Center Every one sees
+			echo $this->Html->link(
 					'<div class="dashBox">' .
 					'<div class="dashHead">' .
 					$this->Html->image('social.png', array(
@@ -134,7 +135,8 @@
 					array('controller' => 'dashboard', 'action' => 'social_center'),
 					array('escape' => false)
 			);
-
+		}
+		
 		// Education Center. Everyone sees
 		echo $this->Html->link(
 					'<div class="dashBox">' .
