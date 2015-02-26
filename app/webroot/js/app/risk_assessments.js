@@ -110,7 +110,7 @@ require(['jquery', 'app/form', 'app/video', 'tabspaging'], function($, formhelpe
 	    
 	    // embedded videos
 	    $('.raVideo').each(function() {
-       		videohelper.showVideo($(this).attr('id'), $(this).attr('id'), 'false', '600', '300'); 
+       		videohelper.showVideo($(this).attr('id'), $(this).attr('id'), 'false', '600', '300', '/img/raq_previews/' + $(this).attr('qnum') + '.png'); 
     	});
 	});
 });
