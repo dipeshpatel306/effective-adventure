@@ -9,8 +9,8 @@ $this->Html->addCrumb('Add Risk Assessment Question');
 	<?php
 		echo $this->Form->input('category_question_number', array('class' => 'num', 'min' => '1', 'label' => 'Question Number'));
 		echo $this->Form->input('question');
-		echo $this->Form->input('additional_information');
-		echo $this->Form->input('how_to_answer_question');
+		echo $this->Form->input('additional_information',  array('class' => 'ckeditor'));
+		echo $this->Form->input('how_to_answer_question',  array('class' => 'ckeditor'));
 		echo $this->Form->input('category_id');
 	?>
 	</fieldset>

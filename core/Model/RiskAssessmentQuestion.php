@@ -82,4 +82,22 @@ class RiskAssessmentQuestion extends AppModel {
 		$this->data[$this->alias]['question_number'] = count($this->find('list'))+1;
 		return true;
 	}
+	
+	public function afterSave($created, $options = array()) {
+		if ($created) {
+			$this->updateAll(
+				array('RiskAssessmentQuestion.category_question_number' => 'RiskAssessmentQuestion.category_question_number+1'),
+				array('RiskAssessmentQuestion.category_question_number >=' => $this->data[$this->alias]['category_question_number'],
+					  'RiskAssessmentQuestion.id <>' => $this->data[$this->alias]['id'])
+			);
+		}
+	}
+	
+	public function beforeDelete($cascade = true) {
+		$this->updateAll(
+			array('RiskAssessmentQuestion.category_question_number' => 'RiskAssessmentQuestion.category_question_number-1'),
+			array('RiskAssessmentQuestion.category_question_number >' => $this->field('category_question_number'))
+		);
+		return true;
+	}
 }
