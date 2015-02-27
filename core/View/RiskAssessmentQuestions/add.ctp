@@ -7,7 +7,7 @@ $this->Html->addCrumb('Add Risk Assessment Question');
 	<fieldset>
 		<legend><?php echo __('Add Risk Assessment Question'); ?></legend>
 	<?php
-		echo $this->Form->input('question_number', array('options' => array_combine(range(1,48,1), range(1,48,1))));
+		echo $this->Form->input('category_question_number', array('class' => 'num', 'min' => '1', 'label' => 'Question Number'));
 		echo $this->Form->input('question');
 		echo $this->Form->input('additional_information');
 		echo $this->Form->input('how_to_answer_question');
