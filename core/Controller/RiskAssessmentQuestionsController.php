@@ -54,6 +54,8 @@ class RiskAssessmentQuestionsController extends AppController {
 				$this->Session->setFlash(__('The risk assessment question could not be saved. Please, try again.'));
 			}
 		}
+		$categories = $this->RiskAssessmentQuestion->RiskAssessmentQuestionSubCategory->find('list');
+		$this->set(compact('categories'));
 	}
 
 /**
@@ -78,6 +80,8 @@ class RiskAssessmentQuestionsController extends AppController {
 		} else {
 			$this->request->data = $this->RiskAssessmentQuestion->read(null, $id);
 		}
+		$categories = $this->RiskAssessmentQuestion->RiskAssessmentQuestionSubCategory->find('list');
+		$this->set(compact('categories'));
 	}
 
 /**

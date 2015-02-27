@@ -11,6 +11,7 @@ $this->Html->addCrumb('Add Risk Assessment Question');
 		echo $this->Form->input('question');
 		echo $this->Form->input('additional_information');
 		echo $this->Form->input('how_to_answer_question');
+		echo $this->Form->input('category_id');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

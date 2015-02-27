@@ -13,6 +13,7 @@ $this->Html->addCrumb('Edit Risk Assessment Question');
 		echo $this->Form->input('additional_information', array('class' => 'ckeditor'));
 		echo $this->Form->input('how_to_answer_question', array('class' => 'ckeditor'));
         echo $this->Form->input('video_name');
+		echo $this->Form->input('category_id');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
