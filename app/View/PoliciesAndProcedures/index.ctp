@@ -52,6 +52,7 @@ $this->Html->addCrumb('HIPAA Policies & Procedures');
 	
 	<?php if($group == 1): ?>
 	<ul>
+	    <li><?php echo $this->Html->link(__('New Policy'), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('List Documents'), array('controller' => 'policies_and_procedures_documents', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Documents'), array('controller' => 'policies_and_procedures_documents', 'action' => 'add')); ?> </li>
 	</ul>
