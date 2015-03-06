@@ -6,35 +6,44 @@ import tempfile
 import zipfile
 
 
-def package(env, version) :
-	app_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'app')
-	if not os.path.exists(app_path) :
-		print('error: Could not find app directory {}'.format(app_path))
-		os._exit(1)
-		
-	tmp_path = tempfile.mkdtemp()
-	shutil.copytree(
-		app_path, os.path.join(tmp_path, 'app'),
-		ignore=shutil.ignore_patterns('*.git')
-	)
-	
-	config_dir = os.path.join(tmp_path, 'app', 'Config')
-	for filename in ('core.php', 'database.php') :
-		filepath = os.path.join(config_dir, filename)
+def replace_with_suffixed_versions(path, filenames, suffix) :
+	for filename in filenames :
+		filepath = os.path.join(path, filename)
 		os.remove(filepath)
-		env_file = '.'.join((filepath, env.lower()))
-		shutil.copyfile(env_file, filepath)
+		suffix_file = '.'.join((filepath, suffix))
+		shutil.copyfile(suffix_file, filepath)
 		for fpath in glob.glob(filepath + '.*') :
 			os.remove(fpath)
-		
-	shutil.rmtree(os.path.join(tmp_path, 'app', 'webroot', 'files'))
+
+def package(brand, env, version) :
+	tmp_path = tempfile.mkdtemp()
+	dirnames = ('core', 'webroot', brand)
+	for dirname in dirnames :
+		dirpath = os.path.join(os.path.dirname(os.path.realpath(__file__)), dirname)
+		if not os.path.exists(dirpath) :
+			print ('error: could not find direcotry {}'.format(dirpath))
+			os._exit(1)
+		shutil.copytree(
+			dirpath, os.path.join(tmp_path, dirname),
+			ignore=shutil.ignore_patterns('*.git')
+		)	
 	
-	zip_name = 'hipaa_{e}_{v}.zip'.format(e=env.lower(), v=version)
-	with zipfile.ZipFile(zip_name, mode='w', compression=zipfile.ZIP_DEFLATED) as zipf :
-		for root, dirs, files in os.walk(os.path.join(tmp_path, 'app')) :
-			relative_root = root.replace(tmp_path + os.sep, '')
-			for f in files :
-				zipf.write(os.path.join(root, f), arcname=os.path.join(relative_root, f))
+	webroot_dir = os.path.join(tmp_path, 'webroot')
+	replace_with_suffixed_versions(webroot_dir, ('favicon.ico', 'index.php'), brand)
+	
+	config_dir = os.path.join(tmp_path, brand, 'app', 'Config')
+	replace_with_suffixed_versions(config_dir, ('core.php', 'database.php'), env)
+	
+	shutil.rmtree(os.path.join(webroot_dir, 'files'))
+	
+	zip_name = '{b}_{e}_{v}.zip'.format(b=brand, e=env, v=version)
+	zip_path = os.path.join('build', zip_name)
+	with zipfile.ZipFile(zip_path, mode='w', compression=zipfile.ZIP_DEFLATED) as zipf :
+		for dirname in dirnames :
+			for root, dirs, files in os.walk(os.path.join(tmp_path, dirname)) :
+				relative_root = root.replace(tmp_path + os.sep, '')
+				for f in files :
+					zipf.write(os.path.join(root, f), arcname=os.path.join(relative_root, f))
 
 	shutil.rmtree(tmp_path, ignore_errors=True)
 	
@@ -42,7 +51,8 @@ def package(env, version) :
 	
 	
 if __name__ == "__main__" :
-	env = sys.argv[1]
-	version = sys.argv[2]
-	print('Packaging {} {}'.format(env, version))
-	package(env, version)
+	brand = sys.argv[1]
+	env = sys.argv[2]
+	version = sys.argv[3]
+	print('Packaging {} {} {}'.format(brand, env, version))
+	package(brand.lower(), env.lower(), version)
