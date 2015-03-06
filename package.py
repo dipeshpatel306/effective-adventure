@@ -34,7 +34,7 @@ def package(brand, env, version) :
 	config_dir = os.path.join(tmp_path, brand, 'app', 'Config')
 	replace_with_suffixed_versions(config_dir, ('core.php', 'database.php'), env)
 	
-	shutil.rmtree(os.path.join(webroot_dir, 'files'))
+	shutil.rmtree(os.path.join(tmp_path, brand, 'app', 'webroot', 'files'))
 	
 	zip_name = '{b}_{e}_{v}.zip'.format(b=brand, e=env, v=version)
 	zip_path = os.path.join('build', zip_name)
