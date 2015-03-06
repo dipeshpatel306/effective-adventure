@@ -179,7 +179,7 @@ class AppController extends Controller {
 
 		$path = '/files/' . Inflector::underscore($this->{$this->modelClass}->alias) . '/attachment/';
 
-		$file = WWW_ROOT . $path . $dir . '/' . $filename;
+		$file = APP . DS . 'webroot' . DS . $path . $dir . DS . $filename;
    	 	$this->response->file($file, array('download' => true));
     	//Return reponse object to prevent controller from trying to render a view
     	return $this->response;
