@@ -65,7 +65,7 @@ class DATABASE_CONFIG {
 		'host' => '127.0.0.1',
 		'login' => 'hsn',
 		'password' => 'HipaaSN2014!',
-		'database' => 'compliance',
+		'database' => 'piiprotect',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
