@@ -67,18 +67,18 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
         <li><a href='#tab7' class='orgProfTab'>Systems</a></li>
         <li><a href='#tab8' class='orgProfTab'>Additional Information</a></li>
     </ul>
-    <div class='hidden tooltip', for="OrganizationProfilePhiOnServers">
-        <p><strong>For Covered Entities: </strong>This may include EHR/EMR, Practice Management Systems, Digital X-rays, PACS, Lab Results, Billing Systems, Spreadsheets, Documents, Databases, Emails, etc.</p>
+    <div class='hidden tooltip', for="OrganizationProfilePiiOnServers">
+        <p><strong>For Covered Entities: </strong>This may include Billing Systems, Spreadsheets, Documents, Databases, Emails, etc.</p>
         <p><strong>For Business Associates: </strong>This may include Spreadsheets, Documents, Data Backups, Databases, Emails, Order Management Systems, Customer Relationship Management Systems, etc.</p>
     </div>
     <div class='hidden tooltip', for='OrganizationProfileNetworkOperatingSystem'>
         <p>This is the operating system used on your servers.</p>
     </div>
-    <div class='hidden tooltip', for='OrganizationProfilePhiOnWorkstations'>
-        <p>Keep in mind, patient information may be in Documents, Spreadsheets, PDFs, Email Attachments, Screenshots, Audio/Videos, etc.</p>
+    <div class='hidden tooltip', for='OrganizationProfilePiiOnWorkstations'>
+        <p>Keep in mind, PII may be in Documents, Spreadsheets, PDFs, Email Attachments, Screenshots, Audio/Videos, etc.</p>
     </div>
-    <div class='hidden tooltip', for='OrganizationProfilePhiOnLaptops'>
-        <p>Keep in mind, patient information may be in Documents, Spreadsheets, PDFs, Email Attachments, Screenshots, Audio/Videos, etc.</p>
+    <div class='hidden tooltip', for='OrganizationProfilePiiOnLaptops'>
+        <p>Keep in mind, PII may be in Documents, Spreadsheets, PDFs, Email Attachments, Screenshots, Audio/Videos, etc.</p>
     </div>
     <div id='tab1' class='tabBox'>
     <?php
@@ -160,7 +160,7 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
           <p>In this section we will ask you questions about your network including your servers, desktops, laptops, etc. This will help us get an overview of your network and assist with the Risk Assessment.</p>   
     	  <p>Personally Identifiable Information (PII) and Sensitive Data</p>
     	  <p>Use the below information to help answer questions about PII and Sensitive Data. Keep in mind that PII might be clients, customers, vendors, employees, etc. The following is PII and Sensitive Data</p>
-    	  <p>Personal Identifiers</p>
+    	  <p class='underline italic'>Personal Identifiers</p>
     	  <ul>
     		<li>Name</li>
     		<li>Social Security number</li>
@@ -170,13 +170,15 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
     		<li>Passport numbers</li>
     		<li>Other Government ID # or unique identifiers</li>
     	  </ul>
-    	  <p>Contact Information</p>
+    	  <br />
+    	  <p class='underline italic'>Contact Information</p>
     	  <ul>
     	  	<li>E-mail address</li>
     	  	<li>Phone number</li>
     	  	<li>Postal address</li>
     	  </ul>
-    	  <p>Other personal data</p>
+    	  <br />
+    	  <p class='underline italic'>Other personal data</p>
     	  <ul>
     	  	<li>User names, avatars, etc.</li>
     	  	<li>Mother's maiden name</li>
@@ -194,7 +196,8 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
 			<li>Criminal history</li>
 			<li>Other PII (e.g., in unstructured data fields completed by user)</li>
 	      </ul>
-	      <p>Biometric identifiers and similar physical-based data</p>
+	      <br />
+    	  <p class='underline italic'>Biometric identifiers and similar physical-based data</p>
 	      <ul>
 			<li>Signature</li>
 			<li>Fingerprints, handprints</li>
@@ -203,7 +206,8 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
 			<li>Physical movements (e.g., finger swipes, keystrokes)</li>
 			<li>DNA markers</li>
 		  </ul>
-	      <p>Device-based or -related data</p>
+	      <br />
+    	  <p class='underline italic'>Device-based or -related data</p>
 	      <ul>
 			<li>User names</li>
 			<li>Passwords</li>
@@ -225,13 +229,15 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
 			<li>Network communications data</li>
 			<li>Device settings or preferences (e.g., security, sharing, status, etc.)</li>
 		  </ul>
-		  <p>Web site or platform-related data</p>
+		  <br />
+    	  <p class='underline italic'>Web site or platform-related data</p>
 		  <ul>
 		  	<li>Log data (e.g., IP address, time, date, referrer site, browser type)</li>
 			<li>Tracking data (e.g., single- or multi-session cookies, beacons)</li>
 			<li>Forms data</li>
 		  </ul>
-		  <p>Sensitive data</p>
+		  <br />
+    	  <p class='underline italic'>Sensitive data</p>
 			<li>Organization's proprietary information</li>
 			<li>Organizations plans or information that might be damaging if a competitor accessed the information</li>
 		  </ul>
@@ -270,7 +276,7 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
     ?>
     </div>
 
-    <div id='tab5' class='tabBox'>
+    <div id='tab4' class='tabBox'>
         <p class='highlight'>Portable media includes: USB drives, CD-ROM, DVD-ROM, Floppy Drives, Tablet Computers (iPad), etc.</p>
     <?php
         echo $this->Form->input('portable_media_devices', array('label' => 'Do you use portable media devices?',
@@ -281,7 +287,7 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
     ?>
     </div>
 
-    <div id='tab6' class='tabBox'>
+    <div id='tab5' class='tabBox'>
     <?php
         echo $this->Form->input('backup_media', array('label' => 'Do you utilize backup media?', 'options' => $choice, 'empty' => 'Please Select One'));
     ?>
@@ -290,7 +296,7 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
       </div>
     </div>
 
-    <div id='tab7' class='tabBox'>
+    <div id='tab6' class='tabBox'>
     <?php
         echo $this->Form->input('smartphones', array('label' => 'Do you utilize smartphones?', 'options' => $choice, 'empty' => 'Please Select One'));
         echo $this->Form->input('pii_on_smartphones', array('label' => 'Do you have PII or Sensitive Data on any Smartphones (including emails, text messages, etc)?', 'options' => $choice));
@@ -298,7 +304,7 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
     ?>
     </div>
 
-    <div id='tab8' class='tabBox'>
+    <div id='tab7' class='tabBox'>
         <p class='highlight'>Please list any systems that contain PII or Sensitive Data.  Keep in mind that PII might be clients, customers, vendors, employees, etc. Systems may include: Billing Systems, Customer Relationship Management, Order Management Systems, Website(s), Network File Shares, Collaborative Systems (Microsoft SharePoint, Google Docs, etc.), Multi-function copy/print/scanners that contain hard drives, Database Systems, Employee / Human Resource Management Systems, Vendor Management Systems, Accounting and Financial Systems, etc.</p>
     <?php
         echo '<h3 class="highlight">System 1</h3>';
@@ -342,10 +348,10 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
         echo $this->Form->input('system_5_details', array('label' => 'System 5 - Please provide details of the system (how it is used, who uses it, etc.): '));
     ?>
     </div>
-    <div id="tab9" class='tabBox'>
+    <div id="tab8" class='tabBox'>
         <p class='highlight'>Please provide any additional information that will help us understand your network/computer environment.</p>
         <ul>
-            <li><p class='highlight'>List any additional systems that contain patient information or electronic protected health information (ePHI).</p></li>
+            <li><p class='highlight'>List any additional systems that contain PII.</p></li>
             <li><p class='highlight'>List any known threats or issues that you have experienced in the past (floods, crimes, etc.)</p></li>
             <li><p class='highlight'>Use this section to provide anything that you feel will help us with the Risk Assessment</p></li>
         </ul>

@@ -26,6 +26,15 @@ h1, h2, h3, h4, h5, fieldset legend{
 h3{
 	font-size: 1.3em;
 }
+.underline {
+	text-decoration: underline;
+}
+.italic {
+	font-style: italic;
+}
+.highlight{
+	color: #bc1310;
+}
 .clear{
 	clear: both;
 }

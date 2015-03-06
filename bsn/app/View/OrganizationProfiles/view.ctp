@@ -13,6 +13,9 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 	    <dt>Client</dt>
 	    <dd><?php echo ($organizationProfile['Client']['name']); ?>&nbsp;</dd>
 	    
+	    <dt>Industry</dt>
+	    <dd><?php echo ($organizationProfile['OrganizationProfile']['industry']); ?>&nbsp;</dd>
+	    	
 	    <dt>Administrator Name</dt>
 	    <dd><?php echo ($organizationProfile['OrganizationProfile']['administrator_name']); ?>&nbsp;</dd>
 	    
@@ -253,49 +256,6 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 			&nbsp;
 		</dd>
 		
-		<br /><h3>EMR/EHR</h3>
-		<dt>EMR/EHR Implemented</dt>
-		<dd>
-			<?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_implemented']); ?>
-			&nbsp;
-		</dd>
-		
-		<dt>EMP/EHR Vendor</dt>
-		<dd>
-			<?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_vendor']); ?>
-			&nbsp;
-		</dd>
-		
-		<dt>EMR/EHR Internal Name</dt>
-		<dd>
-			<?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_internal_name']); ?>
-			&nbsp;
-		</dd>
-		
-		<dt>EMR/EHR Operating System</dt>
-		<dd>
-			<?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_os']); ?>
-			&nbsp;
-		</dd>
-		
-		<dt>EMR/EHR Details</dt>
-		<dd>
-			<?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_details']); ?>
-			&nbsp;
-		</dd>
-		
-		<dt>EMR/EHR Location</dt>
-		<dd>
-			<?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_location']); ?>
-			&nbsp;
-		</dd>
-		
-		<dt>EMR/EHR Location Description</dt>
-		<dd>
-			<?php echo ($organizationProfile['OrganizationProfile']['emr_ehr_description']); ?>
-			&nbsp;
-		</dd>
-		
 		<br /><h3>Email</h3>
 		
 		<dt>Email</dt>
@@ -401,9 +361,9 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
 			&nbsp;
 		</dd>
 		
-		<dt>Number of ePHI Records</dt>
+		<dt>Number of PII Records</dt>
 		<dd>
-			<?php echo ($organizationProfile['OrganizationProfile']['system_1_ephi']); ?>
+			<?php echo ($organizationProfile['OrganizationProfile']['system_1_pii']); ?>
 			&nbsp;
 		</dd>
 		
@@ -439,9 +399,9 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
             &nbsp;
         </dd>
         
-        <dt>Number of ePHI Records</dt>
+        <dt>Number of PII Records</dt>
         <dd>
-            <?php echo ($organizationProfile['OrganizationProfile']['system_2_ephi']); ?>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_2_pii']); ?>
             &nbsp;
         </dd>
         
@@ -478,9 +438,9 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
             &nbsp;
         </dd>
         
-        <dt>Number of ePHI Records</dt>
+        <dt>Number of PII Records</dt>
         <dd>
-            <?php echo ($organizationProfile['OrganizationProfile']['system_3_ephi']); ?>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_3_pii']); ?>
             &nbsp;
         </dd>
         
@@ -517,9 +477,9 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
             &nbsp;
         </dd>
         
-        <dt>Number of ePHI Records</dt>
+        <dt>Number of PII Records</dt>
         <dd>
-            <?php echo ($organizationProfile['OrganizationProfile']['system_4_ephi']); ?>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_4_pii']); ?>
             &nbsp;
         </dd>
         
@@ -556,9 +516,9 @@ $this->Html->addCrumb('View Organization Profile - ' . $organizationProfile['Cli
             &nbsp;
         </dd>
         
-        <dt>Number of ePHI Records</dt>
+        <dt>Number of PII Records</dt>
         <dd>
-            <?php echo ($organizationProfile['OrganizationProfile']['system_5_ephi']); ?>
+            <?php echo ($organizationProfile['OrganizationProfile']['system_5_pii']); ?>
             &nbsp;
         </dd>
         
