@@ -12,7 +12,8 @@ $config = array(
 		'drp_name' => 'Disaster Recovery Plans',
 		'ocnd_name' => 'Other Contracts & Documents',
 		'pnp_name' => 'Policies & Procedures',
-		'si_name' => 'Security Incidents'
+		'si_name' => 'Security Incidents',
+		'display_ephi' => false
 	)
 );
 ?>

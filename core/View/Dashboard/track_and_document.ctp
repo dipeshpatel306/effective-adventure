@@ -135,107 +135,107 @@ $this->Html->addCrumb('Track & Document');
 			);
 		}
 		
-		// ePHI Removed. SU Manager can use. SU User is no auth. MU is banned
-		if($acct == 'Meaningful Use' || $acct == 'Training'){
-		echo $this->Html->link( 
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('ephirem_tile.jpg', array(
-								'class' => 'dashTile', 
-								'alt' => 'ePHI Removed'
-								)) .
-					'<h3>ePHI Removed</h3>' .
-					'</div>' .
-					'<div class="dashSum">ePHI Removed</div>' . $banned .
-					'</div>',
-					array('controller' => 'dashboard', 'action' => 'track_and_document'),
-					array('escape' => false)
-			);
-			
-		} elseif($group == 3){
+		if (Configure::read('Theme.display_ephi')) {
+			// ePHI Removed. SU Manager can use. SU User is no auth. MU is banned
+			if($acct == 'Meaningful Use' || $acct == 'Training'){
 			echo $this->Html->link( 
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('ephirem_tile.jpg', array(
-								'class' => 'dashTile', 
-								'alt' => 'ePHI Removed'
-								)) .
-					'<h3>ePHI Removed</h3>' .
-					'</div>' .
-					'<div class="dashSum">ePHI Removed</div>' . $noAuth .
-					'</div>',
-					array('controller' => 'dashboard', 'action' => 'track_and_document'),
-					array('escape' => false)
-			);			
-		} else{
+						'<div class="dashBox">' . 
+						'<div class="dashHead">' .
+						$this->Html->image('ephirem_tile.jpg', array(
+									'class' => 'dashTile', 
+									'alt' => 'ePHI Removed'
+									)) .
+						'<h3>ePHI Removed</h3>' .
+						'</div>' .
+						'<div class="dashSum">ePHI Removed</div>' . $banned .
+						'</div>',
+						array('controller' => 'dashboard', 'action' => 'track_and_document'),
+						array('escape' => false)
+				);
+				
+			} elseif($group == 3){
+				echo $this->Html->link( 
+						'<div class="dashBox">' . 
+						'<div class="dashHead">' .
+						$this->Html->image('ephirem_tile.jpg', array(
+									'class' => 'dashTile', 
+									'alt' => 'ePHI Removed'
+									)) .
+						'<h3>ePHI Removed</h3>' .
+						'</div>' .
+						'<div class="dashSum">ePHI Removed</div>' . $noAuth .
+						'</div>',
+						array('controller' => 'dashboard', 'action' => 'track_and_document'),
+						array('escape' => false)
+				);			
+			} else{
+				echo $this->Html->link( 
+						'<div class="dashBox">' . 
+						'<div class="dashHead">' .
+						$this->Html->image('ephirem_tile.jpg', array(
+									'class' => 'dashTile', 
+									'alt' => 'ePHI Removed'
+									)) .
+						'<h3>ePHI Removed</h3>' .
+						'</div>' .
+						'<div class="dashSum">ePHI Removed</div>' . $approved .
+						'</div>',
+						array('controller' => 'ephi_removed', 'action' => 'index'),
+						array('escape' => false)
+				);
+			}
+	
+			// ePHI Recieved. SU Manager can use. SU User is no auth. MU is banned
+			if($acct == 'Meaningful Use' || $acct == 'Training'){
 			echo $this->Html->link( 
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('ephirem_tile.jpg', array(
-								'class' => 'dashTile', 
-								'alt' => 'ePHI Removed'
-								)) .
-					'<h3>ePHI Removed</h3>' .
-					'</div>' .
-					'<div class="dashSum">ePHI Removed</div>' . $approved .
-					'</div>',
-					array('controller' => 'ephi_removed', 'action' => 'index'),
-					array('escape' => false)
-			);
+						'<div class="dashBox">' . 
+						'<div class="dashHead">' .
+						$this->Html->image('ephirec_tile.png', array(
+									'class' => 'dashTile', 
+									'alt' => 'ePHI Recieved'
+									)) .
+						'<h3>ePHI Received</h3>' .
+						'</div>' .
+						'<div class="dashSum">ePHI Received</div>' . $banned .
+						'</div>',
+						array('controller' => 'dashboard', 'action' => 'track_and_document'),
+						array('escape' => false)
+				);			
+				
+			} elseif($group == 3) {
+				echo $this->Html->link( 
+						'<div class="dashBox">' . 
+						'<div class="dashHead">' .
+						$this->Html->image('ephirec_tile.png', array(
+									'class' => 'dashTile', 
+									'alt' => 'ePHI Recieved'
+									)) .
+						'<h3>ePHI Received</h3>' .
+						'</div>' .
+						'<div class="dashSum">ePHI Received</div>' . $noAuth .
+						'</div>',
+						array('controller' => 'dashboard', 'action' => 'track_and_document'),
+						array('escape' => false)
+				);
+				
+			} else {
+						echo $this->Html->link( 
+						'<div class="dashBox">' . 
+						'<div class="dashHead">' .
+						$this->Html->image('ephirec_tile.png', array(
+									'class' => 'dashTile', 
+									'alt' => 'ePHI Recieved'
+									)) .
+						'<h3>ePHI Received</h3>' .
+						'</div>' .
+						'<div class="dashSum">ePHI Received</div>' . $approved .
+						'</div>',
+						array('controller' => 'ephi_received', 'action' => 'index'),
+						array('escape' => false)
+				);
+			}
 		}
-
-		// ePHI Recieved. SU Manager can use. SU User is no auth. MU is banned
-		if($acct == 'Meaningful Use' || $acct == 'Training'){
-		echo $this->Html->link( 
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('ephirec_tile.png', array(
-								'class' => 'dashTile', 
-								'alt' => 'ePHI Recieved'
-								)) .
-					'<h3>ePHI Received</h3>' .
-					'</div>' .
-					'<div class="dashSum">ePHI Received</div>' . $banned .
-					'</div>',
-					array('controller' => 'dashboard', 'action' => 'track_and_document'),
-					array('escape' => false)
-			);			
-			
-		} elseif($group == 3) {
-			echo $this->Html->link( 
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('ephirec_tile.png', array(
-								'class' => 'dashTile', 
-								'alt' => 'ePHI Recieved'
-								)) .
-					'<h3>ePHI Received</h3>' .
-					'</div>' .
-					'<div class="dashSum">ePHI Received</div>' . $noAuth .
-					'</div>',
-					array('controller' => 'dashboard', 'action' => 'track_and_document'),
-					array('escape' => false)
-			);
-			
-		} else {
-					echo $this->Html->link( 
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('ephirec_tile.png', array(
-								'class' => 'dashTile', 
-								'alt' => 'ePHI Recieved'
-								)) .
-					'<h3>ePHI Received</h3>' .
-					'</div>' .
-					'<div class="dashSum">ePHI Received</div>' . $approved .
-					'</div>',
-					array('controller' => 'ephi_received', 'action' => 'index'),
-					array('escape' => false)
-			);
-		}
-
-
-
+		
 	?>
 
 	

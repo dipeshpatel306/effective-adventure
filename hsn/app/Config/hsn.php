@@ -12,7 +12,8 @@ $config = array(
 		'drp_name' => 'HIPAA Disaster Recovery Plans',
 		'ocnd_name' => 'HIPAA Other Contracts & Documents',
 		'pnp_name' => 'HIPAA Policies & Procedures',
-		'si_name' => 'HIPAA Security Incidents'
+		'si_name' => 'HIPAA Security Incidents',
+		'display_ephi' => true
 	)
 );
 ?>

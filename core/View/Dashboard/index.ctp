@@ -104,6 +104,11 @@
 
 
 		// Track and Document  // Everyone sees
+		if (Configure::read('Theme.display_ephi')) {
+			$td_title = 'Security Incidents and ePHI Received and Removed';
+		} else {
+			$td_title = 'Security Incidents and Server Room Access';
+		}
 		echo $this->Html->link(
 					'<div class="dashBox">' .
 					'<div class="dashHead">' .
@@ -113,7 +118,7 @@
 								)) .
 					'<h3>Track and Document</h3>' .
 					'</div>' .
-					'<div class="dashSum">Security Incidents and ePHI Received and Removed</div>' . $approved .
+					'<div class="dashSum">' . $td_title . '</div>' . $approved .
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'track_and_document'),
 					array('escape' => false)
