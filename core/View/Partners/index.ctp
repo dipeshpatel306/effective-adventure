@@ -8,7 +8,7 @@ $this->Html->addCrumb('Partners');
 	<tr>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('email'); ?></th>
-			<th><?php echo $this->Paginator->sort('phone'); ?></th>
+			<th><?php echo $this->Paginator->sort('admin_account', 'Admin Code'); ?></th>
 			<th><?php echo $this->Paginator->sort('link'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
@@ -19,7 +19,7 @@ $this->Html->addCrumb('Partners');
 	<tr>
 		<td><?php echo ($partner['Partner']['name']); ?>&nbsp;</td>
 		<td><?php echo $this->Text->autoLinkEmails($partner['Partner']['email']); ?>&nbsp;</td>
-		<td><?php echo ($partner['Partner']['phone']); ?>&nbsp;</td>
+		<td><?php echo ($partner['Partner']['admin_account']); ?>&nbsp;</td>
 		<td><?php echo $this->Html->link($partner['Partner']['link'], null, array('target' =>'_blank')); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $partner['Partner']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $partner['Partner']['modified']); ?>&nbsp;</td>

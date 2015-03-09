@@ -3,7 +3,7 @@ App::uses('Group', 'Model');
 
 $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 if($group == Group::ADMIN){ // If admin allow creating another Hipaa administrator
-	$groupOption = array(3 => 'User', 2 => 'Manager', 1 => 'HIPAA Administrator');
+	$groupOption = array(Group::USER => 'User', Group::MANAGER => 'Manager', Group::ADMIN => 'Administrator', Group::PARTNER_ADMIN => 'Partner Administrator');
 	$userTypeName = 'User';
 	$usersTypeName = 'Users';
 } else {

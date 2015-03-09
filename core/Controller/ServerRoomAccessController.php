@@ -24,8 +24,20 @@ class ServerRoomAccessController extends AppController {
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		$acct = $this->Session->read('Auth.User.Client.account_type');
+		$partner = $this->Session->read('Auth.User.partner_id');
 		
-		if($group == 2){
+		if ($group == Group::PARTNER_ADMIN) {
+			if (in_array($this->action, array('add'))) {
+				$id = $this->request->params['pass'][0];
+				return $this->ServerRoomAccess->Client->isOwnedByPartner($id, $partner);
+			} elseif (in_array($this->action, array('edit', 'view', 'delete', 'sendFile'))) {
+				$id = $this->request->params['pass'][0];
+				return $this->ServerRoomAccess->isOwnedByPartner($id, $partner);
+			}
+			return false;
+		}
+		
+		if($group == Group::MANAGER){
 			if($acct == 'Meaningful Use' || $acct == 'Training'){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
@@ -43,7 +55,7 @@ class ServerRoomAccessController extends AppController {
 			}
 		}
 		
-		if($group == 3 || $acct == 'Initial' || $acct == 'Meaningful Use' || $acct == 'Training'){
+		if($group == Group::USER || $acct == 'Initial' || $acct == 'Meaningful Use' || $acct == 'Training'){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 				return false;
@@ -92,9 +104,9 @@ class ServerRoomAccessController extends AppController {
 			throw new NotFoundException(__('Invalid Server Room Access'));
 		}
 
-		if($group == 1){
+		if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 			$this->set('serverRoomAccess', $this->ServerRoomAccess->read(null, $id));
-		} elseif($group == 2){
+		} elseif($group == Group::MANAGER){
 				$is_authorized = $this->ServerRoomAccess->find('first', array(
 				'conditions' => array(
 					'ServerRoomAccess.id' => $id,
@@ -130,14 +142,14 @@ class ServerRoomAccessController extends AppController {
 			
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-			if($group != 1){
+			if($group != Group::ADMIN && $group != Group::PARTNER_ADMIN){
 				$this->request->data['ServerRoomAccess']['client_id'] = $this->Auth->User('client_id');
 			}				
 
 			$this->ServerRoomAccess->create();
 			if ($this->ServerRoomAccess->save($this->request->data)) {
 				$this->Session->setFlash('The server room access has been saved.', 'default', array('class' => 'success message'));
-			if($group == 1){
+			if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
@@ -151,7 +163,7 @@ class ServerRoomAccessController extends AppController {
 				$this->Session->setFlash(__('The server room access could not be saved. Please, try again.'));
 			}
 		}
-		$clients = $this->ServerRoomAccess->Client->find('list');
+		$clients = $this->getClientsList();
 		$this->set(compact('clients'));
 	}
 
@@ -174,14 +186,14 @@ class ServerRoomAccessController extends AppController {
 		
 		// If user is a client automatically set the client id accordingly. Admin can change client ids
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-		if($group != Group::ADMIN){
+		if($group != Group::ADMIN && $group != Group::PARTNER_ADMIN){
 			$this->request->data['ServerRoomAccess']['client_id'] = $this->Auth->User('client_id');
 		}	
 					
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->ServerRoomAccess->save($this->request->data)) {
 				$this->Session->setFlash('The server room access has been saved', 'default', array('class' => 'success message'));
-			if($group == 1){
+			if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
@@ -197,7 +209,7 @@ class ServerRoomAccessController extends AppController {
 		} else {
 			$this->request->data = $this->ServerRoomAccess->read(null, $id);
 		}
-		$clients = $this->ServerRoomAccess->Client->find('list');
+		$clients = $this->getClientsList();
 		$this->set(compact('clients'));
 	}
 

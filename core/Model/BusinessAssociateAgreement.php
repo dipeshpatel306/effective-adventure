@@ -202,14 +202,4 @@ class BusinessAssociateAgreement extends AppModel {
         '15' => array('contract_date', 'mapQBDate'),
         '24' => array('attachment', null)
     );
-
-
-/**
- * Check Client Owner
- */
-	public function isOwnedBy($id, $client){
-		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
-
-	}
-
 }

@@ -1,6 +1,7 @@
 <div class='navBar'>
 <div class="breadcrumbs">
 <?php 
+App::uses('Group', 'Model');
 	// Breadcrumbs
 	if($this->here != ('/hipaa/users/login') ){ // TODO fix link for production
 		echo $this-> Html->image('home.gif', array(
@@ -16,7 +17,7 @@
 <div class='subMenu'>
 <?php 
 	// If Admin load Admin Tools
-	if(($this->Session->read('Auth.User.group_id') == 1)){
+	if(($this->Session->read('Auth.User.group_id') == Group::ADMIN)){
 		echo $this->Html->link('About', array('controller' => 'dashboard', 'action' => 'edit', 1)) . ' | ';	
 		echo $this->Html->link('Policies', array('controller' => 'policies_and_procedures', 'action' => 'index')) . ' | ';			
 		echo $this->Html->link('Partners', array('controller' => 'partners', 'action' => 'index')) . ' | ';		
@@ -31,8 +32,11 @@
 		echo $this->Html->link('Messages', array('controller' => 'contact_us', 'action' => 'index'));
 
 	}	
+	if ($this->Session->read('Auth.User.group_id') == Group::PARTNER_ADMIN) {
+		echo $this->Html->link('Clients', array('controller' => 'clients', 'action' => 'index'));
+	}
 	// Client Manager Load links
-	if($this->Session->read('Auth.User.group_id') == 2){
+	if($this->Session->read('Auth.User.group_id') == Group::MANAGER){
 		$userId = $this->Session->read('Auth.User.id');
 		echo $this->Html->link('Profile', array('controller' => 'users', 'action' => 'edit', $userId)) . ' | ';		
 		echo $this->Html->link('About HIPAA Secure Now!', array('controller' => 'dashboard', 'action' => 'about_hipaa')) . ' | ';	
@@ -41,7 +45,7 @@
 	}
 		
 	// If Client User or Initial load link
-	if($this->Session->read('Auth.User.group_id') == 3 || $this->Session->read('Auth.User.group_id') == 4){
+	if($this->Session->read('Auth.User.group_id') == Group::USER){
 		$userId = $this->Session->read('Auth.User.id');
 		echo $this->Html->link('Profile', array('controller' => 'users', 'action' => 'edit', $userId)) . ' | ';
 		echo $this->Html->link('About HIPAA Secure Now!', array('controller' => 'dashboard', 'action' => 'about_hipaa')) . ' | ';

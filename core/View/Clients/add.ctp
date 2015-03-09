@@ -2,7 +2,7 @@
 $this->Html->addCrumb('Clients', '/clients');
 $this->Html->addCrumb('Add Client');
 
-$acctType = array('Initial' => 'Initial', 'Subscription' => 'Subscription', 'Meaningful Use' => 'Meaningful Use', 'Training' => 'Training', 'HIPAA' => 'HIPAA');
+$acctType = array('Initial' => 'Initial', 'Subscription' => 'Subscription', 'Meaningful Use' => 'Meaningful Use', 'Training' => 'Training', 'Admin' => 'Admin');
 $active = array(true => 'Yes', false => 'No');
 $risk = array('' => '', 'Completed' => 'Completed');
 ?>

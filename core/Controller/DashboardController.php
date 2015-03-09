@@ -16,7 +16,7 @@ class DashboardController extends AppController {
     public function isAuthorized($user){
         $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 
-        if ($group == 2  || $group == 3 ){ // Allow managers, Users  to view dashboard
+        if ($group == Group::MANAGER  || $group == Group::USER || $group == Group::PARTNER_ADMIN ){ // Allow managers, Users  to view dashboard
             return true;
         }
 
@@ -158,6 +158,9 @@ class DashboardController extends AppController {
     public function index() {
         $acct = $this->Session->read('Auth.User.Client.account_type');  // Redireect Initial Clients to Dashboard
         $group = $this->Session->read('Auth.User.group_id');
+		if ($group == Group::PARTNER_ADMIN) {
+			$this->redirect(array('controller' => 'clients', 'action' => 'index'));
+		}
         if($acct == 'Initial' && $group != Group::USER){
             $this->redirect(array('controller' => 'dashboard', 'action' => 'initial'));
         }

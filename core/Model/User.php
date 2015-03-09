@@ -20,7 +20,7 @@ class User extends AppModel {
 
     public $qbDbid = USERS_DBID;
 	
-	public $virtualFields = array('active_real' => 'User.active && Client.active');
+	public $virtualFields = array('active_real' => 'User.active && (Client.active || Partner.active)');
 /**
  * Validation rules
  *
@@ -185,7 +185,14 @@ class User extends AppModel {
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        )
+        ),
+        'Partner' => array(
+			'className' => 'Partner',
+			'foreignKey' => 'partner_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
     );
 
 /**
@@ -208,12 +215,8 @@ class User extends AppModel {
             return array('Group' => array('id' => $groupId));
         }
     }
-
-/**
- * Check Client Owner
- */
-    public function isOwnedBy($id, $client){
-        return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
+	public function isOwnedByPartner($id, $partner){
+        return $this->field('id', array('id' => $id, 'partner_id' => $partner)) === $id;
     }
 /**
  * Allow user to edit their own profile

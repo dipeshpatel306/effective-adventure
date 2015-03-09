@@ -5,7 +5,7 @@ $this->Html->addCrumb('Edit User');
 
 $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 if($group == Group::ADMIN){ // If admin allow creating another Hipaa administrator
-	$groupOption = array(Group::USER => 'User', Group::MANAGER => 'Manager', Group::ADMIN => 'HIPAA Administrator');
+	$groupOption = array(Group::USER => 'User', Group::MANAGER => 'Manager', Group::ADMIN => 'Administrator', Group::PARTNER_ADMIN => 'Partner Administrator');
 } else {
 	$groupOption = array(Group::USER => 'User', Group::MANAGER => 'Manager');
 }

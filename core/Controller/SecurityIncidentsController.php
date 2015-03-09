@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('Group', 'Model');
 /**
  * SecurityIncidents Controller
  *
@@ -22,8 +23,20 @@ class SecurityIncidentsController extends AppController {
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		$acct = $this->Session->read('Auth.User.Client.account_type');
+		$partner = $this->Session->read('Auth.User.partner_id');
 		
-		if($group == 2  || $group == 3){
+		if ($group == Group::PARTNER_ADMIN) {
+			if (in_array($this->action, array('add'))) {
+				$id = $this->request->params['pass'][0];
+				return $this->SecurityIncident->Client->isOwnedByPartner($id, $partner);
+			} elseif (in_array($this->action, array('edit', 'view', 'delete', 'sendFile'))) {
+				$id = $this->request->params['pass'][0];
+				return $this->SecurityIncident->isOwnedByPartner($id, $partner);
+			}
+			return false;
+		}
+		
+		if($group == Group::MANAGER || $group == Group::USER) {
 			if(in_array($this->action, array('index', 'view','add'))){  // Allow Managers to Add 
 				return true;
 			}
@@ -80,9 +93,9 @@ class SecurityIncidentsController extends AppController {
 			throw new NotFoundException(__('Invalid Security Incident'));
 		}
 
-		if($group == 1){
+		if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 			$this->set('securityIncident', $this->SecurityIncident->read(null, $id));
-		} elseif($group == 2 || $group == 3){
+		} elseif($group == Group::MANAGER || $group == Group::USER){
 				$is_authorized = $this->SecurityIncident->find('first', array(
 				'conditions' => array(
 					'SecurityIncident.id' => $id,
@@ -117,14 +130,14 @@ class SecurityIncidentsController extends AppController {
 			
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-			if($group != 1){
+			if($group != Group::ADMIN && $group != Group::PARTNER_ADMIN){
 				$this->request->data['SecurityIncident']['client_id'] = $this->Auth->User('client_id');
 			}	
 							
 			$this->SecurityIncident->create();
 			if ($this->SecurityIncident->save($this->request->data)) {
 				$this->Session->setFlash('The security incident has been saved.', 'default', array('class' => 'success message'));
-			if($group == 1){
+			if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
@@ -138,7 +151,7 @@ class SecurityIncidentsController extends AppController {
 				$this->Session->setFlash(__('The security incident could not be saved. Please, try again.'));
 			}
 		}
-		$clients = $this->SecurityIncident->Client->find('list');
+		$clients = $this->getClientsList();
 		$this->set(compact('clients'));
 	}
 
@@ -161,13 +174,13 @@ class SecurityIncidentsController extends AppController {
 		
 		// If user is a client automatically set the client id accordingly. Admin can change client ids
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-		if($group != 1){
+		if($group != Group::ADMIN && $group != Group::PARTNER_ADMIN){
 			$this->request->data['SecurityIncident']['client_id'] = $this->Auth->User('client_id');
 		}			
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->SecurityIncident->save($this->request->data)) {
 				$this->Session->setFlash('The security incident has been saved', 'default', array('class' => 'success message'));
-			if($group == 1){
+			if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
@@ -184,7 +197,7 @@ class SecurityIncidentsController extends AppController {
 		} else {
 			$this->request->data = $this->SecurityIncident->read(null, $id);
 		}
-		$clients = $this->SecurityIncident->Client->find('list');
+		$clients = $this->getClientsList();
 		$this->set(compact('clients'));
 	}
 

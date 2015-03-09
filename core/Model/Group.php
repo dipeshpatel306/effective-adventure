@@ -9,6 +9,7 @@ class Group extends AppModel {
     const ADMIN = 1;
     const MANAGER = 2;
     const USER = 3;
+	const PARTNER_ADMIN = 5;
 
 /**
  * Display field

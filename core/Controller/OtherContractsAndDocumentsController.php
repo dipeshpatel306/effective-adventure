@@ -23,8 +23,20 @@ class OtherContractsAndDocumentsController extends AppController {
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		$acctId = $this->Session->read('Auth.User.Client.account_type');
+		$partner = $this->Session->read('Auth.User.partner_id');
+		
+		if ($group == Group::PARTNER_ADMIN) {
+			if (in_array($this->action, array('add'))) {
+				$id = $this->request->params['pass'][0];
+				return $this->OtherContractsAndDocument->Client->isOwnedByPartner($id, $partner);
+			} elseif (in_array($this->action, array('edit', 'view', 'delete', 'sendFile'))) {
+				$id = $this->request->params['pass'][0];
+				return $this->OtherContractsAndDocument->isOwnedByPartner($id, $partner);
+			}
+			return false;
+		}
 
-		if($group == 2){
+		if($group == Group::MANAGER){
 			if($acctId == 'Meaningful Use' || $acctId == 'Training'){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
@@ -42,7 +54,7 @@ class OtherContractsAndDocumentsController extends AppController {
 			}
 		}
 
-		if($group == 3 || $acctId == 'Initial' || $acctId == 'Meaningful Use' || $acctId == 'Training'){
+		if($group == Group::USER || $acctId == 'Initial' || $acctId == 'Meaningful Use' || $acctId == 'Training'){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 				return false;
@@ -94,9 +106,9 @@ class OtherContractsAndDocumentsController extends AppController {
 			throw new NotFoundException(__('Invalid Other Contracts and Documents'));
 		}
 
-		if($group == 1){
+		if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 			$this->set('otherContractsAndDocument', $this->OtherContractsAndDocument->read(null, $id));
-		} elseif($group == 2){
+		} elseif($group == Group::MANAGER){
 				$is_authorized = $this->OtherContractsAndDocument->find('first', array(
 				'conditions' => array(
 					'OtherContractsAndDocument.id' => $id,
@@ -130,7 +142,7 @@ class OtherContractsAndDocumentsController extends AppController {
 		if ($this->request->is('post')) {
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-			if($group != 1){
+			if($group != Group::ADMIN && $group != Group::PARTNER_ADMIN){
 				$this->request->data['OtherContractsAndDocument']['client_id'] = $this->Auth->User('client_id');
 				$this->request->data['OtherContractsAndDocument']['file_key'] = $this->Session->read('Auth.User.Client.file_key');	// file key
 			} else {
@@ -145,7 +157,7 @@ class OtherContractsAndDocumentsController extends AppController {
 			$this->OtherContractsAndDocument->create();
 			if ($this->OtherContractsAndDocument->save($this->request->data)) {
 				$this->Session->setFlash('The other contracts and document has been saved.', 'default', array('class' => 'success message'));
-    			if($group == Group::ADMIN){
+    			if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
     			    if (isset($this->request->data['next'])) {
     			        $this->redirect(array('action' => 'add', $this->request->data['OtherContractsAndDocument']['client_id']));
     			    } else {
@@ -158,7 +170,7 @@ class OtherContractsAndDocumentsController extends AppController {
 				$this->Session->setFlash(__('The other contracts and document could not be saved. Please, try again.'));
 			}
 		}
-		$clients = $this->OtherContractsAndDocument->Client->find('list');
+		$clients = $this->getClientsList();
 		$this->set(compact('clients'));
 	}
 
@@ -182,7 +194,7 @@ class OtherContractsAndDocumentsController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 
 				$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-				if($group != 1){
+				if($group != Group::ADMIN && $group != Group::PARTNER_ADMIN){
 					$this->request->data['OtherContractsAndDocument']['client_id'] = $this->Auth->User('client_id');
 					$this->request->data['OtherContractsAndDocument']['file_key'] = $this->Session->read('Auth.User.Client.file_key');	// file key
 				} else {
@@ -196,7 +208,7 @@ class OtherContractsAndDocumentsController extends AppController {
 
 			if ($this->OtherContractsAndDocument->save($this->request->data)) {
 				$this->Session->setFlash('The other contracts and document has been saved', 'default', array('class' => 'success message'));
-			if($group == 1){
+			if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
@@ -212,7 +224,7 @@ class OtherContractsAndDocumentsController extends AppController {
 		} else {
 			$this->request->data = $this->OtherContractsAndDocument->read(null, $id);
 		}
-		$clients = $this->OtherContractsAndDocument->Client->find('list');
+		$clients = $this->getClientsList();
 		$doc = $this->OtherContractsAndDocument->data['OtherContractsAndDocument']['attachment'];
 		$this->set(compact('clients', 'doc'));
 	}

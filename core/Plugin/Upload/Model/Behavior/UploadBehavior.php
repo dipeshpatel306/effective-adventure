@@ -25,7 +25,7 @@ class UploadBehavior extends ModelBehavior {
 	public $defaults = array(
 		'rootDir' => null,
 		'pathMethod' => 'primaryKey',
-		'path' => '{ROOT}webroot{DS}files{DS}{model}{DS}{field}{DS}',
+		'path' => '{ROOT}files{DS}{model}{DS}{field}{DS}',
 		'fields' => array('dir' => 'dir', 'type' => 'type', 'size' => 'size'),
 		'mimetypes' => array(),
 		'extensions' => array(),
@@ -115,7 +115,7 @@ class UploadBehavior extends ModelBehavior {
 			$options = array();
 		}
 
-		$this->defaults['rootDir'] = ROOT . DS . APP_DIR . DS;
+		$this->defaults['rootDir'] = WWW_ROOT . DS;
 		if (!isset($this->settings[$model->alias][$field])) {
 			$options = array_merge($this->defaults, (array)$options);
 

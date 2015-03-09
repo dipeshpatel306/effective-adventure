@@ -1,12 +1,17 @@
 <?php
+App::uses('Group', 'Model');
 // Conditionally load buttons based upon user role
 $group = $this->Session->read('Auth.User.group_id');
 $acct = $this->Session->read('Auth.User.Client.account_type');
 
-if ($acct != 'Initial') {
-	$this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
+if ($group == Group::PARTNER_ADMIN) {
+	$this->Html->addCrumb('Other Policies & Procedures');
+} else {
+	if ($acct != 'Initial') {
+		$this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
+	}
+	$this->Html->addCrumb('Other Policies & Procedures', '/other_policies_and_procedures');
 }
-$this->Html->addCrumb('Other Policies & Procedures', '/other_policies_and_procedures');
 $this->Html->addCrumb($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['name']);
 
 ?>
@@ -70,14 +75,21 @@ $this->Html->addCrumb($otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['n
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+		<?php if ($group == Group::PARTNER_ADMIN): ?>
+		<li><?php echo $this->Html->link(__('Back to Client'), array('controller' => 'clients', 'action' => 'view', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['client_id'])); ?></li>
+		<?php else: ?>
 		<li><?php echo $this->Html->link(__('List Other Policies And Procedures'), array('action' => 'index')); ?> </li>
+		<?php endif; ?>
 
-		<?php if($group == 1 || $group == 2): ?>
+		<?php if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN || $group == Group::MANAGER): ?>
+			<?php if ($group != Group::PARTNER_ADMIN): ?>
 		<li><?php echo $this->Html->link(__('New Other Policies And Procedure'), array('action' => 'add')); ?> </li>
+			<?php endif; ?>
 		<li><?php echo $this->Html->link(__('Edit Other Policies And Procedure'), array('action' => 'edit', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id'])); ?> </li>
 		<li><?php echo $this->element('delete_link', array('title' => 'Delete Other Policy & Procedure', 'name' => 'Other Policy & Procedure', 'id' => $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id'])); ?></li>
 
 		<?php endif; ?>
+		
 
 	</ul>
 </div>

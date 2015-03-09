@@ -166,11 +166,4 @@ class OrganizationProfile extends AppModel {
         '117' => array('phi_on_smartphones', null),
         '118' => array('mu_incentive_program', null)
     );
-
-/**
- * Check Client Owner
- */
-	public function isOwnedBy($id, $client){
-		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
-	}
 }

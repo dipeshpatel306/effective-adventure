@@ -1,11 +1,16 @@
 <?php
-$this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
-$this->Html->addCrumb('Server Room Access', '/serevr_room_access');
-$this->Html->addCrumb($this->Time->format('m/d/y g:i a', $serverRoomAccess['ServerRoomAccess']['date']));
-
+App::uses('Group', 'Model');
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id');
-	$acct = $this->Session->read('Auth.User.Client.account_type');
+$group = $this->Session->read('Auth.User.group_id');
+$acct = $this->Session->read('Auth.User.Client.account_type');
+
+if ($group == Group::PARTNER_ADMIN) {
+	$this->Html->addCrumb('Server Room Access');
+} else {
+	$this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
+	$this->Html->addCrumb('Server Room Access', '/serevr_room_access');
+}
+$this->Html->addCrumb($this->Time->format('m/d/y g:i a', $serverRoomAccess['ServerRoomAccess']['date']));
 ?>
 <div class="serverRoomAccess view">
 <h2><?php  echo __('Server Room Access'); ?></h2>
@@ -65,8 +70,12 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $serverRoomAccess['Serv
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+		<?php if ($group == Group::PARTNER_ADMIN): ?>
+		<li><?php echo $this->Html->link(__('Back to Client'), array('controller' => 'clients', 'action' => 'view', $serverRoomAccess['ServerRoomAccess']['client_id'])); ?></li>
+		<?php else: ?>
 		<li><?php echo $this->Html->link(__('List Server Room Access'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Server Room Access'), array('action' => 'add')); ?> </li>
+		<?php endif; ?>
 		<li><?php echo $this->Html->link(__('Edit Server Room Access'), array('action' => 'edit', $serverRoomAccess['ServerRoomAccess']['id'])); ?> </li>
 		<li><?php echo $this->element('delete_link', array('title' => 'Delete Server Room Access', 'name' => 'Server Room Access', 'id' => $serverRoomAccess['ServerRoomAccess']['id'])); ?></li>
 	</ul>

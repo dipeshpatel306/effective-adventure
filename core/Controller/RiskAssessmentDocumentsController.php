@@ -22,7 +22,19 @@ class RiskAssessmentDocumentsController extends AppController {
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		$acct = $this->Session->read('Auth.User.Client.account_type');
-
+		$partner = $this->Session->read('Auth.User.partner_id');
+		
+		if ($group == Group::PARTNER_ADMIN) {
+			if (in_array($this->action, array('add'))) {
+				$id = $this->request->params['pass'][0];
+				return $this->RiskAssessmentDocument->Client->isOwnedByPartner($id, $partner);
+			} elseif (in_array($this->action, array('edit', 'view', 'delete', 'sendFile'))) {
+				$id = $this->request->params['pass'][0];
+				return $this->RiskAssessmentDocument->isOwnedByPartner($id, $partner);
+			}
+			return false;
+		}
+		
         if ($acct == 'Training') {
             return false;
         }
@@ -90,9 +102,9 @@ class RiskAssessmentDocumentsController extends AppController {
 			throw new NotFoundException(__('Invalid Risk Assessment Document'));
 		}
 
-		if($group == 1){
+		if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 			$this->set('riskAssessmentDocument', $this->RiskAssessmentDocument->read(null, $id));
-		} elseif($group == 2){
+		} elseif($group == Group::MANAGER){
 				$is_authorized = $this->RiskAssessmentDocument->find('first', array(
 				'conditions' => array(
 					'RiskAssessmentDocument.id' => $id,
@@ -126,7 +138,7 @@ class RiskAssessmentDocumentsController extends AppController {
 
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-			if($group != 1){
+			if($group != Group::ADMIN && $group != Group::PARTNER_ADMIN){
 				$this->request->data['RiskAssessmentDocument']['client_id'] = $this->Auth->User('client_id');
 				$this->request->data['RiskAssessmentDocument']['file_key'] = $this->Session->read('Auth.User.Client.file_key');	// file key
 			} else {
@@ -141,7 +153,7 @@ class RiskAssessmentDocumentsController extends AppController {
 			$this->RiskAssessmentDocument->create();
 			if ($this->RiskAssessmentDocument->save($this->request->data)) {
 				$this->Session->setFlash('The risk assessment document has been saved.', 'default', array('class' => 'success message'));
-			if($group == Group::ADMIN){
+			if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 			    if (isset($this->request->data['next'])) {
 			         $this->redirect(array('action' => 'add', $this->request->data['RiskAssessmentDocument']['client_id']));   
                 } else {
@@ -154,7 +166,7 @@ class RiskAssessmentDocumentsController extends AppController {
 				$this->Session->setFlash(__('The risk assessment document could not be saved. Please, try again.'));
 			}
 		}
-		$clients = $this->RiskAssessmentDocument->Client->find('list');
+		$clients = $this->getClientsList();
 		$this->set(compact('clients'));
 	}
 
@@ -178,7 +190,7 @@ class RiskAssessmentDocumentsController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 
 				$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-				if($group != 1){
+				if($group != Group::ADMIN && $group != Group::PARTNER_ADMIN){
 					$this->request->data['RiskAssessmentDocument']['client_id'] = $this->Auth->User('client_id');
 					$this->request->data['RiskAssessmentDocument']['file_key'] = $this->Session->read('Auth.User.Client.file_key');	// file key
 				} else {
@@ -192,7 +204,7 @@ class RiskAssessmentDocumentsController extends AppController {
 
 			if ($this->RiskAssessmentDocument->save($this->request->data)) {
 				$this->Session->setFlash('The risk assessment document has been saved.', 'default', array('class' => 'success message'));
-			if($group == 1){
+			if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
@@ -208,7 +220,7 @@ class RiskAssessmentDocumentsController extends AppController {
 		} else {
 			$this->request->data = $this->RiskAssessmentDocument->read(null, $id);
 		}
-		$clients = $this->RiskAssessmentDocument->Client->find('list');
+		$clients = $this->getClientsList();
 		$doc = $this->RiskAssessmentDocument->data['RiskAssessmentDocument']['attachment'];
 		$this->set(compact('clients', 'doc'));
 	}

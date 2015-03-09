@@ -120,12 +120,4 @@ class PoliciesAndProceduresDocument extends AppModel {
         '8' => array('policies_and_procedure_id', null),
         '23' => array('document', 'mapQBAttachment')
     );
-
-
-/**
- * Check Client Owner
- */
-	public function isOwnedBy($id, $client){
-		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
-	}
 }

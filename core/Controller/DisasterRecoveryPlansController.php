@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('Group', 'Model');
 /**
  * DisasterRecoveryPlans Controller
  *
@@ -22,8 +23,20 @@ class DisasterRecoveryPlansController extends AppController {
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		$acct = $this->Session->read('Auth.User.Client.account_type');
+		$partner = $this->Session->read('Auth.User.partner_id');
+		
+		if ($group == Group::PARTNER_ADMIN) {
+			if (in_array($this->action, array('add'))) {
+				$id = $this->request->params['pass'][0];
+				return $this->DisasterRecoveryPlan->Client->isOwnedByPartner($id, $partner);
+			} elseif (in_array($this->action, array('edit', 'view', 'delete', 'sendFile'))) {
+				$id = $this->request->params['pass'][0];
+				return $this->DisasterRecoveryPlan->isOwnedByPartner($id, $partner);
+			}
+			return false;
+		}
 
-		if($group == 2){
+		if($group == Group::MANAGER){
 			if($acct == 'Meaningful Use' || $acct == 'Training'){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
@@ -41,7 +54,7 @@ class DisasterRecoveryPlansController extends AppController {
 			}
 		}
 
-		if($group == 3 || $acct == 'Initial' || $acct == 'Meaningful Use' || $acct == 'Training'){
+		if($group == Group::USER || $acct == 'Initial' || $acct == 'Meaningful Use' || $acct == 'Training'){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 				return false;
@@ -93,9 +106,9 @@ class DisasterRecoveryPlansController extends AppController {
 			throw new NotFoundException(__('Invalid Disaster Recovery Plan'));
 		}
 
-		if($group == 1){
+		if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 			$this->set('disasterRecoveryPlan', $this->DisasterRecoveryPlan->read(null, $id));
-		} elseif($group == 2){
+		} elseif($group == Group::MANAGER){
 				$is_authorized = $this->DisasterRecoveryPlan->find('first', array(
 				'conditions' => array(
 					'DisasterRecoveryPlan.id' => $id,
@@ -130,7 +143,7 @@ class DisasterRecoveryPlansController extends AppController {
 
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-			if($group != 1){
+			if($group != Group::ADMIN && $group != Group::PARTNER_ADMIN){
 				$this->request->data['DisasterRecoveryPlan']['client_id'] = $this->Auth->User('client_id');
 				$this->request->data['DisasterRecoveryPlan']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
 			} else {
@@ -145,7 +158,7 @@ class DisasterRecoveryPlansController extends AppController {
 			$this->DisasterRecoveryPlan->create();
 			if ($this->DisasterRecoveryPlan->save($this->request->data)) {
 				$this->Session->setFlash('The disaster recovery plan has been saved.', 'default', array('class' => 'success message'));
-			if($group == 1){
+			if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
@@ -159,7 +172,7 @@ class DisasterRecoveryPlansController extends AppController {
 				$this->Session->setFlash(__('The disaster recovery plan could not be saved. Please, try again.'));
 			}
 		}
-		$clients = $this->DisasterRecoveryPlan->Client->find('list');
+		$clients = $this->getClientsList();
 		$this->set(compact('clients'));
 	}
 
@@ -182,7 +195,7 @@ class DisasterRecoveryPlansController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			
 				$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-				if($group != 1){
+				if($group != Group::ADMIN && $group != Group::PARTNER_ADMIN){
 					$this->request->data['DisasterRecoveryPlan']['client_id'] = $this->Auth->User('client_id');
 					$this->request->data['DisasterRecoveryPlan']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
 				} else {
@@ -196,7 +209,7 @@ class DisasterRecoveryPlansController extends AppController {
 			
 			if ($this->DisasterRecoveryPlan->save($this->request->data)) {
 				$this->Session->setFlash('The disaster recovery plan has been saved.', 'default', array('class' => 'success message'));
-			if($group == 1){
+			if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
@@ -212,7 +225,7 @@ class DisasterRecoveryPlansController extends AppController {
 		} else {
 			$this->request->data = $this->DisasterRecoveryPlan->read(null, $id);
 		}
-		$clients = $this->DisasterRecoveryPlan->Client->find('list');
+		$clients = $this->getClientsList();
 		$doc = $this->DisasterRecoveryPlan->data['DisasterRecoveryPlan']['attachment'];
 		$this->set(compact('clients', 'doc'));
 	}

@@ -73,10 +73,10 @@ class DATABASE_CONFIG {
     public $moodle = array(
         'datasource' => 'Database/Mysql',
         'persistent' => false,
-        'host' => '10.250.250.20',
+        'host' => '10.250.250.60',
         'login' => 'compliance',
         'password' => 'H$Ncomp@ccess14!',
-        'database' => 'moodle',
+        'database' => 'newmoodle',
         'prefix' => '',
         //'encoding' => 'utf8',
     );

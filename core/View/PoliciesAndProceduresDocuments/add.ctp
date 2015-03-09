@@ -1,10 +1,16 @@
 <?php
-$this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
-$this->Html->addCrumb('Policies & Procedures', '/policies_and_procedures');
+App::uses('Group', 'Model');
+$group = $this->Session->read('Auth.User.group_id');
+
+if ($group == Group::PARTNER_ADMIN) {
+	$this->Html->addCrumb('Policies & Procedures');
+} else {
+	$this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
+	$this->Html->addCrumb('Policies & Procedures', '/policies_and_procedures');
+}
 $this->Html->addCrumb('Add Policy & Procedure Document');
 
-	$group = $this->Session->read('Auth.User.group_id');
-	
+
 	if(isset($clientId)){
 		$selected = $clientId;
 	} else{
@@ -30,23 +36,25 @@ $this->Html->addCrumb('Add Policy & Procedure Document');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 
-		<?php if($group == 1): ?>
-			
+		<?php if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN): ?>
 		<ul>
 			<li><?php echo $this->Html->link(__('Back to client'), array('controller' => 'clients', 'action' => 'view', $clientId)); ?> </li>
-		</ul>	
+		</ul>
+		<?php if ($group == Group::ADMIN): ?>	
 		<ul>
 		<li><?php echo $this->Html->link(__('List Documents'), array('action' => 'index')); ?></li>
 		</ul>
 		<?php endif;?>
+		<?php endif; ?>
 
+		<?php if ($group != Group::PARTNER_ADMIN): ?>
 		<ul>
 		<li><?php echo $this->Html->link(__('List Policies And Procedures'), array('controller' => 'policies_and_procedures', 'action' => 'index')); ?> </li>
-		<?php if($group == 1):?>
-
+		<?php if($group == Group::ADMIN):?>
 		<li><?php echo $this->Html->link(__('New Policies And Procedure'), array('controller' => 'policies_and_procedures', 'action' => 'add')); ?> </li>
 		</ul>
 		<?php endif ?>
+		<?php endif; ?>
 
 
 </div>

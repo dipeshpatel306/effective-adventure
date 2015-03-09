@@ -1,5 +1,6 @@
 <?php
 App::uses('Controller', 'Controller');
+App::uses('Group', 'Model');
 
 /**
  * Application Controller
@@ -50,6 +51,15 @@ class AppController extends Controller {
         $this->Security->csrfCheck = false;
         //$this->Auth->allow();
         
+        $partner_id = $this->Auth->user('partner_id');
+		if (isset($partner_id)) {
+			$this->loadModel('Partner');
+			$partner = $this->Partner->find('first', array('conditions' => array('Partner.id' => $partner_id)));
+			$this->set(compact('partner'));
+		}
+		
+		$this->set('title_for_layout', Configure::read('Theme.title'));
+        
         if (Configure::read('LogRequests')) {
             $this->capture_request_head_for_log();
         }
@@ -65,23 +75,12 @@ class AppController extends Controller {
     }
     public function isAuthorized($user){
         $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-        if (isset($group) && $group == 1){ // is admin allow all
+        if (isset($group) && $group == Group::ADMIN){ // is admin allow all
             return true;
         }
         $this->Session->setFlash('You are not authorized to view that!');
         $this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
         return false;
-    }
-    
-    public static function _randomStr($length) {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
-        $string = "";    
-    
-        for ($p = 0; $p < $length; $p++) {
-             $string .= $characters[mt_rand(0, strlen($characters)-1)];
-        }
-
-        return $string; 
     }
     
     public function setReferer() {
@@ -177,12 +176,21 @@ class AppController extends Controller {
 			$filename .= '.csv';
 		}
 
-		$path = '/files/' . Inflector::underscore($this->{$this->modelClass}->alias) . '/attachment/';
-
-		$file = APP . DS . 'webroot' . DS . $path . $dir . DS . $filename;
+		$file = '..' . DS . '..' . DS . WEBROOT_DIR . DS . 'files' . DS .  Inflector::underscore($this->{$this->modelClass}->alias) . DS . 'attachment' . DS . $dir . DS . $filename;
    	 	$this->response->file($file, array('download' => true));
     	//Return reponse object to prevent controller from trying to render a view
     	return $this->response;
+	}
+	
+	public function getClientsList() {
+		$group = $this->Auth->user('group_id');
+		$conditions = array();
+		$this->loadModel('Client');
+		if ($group == Group::PARTNER_ADMIN) {
+			$partner = $this->Auth->user('partner_id');
+			$conditions['Client.partner_id'] = $partner;
+		}
+		return $this->Client->find('list', array('conditions' => $conditions));
 	}
     
 }

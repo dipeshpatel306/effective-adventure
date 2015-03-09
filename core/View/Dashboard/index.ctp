@@ -1,4 +1,5 @@
 <?php
+App::uses('Group', 'Model');
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
@@ -69,7 +70,7 @@
 
 
 		// 	// contracts and documents. managers see this. Users do not
-		if($group == '3' && $acct != 'Training'){
+		if($group == Group::USER && $acct != 'Training'){
 			echo $this->Html->link(
 					'<div class="dashBox">' .
 					'<div class="dashHead">' .
@@ -189,9 +190,9 @@
 					array('escape' => false)
 			);*/
 
-		if($group != 3){
+		if($group != Group::USER){
 			//pr($displayRaOrg);
-		if($displayRaOrg['Client']['display_ra_org']){
+		if(!empty($displayRaOrg) && $displayRaOrg['Client']['display_ra_org']){
 		    echo $this->Html->link(
             '<div class="dashBox">' .
             '<div class="dashHead">' .

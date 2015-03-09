@@ -257,11 +257,14 @@ class Client extends AppModel {
 	);
     
     public function beforeSave($options=array()) {
-        if (array_key_exists('moodle_course_id', $this->data['Client'])) {
+        if (isset($this->data['Client']['moodle_course_id'])) {
             $course_id = $this->data['Client']['moodle_course_id'];
             $this->data['Client']['moodle_course_name'] = $this->getMoodleCourseName($course_id);
         }  
-        parent::beforeSave($options);
+		$this->data[$this->alias]['admin_account'] = $this->randomStr(10);
+		$this->data[$this->alias]['user_account'] = $this->randomStr(10);
+		$this->data[$this->alias]['file_key'] = $this->randomStr(10);
+        return true;
     }
     
     public function getMoodleCourseName($course_id) {
@@ -341,4 +344,9 @@ class Client extends AppModel {
 		$pdf = new AppendixPDF();
 		$pdf->Create($client, $orgProfile, $riskAssessment, $raQuestions);
 	}
+	
+	public function isOwnedByPartner($id, $partner){
+		$this->id = $id;
+		return $this->field('partner_id') === $partner;
+    }
 }

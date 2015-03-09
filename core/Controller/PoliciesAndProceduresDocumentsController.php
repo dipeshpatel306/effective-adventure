@@ -1,4 +1,5 @@
 <?php
+App::uses('Group', 'Model');
 App::uses('AppController', 'Controller');
 /**
  * PoliciesAndProceduresDocuments Controller
@@ -23,9 +24,21 @@ class PoliciesAndProceduresDocumentsController extends AppController {
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+		$partner = $this->Session->read('Auth.User.partner_id');
 		$acct = $this->Session->read('Auth.User.Client.account_type');
 
-		if($group == 2){ // Allow Managers to add/edit/delete their own data
+		if ($group == Group::PARTNER_ADMIN) {
+			if (in_array($this->action, array('add', 'batch_add'))) {
+				$id = $this->request->params['pass'][0];
+				return $this->PoliciesAndProceduresDocument->Client->isOwnedByPartner($id, $partner);
+			} elseif (in_array($this->action, array('edit', 'view', 'delete', 'sendFile'))) {
+				$id = $this->request->params['pass'][0];
+				return $this->PoliciesAndProceduresDocument->isOwnedByPartner($id, $partner);
+			}
+			return false;
+		}
+
+		if($group == Group::MANAGER){ // Allow Managers to add/edit/delete their own data
 			if($acct == 'Meaningful Use' || $acct == 'Initial' || $acct == 'Training'){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
@@ -46,7 +59,7 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 			}
 		}
 
-		if($group == 3){
+		if($group == Group::USER){
 			if($acct == 'Meaningful Use' || $acct == 'Initial' || $acct == 'Training'){
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
@@ -142,7 +155,7 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 			}
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-			if($group != 1){
+			if($group != Group::ADMIN && $group != Group::PARTNER_ADMIN){
 				$this->request->data['PoliciesAndProceduresDocument']['client_id'] = $this->Auth->User('client_id');
 				$this->request->data['PoliciesAndProceduresDocument']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
 			} else {
@@ -159,7 +172,7 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 				$this->Session->setFlash('The policies and procedures document has been saved.', 'default', array('class' => 'success message'));
 				
 				$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-			if($group == 1){
+			if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
@@ -177,7 +190,7 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 			}
 		}
 		$policiesAndProcedures = $this->PoliciesAndProceduresDocument->PoliciesAndProcedure->find('list');
-		$clients = $this->PoliciesAndProceduresDocument->Client->find('list');
+		$clients = $this->getClientsList();
 		$this->set(compact('policiesAndProcedures', 'clients'));
 	}
 
@@ -279,7 +292,7 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 
 				// If user is a client automatically set the client id accordingly. Admin can change client ids
 				$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-				if($group != 1){
+				if($group != Group::ADMIN && $group != Group::PARTNER_ADMIN){
 					$this->request->data['PoliciesAndProceduresDocument']['client_id'] = $this->Auth->User('client_id');
 					$this->request->data['PoliciesAndProceduresDocument']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
 				} else {
@@ -293,7 +306,7 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 
 			if ($this->PoliciesAndProceduresDocument->save($this->request->data)) {
 				$this->Session->setFlash('The policies and procedures document has been saved.', 'default', array('class' => 'success message'));
-			if($group == 1){
+			if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
@@ -312,7 +325,7 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 		}
 		$policiesAndProcedures = $this->PoliciesAndProceduresDocument->PoliciesAndProcedure->find('list');
 		//$name = $this->PoliciesAndProceduresDocument['document'];
-		$clients = $this->PoliciesAndProceduresDocument->Client->find('list');
+		$clients = $this->getClientsList();
 		$doc = $this->PoliciesAndProceduresDocument->data['PoliciesAndProceduresDocument']['attachment'];
 		$this->set(compact('policiesAndProcedures', 'clients', 'doc'));	
 

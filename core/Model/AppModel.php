@@ -155,4 +155,29 @@ class AppModel extends Model {
             $this->migrateFromQB((string) $rec->f[0], $client_id);
         }
     }
+	
+	public function randomStr($length) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+        $string = "";    
+    
+        for ($p = 0; $p < $length; $p++) {
+             $string .= $characters[mt_rand(0, strlen($characters)-1)];
+        }
+
+        return $string; 
+    }
+	
+	/**
+	 * Check Client Owner
+	 */
+	public function isOwnedBy($id, $client){
+		$this->id = $id;
+		return $this->field('client_id') === $client;
+	}
+	
+	public function isOwnedByPartner($id, $partner) {
+		$this->id = $id;
+		$client = $this->field('client_id');
+		return $this->Client->isOwnedByPartner($client, $partner);
+	}
 }

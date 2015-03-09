@@ -1,6 +1,15 @@
 <?php
-$this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
-$this->Html->addCrumb('Business Associate Agreements', '/business_associate_agreements');
+App::uses('Group', 'Model');
+// Conditionally load buttons based upon user role
+$group = $this->Session->read('Auth.User.group_id');
+$acct = $this->Session->read('Auth.User.Client.account_type');
+
+if ($group == Group::PARTNER_ADMIN) {
+	$this->Html->addCrumb('Business Associate Agreements');
+} else {
+	$this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
+	$this->Html->addCrumb('Business Associate Agreements', '/business_associate_agreements');
+}
 $this->Html->addCrumb('Edit Business Associate Agreement');
 
 	$relationship = array(
@@ -24,10 +33,6 @@ $this->Html->addCrumb('Edit Business Associate Agreement');
 	'Client' => 'Client',
 	'Other' => 'Other'
 	);
-
-// Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id');
-	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="businessAssociateAgreements form">
 <?php echo $this->Form->create('BusinessAssociateAgreement', array('type' => 'file')); ?>
@@ -69,7 +74,7 @@ $this->Html->addCrumb('Edit Business Associate Agreement');
 		echo $this->Form->input('attachment_dir', array('type' => 'hidden'));
 
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
-		if($client == 1){  // if admin allow to choose
+		if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){  // if admin allow to choose
 			echo $this->Form->input('client_id', array('empty' => 'Please Select'));
 		} else {
 			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
@@ -81,12 +86,16 @@ $this->Html->addCrumb('Edit Business Associate Agreement');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+		<?php if ($group == Group::PARTNER_ADMIN): ?>
+		<li><?php echo $this->Html->link(__('Back to Client'), array('controller' => 'clients', 'action' => 'view', $this->request->data['BusinessAssociateAgreement']['client_id'])); ?></li>
+		<?php else: ?>
 		<li><?php echo $this->Html->link(__('List Business Associate Agreements'), array('action' => 'index')); ?></li>
 
 		<?php if($group == 1 || $group == 2): ?>
 		<li><?php echo $this->Form->postLink(__('Delete Business Associate Agreement'),
 		 array('action' => 'delete', $this->Form->value('BusinessAssociateAgreement.id')), 
 		 null, __('Are you sure you would like to delete this Business Associate Agreement?')); ?></li>
+		<?php endif; ?>
 		<?php endif; ?>
 	</ul>
 </div>

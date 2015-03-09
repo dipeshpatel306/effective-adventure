@@ -143,5 +143,10 @@ class Partner extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+	
+	public function beforeSave($options = array()) {
+		$this->data[$this->alias]['admin_account'] = $this->randomStr(10);
+		return true;
+	}
 
 }

@@ -64,13 +64,4 @@ class RiskAssessment extends AppModel {
         $this->set($data);
         $this->save(null, false);
     }
-	
-/**
- * Check Client Owner
- */	
-	public function isOwnedBy($id, $client){
-		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;	
-	}
-	
-	
 }

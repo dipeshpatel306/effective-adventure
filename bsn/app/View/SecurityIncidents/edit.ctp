@@ -1,6 +1,15 @@
 <?php
-$this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
-$this->Html->addCrumb('Security Incidents', '/security_incidents');
+App::uses('Group', 'Model');
+// Conditionally load buttons based upon user role
+$group = $this->Session->read('Auth.User.group_id');
+$acct = $this->Session->read('Auth.User.Client.account_type');
+
+if ($group == Group::PARTNER_ADMIN) {
+	$this->Html->addCrumb('Security Incidents');
+} else {
+	$this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
+	$this->Html->addCrumb('Security Incidents', '/security_incidents');
+}
 $this->Html->addCrumb('Edit Security Incident');
 
 $source = array('Internal - Accidental' => 'Internal - Accidental', 'Internal - Deliberate' => 'Internal - Deliberate', 'Partner' => 'Partner', 'Unknown');
@@ -18,12 +27,6 @@ $impact = array('LOW - a few patient records (i.e., under 10 patients)' => 'LOW 
 
 $options = array('Yes' => 'Yes', 'No' => 'No');
 
-
-
-// Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id');
-	$acct = $this->Session->read('Auth.User.Client.account_type');
-
 ?>
 
 <div class="securityIncidents form">
@@ -31,7 +34,7 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 	<fieldset>
 		<legend><?php echo __('Edit Security Incident'); ?></legend>
 	<?php
-		if ($group == 1) {
+		if ($group == Group::ADMIN || $group == Group::PARTNER_ADMIN) {
 		  echo $this->Form->input('client_id');
 		}
 	?>
@@ -229,7 +232,11 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+		<?php if ($group == Group::PARTNER_ADMIN): ?>
+		<li><?php echo $this->Html->link(__('Back to Client'), array('controller' => 'clients', 'action' => 'view', $this->request->data['SecurityIncident']['client_id'])); ?></li>
+		<?php else: ?>
 		<li><?php echo $this->Html->link(__('List Security Incidents'), array('action' => 'index')); ?></li>
+		<?php endif; ?>
         <li><?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Security Incident', 'id' => $this->Form->value('SecurityIncident.id'))); ?></li>
 	</ul>
 </div>

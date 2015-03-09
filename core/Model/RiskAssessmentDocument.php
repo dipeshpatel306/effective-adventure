@@ -104,11 +104,4 @@ class RiskAssessmentDocument extends AppModel {
         '7' => array('description', null),
         '12' => array('attachment', 'mapQBAttachment')
     );
-
-/**
- * Check Client Owner
- */
-	public function isOwnedBy($id, $client){
-		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
-	}
 }

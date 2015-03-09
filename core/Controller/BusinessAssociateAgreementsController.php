@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('Group', 'Model');
 /**
  * BusinessAssociateAgreements Controller
  *
@@ -21,7 +22,19 @@ class BusinessAssociateAgreementsController extends AppController {
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		$acct = $this->Session->read('Auth.User.Client.account_type'); // Get account type
-
+		$partner = $this->Session->read('Auth.User.partner_id');
+		
+		if ($group == Group::PARTNER_ADMIN) {
+			if (in_array($this->action, array('add'))) {
+				$id = $this->request->params['pass'][0];
+				return $this->BusinessAssociateAgreement->Client->isOwnedByPartner($id, $partner);
+			} elseif (in_array($this->action, array('edit', 'view', 'delete', 'sendFile'))) {
+				$id = $this->request->params['pass'][0];
+				return $this->BusinessAssociateAgreement->isOwnedByPartner($id, $partner);
+			}
+			return false;
+		}
+		
 		if($group == 2){
 			if(in_array($this->action, array('index', 'view','add'))){  // Allow Managers to Add
 				return true;
@@ -85,9 +98,9 @@ class BusinessAssociateAgreementsController extends AppController {
 			throw new NotFoundException(__('Invalid Business Associate Agreement'));
 		}
 
-		if($group == 1){
+		if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 			$this->set('businessAssociateAgreement', $this->BusinessAssociateAgreement->read(null, $id));
-		} elseif($group == 2){
+		} elseif($group == Group::MANAGER){
 				$is_authorized = $this->BusinessAssociateAgreement->find('first', array(
 				'conditions' => array(
 					'BusinessAssociateAgreement.id' => $id,
@@ -121,7 +134,7 @@ class BusinessAssociateAgreementsController extends AppController {
 
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-			if($group != 1){
+			if($group != Group::ADMIN && $group != Group::PARTNER_ADMIN){
 				$this->request->data['BusinessAssociateAgreement']['client_id'] = $this->Auth->User('client_id');
 				//$clientId = $this->request->data['BusinessAssociateAgreement']['client_id'];
 
@@ -142,7 +155,7 @@ class BusinessAssociateAgreementsController extends AppController {
 			$this->BusinessAssociateAgreement->create();
 			if ($this->BusinessAssociateAgreement->save($this->request->data)) {
 				$this->Session->setFlash('The business associate agreement has been saved.', 'default', array('class' => 'success message'));
-			if($group == 1){
+			if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
@@ -159,7 +172,7 @@ class BusinessAssociateAgreementsController extends AppController {
 		}
 		$this->loadModel('State');
 		$states = $this->State->getStates();
-		$clients = $this->BusinessAssociateAgreement->Client->find('list');
+		$clients = $this->getClientsList();
 		$this->set(compact('clients', 'states'));
 	}
 
@@ -182,7 +195,7 @@ class BusinessAssociateAgreementsController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 
 				$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-				if($group != 1){
+				if($group != Group::ADMIN && $group != Group::PARTNER_ADMIN){
 					$this->request->data['BusinessAssociateAgreement']['client_id'] = $this->Auth->User('client_id');
 					$this->request->data['BusinessAssociateAgreement']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
 				}else {
@@ -196,7 +209,7 @@ class BusinessAssociateAgreementsController extends AppController {
 
 			if ($this->BusinessAssociateAgreement->save($this->request->data)) {
 				$this->Session->setFlash('The business associate agreement has been saved.', 'default', array('class' => 'success message'));
-			if($group == 1){
+			if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
@@ -214,7 +227,7 @@ class BusinessAssociateAgreementsController extends AppController {
 		}
 		$this->loadModel('State');
 		$states = $this->State->getStates();
-		$clients = $this->BusinessAssociateAgreement->Client->find('list');
+		$clients = $this->getClientsList();
 		$doc = $this->BusinessAssociateAgreement->data['BusinessAssociateAgreement']['attachment'];
 		$this->set(compact('clients', 'doc', 'states'));
 	}

@@ -1,12 +1,17 @@
 <?php
+App::uses('Group', 'Model');
 // Conditionally load buttons based upon user role
 $group = $this->Session->read('Auth.User.group_id');
 $acct = $this->Session->read('Auth.User.Client.account_type');
 
-if ($acct != 'Initial') {
-	$this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
+if ($group == Group::PARTNER_ADMIN) {
+	$this->Html->addCrumb('Other Policies & Procedures');
+} else {
+	if ($acct != 'Initial') {
+		$this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
+	}
+	$this->Html->addCrumb('Other Policies & Procedures', '/other_policies_and_procedures');
 }
-$this->Html->addCrumb('Other Policies & Procedures', '/other_policies_and_procedures');
 $this->Html->addCrumb('Add Other Policy & Procedure');
 
 
@@ -27,7 +32,7 @@ $this->Html->addCrumb('Add Other Policy & Procedure');
 		echo $this->Form->input('details', array('type' => 'text', 'rows' => '5', 'cols' => '50'));
 
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
-		if($client == 1){  // if admin allow to choose
+		if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){  // if admin allow to choose
 			echo $this->Form->input('client_id',array('selected' => $selected, 'empty' => 'Please Select'));
 		} else {
 			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
@@ -43,8 +48,11 @@ $this->Html->addCrumb('Add Other Policy & Procedure');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-
+		<?php if ($group == Group::PARTNER_ADMIN): ?>
+		<li><?php echo $this->Html->link(__('Back to Client'), array('controller' => 'clients', 'action' => 'view', $clientId)); ?></li>
+		<?php else: ?>
 		<li><?php echo $this->Html->link(__('List Other Policies And Procedures'), array('action' => 'index')); ?></li>
+		<?php endif; ?>
 
 	</ul>
 </div>

@@ -1,11 +1,18 @@
 <?php
-$this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
-$this->Html->addCrumb('Business Associate Agreements', '/business_associate_agreements');
+App::uses('Group', 'Model');
+// Conditionally load buttons based upon user role
+$group = $this->Session->read('Auth.User.group_id');
+$acct = $this->Session->read('Auth.User.Client.account_type');
+
+if ($group == Group::PARTNER_ADMIN) {
+	$this->Html->addCrumb('Business Associate Agreements');
+} else {
+	$this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
+	$this->Html->addCrumb('Business Associate Agreements', '/business_associate_agreements');
+}
 $this->Html->addCrumb($businessAssociateAgreement['BusinessAssociateAgreement']['contact']);
 
-// Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id');
-	$acct = $this->Session->read('Auth.User.Client.account_type');
+
 ?>
 <div class="businessAssociateAgreements view">
 <h2><?php  echo __('Business Associate Agreement'); ?></h2>
@@ -108,11 +115,17 @@ $this->Html->addCrumb($businessAssociateAgreement['BusinessAssociateAgreement'][
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
+	<ul>	
+		<?php if ($group == Group::PARTNER_ADMIN): ?>
+		<li><?php echo $this->Html->link(__('Back to Client'), array('controller' => 'clients', 'action' => 'view', $businessAssociateAgreement['BusinessAssociateAgreement']['client_id'])); ?></li>
+		<?php else: ?>
 		<li><?php echo $this->Html->link(__('List Business Associate Agreements'), array('action' => 'index')); ?> </li>
+		<?php endif; ?>
 
-		<?php if($group == 1 || $group == 2): ?>
+		<?php if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN || $group == Group::MANAGER): ?>
+			<?php if ($group != Group::PARTNER_ADMIN): ?>
 		<li><?php echo $this->Html->link(__('New Business Associate Agreement'), array('action' => 'add')); ?> </li>
+			<?php endif; ?>
 		<li><?php echo $this->Html->link(__('Edit Business Associate Agreement'), array('action' => 'edit', $businessAssociateAgreement['BusinessAssociateAgreement']['id'])); ?> </li>
 		<li><?php echo $this->element('delete_link', array('title' => 'Delete Business Associate Agreement', 'name' => 'Business Associate Agreement', 'id' => $businessAssociateAgreement['BusinessAssociateAgreement']['id'])); ?></li>
 		<?php endif; ?>

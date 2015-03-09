@@ -40,7 +40,7 @@
 	<?php endif; ?>
 
 
-	<?php if($acct == 'HIPAA' ): ?>
+	<?php if($group == 1): ?>
 		<li><?php echo $this->Html->link('Business Associate Agreements', array('controller' => 'business_associate_agreements', 'action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link($pnp_name, array('controller' => 'policies_and_procedures', 'action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link('Risk Assessment Documents', array('controller' => 'risk_assessment_documents', 'action' => 'index')); ?></li>

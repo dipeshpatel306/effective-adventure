@@ -1,15 +1,20 @@
 <?php
-$this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
-$this->Html->addCrumb('Server Room Access', '/server_room_access');
+App::uses('Group', 'Model');
+// Conditionally load buttons based upon user role
+$group = $this->Session->read('Auth.User.group_id');
+$acct = $this->Session->read('Auth.User.Client.account_type');
+
+if ($group == Group::PARTNER_ADMIN) {
+	$this->Html->addCrumb('Server Room Access');
+} else {
+	$this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
+	$this->Html->addCrumb('Server Room Access', '/server_room_access');
+}
 $this->Html->addCrumb('Add Server Room Access');
 
 $reason = array('' => '', 'Change Backup Tape' => 'Change Backup Tape', 'Maintenance' => 'Maintenance', 'It Support' => 'It Support', 'Other' => 'Other');
 $changed = array('' => '', 'Yes' => 'Yes', 'No' => 'No');
 
-// Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id');
-	$acct = $this->Session->read('Auth.User.Client.account_type');
-	
 	if(isset($clientId)){
 		$selected = $clientId;
 	} else{
@@ -50,7 +55,7 @@ $changed = array('' => '', 'Yes' => 'Yes', 'No' => 'No');
 		echo $this->Form->input('notes');
 
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
-		if($client == 1){  // if admin allow to choose
+		if($client == Group::ADMIN || $group == Group::PARTNER_ADMIN){  // if admin allow to choose
 			echo $this->Form->input('client_id',array('selected' => $selected, 'empty' => 'Please Select'));
 		} else {
 			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
@@ -63,7 +68,10 @@ $changed = array('' => '', 'Yes' => 'Yes', 'No' => 'No');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-
+		<?php if ($group == Group::PARTNER_ADMIN): ?>
+		<li><?php echo $this->Html->link(__('Back to Client'), array('controller' => 'clients', 'action' => 'view', $clientId)); ?></li>
+		<?php else: ?>
 		<li><?php echo $this->Html->link(__('List Server Room Access'), array('action' => 'index')); ?></li>
+		<?php endif; ?>
 	</ul>
 </div>

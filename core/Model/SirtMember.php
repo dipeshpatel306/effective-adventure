@@ -78,10 +78,4 @@ class SirtMember extends AppModel {
 			'order' => ''
 		)
 	);
-/**
- * Check Client Owner
- */	
-/*	public function isOwnedBy($id, $client){
-		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;	
-	}*/
 }

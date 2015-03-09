@@ -105,11 +105,4 @@ class DisasterRecoveryPlan extends AppModel {
         '12' => array('attachment', 'mapQBAttachment')
     );
 
-
-/**
- * Check Client Owner
- */
-	public function isOwnedBy($id, $client){
-		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
-	}
 }

@@ -1,8 +1,11 @@
 <?php
+App::uses('Group', 'Model');
+$group = $this->Session->read('Auth.User.group_id');
+
 $this->Html->addCrumb('Clients', '/clients');
 $this->Html->addCrumb('Edit Client');
 
-$acctType = array('Initial' => 'Initial', 'Subscription' => 'Subscription', 'Meaningful Use' => 'Meaningful Use', 'Training' => 'Training', 'HIPAA' => 'HIPAA');
+$acctType = array('Initial' => 'Initial', 'Subscription' => 'Subscription', 'Meaningful Use' => 'Meaningful Use', 'Training' => 'Training', 'Admin' => 'Admin');
 $active = array(true => 'Yes', false => 'No');
 $risk = array('' => '', 'Completed' => 'Completed');
 ?>
@@ -18,7 +21,9 @@ $risk = array('' => '', 'Completed' => 'Completed');
         echo $this->Form->input('moodle_course_id', array('label' => 'Training Course', 'options' => $moodle_courses));
 		echo $this->Form->input('active', array('label' => 'Account Active?', 'options' => $active, 'empty' => ''));
 		echo $this->Form->input('display_ra_org', array('label' => 'Display RA/Org?', 'options' => $active, 'default' => true));
-		echo $this->Form->input('partner_id', array('empty' => 'No Partner', 'value' => ''));
+		if ($group == Group::ADMIN) {
+			echo $this->Form->input('partner_id', array('empty' => 'No Partner'));
+		}
 		echo $this->Form->input('risk_assessment_status', array('label' => 'Risk Assessment Completed', 'class' => 'datePick'));
 		echo $this->Form->input('details', array('type' => 'text', 'rows' => '5', 'cols' => '40'));
 	?>
@@ -29,10 +34,16 @@ $risk = array('' => '', 'Completed' => 'Completed');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('List Clients'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->element('delete_link', array('title' => 'Delete Client', 'name' => 'Client', 'id' => $this->Form->value('Client.id'))); ?></li>
+		<li><?php
+			if ($group == Group::ADMIN) {
+				echo $this->element('delete_link', array('title' => 'Delete Client', 'name' => 'Client', 'id' => $this->Form->value('Client.id')));
+			}
+		  ?></li>
 	</ul>
 	<ul>
+		<?php if ($group == Group::ADMIN): ?>
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+		<?php endif; ?>
 		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

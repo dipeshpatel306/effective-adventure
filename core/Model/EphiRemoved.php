@@ -102,10 +102,4 @@ class EphiRemoved extends AppModel {
         '25' => array('notes', null)
     );
     
-/**
- * Check Client Owner
- */
-	public function isOwnedBy($id, $client){
-		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
-	}
 }

@@ -99,10 +99,4 @@ class ServerRoomAccess extends AppModel {
         '12' => array('other_reason', null),
         '13' => array('notes', null)
     );
-/**
- * Check Client Owner
- */
-	public function isOwnedBy($id, $client){
-		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
-	}
 }

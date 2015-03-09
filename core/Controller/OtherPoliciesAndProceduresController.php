@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('Group', 'Model');
 /**
  * OtherPoliciesAndProcedures Controller
  *
@@ -21,9 +22,21 @@ class OtherPoliciesAndProceduresController extends AppController {
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+		$partner = $this->Session->read('Auth.User.partner_id');
 		$acct = $this->Session->read('Auth.User.account_type');
 
-		if($group == 2 || $acct == 'Initial'){ // Allow Managers to add/edit/delete their own data
+		if ($group == Group::PARTNER_ADMIN) {
+			if (in_array($this->action, array('add'))) {
+				$id = $this->request->params['pass'][0];
+				return $this->OtherPoliciesAndProcedure->Client->isOwnedByPartner($id, $partner);
+			} elseif (in_array($this->action, array('edit', 'view', 'delete', 'sendFile'))) {
+				$id = $this->request->params['pass'][0];
+				return $this->OtherPoliciesAndProcedure->isOwnedByPartner($id, $partner);
+			}
+			return false;
+		}
+
+		if($group == Group::MANAGER || $acct == 'Initial'){ // Allow Managers to add/edit/delete their own data
 
 			if(in_array($this->action, array('index', 'add'))){  // Allow Managers to Add
 				return true;
@@ -39,7 +52,7 @@ class OtherPoliciesAndProceduresController extends AppController {
 			}
 		}
 
-		if($group == 3){
+		if($group == Group::USER){
 			if(in_array($this->action, array('view', 'sendFile'))){ // Allow Managers to Edit, delete their own
 				$id = $this->request->params['pass'][0];
 				if($this->OtherPoliciesAndProcedure->isOwnedBy($id, $client)){
@@ -98,10 +111,10 @@ class OtherPoliciesAndProceduresController extends AppController {
 			throw new NotFoundException(__('Invalid Other policy and procedure'));
 		}
 
-		if($group == 1){
+		if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 			$this->set('otherPoliciesAndProcedure', $this->OtherPoliciesAndProcedure->read(null, $id));
 			
-		} elseif($group == 2 || $group == 3){
+		} elseif($group == Group::MANAGER || $group == Group::USER){
 			$is_authorized = $this->OtherPoliciesAndProcedure->find('first', array(
 				'conditions' => array(
 					'OtherPoliciesAndProcedure.id' => $id,
@@ -137,7 +150,7 @@ class OtherPoliciesAndProceduresController extends AppController {
 
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-			if($group != 1){
+			if($group != Group::ADMIN && $group != Group::PARTNER_ADMIN){
 				$this->request->data['OtherPoliciesAndProcedure']['client_id'] = $this->Auth->User('client_id');
 				$this->request->data['OtherPoliciesAndProcedure']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
 			} else {
@@ -152,7 +165,7 @@ class OtherPoliciesAndProceduresController extends AppController {
 			$this->OtherPoliciesAndProcedure->create();
 			if ($this->OtherPoliciesAndProcedure->save($this->request->data)) {
 				$this->Session->setFlash('The other policies and procedure has been saved.', 'default', array('class' => 'success message'));
-			if($group == 1){
+			if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
 				} else {
@@ -166,7 +179,7 @@ class OtherPoliciesAndProceduresController extends AppController {
 				$this->Session->setFlash(__('The other policies and procedure could not be saved. Please, try again.'));
 			}
 		}
-		$clients = $this->OtherPoliciesAndProcedure->Client->find('list');
+		$clients = $this->getClientsList();
 		$this->set(compact('clients'));
 	}
 
@@ -188,38 +201,37 @@ class OtherPoliciesAndProceduresController extends AppController {
 		}
 
 		if ($this->request->is('post') || $this->request->is('put')) {
-         		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-				if($group != 1){
-					$this->request->data['OtherPoliciesAndProcedure']['client_id'] = $this->Auth->User('client_id');
-					$this->request->data['OtherPoliciesAndProcedure']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
-				} else {
-						$this->loadModel('Client');
-						$key = $this->Client->find('first', array('conditions' => array(
+         	$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
+			if($group != Group::ADMIN && $group != Group::PARTNER_ADMIN){
+				$this->request->data['OtherPoliciesAndProcedure']['client_id'] = $this->Auth->User('client_id');
+				$this->request->data['OtherPoliciesAndProcedure']['file_key'] = $this->Session->read('Auth.User.Client.file_key'); // file key
+			} else {
+				$this->loadModel('Client');
+				$key = $this->Client->find('first', array('conditions' => array(
 									'Client.id' => $this->data['OtherPoliciesAndProcedure']['client_id']),
 									// /'fields' => array('Client.file_key', 'Client.id'),
-									));
-						$this->request->data['OtherPoliciesAndProcedure']['file_key'] = $key['Client']['file_key'];
-				}
+										));
+				$this->request->data['OtherPoliciesAndProcedure']['file_key'] = $key['Client']['file_key'];
+			}
 
 			if ($this->OtherPoliciesAndProcedure->save($this->request->data)) {
 				$this->Session->setFlash('The other policies and procedure has been saved.', 'default', array('class' => 'success message'));
-			if($group == 1){
-				if(isset($clientId)){
-					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
-				} else {
-					$this->redirect(array('action' => 'index'));	
+				if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
+					if(isset($clientId)){
+						$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+					} else {
+						$this->redirect(array('action' => 'index'));	
+					}	
+				} else {	
+					$this->redirect(array('action' => 'index'));
 				}
-				
-			} else {	
-				$this->redirect(array('action' => 'index'));
-			}
 			} else {
 				$this->Session->setFlash(__('The other policies and procedure could not be saved. Please, try again.'));
 			}
 		} else {
 			$this->request->data = $this->OtherPoliciesAndProcedure->read(null, $id);
 		}
-		$clients = $this->OtherPoliciesAndProcedure->Client->find('list');
+		$clients = $this->getClientsList();
 		$doc = $this->OtherPoliciesAndProcedure->data['OtherPoliciesAndProcedure']['attachment'];
 		$this->set(compact('clients', 'doc'));
 	}

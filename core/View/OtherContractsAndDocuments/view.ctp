@@ -1,11 +1,16 @@
 <?php
-$this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
-$this->Html->addCrumb('Other Contracts & Documents', '/other_contracts_and_documents');
-$this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['name']);
-
+App::uses('Group', 'Model');
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id');
-	$acct = $this->Session->read('Auth.User.Client.account_type');
+$group = $this->Session->read('Auth.User.group_id');
+$acct = $this->Session->read('Auth.User.Client.account_type');
+
+if ($group == Group::PARTNER_ADMIN) {
+	$this->Html->addCrumb('Other Contracts & Documents');
+} else {
+	$this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
+	$this->Html->addCrumb('Other Contracts & Documents', '/other_contracts_and_documents');
+}
+$this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['name']);
 ?>
 
 <div class="otherContractsAndDocuments view">
@@ -69,10 +74,16 @@ $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['n
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+		<?php if ($group == Group::PARTNER_ADMIN): ?>
+		<li><?php echo $this->Html->link(__('Back to Client'), array('controller' => 'clients', 'action' => 'view', $otherContractsAndDocument['OtherContractsAndDocument']['client_id'])); ?></li>
+		<?php else: ?>
 		<li><?php echo $this->Html->link(__('List Other Contracts And Documents'), array('action' => 'index')); ?> </li>
+		<?php endif; ?>
 
-		<?php if($group == 1 || $group == 2): ?>
+		<?php if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN || $group == Group::MANAGER): ?>
+		<?php if ($group != Group::PARTNER_ADMIN): ?>
 		<li><?php echo $this->Html->link(__('New Other Contracts And Document'), array('action' => 'add')); ?> </li>
+		<?php endif; ?>
 		<li><?php echo $this->Html->link(__('Edit Other Contracts And Document'), array('action' => 'edit', $otherContractsAndDocument['OtherContractsAndDocument']['id'])); ?> </li>
 		<li><?php echo $this->element('delete_link', array('title' => 'Delete Other Contract & Document', 'name' => 'Other Contract & Document', 'id' => $otherContractsAndDocument['OtherContractsAndDocument']['id'])); ?></li>
 		<?php endif; ?>

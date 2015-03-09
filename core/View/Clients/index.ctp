@@ -1,4 +1,7 @@
 <?php
+App::uses('Group', 'Model');
+$group = $this->Session->read('Auth.User.group_id');
+
 $this->Html->addCrumb('Clients');
 ?>
 <div class="clients index">
@@ -66,7 +69,10 @@ $this->Html->addCrumb('Clients');
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $client['Client']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $client['Client']['id'])); ?>
-			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Client', 'id' => $client['Client']['id'])); ?>
+			<?php if ($group == Group::ADMIN) {
+				echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Client', 'id' => $client['Client']['id']));
+			}
+			?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -88,11 +94,16 @@ $this->Html->addCrumb('Clients');
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
+	<?php if ($group == Group::ADMIN): ?>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Client'), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('Migrate QB Client'), array('action' => 'migrate_from_qb')); ?></li>
-	</ul><ul>
+	</ul>
+	<?php endif; ?>
+	<ul>
+		<?php if ($group == Group::ADMIN): ?>
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+		<?php endif; ?>
 		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

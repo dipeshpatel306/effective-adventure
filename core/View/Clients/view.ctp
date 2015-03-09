@@ -1,4 +1,7 @@
 <?php
+App::uses('Group', 'Model');
+$group = $this->Session->read('Auth.User.group_id');
+
 $this->Html->addCrumb('Clients', '/clients');
 $this->Html->addCrumb($client['Client']['name']);
 
@@ -54,7 +57,13 @@ $clientId = $client['Client']['id'];
 		</dd>
 		<dt><?php echo __('Partner'); ?></dt>
 		<dd>
-			<?php echo ($client['Partner']['name']); ?>
+			<?php
+				if ($group == Group::ADMIN && isset($client['Client']['partner_id'])) {
+					echo $this->Html->link($client['Partner']['name'], array('controller' => 'partners', 'action' => 'view', $client['Client']['partner_id']));
+				} else {
+					echo $client['Partner']['name'];
+				}
+			?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Risk Assessment Completed'); ?></dt>
@@ -128,15 +137,20 @@ $clientId = $client['Client']['id'];
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-
 		<li><?php echo $this->Html->link(__('List Clients'), array('action' => 'index')); ?> </li>
+		<?php if ($group == Group::ADMIN): ?>
 		<li><?php echo $this->Html->link(__('New Client'), array('action' => 'add')); ?> </li>
+		<?php endif; ?>
 		<li><?php echo $this->Html->link(__('Edit Client'), array('action' => 'edit', $client['Client']['id'])); ?> </li>
+		<?php if ($group == Group::ADMIN): ?>
 		<li><?php echo $this->element('delete_link', array('title' => 'Delete Client', 'name' => 'Client', 'id' => $client['Client']['id'])); ?></li>
+		<?php endif; ?>
 	</ul>
 	<ul>
+		<?php if ($group == Group::ADMIN): ?>
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
+		<?php endif; ?>
+		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add', $client['Client']['id'])); ?> </li>
 	</ul>
 	
 	
@@ -161,7 +175,9 @@ $clientId = $client['Client']['id'];
 		<th><?php echo $this->Paginator->sort('User.last_login', 'Last login'); ?></th>
 		<th><?php echo $this->Paginator->sort('User.created', 'Created'); ?></th>
 		<th><?php echo $this->Paginator->sort('User.modified', 'Modified'); ?></th>
+		<?php if ($group == Group::ADMIN): ?>
 		<th class="actions"><?php echo __('Actions'); ?></th>
+		<?php endif; ?>
 	</tr>
 
 	<?php
@@ -174,11 +190,13 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['last_login']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['modified']); ?></td>
+			<?php if ($group == Group::ADMIN): ?>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'users', 'action' => 'admin_edit', $user['User']['id'], $clientId)); ?>
 				<?php echo $this->element('delete_link', array('controller' => 'users', 'title' => 'Delete', 'name' => 'User', 'id' => $user['User']['id'])); ?>
 			</td>
+			<?php endif; ?>
 		</tr>
 	<?php endforeach; ?>
 	</table>
@@ -206,7 +224,7 @@ $clientId = $client['Client']['id'];
 
 
 <div class="related">
-	<h3><?php echo __('HIPAA Policies & Procedures Documents'); ?></h3>
+	<h3><?php echo Configure::read('Theme.pnp_name') . ' Documents'; ?></h3>
 
 	<?php if (!empty($policies)): ?>
 		
@@ -255,7 +273,7 @@ $clientId = $client['Client']['id'];
 <?php endif; ?>
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New HIPAA Policies & Procedure  Document'), array('controller' => 'policies_and_procedures_documents', 'action' => 'add', $clientId)); ?> </li>
+			<li><?php echo $this->Html->link(__('New ' . Configure::read('Theme.pnp_name') . ' Document'), array('controller' => 'policies_and_procedures_documents', 'action' => 'add', $clientId)); ?> </li>
 		</ul>
 	</div>
 
@@ -612,6 +630,7 @@ $clientId = $client['Client']['id'];
 </div>
 
 <!-- ePHI Removed -->
+<?php if (Configure::read('Theme.display_ephi')): ?>
 <div class="related">
 	<h3><?php echo __('Ephi Removed'); ?></h3>
 
@@ -687,4 +706,5 @@ $clientId = $client['Client']['id'];
 		</ul>
 	</div>
 </div>
+<?php endif; ?>
 </div>

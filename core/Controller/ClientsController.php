@@ -29,6 +29,17 @@ class ClientsController extends AppController {
                 $this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
                 return false;
         }
+			
+		if (in_array($this->action, array('index', 'edit')) && $group == Group::PARTNER_ADMIN) {
+			return true;
+		}
+		
+		if ($this->action == 'view' && $group == Group::PARTNER_ADMIN) {
+			$id = $this->request->params['pass'][0];
+			if($this->Client->isOwnedByPartner($id, $this->Session->read('Auth.User.partner_id'))){
+				return true;
+			}
+		}
 
         return parent::isAuthorized($user);
     }
@@ -39,14 +50,21 @@ class ClientsController extends AppController {
  * @return void
  */
     public function index() {
+    	$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
+		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+		
+		if ($group == Group::PARTNER_ADMIN) {
+			$conditions = array('Client.partner_id' => $this->Session->read('Auth.User.partner_id'));
+		} else {
+			$conditions = array();
+		}
+		
         $this->Client->recursive = 0;
 		$this->Paginator->settings['limit'] = 100;
 		
 		if (isset($this->request->data['Client']['search'])) {
 			$search = $this->request->data['Client']['search'];	
-			$conditions = array('Client.name LIKE' => "%$search%");
-		} else {
-			$conditions = array();
+			$conditions['Client.name LIKE'] = "%$search%";
 		}
 
         $this->set('clients', $this->Paginator->paginate('Client', $conditions));
@@ -100,18 +118,7 @@ class ClientsController extends AppController {
     public function add() {
         if ($this->request->is('post')) {
             $this->Client->create();
-            if ($this->Client->save($this->request->data)) {
-
-                // Call method to generate user Strings
-                $adminString = self::_randomStr(10);  // admin
-                $this->Client->saveField('admin_account', $adminString);
-
-                $userString = self::_randomStr(10); // user
-                $this->Client->saveField('user_account', $userString);
-
-                $securityString = self::_randomStr(10);
-                $this->Client->saveField('file_key', $securityString);
-                
+            if ($this->Client->save($this->request->data)) {                
                 $this->Session->setFlash('The client has been saved.', 'default', array('class' => 'success message'));
                 $this->redirect(array('action' => 'index'));
             } else {
@@ -201,7 +208,7 @@ class ClientsController extends AppController {
 	public function purge() {
 		return;
 		set_time_limit(1200);
-		$clients = $this->Client->find('all', array('conditions' => array('Client.name !=' => 'HIPAA')));
+		$clients = $this->Client->find('all', array('conditions' => array('Client.id !=' => 1)));
 		if ($this->request->is('post')) {
 			foreach ($clients as $client) {
 				$this->Client->id = $client['Client']['id'];

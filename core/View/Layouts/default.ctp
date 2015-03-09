@@ -42,10 +42,14 @@
 					'url' => array('controller' => '/'),
 					'class' => 'logo floatLeft'
 					));
-				  echo $this->Html->image('yourLogoHere.png', array(
-				  	'alt' => 'Your Logo Here',
-				  	'class' => 'logo partnerLogo'
-				  ));
+				  if (isset($partner)) {
+				  	$img = '../files/partner/logo/' . $partner['Partner']['logo_dir'] . '/' . $partner['Partner']['logo'];
+				  	echo $this->Html->image($img, array(
+				        'alt' => $partner['Partner']['name'],
+				        'url' => $partner['Partner']['link'],
+				  		'class' => 'logo partnerLogo'
+				  	));
+				  }
 			?>
 
 			<?php // Load User Box if logged in

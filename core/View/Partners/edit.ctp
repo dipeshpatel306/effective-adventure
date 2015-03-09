@@ -10,8 +10,20 @@ $this->Html->addCrumb('Edit Partner');
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
 		echo $this->Form->input('email');
-		echo $this->Form->input('link', array('label'=> 'Link - Please include "http://" '));		
-		echo $this->Form->input('logo', array('type' => 'file', 'label' => 'Partner Logo - (gif, jpg, jpeg, png files only)'));
+		echo $this->Form->input('link', array('label'=> 'Link - Please include "http://" '));
+	?>
+		<label for='currentDoc' class='labelNew'>Current Logo</label>
+		<div class='partnerLogo'>
+		<?php 
+		$partnerImg = '../files/partner/logo/' . $this->request->data['Partner']['logo_dir'] . '/' . $this->request->data['Partner']['logo'];
+		echo $this->Html->image($partnerImg, array(
+							'alt' => $this->request->data['Partner']['name'],
+							'url' => $this->request->data['Partner']['link'],
+							'class' => 'logo'
+							)); ?>
+		</div>
+<?php 
+		echo $this->Form->input('logo', array('type' => 'file', 'label' => 'Replace Logo'));	
 		echo $this->Form->input('logo_dir', array('type' => 'hidden'));
 	?>
 	</fieldset>

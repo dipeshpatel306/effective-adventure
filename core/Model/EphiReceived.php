@@ -112,10 +112,4 @@ class EphiReceived extends AppModel {
         '18' => array('other_reason', null),
         '24' => array('notes', null)
     );
-/**
- * Check Client Owner
- */
-	public function isOwnedBy($id, $client){
-		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
-	}
 }

@@ -2,17 +2,25 @@
 App::uses('Group', 'Model');
 
 $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-if ($group == Group::ADMIN){ // If admin allow creating another Hipaa administrator
+if ($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){ // If admin allow creating another Hipaa administrator
 	$userTypeName = 'User';
 	$usersTypeName = 'Users';
-    $groupOption = array(Group::USER => 'User', Group::MANAGER => 'Manager', Group::ADMIN => 'HIPAA Administrator');
+	if ($group == Group::ADMIN) {
+		$groupOption = array(Group::USER => 'User', Group::MANAGER => 'Manager', Group::ADMIN => 'Administrator', Group::PARTNER_ADMIN => 'Partner Administrator');
+	} else {
+		$groupOption = array(Group::USER => 'User', Group::MANAGER => 'Manager');	
+	}
 } else {
 	$userTypeName = 'Employee';
 	$usersTypeName = 'Employees';
     $groupOption = array(Group::USER => 'Employee', Group::MANAGER => 'Manager');
 }
 
-$this->Html->addCrumb($usersTypeName, '/users');
+if ($group == Group::PARTNER_ADMIN) {
+	$this->Html->addCrumb($usersTypeName);
+} else {
+	$this->Html->addCrumb($usersTypeName, '/users');
+}
 $this->Html->addCrumb('Add ' . $userTypeName);
 
 $active = array(true => 'Yes', false => 'No');  // activate / deactivate a user
@@ -36,13 +44,13 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
     <?php
         //echo $this->Form->input('User.authCode', array('label' => 'Authorization Code'));
 
-        if ($group == Group::ADMIN){  // if admin allow to choose
+        if ($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){  // if admin allow to choose
             echo $this->Form->input('client_id',array('selected' => $selected, 'empty' => 'Please Select'));
         } else {
             echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
         }
 
-        if ($group == Group::ADMIN || $group == Group::MANAGER){ // activate / deactivate user
+        if ($group == Group::ADMIN || $group == Group::PARTNER_ADMIN || $group == Group::MANAGER){ // activate / deactivate user
         echo $this->Form->input('group_id', array('options' => $groupOption, 'default' => 4));
             echo $this->Form->input('active', array('options' => $active));
         }
@@ -62,8 +70,10 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
 <div class="actions">
     <h3><?php echo __('Actions'); ?></h3>
     <ul>
-
+    	<?php if ($group == Group::PARTNER_ADMIN): ?>
+    	<li><?php echo $this->Html->link(__('Back to Client'), array('controller' => 'clients', 'action' => 'view', $clientId)); ?></li>
+    	<?php else: ?>
         <li><?php echo $this->Html->link(__('List ' . $usersTypeName), array('action' => 'index')); ?></li>
-
+        <?php endif; ?>
     </ul>
 </div>

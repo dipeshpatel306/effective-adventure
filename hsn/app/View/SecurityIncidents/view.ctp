@@ -1,17 +1,22 @@
 <?php
-$this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
-$this->Html->addCrumb('Security Incidents', '/security_incidents');
-$this->Html->addCrumb($this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['date_of_incident']));
-
+App::uses('Group', 'Model');
 // Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id');
-	$acct = $this->Session->read('Auth.User.Client.account_type');
+$group = $this->Session->read('Auth.User.group_id');
+$acct = $this->Session->read('Auth.User.Client.account_type');
+
+if ($group == Group::PARTNER_ADMIN) {
+	$this->Html->addCrumb('Security Incidents');
+} else {
+	$this->Html->addCrumb('Track & Document', '/dashboard/track_and_document');
+	$this->Html->addCrumb('Security Incidents', '/security_incidents');
+}
+$this->Html->addCrumb($this->Time->format('m/d/y g:i a', $securityIncident['SecurityIncident']['date_of_incident']));
 ?>
 <div class="securityIncidents view">
 <h2><?php  echo __('Security Incident'); ?></h2>
 	<div>
 			
-		<?php if($group = 1): ?>
+		<?php if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN): ?>
 		<h3 class="highlight"><?php echo __('Client'); ?></h3>
 		<p>
 			<?php echo $securityIncident['Client']['name']; ?>
@@ -199,9 +204,12 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $securityIncident['Secu
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+		<?php if ($group == Group::PARTNER_ADMIN): ?>
+		<li><?php echo $this->Html->link(__('Back to Client'), array('controller' => 'clients', 'action' => 'view', $securityIncident['SecurityIncident']['client_id'])); ?></li>
+		<?php else: ?>
 		<li><?php echo $this->Html->link(__('List Security Incidents'), array('action' => 'index')); ?> </li>
-
 		<li><?php echo $this->Html->link(__('New Security Incident'), array('action' => 'add')); ?> </li>
+		<?php endif; ?>
 		<li><?php echo $this->Html->link(__('Edit Security Incident'), array('action' => 'edit', $securityIncident['SecurityIncident']['id'])); ?> </li>
 		<li><?php echo $this->element('delete_link', array('title' => 'Delete Security Incident', 'name' => 'Security Incident', 'id' => $securityIncident['SecurityIncident']['id'])); ?></li>
 

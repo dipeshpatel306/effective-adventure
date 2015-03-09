@@ -124,10 +124,4 @@ class SecurityIncident extends AppModel {
         '52' => array('description_of_breached', null),
         '53' => array('corrective_measures', null)
      );
-/**
- * Check Client Owner
- */
-	public function isOwnedBy($id, $client){
-		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
-	}
 }

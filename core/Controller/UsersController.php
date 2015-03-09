@@ -169,6 +169,20 @@ class UsersController extends AppController {
                 }
             }
         }
+		
+		if($group == Group::PARTNER_ADMIN){
+
+            if(in_array($this->action, array('index', 'view', 'add'))){
+                return true;
+            }
+
+            if(in_array($this->action, array('edit', 'delete'))){
+                $id = $this->request->params['pass'][0];
+                if($this->User->isOwnedByPartner($id, $this->Session->read('Auth.User.partner_id'))){
+                    return true;
+                }
+            }
+        }
 
         if($group == Group::USER){ // Allow user to edit own profile
             if(in_array($this->action, array('edit'))){
@@ -187,13 +201,12 @@ class UsersController extends AppController {
  * Login Method
  */
     public function login($email=null) {
-        $this->set('title_for_layout', Configure::read('Theme.title'));
         if ($this->request->is('post')) {
             $user = $this->User->find(
                 'first', 
                 array(
                     'conditions' => array('User.email' => $this->request->data['User']['email']),
-                    'fields' => array('User.active','Client.active', 'User.id', 'User.email_validated', 'User.password_old'),
+                    'fields' => array('User.active','Client.active', 'User.id', 'User.email_validated', 'User.password_old', 'Partner.active'),
                 )
             ); 
                     
@@ -207,7 +220,7 @@ class UsersController extends AppController {
             
             if ($this->Auth->login()) {
                 // Check to make sure both client and user are active
-                if(!$user['Client']['active'] || !$user['User']['active']){
+                if(!($user['Client']['active'] || $user['Partner']['active']) || !$user['User']['active']){
                     $this->Session->setFlash('Your account is not active!');
                     $this->Auth->logout();
                     $this->redirect('login');
@@ -443,11 +456,11 @@ class UsersController extends AppController {
             $this->set('clientId', $clientId);
         }
         
+		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
         if ($this->request->is('post')) {
 
             // If user is a client automatically set the client id accordingly. Admin can change client ids
-            $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-            if($group != Group::ADMIN){
+            if($group != Group::ADMIN && $group != Group::PARTNER_ADMIN){
                 $this->request->data['User']['client_id'] = $this->Auth->User('client_id');
 
                 if($this->request->data['User']['group_id'] == Group::ADMIN){  // If client tries to spoof Hipaa admin group redirect them
@@ -460,9 +473,11 @@ class UsersController extends AppController {
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash('The user has been saved', 'default', array('class' => 'success message'));
                 
-            if($group == Group::ADMIN){
+            if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
                 if(isset($clientId)){
                     $this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
+				} elseif ($group == Group::PARTNER_ADMIN) {
+					$this->redirect(array('controller' => 'clients', 'action' => 'index'));
                 } else {
                     $this->redirect(array('action' => 'index'));    
                 }
@@ -476,7 +491,7 @@ class UsersController extends AppController {
             }
         }
         $groups = $this->User->Group->find('list');
-        $clients = $this->User->Client->find('list');
+        $clients = $this->getClientsList();
         $this->set(compact('groups', 'clients'));
         
     }
@@ -492,6 +507,11 @@ class UsersController extends AppController {
 
             $this->loadModel('Client');
             $fields = array('Client.id', 'Client.moodle_course_id');
+			
+			$this->loadModel('Partner');
+			$partner_admin = $this->Partner->find('first', array(
+				'conditions' => array('Partner.admin_account' => $authCode)
+			));
             
             $client_admin = $this->Client->find('first', array(
                 'conditions' => array('Client.admin_account' => $authCode), 
@@ -503,7 +523,12 @@ class UsersController extends AppController {
                 'fields' => $fields
             )); // check if user code exists
             
-            if(isset($client_user) && !empty($client_user)){  // if user set client and role
+            if (isset($partner_admin) && !empty($partner_admin)) {
+            	debug($partner_admin);
+            	$this->request->data['User']['group_id'] = Group::PARTNER_ADMIN;
+            	$this->request->data['User']['partner_id'] = $partner_admin['Partner']['id'];
+				$this->request->data['User']['client_id'] = 1;
+            } elseif (isset($client_user) && !empty($client_user)){  // if user set client and role
                 $this->request->data['User']['group_id'] = Group::USER; // set Group Id to to User
                 $this->request->data['User']['client_id'] = $client_user['Client']['id'];  // set Client id
                 $this->request->data['User']['moodle_course_id'] = $client_user['Client']['moodle_course_id'];
@@ -517,7 +542,7 @@ class UsersController extends AppController {
             
             $this->request->data['User']['active'] = true; // activate user by default
             $this->request->data['User']['email_validated'] = true; //false;
-            $this->request->data['User']['validation_code'] = self::_randomStr(10);
+            $this->request->data['User']['validation_code'] = $this->User->randomStr(10);
 
             if($this->User->validates()){ // check if invalidations exist
                 $this->User->create();
