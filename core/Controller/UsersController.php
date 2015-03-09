@@ -492,7 +492,8 @@ class UsersController extends AppController {
         }
         $groups = $this->User->Group->find('list');
         $clients = $this->getClientsList();
-        $this->set(compact('groups', 'clients'));
+		$partners = $this->User->Partner->find('list');
+        $this->set(compact('groups', 'clients', 'partners'));
         
     }
 

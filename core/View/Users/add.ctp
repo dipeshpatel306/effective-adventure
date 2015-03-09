@@ -49,12 +49,15 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
         } else {
             echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
         }
-
-        if ($group == Group::ADMIN || $group == Group::PARTNER_ADMIN || $group == Group::MANAGER){ // activate / deactivate user
-        echo $this->Form->input('group_id', array('options' => $groupOption, 'default' => 4));
+		if ($group == Group::ADMIN || $group == Group::PARTNER_ADMIN || $group == Group::MANAGER) { // activate / deactivate user
+       		echo $this->Form->input('group_id', array('options' => $groupOption, 'default' => 4));
+			if ($group == Group::ADMIN) {
+				echo $this->Form->input('partner_id', array('div' => array('class' => 'partnerSelect hidden')));
+			} 
             echo $this->Form->input('active', array('options' => $active));
         }
-
+	?>
+	<?php
         echo $this->Form->input('email');
         echo $this->Form->input('email2', array('label' => 'Confirm Email'));
         echo $this->Form->input('password');
