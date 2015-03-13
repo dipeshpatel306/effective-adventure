@@ -15,14 +15,14 @@
 		$orgPro = array('controller' => 'Organization_profiles', 'action' => 'add');
 	}
 
-
-	if($acct == 'Initial' || $acct == 'Subscription' || $acct == 'HIPAA'){
-		$dashBtn = '<div class="dashBtn approved">
-						<div class="btnWrapNarrow">
-						<div class="btnText">Click Here</div>
-						<div class="triangle"></div>
-						</div>
-					</div>';
+	$approved = '<div class="dashBtn approved">
+					<div class="btnWrapNarrow">
+					<div class="btnText">Click Here</div>
+					<div class="triangle"></div>
+					</div>
+				</div>';
+	if($acct == 'Initial' || $acct == 'Subscription' || $acct == 'Admin'){
+		$dashBtn = $approved;
 	} else{
 		$dashBtn = '<div class="dashBtn denied">
 						<div class="btnWrapWide">
