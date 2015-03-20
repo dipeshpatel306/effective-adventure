@@ -18,12 +18,12 @@ $cause = array('Malware' => 'Malware', 'Hacking' => 'Hacking', 'Social Exploit' 
 'Stolen Laptop' => 'Stolen Laptop', 'Missing Laptop' => 'Missing Laptop', 'Fraud' => 'Fraud', 'Lost Media(i.e. USB Drive, CD-ROM)' => 'Lost Media(i.e. USB Drive, CD-ROM)', 'Stolen Media (i.e. USB Drive, CD-ROM)' => 'Stolen Media (i.e. USB Drive, CD-ROM)', 'Missing Media' => 'Missing Media', 'Lost Tape' => 'Lost Tape', 'Stolen Tape' => 'Stolen Tape', 'Missing Tape' => 'Missing Tape', 'Document Disposal' => 'Document Disposal', 'Laptop Disposal' => 'Laptop Disposal',
 'Computer Disposal' => 'Computer Disposal', 'Media Disposal (i.e. USB Drive, CD-ROM)' => 'Media Disposal (i.e. USB Drive, CD-ROM)', 'Tape Disposal' => 'Tape Disposal', 'Other Disposal (Copy Machine)' => 'Other Disposal (Copy Machine)', 'Misuse or Privilege Abuse' => 'Misuse or Privilege Abuse', 'Physical Attack' => 'Physical Attack', 'Error or Omission' => 'Error or Omission', 'Environmental Event' => 'Environmental Event', 'Other' => 'Other' );
 
-$assets = array('Laptop' => 'Laptop', 'Workstation' => 'Workstation', 'USB drive' => 'USB drive', 'ePHI on file server' => 'ePHI on file server', 'Smartphone' => 'Smartphone', 'Floppy drive' => 'Floppy drive', 'EMR\EHR' => 'EMR\EHR', 'External harddrive' => 'External harddrive', 'Tablet PC' => 'Tablet PC', 'Portable media' => 'Portable media', 'ePHI on peripherals' => 'ePHI on peripherals', 'CD Rom' => 'CD Rom', 'Backup tape' => 'Backup tape',
+$assets = array('Laptop' => 'Laptop', 'Workstation' => 'Workstation', 'USB drive' => 'USB drive', 'PI on file server' => 'PI on file server', 'Smartphone' => 'Smartphone', 'Floppy drive' => 'Floppy drive', 'External harddrive' => 'External harddrive', 'Tablet PC' => 'Tablet PC', 'Portable media' => 'Portable media', 'PI on peripherals' => 'PI on peripherals', 'CD Rom' => 'CD Rom', 'Backup tape' => 'Backup tape',
 'Other' => 'Other');
 
 $system = array('EMR' => 'EMR', 'EHR' => 'EHR', 'Billing Systems' => 'Billing Systems', 'Practice Management System' => 'Practice Management System',  'Prescription System' => 'Prescription System', 'Clinical System' => 'Clinical System', 'Database' => 'Database', 'Other' => 'Other');
 
-$impact = array('LOW - a few patient records (i.e., under 10 patients)' => 'LOW - a few patient records (i.e., under 10 patients)', 'MEDIUM - many patient records (i.e., up to 499 patients)' => 'MEDIUM - many patient records (i.e., up to 499 patients)', 'HIGH - significant amount of records (i.e., 500 or more patients)' );
+$impact = array('LOW - a few records (i.e., under 10)' => 'LOW - a few records (i.e., under 10)', 'MEDIUM - many records (i.e., up to 499)' => 'MEDIUM - many records (i.e., up to 499)', 'HIGH - significant amount of records (i.e., 500 or more)' );
 
 $options = array('Yes' => 'Yes', 'No' => 'No');
 
