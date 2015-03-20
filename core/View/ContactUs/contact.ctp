@@ -17,7 +17,4 @@ $this->Html->addCrumb('Contact Us');
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
 </div>
-<div class='newsFeed'>
-	<h3><?php echo __('Latest News'); ?></h3>
-	<?php echo $this->element('feeds'); ?>
-</div>
+<?php echo $this->element('newsFeed'); ?>

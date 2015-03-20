@@ -35,7 +35,4 @@ $this->Html->addCrumb('Training');
     </div>
 </div>
 
-<div class='newsFeed'>
-    <h3><?php echo __('Latest News'); ?></h3>
-    <?php echo $this->element('feeds'); ?>
-</div>
+<?php echo $this->element('newsFeed'); ?>

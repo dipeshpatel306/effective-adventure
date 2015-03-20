@@ -76,7 +76,4 @@ $group = $this->Session->read('Auth.User.group_id');
 </div>
 <?php endif; ?>
 
-<div class='fouc newsFeed'>
-    <h3><?php echo __('Latest News'); ?></h3>
-    <?php echo $this->element('feeds'); ?>
-</div>
+<?php echo $this->element('newsFeed', array('class' => 'fouc')); ?>

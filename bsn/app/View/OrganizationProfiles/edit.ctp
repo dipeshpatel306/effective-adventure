@@ -377,7 +377,4 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
 	</ul>
 </div>
 <?php endif; ?>
-<div class='newsFeed'>
-	<h3><?php echo __('Latest News'); ?></h3>
-	<?php echo $this->element('feeds'); ?>
-</div>
+<?php echo $this->element('newsFeed'); ?>

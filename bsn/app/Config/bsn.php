@@ -6,6 +6,7 @@ $config = array(
 		'logo' => 'pii_protect_logo.png',
 		'display_social_center' => false,
 		'display_information_center' => false,
+		'display_news' => false,
 		'training_name' => 'Security Training',
 		'training_image' => 'training_bsn.png',
 		'ra_docs_name' => 'Risk Assessment Documents',
