@@ -5,6 +5,7 @@ $config = array(
 		'title' => 'HIPAA Compliance Portal',
 		'logo' => 'hipaa_logo.png',
 		'display_social_center' => true,
+		'display_information_center' => true,
 		'training_name' => 'HIPAA Security Training',
 		'training_image' => 'training.png',
 		'ra_docs_name' => 'HIPAA Risk Assessment Documents',

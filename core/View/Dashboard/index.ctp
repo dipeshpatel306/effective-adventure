@@ -159,21 +159,23 @@ App::uses('Group', 'Model');
 					array('escape' => false)
 			);
 
-		// Information Center. Everyone sees
-		echo $this->Html->link(
-					'<div class="dashBox">' .
-					'<div class="dashHead">' .
-					$this->Html->image('infocenter.png', array(
-								'class' => 'dashTile',
-								'alt' => 'Information Center'
-								)) .
-					'<h3>Information Center</h3>' .
-					'</div>' .
-					'<div class="dashSum">Articles and Blog</div>' . $approved .
-					'</div>',
-					array('controller' => 'dashboard', 'action' => 'information_center'),
-					array('escape' => false)
-			);
+		if (Configure::read('Theme.display_information_center')) {
+			// Information Center. Everyone sees
+			echo $this->Html->link(
+						'<div class="dashBox">' .
+						'<div class="dashHead">' .
+						$this->Html->image('infocenter.png', array(
+									'class' => 'dashTile',
+									'alt' => 'Information Center'
+									)) .
+						'<h3>Information Center</h3>' .
+						'</div>' .
+						'<div class="dashSum">Articles and Blog</div>' . $approved .
+						'</div>',
+						array('controller' => 'dashboard', 'action' => 'information_center'),
+						array('escape' => false)
+				);
+		}
 
 		/*echo $this->Html->link( // SIRP
 					'<div class="dashBox">' .
