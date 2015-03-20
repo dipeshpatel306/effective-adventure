@@ -49,7 +49,7 @@ App::uses('Group', 'Model');
 ?>
 
 <div class="dashboard index">
-	<h2><?php echo __('Security Portal Dashboard'); ?></h2>
+	<h2><?php echo Configure::read('Theme.dashboard_name'); ?></h2>
 
 	<?php
 		// policies & procedures. everyone sees this
@@ -70,6 +70,7 @@ App::uses('Group', 'Model');
 
 
 		// 	// contracts and documents. managers see this. Users do not
+		$ra_name = Configure::read('Theme.ra_name');
 		if($group == Group::USER && $acct != 'Training'){
 			echo $this->Html->link(
 					'<div class="dashBox">' .
@@ -80,7 +81,7 @@ App::uses('Group', 'Model');
 								)) .
 					'<h3>Contracts & Documents</h3>' .
 					'</div>' .
-					'<div class="dashSum">Risk Assessment, Business Associates, Disaster Recovery</div>' . $noAuth.
+					'<div class="dashSum">' . $ra_name .', Business Associates, Disaster Recovery</div>' . $noAuth.
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'index'),
 					array('escape' => false)
@@ -95,7 +96,7 @@ App::uses('Group', 'Model');
 								)) .
 					'<h3>Contracts & Documents</h3>' .
 					'</div>' .
-					'<div class="dashSum">Risk Assessment, Business Associates, Disaster Recovery</div>' . $approved.
+					'<div class="dashSum">' . $ra_name . ', Business Associates, Disaster Recovery</div>' . $approved.
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
 					array('escape' => false)
@@ -192,6 +193,7 @@ App::uses('Group', 'Model');
 					array('escape' => false)
 			);*/
 
+		$ra_name = Configure::read('Theme.ra_name');
 		if($group != Group::USER){
 			//pr($displayRaOrg);
 		if(!empty($displayRaOrg) && $displayRaOrg['Client']['display_ra_org']){
@@ -200,11 +202,11 @@ App::uses('Group', 'Model');
             '<div class="dashHead">' .
             $this->Html->image('raq_tile.jpg', array(
                         'class' => 'dashTile',
-                        'alt' => 'Perform Your Risk Assessment'
+                        'alt' => 'Perform Your ' . $ra_name
                         )) .
-            '<h3>Risk Assessment</h3>' .
+            '<h3>' . $ra_name . '</h3>' .
             '</div>' .
-            '<div class="dashSum">Perform Your Risk Assessment</div>' . $approved .
+            '<div class="dashSum">Perform Your ' . $ra_name . '</div>' . $approved .
             '</div>',
             array('controller' => 'dashboard', 'action' => 'initial'),
             array('escape' => false)
@@ -284,14 +286,14 @@ App::uses('Group', 'Model');
 		}
 
 	?>
-		<div class='completeBox' title='Mark Risk Assessment Complete?'>
-			<p>Before you mark the Risk Assessment Complete, please make sure you have completed the following:</p>
+		<div class='completeBox' title='Mark <?php echo $ra_name; ?> Complete?'>
+			<p>Before you mark the <?php echo $ra_name; ?> Complete, please make sure you have completed the following:</p>
 			<ul>
 				<li>Completely filled in the Organization info</li>
 				<li>Answered each of the Risk Assessment Questions</li>
 				<li>Uploaded existing Policies and Procesures</li>
 			</ul><br />
-			<p>If you have completed each of the above please mark the Risk Assessment complete</p>
+			<p>If you have completed each of the above please mark the <?php echo $ra_name; ?> complete</p>
 			<p>If you still have more to complete please close this dialog box and complete those sections first.</p>
 
 			<?php

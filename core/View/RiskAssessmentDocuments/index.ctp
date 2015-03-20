@@ -1,13 +1,15 @@
 <?php
+$ra_docs_name = Configure::read('Theme.ra_docs_name');
+
 $this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
-$this->Html->addCrumb('Risk Assessment Documents');
+$this->Html->addCrumb($ra_docs_name);
 
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="riskAssessmentDocuments index">
-	<h2><?php echo __('Risk Assessment Documents'); ?></h2>
+	<h2><?php echo $ra_docs_name; ?></h2>
 	<table>
 	<tr>
 			<?php if($group == 1 ): ?>
@@ -50,7 +52,7 @@ $this->Html->addCrumb('Risk Assessment Documents');
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?>
-			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Risk Assessment Document', 'id' => $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?>
+			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => Inflector::singularize($ra_docs_name), 'id' => $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -74,7 +76,7 @@ $this->Html->addCrumb('Risk Assessment Documents');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<?php if($group == 1 || $group == 2): ?>
-		<li><?php echo $this->Html->link(__('New Risk Assessment Document'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('New ' . Inflector::singularize($ra_docs_name)), array('action' => 'add')); ?></li>
 		<?php endif; ?>
 
 	</ul>

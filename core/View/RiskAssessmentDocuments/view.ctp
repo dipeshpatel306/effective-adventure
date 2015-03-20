@@ -4,18 +4,21 @@ App::uses('Group', 'Model');
 $group = $this->Session->read('Auth.User.group_id');
 $acct = $this->Session->read('Auth.User.Client.account_type');
 
+$ra_docs_name = Configure::read('Theme.ra_docs_name');
+$ra_doc_name = Inflector::singularize($ra_docs_name);
+
 if ($group == Group::PARTNER_ADMIN) {
-	$this->Html->addCrumb('Risk Assessment Documents');
+	$this->Html->addCrumb($ra_docs_name);
 } else {
 	$this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
-	$this->Html->addCrumb('Risk Assessment Documents', '/risk_assessment_documents');
+	$this->Html->addCrumb($ra_docs_name, '/risk_assessment_documents');
 }
 $this->Html->addCrumb($riskAssessmentDocument['RiskAssessmentDocument']['name']);
 
 
 ?>
 <div class="riskAssessmentDocuments view">
-<h2><?php  echo __('Risk Assessment Document'); ?></h2>
+<h2><?php  echo __($ra_doc_name); ?></h2>
 	<dl>
 		<?php if ($group == 1): ?>
 		<dt><?php echo __('Client'); ?></dt>
@@ -73,15 +76,15 @@ $this->Html->addCrumb($riskAssessmentDocument['RiskAssessmentDocument']['name'])
 		<?php if ($group == Group::PARTNER_ADMIN): ?>
 		<li><?php echo $this->Html->link(__('Back to Client'), array('controller' => 'clients', 'action' => 'view', $riskAssessmentDocument['RiskAssessmentDocument']['client_id'])); ?></li>
 		<?php else: ?>
-		<li><?php echo $this->Html->link(__('List Risk Assessment Documents'), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('List ' . $ra_docs_name), array('action' => 'index')); ?> </li>
 		<?php endif; ?>
 
 		<?php if($group == Group::ADMIN || $group == Group::MANAGER || $group == Group::PARTNER_ADMIN): ?>
 			<?php if ($group != Group::PARTNER_ADMIN): ?>
-		<li><?php echo $this->Html->link(__('New Risk Assessment Document'), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('New ' . $ra_doc_name), array('action' => 'add')); ?> </li>
 			<?php endif; ?>
-		<li><?php echo $this->Html->link(__('Edit Risk Assessment Document'), array('action' => 'edit', $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?> </li>
-		<li><?php echo $this->element('delete_link', array('title' => 'Delete Risk Assessment Document', 'name' => 'Risk Assessment Document', 'id' => $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?></li>
+		<li><?php echo $this->Html->link(__('Edit ' . $ra_doc_name), array('action' => 'edit', $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?> </li>
+		<li><?php echo $this->element('delete_link', array('title' => 'Delete ' . $ra_doc_name, 'name' => $ra_doc_name, 'id' => $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?></li>
 
 		<?php endif; ?>
 

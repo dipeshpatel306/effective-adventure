@@ -55,6 +55,7 @@ $this->Html->addCrumb('Contracts & Documents');
 	<h2><?php echo __('Contracts & Documents'); ?></h2>
 
 	<?php 
+		$ra_docs_name = Configure::read('Theme.ra_docs_name');
 		// Risk Assessment Documents. If user deny
 		if ($acct == 'Training') {
 		    echo $this->Html->link( 
@@ -62,11 +63,11 @@ $this->Html->addCrumb('Contracts & Documents');
                     '<div class="dashHead">' .
                     $this->Html->image('ra_tile.jpg', array(
                                 'class' => 'dashTile', 
-                                'alt' => 'Risk Assessment Documents'
+                                'alt' => $ra_docs_name
                                 )) .
-                    '<h3>Risk Assessment Documents</h3>' .
+                    '<h3>' . $ra_docs_name . '</h3>' .
                     '</div>' .
-                    '<div class="dashSum">Risk Assessment Documents</div>' . $banned .
+                    '<div class="dashSum">' . $ra_docs_name .'</div>' . $banned .
                     '</div>',
                     array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
                     array('escape' => false)
@@ -77,11 +78,11 @@ $this->Html->addCrumb('Contracts & Documents');
                     '<div class="dashHead">' .
                     $this->Html->image('ra_tile.jpg', array(
                                 'class' => 'dashTile', 
-                                'alt' => 'Risk Assessment Documents'
+                                'alt' => $ra_docs_name
                                 )) .
-                    '<h3>Risk Assessment Documents</h3>' .
+                    '<h3>' . $ra_docs_name . '</h3>' .
                     '</div>' .
-                    '<div class="dashSum">Risk Assessment Documents</div>' . $noAuth .
+                    '<div class="dashSum">' . $ra_docs_name . '</div>' . $noAuth .
                     '</div>',
                     array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
                     array('escape' => false)
@@ -92,11 +93,11 @@ $this->Html->addCrumb('Contracts & Documents');
 					'<div class="dashHead">' .
 					$this->Html->image('ra_tile.jpg', array(
 								'class' => 'dashTile', 
-								'alt' => 'Risk Assessment Documents'
+								'alt' => $ra_docs_name
 								)) .
-					'<h3>Risk Assessment Documents</h3>' .
+					'<h3>' . $ra_docs_name . '</h3>' .
 					'</div>' .
-					'<div class="dashSum">Risk Assessment Documents</div>' . $approved .
+					'<div class="dashSum">' . $ra_docs_name . '</div>' . $approved .
 					'</div>',
 					array('controller' => 'risk_assessment_documents', 'action' => 'index'),
 					array('escape' => false)

@@ -5,14 +5,16 @@ App::uses('Group', 'Model');
 $group = $this->Session->read('Auth.User.group_id');
 $acct = $this->Session->read('Auth.User.Client.account_type');
 
+$ra_docs_name = Configure::read('Theme.ra_docs_name');
+
 if ($group == Group::PARTNER_ADMIN) {
-	$this->Html->addCrumb('Risk Assessment Documents');
-	$this->Html->addCrumb('Add Risk Assessment Document');
+	$this->Html->addCrumb($ra_docs_name);
+	$this->Html->addCrumb('Add ' . Inflector::singularize($ra_docs_name));
 } else {
 	$this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
-	$this->Html->addCrumb('Risk Assessment Documents', '/risk_assessment_documents');
+	$this->Html->addCrumb($ra_docs_name, '/risk_assessment_documents');
 }
-$this->Html->addCrumb('Add Risk Assessment Document');
+$this->Html->addCrumb('Add ' . Inflector::singularize($ra_docs_name));
 		
 	if(isset($clientId)){
 		$selected = $clientId;
@@ -24,7 +26,7 @@ $this->Html->addCrumb('Add Risk Assessment Document');
 <div class="riskAssessmentDocuments form">
 <?php echo $this->Form->create('RiskAssessmentDocument', array('type' => 'file')); ?>
 	<fieldset>
-		<legend><?php echo __('Add Risk Assessment Document'); ?></legend>
+		<legend><?php echo __('Add ' . Inflector::singularize($ra_docs_name)); ?></legend>
 	<?php
 		echo $this->Form->input('name');
 		echo $this->Form->input('description', array('type' => 'text', 'rows' => '5', 'cols' => '40'));
@@ -56,7 +58,7 @@ $this->Html->addCrumb('Add Risk Assessment Document');
 		<?php if ($group == Group::PARTNER_ADMIN): ?>
 		<li><?php echo $this->Html->link(__('Back to Client'), array('controller' => 'clients', 'action' => 'view', $clientId)); ?></li>
 		<?php else: ?>
-		<li><?php echo $this->Html->link(__('List Risk Assessment Documents'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('List ' . $ra_docs_name), array('action' => 'index')); ?></li>
 		<?php endif; ?>
 	</ul>
 </div>

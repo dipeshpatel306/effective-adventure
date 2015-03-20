@@ -3,6 +3,8 @@
 	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 
+	$ra_name = Configure::read('Theme.ra_name');
+
 	if(isset($risk) && !empty($risk)){  // if already filled out then give edit link
 		$riskAss = array('controller' => 'risk_assessments', 'action' => 'edit', $risk['RiskAssessment']['id']);
 	} else {
@@ -42,19 +44,10 @@
 ?>
 
 <div class="dashboard index initial">
-	<h2><?php echo __('Compliance Portal Dashboard'); ?></h2>
+	<h2><?php echo Configure::read('Theme.dashboard_name'); ?></h2>
 
-
-	<div class='initBox'>
-	    <div class='initTxt floatLeft'>
-            <h3>
-            <p>The first step to getting <span class='redHL'>HIPAA Secure Now!</span> is to complete a <br />Risk Assessment</p>
-            <p>Click "Let's Get Started" to review the <span class='redHL'>HIPAA Secure Now!</span> process</p>
-            </h3>
-        </div>
-	
-	<?php
-		
+	<?php 
+		echo $this->element('initMsg');
 		echo $this->Html->link( // Upload Other Policies and Procedures
 					'<div class="dashBox getStartedDashBox">' .
 					'<div class="dashHead">' .
@@ -93,11 +86,11 @@
 					'<div class="dashHead">' .
 					$this->Html->image('raq_tile.jpg', array(
 								'class' => 'dashTile',
-								'alt' => 'HIPAA Risk Assessment Questionnaire'
+								'alt' => $ra_name . ' Questionnaire'
 								)) .
-					'<h3>Risk Assessment Questionnaire</h3>' .
+					'<h3>' . $ra_name . ' Questionnaire</h3>' .
 					'</div>' .
-					'<div class="dashSum">Risk Assessment Questionnaire</div>' . $dashBtn .
+					'<div class="dashSum">' . $ra_name . ' Questionnaire</div>' . $dashBtn .
 					'</div>',
 					$riskAss,
 					array('escape' => false)
@@ -168,26 +161,26 @@
 					<?php
 					echo $this->Html->image('mark_comp_tile.bmp', array(
 								'class' => 'dashTile',
-								'alt' => 'HIPAA Mark Risk Assessment Complete'
+								'alt' => 'Mark ' . $ra_name . ' Complete'
 								));
 					?>
-					<h3>Mark Risk Assessment Complete</h3>
+					<h3>Mark <?php echo $ra_name; ?> Complete</h3>
 					</div>
-					<div class="dashSum">Mark Risk Assessment Complete</div>
+					<div class="dashSum">Mark <?php echo $ra_name; ?> Complete</div>
 					<?php echo $dashBtn; ?>
 
 				</div>
 
 
-		<div class='completeBox dialogBox' title='Mark Risk Assessment Complete?'>
-			<p>Before you mark the Risk Assessment Complete, please make sure you have completed the following:</p>
+		<div class='completeBox dialogBox' title='Mark <?php echo $ra_name; ?> Complete?'>
+			<p>Before you mark the <?php echo $ra_name; ?> Complete, please make sure you have completed the following:</p>
 			<ul>
 				<li>Completely filled in the Organization info</li>
 				<li>Answered each of the Risk Assessment Questions</li>
 				<li>Uploaded existing Policies and Procesures</li>
-				<li>I certify that I have provided information to the best of my knowledge and have utilized all appropriate resources necessary to complete the Risk Assessment information. HIPAA Secure Now! has provided me with the appropriate level of information and I was made aware of the proper requirements necessary to complete the Risk Assessment.</li>
+				<li>I certify that I have provided information to the best of my knowledge and have utilized all appropriate resources necessary to complete the <?php echo $ra_name; ?> information. <?php echo Configure::read('Theme.copyright'); ?> has provided me with the appropriate level of information and I was made aware of the proper requirements necessary to complete the Risk Assessment.</li>
 			</ul><br />
-			<p>If you have completed each of the above please mark the Risk Assessment complete</p>
+			<p>If you have completed each of the above please mark the <?php echo $ra_name; ?> complete</p>
 			<p>If you still have more to complete please close this dialog box and complete those sections first.</p>
 
 			<?php
@@ -196,9 +189,9 @@
 		</div>
 			
 	    <div class='thanksBox dialogBox' title='Complete'>
-	        <p>Thanks for completing the Risk Assessment.</p>
+	        <p>Thanks for completing the <?php echo $ra_name; ?>.</p>
 	        &nbsp;
-	        <p>We will send you an email when the Risk Assessment Reports are complete.</p>
+	        <p>We will send you an email when the <?php echo $ra_name; ?> Reports are complete.</p>
 	        <p>We will contact you if we need any additional information.</p>
 	        <?php echo $this->element('dialogok'); ?>
 	    </div>
