@@ -5,7 +5,7 @@ $group = $this->Session->read('Auth.User.group_id');
 $acct = $this->Session->read('Auth.User.Client.account_type');
 
 if ($group == Group::PARTNER_ADMIN) {
-	$this->Html->addCrumb('Business Associate Agreements');	
+	$this->Html->addCrumb($baa_name);	
 } else {
 	$this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
 	$this->Html->addCrumb('Business Associate Agreements', '/business_associate_agreements');

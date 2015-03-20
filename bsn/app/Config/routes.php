@@ -33,6 +33,8 @@
 	Router::connect('/register', array('controller' => 'users', 'action' => 'register'));
 	Router::connect('/forgot_password', array('controller' => 'users', 'action' => 'forgot_password'));
 	Router::connect('/reset_password', array('controller' => 'users', 'action' => 'reset_password'));
+	Router::connect('/service_provider_contracts', array('controller' => 'business_associate_agreements', 'action' => 'index'));
+	Router::connect('/service_provider_contracts/:action/*', array('controller' => 'business_associate_agreements'));
 	//Router::connect('/policies_and_procedures', array('controller' => 'policies', 'action' => 'index'));
 	//Router::connect('/other_policies_and_procedures', array('controller' => 'other_policies', 'action' => 'index'));
 /**

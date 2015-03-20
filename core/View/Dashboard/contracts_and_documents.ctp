@@ -55,7 +55,6 @@ $this->Html->addCrumb('Contracts & Documents');
 	<h2><?php echo __('Contracts & Documents'); ?></h2>
 
 	<?php 
-	
 		// Risk Assessment Documents. If user deny
 		if ($acct == 'Training') {
 		    echo $this->Html->link( 
@@ -105,17 +104,19 @@ $this->Html->addCrumb('Contracts & Documents');
 		}
 		
 		// Business Associate Agreements Users are banned
+		$baa_name = Configure::read('Theme.baa_name');
+		$baa_link_name = Configure::read('Theme.baa_link_name');
 		if($group == 3){
 			echo $this->Html->link( 
 					'<div class="dashBox">' . 
 					'<div class="dashHead">' .
 					$this->Html->image('ba_tile.jpg', array(
 								'class' => 'dashTile', 
-								'alt' => 'Business Associate Agreements'
+								'alt' => $baa_name
 								)) .
-					'<h3>Business Associate Agreements</h3>' .
+					'<h3>' . $baa_name . '</h3>' .
 					'</div>' .
-					'<div class="dashSum">Business Associate Agreements</div>' . $noAuth .
+					'<div class="dashSum">' . $baa_name . '</div>' . $noAuth .
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
 					array('escape' => false)
@@ -127,11 +128,11 @@ $this->Html->addCrumb('Contracts & Documents');
                     '<div class="dashHead">' .
                     $this->Html->image('ba_tile.jpg', array(
                                 'class' => 'dashTile', 
-                                'alt' => 'Business Associate Agreements'
+                                'alt' => $baa_name
                                 )) .
-                    '<h3>Business Associate Agreements</h3>' .
+                    '<h3>' . $baa_name . '</h3>' .
                     '</div>' .
-                    '<div class="dashSum">Business Associate Agreements</div>' . $banned .
+                    '<div class="dashSum">' . $baa_name . '</div>' . $banned .
                     '</div>',
                     array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
                     array('escape' => false)
@@ -142,13 +143,13 @@ $this->Html->addCrumb('Contracts & Documents');
 					'<div class="dashHead">' .
 					$this->Html->image('ba_tile.jpg', array(
 								'class' => 'dashTile', 
-								'alt' => 'Business Associate Agreements'
+								'alt' => $baa_name
 								)) .
-					'<h3>Business Associate Agreements</h3>' .
+					'<h3>' . $baa_name . '</h3>' .
 					'</div>' .
-					'<div class="dashSum">Business Associate Agreements</div>' . $approved .
+					'<div class="dashSum">' . $baa_name . '</div>' . $approved .
 					'</div>',
-					array('controller' => 'business_associate_agreements', 'action' => 'index'),
+					array('controller' => $baa_link_name, 'action' => 'index'),
 					array('escape' => false)
 			);
 			
