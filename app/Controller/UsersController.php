@@ -264,7 +264,7 @@ class UsersController extends AppController {
  * forgotpwd method
  */
  public function forgot_password(){
-    $this->User->recursive = -1;
+    $this->User->recursive = 0;
     if(!empty($this->request->data)){
         if(empty($this->request->data['User']['email'])){
             $this->Session->setFlash('Please provide the email that you used to register with us.');
@@ -273,14 +273,14 @@ class UsersController extends AppController {
             $foundUser = $this->User->find('first', array('conditions' => array('User.email' => $email)));
 
             if($foundUser){
-                if($foundUser['User']['active']){
+                if($foundUser['User']['active_real']){
                     $key = Security::hash(String::uuid(), 'sha512', true);
                     $hash = sha1($foundUser['User']['first_name'].rand(0,100));
                     $url = Router::url(array('controller' => 'Users', 'action' => 'reset_password'), true) . '/' . $key . '#' . $hash;
                     $ms = $url;
                     //$ms = wordwrap($ms, 1000);
                     $message = 
-                        "Click on the link below to reset Your HIPAA Password.</p><br/>
+                        "Click on the link below to reset your HIPAA Password.</p><br/>
                         <a href='" .  $ms .
                         
                         "'>Reset Your Password</a><br/>
@@ -325,7 +325,7 @@ class UsersController extends AppController {
  *
  */
  public function reset_password($token = null){
-        $this->User->recursive = -1;
+        $this->User->recursive = 0;
         if(!empty($token)){
             $u = $this->User->findBytokenhash($token);
             $this->User->id = $u['User']['id'];
@@ -339,7 +339,7 @@ class UsersController extends AppController {
                     $this->request->data['User']['tokenhash'] = $new_hash;
 
                     if($this->User->save($this->request->data)){
-                        $this->Session->setFlash('The user has been saved', 'default', array('class' => 'success message'));
+                        $this->Session->setFlash('Your password has been changed.', 'default', array('class' => 'success message'));
                         $this->redirect(array('controller'=>'Users','action'=>'login'));
                     } else {
                         $this->Session->setFlash(__('Password did not save. Please, try again.'));
