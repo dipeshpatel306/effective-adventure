@@ -23,6 +23,7 @@ $this->Html->addCrumb('Education Center');
 			<h3><?php echo $training_name; ?></h3>		
 		</div>
 		<div class="dashSum"><?php echo $training_name; ?></div>
+		
 		<div class="dashBtn approved">
 			<div class="btnWrapMed">
 			<div class="btnText">Learn More</div>
@@ -46,6 +47,7 @@ $this->Html->addCrumb('Education Center');
 			<h3><?php echo $training_name; ?></h3>		
 		</div>
 		<div class="dashSum"><?php echo $training_name; ?></div>
+		
 		<div class="dashBtn denied">
 			<div class="btnWrapWide">
 			<div class="btnText">Subscribers Only!</div>

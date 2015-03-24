@@ -1,18 +1,20 @@
 <?php
 $this->Html->addCrumb('Education Center', '/education_center');
 $this->Html->addCrumb('Training');
+
+$training_name = Configure::read('Theme.training_name');
 ?>
 
 <div class="dashboard index training">
 <div class='trainingContent'>
-    <h2><?php echo Configure::read('Theme.training_name'); ?></h2>
+    <h2><?php echo $training_name; ?></h2>
 <p>
-<b>The HIPAA Security Training consists of three sections:</b><br /><br />
+<b>The <?php echo $training_name; ?> consists of three sections:</b><br /><br />
   <?php echo $this->Html->image(Configure::read('Theme.training_image')); ?>
   <br />
-  <p>All three sections should take about 1 hour to complete. You can stop at any time and continue where you left off later.</p>
+  <p>The training should take about 1 hour to complete. You can stop at any time and continue where you left off later.</p>
   <br />
-  <b><h3>You are about to be taken to the <span class='important'><?php echo Configure::read('Theme.training_name'); ?> Class</span></h3></b>
+  <b><h3>You are about to be taken to the <span class='important'><?php echo Configure::read('Theme.training_name'); ?></span></h3></b>
   <br />
   <p>The training will open in another window.</p><br />
   <p>When you are done please close the window to return to the <?php echo Configure::read('Theme.title'); ?>.</p><br />
