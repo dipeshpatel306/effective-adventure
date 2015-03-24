@@ -37,18 +37,25 @@
 	<div id="container">
 		<div id="wrapper">
 		<div id="header">
-			<?php echo $this->Html->image(Configure::read('Theme.logo'), array(
-					'alt' => Configure::read('Theme.copyright'),
-					'url' => array('controller' => '/'),
-					'class' => 'logo floatLeft'
-					));
+			<?php 
 				  if (isset($partner)) {
 				  	$img = '../files/partner/logo/' . $partner['Partner']['logo_dir'] . '/' . $partner['Partner']['logo'];
 				  	echo $this->Html->image($img, array(
 				        'alt' => $partner['Partner']['name'],
 				        'url' => $partner['Partner']['link'],
-				  		'class' => 'logo partnerLogo'
+				  		'class' => 'logo floatLeft'
 				  	));
+					echo $this->Html->image(Configure::read('Theme.logo'), array(
+						'alt' => Configure::read('Theme.copyright'),
+						'url' => array('controller' => '/'),
+						'class' => 'logo brandLogo partnerLogo'
+					));
+				  } else {
+				  	echo $this->Html->image(Configure::read('Theme.logo'), array(
+						'alt' => Configure::read('Theme.copyright'),
+						'url' => array('controller' => '/'),
+						'class' => 'logo brandLogo floatLeft'
+					));
 				  }
 			?>
 
