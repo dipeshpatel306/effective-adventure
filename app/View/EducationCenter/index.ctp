@@ -16,12 +16,12 @@ $this->Html->addCrumb('Education Center');
 			<?php 
 				echo $this->Html->image('training_tile.jpg', array(
 						'class' => 'dashTile',
-						'alt' => 'HIPAA Security Training'
+						'alt' => 'HIPAA Training'
 				));
 			?>
-			<h3>HIPAA Security Training</h3>		
+			<h3>HIPAA Training</h3>		
 		</div>
-		<div class="dashSum">HIPAA Security Training</div>
+		<div class="dashSum">HIPAA Training</div>
 		<div class="dashBtn approved">
 			<div class="btnWrapMed">
 			<div class="btnText">Learn More</div>
@@ -39,12 +39,12 @@ $this->Html->addCrumb('Education Center');
 			<?php 
 				echo $this->Html->image('training_tile.jpg', array(
 						'class' => 'dashTile',
-						'alt' => 'HIPAA Security Training'
+						'alt' => 'HIPAA Training'
 				));
 			?>
-			<h3>HIPAA Security Training</h3>		
+			<h3>HIPAA Training</h3>		
 		</div>
-		<div class="dashSum">HIPAA Security Training</div>
+		<div class="dashSum">HIPAA Training</div>
 		<div class="dashBtn denied">
 			<div class="btnWrapWide">
 			<div class="btnText">Subscribers Only!</div>
