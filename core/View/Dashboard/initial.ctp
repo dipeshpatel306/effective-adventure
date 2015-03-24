@@ -128,32 +128,6 @@
 					array('controller' => 'dashboard', 'action' => 'mark_complete'),
 					array('escape' => false)
 			);*/
-			
-			
-		if(isset($partner)){
-			$partnerImg = '/files/partner/logo/' . $partner['Partner']['logo_dir'] . '/' . $partner['Partner']['logo'];		
-			if(isset($partner['Partner']['link']) && $partner['Partner']['link'] != 'http://'){
-				$partnerLink = $partner['Partner']['link'];
-			} else {
-				$partnerLink = '/#';
-			}
-			
-			echo $this->Html->link( // Partner Link
-				'<div class="dashBox">' .
-				'<div class="dashHeadLogo">' .
-				$this->Html->image($partnerImg, array(
-							//'class' => 'dashTileLogo',
-							'alt' => 'HIPAA Partner Link',
-							//'url' => array($partnerImg),
-							'class' => 'partnerImg'
-							)) .
-				//'<h3>' . $partner['Partner']['name'] . '</h3>' .
-				'</div>' .
-				'<div class="dashSum">' . $partner['Partner']['name'] .'</div>' . $approved .
-				'</div>', $partnerLink,
-				array('escape' => false, 'target' => '_blank')
-			);
-		}
 						
 	?>
 				<div class="dashBox markComplete">
