@@ -51,7 +51,7 @@ class AppController extends Controller {
         $this->Security->csrfCheck = false;
         //$this->Auth->allow();
         
-        $partner_id = $this->Auth->user('partner_id');
+        $partner_id = $this->Session->read('Auth.User.Client.partner_id');
 		if (isset($partner_id)) {
 			$this->loadModel('Partner');
 			$partner = $this->Partner->find('first', array('conditions' => array('Partner.id' => $partner_id)));
