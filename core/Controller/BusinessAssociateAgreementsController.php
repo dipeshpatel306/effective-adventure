@@ -131,7 +131,7 @@ class BusinessAssociateAgreementsController extends AppController {
 		}	
 		
 		if ($this->request->is('post')) {
-
+			$display_name = Inflector::singularize(Configure::read('Theme.baa_name'));
 			// If user is a client automatically set the client id accordingly. Admin can change client ids
 			$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 			if($group != Group::ADMIN && $group != Group::PARTNER_ADMIN){
@@ -154,7 +154,7 @@ class BusinessAssociateAgreementsController extends AppController {
 
 			$this->BusinessAssociateAgreement->create();
 			if ($this->BusinessAssociateAgreement->save($this->request->data)) {
-				$this->Session->setFlash('The business associate agreement has been saved.', 'default', array('class' => 'success message'));
+				$this->Session->setFlash("The $display_name has been saved.", 'default', array('class' => 'success message'));
 			if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
@@ -167,7 +167,7 @@ class BusinessAssociateAgreementsController extends AppController {
 			}
 
 			} else {
-				$this->Session->setFlash(__('The business associate agreement could not be saved. Please, try again.'));
+				$this->Session->setFlash(__("The $dislay_name could not be saved. Please, try again."));
 			}
 		}
 		$this->loadModel('State');
@@ -208,7 +208,7 @@ class BusinessAssociateAgreementsController extends AppController {
 				}
 
 			if ($this->BusinessAssociateAgreement->save($this->request->data)) {
-				$this->Session->setFlash('The business associate agreement has been saved.', 'default', array('class' => 'success message'));
+				$this->Session->setFlash("The $display_name has been saved.", 'default', array('class' => 'success message'));
 			if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
 				if(isset($clientId)){
 					$this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
@@ -220,7 +220,7 @@ class BusinessAssociateAgreementsController extends AppController {
 				$this->redirect(array('action' => 'index'));
 			}
 			} else {
-				$this->Session->setFlash(__('The business associate agreement could not be saved. Please, try again.'));
+				$this->Session->setFlash(__("The $display_name could not be saved. Please, try again."));
 			}
 		} else {
 			$this->request->data = $this->BusinessAssociateAgreement->read(null, $id);
@@ -249,10 +249,10 @@ class BusinessAssociateAgreementsController extends AppController {
 			throw new NotFoundException(__('Invalid business associate agreement'));
 		}
 		if ($this->BusinessAssociateAgreement->delete()) {
-			$this->Session->setFlash(__('Business associate agreement deleted.'));
+			$this->Session->setFlash(__("$display_name deleted."));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Business associate agreement was not deleted.'));
+		$this->Session->setFlash(__("$display_name was not deleted."));
 		$this->redirect(array('action' => 'index'));
 	}
 }
