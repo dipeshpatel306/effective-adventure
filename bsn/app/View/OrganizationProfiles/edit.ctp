@@ -91,6 +91,11 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
         }
 
 		echo $this->Form->input('industry', array('label' => 'What industry describes your organization?', 'options' => $industries, 'empty' => 'Please Select One'));
+	?>
+	<div class='otherIndustry hidden'>
+        <?php echo $this->Form->input('industry_other', array('label' => 'Other Industry')); ?>
+    </div>
+    <?php
         echo $this->Form->input('administrator_name', array('label' => "Organization's Administrator Name: "));
         echo $this->Form->input('administrator_email', array('label' =>"Organization's Adminstrator Email: "));
         echo $this->Form->input('administrator_phone', array('type' => 'tel', 'class' => 'tel', 'label' =>"Administrator Phone (Primary Contact): "));

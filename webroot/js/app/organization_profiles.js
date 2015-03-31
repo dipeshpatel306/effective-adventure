@@ -101,6 +101,9 @@ require(['jquery', 'app/form', 'tabspaging', 'ckeditor'], function($, formhelper
   	
   		// toggle backup media
   		formhelper.conditional($('#OrganizationProfileBackupMedia'), 'Yes', $('.backupMediaDetails'));
+  		
+  		// toggle other industry
+  		formhelper.conditional($('#OrganizationProfileIndustry'), 'Other', $('.otherIndustry'));
 
     });
 });
