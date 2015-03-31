@@ -67,18 +67,14 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
         <li><a href='#tab7' class='orgProfTab'>Systems</a></li>
         <li><a href='#tab8' class='orgProfTab'>Additional Information</a></li>
     </ul>
-    <div class='hidden tooltip', for="OrganizationProfilePiiOnServers">
-        <p><strong>For Covered Entities: </strong>This may include Billing Systems, Spreadsheets, Documents, Databases, Emails, etc.</p>
-        <p><strong>For Business Associates: </strong>This may include Spreadsheets, Documents, Data Backups, Databases, Emails, Order Management Systems, Customer Relationship Management Systems, etc.</p>
-    </div>
     <div class='hidden tooltip', for='OrganizationProfileNetworkOperatingSystem'>
         <p>This is the operating system used on your servers.</p>
     </div>
     <div class='hidden tooltip', for='OrganizationProfilePiiOnWorkstations'>
-        <p>Keep in mind, PII may be in Documents, Spreadsheets, PDFs, Email Attachments, Screenshots, Audio/Videos, etc.</p>
+        <p>Keep in mind, sensitive data may be in Documents, Spreadsheets, PDFs, Email Attachments, Screenshots, Audio/Videos, etc.</p>
     </div>
     <div class='hidden tooltip', for='OrganizationProfilePiiOnLaptops'>
-        <p>Keep in mind, PII may be in Documents, Spreadsheets, PDFs, Email Attachments, Screenshots, Audio/Videos, etc.</p>
+        <p>Keep in mind, sensitive data may be in Documents, Spreadsheets, PDFs, Email Attachments, Screenshots, Audio/Videos, etc.</p>
     </div>
     <div id='tab1' class='tabBox'>
     <?php
