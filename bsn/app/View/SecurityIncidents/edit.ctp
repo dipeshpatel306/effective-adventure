@@ -21,7 +21,7 @@ $cause = array('Malware' => 'Malware', 'Hacking' => 'Hacking', 'Social Exploit' 
 $assets = array('Laptop' => 'Laptop', 'Workstation' => 'Workstation', 'USB drive' => 'USB drive', 'PII on file server' => 'PII on file server', 'Smartphone' => 'Smartphone', 'Floppy drive' => 'Floppy drive', 'External harddrive' => 'External harddrive', 'Tablet PC' => 'Tablet PC', 'Portable media' => 'Portable media', 'PII on peripherals' => 'PII on peripherals', 'CD Rom' => 'CD Rom', 'Backup tape' => 'Backup tape',
 'Other' => 'Other');
 
-$system = array('EMR' => 'EMR', 'EHR' => 'EHR', 'Billing Systems' => 'Billing Systems', 'Practice Management System' => 'Practice Management System',  'Prescription System' => 'Prescription System', 'Clinical System' => 'Clinical System', 'Database' => 'Database', 'Other' => 'Other');
+$system = array('Billing Systems' => 'Billing Systems', 'Database' => 'Database', 'Other' => 'Other');
 
 $impact = array('LOW - a few records (i.e., under 10)' => 'LOW - a few records (i.e., under 10)', 'MEDIUM - many records (i.e., up to 499)' => 'MEDIUM - many records (i.e., up to 499)', 'HIGH - significant amount of records (i.e., 500 or more)' );
 
@@ -90,140 +90,11 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 	?>
 	<hr />
 	
-	<h3 class='highlight'>Breach Notification</h3>
+	<h3 class='highlight'>Security Breach Notification Laws</h3>
 
-	<p>This section will determine if a breach notification to individuals affected by the breach is required.</p>
+	<p>A majority of states have enacted security breach laws, requiring disclosure to consumers when personal information is compromised.</p>
 
-	<p>Please read and complete the following Breach Notification Risk Assessment before proceeding. </p>
-	<p><a href='http://www.hipaasecurenow.com/portal/Breach Risk Assessment.docx' target='_blank'>Breach Notification Risk Assessment</a></p>
-
-	<?php
-		echo $this->Form->input('breach_notification_ra', array('label' => 'Have you done a Breach Notification Risk Assessment?', 'options' => $options, 'empty' => 'Please Select'));
-	?>
-
-	
-		
-	<div class='breach_notication_yes hidden'><!-- If yes is selected --> 
-		
-	<div class='breachQuestion'>
-		<?php echo $this->Form->input('after_completing', array('label' => 'After completing the assessment do you feel there is a medium or high probability that the PHI has been compromised?', 'options' => $options, 'empty' => 'Please Select')); ?>
-		
-		<div class='breach_required_yes hidden'><!-- if Yes -->
-		<?php	
-		echo $this->Form->input('informed_individual', array('label' => 'Have you informed the individuals of the breach?', 'options' => $options, 'empty' => 'Please Select'));
-		?>
-			<div class='informed_individuals_yes hidden'>
-			<?php	
-			echo $this->Form->input('breach_date_completed', array('label' => 'Date Completed', 'class' => 'datePick'));
-			echo $this->Form->input('give_breach_description', array('label' => 'Did you give a description of the breach?', 'options' => $options, 'empty' => 'Please Select'));
-			echo $this->Form->input('recommend_steps', array('label' => 'Did you recommend steps to protect themselves?', 'options' => $options, 'empty' => 'Please Select'));
-			echo $this->Form->input('give_description', array('label' => 'Did you give a description of what you are doing to investigate/mitigate/prevent future occurrences?', 'options' => $options, 'empty' => 'Please Select'));
-			?>				
-			</div>	
-		
-		<?php
-		echo $this->Form->input('effect_more_than_500', array('label' => 'Did this effect more than 500 individuals?', 'options' => $options, 'empty' => 'Please Select'));
-		?>
-			<div class='effect_more_500_yes hidden'>
-			
-				<?php	
-					echo $this->Form->input('notify_individuals', array('label' => 'Did you notify all individuals?', 'options' => $options, 'empty' => 'Please Select'));
-				?>
-					<div class='notify_individual_date hidden'>
-					<?php
-						echo $this->Form->input('notify_individuals_date', array('label' => 'Date Completed', 'class' => 'datePick'));
-					?>	
-					</div>
-				
-				
-				<?php 
-					echo $this->Form->input('notify_media', 
-					array('label' => 'Did you provide notice to prominent media outlets in surrounding area (press release)?', 'options' => $options, 'empty' => 'Please Select'));
-				?>
-				
-				<div class='notifyMediaDate hidden'>
-					<?php echo $this->Form->input('notify_media_date', array('label' => 'Date Completed', 'class' => 'datePick')); ?>
-					
-				</div>
-				
-				
-			</div>
-		
-		
-		<?php
-		echo $this->Form->input('notify_hhs', array('label' => 'Did you notify HHS of security breach?', 'options' => $options, 'empty' => 'Please Select'));
-		?>
-			<div class='notifyHhsDate hidden'>
-				<?php echo $this->Form->input('notify_hhs_date', array('label' => 'Date Completed', 'class' => 'datePick')); ?>
-			</div>
-				
-			
-		</div>
-	</div>	
-	
-	</div><!-- .breach_notification_yes -->
-
-		<hr />
-		<h3 class='highlight'>Corrective Measures</h3>
-        <?php
-        echo $this->Form->input('corrective_measures', array('type' => 'text', 'rows' => '5', 'cols' => '50'));
-        ?>  
-    
-    
-        <div class='breach_notification_please_complete dialogBox hidden'><!-- Have you done a Breach Notification Risk Assessment? = No -->
-        
-            <p>Please complete a Breach Notification Risk Assessment before continuing.</p> 
-            <?php echo $this->element('dialogok'); ?>
-        </div>
-    
-        <div class='breach_not_required dialogBox hidden'><!-- if After Completing == No -->
-            <p>No breach notification is required</p>   
-            <?php echo $this->element('dialogok'); ?>
-        </div>  
-        
-        <div class='500individualsBox dialogBox hidden'> <!
-            <p>CE must notify secretary of breaches of unsecured protected health information, by using the HHS website
--60 days or fewer (500 individuals or more)</p>
-
-        <p><a href='http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/brinstruction.html'>
-    http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/brinstruction.html</a></p>
-        <?php echo $this->element('dialogok'); ?>
-        </div>
-        
-        <div class='breachCompletePop dialogBox hidden'>
-            <p>To print, right click and click on print.</p>
-
-        <p>
-            Per individual, these must all be completed within 60 days of incident:
-            <ul>
-            <li>Notice in written form by 1st class mail or by email if they have agreed upon electronic mailing</li>
-            <li>Description of breach</li>
-            <li>Types of info involved  (ePHI)</li>
-            <li>Steps they should take to protect themselves</li>
-            <li>Description of what CE is doing to investigate/mitigate/prevent future occurrences</li>
-            </ul>
-        </p>
-        <p>
-            If contact information is out of date:
-            <ul>
-            <li>10 or more individuals: CE must post publicly  -website/major print/broadcast media  (Substitute Notice)</li>
-            <li>10 or fewer: This can be done by written, telephone, other means</li>
-            </ul>
-        </p>
-        <p></p>
-            Secretary notice: CE must notify secretary of breaches of unsecured protected health information, by using the Health and Human Services (HHS) website
-            <ul>
-            <li>60 days or fewer (500 individuals or more)</li>
-            <li>Fewer than 500 - once a year</li>
-            </ul>
-        </p>
-        <p>
-        For more information please visit <a href='http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/index.htm'>
-            http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/index.htm</a>
-        </p>
-
-        <?php echo $this->element('dialogok'); ?>
-        </div>
+	<p><a href='http://www.ncsl.org/research/telecommunications-and-information-technology/security-breach-notification-laws.aspx' target='_blank'>Read More...</a></p>
 		
 			
 	</fieldset>

@@ -21,7 +21,7 @@ $cause = array('Malware' => 'Malware', 'Hacking' => 'Hacking', 'Social Exploit' 
 $assets = array('Laptop' => 'Laptop', 'Workstation' => 'Workstation', 'USB drive' => 'USB drive', 'PII on file server' => 'PII on file server', 'Smartphone' => 'Smartphone', 'Floppy drive' => 'Floppy drive', 'External harddrive' => 'External harddrive', 'Tablet PC' => 'Tablet PC', 'Portable media' => 'Portable media', 'PII on peripherals' => 'PII on peripherals', 'CD Rom' => 'CD Rom', 'Backup tape' => 'Backup tape',
 'Other' => 'Other');
 
-$system = array('EMR' => 'EMR', 'EHR' => 'EHR', 'Billing Systems' => 'Billing Systems', 'Practice Management System' => 'Practice Management System',  'Prescription System' => 'Prescription System', 'Clinical System' => 'Clinical System', 'Database' => 'Database', 'Other' => 'Other');
+$system = array('Billing Systems' => 'Billing Systems', 'Database' => 'Database', 'Other' => 'Other');
 
 $impact = array('LOW - a few records (i.e., under 10)' => 'LOW - a few records (i.e., under 10)', 'MEDIUM - many records (i.e., up to 499)' => 'MEDIUM - many records (i.e., up to 499)', 'HIGH - significant amount of records (i.e., 500 or more)' );
 
@@ -104,7 +104,7 @@ $options = array('Yes' => 'Yes', 'No' => 'No');
 
 	<p>A majority of states have enacted security breach laws, requiring disclosure to consumers when personal information is compromised.</p>
 
-	<p><a href='http://www.ncsl.org/research/telecommunications-and-information-technology/security-breach-notification-laws.aspx'>Read More...</a></p>
+	<p><a href='http://www.ncsl.org/research/telecommunications-and-information-technology/security-breach-notification-laws.aspx' target='_blank'>Read More...</a></p>
 
 		<hr />
 		<h3 class='highlight'>Corrective Measures</h3>
