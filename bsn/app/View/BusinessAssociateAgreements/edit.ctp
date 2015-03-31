@@ -5,7 +5,7 @@ $group = $this->Session->read('Auth.User.group_id');
 $acct = $this->Session->read('Auth.User.Client.account_type');
 
 if ($group == Group::PARTNER_ADMIN) {
-	$this->Html->addCrumb('Business Associate Agreements');
+	$this->Html->addCrumb('Service Provider Contracts');
 } else {
 	$this->Html->addCrumb('Contracts & Documents', '/dashboard/contracts_and_documents');
 	$this->Html->addCrumb('Service Provider Contracts', '/service_provider_contracts');
@@ -13,7 +13,6 @@ if ($group == Group::PARTNER_ADMIN) {
 $this->Html->addCrumb('Edit Service Provider Contract');
 
 	$relationship = array(
-	'A third party administrator that assists a health plan with claims processing' => 'A third party administrator that assists a health plan with claims processing ',
 	'A CPA firm whose accounting services to a health care provider involve access to protected health information' => 'A CPA firm whose accounting services to a health care provider involve access to protected health information',
 	'An attorney whose legal services to a health plan involve access to protected health information ' => 'An attorney whose legal services to a health plan involve access to protected health information',
 	'A consultant that performs utilization reviews for a hospital' => 'A consultant that performs utilization reviews for a hospital',
@@ -40,7 +39,7 @@ $this->Html->addCrumb('Edit Service Provider Contract');
 		<legend><?php echo __('Edit Service Provider Contract'); ?></legend>
 
 
-	<h2 class='highlight'>Business Associate Contact Information</h2>
+	<h2 class='highlight'>Service Provider Contact Information</h2>
 	<?php
 		echo $this->Form->input('business_name', array('label' => 'Name of Service Provider organization'));
 		echo $this->Form->input('business_address', array('label' => 'Service Provider Address'));
