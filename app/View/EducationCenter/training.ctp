@@ -10,7 +10,7 @@ $this->Html->addCrumb('Training');
 <b>The HIPAA Training consists of three sections:</b><br /><br />
   <?php echo $this->Html->image('training.png'); ?>
   <br />
-  <p>The training should take about 1 hour to complete. You can stop at any time and continue where you left off later.</p>
+  <p>The training should take about 1-2 hours to complete. You can stop at any time and continue where you left off later.</p>
   <br />
   <b><h3>You are about to be taken to the <span class='important'>HIPAA Training</span></h3></b>
   <br />
