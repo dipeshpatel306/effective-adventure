@@ -85,7 +85,7 @@
 					'<div class="dashBox">' .
 					'<div class="dashHead">' .
 					$this->Html->image('raq_tile.jpg', array(
-								'class' => 'dashTile',
+								'class' => 'dashTile dashTileLong',
 								'alt' => $ra_name . ' Questionnaire'
 								)) .
 					'<h3>' . $ra_name . ' Questionnaire</h3>' .

@@ -467,6 +467,9 @@ img.homeIcon:hover{
 	width: 60px;
 	padding-right: 15px;
 }
+.dashTileLong {
+	padding-bottom: 20px;
+}
 
 .dashSum{ /* Summary */
 	width: 280px;
