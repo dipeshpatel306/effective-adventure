@@ -73,11 +73,16 @@ class OrganizationProfilesController extends AppController {
  * @return void
  */
 	public function add() {
-	    $client = $this->Auth->User('client_id');
-	    $this->OrganizationProfile->create();
-        $this->OrganizationProfile->set(array('client_id' => $client));
-        $this->OrganizationProfile->save();
-        $this->redirect(array('action' => 'edit', $this->OrganizationProfile->id));
+	    $client_id = $this->Auth->User('client_id');
+		$existing = $this->OrganizationProfile->find('first', array('conditions' => array('client_id' => $client_id)));
+		if (!isset($existing) || empty($existing)) {
+			$this->OrganizationProfile->create();
+        	$this->OrganizationProfile->save(array('client_id' => $client));
+			$id = $this->OrganizationProfile->id;
+		} else {
+			$id = $existing['OrganizationProfile']['id'];
+		}
+        $this->redirect(array('action' => 'edit', $id));
 	}
 
 /**

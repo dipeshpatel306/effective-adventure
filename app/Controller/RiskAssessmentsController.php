@@ -110,11 +110,18 @@ class RiskAssessmentsController extends AppController {
 	}
 
     public function take_risk_assessment() {
-    	$this->RiskAssessment->create();
-		$this->RiskAssessment->save(array('client_id' => $this->Auth->User('client_id')));
-		$this->redirect(array('action' => 'edit', $this->RiskAssessment->id));
+    	$client_id = $this->Auth->User('client_id');
+		$existing = $this->RiskAssessment->find('first', array('conditions' => array('client_id' => $client_id)));
+		if (!isset($existing) || empty($existing)) {
+			$this->RiskAssessment->create();
+			$this->RiskAssessment->save(array('client_id' => $client_id));
+			$id = $this->RiskAssessment->id;
+		} else {
+			$id = $existing['RiskAssessment']['id'];
+		}
+		$this->redirect(array('action' => 'edit', $id));
     }
-
+	
 /**
  * edit method
  *
