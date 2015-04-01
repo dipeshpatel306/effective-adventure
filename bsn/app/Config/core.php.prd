@@ -194,6 +194,11 @@
 	Configure::write('Security.cipherSeed', '93939173538755164416501472582');
 
 /**
+ * Domain (for cookies)
+ */
+	Configure::write('App.domain', '.pii-protect.com');
+
+/**
  * Training URL
  */
     Configure::write('App.trainingUrl', 'http://training.pii-protect.com/login/index.php');

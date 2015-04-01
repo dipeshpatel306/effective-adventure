@@ -199,6 +199,11 @@
     Configure::write('App.trainingUrl', 'http://training.pii-protect.com/login/index.php');
 
 /**
+ * Domain (for cookies)
+ */
+	Configure::write('App.domain', '.pii-protect.com');
+
+/**
  * Email address for admin emails
  */
     Configure::write('App.adminEmailTo', 'info@hipaasecurenow.com');

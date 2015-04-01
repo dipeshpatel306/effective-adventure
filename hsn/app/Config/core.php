@@ -196,6 +196,11 @@
 	Configure::write('Security.cipherSeed', '93939173538755164416501472582');
 
 /**
+ * Domain (for cookies)
+ */
+	Configure::write('App.domain', '.hipaasecurenow.com');
+
+/**
  * HIPAA Training URL
  */
     Configure::write('App.trainingUrl', 'http://training.hipaasecurenow.com/login/index.php');

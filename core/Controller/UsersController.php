@@ -21,7 +21,7 @@ class UsersController extends AppController {
         parent::beforeFilter();
         $this->Auth->allow('login', 'register', 'logout', 'forgot_password', 'reset_password');//, 'validate_email', 'resend_validation');
         $this->Cookie->name = 'hipaa';
-        $this->Cookie->domain = '.hipaasecurenow.com';
+        $this->Cookie->domain = Configure::read('App.domain');
         $this->Cookie->time = 0;
         //$this->Auth->autoRedirect = False;
         // $this->Auth->scope = array('User.active' => 'No');
