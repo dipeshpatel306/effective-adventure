@@ -3,6 +3,7 @@ $config = array(
 	'Theme' => array(
 		'copyright' => 'HIPAA Secure Now!',
 		'title' => 'HIPAA Compliance Portal',
+		'about_title' => 'What can you do with the HIPAA Secure Now! Compliance Portal',
 		'logo' => 'hipaa_logo.png',
 		'dashboard_name' => 'Compliance Portal Dashboard',
 		'display_social_center' => true,

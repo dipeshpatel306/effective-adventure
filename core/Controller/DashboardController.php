@@ -289,7 +289,7 @@ class DashboardController extends AppController {
  *
  * @return void
  */
-    public function about_hipaa() {
+    public function about() {
         $about = $this->Dashboard->find('first', array('conditions' => array('Dashboard.name' => 'about')));
         $this->set(compact('about'));
         //$this->Dashboard->recursive = 0;

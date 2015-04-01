@@ -1,5 +1,5 @@
 <?php
-$this->Html->addCrumb('What can you do with the HIPAA Secure Now! Compliance Portal');
+$this->Html->addCrumb(Configure::read('Theme.about_title'));
 ?>
 <div class="dashboard index">
 	<h2><?php echo $about['Dashboard']['title']; ?></h2>

@@ -39,7 +39,7 @@ App::uses('Group', 'Model');
 	if($this->Session->read('Auth.User.group_id') == Group::MANAGER){
 		$userId = $this->Session->read('Auth.User.id');
 		echo $this->Html->link('Profile', array('controller' => 'users', 'action' => 'edit', $userId)) . ' | ';		
-		echo $this->Html->link('About HIPAA Secure Now!', array('controller' => 'dashboard', 'action' => 'about_hipaa')) . ' | ';	
+		echo $this->Html->link('About ' . Configure::read('Theme.copyright'), array('controller' => 'dashboard', 'action' => 'about')) . ' | ';	
 		echo $this->Html->link('Employees', array('controller' => 'users', 'action' => 'index')) . ' | ';
 		echo $this->Html->link('Contact Us', array('controller' => 'contact_us', 'action' => 'contact' ));
 	}
@@ -48,7 +48,7 @@ App::uses('Group', 'Model');
 	if($this->Session->read('Auth.User.group_id') == Group::USER){
 		$userId = $this->Session->read('Auth.User.id');
 		echo $this->Html->link('Profile', array('controller' => 'users', 'action' => 'edit', $userId)) . ' | ';
-		echo $this->Html->link('About HIPAA Secure Now!', array('controller' => 'dashboard', 'action' => 'about_hipaa')) . ' | ';
+		echo $this->Html->link('About ' . Configure::read('Theme.copyright'), array('controller' => 'dashboard', 'action' => 'about')) . ' | ';
 		echo $this->Html->link('Contact Us', array('controller' => 'contact_us', 'action' => 'contact' ));		
 	}	
 ?>	

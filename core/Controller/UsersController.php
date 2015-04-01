@@ -61,7 +61,7 @@ class UsersController extends AppController {
         //allow managers to posts and widgets
         $group->id = Group::MANAGER;
         $this->Acl->deny($group, 'controllers');
-        $this->Acl->allow($group, 'controllers/Dashboard/about_hipaa');
+        $this->Acl->allow($group, 'controllers/Dashboard/about');
         $this->Acl->allow($group, 'controllers/Dashboard/policies_and_procedures');
         $this->Acl->allow($group, 'controllers/Dashboard/contracts_and_documents');
         $this->Acl->allow($group, 'controllers/Dashboard/track_and_document');
@@ -102,7 +102,7 @@ class UsersController extends AppController {
         //allow users to only add and edit on posts and widgets
         $group->id = Group::USER;
         $this->Acl->deny($group, 'controllers');
-        $this->Acl->allow($group, 'controllers/Dashboard/about_hipaa');
+        $this->Acl->allow($group, 'controllers/Dashboard/about');
         $this->Acl->allow($group, 'controllers/Dashboard/policies_and_procedures');
         $this->Acl->allow($group, 'controllers/Dashboard/contracts_and_documents');
         $this->Acl->allow($group, 'controllers/Dashboard/track_and_document');

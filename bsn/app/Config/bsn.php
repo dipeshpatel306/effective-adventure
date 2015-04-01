@@ -3,6 +3,7 @@ $config = array(
 	'Theme' => array(
 		'copyright' => 'PII Protect',
 		'title' => 'PII Protect Portal',
+		'about_title' => 'What can you do with the PII Protect Security Portal',
 		'logo' => 'pii_protect_logo.png',
 		'dashboard_name' => 'Security Portal Dashboard',
 		'display_social_center' => false,
