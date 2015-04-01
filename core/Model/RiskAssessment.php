@@ -64,4 +64,14 @@ class RiskAssessment extends AppModel {
         $this->set($data);
         $this->save(null, false);
     }
+
+	public function beforeSave($options = array()) {
+		if (!isset($this->data[$this->alias]['id'])) {
+			$existing = $this->find('first', array('conditions' => array('client_id' => $this->data[$this->alias]['client_id'])));
+			if (isset($existing) && !empty($existing)) {
+				throw new InternalErrorException('Trying to create duplicate Risk Assessment!');
+			}
+		}
+		return true;
+	}
 }

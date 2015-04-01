@@ -66,16 +66,8 @@ class DashboardController extends AppController {
  * @return void
  */
     public function initial() {
-
-        // Check if Client already has an existing Risk Assessment
         $clientId = $this->Session->read('Auth.User.client_id');
-        $this->loadModel('RiskAssessment');
-        $risk = $this->RiskAssessment->find('first', array('conditions' => array(
-                'client_id' => $clientId),
-                'fields' => 'RiskAssessment.id, RiskAssessment.client_id',
-                'recursive' => 0
-        ));
-        
+
         // Check if RA and Org are to be displayed
         $this->loadModel('Client');
         $displayRaOrg = $this->Client->find('first', array('conditions' => array(
@@ -87,23 +79,6 @@ class DashboardController extends AppController {
             $this->set(compact('displayRaOrg'));
         }
         
-        // If Risk Assessment exists then set it
-        if(isset($risk) && !empty($risk)){
-            $this->set(compact('risk'));
-        }
-
-        // Check if Client already has an existing Org Profile
-        $this->loadModel('OrganizationProfile');
-        $org = $this->OrganizationProfile->find('first', array('conditions' => array(
-                'client_id' => $clientId),
-                'fields' => 'OrganizationProfile.id, OrganizationProfile.client_id',
-                'recursive' => 0
-        ));
-        // If Org profile exists then set it
-        if(isset($org) && !empty($org)){
-            $this->set(compact('org'));
-        }
-
         $partnerId = $this->Session->read('Auth.User.Client.partner_id');
         if(isset($partnerId) && ($partnerId != 0)){
             $this->loadModel('Partner');
