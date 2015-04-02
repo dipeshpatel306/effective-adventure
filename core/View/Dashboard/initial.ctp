@@ -11,7 +11,7 @@
 					<div class="triangle"></div>
 					</div>
 				</div>';
-	if($acct == 'Initial' || $acct == 'Subscription' || $acct == 'HIPAA'){
+	if($acct == 'Initial' || $acct == 'Subscription' || $acct == 'Admin'){
 		$dashBtn = $approved;
 	} else{
 		$dashBtn = '<div class="dashBtn denied">
