@@ -1,6 +1,8 @@
 <?php
 $this->Html->addCrumb('Policies & Procedures');
 
+	$pnp_name = Configure::read('Theme.pnp_name');
+
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
@@ -44,7 +46,7 @@ $this->Html->addCrumb('Policies & Procedures');
 ?>
 
 <div class="dashboard index">
-	<h2><?php echo __('Security Policies & Procedures'); ?></h2>
+	<h2><?php echo __($pnp_name); ?></h2>
 
 	<?php
 		// policies & procedures . If Manager allow, If employee read only. MU hidden
@@ -54,11 +56,11 @@ $this->Html->addCrumb('Policies & Procedures');
 					'<div class="dashHead">' .
 					$this->Html->image('pnp_tile.jpg', array(
 								'class' => 'dashTile',
-								'alt' => 'Security Policies & Procedures'
+								'alt' => $pnp_name
 								)) .
-					'<h3>Security Policies & Procedures</h3>' .
+					'<h3>' . $pnp_name .'</h3>' .
 					'</div>' .
-					'<div class="dashSum">Security Policies and Procedures</div>'  . $banned .
+					'<div class="dashSum">' . $pnp_name . '</div>'  . $banned .
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'policies_and_procedures'),
 					array('escape' => false)
@@ -70,11 +72,11 @@ $this->Html->addCrumb('Policies & Procedures');
 					'<div class="dashHead">' .
 					$this->Html->image('pnp_tile.jpg', array(
 								'class' => 'dashTile',
-								'alt' => 'Security Policies & Procedures'
+								'alt' => $pnp_name
 								)) .
-					'<h3>Security Policies & Procedures</h3>' .
+					'<h3>' . $pnp_name . '</h3>' .
 					'</div>' .
-					'<div class="dashSum">Security Policies and Procedures</div>'  . $approved .
+					'<div class="dashSum">' . $pnp_name .'</div>'  . $approved .
 					'</div>',
 					array('controller' => 'policies_and_procedures', 'action' => 'index'),
 					array('escape' => false)

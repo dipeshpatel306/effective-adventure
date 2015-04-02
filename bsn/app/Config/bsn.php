@@ -18,7 +18,9 @@ $config = array(
 		'baa_link_name' => 'service_provider_contracts',
 		'drp_name' => 'Disaster Recovery Plans',
 		'ocnd_name' => 'Other Contracts & Documents',
-		'pnp_name' => 'Policies & Procedures',
+		'pnp_name' => 'Security Policies & Procedures',
+		'pnp_doc_name' => 'Policies & Procedures',
+		'pnp_show_videos' => false,
 		'si_name' => 'Security Incidents',
 		'display_ephi' => false
 	)

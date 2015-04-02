@@ -224,7 +224,7 @@ $clientId = $client['Client']['id'];
 
 
 <div class="related">
-	<h3><?php echo Configure::read('Theme.pnp_name') . ' Documents'; ?></h3>
+	<h3><?php echo Configure::read('Theme.pnp_doc_name') . ' Documents'; ?></h3>
 
 	<?php if (!empty($policies)): ?>
 		
@@ -273,7 +273,7 @@ $clientId = $client['Client']['id'];
 <?php endif; ?>
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New ' . Configure::read('Theme.pnp_name') . ' Document'), array('controller' => 'policies_and_procedures_documents', 'action' => 'add', $clientId)); ?> </li>
+			<li><?php echo $this->Html->link(__('New ' . Configure::read('Theme.pnp_doc_name') . ' Document'), array('controller' => 'policies_and_procedures_documents', 'action' => 'add', $clientId)); ?> </li>
 		</ul>
 	</div>
 

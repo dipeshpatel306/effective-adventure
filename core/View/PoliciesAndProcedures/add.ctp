@@ -1,7 +1,9 @@
 <?php
+$pnp_name = Configure::read('Theme.pnp_name');
+
 $this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
-$this->Html->addCrumb('HIPAA Policies & Procedures', '/policies_and_procedures');
-$this->Html->addCrumb('Add HIPAA Policy & Procedure');
+$this->Html->addCrumb($pnp_name, '/policies_and_procedures');
+$this->Html->addCrumb('Add Policy & Procedure');
 
 	$group = $this->Session->read('Auth.User.group_id');
 
@@ -11,7 +13,7 @@ $this->Html->addCrumb('Add HIPAA Policy & Procedure');
 <div class="policiesAndProcedures form">
 <?php echo $this->Form->create('PoliciesAndProcedure'); ?>
 	<fieldset>
-		<legend><?php echo __('Add HIPAA Policies And Procedures'); ?></legend>
+		<legend><?php echo __('Add ' . $pnp_name); ?></legend>
 	<?php
 		echo $this->Form->input('name');
 		echo $this->Form->input('description', array('class' => 'ckeditor', 'rows' => '5', 'cols' => '40'));

@@ -199,7 +199,8 @@ class PoliciesAndProceduresDocumentsController extends AppController {
  * @return void
  */
 	public function batch_add($clientId = null, $policy = null){
-		
+		$policiesAndProcedures = $this->PoliciesAndProceduresDocument->PoliciesAndProcedure->find('list');
+		$num_policies = count($policiesAndProcedures);
 		if(isset($clientId)){ // Check Client ID is set
 			$this->request->data['PoliciesAndProceduresDocument']['client_id'] = $clientId;
 			
@@ -217,13 +218,13 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 		
 		if(!isset($policy)){
  			$policy = 1;
-		} elseif($policy > 18 || $policy < 0){
+		} elseif($policy > $num_policies || $policy < 0){
 				$this->redirect(array('controller' => 'clients', 'action' => 'view', $clientId));
 				$this->Session->setFlash('Policies and Procedures Batch Upload completed for ' . $clientName, 'default', 
 				array('class' => 'success message'));
 			
 		} else {
-			if($policy == 18 ){
+			if($policy == $num_policies){
 				$this->redirect(array('controller' => 'clients', 'action' => 'view', $clientId));
 				$this->Session->setFlash('Policies and Procedures Batch Upload completed for ' . $clientName, 'default', 
 				array('class' => 'success message'));
@@ -257,7 +258,6 @@ class PoliciesAndProceduresDocumentsController extends AppController {
 				$this->Session->setFlash(__('The policies and procedures document could not be saved. Please, try again.'));
 			}
 		}	
-		$policiesAndProcedures = $this->PoliciesAndProceduresDocument->PoliciesAndProcedure->find('list');	
 		$clients = $this->PoliciesAndProceduresDocument->Client->find('list');	
 		
 		$this->set(compact('policiesAndProcedures', 'clients' , 'clientId', 'clientName', 'policy'));

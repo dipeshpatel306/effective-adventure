@@ -1,13 +1,15 @@
 <?php
+$pnp_name = Configure::read('Theme.pnp_name');
+
 $this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedures');
-$this->Html->addCrumb('HIPAA Policies & Procedures', '/policies_and_procedures');
+$this->Html->addCrumb($pnp_name, '/policies_and_procedures');
 $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 
 	$group = $this->Session->read('Auth.User.group_id');
 ?>
 
 <div class="policiesAndProcedures view">
-<h2><?php  echo __('HIPAA Policies And Procedures'); ?></h2>
+<h2><?php  echo __($pnp_name); ?></h2>
 
 	<?php echo $this->element('video_overlay'); ?>
 	
@@ -73,6 +75,7 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 	<?php endforeach; ?>
 	</table>
 <?php  endif; ?>
+<?php if (Configure::read('Theme.pnp_show_videos')) : ?>
 		<div class='papVideo' >
 		<h2><?php echo __('Video Summary'); ?></h2>
 
@@ -81,6 +84,7 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 
 			<a class="policyName" id='<?php echo $policiesAndProcedure['PoliciesAndProcedure']['id']; ?>'>View Movie for Policy <?php echo $policiesAndProcedure['PoliciesAndProcedure']['id']; ?></a>
 		</div>
+<?php endif; ?>
 	<br /><br />
 </div>
 
