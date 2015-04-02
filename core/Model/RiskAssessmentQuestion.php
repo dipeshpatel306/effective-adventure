@@ -72,14 +72,16 @@ class RiskAssessmentQuestion extends AppModel {
 	);
 	
 	public function beforeSave($options = array()) {
-		 $options = array(
-    		'conditions' => array(
-        	'RiskAssessmentQuestionSubCategory.id' => $this->data[$this->alias]['category_id']
-    		)
-		);
-		$category = $this->RiskAssessmentQuestionSubCategory->find('first', $options);
-		$this->data[$this->alias]['safeguard_category_id'] = $category['RiskAssessmentQuestionSubCategory']['safeguard_category_id'];
-		$this->data[$this->alias]['question_number'] = count($this->find('list'))+1;
+		if (!isset($this->data[$this->alias]['id'])) {
+			$options = array(
+    			'conditions' => array(
+        			'RiskAssessmentQuestionSubCategory.id' => $this->data[$this->alias]['category_id']
+    			)	
+			);
+			$category = $this->RiskAssessmentQuestionSubCategory->find('first', $options);
+			$this->data[$this->alias]['safeguard_category_id'] = $category['RiskAssessmentQuestionSubCategory']['safeguard_category_id'];
+			$this->data[$this->alias]['question_number'] = count($this->find('list'))+1;
+		} 
 		return true;
 	}
 	
