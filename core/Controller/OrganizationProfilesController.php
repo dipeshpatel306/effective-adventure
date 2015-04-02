@@ -77,7 +77,7 @@ class OrganizationProfilesController extends AppController {
 		$existing = $this->OrganizationProfile->find('first', array('conditions' => array('client_id' => $client_id)));
 		if (!isset($existing) || empty($existing)) {
 			$this->OrganizationProfile->create();
-        	$this->OrganizationProfile->save(array('client_id' => $client));
+        	$this->OrganizationProfile->save(array('client_id' => $client_id));
 			$id = $this->OrganizationProfile->id;
 		} else {
 			$id = $existing['OrganizationProfile']['id'];
