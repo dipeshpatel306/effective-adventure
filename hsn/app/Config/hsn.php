@@ -15,6 +15,7 @@ $config = array(
 		'ra_docs_name' => 'HIPAA Risk Assessment Documents',
 		'baa_name' => 'HIPAA Business Associate Agreements',
 		'baa_link_name' => 'business_associate_agreements',
+		'baa_entity_name' => 'Business Associates',
 		'drp_name' => 'HIPAA Disaster Recovery Plans',
 		'ocnd_name' => 'HIPAA Other Contracts & Documents',
 		'pnp_name' => 'HIPAA Policies & Procedures',

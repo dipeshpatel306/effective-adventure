@@ -4,18 +4,6 @@ App::uses('Group', 'Model');
 	$group = $this->Session->read('Auth.User.group_id');
 	$acct = $this->Session->read('Auth.User.Client.account_type');
 
-	if(isset($risk) && !empty($risk)){  // if already filled out then give edit link
-		$riskAss = array('controller' => 'risk_assessments', 'action' => 'edit', $risk['RiskAssessment']['id']);
-	} else {
-		$riskAss = array('controller' => 'risk_assessments', 'action' => 'take_risk_assessment');
-	}
-
-	if(isset($org) && !empty($org)){ // if already filled out then give edit link
-		$orgPro = array('controller' => 'Organization_profiles', 'action' => 'edit', $org['OrganizationProfile']['id']);
-	} else {
-		$orgPro = array('controller' => 'Organization_profiles', 'action' => 'add');
-	}
-
 	$approved = '<div class="dashBtn approved">
 						<div class="btnWrapNarrow">
 						<div class="btnText">Click Here</div>
@@ -71,6 +59,7 @@ App::uses('Group', 'Model');
 
 		// 	// contracts and documents. managers see this. Users do not
 		$ra_name = Configure::read('Theme.ra_name');
+		$baa_entity_name = Configure::read('Theme.baa_entity_name');
 		if($group == Group::USER && $acct != 'Training'){
 			echo $this->Html->link(
 					'<div class="dashBox">' .
@@ -81,7 +70,7 @@ App::uses('Group', 'Model');
 								)) .
 					'<h3>Contracts & Documents</h3>' .
 					'</div>' .
-					'<div class="dashSum">' . $ra_name .', Business Associates, Disaster Recovery</div>' . $noAuth.
+					'<div class="dashSum">' . $ra_name .', ' . $baa_entity_name .', Disaster Recovery</div>' . $noAuth.
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'index'),
 					array('escape' => false)
@@ -96,7 +85,7 @@ App::uses('Group', 'Model');
 								)) .
 					'<h3>Contracts & Documents</h3>' .
 					'</div>' .
-					'<div class="dashSum">' . $ra_name . ', Business Associates, Disaster Recovery</div>' . $approved.
+					'<div class="dashSum">' . $ra_name .', ' . $baa_entity_name .', Disaster Recovery</div>' . $approved.
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
 					array('escape' => false)
@@ -211,52 +200,6 @@ App::uses('Group', 'Model');
             array('controller' => 'dashboard', 'action' => 'initial'),
             array('escape' => false)
         );
-				// echo $this->Html->link( // Risk Assessment Questionnaire
-						// '<div class="dashBox">' .
-						// '<div class="dashHead">' .
-						// $this->Html->image('raq_tile.jpg', array(
-									// 'class' => 'dashTile',
-									// 'alt' => 'Risk Assessment Questionnaire'
-									// )) .
-						// '<h3>Risk Assessment Questionnaire</h3>' .
-						// '</div>' .
-						// '<div class="dashSum">Risk Assessment Questionnaire</div>' . $approved .
-						// '</div>',
-						// $riskAss,
-						// array('escape' => false)
-				// );
-// 				
-// 
-// 
-			// echo $this->Html->link( // Organization Profile
-						// '<div class="dashBox">' .
-						// '<div class="dashHead">' .
-						// $this->Html->image('org_prof_tile.jpg', array(
-									// 'class' => 'dashTile',
-									// 'alt' => 'Organization Profile'
-									// )) .
-						// '<h3>Organization Profile</h3>' .
-						// '</div>' .
-						// '<div class="dashSum">Organization Profile</div>' . $approved .
-						// '</div>',
-						// $orgPro,
-						// array('escape' => false)
-				// );
-// 				
-			// echo 	'<div class="dashBox markComplete">' .
-					// '<div class="dashHead">' .
-// 					
-					// $this->Html->image('mark_comp_tile.bmp', array(
-								// 'class' => 'dashTile',
-								// 'alt' => 'Mark Risk Assessment Complete'
-								// )) . 
-// 					
-					// '<h3>Mark Risk Assessment Complete</h3>' .
-					// '</div>' .
-					// '<div class="dashSum">Mark Risk Assessment Complete</div>' .
-					// $approved . 
-				// '</div>';
-// 				
 
 		}
 		}

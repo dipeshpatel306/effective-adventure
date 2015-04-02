@@ -153,31 +153,6 @@ class DashboardController extends AppController {
         if(isset($displayRaOrg)){
             $this->set(compact('displayRaOrg'));
         }
-        
-        
-        // Check if Client already has an existing Risk Assessment
-        $this->loadModel('RiskAssessment');
-        $risk = $this->RiskAssessment->find('first', array('conditions' => array(
-                'client_id' => $clientId),
-                'fields' => 'RiskAssessment.id, RiskAssessment.client_id',
-                'recursive' => 0
-        ));
-        // If Risk Assessment exists then set it
-        if(isset($risk) && !empty($risk)){
-            $this->set(compact('risk'));
-        }
-
-        // Check if Client already has an existing Org Profile
-        $this->loadModel('OrganizationProfile');
-        $org = $this->OrganizationProfile->find('first', array('conditions' => array(
-                'client_id' => $clientId),
-                'fields' => 'OrganizationProfile.id, OrganizationProfile.client_id'
-
-        ));
-        // If Org profile exists then set it
-        if(isset($org) && !empty($org)){
-            $this->set(compact('org'));
-        }
 
         $partnerId = $this->Session->read('Auth.User.Client.partner_id');
         if(isset($partnerId) && ($partnerId != 0)){

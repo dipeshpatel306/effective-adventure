@@ -14,6 +14,7 @@ $config = array(
 		'training_image' => 'training_bsn.png',
 		'ra_docs_name' => 'Security Risk Assessment Documents',
 		'baa_name' => 'Service Provider Contracts',
+		'baa_entity_name' => 'Service Providers',
 		'baa_link_name' => 'service_provider_contracts',
 		'drp_name' => 'Disaster Recovery Plans',
 		'ocnd_name' => 'Other Contracts & Documents',
