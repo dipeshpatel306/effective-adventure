@@ -12,6 +12,19 @@ $this->Html->addCrumb('Training');
   <br />
   <p>The training should take about 1-2 hours to complete. You can stop at any time and continue where you left off later.</p>
   <br />
+  <h2><strong>Notice!</strong></h2>
+  <div class='notice'>
+    <h3 class='important'><strong>HIPAA Secure Now!</strong></h3>
+    <p>Is excited to announce a new version of our training program for 2015.</p>
+    <br />
+    <p><strong>Covered Entities</strong></p>
+    <p>We are now providing a HIPAA Privacy training class along with an improved Security training class.</p>
+    <br />
+    <p><strong>Business Associates</strong></p>
+    <p>Will also have a new and improved Security training program.</p>
+    <br />
+    <p>Your account is now ready to access the new training module for your organization. All previous scores and completion records are available and can be provided by reaching out to <a href='mailto:info@hipaasecurenow.com'>info@hipaasecurenow.com</a> and requesting a copy of your previous training report.</p>
+  </div>
   <b><h3>You are about to be taken to the <span class='important'>HIPAA Training</span></h3></b>
   <br />
   <p>The training will open in another window.</p><br />

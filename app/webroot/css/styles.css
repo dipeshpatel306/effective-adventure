@@ -1021,3 +1021,13 @@ th.templateModified {
 th.templateActions {
     width: 15%;
 }
+
+.notice {
+    color:#555;
+    border-radius:10px;
+    padding:10px;
+    margin:10px;
+    background:#e3f7fc;
+    sborder:1px solid #8ed9f6;
+    text-align: center;
+}
