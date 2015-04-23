@@ -73,6 +73,7 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 	<?php endforeach; ?>
 	</table>
 <?php  endif; ?>
+<?php if ($policiesAndProcedure['PoliciesAndProcedure']['has_video']): ?>
 		<div class='papVideo' >
 		<h2><?php echo __('Video Summary'); ?></h2>
 
@@ -81,6 +82,7 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 
 			<a class="policyName" id='<?php echo $policiesAndProcedure['PoliciesAndProcedure']['id']; ?>'>View Movie for Policy <?php echo $policiesAndProcedure['PoliciesAndProcedure']['id']; ?></a>
 		</div>
+<?php endif; ?>
 	<br /><br />
 </div>
 
