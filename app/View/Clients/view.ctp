@@ -120,7 +120,6 @@ $clientId = $client['Client']['id'];
 				 ?>
 			&nbsp;
 		</dd>
-
 	</dl>
 		<h2><?php echo __('Details'); ?></h2>
 		<?php echo ($client['Client']['details']); ?>
@@ -687,4 +686,26 @@ $clientId = $client['Client']['id'];
 		</ul>
 	</div>
 </div>
+
+<div class="related">
+	<h3><?php echo __('Training Reports'); ?></h3>
+	<table>
+		<tr>
+			<th><?php echo __('Course Code'); ?></th>
+			<th><?php echo __('Course Name'); ?></th>
+			<th class='actions'><?php echo __('Actions'); ?></th>
+		</tr>
+		<?php foreach ($client['TrainingReport'] as $report): ?>
+		  <tr>
+			<td><?php echo $report['course_code']; ?></td>
+			<td><?php echo $report['course_name']; ?></td>
+			<td class='actions'>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'training_reports', 'action' => 'view', $report['id'])); ?>
+				<?php echo $this->Html->link(__('Export'), array('controller' => 'training_reports', 'action' => 'view', 'ext' => 'csv', $report['id'])); ?>
+			</td>	
+		  </tr>
+		<?php endforeach; ?>
+	</table>
+</div>
+
 </div>
