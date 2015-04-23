@@ -13,22 +13,16 @@ if ($group == Group::PARTNER_ADMIN) {
 $this->Html->addCrumb('Edit Service Provider Contract');
 
 	$relationship = array(
-	'A CPA firm whose accounting services to a health care provider involve access to protected health information' => 'A CPA firm whose accounting services to a health care provider involve access to protected health information',
-	'An attorney whose legal services to a health plan involve access to protected health information ' => 'An attorney whose legal services to a health plan involve access to protected health information',
-	'A consultant that performs utilization reviews for a hospital' => 'A consultant that performs utilization reviews for a hospital',
-	'A health care clearinghouse' => 'A health care clearinghouse',
-	'An independent medical transcriptionist that provides transcription services to a physician' => 'An independent medical transcriptionist that provides transcription services to a physician',
-	'A pharmacy benefits manager that manages a health care plan’s pharmacist network' => 'A pharmacy benefits manager that manages a health care plan’s pharmacist network',
-	'Technical vendors who have access to computer systems or databases containing ePHI' => 'Technical vendors who have access to computer systems or databases containing ePHI',
+	'A CPA firm that has access to PII and/or sensitive data' => 'A CPA firm that has access to PII and/or sensitive data',
+    'An Attorney who has access to PII and/or sensitive data' => 'An Attorney who has access to PII and/or sensitive data',
+	'Technical vendor that may have access to computer systems that access PII and/or sensitive data' => 'Technical vendor that may have access to computer systems that access PII and/or sensitive data',
 	'Lawyers, accountants, consultants' => 'Lawyers, accountants, consultants',
-	'Record storage facilities' => 'Record storage facilities',
-	'Collection agents' => 'Collection agents',
-	'Medical Transcript Service' => 'Medical Transcript Service',
-	'Practice Managers' => 'Practice Managers',
-	'Billing Companies' => 'Billing Companies',
-	'A company who provides document shredding services' => 'A company who provides document shredding services',
-	'A person who provides medical transcription services' => 'A person who provides medical transcription services',
-	'A vendor who provides billing or collection services' => 'A vendor who provides billing or collection services',
+	'Record Storage facilities' => 'Record Storage facilities',
+	'Collections agents' => 'Collections agents',
+	'Credit Card processing service' => 'Credit Card processing service',
+	'Billing companies' => 'Billing companies',
+	'Webhosting company' => 'Webhosting company',
+	'A company who provides doucment shredding services' => 'A company who provides doucment shredding services',
 	'Client' => 'Client',
 	'Other' => 'Other'
 	);
