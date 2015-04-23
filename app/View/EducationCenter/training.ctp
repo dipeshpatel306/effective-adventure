@@ -13,7 +13,7 @@ $this->Html->addCrumb('Training');
   <p>The training should take about 1-2 hours to complete. You can stop at any time and continue where you left off later.</p>
   <br />
   <h2><strong>Notice!</strong></h2>
-  <div class='notice'>
+  <div class='training-notice'>
     <h3 class='important'><strong>HIPAA Secure Now!</strong></h3>
     <p>Is excited to announce a new version of our training program for 2015.</p>
     <br />
