@@ -75,7 +75,7 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 	<?php endforeach; ?>
 	</table>
 <?php  endif; ?>
-<?php if (Configure::read('Theme.pnp_show_videos')) : ?>
+<?php if (Configure::read('Theme.pnp_show_videos') && $policiesAndProcedure['PoliciesAndProcedure']['has_video']) : ?>
 		<div class='papVideo' >
 		<h2><?php echo __('Video Summary'); ?></h2>
 

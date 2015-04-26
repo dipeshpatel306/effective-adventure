@@ -30,7 +30,8 @@ $training_name = Configure::read('Theme.training_name');
     <?php
     App::uses('Group', 'Model');
     if ($group == Group::MANAGER or $group == Group::ADMIN) {
-        echo '<li>' . $this->Html->link('Training Report', array('controller' => 'education_center', 'action' => 'training_report')). '</li>';
+        //echo '<li>' . $this->Html->link('Training Report', array('controller' => 'education_center', 'action' => 'training_report')). '</li>';
+		echo '<li>' . $this->Html->link('Training Reports', array('controller' => 'training_reports', 'action' => 'index')). '</li>';
     }
     ?>
     </ul>

@@ -253,30 +253,58 @@ class Client extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-
+		'TrainingReport' => array(
+			'foreignKey' => 'client_id'
+		)
 	);
     
     public function beforeSave($options=array()) {
         if (isset($this->data['Client']['moodle_course_id'])) {
             $course_id = $this->data['Client']['moodle_course_id'];
-            $this->data['Client']['moodle_course_name'] = $this->getMoodleCourseName($course_id);
+			$course_names = $this->getMoodleCourseNames($course_id);
+            $this->data['Client']['moodle_course_name'] = $course_names['shortname'];
+			
         }  
 		$this->data[$this->alias]['admin_account'] = $this->randomStr(10);
 		$this->data[$this->alias]['user_account'] = $this->randomStr(10);
 		$this->data[$this->alias]['file_key'] = $this->randomStr(10);
         return true;
     }
+	
+	public function afterSave($created, $options = array()) {
+		if (array_key_exists('moodle_course_id', $this->data['Client'])) {
+			$course_id = $this->data['Client']['moodle_course_id'];
+			if ($created) {
+				$id = $this->getLastInsertID();
+			} else {
+				$id = $this->id;
+			}
+			$report = $this->TrainingReport->find('first', array('conditions' => array('client_id' => $id, 'course_id' => $course_id)));
+			if (empty($report)) {
+				$course_names = $this->getMoodleCourseNames($course_id);
+				$this->TrainingReport->save(array(
+					'client_id' => $id,
+					'course_id' => $course_id,
+					'course_name' => $course_names['fullname'],
+					'course_code' => $course_names['shortname']
+				));
+			}
+		}
+		return true;
+	}
     
-    public function getMoodleCourseName($course_id) {
+    public function getMoodleCourseNames($course_id) {
         if (!isset($course_id) || empty($course_id)) {
-            $name = '';
+            $shortname = '';
+			$fullname = '';
         } else {
             $moodle = ConnectionManager::getDataSource('moodle');
-            $moodle->rawQuery('SELECT shortname FROM mdl_course WHERE id=' . $course_id);
+            $moodle->rawQuery('SELECT shortname, fullname FROM mdl_course WHERE id=' . $course_id);
             $row = $moodle->fetchRow();
-            $name = $row['mdl_course']['shortname'];
+            $fullname = $row['mdl_course']['fullname'];
+			$shortname = $row['mdl_course']['shortname'];
         }
-        return $name;
+        return compact('fullname', 'shortname');
     }
     
     public function getMoodleCourses() {
