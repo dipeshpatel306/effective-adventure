@@ -20,7 +20,7 @@ class EducationCenterController extends AppController {
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		$acct = $this->Session->read('Auth.User.Client.account_type'); // Get account type 
 		
-		if ($group == Group::MANAGER && in_array($this->action, array('training', 'training_report', 'training_report_csv', 'index', 'video'))) {
+		if ($group == Group::MANAGER && in_array($this->action, array('training', 'index', 'video'))) {
 		    return true;
         }
         
@@ -155,30 +155,6 @@ class EducationCenterController extends AppController {
         $this->set(compact('group'));
     }
  
-    public function training_report() {
-        $client_id = $this->Session->read('Auth.User.client_id');
-        $this->loadModel('Client');
-        $client = $this->Client->find('first', array('conditions' => array('Client.id' => $client_id)));
-		$moodle_ids = array();
-		foreach ($client['User'] as $user) {
-			$moodle_ids[] = "'n" . $user['id'] . "'";
-		}
-		$moodle_ids = implode(', ', $moodle_ids);
-        $course_id = $client['Client']['moodle_course_id'];  
-		$client_name = $client['Client']['name'];
-		$this->set(compact('client_name'));
-        $client_name_trunc = substr($client_name, 0, 40); // mdl_user.institution is only 40 chars 
-        $moodle = ConnectionManager::getDataSource('moodle');
-        $sql = "SELECT mdl_user.firstname, mdl_user.lastname, mdl_quiz_grades.grade, mdl_quiz_grades.timemodified
-                FROM mdl_user, mdl_quiz_grades WHERE mdl_quiz_grades.quiz IN 
-                  (SELECT mdl_quiz.id FROM mdl_quiz WHERE mdl_quiz.course = :course_id) 
-                AND mdl_quiz_grades.userid = mdl_user.id AND mdl_user.institution = :client_name 
-                AND mdl_user.idnumber in ($moodle_ids)
-                AND mdl_user.deleted = 0 ORDER BY mdl_user.lastname ASC";
-        $rows = $moodle->fetchAll($sql, array(':course_id' => $course_id, ':client_name' => $client_name_trunc));
-        $this->set(compact('rows'));
-    }    
-
     public function video($video) {
         $this->set(compact('video'));
     }

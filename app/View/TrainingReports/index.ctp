@@ -26,11 +26,27 @@ $group = $this->Session->read('Auth.User.group_id');
     <td class="actions">
       <?php echo $this->Html->link(__('View'), array('action' => 'view', $report['TrainingReport']['id'])); ?>
       <?php echo $this->Html->link(__('Export'), array('action' => 'view', 'ext' => 'csv', $report['TrainingReport']['id'])); ?>
-      <?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'ePHI Removed', 'id' => $report['TrainingReport']['id'])); ?>
+      <?php if ($group == Group::ADMIN) {
+      	echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'ePHI Removed', 'id' => $report['TrainingReport']['id']));
+      } ?>
     </td>
   </tr>
   <?php endforeach; ?>
   </table>
+  <p>
+	<?php
+	echo $this->Paginator->counter(array(
+	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+	));
+	?>	</p>
+
+	<div class="paging">
+	<?php
+		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
+		echo $this->Paginator->numbers(array('separator' => ''));
+		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+	?>
+	</div>
 </div>
 <div class="actions">
     <div class='sidebarContent'>

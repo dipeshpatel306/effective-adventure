@@ -13,7 +13,7 @@ class TrainingReportsController extends AppController {
  		$group = $this->Session->read('Auth.User.group_id');
 		$client = $this->Session->read('Auth.User.client_id');
 		
-		if ($group == Group::ADMIN) {
+		if ($group == Group::ADMIN || $this->action === 'index') {
 			return true;
 		}
 		
@@ -36,12 +36,12 @@ class TrainingReportsController extends AppController {
 
 		if ($group == Group::ADMIN) {
 			$this->TrainingReport->recursive = 0;
-			$this->paginate = array('order' => array('client_id' => 'ASC'));			
+			$this->paginate = array('order' => array('client_id' => 'ASC'), 'limit' => 100);			
 			$this->set('reports', $this->paginate());			
 		} else {
 			$this->paginate = array(
 				'conditions' => array('client_id' => $client),
-				'order' => array('course_name' => 'ASC')
+				'order' => array('course_name' => 'ASC'),
 			);
 			$this->set('reports', $this->paginate());
 		}

@@ -48,5 +48,6 @@ $this->Html->addCrumb('Education Center Admin');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Education Center'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('Training Reports'), array('controller' => 'training_reports', 'action' => 'index')); ?></li>
 	</ul>
 </div>
