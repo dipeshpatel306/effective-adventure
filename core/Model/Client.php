@@ -265,9 +265,11 @@ class Client extends AppModel {
             $this->data['Client']['moodle_course_name'] = $course_names['shortname'];
 			
         }  
-		$this->data[$this->alias]['admin_account'] = $this->randomStr(10);
-		$this->data[$this->alias]['user_account'] = $this->randomStr(10);
-		$this->data[$this->alias]['file_key'] = $this->randomStr(10);
+		if (!$this->id && !isset($this->data[$this->alias][$this->primaryKey])) {
+			$this->data[$this->alias]['admin_account'] = $this->randomStr(10);
+			$this->data[$this->alias]['user_account'] = $this->randomStr(10);
+			$this->data[$this->alias]['file_key'] = $this->randomStr(10);
+		}
         return true;
     }
 	
