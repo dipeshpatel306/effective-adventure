@@ -1,4 +1,5 @@
 define(['jquery', 'jwplayer'], function($, jwplayer) {
+	jwplayer.key = "T0V5GaEAOPqBbvrr69zYxEgOaIfLDBI6+AVO6Mda2Rc=";
 	// Jwplayer
 	function showVideo(mp4Name, containerid, autostart, width, height, image) {
 	    containerid = (typeof containerid === "undefined") ? "mediaplayer" : containerid;
