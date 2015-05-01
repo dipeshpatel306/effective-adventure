@@ -1,6 +1,7 @@
 <?php
 ini_set('date.timezone', 'America/New_York');
 require_once(dirname(__file__) . DS . 'fpdf' . DS . 'fpdf.php');
+require_once(dirname(__file__) . DS . 'html2text' . DS . 'html2text.php');
 
 class AppendixPDF extends FPDF {
 	public $margin = 15;
@@ -12,14 +13,14 @@ class AppendixPDF extends FPDF {
 	public function Header() {
 		$this->SetFont('Arial', '', 9);
 		$this->SetX(-65);
-		$this->Cell(0, 14, 'HIPAA Security Risk Assessment');
+		$this->Cell(0, 14, 'Security Risk Assessment');
 	}
 	
 	public function Footer() {
 		if ($this->PageNo() == 1) return;
 		$this->SetXY(8, -15);
 		$this->SetFont('Arial', '', 10);
-		$this->SetTextColor(255, 0, 0);
+		$this->SetTextColor(48, 173, 209);
 		$this->Cell(0, 14, 'Page | ' . $this->PageNo());
 	}
 	
@@ -27,10 +28,10 @@ class AppendixPDF extends FPDF {
 		$this->SetXY(15, -35);
 		$this->SetFont('Arial', '', 9);
 		$this->SetTextColor(128);
-		$str = "Copyright &copy; " . date('Y') . " HIPAA Secure Now! All Rights Reserved";
+		$str = "Copyright &copy; " . date('Y') . " PII Protect. All Rights Reserved";
 		$str = iconv('UTF-8', 'windows-1252', html_entity_decode($str));
 		$this->Cell(120, 14, $str);
-		$this->Image(IMAGES . 'hipaa_logo.png', null, null, 0, 14);
+		$this->Image(IMAGES . 'pii_protect_logo.png', null, null, 0, 14);
 		$this->SetTextColor(0);
 	}
 	
@@ -195,6 +196,7 @@ class AppendixPDF extends FPDF {
 
 		$name_loc_fields = array(
 			array('Client.name', 'Name'),
+			array('industry', 'Industry',),
 			array('administrator_name', 'Administrator Name'),
 			array('administrator_email', 'Administrator Email'),
 			array('administrator_phone', 'Administrator Phone (Primary Contact)', '_getPhoneWithExt'),
@@ -234,15 +236,15 @@ class AppendixPDF extends FPDF {
 		);
 		$this->_orgProfileTable($orgProfile, 'Network', $network_fields);
 		
-		$emr_ehr_fields = array(
-			array('emr_ehr_implemented', 'EMR/EHR Implemented'),
-			array('emr_ehr_vendor', 'EMR/EHR Vendor'),
-			array('emr_ehr_internal_name', 'EMR/EHR Internal Name'),
-			array('emr_ehr_os', 'EMR/EHR Operating System'),
-			array('emr_ehr_details', 'EMR/EHR Details'),
-			array('emr_ehr_description', 'EMR/EHR Location Description')
-		);
-		$this->_orgProfileTable($orgProfile, 'EMR/EHR', $emr_ehr_fields);
+		// $emr_ehr_fields = array(
+			// array('emr_ehr_implemented', 'EMR/EHR Implemented'),
+			// array('emr_ehr_vendor', 'EMR/EHR Vendor'),
+			// array('emr_ehr_internal_name', 'EMR/EHR Internal Name'),
+			// array('emr_ehr_os', 'EMR/EHR Operating System'),
+			// array('emr_ehr_details', 'EMR/EHR Details'),
+			// array('emr_ehr_description', 'EMR/EHR Location Description')
+		// );
+		// $this->_orgProfileTable($orgProfile, 'EMR/EHR', $emr_ehr_fields);
 		
 		$email_fields = array(
 			array('email', 'Email'),
@@ -383,8 +385,8 @@ class AppendixPDF extends FPDF {
 			$data = array(
 				$question['RiskAssessmentQuestions']['category_question_number'],
 				$question['RiskAssessmentQuestions']['question'],
-				$question['RiskAssessmentQuestions']['how_to_answer_question'] . "\n",
-				$question['RiskAssessmentQuestions']['additional_information'] . "\n",
+				convert_html_to_text($question['RiskAssessmentQuestions']['how_to_answer_question']),
+				convert_html_to_text($question['RiskAssessmentQuestions']['additional_information']),
 				$answers['RiskAssessment']['question_'.((string)($question['RiskAssessmentQuestions']['question_number']))]
 			);
 			$data = array_map(function($val) { return $this->_decode($val); }, $data);
