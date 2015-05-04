@@ -1,6 +1,7 @@
 <?php
 ini_set('date.timezone', 'America/New_York');
 require_once(dirname(__file__) . DS . 'fpdf' . DS . 'fpdf.php');
+require_once(dirname(__file__) . DS . 'html2text' . DS . 'html2text.php');
 
 class AppendixPDF extends FPDF {
 	public $margin = 15;
@@ -383,8 +384,8 @@ class AppendixPDF extends FPDF {
 			$data = array(
 				$question['RiskAssessmentQuestions']['category_question_number'],
 				$question['RiskAssessmentQuestions']['question'],
-				$question['RiskAssessmentQuestions']['how_to_answer_question'] . "\n",
-				$question['RiskAssessmentQuestions']['additional_information'] . "\n",
+				convert_html_to_text($question['RiskAssessmentQuestions']['how_to_answer_question']),
+				convert_html_to_text($question['RiskAssessmentQuestions']['additional_information']),
 				$answers['RiskAssessment']['question_'.((string)($question['RiskAssessmentQuestions']['question_number']))]
 			);
 			$data = array_map(function($val) { return $this->_decode($val); }, $data);
