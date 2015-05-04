@@ -967,8 +967,8 @@ img.tabIcon {
    display: none;
 }
 
-.tabsInner li {
-    font-size: 80%;    
+li.innerTab {
+	font-size: 80%;
 }
 
 .ui-tabs-paging-next {
