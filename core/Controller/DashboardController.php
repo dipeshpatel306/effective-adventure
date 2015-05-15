@@ -47,7 +47,7 @@ class DashboardController extends AppController {
         $message = 'New Risk Assessment Completed by Client ' . $clientName . ' - Completed on ' . $completed;
         $email = new CakeEmail('hipaaMail');
         $email->to(Configure::read('App.adminEmailTo'))
-            ->subject('HIPAA Risk Assessment Marked Complete by Client - ' . $clientName)
+            ->subject(Configure::read('Theme.ra_email_name') . ' Marked Complete by Client - ' . $clientName)
             ->send($message);
 
         if ($this->Client->saveField('risk_assessment_status', $completed)) {

@@ -13,6 +13,7 @@ $config = array(
 		'training_image' => 'training.png',
 		'ra_name' => 'Risk Assessment',
 		'appendix_ra_name' => 'HIPAA Security Risk Assessment',
+		'ra_email_name' => 'HIPAA Risk Assessment',
 		'ra_docs_name' => 'HIPAA Risk Assessment Documents',
 		'baa_name' => 'HIPAA Business Associate Agreements',
 		'baa_link_name' => 'business_associate_agreements',

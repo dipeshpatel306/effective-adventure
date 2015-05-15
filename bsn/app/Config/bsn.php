@@ -11,6 +11,7 @@ $config = array(
 		'display_news' => false,
 		'ra_name' => 'Security Risk Assessment',
 		'appendix_ra_name' => 'Security Risk Assessment',
+		'ra_email_name' => 'Security Risk Assessment (PIIProtect)',
 		'training_name' => 'Security Training',
 		'training_image' => 'training_bsn.png',
 		'ra_docs_name' => 'Security Risk Assessment Documents',
