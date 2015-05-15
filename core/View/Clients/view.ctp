@@ -388,7 +388,7 @@ $clientId = $client['Client']['id'];
 
 <!-- Business Associate Agreements -->
 <div class="related">
-	<h3><?php echo __('Business Associate Agreements'); ?></h3>
+	<h3><?php echo Configure::read('Theme.baa_name'); ?></h3>
 
 	<?php if (!empty($client['BusinessAssociateAgreement'])): ?>
 
@@ -416,7 +416,7 @@ $clientId = $client['Client']['id'];
 					$file = $boa['attachment'];
 					$boaLink =  preg_replace('/\/.*\//', '', $boa['attachment']);
 					echo $this->Html->link($boa['attachment'], array(
-						'controller' => 'business_associate_agreements',
+						'controller' => Configure::read('Theme.baa_link_name'),
 						'action' => 'sendFile', $dir, $file
 					));
 				}
@@ -426,9 +426,9 @@ $clientId = $client['Client']['id'];
 			<td><?php echo $this->Time->format('m/d/y g:i a', $boa['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $boa['modified']); ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'business_associate_agreements', 'action' => 'view', $boa['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'business_associate_agreements', 'action' => 'edit', $boa['id'], $clientId)); ?>
-				<?php echo $this->element('delete_link', array('controller' => 'business_associate_agreements', 'title' => 'Delete', 'name' => 'Business Associate Agreement', 'id' => $boa['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => Configure::read('Theme.baa_link_name'), 'action' => 'view', $boa['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => Configure::read('Theme.baa_link_name'), 'action' => 'edit', $boa['id'], $clientId)); ?>
+				<?php echo $this->element('delete_link', array('controller' => Configure::read('Theme.baa_link_name'), 'title' => 'Delete', 'name' => Inflector::singularize(Configure::read('Theme.baa_name')), 'id' => $boa['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -437,7 +437,7 @@ $clientId = $client['Client']['id'];
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Business Associate Agreement'), array('controller' => 'business_associate_agreements', 'action' => 'add', $clientId)); ?> </li>
+			<li><?php echo $this->Html->link(__('New ' . Inflector::singularize(Configure::read('Theme.baa_name'))), array('controller' => Configure::read('Theme.baa_link_name'), 'action' => 'add', $clientId)); ?> </li>
 		</ul>
 	</div>
 </div>
