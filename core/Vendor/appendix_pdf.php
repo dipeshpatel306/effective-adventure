@@ -13,7 +13,7 @@ class AppendixPDF extends FPDF {
 	public function Header() {
 		$this->SetFont('Arial', '', 9);
 		$this->SetX(-65);
-		$this->Cell(0, 14, 'Security Risk Assessment');
+		$this->Cell(0, 14, Configure::read('Theme.appendix_ra_name'));
 	}
 	
 	public function Footer() {
@@ -28,10 +28,10 @@ class AppendixPDF extends FPDF {
 		$this->SetXY(15, -35);
 		$this->SetFont('Arial', '', 9);
 		$this->SetTextColor(128);
-		$str = "Copyright &copy; " . date('Y') . " PII Protect. All Rights Reserved";
+		$str = "Copyright &copy; " . date('Y') . " " . Configure::read('Theme.copyright') . " All Rights Reserved";
 		$str = iconv('UTF-8', 'windows-1252', html_entity_decode($str));
 		$this->Cell(120, 14, $str);
-		$this->Image(IMAGES . 'pii_protect_logo.png', null, null, 0, 14);
+		$this->Image(IMAGES . Configure::read('Theme.logo'), null, null, 0, 14);
 		$this->SetTextColor(0);
 	}
 	
