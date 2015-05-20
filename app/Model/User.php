@@ -1,5 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
+App::uses('Core', 'ConnectionManager');
 App::uses('AuthComponent', 'Controller/Component');
 App::import('Vendor', 'constants');
 /**
@@ -248,6 +249,12 @@ class User extends AppModel {
         if(!empty($this->data['User']['password'])){
             $this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
         }
+		if (!$this->id && !isset($this->data[$this->alias][$this->primaryKey])) {
+			# delete old portal user from moodle if necessary
+			$email = $this->data['User']['email'];
+			$moodle = ConnectionManager::getDataSource('moodle');
+            $moodle->rawQuery("DELETE from mdl_user where username = '$email' and auth = 'hcpold'");
+		}
         return true;
     }
 /**
