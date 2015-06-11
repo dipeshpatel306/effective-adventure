@@ -200,6 +200,6 @@ class BusinessAssociateAgreement extends AppModel {
         '13' => array('phone', null),
         '14' => array('relationship', null),
         '15' => array('contract_date', 'mapQBDate'),
-        '24' => array('attachment', null)
+        '24' => array('attachment', 'mapQBAttachment')
     );
 }
