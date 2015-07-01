@@ -65,9 +65,13 @@ class AppModel extends Model {
     
     function _mapQBFields($qb_rec) {
         $data = array();
+		$field_map = $this->qbFieldMap;
+		// always map created and modified
+		$field_map['1'] = array('created', 'mapQBDate');
+		$field_map['2'] = array('modified', 'mapQBDate');
         foreach ($qb_rec as $fid=>$field) {
-            if (array_key_exists($fid, $this->qbFieldMap)) {
-                $map_info = $this->qbFieldMap[$fid];
+            if (array_key_exists($fid, $field_map)) {
+                $map_info = $field_map[$fid];
                 $field_name = $map_info[0];
                 $map_fn = $map_info[1];
                 $val = (string) $field;
@@ -133,6 +137,9 @@ class AppModel extends Model {
     function migrateFromQB($rid, $client_id=null) {
         $qdb = $this->qbConn();
         $clist = array_keys($this->qbFieldMap);
+		// always get created and modified
+		$clist[] = '1';
+		$clist[] = '2';
         array_push($clist, RECORD_ID);
         $qb_data = $qdb->do_query(array(array('fid' => '3', 'ev' => 'EX', 'cri' => $rid)), 0, 0, join('.', $clist));
         $rec = $qb_data->table->records->record[0];
