@@ -456,7 +456,6 @@
 
 			$xml_packet .= '<ticket>'.$this->ticket.'</ticket>
 				</qdbapi>';
-                
 		$response = $this->transmit($xml_packet, 'API_DoQuery');
 		}
 		else { // If not an xml packet

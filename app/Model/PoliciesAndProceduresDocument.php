@@ -121,7 +121,6 @@ class PoliciesAndProceduresDocument extends AppModel {
         '23' => array('attachment', 'mapQBAttachment')
     );
 
-
 /**
  * Check Client Owner
  */
