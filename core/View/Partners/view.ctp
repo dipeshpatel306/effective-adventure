@@ -36,6 +36,11 @@ $this->Html->addCrumb($partner['Partner']['name']);
 			<?php echo ($partner['Partner']['modified']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Registered Users'); ?></dt>
+		<dd>
+			<?php echo $partner['Partner']['registered_users'] . '/' . $partner['Partner']['users_limit']; ?>
+			&nbsp;
+		</dd>
 	</dl>
 	<br />
 	<div class='partnerLogo'>

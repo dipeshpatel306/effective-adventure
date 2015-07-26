@@ -13,6 +13,7 @@ $this->Html->addCrumb('Add Partner');
 		
 		echo $this->Form->input('logo', array('type' => 'file', 'label' => 'Partner Logo - (gif, jpg, jpeg, png files only)'));
 		echo $this->Form->input('logo_dir', array('type' => 'hidden'));
+		echo $this->Form->input('users_limit', array('label' => 'Registered Users Limit', 'value' => 5000, 'class' => 'numwide'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

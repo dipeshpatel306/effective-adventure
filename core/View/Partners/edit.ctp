@@ -25,6 +25,7 @@ $this->Html->addCrumb('Edit Partner');
 <?php 
 		echo $this->Form->input('logo', array('type' => 'file', 'label' => 'Replace Logo'));	
 		echo $this->Form->input('logo_dir', array('type' => 'hidden'));
+		echo $this->Form->input('users_limit', array('label' => 'Registered Users Limit', 'class' => 'numwide'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
