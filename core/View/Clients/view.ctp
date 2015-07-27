@@ -66,6 +66,11 @@ $clientId = $client['Client']['id'];
 			?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Registered Users'); ?></dt>
+		<dd>
+			<?php echo ($client['Client']['user_count']); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Risk Assessment Completed'); ?></dt>
 		<dd <?php echo $completed; ?> >
 		<?php

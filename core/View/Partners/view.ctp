@@ -38,7 +38,7 @@ $this->Html->addCrumb($partner['Partner']['name']);
 		</dd>
 		<dt><?php echo __('Registered Users'); ?></dt>
 		<dd>
-			<?php echo $partner['Partner']['registered_users'] . '/' . $partner['Partner']['users_limit']; ?>
+			<?php echo $partner['Partner']['user_count'] . '/' . $partner['Partner']['users_limit']; ?>
 			&nbsp;
 		</dd>
 	</dl>
@@ -62,6 +62,7 @@ $this->Html->addCrumb($partner['Partner']['name']);
 			<th><?php echo __('Account Type'); ?></th>
 			<th><?php echo __('Admin Code'); ?></th>
 			<th><?php echo __('User Code'); ?></th>
+			<th><?php echo __('Registered Users'); ?></th>
 			<th><?php echo __('Last Login'); ?></th>
 			<th><?php echo __('Created'); ?></th>
 			<th><?php echo __('Modified'); ?></th>
@@ -75,6 +76,7 @@ $this->Html->addCrumb($partner['Partner']['name']);
 				<td><?php echo $client['account_type']; ?></td>
 				<td><?php echo $client['admin_account']; ?></td>
 				<td><?php echo $client['user_account']; ?></td>
+				<td><?php echo $client['user_count']; ?></td>
 				<td><?php echo $this->Time->format('m/d/y g:i a', $client['last_login']); ?></td>
 				<td><?php echo $this->Time->format('m/d/y g:i a', $client['created']); ?></td>
 				<td><?php echo $this->Time->format('m/d/y g:i a', $client['modified']); ?></td>

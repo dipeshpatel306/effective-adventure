@@ -149,4 +149,17 @@ class Partner extends AppModel {
 		return true;
 	}
 
+	public function afterFind($results, $primary = false) {
+		foreach ($results as $key=>$val) {
+			if (array_key_exists('Client', $val)) {
+				$count = 0;
+				foreach ($results[$key]['Client'] as $client) {
+					$count += $client['user_count'];
+				}
+				$results[$key]['Partner']['user_count'] = $count;
+			}
+		}
+		return $results;
+	}
+
 }

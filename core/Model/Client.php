@@ -318,6 +318,23 @@ class Client extends AppModel {
         }
         return $moodle_courses;
    }
+	
+	public function afterFind($results, $primary = false) {
+		foreach ($results as $key=>$val) {
+			if (array_key_exists('Client', $val)) {
+				$id = $results[$key]['Client']['id'];
+				$results[$key]['Client']['user_count'] = $this->countUsers($id);
+			}
+		}
+		return $results;
+	}
+
+	public function countUsers($id=null) {
+		if (!isset($id)) {
+			$id = $this->id;
+		}
+		return $this->User->find('count', array('conditions' => array('User.client_id' => $id)));
+	}
 
     // QB Migration Vars
     public $qbFieldMap = array(

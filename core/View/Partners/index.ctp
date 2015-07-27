@@ -10,6 +10,8 @@ $this->Html->addCrumb('Partners');
 			<th><?php echo $this->Paginator->sort('email'); ?></th>
 			<th><?php echo $this->Paginator->sort('admin_account', 'Admin Code'); ?></th>
 			<th><?php echo $this->Paginator->sort('link'); ?></th>
+			<th><?php echo $this->Paginator->sort('user_count', 'Registered Users'); ?></th>
+			<th><?php echo $this->Paginator->sort('users_limi', 'Max Users'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -21,6 +23,8 @@ $this->Html->addCrumb('Partners');
 		<td><?php echo $this->Text->autoLinkEmails($partner['Partner']['email']); ?>&nbsp;</td>
 		<td><?php echo ($partner['Partner']['admin_account']); ?>&nbsp;</td>
 		<td><?php echo $this->Html->link($partner['Partner']['link'], null, array('target' =>'_blank')); ?>&nbsp;</td>
+		<td><?php echo ($partner['Partner']['user_count']); ?>&nbsp;</td>
+		<td><?php echo ($partner['Partner']['users_limit']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $partner['Partner']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $partner['Partner']['modified']); ?>&nbsp;</td>
 		<td class="actions">

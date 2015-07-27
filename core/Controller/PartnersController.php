@@ -32,7 +32,7 @@ class PartnersController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Partner->recursive = 0;
+		$this->Partner->recursive = 1;
 		$this->set('partners', $this->paginate());
 	}
 

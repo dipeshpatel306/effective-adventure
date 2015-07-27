@@ -26,6 +26,7 @@ $this->Html->addCrumb('Clients');
 			<th><?php echo $this->Paginator->sort('admin_account', 'Admin Code'); ?></th>
 			<th><?php echo $this->Paginator->sort('user_account', 'User Code'); ?></th>
 			<th><?php echo $this->Paginator->sort('risk_assessment_status', 'RA Completed'); ?></th>
+			<th><?php echo $this->Paginator->sort('user_count', 'Registered Users'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th><?php echo $this->Paginator->sort('active', 'Active?'); ?></th>
@@ -54,6 +55,7 @@ $this->Html->addCrumb('Clients');
 			}
 		?>
 		&nbsp;</td>
+		<td><?php echo ($client['Client']['user_count']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $client['Client']['created']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->format('m/d/y g:i a', $client['Client']['modified']); ?>&nbsp;</td>
 

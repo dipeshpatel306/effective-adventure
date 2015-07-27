@@ -260,6 +260,7 @@ class User extends AppModel {
 		}
         return true;
     }
+
 /**
  * Account Activation Hash method
  */
