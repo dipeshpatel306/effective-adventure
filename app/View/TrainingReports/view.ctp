@@ -20,7 +20,7 @@ $this->Html->addCrumb('Training Report');
       <?php endforeach; ?>
     </table>
     <br />
-    <p><?php echo $this->Html->link('Export to Excel', array('ext' => 'csv')); ?></p>
+    <p><?php echo $this->Html->link('Export to Excel', array('action' => 'view', 'ext' => 'csv', $meta['TrainingReport']['id'])); ?></p>
 </div>
 <div class="actions">
     <div class='sidebarContent'>
