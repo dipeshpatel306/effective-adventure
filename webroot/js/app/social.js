@@ -5,7 +5,7 @@ require(['jquery', 'socialstream'], function($) {
 				facebook:{
 					id: '132416226824065',
 					out: 'intro,thumb,title,text,user,share',
-					icon: 'facebook.png'
+					icon: 'facebook.png',
 					url: '/js/lib/jquery-social-stream/facebook.php'
 				},
 				twitter:{

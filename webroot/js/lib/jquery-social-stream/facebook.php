@@ -1,7 +1,7 @@
 <?php
 // SET YOUR FACEBOOK API DETAILS HERE
-$app_id 	= 'INSERT APP ID HERE';
-$app_secret = 'INSERT APP SECRET HERE';
+$app_id 	= '1681897295371736';
+$app_secret = 'c6d77222a01d03e1f088466ebf4d1478';
 
 // DO NOT EDIT BELOW THIS LINE
 ini_set('display_errors', '0');
