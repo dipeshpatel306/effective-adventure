@@ -12,6 +12,7 @@
     color: #444;
     list-style: none outside none;
     margin: 0;
+	clear: both;
 }
 .dcsns h1 {
     width: auto;
@@ -35,6 +36,9 @@
 .dcsns-toolbar .dcsns-loading {
 	right: 10px;
 	left: auto;
+}
+.stream {
+  margin: 0 auto!important;
 }
 .stream p {
 	margin: 0;
@@ -255,6 +259,9 @@
 .stream li .section-share a.share-linkedin:hover {
 	background-position: -16px -96px;
 }
+.stream li.dcsns-twitter .section-share .share-facebook, .stream li.dcsns-twitter .section-share .share-google, .stream li.dcsns-twitter .section-share .share-linkedin, .stream li.dcsns-twitter .section-share .share-twitter {
+	display:none;
+}
 /* Toolbar */
 .dcsns-toolbar {
 	padding: 0;
@@ -268,6 +275,12 @@
 }
 #wall .dcsns-toolbar {
 	margin-bottom: 25px;
+}
+#dcsns-filter.dc-center {
+	float: left; 
+	padding-left: 50%; 
+	display: none;
+	margin: 0;
 }
 .dcsns-toolbar .filter {
 	padding: 0;
@@ -297,6 +310,7 @@
 .dcsns-toolbar .filter li img {
 	margin: 0;
 	height: 24px;
+	width: 25px;
 }
 /* Controls */
 .dcsns .controls {
@@ -345,56 +359,65 @@
 }
 
 /* feeds network specific styles */
-.stream li.dcsns-rss .section-intro, .filter .f-rss a:hover {
+.stream li.dcsns-rss .section-intro, .filter .f-rss a:hover, .filter .f-rss a.iso-active {
 	background-color: #FF9800;
 }
-.stream li.dcsns-flickr .section-intro, .filter .f-flickr a:hover {
+.stream li.dcsns-flickr .section-intro, .filter .f-flickr a:hover, .filter .f-flickr a.iso-active {
 	background-color: #f90784;
 }
-.stream li.dcsns-delicious .section-intro, .filter .f-delicious a:hover {
+.stream li.dcsns-delicious .section-intro, .filter .f-delicious a:hover, .filter .f-delicious a.iso-active {
 	background-color: #3271CB;
 }
-.stream li.dcsns-twitter .section-intro, .filter .f-twitter a:hover {
+.stream li.dcsns-twitter .section-intro, .filter .f-twitter a:hover, .filter .f-twitter a.iso-active {
 	background-color: #4ec2dc;
 }
-.stream li.dcsns-facebook .section-intro, .filter .f-facebook a:hover {
+.stream li.dcsns-facebook .section-intro, .filter .f-facebook a:hover, .filter .f-facebook a.iso-active {
 	background-color: #3b5998;
 }
-.stream li.dcsns-google .section-intro, .filter .f-google a:hover {
+.stream li.dcsns-google .section-intro, .filter .f-google a:hover, .filter .f-google a.iso-active {
 	background-color: #2d2d2d;
 }
-.stream li.dcsns-youtube .section-intro, .filter .f-youtube a:hover {
+.stream li.dcsns-youtube .section-intro, .filter .f-youtube a:hover, .filter .f-youtube a.iso-active {
 	background-color: #DF1F1C;
 }
-.stream li.dcsns-pinterest .section-intro, .filter .f-pinterest a:hover {
+.stream li.dcsns-pinterest .section-intro, .filter .f-pinterest a:hover, .filter .f-pinterest a.iso-active {
 	background-color: #CB2528;
 }
-.stream li.dcsns-lastfm .section-intro, .filter .f-lastfm a:hover {
+.stream li.dcsns-lastfm .section-intro, .filter .f-lastfm a:hover, .filter .f-lastfm a.iso-active {
 	background-color: #C90E12;
 }
-.stream li.dcsns-dribbble .section-intro, .filter .f-dribbble a:hover {
+.stream li.dcsns-dribbble .section-intro, .filter .f-dribbble a:hover, .filter .f-dribbble a.iso-active {
 	background-color: #F175A8;
 }
-.stream li.dcsns-vimeo .section-intro, .filter .f-vimeo a:hover {
+.stream li.dcsns-vimeo .section-intro, .filter .f-vimeo a:hover, .filter .f-vimeo a.iso-active {
 	background-color: #4EBAFF;
 }
-.stream li.dcsns-stumbleupon .section-intro, .filter .f-stumbleupon a:hover {
+.stream li.dcsns-stumbleupon .section-intro, .filter .f-stumbleupon a:hover, .filter .f-stumbleupon a.iso-active {
 	background-color: #EB4924;
 }
-.stream li.dcsns-deviantart .section-intro, .filter .f-deviantart a:hover {
+.stream li.dcsns-deviantart .section-intro, .filter .f-deviantart a:hover, .filter .f-deviantart a.iso-active {
 	background-color: #EB4924;
 }
-.stream li.dcsns-tumblr .section-intro, .filter .f-tumblr a:hover {
+.stream li.dcsns-tumblr .section-intro, .filter .f-tumblr a:hover, .filter .f-tumblr a.iso-active {
 	background-color: #365472;
 }
-.stream li.dcsns-instagram .section-intro, .filter .f-instagram a:hover {
+.stream li.dcsns-instagram .section-intro, .filter .f-instagram a:hover, .filter .f-instagram a.iso-active {
 	background-color: #413A33;
+}
+.stream li.dcsns-vine .section-intro, .filter .f-vine a:hover, .filter .f-vine a.iso-active {
+	background-color: #00BF8F;
 }
 
 /* Facebook */
 .stream li.dcsns-facebook .section-thumb img {
 	max-width: 192px;
+	margin-bottom: 5px;
 }
+
+.stream li.dcsns-facebook .section-thumb img, .stream li.dcsns-facebook .section-text img {
+	display: block;
+}
+
 .stream li.dcsns-facebook .section-text img {
 	margin: 5px 7px 5px 0;
 	float: left;
@@ -405,6 +428,7 @@
 }
 .stream li.dcsns-facebook .section-text a {
 	margin-right: 4px;
+	color: #444;
 }
 .stream li.dcsns-facebook .section-text-fb a {
 	display:none;
@@ -609,6 +633,39 @@
 	float: none;
 	font-size: 100%;
 	font-weight: bold;
+}
+/* vine */
+.stream li.dcsns-vine {
+	padding-bottom: 40px;
+}
+.stream li.dcsns-vine .section-title {
+	font-weight: normal;
+	clear: both;
+}
+.stream li.dcsns-vine .section-thumb img {
+	margin: 0 7px 5px 0;
+	float: left;
+	border: 1px solid #ddd;
+	padding: 1px;
+	background: #fff;
+	max-width: 192px;
+}
+.stream li.dcsns-vine .meta {
+	clear: both;
+}
+.stream li.dcsns-vine .section-meta .meta .comments, .stream li.dcsns-vine .section-meta .meta .likes {
+	margin: 0 0 5px 0;
+	padding-top: 5px;
+	background-position: 0px 5px;
+	float: none;
+	font-size: 100%;
+	font-weight: bold;
+}
+/* Foursquare */
+.stream li.dcsns-foursquare .section-thumb img {
+	max-width: 192px;
+	margin-bottom: 5px;
+	display: block;
 }
 /*isotope */
 .isotope,

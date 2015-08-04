@@ -26,12 +26,13 @@ jQuery(window).load(function(){
       	return false;
     });
 	
-	sortstream($container,'asc');
+	jQuery.each($container,function(){
+		jQuery('li .section-thumb img, li .section-text img',jQuery(this)).css('opacity',0).show().fadeTo(800,1);
+		jQuery(this).isotope('layout');
+	});
 	
-	jQuery('li .section-thumb img, li .section-text img',$container).css('opacity',0).show().fadeTo(800,1);
-	$container.isotope('layout');
 	function sortstream(obj,d){
-		var $l = jQuery('li',obj);
+		var $l = jQuery('li.dcsns-li',obj);
 		$l.sort(function(a, b){
 			var keyA = parseInt(jQuery(a).attr('rel'),10), keyB = parseInt(jQuery(b).attr('rel'),10);
 			if(d == 'asc'){return (keyA > keyB) ? 1 : -1;} 

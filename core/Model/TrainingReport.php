@@ -41,6 +41,33 @@ class TrainingReport extends AppModel {
                 AND mdl_user.idnumber in ($moodle_ids)
                 AND mdl_user.deleted = 0 ORDER BY mdl_user.lastname ASC";
         $rows = $moodle->fetchAll($sql, array(':course_id' => $data['TrainingReport']['course_id'], ':client_name' => $client_name_trunc));
+		
+		$new_rows_by_name = array();
+		foreach ($rows as $row) {
+			$name = $row['mdl_user']['lastname'].','.$row['mdl_user']['firstname'];
+			$new_rows_by_name[$name] = null;
+		}
+		
+		$old_sql = "SELECT mdl_user.firstname, mdl_user.lastname, mdl_quiz_grades.grade, mdl_quiz_grades.timemodified
+                   FROM mdl_user, mdl_quiz_grades WHERE mdl_quiz_grades.quiz IN 
+                   (SELECT mdl_quiz.id FROM mdl_quiz WHERE mdl_quiz.course = :course_id) 
+                   AND mdl_quiz_grades.userid = mdl_user.id AND mdl_user.institution = :client_name 
+                   AND mdl_user.deleted = 0 ORDER BY mdl_user.lastname ASC";
+		$old_rows = $moodle->fetchAll($old_sql, array(':course_id' => $data['TrainingReport']['course_id'], ':client_name' => $client_name_trunc));
+		
+		foreach ($old_rows as $row) {
+			$name = $row['mdl_user']['lastname'].','.$row['mdl_user']['firstname']; 
+			if (!array_key_exists($name, $new_rows_by_name)) {
+				$rows[] = $row;
+			}
+		}
+		
+		function cmp($a, $b) {
+			return strcmp($a['mdl_user']['lastname'], $b['mdl_user']['lastnmae']);
+		}
+		
+		uksort($rows, 'cmp');
+		
 		return $rows;
 	}
 

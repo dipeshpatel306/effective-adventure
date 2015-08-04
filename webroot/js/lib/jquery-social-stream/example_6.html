@@ -19,14 +19,16 @@ jQuery(document).ready(function($){
 				id: '/9927875,#designchemical,designchemical'
 			},
 			rss: {
-				id: 'http://feeds.feedburner.com/DesignChemical,http://feeds.feedburner.com/codecondo'
+				id: 'http://feeds.feedburner.com/codecondo',
+				out: 'intro,thumb,text,share'
 			},
 			stumbleupon: {
 				id: 'remix4'
 			},
 			facebook: {
-				id: '157969574262873,Facebook Timeline/376995711728',
-				out: 'intro,thumb,text,user,share'
+				id: '157969574262873',
+				out: 'intro,thumb,text,user,share',
+				thumb:true
 			},
 			google: {
 				id: '111470071138275408587'
@@ -54,9 +56,6 @@ jQuery(document).ready(function($){
 			dribbble: {
 				id: 'frogandcode'
 			},
-			deviantart: {
-				id: 'isacg'
-			},
 			tumblr: {
 				id: 'richters',
 				thumb: 250
@@ -72,7 +71,7 @@ jQuery(document).ready(function($){
 		center: true,
 		cache: false,
 		max: 'limit',
-		limit: 5,
+		limit: 3,
 		iconPath: 'images/dcsns-dark/',
 		imagePath: 'images/dcsns-dark/'
 	});
@@ -80,7 +79,10 @@ jQuery(document).ready(function($){
 });
 </script>
 <style>
-#wall {padding: 10px 0 0; min-height: 2000px;}
+h3 {text-align: center;}
+#wall {padding: 10px 0 0 0; min-height: 2000px;}
+#wrapper, #container {width:100%; padding: 0;}
+#nav-container {margin-bottom: 20px;}
 </style>
 </head>
 
@@ -93,11 +95,8 @@ jQuery(document).ready(function($){
   <div id="container"> 
   <!-- Begin Question Block -->
 
-  <div class="opacity pad-btm">
-	<div id="banner">
-		<a href="http://www.designchemical.com/blog/index.php/premium-jquery-plugins/jquery-social-media-tabs-plugin/"><img src="inc/images/banner.png" alt="" /></a>
-		<h1>Social Network Wall Demo</h1>
-	</div>
+  <div class="pad-btm">
+	
 	<div id="nav-container">
 		<ul id="dctsp-nav">
 			<li><a href="index.html">Documentation</a></li>
@@ -111,7 +110,7 @@ jQuery(document).ready(function($){
 		</div>
 	</div>
 	
-<h3>Social Network Wall Demo</h3>
+<h3>Centered Responsive Social Network Wall Demo</h3>
 <div id="wall">
 	
 	<div id="social-stream"></div>

@@ -2,7 +2,7 @@
  * DC jQuery Social Stream
  * Copyright (c) 2013 Design Chemical
  * http://www.designchemical.com/blog/index.php/premium-jquery-plugins/jquery-social-stream-plugin/
- * Version 1.5.7 (24-11-2014)
+ * Version 1.5.13 (28-06-2015)
  *
  */
  
@@ -14,7 +14,7 @@
 	
 	$.extend(SocialStreamObject.prototype, {
 		
-		version   : '1.5.7',
+		version   : '1.5.13',
 		
 		create: function(el, options) {
 		
@@ -25,9 +25,10 @@
 						intro: 'Posted',
 						out: 'intro,thumb,title,text,user,share',
 						text: 'content',
-						thumb: true,
 						comments: 3,
-						image_width: 4, //3 = 600 4 = 480 5 = 320 6 = 180
+						image_width: 4, //3 = 600 4 = 480 5 = 320 6 = 180,
+						url: 'facebook.php',
+						feed: 'feed', // feed, posts
 						icon: 'facebook.png'
 					},
 					twitter: {
@@ -45,7 +46,7 @@
 						id: '',
 						intro: 'Shared',
 						out: 'intro,thumb,title,text,share',
-						api_key: '',
+						api_key: 'AIzaSyAWNgUpUj_W26tP3yev5Ysr4Zb53OIPgR4',
 						image_height: 75,
 						image_width: 75,
 						shares: true,
@@ -53,11 +54,12 @@
 					},
 					youtube: {
 						id: '',
-						intro: 'Uploaded,Favorite,New Video',
+						intro: 'Uploaded',
 						search: 'Search',
 						out: 'intro,thumb,title,text,user,share',
-						feed: 'uploads,favorites,newsubscriptionvideos',
-						thumb: 'default',
+						text: 0,
+						api_key: 'AIzaSyB1zptnRspzltRVLGQJMBCH2yYujYp7ytI',
+						thumb: 'medium', //default 120 x 90, medium 320 x 180, high 480 x 360, standard 640 x 480
 						icon: 'youtube.png'
 					},
 					flickr: {
@@ -82,7 +84,7 @@
 					rss: {
 						id: '',
 						intro: 'Posted',
-						out: 'intro,title,text,share',
+						out: 'intro,title,text,user,share',
 						text: 'contentSnippet',
 						icon: 'rss.png'
 					},
@@ -146,13 +148,14 @@
 				},
 				remove: '',
 				twitterId: '',
-				days: 10,
-				limit: 50,
+				days: 5,
+				limit: 10,
 				max: 'days',
 				external: true,
 				speed: 600,
 				height: 550,
 				wall: false,
+				centre: false,
 				order: 'date',
 				filter: true,
 				controls: true,
@@ -183,7 +186,8 @@
 			if(this.o.filter == true || this.o.controls == true){
 				var x = '<div class="dcsns-toolbar">';
 				if(this.o.filter == true){
-					x += '<ul id="dcsns-filter" class="option-set filter">';
+					var fclass = this.o.center == true ? 'option-set filter dc-center' : 'option-set filter';
+					x += '<ul id="dcsns-filter" class="' + fclass + '">';
 					x += this.o.wall == true ? '<li><a href="#filter" data-group="dc-filter"  data-filter="*" class="selected link-all">all</a></li>' : '' ;
 					var $f = $('.filter',el);
 					$.each(opt.feeds, function(k,v){
@@ -205,6 +209,8 @@
 			
 			if(this.o.wall == true){
 				$('.dcsns-toolbar').append($load);
+				var w = $("#dcsns-filter.dc-center").width()/2;
+				$("#dcsns-filter.dc-center").css({'margin-left': -w + "px"}).fadeIn();
 				this.createwall($a);
 			} else {
 				$c.append($load);
@@ -257,7 +263,10 @@
 							return parseInt($(itemElem).attr('rel'),10);
 						}
 					},
-					sortBy : 'postDate'
+					sortBy : 'postDate',
+					masonry: {
+						isFitWidth: opt.center
+					}
 				});
 		},
 		
@@ -346,7 +355,8 @@
 			
 			case 'facebook':
 			var cp = id.split('/');
-			url = url = cp.length > 1 ? 'https://graph.facebook.com/'+cp[1]+'/photos?fields=id,link,from,name,picture,images,comments&limit='+n : frl + encodeURIComponent('https://www.facebook.com/feeds/page.php?id='+id+'&format=rss20');
+			var curl = o.url.replace(/\&#038;/gi, "&");
+			url = url = cp.length > 1 ? 'https://graph.facebook.com/'+cp[1]+'/photos?fields=id,link,from,name,picture,images,comments&limit='+n : curl + '?id='+id+'&limit='+n+'&feed='+o.feed;
 			break;
 			
 			case 'twitter':
@@ -357,7 +367,7 @@
 			url = cp.length > 1 ? url1 + 'url=list&list_id='+cp[1]+'&per_page='+n+param : url1 + 'url=timeline&screen_name='+id+'&count='+n+param;
 			if(cq.length > 1){
 				var rts = o.retweets == false ? '+exclude:retweets' : '' ;
-				url = url1 + 'url=search&q='+encodeURIComponent(cq[1])+'&count='+n;
+				url = url1 + 'url=search&q='+cq[1]+'&count='+n;
 			}
 			break;
 
@@ -367,23 +377,37 @@
 			url = 'https://www.googleapis.com/plus/v1/people/'+id+'/activities/public';
 			data = {key: o.api_key, maxResults: n, prettyprint: false, fields: "items(id,kind,object(attachments(displayName,fullImage,id,image,objectType,url),id,objectType,plusoners,replies,resharers,url),published,title,url,verb)"};
 			break;
-			
+
 			case 'youtube': 
-			var cp = id.split('/'), cq = id.split('#');
 			n = n > 50 ? 50 : n ;
-			href = 'https://www.youtube.com/';
-			href += cq.length > 1 ? 'results?search_query='+encodeURIComponent(cq[1]) : 'user/'+id;
-			href = cp.length > 1 ? 'https://www.youtube.com/playlist?list='+cp[1] : href ;
-			url = 'https://gdata.youtube.com/feeds/';
-			if(cp.length > 1){
-				url += 'api/playlists/'+cp[1]+'?v=2&orderby=published'
+			var cp = id.split('/'), cq = decodeURIComponent(id).split('#'), cc = id.split('!');
+			if(cq.length > 1){
+				url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=' + o.api_key + '&pageToken=&order=date&maxResults=' + n + '&q=' + cq[1];
+				href = 'https://www.youtube.com/results?search_query=' + cq[1];
 			} else {
-				url += cq.length > 1 ? 
-				'api/videos?alt=rss&orderby=published&max-results='+n+'&racy=include&q='+encodeURIComponent(cq[1]) : 
-				'base/users/'+id+'/'+feed+'?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile';
+				if(cc.length > 1){
+					id = cc[1];
+					id = 'UU' + cc[1].substring(2);
+					href = 'https://www.youtube.com/channel/UC' + id.substring(2);
+				} else {
+					id = cp.length > 1 ? cp[1] : id ;
+					if(id.substr(0,2) != 'UU'){
+						if(id.substr(0,2) != 'UC'){
+							// is playlist ID
+							href = 'https://www.youtube.com/playlist?list=' + id;
+						} else {
+							// is channel ID
+							href = 'https://www.youtube.com/channel/' + id;
+							id = 'UU' + id.substring(2);
+						}
+					} else {
+						// is list ID
+						href = 'https://www.youtube.com/channel/UC' + id.substring(2);
+					}
+				}
+				url = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=' + id + '&key=' + o.api_key + '&pageToken=&maxResults=' + n;
 			}
-			url = frl + encodeURIComponent(url);
-			break;		
+			break;
 			
 			case 'flickr':
 			var cq = id.split('/'), fd = cq.length > 1 ? 'groups_pool' : 'photos_public' ;
@@ -444,7 +468,7 @@
 			case 'instagram':
 			href = '#';
 			url = 'https://api.instagram.com/v1';
-			var cp = id.substr(0,1), cq = id.split(cp), url1 = encodeURIComponent(cq[1]), qs = '', ts = 0;
+			var cp = id.substr(0,1), cq = id.split(cp), url1 = cq[1], qs = '', ts = 0;
 			switch(cp)
 			{
 				case '?':
@@ -473,7 +497,7 @@
 			url += '?access_token='+o.accessToken+'&client_id='+o.clientId+'&count='+n+qs;
 			break;
 		}
-		var dataType = type == 'twitter' ? 'json' : 'jsonp';
+		var dataType = type == 'twitter' || type == 'facebook' ? 'json' : 'jsonp';
 		jQuery.ajax({
 			url: url,
 			data: data,
@@ -487,11 +511,7 @@
 						if(cp.length > 1){
 							a = a.data;
 						} else {
-							if(a.responseStatus == 200){
-								a = a.responseData.feed.entries;
-							} else {
-								error = a.responseDetails;
-							}
+							a = a.responseData.feed.entries;
 						}
 					break;
 					case 'google':
@@ -509,12 +529,7 @@
 						if(cq.length > 1){a = a.statuses} ;
 					break;
 					case 'youtube':
-						if(a.responseStatus == 200){
-							a = a.responseData.feed.entries;
-							if(cp.length > 1){var pl = cp[0];}
-						} else {
-							error = a.responseDetails;
-						}
+						a = a.items;
 					break;
 					case 'dribbble':
 						a = a.shots;
@@ -525,6 +540,14 @@
 					case 'delicious':
 					break;
 					case 'vimeo':
+					break;
+					case 'rss':
+						if(a.responseStatus == 200){
+							id = a.responseData.feed.title ? a.responseData.feed.title : id ;
+							a = a.responseData.feed.entries;
+						} else {
+							error = a.responseDetails;
+						}
 					break;
 					default:
 						if(a.responseStatus == 200){
@@ -551,6 +574,9 @@
 									x = '';
 									if(item.images[o.image_width] == undefined){o.image_width = 0;}
 									z = '<a href="'+item.link+'"><img src="'+item.images[o.image_width].source+'" alt="" /></a>';
+									if(item.name){
+										z +='<p>'+item.name+'</p>';
+									}
 									if(o.comments > 0 && item.comments){
 										i = 0;
 										m += '<span class="meta"><span class="comments">comments</span></span>';
@@ -565,19 +591,19 @@
 									}
 									z += m;
 								} else {
-									if(item[o.text] == '<a href="" title=""></a><br><br>'){
-										opt.remove = opt.remove+','+q;
-									} else {
-										if(o.thumb == true){
-											z = '<span class="section-text-fb">'+item[o.text]+'</span>';
-											var src = getImg(item.content);
-											if(src){
-												y = '<a href="'+q+'"><img src="'+src+'" alt="" /></a>';
-											}
-										} else {
-											z = item[o.text];
-										}
+									x = '';
+									thumb = item.thumb;
+									if(thumb != null)
+									{
+										if(thumb.indexOf('safe_image.php') != -1) {
+											thumb = unescape(thumb.match(/url=([^&]+)/)[1]);
+										} 
+										y = '<a href="'+q+'"><img src="'+thumb+'" alt="" /></a>';
 									}
+									u = '<a href="'+item.pageLink+'">'+item.pageName+'</a>';
+									href = item.pageLink;
+									z = linkify(item.content);
+									st = item.content;
 								}
 								break;
 								
@@ -619,11 +645,23 @@
 								break;
 
 								case 'youtube':
-								var v = [];
-								v = parseQ(item.link);
-								y = '<a href="'+q+'" title="'+item.title+'"><img src="http://img.youtube.com/vi/'+v['v']+'/'+o.thumb+'.jpg" alt="" /></a>';
-								z = item.contentSnippet;
-								if(cp.length > 1){u = '<a href="'+href+'">'+pl+'</a>'}
+								x =	item.snippet.title;
+								var vidId = cq.length > 1 ? item.id.videoId : item.snippet.resourceId.videoId ;
+								var ytthumb = o.thumb == '0' ? 'medium' : o.thumb ;
+								q = 'https://www.youtube.com/watch?v='+vidId+'&feature=youtube_gdata';
+								sq = q;
+								y = '<a href="'+q+'" title="'+item.snippet.title+'"><img src="'+item.snippet.thumbnails[ytthumb].url+'" alt="" /></a>';
+								z = o.text > 0 ? cut(item.snippet.description,o.text) : item.snippet.description ;
+								d = item.snippet.publishedAt;
+								var profile = 'Youtube';
+								if(cq.length > 1){
+									profile = decodeURIComponent(id);
+								} else if(cp.length > 1){
+									profile = cp[0];
+								} else if(cc.length > 1){
+									profile = cc[0];
+								}
+								u='<a href="'+href+'">'+profile+'</a>';
 								break;
 								
 								case 'flickr':
@@ -639,6 +677,7 @@
 								case 'dribbble':
 								q = item.url;
 								d = item.created_at;
+								x = '<a href="'+q+'">'+item.title+'</a>';
 								y = '<a href="'+q+'"><img src="' + item.image_teaser_url + '" alt="' + item.title + '" /></a>';
 								z = '<span class="meta"><span class="views">'+num(item.views_count)+'</span><span class="likes">'+num(item.likes_count)+'</span><span class="comments">'+num(item.comments_count)+'</span></span>';
 								sq = item.url;
@@ -647,7 +686,7 @@
 								case 'instagram':
 								d = parseInt(item.created_time * 1000,10);
 								x = '';
-								y = '<a href="'+ item.images['standard_resolution'].url +'"><img src="' + item.images[o.thumb].url + '" alt="" /></a>';
+								y = '<a href="'+ q +'"><img src="' + item.images[o.thumb].url + '" alt="" /></a>';
 								z = item.caption !=null ? htmlEncode(item.caption.text) : '' ;
 								if(item.comments.count > 0 && o.comments > 0){
 									i = 0;
@@ -677,6 +716,7 @@
 									m += '</span>';
 								}
 								u = '<a href="'+q+'">'+item.user.username+'</a>';
+								href = 'https://instagram.com/'+item.user.username;
 								st = item.caption !=null ? item.caption.text : '' ;
 								break;
 
@@ -767,7 +807,7 @@
 									st = x;
 									break;
 									case 'link':
-									var ltxt = item['link-text'].replace(/:/g, '').replace(/\?/g, '').replace(/\!/g, '').replace(/\./g, '').replace(/\'/g, '').replace(/\(/g, '').replace(/\)/g, '').replace(/\@/g, '').replace(/\#/g, '').replace(/\|/g, '');
+									var ltxt = item['link-text'].replace(/:/g, '').replace(/\?/g, '').replace(/\!/g, '').replace(/\./g, '').replace(/\'/g, '').replace(/\(/g, '').replace(/\)/g, '').replace(/\@/g, '').replace(/\#/g, '').replace(/\|/g, '').replace(/\&/g, '');
 									x = '<a href="'+item['link-url']+'">'+ltxt+'</a>';
 									z = item['link-description'];
 									st = ltxt;
@@ -823,6 +863,7 @@
 								s = '<a href="'+intent+'tweet?in_reply_to='+sq+'&via='+opt.twitterId+'" class="share-reply"></a>';
 								s += '<a href="'+intent+'retweet?tweet_id='+sq+'&via='+opt.twitterId+'" class="share-retweet"></a>';
 								s += '<a href="'+intent+'favorite?tweet_id='+sq+'" class="share-favorite"></a>';
+								s += share('','https://twitter.com/'+un+'/status/'+sq,opt.twitterId);
 							} else {
 								s = share(st,sq,opt.twitterId);
 							}
@@ -876,9 +917,11 @@
 								ob = 1;
 								break;
 							}
-							var out = '<li rel="'+ob+'" class="dcsns-li dcsns-'+type+' dcsns-feed-'+fn+'">'+w+'<div class="inner">'+zz+'<span class="clear"></span></div>'+zintro+icon+'</li>', str = opt.remove;
-							
-							if( str.indexOf( q ) !== -1 && q != '' ){
+							var out = '<li rel="'+ob+'" class="dcsns-li dcsns-'+type+' dcsns-feed-'+fn+'">'+w+'<div class="inner">'+zz+'<span class="clear"></span></div>'+zintro+icon+'</li>', str = decodeURIComponent(opt.remove), rem = q;
+							if(type == 'twitter'){
+								rem = 'https://twitter.com/'+un+'/status/'+item.id_str;
+							}
+							if( str.indexOf( rem ) !== -1 && rem != '' ){
 								n = n + 1;
 							} else {
 								if(opt.max == 'days'){
@@ -900,14 +943,24 @@
 			complete: function(){
 				var $newItems = $(list.join(''));
 				if(opt.wall == true){
-					stream.isotope( 'insert', $newItems );					
+					stream.isotope( 'insert', $newItems );	
+					if(type == 'facebook' && cp.length < 2){
+						setTimeout(function(){
+							stream.isotope('layout');
+						},1000);
+						$('img',stream).on('load', function(){ stream.isotope('layout'); });
+					}
+					if(type == 'twitter'){
+						setTimeout(function(){
+							stream.isotope('layout');
+						},1000);
+						$('img',stream).on('load', function(){ stream.isotope('layout'); });
+					}
 				} else {
 					stream.append($newItems);
 					sortstream(stream,'asc');
 				}
-				if(type == 'facebook' && cp.length < 2){
-					fbHrefLink(id,$newItems);
-				} else if(type == 'flickr' && cq.length > 1){
+				if(type == 'flickr' && cq.length > 1){
 					flickrHrefLink(cq[1],$newItems);
 				}
 			}
@@ -927,6 +980,13 @@
 		text = text.replace(/(^|\s)@(\w+)/g, '$1@<a href="http://www.twitter.com/$2">$2</a>');
 		text = text.replace(/(^|\s)#(\w+)/g, '$1#<a href="http://twitter.com/search/%23$2">$2</a>');
 		return text;
+	}
+	
+	function cut(text,n){
+		var short = text.substr(0, n);
+		if (/^\S/.test(text.substr(n)))
+		short = short.replace(/\s+\S*$/, "");
+		return short;
 	}
 	
 	function htmlEncode(v){
@@ -1148,22 +1208,6 @@
 			}
 		}
 
-		function fbHrefLink(id,obj){
-			jQuery.ajax({
-				url: 'https://graph.facebook.com/'+id,
-				dataType: 'jsonp',
-				success: function(a){
-					$('.icon',obj).each(function(){
-						$(this).parent().attr('href',a.link);
-					});
-					$('.section-user a',obj).each(function(){
-						$(this).attr('href',a.link);
-						$(this).text(a.name);
-					});
-				}
-			});
-		}
-		
 		function flickrHrefLink(id,obj){
 			jQuery.ajax({
 				url: 'http://api.flickr.com/services/feeds/groups_pool.gne?id='+id+'&format=json&jsoncallback=?',
@@ -1178,10 +1222,10 @@
 		
 		function share(st,sq,twitterId){
 			var s = '', sq = encodeURIComponent(sq), st = encodeURIComponent(st);
-			s = '<a href="http://www.facebook.com/sharer.php?u='+sq+'&t='+st+'" class="share-facebook"></a>';
-			s += '<a href="https://twitter.com/share?url='+sq+'&text='+st+'&via='+twitterId+'" class="share-twitter"></a>';
-			s += '<a href="https://plus.google.com/share?url='+sq+'" class="share-google"></a>';
-			s += '<a href="http://www.linkedin.com/shareArticle?mini=true&url='+sq+'&title='+st+'" class="share-linkedin"></a>';
+			s = '<a href="http://www.facebook.com/sharer.php?u='+sq+'&t='+st+'" class="share-facebook" target="_blank"></a>';
+			s += '<a href="https://twitter.com/share?url='+sq+'&text='+st+'&via='+twitterId+'" class="share-twitter" target="_blank"></a>';
+			s += '<a href="https://plus.google.com/share?url='+sq+'" class="share-google" target="_blank"></a>';
+			s += '<a href="http://www.linkedin.com/shareArticle?mini=true&url='+sq+'&title='+st+'" class="share-linkedin" target="_blank"></a>';
 			return s;
         }
 })(jQuery);
@@ -1192,16 +1236,5 @@ jQuery(window).load(function(){
 		var u = jQuery(this).attr('href');
 		window.open(u,'sharer','toolbar=0,status=0,width=626,height=436');
 		return false;
-	});
-	jQuery('.dcsns-facebook .section-text a').each(function(i){
-		var txt = jQuery(this).attr('href');
-		var href = decodeURIComponent(txt.replace("http://l.facebook.com/l.php?u=", "")).split('&');
-		jQuery(this).attr('href',href[0]);
-		txt = jQuery(this).attr('href');
-		href = decodeURIComponent(txt.replace("https://www.facebook.com/l.php?u=", "")).split('&');
-		jQuery(this).attr('href',href[0]);
-	});
-	jQuery('.dcsns-facebook .section-text a img').each(function(i){
-		if(jQuery(this).parent().attr('href').split('http').length < 2){jQuery(this).parent().attr('href','https://facebook.com'+jQuery(this).parent().attr('href'));}
 	});
 });

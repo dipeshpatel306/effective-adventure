@@ -112,7 +112,7 @@ class Client extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => '',
-			'qbFid' => HPNP_DBID
+			'qbFid' => HPNP_RELATED_CLIENT
 		),
 		'OtherPoliciesAndProcedure' => array(
 			'className' => 'OtherPoliciesAndProcedure',

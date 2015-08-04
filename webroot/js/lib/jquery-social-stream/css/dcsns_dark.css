@@ -257,6 +257,9 @@
 .stream li .section-share a.share-linkedin:hover {
 	background-position: -16px -96px;
 }
+.stream li.dcsns-twitter .section-share .share-facebook, .stream li.dcsns-twitter .section-share .share-google, .stream li.dcsns-twitter .section-share .share-linkedin, .stream li.dcsns-twitter .section-share .share-twitter {
+	display:none;
+}
 /* Toolbar */
 .dcsns-toolbar {
 	padding: 5px 80px 5px 0;

@@ -5,20 +5,24 @@ $consumer_secret = "";
 $oauth_access_token = ""; 
 $oauth_access_token_secret = "";
 
+$count = isset($_GET['count']) ? $_GET['count'] : '20';
+$include_rts = isset($_GET['include_rts']) ? $_GET['include_rts'] : '';
+$exclude_replies = isset($_GET['exclude_replies']) ? $_GET['exclude_replies'] : '';
+
 // DO NOT EDIT BELOW THIS LINE
 switch($_GET['url'])
 {
 	case 'timeline':
 	$rest = 'statuses/user_timeline' ;
-	$params = Array('count' => $_GET['count'], 'include_rts' => $_GET['include_rts'], 'exclude_replies' => $_GET['exclude_replies'], 'screen_name' => $_GET['screen_name']);
+	$params = Array('count' => $count, 'include_rts' => $include_rts, 'exclude_replies' => $exclude_replies, 'screen_name' => $_GET['screen_name']);
 	break;
 	case 'search':
 	$rest = "search/tweets";
-	$params = Array('q' => $_GET['q'], 'count' => $_GET['count'], 'include_rts' => $_GET['include_rts']);
+	$params = Array('q' => $_GET['q'], 'count' => $count, 'include_rts' => $include_rts);
 	break;
 	case 'list':
 	$rest = "lists/statuses";
-	$params = Array('list_id' => $_GET['list_id'], 'count' => $_GET['count'], 'include_rts' => $_GET['include_rts']);
+	$params = Array('list_id' => $_GET['list_id'], 'count' => $count, 'include_rts' => $include_rts);
 	break;
 	default:
 	$rest = 'statuses/user_timeline' ;
