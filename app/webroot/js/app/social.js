@@ -4,7 +4,7 @@ require(['jquery', 'socialstream'], function($) {
 			feeds:{
 				facebook:{
 					id: '132416226824065',
-					out: 'intro,thumb,title,text,user,share',
+					out: 'intro,title,text,thumb,user,share',
 					icon: 'facebook.png',
 					url: '/js/lib/jquery-social-stream/facebook.php'
 				},
@@ -16,7 +16,8 @@ require(['jquery', 'socialstream'], function($) {
 			twitterId: 'HIPAASecureNow',
 			days: 30,
 			iconPath: '/js/lib/jquery-social-stream/images/dcsns-dark/',
-			imagePath: '/js/lib/jquery-social-stream/images/dcsns-light-1/'
+			imagePath: '/js/lib/jquery-social-stream/images/dcsns-light-1/',
+			height: '550'
 		});
 
 		$('#social-wall').dcSocialStream({
