@@ -1,4 +1,53 @@
-v1.5.7
+v1.5.13 22/06/2015
+Added: Youtube playlists
+Updated: Include facebook status updates
+Updated: Text for facebook post share links
+Updated: Facebook user link
+Updated: URL of instagram image
+
+v1.5.12 28/05/2015
+Updated: links for facebook text
+Added: Option to select facebook page posts
+
+v1.5.11.1 08/05/2015
+Updated: Facebook event link
+Updated: Facebook video thumbnails
+Updated: Check for file_get_contents function for facebook API
+
+v1.5.11 06/05/2015
+Updated: Facebook Graph API v2.3
+Added: RSS feed title to link
+
+v1.5.10.1 01/05/2015
+Updated: Youtube search api order
+Updated: Facebook feeds using rss
+Added: Share buttons to tweets
+
+v1.5.10 27/04/2015
+Added: Option to center wall feed items
+Added: Description to facebook album posts
+Added: Remove duplicate facebook posts
+Updated: Youtube API v3
+Updated: Fix PHP notices twitter.php file
+Updated: Remove encoding on instagram search term
+Updated: remove option for twitter
+Updated: Add description to facebook feed
+Updated: Instagram icon link to user profile
+Updated: decode remove urls
+Updated: Share links open in new window
+Updated: Facebook events links
+Updated: remove encoding on twitter search term
+
+v1.5.9.1 11/02/2015
+Updated: Facebook page posts without images
+
+v1.5.9 03/02/2015
+Added: Reset layout on facebook/twitter feed load
+
+v1.5.8 01/02/2015
+Updated: Facebook page feeds
+
+v1.5.7 24/11/2014
 Added: Larger images for facebook posts
 Added: Automatically remove empty facebook event posts
 Added: Sorting after wall has loaded

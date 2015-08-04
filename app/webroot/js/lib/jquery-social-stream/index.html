@@ -31,7 +31,7 @@
 			<li><a href="example_2.html">Demo 2</a></li>
 			<li><a href="example_3.html">Demo 3</a></li>
 			<li><a href="wall.html">Creating A Network Wall</a></li>
-			<li><a href="example_4.html">Demo 4</a></li><li><a href="example_5.html">Demo 5</a></li>
+			<li><a href="example_4.html">Demo 4</a></li><li><a href="example_5.html">Demo 5</a></li><li><a href="example_6.html">Demo 6</a></li>
 		</ul>
 		</div>
 	</div>
@@ -41,8 +41,8 @@
 	<div class="info">
 		Plugin: jQuery Social Stream<br />
 		By: <a href="http://codecanyon.net/user/designchemical">designchemical</a><br />
-		Created: 24th November 2014<br>
-		Version: 1.5.7
+		Created: 22nd June 2015<br>
+		Version: 1.5.13
 	</div>
 	</div>
 	<div class="col-main">
@@ -81,10 +81,12 @@
 	<div>
 		<p>The files that make up the plugin are:</p>
 		<ol>
-			<li>js/jquery.social.stream.1.5.7.js - main jQuery plugin file</li>
-			<li>js/jquery.social.stream.1.5.7.min.js - minified version of plugin file (37.3 kb vs 26.4 kb)</li>
-			<li>js/jquery.social.stream.wall.1.5.js - Additional file to be included when creating the social network wall</li>
+			<li>js/jquery.social.stream.1.5.13.js - main jQuery plugin file</li>
+			<li>js/jquery.social.stream.1.5.13.min.js - minified version of plugin file (41.1 kb vs 29.4 kb)</li>
+			<li>js/jquery.social.stream.wall.1.6.js - Additional file to be included when creating the social network wall</li>
 			<li>twitter.php - PHP file for Twitter authentication - required if creating a Twitter stream</li>
+			<li>facebook.php - PHP file for Facebook authentication - required if creating a Facebook page stream</li>
+			<li style="display:none;">facebook/ - facebook folder contains essential files for facebook feeds. The folder and its contents must also be uploaded to your server</li>
 			<li>css/dcsns_dark.css - plugin css style sheet for creating the dark skin rotating feed</li>
 			<li>css/dcsns_light.css - plugin css style sheet for creating the light skin rotating feed</li>
 			<li>css/dcsns_wall.css - plugin css style sheet for creating the social network wall</li>
@@ -107,13 +109,15 @@
 		<p>The plugin requires the jQuery javascript library. So first thing is to add the jquery library from your preferred source. There are no specific requirements for this plugin so you are free to use any of the latest versions:</p>
 		<pre>&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"&gt;&lt;/script&gt;</pre>
 		<p>If you wish to display a social network wall include the following file:</p>
-		<pre>&lt;script type="text/javascript" src="js/jquery.social.stream.wall.1.5.js"&gt;&lt;/script&gt;</pre>
+		<pre>&lt;script type="text/javascript" src="js/jquery.social.stream.wall.1.6.js"&gt;&lt;/script&gt;</pre>
 		<p>Include the social stream plugin file:</p>
-		<pre>&lt;script type="text/javascript" src="js/jquery.social.stream.1.5.7.js"&gt;&lt;/script&gt;</pre>
+		<pre>&lt;script type="text/javascript" src="js/jquery.social.stream.1.5.13.js"&gt;&lt;/script&gt;</pre>
 		<p>Finally, if you want to use the default styles then either include the dcsns.css file or copy/paste the CSS code to your site's style sheet:</p>
 		<pre>&lt;link rel="stylesheet" type="text/css" href="css/dcsns_dark.css" media="all" /&gt;</pre>
 		<h4>Twitter Stream</h4>
 		<p>If you are wanting to include Twitter you will also need to add the twitter.php file to your website - this can be found in the plugin folder. To set up your Twitter API credentials see <a href="#twitter-api">instructions below</a>.</p>
+		<h4>Facebook Stream</h4>
+		<p>If you are wanting to include Facebook page feeds you will also need to add the facebook.php file to your website - this can be found in the plugin folder. To set up your Facebook API credentials see <a href="#facebook-api">instructions below</a>.</p>
 		<p>The plugin is now ready to use!</p>
 	</div>
 	</div>
@@ -130,6 +134,7 @@
 		<p>The easiest way to get started is to just initialize the plugin with the default settings and your relevant social network IDs.</p>
 		<h4>Important Notes</h4>
 		<p>Twitter - to set up your Twitter API credentials see <a href="#twitter-api">instructions below</a>.</p>
+		<p>Facebook - to set up your Facebook API credentials see <a href="#facebook-api">instructions below</a>.</p>
 		<p>Instagram - you will need to setup your own clientId and accessToken - see the <a href="#tag-position-instagram">Creating Your Own Instagram API Client ID & Access Token</a> section for step-by-step instructions on how to do this.</p>
 		<p>1. Insert the following jQuery into the head of your document (before the closing "head" tag) - dont forget to change the settings for your own social network profiles:</p>
 		<pre>&lt;script type="text/javascript"&gt;
@@ -158,7 +163,7 @@
 				id: 'brad'
 			},
 			youtube: {
-				id: 'FilmTrailerZone'
+				id: 'FilmTrailerZone/UUPPPrnT5080hPMxK1N4QSjA'
 			},
 			pinterest: {
 				id: 'designchemical'
@@ -240,6 +245,7 @@
 <tr><td>speed:</td><td> 600,</td><td></td><td>Speed (in milliseconds) of animation'</td></tr>
 <tr><td>height:</td><td> 520,</td><td></td><td>Height in pixels of stream container'</td></tr>
 <tr><td>wall:</td><td> false,</td><td>'true, false</td><td>Set to true to output the social stream as an isotope powered social network wall</td></tr>
+<tr><td>center:</td><td> false,</td><td>'true, false</td><td>Set to true to center the wall feed items in the page</td></tr>
 <tr><td>order:</td><td> 'date',</td><td>date, random</td><td>Set to random to order wall feed items randomly as opposed to by date</td></tr>
 <tr><td>filter:</td><td> true,</td><td>true, false</td><td>Set to true to include a filter navigation allowing the user to filter specific social networks'</td></tr>
 <tr><td>controls:</td><td> true,</td><td>true, false</td><td>Set to true to include links for controlling feed rotator'</td></tr>
@@ -314,10 +320,6 @@
 <tr><td>intro:</td><td> 'Posted to wall',</td><td></td><td>Feed item intro text'</td></tr>
 <tr><td>out:</td><td> 'intro,thumb,title,text,user,share',</td><td>intro, thumb, title, text, user, share</td><td>Stream item output - content blocks &amp; order'</td></tr>
 
-<tr><td>thumb:</td><td> true,</td><td>true, false</td><td>Set to "false" to disable larger image for facebook. To show inline thumbnail images in facebook posts set "thumb" to "false" and "text" option to "content"</td></tr>
-
-
-<tr><td>text:</td><td>'content'</td><td>'content', 'contentSnippet'</td><td>Select the RSS element to use in the feed output. 'content' (default) will output complete wall post text including any images. 'contentSnippet' shows brief introduction.</td></tr>
 <tr><td>comments:</td><td>3</td><td></td><td>Enter the maximum number of comments to display for facebook page gallery images - maximum value = 25.</td></tr>
 <tr><td>image_width:</td><td>6</td><td>3, 4, 5, 6</td><td>Enter the image size for facebook gallery images:<br />
 <br />
@@ -327,6 +329,8 @@
 <li>5 - w: 320px</li>
 <li>6 - w: 180px</li>
 </ol></td></tr>
+<tr><td>url</td><td>facebook.php</td><td></td><td>The path &amp; file name for the Facebook Authentication file - default file name is "facebook.php"<br /><strong>IMPORTANT - this is required for all Facebook page feeds</strong></td></tr>
+<tr><td>feed</td><td>'feed'</td><td>feed,posts</td><td>feed = show all posts on the facebook page, including those by other users, posts = show only those posts made by the page admin</strong></td></tr>
 <tr><td>icon:</td><td> 'facebook.png'</td><td></td><td>Icon file name'</td></tr>
 <tr><td>},</td><td>&nbsp;</td><td></td><td>'</td></tr>
 </tbody>
@@ -367,15 +371,16 @@
 		<tbody>
 <tr><td>youtube: {</td><td>&nbsp;</td><td></td><td>YouTube'</td></tr>
 <tr><td>id:</td><td> '',</td><td></td><td>Youtube has 2 different ID options:<br /><br />
-<ol><li><strong>Videos from a specific user name -</strong><br />Enter the required user name -<br />e.g. "designchemical"</li>
+<ol><li><strong>Videos from a specific play list ID or Channel ID -</strong><br />Enter the text you would like to show for the feed profile name followed by / followed by the required list ID -<br />e.g. "My Youtube Feed/UUPPPrnT5080hPMxK1N4QSjA"</li>
+<li>To get your youtube list ID from a profile name we have created a simple online tool - <a href="http://designchemical.com/lab/sandbox/youtube_id.html" target="_blank">How to get your Youtube ID</a></li>
 <li><strong>Videos from a search -</strong><br />Enter "#" followed by the search term -<br />e.g. "#designchemical"</li>
-<li><strong>Videos from a playlist -</strong><br />Enter the text you would like to show for the playlist name followed by "/" then the playlist ID -<br />e.g. "Playlist Title/8BCDD04DE8F771B2"</li></ol>
+</ol>
 <p>Note: The maximum limit for each youtube feed is 50 - if the limit option is set higher than 50 the plugin will automatically use 50 for youtube feeds.</p></td></tr>
-<tr><td>intro:</td><td> 'Uploaded,Favorite,New Video',</td><td></td><td>Feed item intro text'</td></tr>
+<tr><td>intro:</td><td> 'Uploaded',</td><td></td><td>Feed item intro text'</td></tr>
 <tr><td>search:</td><td> 'Search',</td><td></td><td>Search item intro text</td></tr>
 <tr><td>out:</td><td> 'intro,thumb,title,text,share',</td><td>intro, thumb, title, text, user, share</td><td>Stream item output - content blocks & order'</td></tr>
-<tr><td>feed:</td><td> 'uploads,favorites,newsubscriptionvideos', </td><td>uploads, favorites, newsubscriptionvideos</td><td>Feed options: uploads, favorites or new subscription videos - only applies to user names</td></tr>
-<tr><td>thumb:</td><td> 'default',</td><td>default, 0</td><td>Size of thumbnail image - 0 = 480px, default = 120px</td></tr>
+<tr><td>api_key:</td><td> '',</td><td></td><td>Youtube API Key - REQUIRED. See Social Networks Details -> Creating Your Own Youtube API Key</td></tr>
+<tr><td>thumb:</td><td> 'medium',</td><td>default, medium, high, standard</td><td>Size of thumbnail image - default 120 x 90, medium 320 x 180, high 480 x 360, standard 640 x 480</td></tr>
 <tr><td>icon:</td><td> 'youtube.png'</td><td></td><td>Icon file name'</td></tr>
 <tr><td>},</td><td>&nbsp;</td><td></td><td>'</td></tr>
 </tbody>
@@ -632,9 +637,10 @@
 						id: '',
 						intro: 'Posted',
 						out: 'intro,thumb,title,text,user,share',
-						text: 'content',
 						comments: 3,
 						image_width: 6, //3 = 600 4 = 480 5 = 320 6 = 180
+						url: 'facebook.php',
+						thumb:true,
 						icon: 'facebook.png'
 					},
 					twitter: {
@@ -660,10 +666,11 @@
 					},
 					youtube: {
 						id: '',
-						intro: 'Uploaded,Favorite,New Video',
+						intro: 'Uploaded',
+						profile: '',
 						search: 'Search',
 						out: 'intro,thumb,title,text,user,share',
-						feed: 'uploads,favorites,newsubscriptionvideos',
+						api_key: 'AIzaSyCFSB5p2xsmTo-dGz5y7gmZonB7M93hvVc',
 						thumb: 'default',
 						icon: 'youtube.png'
 					},
@@ -810,103 +817,6 @@
 	</div>
 </div>
 <!-- End Question Block -->
-
-<!-- Begin Question Block -->
-  <div class="toggle">
-	<h2 id="tag-position" class="trigger"><span></span>Creating Your Own Google API Key</h2>
-	<div class="togglebox">
-	<div>
-		<p>The google +1 feed requires an API key. Fortunately creating your own google API key is fairly quick and easy:</p>
-		<ul>
-			<li>Go to <a href="https://code.google.com/apis/console#access" target="_blank">https://code.google.com/apis/console#access</a></li>
-			<li>Login to your google account</li>
-			<li>Click "Create Project"</li>
-			<li>In the left-hand side menu click "APIs & auth" then "APIs"</li>
-			<li>Find the "Google + API" listing and set to "on"</li>
-		</ul>
-		<p><img src="inc/images/google_api_key.png" alt="Google API Key" /></p>
-		<ul>
-			<li>In the left-hand side menu click "Credentials"</li>
-			<li>Click "Create New Key"</li>
-		</ul>
-		<p><img src="inc/images/google_api_key_1.png" alt="Google API Key" /></p>
-		<ul>
-			<li>In the pop-up window select "Server key"</li>
-
-</ul>
-<p><img src="inc/images/google_api_key_2.png" alt="Google API Key" /></p>
-<ul>
-<li>Leave the "Accept requests from these server IP addresses" box blank</li>
-			<li>Click "Create"</li>
-			<li>Copy your API key and paste into the social stream settings</li>
-		</ul>
-		
-		<p><img src="inc/images/google_api_key_3.png" alt="Google API Key" /></p>
-	</div>
-	</div>
-</div>
-<!-- End Question Block -->
-
-<!-- Begin Question Block -->
-  <div class="toggle">
-	<h2 id="tag-position" class="trigger"><span></span>Creating Your Own Instagram API Client ID & Access Token</h2>
-	<div class="togglebox">
-	<div>
-		<p>In order to use the Instagram feed you must first create your own "Client ID"</p>
-		<p><img src="inc/images/instagram_1.png" alt="Instagram API" /></p>
-		<ul>
-			<li>Go to <a href="http://instagr.am/developer/" target="_blank">http://instagr.am/developer/</a>.</li>
-			<li> Click "Register Your Application"</li>
-		</ul>
-		<p><img src="inc/images/instagram_2.png" alt="Instagram API" /></p>
-		<ul>
-			<li>On the Developer signup page complete the form</li>
-			<li>Read and accept the terms & conditions and then click "sign up"</li>
-		</ul>
-		<p><img src="inc/images/instagram_3.png" alt="Instagram API" /></p>
-		<ul>
-			<li>If the signup page is submitted successfully and has been accepted click the "manage clients" tab in the top-right of the header.</li>
-			<li>Click the green button - "Register A New Client.</li>
-		</ul>
-		<p><img src="inc/images/instagram_4.png" alt="Instagram API" /></p>
-		<ul>
-			<li>Complete the "Register new OAuth Client" form - e.g:<br />
-			Application name: social stream<br />
-			Description: create a social stream from multiple networks<br />
-			Website: enter your website URL - e.g. http://www.designchemical.com</br />
-			OAuth redirect_uri: enter the URL of a page where the social stream is installed - this is required to get your access token, which you can then insert into the instagram options. Once you have the access token you can use this on all pages, which use the social stream plugin on the website listed above.</li>
-			<li>Click the "Register" button</li>
-		</ul>
-		<p><img src="inc/images/instagram_5.png" alt="Instagram API" /></p>
-		<ul>
-			<li>Copy your CLIENT ID and paste into the "clientId" option for Instagram</li>
-			<li>Enter your redirect_uri into the "redirectUrl" option for Instagram</li>
-		</ul>
-		
-		<h3>How to get your access token</h3>
-		<ul>
-			<li>Browse to the page on your website used for the "redirect_uri" in the Instagram client ID setup (note this page must have the social stream installed - using either the network wall or the rotating feed.</li>
-			<li>You will then be redirected to the Instagram login screen (if not already logged in) and then a confirmation screen where you approve your app's access to your Instagram data.</li>
-			<li>Instagram will then automatically redirect you back to your website page given in the "redirect_uri" setting</li>
-			<li>When the page loads check the URL in the browser - you should see the following URL format:<br /><br />
-			http://your-redirect-uri#access_token=186786085.f59def8.1d34b28a52e04d36ba1dc52ca98215dc</li>
-			<li>Copy the token code after the "http://your-redirect-uri#access_token=" - e.g 186786085.f59def8.1d34b28a52e04d36ba1dc52ca98215dc</li>
-			<li>Add the access token to your Instagram options using the "accessToken" option - you should now have your "accessToken", "redirectUrl" & "clientId" options completed - e.g:<br /><br />
-			<pre>instagram: {
-				id: '!186786085,#husky,@1394578',
-				accessToken: 'YOUR ACCESS TOKEN',
-				redirectUrl: 'http://your-redirect-uri',
-				clientId: 'YOUR CLIENT ID',
-				comments: 3,
-				likes: 10
-			}</pre>
-			</li>
-		</ul>
-	</div>
-	</div>
-</div>
-<!-- End Question Block -->
-
 
 <!-- Begin Question Block -->
   <div class="toggle">
@@ -1088,6 +998,275 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
 </div>
 <!-- End Question Block -->
 
+ <!-- Begin Question Block -->
+<div class="toggle">
+	<h2 class="trigger" id="facebook-api"><span></span>Facebook API Credentials</h2>
+	<div class="togglebox">
+	<div>
+		<h4>Facebook API</h4>
+		<p>Starting with version 1.5.8 of the plugin facebook feeds now require authentication.</p>
+		<p>To create your own Facebook App</p>
+		
+		<ol>
+			<li>Browse to <a href="https://developers.facebook.com/">https://developers.facebook.com/</a> &amp; login - if you have not previously regsitered as a developer you will need to do this first before you can create your own facebook app</li>
+			<li>From the top menu go to "My Apps" and click "Add New App"</li>
+		</ol>
+		
+		<p><image src="inc/images/facebook_1.png" width="850" alt="Create New Facebook App" /></p>
+		
+		<ol>
+			<li>Click on the "Website" icon</li>
+		</ol>
+		
+		<p><image src="inc/images/facebook_2.png" width="850" alt="Create New Facebook App" /></p>
+		
+		<ol>
+			<li>Enter a name for your app - e.g Social Stream</li>
+			<li>Click "Create a New Facebook App ID"</li>
+		</ol>
+		
+		<p><image src="inc/images/facebook_3.png" width="850" alt="Create New Facebook App" /></p>
+		
+		<ol>
+			<li>Select a category for your app</li>
+			<li>Click the "Create App ID" button</li>
+		</ol>
+		
+		<p><image src="inc/images/facebook_4.png" width="850" alt="Create New Facebook App" /></p>
+		
+		<ol>
+			<li>On the following page you should see the box shown above - enter your website address</li>
+			<li>Click "Next"</li>
+			<li>Then go to the top of the page and click the "skip quick start" link</li>
+		</ol>
+		
+		<p><image src="inc/images/facebook_6.png" width="850" alt="Create New Facebook App" /></p>
+		
+		<ol>
+			<li>Make a note of your APP ID</li>
+			<li>Click the "show" button on the App Secret field. You may need to enter your password again to confirm this action</li>
+			<li>Make a note of your App Secret</li>
+		</ol>
+		
+		
+		<h4>Adding your APP ID, Secret & Access Token To Your Site</h4>
+		
+		<ol>
+			<li>Open file facebook.php in your text editor and find the following code at the top of the page:</li></br>
+			<pre>
+// SET YOUR FACEBOOK API DETAILS HERE
+$app_id 	= 'INSERT APP ID HERE';
+$app_secret = 'INSERT APP SECRET HERE';
+			</pre>
+			
+			<li>Enter your APP ID & Secret into the facebook API details, save the file and upload to your server - e.g:</li>
+		</ol>
+		
+		<pre>// SET YOUR FACEBOOK API DETAILS HERE
+$app_id 	= '876112410078524';
+$app_secret = 'd26b9883d63c8aeb753063aad93ce61d';</pre>
+		
+		<!-- PHP SDK 4 ACCESS TOKEN
+		<h4>Generate Your Facebook Access Token</h4>
+		
+		<ol>
+			<li>Once you have your APP ID & Secret you need to get your facebook access token</li>
+			
+			<li>You need to build the following URL to create your access token:</br>
+			</br>
+			
+			<p style="color:#990000;">https://graph.facebook.com/oauth/authorize?type=user_agent&client_id=<strong>[APP ID]</strong>&redirect_uri=http%3A%2F%2F<strong>[SITE URL]</strong>&scope=read_stream,public_profile,user_activities,user_photos,user_friends,user_about_me</p>
+
+  
+<p><strong>Replace the [APP ID] with your App ID you created earlier.</strong></p>
+<p><strong>Replace the [SITE URL] with the URL you entered into "Site URL" field when creating the APP (Note - without http://).</strong></p>
+
+
+<p>Copy/paste the complete URL into your browser address bar and press enter.</p></li>
+<li>You will then be taken to a standard facebook allow permissions page - click Allow/Okay &amp; you will be redirected to your web site</li>
+<li>Copy the URL now appearing in your browser address bar - it should look like:</br>
+
+<p>http://designchemical.com/?#access_token=*****************&expires_in=5072</p></li>
+<li>The code appearing after the "#access_token=" is the access token for your site - e.g:</br>
+<p>CAAWMbKZA3bZAoBAJWvH6AOLdxycEAMDlSSQEjswstGIdZBVqQ9ZAOKaFuM40IZCtnlAi5ET23DyMsUQHmLCHW0v8MY147aFSaZAGEt4IFNztnJgG4wclBuHwwRxVCbIIBtyr31FtC2KrrDe9hW3e19lFNE6ceXSi9KlQb1g9m2pipdCYElicIWiJ17LoZBD4oAnAvQSHVfGZCqY1WVR1TSn2mQkWvuhxgv4ZE</p></li>
+<li>Copy this access token</li>
+
+		</ol>
+		
+		<h4>Adding your APP ID, Secret & Access Token To Your Site</h4>
+		
+		<ol>
+			<li>Open file facebook.php in your text editor and find the following code (around line 35):</li></br>
+			<pre>
+// SET YOUR FACEBOOK API DETAILS HERE
+$app_id 	= 'ENTER YOUR APP ID';
+$app_secret = 'ENTER YOUR APP SECRET';
+$app_access_token = 'ENTER YOUR ACCESS TOKEN';
+			</pre>
+			
+			<li>Enter your APP ID, Secret and access token into the facebook API details, save the file and upload to your server - e.g:</li>
+		</ol>
+		
+		<pre>// SET YOUR FACEBOOK API DETAILS HERE
+$app_id 	= '876112410078524';
+$app_secret = 'd26b9883d63c8aeb753063aad93ce61d';
+$app_access_token = 'CAAWMbKZA3bZAoBAJWvH6AOLdxycEAMDlSSQEjswstGIdZBVqQ9ZAOKaFuM40IZCtnlAi5ET23DyMsUQHmLCHW0v8MY147aFSaZAGEt4IFNztnJgG4wclBuHwwRxVCbIIBtyr31FtC2KrrDe9hW3e19lFNE6ceXSi9KlQb1g9m2pipdCYElicIWiJ17LoZBD4oAnAvQSHVfGZCqY1WVR1TSn2mQkWvuhxgv4ZE';</pre>
+		-->
+		
+		
+		
+		<p>The plugin should now be able to access your Facebook feed.</p>
+		<p>Note that the above values are for demonstration only and will NOT work with your plugin.</p>
+		
+		<h4>Facebook Feed Not Working?</h4>
+		<p>Make sure that you have set the facebook "url" option to point to the actual location of your facebook.php file. The default setting is:</p>
+		<pre>url: 'facebook.php'</pre>
+	</div>
+	</div>
+</div>
+<!-- End Question Block -->
+
+<!-- Begin Question Block -->
+  <div class="toggle">
+	<h2 id="tag-position" class="trigger"><span></span>Creating Your Own Google API Key</h2>
+	<div class="togglebox">
+	<div>
+		<p>The google +1 feed requires an API key. Fortunately creating your own google API key is fairly quick and easy:</p>
+		<ul>
+			<li>Go to <a href="https://code.google.com/apis/console#access" target="_blank">https://code.google.com/apis/console#access</a></li>
+			<li>Login to your google account</li>
+			<li>Click "Create Project"</li>
+			<li>In the left-hand side menu click "APIs & auth" then "APIs"</li>
+			<li>Find the "Google + API" listing and set to "on"</li>
+		</ul>
+		<p><img src="inc/images/google_api_key.png" alt="Google API Key" /></p>
+		<ul>
+			<li>In the left-hand side menu click "Credentials"</li>
+			<li>Click "Create New Key"</li>
+		</ul>
+		<p><img src="inc/images/google_api_key_1.png" alt="Google API Key" /></p>
+		<ul>
+			<li>In the pop-up window select "Server key"</li>
+
+</ul>
+<p><img src="inc/images/google_api_key_2.png" alt="Google API Key" /></p>
+<ul>
+<li>Leave the "Accept requests from these server IP addresses" box blank</li>
+			<li>Click "Create"</li>
+			<li>Copy your API key and paste into the social stream settings</li>
+		</ul>
+		
+		<p><img src="inc/images/google_api_key_3.png" alt="Google API Key" /></p>
+	</div>
+	</div>
+</div>
+<!-- End Question Block -->
+
+<!-- Begin Question Block -->
+  <div class="toggle">
+	<h2 id="tag-position" class="trigger"><span></span>Creating Your Own Youtube API Key</h2>
+	<div class="togglebox">
+	<div>
+		<p>Youtube feeds now require a google API key:</p>
+		<ul>
+			<li>Go to <a href="https://code.google.com/apis/console#access" target="_blank">https://code.google.com/apis/console#access</a></li>
+			<li>Login to your google account</li>
+			<li>Click "Create Project"</li>
+			<li>In the left-hand side menu click "APIs & auth" then "APIs"</li>
+			<li>Click the "Youtube Data API" listing</li>
+		</ul>
+		<p><img src="inc/images/youtube_api_key.png" alt="Youtube API Key" /></p>
+		<ul>
+			<li>Click the "Enable API" button at the top of the page</li>
+			<li>Then click the "Credentials" option in the left hand menu
+		</ul>
+		<p><img src="inc/images/youtube_api_key_1.png" alt="Google API Key" /></p>
+		<ul>
+			<li>Under the "Public API access" title click the "Create New Key" button</li>
+
+</ul>
+<p><img src="inc/images/youtube_api_key_2.png" alt="Google API Key" /></p>
+<ul>
+
+<ul>
+			<li>In the pop-up window select "Server Key"</li>
+
+</ul>
+<p><img src="inc/images/youtube_api_key_3.png" alt="Google API Key" /></p>
+<ul>
+
+
+<li>Leave the "Accept requests from these server IP addresses" box blank</li>
+			<li>Click "Create"</li>
+			<li>Copy your API key and paste into the social stream settings</li>
+		</ul>
+		
+		<p><img src="inc/images/youtube_api_key_4.png" alt="Google API Key" /></p>
+	</div>
+	</div>
+</div>
+<!-- End Question Block -->
+
+<!-- Begin Question Block -->
+  <div class="toggle">
+	<h2 id="tag-position" class="trigger"><span></span>Creating Your Own Instagram API Client ID & Access Token</h2>
+	<div class="togglebox">
+	<div>
+		<p>In order to use the Instagram feed you must first create your own "Client ID"</p>
+		<p><img src="inc/images/instagram_1.png" alt="Instagram API" /></p>
+		<ul>
+			<li>Go to <a href="http://instagr.am/developer/" target="_blank">http://instagr.am/developer/</a>.</li>
+			<li> Click "Register Your Application"</li>
+		</ul>
+		<p><img src="inc/images/instagram_2.png" alt="Instagram API" /></p>
+		<ul>
+			<li>On the Developer signup page complete the form</li>
+			<li>Read and accept the terms & conditions and then click "sign up"</li>
+		</ul>
+		<p><img src="inc/images/instagram_3.png" alt="Instagram API" /></p>
+		<ul>
+			<li>If the signup page is submitted successfully and has been accepted click the "manage clients" tab in the top-right of the header.</li>
+			<li>Click the green button - "Register A New Client.</li>
+		</ul>
+		<p><img src="inc/images/instagram_4.png" alt="Instagram API" /></p>
+		<ul>
+			<li>Complete the "Register new OAuth Client" form - e.g:<br />
+			Application name: social stream<br />
+			Description: create a social stream from multiple networks<br />
+			Website: enter your website URL - e.g. http://www.designchemical.com</br />
+			OAuth redirect_uri: enter the URL of a page where the social stream is installed - this is required to get your access token, which you can then insert into the instagram options. Once you have the access token you can use this on all pages, which use the social stream plugin on the website listed above.</li>
+			<li>Click the "Register" button</li>
+		</ul>
+		<p><img src="inc/images/instagram_5.png" alt="Instagram API" /></p>
+		<ul>
+			<li>Copy your CLIENT ID and paste into the "clientId" option for Instagram</li>
+			<li>Enter your redirect_uri into the "redirectUrl" option for Instagram</li>
+		</ul>
+		
+		<h3>How to get your access token</h3>
+		<ul>
+			<li>Browse to the page on your website used for the "redirect_uri" in the Instagram client ID setup (note this page must have the social stream installed - using either the network wall or the rotating feed.</li>
+			<li>You will then be redirected to the Instagram login screen (if not already logged in) and then a confirmation screen where you approve your app's access to your Instagram data.</li>
+			<li>Instagram will then automatically redirect you back to your website page given in the "redirect_uri" setting</li>
+			<li>When the page loads check the URL in the browser - you should see the following URL format:<br /><br />
+			http://your-redirect-uri#access_token=186786085.f59def8.1d34b28a52e04d36ba1dc52ca98215dc</li>
+			<li>Copy the token code after the "http://your-redirect-uri#access_token=" - e.g 186786085.f59def8.1d34b28a52e04d36ba1dc52ca98215dc</li>
+			<li>Add the access token to your Instagram options using the "accessToken" option - you should now have your "accessToken", "redirectUrl" & "clientId" options completed - e.g:<br /><br />
+			<pre>instagram: {
+				id: '!186786085,#husky,@1394578',
+				accessToken: 'YOUR ACCESS TOKEN',
+				redirectUrl: 'http://your-redirect-uri',
+				clientId: 'YOUR CLIENT ID',
+				comments: 3,
+				likes: 10
+			}</pre>
+			</li>
+		</ul>
+	</div>
+	</div>
+</div>
+<!-- End Question Block -->
+
 <!-- Begin Question Block -->
 <div class="toggle">
 	<h2 class="trigger"><span></span>Google +1</h2>
@@ -1096,7 +1275,7 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
 		<h4>Google +1 API Key</h4>
 		<p>The google +1 feed requires an API key in order to work. The API key provided in the plugin examples is for test purposes only.</p>
 		<p>Make sure you change the API key for your own - google limit the number of API calls per day for each API key. If you use the test value this may result in your google +1 feed not working correctly.</p>
-		<p>For information on how to create your own API key see the <a href="#tag-position">instructions below</a>.</p>
+		<p>For information on how to create your own API key see the <a href="#tag-position">instructions</a>.</p>
 	</div>
 	</div>
 </div>
@@ -1223,7 +1402,7 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
 				id: 'brad'
 			},
 			youtube: {
-				id: 'FilmTrailerZone',
+				id: 'FilmTrailerZone/UUPPPrnT5080hPMxK1N4QSjA',
 				thumb: '0'
 			},
 			pinterest: {
@@ -1321,7 +1500,7 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
 				out: 'intro,title,user,share'
 			},
 			youtube: {
-				id: 'FilmTrailerZone',
+				id: 'FilmTrailerZone/UUPPPrnT5080hPMxK1N4QSjA',
 				out: 'intro,title,user,share'
 			},
 			pinterest: {
@@ -1370,7 +1549,7 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
 				thumb: true
 			},
 			rss: {
-				id: 'http://feeds.feedburner.com/DesignChemical,http://feeds.feedburner.com/designmodo'
+				id: 'http://feeds.feedburner.com/DesignChemical,http://feeds.feedburner.com/codecondo'
 			},
 			stumbleupon: {
 				id: 'remix4'
@@ -1388,7 +1567,7 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
 				id: 'brad'
 			},
 			youtube: {
-				id: 'FilmTrailerZone'
+				id: 'FilmTrailerZone/UUPPPrnT5080hPMxK1N4QSjA'
 			},
 			pinterest: {
 				id: 'jaffrey,designchemical/design-ideas'
@@ -1460,7 +1639,7 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
 				id: 'brad'
 			},
 			youtube: {
-				id: 'FilmTrailerZone'
+				id: 'FilmTrailerZone/UUPPPrnT5080hPMxK1N4QSjA'
 			},
 			pinterest: {
 				id: 'jaffrey,designchemical/design-ideas',
@@ -1495,6 +1674,19 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
 		imagePath: 'images/dcsns-dark/'
 	});
 });</pre>
+	
+	</div>
+	</div>
+</div>
+<!-- End Question Block -->
+
+<!-- Begin Question Block -->
+<div class="toggle">
+
+	<h2 class="trigger"><span></span>Creating A Responsive Social Network Wall</h2>
+	<div class="togglebox">
+	<div> 
+	<p>The social network wall is automatically responsive and will adjust the number of columns based on your page width. Just insert the wall into a responsive page - <a href="example_6.html">View Example 6</a></p>
 	
 	</div>
 	</div>
@@ -1607,6 +1799,20 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
 		<p>To get your google profile ID for the google +1 tab go to your google accounts page and click on the &#8220;edit profile&#8221; link.</p>
 <p>Check the URL in the browser address bar &#8211; your profile ID is the number in the middle of the URL:</p>
 <p>https://profiles.google.com/<strong style="color: #990000;">100058553707375301897</strong>/about/</p>
+	</div>
+	</div>
+</div>
+<!-- End Question Block -->
+
+<!-- Begin Question Block -->
+<div class="toggle">
+	<h2 class="trigger"><span></span>How To Get Your Youtube List ID From Your Username</h2>
+	<div class="togglebox">
+	<div> 
+		<p>The latest version of the Youtube API no longer recognises youtube usernames. We have created a quick online tool, which will allow you to get your list ID for your username</p>
+		<p>Browse to the following link - <a href="http://designchemical.com/lab/sandbox/youtube_id.html" target="_blank">How to get your youtube ID</a></p>
+		<p>In the form with the heading "Input your Youtube Profile Name" enter your profile name into the "username" field and click "submit".</p>
+		<p>Your list ID will appear in the "List ID" field</p>
 	</div>
 	</div>
 </div>
@@ -1776,9 +1982,73 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
   </div>
   
 	<div>
-	<p><strong>v1.5.7 24th November 2014 Current Version</strong></p>
 	
+							<p><strong>v1.5.13 22nd June 2015 (Current Version)</strong></p>
+<ul>
+<li>Added: Youtube playlists</li>
+<li>Updated: Include facebook status updates</li>
+<li>Updated: Text for facebook post share links</li>
+<li>Updated: Facebook user link</li>
+<li>Updated: URL of instagram imag</li>
+</ul>
 
+						<p><strong>v1.5.12 28th May 2015</strong></p>
+<ul>
+<li>Added: Option to select facebook page posts</li>
+<li>Updated: links for facebook text</li>
+</ul>
+
+					<p><strong>v1.5.11.1 8th May 2015</strong></p>
+<ul>
+<li>
+Updated: Facebook event link</li>
+<li>Updated: Facebook video thumbnails</li>
+<li>Updated: Check for file_get_contents function for facebook API</li>
+</ul>
+
+			<p><strong>v1.5.11 5th May 2015</strong></p>
+<ul>
+<li>Updated: Facebook Graph API v2.3</li>
+</ul>
+
+		<p><strong>v1.5.10.1 1st May 2015</strong></p>
+<ul>
+<li>Updated: Facebook feeds</li>
+<li>Updated: Youtube search api order</li>
+<li>Added: Share buttons to tweets</li>
+</ul>
+	
+	<p><strong>v1.5.10 23rd April 2015</strong></p>
+<ul>
+<li>Added: Option to center wall posts</li>
+<li>Added: Description to facebook album posts</li>
+<li>Updated: Youtube API v3</li><li>
+Updated: Fix PHP notices twitter.php file</li><li>
+Updated: Remove encoding on instagram search term</li><li>
+Updated: remove option for twitter</li><li>
+Updated: Add description to facebook feed</li><li>
+Updated: Instagram icon link to user profile</li><li>
+Updated: decode remove urls</li><li>
+Updated: Share links open in new window</li><li>
+Updated: Facebook events links</li><li>
+Updated: remove encoding on twitter search term</li></ul>
+			<p><strong>v1.5.9.1 11th February 2015</strong></p>
+<ul>
+<li>Added: Reset layout on facebook/twitter feed load</li>
+</ul>
+		<p><strong>v1.5.9 3rd February 2015</strong></p>
+<ul>
+<li>Updated: Facebook page posts without images</li>
+</ul>
+
+
+	<p><strong>v1.5.8 1st February 2015</strong></p>
+<ul>
+<li>Updated: Facebook page feeds</li>
+<li>Updated: Minor edits wall.js file</li>
+</ul>
+
+	<p><strong>v1.5.7 24th November 2014</strong></p>
 <ul>
 <li>Added: Larger images for facebook posts</li>
 <li>Added: Automatically remove empty facebook event posts</li>
@@ -1786,11 +2056,7 @@ $oauth_access_token_secret = "eqgxmDB7hsBoph18758dRmkzzb0E8emyZfIm8bD9pWg"; </pr
 <li>Updated: Reset image layout on page load</li>
 </ul>
 
-
-
 		<p><strong>v1.5.6 10th November 2014</strong></p>
-	
-
 <ul>
 <li>Updated: Youtube feed bug</li>
 <li>Added: transition time option for isotope animation</li>

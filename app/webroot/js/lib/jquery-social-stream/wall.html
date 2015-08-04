@@ -2,12 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>jQuery Plugin - Social Stream Example 1</title>
+<title>jQuery Plugin - Social Stream Network Wall</title>
 <link rel="stylesheet" type="text/css" href="inc/layout.css" media="all" />
-<link rel="stylesheet" type="text/css" href="css/dcsns_dark.css" media="all" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/dcsns_wall.css" media="all" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript" src="inc/js/jquery.plugins.js"></script>
 <script type="text/javascript" src="inc/js/jquery.site.js"></script>
+
+<script type="text/javascript" src="js/jquery.social.stream.wall.1.6.js"></script>
 <script type="text/javascript" src="js/jquery.social.stream.1.5.13.js"></script>
 <script type="text/javascript">
 jQuery(document).ready(function($){
@@ -26,8 +28,7 @@ jQuery(document).ready(function($){
 				id: '157969574262873'
 			},
 			google: {
-				id: '111470071138275408587',
-				api_key: 'AIzaSyB1UZNnscjMDjjH-pi_XbnLRld2wAqi3Ek'
+				id: '111470071138275408587'
 			},
 			delicious: {
 				id: 'designchemical'
@@ -36,11 +37,10 @@ jQuery(document).ready(function($){
 				id: 'brad'
 			},
 			youtube: {
-				id: 'FilmTrailerZone/UUPPPrnT5080hPMxK1N4QSjA',
-				thumb: '0'
+				id: 'wired'
 			},
 			pinterest: {
-				id: 'jaffrey,designchemical/design-ideas'
+				id: 'designchemical'
 			},
 			flickr: {
 				id: ''
@@ -55,17 +55,22 @@ jQuery(document).ready(function($){
 				id: 'isacg'
 			},
 			tumblr: {
-				id: 'richters',
-				thumb: 250
+				id: 'richters'
 			}
 		},
-		twitterId: 'designchemical',
+		rotate: {
+			delay: 0
+		},
+		control: false,
+		filter: true,
+		wall: true,
+		days: 60,
 		iconPath: 'images/dcsns-dark/',
 		imagePath: 'images/dcsns-dark/'
 	});
+				 
 });
-</script>		
-
+</script>
 </head>
 
 <body>
@@ -80,7 +85,7 @@ jQuery(document).ready(function($){
   <div class="opacity pad-btm">
 	<div id="banner">
 		<a href="http://www.designchemical.com/blog/index.php/premium-jquery-plugins/jquery-social-media-tabs-plugin/"><img src="inc/images/banner.png" alt="" /></a>
-		<h1>Example 1 - Default Settings</h1>
+		<h1>Creating A Network Wall</h1>
 	</div>
 	<div id="nav-container">
 		<ul id="dctsp-nav">
@@ -90,30 +95,35 @@ jQuery(document).ready(function($){
 			<li><a href="example_3.html">Demo 3</a></li>
 			<li><a href="wall.html">Creating A Network Wall</a></li>
 			<li><a href="example_4.html">Demo 4</a></li><li><a href="example_5.html">Demo 5</a></li><li><a href="example_6.html">Demo 6</a></li>
+			
 		</ul>
 		</div>
 	</div>
-	
+	<div class="opacity">
 
-<div class="opacity">
-<h3>Example 1 - Default Settings</h3>
-<div class="col-main">
  <div class="title">
-    <ul class="demo-list">
-		<li><a href="example_1_light.html">Demo 1 Light</a></li>
-		<li><a href="example_1_dark.html">Demo 1 Dark</a></li>
-	</ul>
-	<p>Quick start - no customized options! Social stream will show the last 10 days of posts></p>
-	<p>Minimum required settings are the relevant ID's, usernames or URLs for the individual social networks:</p>
+<h3>Creating A Social Network Wall</h3>
+<div id="wall">
+	<p>The social network wall requires a different CSS file - see file dcsns_wall.css to use the supplied skin for the wall layout.  Add this to the head of your page as normal:</p>
+	<pre>&lt;link rel="stylesheet" type="text/css" href="css/dcsns_wall.css" media="all" /&gt;</pre>
+	
+	<p>This feature also requires some additional jQuery code to handle the wall layout and filtering. All of the required code has been placed in file jquery.social.stream.wall.1.36js. Add this file to the head of your page just before the social stream plugin file:</p>
+	
+	<pre>&lt;script type="text/javascript" src="js/jquery.social.stream.wall.1.6.js"&gt;&lt;/script&gt;</pre>
+	
+	<p>The source data for the network wall is exactly the same as the rotating feed so the first thing you need to do is add the initialisation code with the relevant social network ID's or usernames.</p>
+	<p>To switch to creating the wall instead of the rotating list you must also set the "wall" option to true - in the demo we have set the wall to show the last 10 items from each feed using the max: "limit" & limit: 5 options, disabled the rotating feed plus disabled the controls since they are not required:</p>
+	<p></p>
 	<h4>jQuery Code</h4>
 	<pre>$(document).ready(function($){
 	$('#social-stream').dcSocialStream({
 		feeds: {
 			twitter: {
-				id: 'designchemical'
+				id: '/9927875,#designchemical,designchemical',
+				thumb: true
 			},
 			rss: {
-				id: 'http://feeds.feedburner.com/DesignChemical'
+				id: 'http://feeds.feedburner.com/DesignChemical,http://feeds.feedburner.com/codecondo'
 			},
 			stumbleupon: {
 				id: 'remix4'
@@ -122,8 +132,7 @@ jQuery(document).ready(function($){
 				id: '157969574262873,Facebook Timeline/376995711728'
 			},
 			google: {
-				id: '111470071138275408587',
-				api_key: 'AIzaSyB1UZNnscjMDjjH-pi_XbnLRld2wAqi3Ek'
+				id: '111470071138275408587'
 			},
 			delicious: {
 				id: 'designchemical'
@@ -132,8 +141,7 @@ jQuery(document).ready(function($){
 				id: 'brad'
 			},
 			youtube: {
-				id: 'FilmTrailerZone/UUPPPrnT5080hPMxK1N4QSjA',
-				thumb: '0'
+				id: 'wired'
 			},
 			pinterest: {
 				id: 'jaffrey,designchemical/design-ideas'
@@ -155,23 +163,29 @@ jQuery(document).ready(function($){
 				thumb: 250
 			}
 		},
+		rotate: {
+			delay: 0
+		},
 		twitterId: 'designchemical',
+		control: false,
+		filter: true,
+		wall: true,
+		cache: false,
+		max: 'limit',
+		limit: 10,
 		iconPath: 'images/dcsns-dark/',
 		imagePath: 'images/dcsns-dark/'
 	});
 });</pre>
 	<h4>HTML</h4>
+	<p>Now just include the div tag where you want the network wall to appear:</p>
 <pre>&lt;div id="social-stream"&gt;&lt;/div&gt;</pre>
-	<p>The social stream is inserted into the "social-stream" div tag when the page loads.</p>
-  
-  </div>
-</div>
-<div class="col-side">
-	<h3>Demo Dark</h3>
-	<div id="social-stream"></div>
-</div>
+  <h4>Social Network Wall Demo</h4>
+  <p><a href="example_4.html">Demo page</a></p>
 <div class="clear"></div>
 
+</div>
+</div>
 </div>
 
   
