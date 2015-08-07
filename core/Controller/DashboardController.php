@@ -15,6 +15,10 @@ class DashboardController extends AppController {
  */
     public function isAuthorized($user){
         $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
+        
+        if ($this->action == 'training_setup' && $group != Group::ADMIN) {
+        	return false;
+        }
 
         if ($group == Group::MANAGER  || $group == Group::USER || $group == Group::PARTNER_ADMIN ){ // Allow managers, Users  to view dashboard
             return true;
@@ -328,6 +332,21 @@ class DashboardController extends AppController {
             $this->request->data = $this->Dashboard->read(null, $id);
         }
     }
+
+	public function training_setup() {
+		if ($this->request->is('post')) {
+			$this->loadModel('Setting');
+			$settings = $this->request->data['Dashboard'];
+			foreach ($settings as $key=>$value) {
+				$setting = $this->Setting->find('first', array('conditions' => array('key' => $key)));
+				$this->Setting->id = $setting['Setting']['id'];
+				$this->Setting->save(array('value' => $value));
+			}
+			$this->Session->setFlash('Training settings saved', 'default', array('class' => 'success message'));
+		}
+		$this->loadModel('Client');
+		$this->set('moodle_courses', $this->Client->getMoodleCourses());
+	}
 
 /**
  * delete method

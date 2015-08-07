@@ -31,6 +31,7 @@ class AppController extends Controller {
 
     public function beforeFilter() {
         parent::beforeFilter();
+		$this->fetchSettings();
         $this->Auth->authenticate = array( // Use email as the login username
             'Form' => array(
             'fields' => array('username' => 'email', 'password' => 'password')
@@ -192,6 +193,15 @@ class AppController extends Controller {
 		}
 		return $this->Client->find('list', array('conditions' => $conditions));
 	}
+
+	public function fetchSettings() {
+		$this->loadModel('Setting');
+  		$settings = $this->Setting->find('all');
+   		foreach($settings as $key=>$value) {
+   			$val = $value['Setting']['value'];
+      		Configure::write("__".$value['Setting']['key'], $val);
+		}
+   	}
     
 }
 
