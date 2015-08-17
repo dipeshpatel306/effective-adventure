@@ -5,7 +5,9 @@ $group = $this->Session->read('Auth.User.group_id');
 $this->Html->addCrumb('Clients', '/clients');
 $this->Html->addCrumb('Edit Client');
 
-$acctType = array('Initial' => 'Initial', 'Subscription' => 'Subscription', 'Meaningful Use' => 'Meaningful Use', 'Training' => 'Training', 'Admin' => 'Admin');
+$acctType = array('Initial' => 'Initial', 'Subscription' => 'Subscription',
+ 	'Meaningful Use' => 'Meaningful Use', 'Training' => 'Training', 'Admin' => 'Admin',
+	'AYCE Training' => 'AYCE Training');
 $active = array(true => 'Yes', false => 'No');
 $risk = array('' => '', 'Completed' => 'Completed');
 ?>
@@ -16,15 +18,26 @@ $risk = array('' => '', 'Completed' => 'Completed');
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
+		$acct_type_opts = array('options' => $acctType, 'default' => 'Pending');
+		$course_opts = array('label' => 'Training Course', 'options' => $moodle_courses);
+		if ($group == Group::PARTNER_ADMIN) {
+			$acct_type_opts['disabled'] = 'disabled';
+			$course_opts['disabled'] = 'disabled';
+		}
 		echo $this->Form->input('email');
-		echo $this->Form->input('account_type', array('options' => $acctType, 'default' => 'Pending'));
-        echo $this->Form->input('moodle_course_id', array('label' => 'Training Course', 'options' => $moodle_courses));
+		echo $this->Form->input('account_type', $acct_type_opts);
+        echo $this->Form->input('moodle_course_id', $course_opts);
 		echo $this->Form->input('active', array('label' => 'Account Active?', 'options' => $active, 'empty' => ''));
 		echo $this->Form->input('display_ra_org', array('label' => 'Display RA/Org?', 'options' => $active, 'default' => true));
+		if ($group == Group::PARTNER_ADMIN) {
+			echo $this->Form->input('display_intro_video', array('label' => 'Display Introduction Video?', 'options' => $active, 'default' => true));
+		}
 		if ($group == Group::ADMIN) {
 			echo $this->Form->input('partner_id', array('empty' => 'No Partner'));
 		}
-		echo $this->Form->input('risk_assessment_status', array('label' => 'Risk Assessment Completed', 'class' => 'datePick'));
+		if ($group != Group::PARTNER_ADMIN) {
+			echo $this->Form->input('risk_assessment_status', array('label' => 'Risk Assessment Completed', 'class' => 'datePick'));
+		}
 		echo $this->Form->input('details', array('type' => 'text', 'rows' => '5', 'cols' => '40'));
 	?>
 	</fieldset>

@@ -30,7 +30,7 @@ class ClientsController extends AppController {
                 return false;
         }
 			
-		if (in_array($this->action, array('index', 'edit')) && $group == Group::PARTNER_ADMIN) {
+		if (in_array($this->action, array('index', 'edit', 'add')) && $group == Group::PARTNER_ADMIN) {
 			return true;
 		}
 		

@@ -107,5 +107,8 @@ $this->Html->addCrumb('Clients');
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
 		<?php endif; ?>
 		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
+		<?php if ($group == Group::PARTNER_ADMIN): ?>
+		<li><?php echo $this->Html->link(__('Registered Users'), array('controller' => 'partners', 'action' => 'registered_users')); ?></li>
+		<?php endif; ?>
 	</ul>
 </div>

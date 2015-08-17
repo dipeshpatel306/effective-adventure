@@ -322,8 +322,10 @@ class Client extends AppModel {
 	public function afterFind($results, $primary = false) {
 		foreach ($results as $key=>$val) {
 			if (array_key_exists('Client', $val)) {
-				$id = $results[$key]['Client']['id'];
-				$results[$key]['Client']['user_count'] = $this->countUsers($id);
+				if (array_key_exists('id', $results[$key]['Client'])) {
+					$id = $results[$key]['Client']['id'];
+					$results[$key]['Client']['user_count'] = $this->countUsers($id);
+				}
 			}
 		}
 		return $results;

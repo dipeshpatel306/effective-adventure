@@ -11,7 +11,7 @@ $this->Html->addCrumb('Partners');
 			<th><?php echo $this->Paginator->sort('admin_account', 'Admin Code'); ?></th>
 			<th><?php echo $this->Paginator->sort('link'); ?></th>
 			<th><?php echo $this->Paginator->sort('user_count', 'Registered Users'); ?></th>
-			<th><?php echo $this->Paginator->sort('users_limi', 'Max Users'); ?></th>
+			<th><?php echo $this->Paginator->sort('users_limit', 'Max Users'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>

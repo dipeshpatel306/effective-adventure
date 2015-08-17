@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('Group', 'Model');
 /**
  * Partners Controller
  *
@@ -16,7 +17,11 @@ class PartnersController extends AppController {
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 
-		if ($group == 2 || $group == 3){ // Deny Managers and Users
+ 		if ($group == Group::PARTNER_ADMIN && $this->action == 'registered_users') {
+ 			return true;
+ 		}
+ 		
+		if ($group == Group::MANAGER || $group == Group::USER){ // Deny Managers and Users
 
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
@@ -114,5 +119,9 @@ class PartnersController extends AppController {
 		}
 		$this->Session->setFlash(__('Partner was not deleted.'));
 		$this->redirect(array('action' => 'index'));
+	}
+	
+	public function registered_users($id = null) {
+		return;
 	}
 }

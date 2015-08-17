@@ -20,6 +20,8 @@ if($client['Client']['active']){
 
 $clientId = $client['Client']['id'];
 
+$ayce_training = ($client['Client']['account_type'] == 'AYCE Training');
+
 ?>
 <div class="clients view">
 <h2><?php  echo __('Client'); ?></h2>
@@ -159,7 +161,9 @@ $clientId = $client['Client']['id'];
 	
 	
 	<ul>
+		<?php if (!$ayce_training): ?>
 		<li><?php echo $this->Html->link(__('Batch Add - Policies and Procedures'), array('controller' => 'policies_and_procedures_documents', 'action' => 'batch_add', $client['Client']['id'])); ?> </li>
+		<?php endif; ?>
 	</ul>
 </div>
 
@@ -226,7 +230,7 @@ $clientId = $client['Client']['id'];
 	</div>
 </div>
 
-
+<?php if (!$ayce_training): ?>
 <div class="related">
 	<h3><?php echo Configure::read('Theme.pnp_doc_name') . ' Documents'; ?></h3>
 
@@ -731,5 +735,6 @@ $clientId = $client['Client']['id'];
 		<?php endforeach; ?>
 	</table>
 </div>
+<?php endif; ?>
 
 </div>

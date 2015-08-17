@@ -2,7 +2,12 @@
 $this->Html->addCrumb('Clients', '/clients');
 $this->Html->addCrumb('Add Client');
 
-$acctType = array('Initial' => 'Initial', 'Subscription' => 'Subscription', 'Meaningful Use' => 'Meaningful Use', 'Training' => 'Training', 'Admin' => 'Admin');
+App::uses('Group', 'Model');
+$group = $this->Session->read('Auth.User.group_id');
+
+$acctType = array('Initial' => 'Initial', 'Subscription' => 'Subscription',
+	 'Meaningful Use' => 'Meaningful Use', 'Training' => 'Training', 'Admin' => 'Admin',
+	 'AYCE Training' => 'AYCE Training');
 $active = array(true => 'Yes', false => 'No');
 $risk = array('' => '', 'Completed' => 'Completed');
 ?>
@@ -13,12 +18,28 @@ $risk = array('' => '', 'Completed' => 'Completed');
     <?php
         echo $this->Form->input('name');
         echo $this->Form->input('email');
-        echo $this->Form->input('account_type', array('options' => $acctType, 'default' => 'Pending'));
-        echo $this->Form->input('moodle_course_id', array('label' => 'Training Course', 'options' => $moodle_courses));
+		$acct_type_opts = array('options' => $acctType, 'default' => 'Pending');
+		$course_opts = array('label' => 'Training Course', 'options' => $moodle_courses);
+		$partner_opts = array('empty' => 'No Partner', 'value' => '');
+		if ($group == Group::PARTNER_ADMIN) {
+			$acct_type_opts['disabled'] = 'disabled';
+			$acct_type_opts['value'] = Configure::read('__default_acct_type');
+			$course_opts['disabled'] = 'disabled';
+			$course_opts['value'] = Configure::read('__default_course');
+			$partner_opts['disabled'] = 'disabled';
+			$partner_opts['value'] = $partner['Partner']['id'];
+		}
+        echo $this->Form->input('account_type', $acct_type_opts);
+        echo $this->Form->input('moodle_course_id', $course_opts);
         echo $this->Form->input('active', array('label' => 'Account Active?', 'options' => $active, 'default' => 'Yes'));
         echo $this->Form->input('display_ra_org', array('label' => 'Display RA/Org?', 'options' => $active, 'default' => true));
-        echo $this->Form->input('partner_id', array('empty' => 'No Partner', 'value' => ''));
-        echo $this->Form->input('risk_assessment_status', array('label' => 'Risk Assessment Completed', 'class' => 'datePick'));
+		if ($group == Group::PARTNER_ADMIN) {
+			echo $this->Form->input('display_intro_video', array('label' => 'Display Introduction Video?', 'options' => $active, 'default' => true));
+		}
+        echo $this->Form->input('partner_id', $partner_opts);
+		if ($group != Group::PARTNER_ADMIN) {
+			echo $this->Form->input('risk_assessment_status', array('label' => 'Risk Assessment Completed', 'class' => 'datePick'));
+		}
         echo $this->Form->input('details', array('type' => 'text', 'rows' => '5', 'cols' => '40'));
     ?>
     </fieldset>
