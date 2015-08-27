@@ -32,7 +32,8 @@ $client = $this->Session->read('Auth.User.client_id');  // Test Client.  If admi
 
 		if($group == Group::ADMIN || $group == Group::MANAGER){ // activate / deactivate user
 			echo $this->Form->input('group_id', array('options' => $groupOption));
-			echo $this->Form->input('active', array('options' => $active, 'default' => 1));
+			$active_sel = ($this->request->data['User']['active'] ? '1' : '0');
+			echo $this->Form->input('active', array('options' => $active, 'selected' => $active_sel));
 		}
 		//echo $this->Form->input('email');
 		//echo $this->Form->input('email', array('allowEmpty' => true));

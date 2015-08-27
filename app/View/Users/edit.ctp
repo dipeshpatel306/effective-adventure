@@ -17,7 +17,7 @@ $this->Html->addCrumb('Edit ' . $userTypeName);
 
 
 
-$active = array('Yes' => 'Yes', 'No' => 'No');  // activate / deactivate a user
+$active = array(true => 'Yes', false => 'No'); // activate / deactivate a user
 
 $client = $this->Session->read('Auth.User.client_id');  // Test Client.  If admin allow client choosing, else hide field and set it to the current client
 
@@ -38,14 +38,15 @@ $client = $this->Session->read('Auth.User.client_id');  // Test Client.  If admi
 		}
 
 		if($group == 1 || $group == 2){ // activate / deactivate user
-			echo $this->Form->input('group_id', array('options' => $groupOption));
-			echo $this->Form->input('active', array('options' => $active, 'default' => 1));
+			echo $this->Form->input('group_id', array('options' => $groupOption, 'required' => false));
+			$active_sel = ($this->request->data['User']['active'] ? '1' : '0');
+			echo $this->Form->input('active', array('options' => $active, 'selected' => $active_sel));
 		}
 
 		//echo $this->Form->input('email', array('allowEmpty' => true));
 		//echo $this->Form->input('email2', array('label' => 'Confirm Email'));
-		echo $this->Form->input('password');
-		echo $this->Form->input('password2', array('label' => 'Verify Password', 'type' => 'password', 'allowEmpty' => true));
+		echo $this->Form->input('password', array('label' => 'Password', 'value' => null, 'required' => false));
+		echo $this->Form->input('password2', array('label' => 'Verify Password', 'value' => null, 'type' => 'password', 'required' => false));
 		echo $this->Form->input('first_name');
 		echo $this->Form->input('last_name');
 		echo $this->Form->input('phone_number', array('type' => 'tel'));
