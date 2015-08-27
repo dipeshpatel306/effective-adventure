@@ -41,6 +41,41 @@ class User extends AppModel {
             ),
         )
     );
+	
+	public $validateEdit = array(
+        'password' => array(
+            array(
+                'rule' => array('passCompare'),
+                'message' => 'The Passwords do not match.'
+            ),
+        ),
+        'password2' => array(
+            array(
+                'rule' => array('passCompare'),
+                'message' => 'The Passwords do not match.'
+            ),
+        ),
+		'first_name' => array(
+            'notempty' => array(
+                'rule' => array('notempty'),
+                'message' => 'You forgot your First Name.',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+        ),
+        'last_name' => array(
+            'notempty' => array(
+                'rule' => array('notempty'),
+                'message' => 'You forgot your Last Name',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+        ),
+    );
  
     public $validate = array(
         'authCode' => array(

@@ -634,19 +634,17 @@ class UsersController extends AppController {
         }
 
         if ($this->request->is('post') || $this->request->is('put')) {
-
+			if (empty($this->request->data['User']['password'])) {
+                unset($this->request->data['User']['password']);
+            }
+			
             $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-
 
             if($group != 1){
                 $this->request->data['User']['client_id'] = $this->Auth->User('client_id');
-
-                /*if($this->request->data['User']['group_id'] == 1){  // If client tries to spoof Hipaa admin group redirect them
-                    $this->redirect(array('action' => 'index'));
-                    $this->Session->setFlash(__('You are not authorized to do that!'));
-                }*/
-                $this->request->data['User']['group_id'] = $this->Session->read('Auth.User.group_id');
-
+				if (empty($this->request->data['User']['group_id'])) {
+					$this->request->data['User']['group_id'] = $this->Session->read('Auth.User.group_id');
+				}
             }
 
             if ($this->User->save($this->request->data)) {
