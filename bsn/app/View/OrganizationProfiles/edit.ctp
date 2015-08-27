@@ -1,8 +1,6 @@
 <?php
 $this->Html->addCrumb('Edit Organization Profile');
 $choice = array('Yes' => 'Yes', 'No' => 'No');
-$osLong = array('Windows 8' => 'Windows 8', 'Windows 7' => 'Windows 7', 'Windows Vista' => 'Windows Vista', 'Windows XP' => 'Windows XP',
-				'Older Windows (ME, 2000, NT)' => 'Older Windows (ME, 2000, NT)', 'Mac OS' => 'Mac OS', 'UNIX/Linux' => 'UNIX/Linux', 'Other' => 'Other');
 $os = array('Windows' => 'Windows', 'UNIX' => 'UNIX', 'Linux' => 'Linux', 'Mac OS' => 'Mac OS', 'Other' => 'Other');
 $emailVendor = array('Microsoft Exchange' => 'Microsoft Exchange', 'Google Gmail' => 'Google Gmail',
 					'Yahoo! Mail' => 'Yahoo! Mail', 'Hotmail' => 'Hotmail', 'Other' => 'Other');
@@ -253,6 +251,7 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
         echo $this->Form->input('number_laptops', array('label' =>'How many laptops do you have?', 'class' => 'num', 'min' => '0'));
         echo $this->Form->input('pii_on_laptops', array('label' => 'Do you collect and/or store sensitive data (including credit cards, social security numbers, date of birth, driver’s licenses or confidential organizational information) on any laptops?', 'options' => $choice));
         echo $this->Form->label(null, 'Please check any operating systems your workstations and laptops are running: ');
+		echo $this->Form->input('os_win10', array('label' => 'Windows 10', 'div' => 'input checkbox inlinebox'));
         echo $this->Form->input('os_win8', array('label' => 'Windows 8', 'div' => 'input checkbox inlinebox'));
         echo $this->Form->input('os_win7', array('label' => 'Windows 7', 'div' => 'input checkbox inlinebox'));
         echo $this->Form->input('os_winvista', array('label' => 'Windows Vista', 'div' => 'input checkbox inlinebox'));
