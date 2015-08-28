@@ -65,7 +65,7 @@ class DATABASE_CONFIG {
 		'host' => '127.0.0.1',
 		'login' => 'hsn',
 		'password' => 'HipaaSN2014!',
-		'database' => 'hipaadev',
+		'database' => 'piiprotect',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
@@ -73,10 +73,10 @@ class DATABASE_CONFIG {
     public $moodle = array(
         'datasource' => 'Database/Mysql',
         'persistent' => false,
-        'host' => '127.0.0.1',
-        'login' => 'moodle',
-        'password' => 'trustno1@ent',
-        'database' => 'moodle',
+        'host' => '10.250.250.60',
+        'login' => 'compliance',
+        'password' => 'H$Ncomp@ccess14!',
+        'database' => 'newmoodle',
         'prefix' => '',
         //'encoding' => 'utf8',
     );
