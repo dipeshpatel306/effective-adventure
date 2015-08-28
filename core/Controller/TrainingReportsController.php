@@ -91,42 +91,16 @@ class TrainingReportsController extends AppController {
 
 	public function load() {
 		$clients = $this->TrainingReport->Client->find('all', array('fields' => array('Client.id', 'Client.moodle_course_id')));
-		$names28 = $this->TrainingReport->Client->getMoodleCourseNames('28');
-		$names29 = $this->TrainingReport->Client->getMoodleCourseNames('29');
-		$names30 = $this->TrainingReport->Client->getMoodleCourseNames('30');
-		$names31 = $this->TrainingReport->Client->getMoodleCourseNames('31');
 		foreach ($clients as $client) {
-			if ($client['Client']['moodle_course_id'] === '30') {
-				$this->TrainingReport->create();
-				$this->TrainingReport->save(array(
-					'client_id' => $client['Client']['id'],
-					'course_id' => '28',
-					'course_name' => $names28['fullname'],
-					'course_code' => $names28['shortname']
-				));
-				$this->TrainingReport->create();
-				$this->TrainingReport->save(array(
-					'client_id' => $client['Client']['id'],
-					'course_id' => '30',
-					'course_name' => $names30['fullname'],
-					'course_code' => $names30['shortname']
-				));				
-			} elseif ($client['Client']['moodle_course_id'] === '31') {
-				$this->TrainingReport->create();
-				$this->TrainingReport->save(array(
-					'client_id' => $client['Client']['id'],
-					'course_id' => '29',
-					'course_name' => $names29['fullname'],
-					'course_code' => $names29['shortname']
-				));
-				$this->TrainingReport->create();
-				$this->TrainingReport->save(array(
-					'client_id' => $client['Client']['id'],
-					'course_id' => '31',
-					'course_name' => $names31['fullname'],
-					'course_code' => $names31['shortname']
-				));
-			}
+			$course = $client['Client']['moodle_course_id'];
+			$names = $this->TrainingReport->Client->getMoodleCourseNames($course);
+			$this->TrainingReport->create();
+			$this->TrainingReport->save(array(
+				'client_id' => $client['Client']['id'],
+				'course_id' => '28',
+				'course_name' => $names['fullname'],
+				'course_code' => $names['shortname']
+			));
 		}
 	}
 
