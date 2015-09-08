@@ -48,10 +48,11 @@ $risk = array('' => '', 'Completed' => 'Completed');
 <div class="actions">
     <h3><?php echo __('Actions'); ?></h3>
     <ul>
-
         <li><?php echo $this->Html->link(__('List Clients'), array('action' => 'index')); ?></li>
         <br />
+        <?php if ($group == Group::ADMIN): ?>
         <li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+        <?php endif; ?>
         <li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
     </ul>
 </div>

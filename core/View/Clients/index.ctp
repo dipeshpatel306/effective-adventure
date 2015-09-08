@@ -96,14 +96,12 @@ $this->Html->addCrumb('Clients');
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
-	<?php if ($group == Group::ADMIN): ?>
 	<ul>
+		<?php if ($group == Group::ADMIN || $group == Group::PARTNER_ADMIN): ?>
 		<li><?php echo $this->Html->link(__('New Client'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('Migrate QB Client'), array('action' => 'migrate_from_qb')); ?></li>
-	</ul>
-	<?php endif; ?>
-	<ul>
+		<?php endif; ?>
 		<?php if ($group == Group::ADMIN): ?>
+		<li><?php echo $this->Html->link(__('Migrate QB Client'), array('action' => 'migrate_from_qb')); ?></li>
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
 		<?php endif; ?>
 		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
