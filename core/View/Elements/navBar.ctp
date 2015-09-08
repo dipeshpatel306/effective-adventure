@@ -23,6 +23,7 @@ App::uses('Group', 'Model');
 		echo $this->Html->link('Partners', array('controller' => 'partners', 'action' => 'index')) . ' | ';		
 		echo $this->Html->link('Clients', array('controller' => 'clients', 'action' => 'index')) . ' | ';
 		echo $this->Html->link('Org Profiles', array('controller' => 'organization_profiles', 'action' => 'index')) . ' | ';
+		echo $this->Html->link('Training', array('controller' => 'dashboard', 'action' => 'training_setup')) . ' | ';
 		echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')) . ' | ';
 		
 		echo $this->Html->link('Risk Assessments', array('controller' => 'risk_assessments', 'action' => 'index')) . ' | ';

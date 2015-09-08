@@ -15,6 +15,6 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('Registered Users'), array('action' => 'registered_users')); ?> </li>
-		<li><?php echo $this->Html->link(__('Purchase Additional User Licenses')); ?> </li>		
+		<li><?php echo $this->Html->link(__('Purchase Additional User Licenses'), '#'); ?> </li>		
 	</ul>
 </div>
