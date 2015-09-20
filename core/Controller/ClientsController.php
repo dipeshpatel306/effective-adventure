@@ -117,7 +117,16 @@ class ClientsController extends AppController {
  */
     public function add() {
         if ($this->request->is('post')) {
-            $this->Client->create();
+		    $this->Client->create();
+			$group = $this->Session->read('Auth.User.group_id');
+			
+			if ($group == Group::PARTNER_ADMIN) {
+				// inject values fors partner client creation
+				$this->request->data['Client']['partner_id'] = $this->Session->read('Auth.User.partner_id');
+				$this->request->data['Client']['moodle_course_id'] = Configure::read('__default_course');
+				$this->request->data['Client']['account_type'] = Configure::read('__default_acct_type');
+			}
+			
             if ($this->Client->save($this->request->data)) {                
                 $this->Session->setFlash('The client has been saved.', 'default', array('class' => 'success message'));
                 $this->redirect(array('action' => 'index'));
