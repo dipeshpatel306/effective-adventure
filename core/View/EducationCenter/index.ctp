@@ -59,9 +59,32 @@ $this->Html->addCrumb('Education Center');
 		
 	<?php endif; ?>	
 	
+	<?php if ($acct == 'AYCE Training'): ?>
+		
+	<a href='#'>
+	<div class='dashBox'>
+		<div class='dashHead'>
+			<?php 
+				echo $this->Html->image('training_tile.jpg', array(
+						'class' => 'dashTile',
+						'alt' => 'Security Tips'
+				));
+			?>
+			<h3>Security Tips</h3>		
+		</div>
+		<div class="dashSum">Security Tips</div>
+		
+		<div class="dashBtn approved">
+			<div class="btnWrapMed">
+			<div class="btnText">Learn More</div>
+			<div class="triangle"></div>
+			</div>
+		</div>		
+		
+	</div>	
+	</a>
 	
-	
-	
+	<?php endif; ?>
 	<?php foreach ($educationCenter as $educationCenter): ?>
 
 	<?php if($educationCenter['EducationCenter']['video_link'] == 'Link'):?><!-- If link wrap in link -->

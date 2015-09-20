@@ -34,7 +34,7 @@
 		<li><?php echo $this->Html->link('Security Incidents', array('controller' => 'security_incidents', 'action' => 'index'));?></li>
 	<?php endif; ?>
 	
-	<?php if($acct == 'Training'): ?>
+	<?php if($acct == 'Training' || $acct == 'AYCE Training'): ?>
         <li><?php echo $this->Html->link($training_name, array('controller' => 'education_center', 'action' => 'training')); ?></li>
 	<?php endif; ?>
 

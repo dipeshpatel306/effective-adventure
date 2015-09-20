@@ -334,8 +334,8 @@ class DashboardController extends AppController {
     }
 
 	public function training_setup() {
+		$this->loadModel('Setting');
 		if ($this->request->is('post')) {
-			$this->loadModel('Setting');
 			$settings = $this->request->data['Dashboard'];
 			foreach ($settings as $key=>$value) {
 				$setting = $this->Setting->find('first', array('conditions' => array('key' => $key)));
@@ -343,6 +343,10 @@ class DashboardController extends AppController {
 				$this->Setting->save(array('value' => $value));
 			}
 			$this->Session->setFlash('Training settings saved', 'default', array('class' => 'success message'));
+		}
+		$settings = $this->Setting->find('all');
+		foreach ($settings as $setting) {
+			$this->set($setting['Setting']['key'], $setting['Setting']['value']);
 		}
 		$this->loadModel('Client');
 		$this->set('moodle_courses', $this->Client->getMoodleCourses());

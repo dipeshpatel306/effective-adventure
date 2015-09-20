@@ -50,7 +50,7 @@ $this->Html->addCrumb('Policies & Procedures');
 
 	<?php
 		// policies & procedures . If Manager allow, If employee read only. MU hidden
-		if($acct == 'Meaningful Use' || $acct == 'Training'){ // Ban Meaningful USe
+		if($acct == 'Meaningful Use' || $acct == 'Training' || $acct == 'AYCE Training'){ // Ban Meaningful USe
 				echo $this->Html->link(
 					'<div class="dashBox">' .
 					'<div class="dashHead">' .
@@ -84,7 +84,7 @@ $this->Html->addCrumb('Policies & Procedures');
 
 		}
 		// Other policies & procedures. Subscribers and MU are allowed. Users are read only
-		if ($acct == 'Training') {
+		if ($acct == 'Training' || $acct == 'AYCE Training') {
 		    echo $this->Html->link(
                     '<div class="dashBox">' .
                     '<div class="dashHead">' .

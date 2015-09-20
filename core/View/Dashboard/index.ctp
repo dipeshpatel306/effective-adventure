@@ -40,6 +40,25 @@ App::uses('Group', 'Model');
 	<h2><?php echo Configure::read('Theme.dashboard_name'); ?></h2>
 
 	<?php
+		$ed_center_tile = $this->Html->link(
+			'<div class="dashBox">' .
+			'<div class="dashHead">' .
+			$this->Html->image('edcenter.png', array(
+						'class' => 'dashTile',
+						'alt' => 'Education Center'
+						)) .
+			'<h3>Education Center</h3>' .
+			'</div>' .
+			'<div class="dashSum">Videos and Training</div>' . $approved .
+			'</div>',
+			array('controller' => 'education_center', 'action' => 'index'),
+			array('escape' => false)
+		);
+		
+		if ($group == Group::USER && $acct == 'AYCE Training') {
+			echo $ed_center_tile;
+		}
+	
 		// policies & procedures. everyone sees this
 		echo $this->Html->link(
 					'<div class="dashBox">' .
@@ -61,7 +80,8 @@ App::uses('Group', 'Model');
 		$ra_name = Configure::read('Theme.ra_name');
 		$baa_entity_name = Configure::read('Theme.baa_entity_name');
 		if($group == Group::USER && $acct != 'Training'){
-			echo $this->Html->link(
+			if ($acct != 'AYCE Training') {
+				echo $this->Html->link(
 					'<div class="dashBox">' .
 					'<div class="dashHead">' .
 					$this->Html->image('cnd_tile.jpg', array(
@@ -74,7 +94,8 @@ App::uses('Group', 'Model');
 					'</div>',
 					array('controller' => 'dashboard', 'action' => 'index'),
 					array('escape' => false)
-			);
+				);
+			}
 		} else{
 			echo $this->Html->link(
 					'<div class="dashBox">' .
@@ -100,20 +121,27 @@ App::uses('Group', 'Model');
 		} else {
 			$td_title = 'Security Incidents and Server Room Access';
 		}
-		echo $this->Html->link(
-					'<div class="dashBox">' .
-					'<div class="dashHead">' .
-					$this->Html->image('tnd_tile.jpg', array(
-								'class' => 'dashTile',
-								'alt' => 'Track and Document'
-								)) .
-					'<h3>Track and Document</h3>' .
-					'</div>' .
-					'<div class="dashSum">' . $td_title . '</div>' . $approved .
-					'</div>',
-					array('controller' => 'dashboard', 'action' => 'track_and_document'),
-					array('escape' => false)
-			);
+		
+		if ($acct != 'AYCE Training') {
+			echo $this->Html->link(
+				'<div class="dashBox">' .
+				'<div class="dashHead">' .
+				$this->Html->image('tnd_tile.jpg', array(
+									'class' => 'dashTile',
+									'alt' => 'Track and Document'
+									)) .
+				'<h3>Track and Document</h3>' .
+				'</div>' .
+				'<div class="dashSum">' . $td_title . '</div>' . $approved .
+				'</div>',
+				array('controller' => 'dashboard', 'action' => 'track_and_document'),
+				array('escape' => false)
+			);	
+		}
+		
+		if (!($group == Group::USER && $acct = 'AYCE Training')) {
+			echo $ed_center_tile;
+		}
 
 		if (Configure::read('Theme.display_social_center')) {
 			// Social Center Every one sees
@@ -132,22 +160,6 @@ App::uses('Group', 'Model');
 					array('escape' => false)
 			);
 		}
-		
-		// Education Center. Everyone sees
-		echo $this->Html->link(
-					'<div class="dashBox">' .
-					'<div class="dashHead">' .
-					$this->Html->image('edcenter.png', array(
-								'class' => 'dashTile',
-								'alt' => 'Education Center'
-								)) .
-					'<h3>Education Center</h3>' .
-					'</div>' .
-					'<div class="dashSum">Videos and Training</div>' . $approved .
-					'</div>',
-					array('controller' => 'education_center', 'action' => 'index'),
-					array('escape' => false)
-			);
 
 		if (Configure::read('Theme.display_information_center')) {
 			// Information Center. Everyone sees
@@ -185,7 +197,8 @@ App::uses('Group', 'Model');
 		$ra_name = Configure::read('Theme.ra_name');
 		if($group != Group::USER){
 			//pr($displayRaOrg);
-		if(!empty($displayRaOrg) && $displayRaOrg['Client']['display_ra_org']){
+		if(!empty($displayRaOrg) && $displayRaOrg['Client']['display_ra_org'] &&
+			!($group == Group::USER && $acct == 'AYCE Training')){
 		    echo $this->Html->link(
             '<div class="dashBox">' .
             '<div class="dashHead">' .
