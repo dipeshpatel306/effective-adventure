@@ -40,13 +40,14 @@ App::uses('Group', 'Model');
 	<h2><?php echo Configure::read('Theme.dashboard_name'); ?></h2>
 
 	<?php
-		if ($group == Group::MANAGER && $acct == 'AYCE Training' && $displayRaOrg['Client']['display_intro_video']) {
-			$form = $this->Form->create('Client', array('url' => array('controller' => 'clients', 'action' => 'edit', $displayRaOrg['Client']['id'])));
-			$form .= $this->Form->input('Client.display_intro_video',
+		if ($group == Group::MANAGER && $acct == 'AYCE Training') {
+			$show = $displayIntro['User']['display_intro_video_real'] ? '1' : '0';
+			$form = $this->Form->create('User', array('url' => array('controller' => 'users', 'action' => 'edit', $displayIntro['User']['id'])));
+			$form .= $this->Form->input('User.display_intro_video',
 										array('label' => 'Do not show again',
-											  'checked' => !$displayRaOrg['Client']['display_intro_video']));
+											  'checked' => !$displayIntro['User']['display_intro_video']));
 			$form .= $this->Form->end();
-			echo "<div id='introvideo'>";
+			echo "<div id='introvideo' show='$show'>";
 			echo $this->element('video_overlay', compact('form'));
 			echo "</div>";
 		}

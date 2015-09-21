@@ -21,16 +21,18 @@ require(['jquery', 'app/video', 'jqueryui', 'ckeditor'], function($, videohelper
 		});
 		
 		$('#introvideo').each(function() {
-			videohelper.showVideo('#introvideo');
+			if ($(this).attr('show') == 1) {
+				videohelper.showVideo('#introvideo');
+			}
 		});
 		
 		// Stop and Close Video Player. Hide pop up region
 		$('.closeVideo').click(videohelper.closeVideo);
 		
-		$('#ClientDisplayIntroVideo').change(function() {
+		$('#UserDisplayIntroVideo').change(function() {
 			var display = this.checked ? '0' : '1';
-			var data = { 'data[Client][display_intro_video]' : display };
-			$.post($('#ClientIndexForm').attr('action'), data);
+			var data = { 'data[User][display_intro_video]' : display };
+			$.post($('#UserIndexForm').attr('action'), data);
 		});
 		
 		$('#showintro').click(function() {

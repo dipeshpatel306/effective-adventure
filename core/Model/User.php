@@ -21,7 +21,8 @@ class User extends AppModel {
 
     public $qbDbid = USERS_DBID;
 	
-	public $virtualFields = array('active_real' => 'User.active && (Client.active || Partner.active)');
+	public $virtualFields = array('active_real' => 'User.active && (Client.active || Partner.active)',
+								  'display_intro_video_real' => 'User.display_intro_video && Client.display_intro_video');
 /**
  * Validation rules
  *

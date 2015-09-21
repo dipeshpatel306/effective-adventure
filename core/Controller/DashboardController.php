@@ -146,17 +146,28 @@ class DashboardController extends AppController {
 
         // Get Client Id
         $clientId = $this->Session->read('Auth.User.client_id');
+		$userId = $this->Session->read('Auth.User.id');
         
         // Check if RA and Org are to be displayed
         $this->loadModel('Client');
         $displayRaOrg = $this->Client->find('first', array('conditions' => array(
             'Client.id' => $clientId),
-            'fields' => 'Client.id, Client.display_ra_org, Client.display_intro_video',
+            'fields' => 'Client.id, Client.display_ra_org',
             'recursive' => 0
         ));
         if(isset($displayRaOrg)){
             $this->set(compact('displayRaOrg'));
         }
+		
+		$this->loadModel('User');
+		$displayIntro = $this->User->find('first', array('conditions' => array(
+			'User.id' => $userId),
+			'fields' => 'User.id, User.display_intro_video, User.display_intro_video_real',
+			'recursive' => 0
+		));
+		if (isset($displayIntro)) {
+			$this->set(compact('displayIntro'));
+		}
 
         $partnerId = $this->Session->read('Auth.User.Client.partner_id');
         if(isset($partnerId) && ($partnerId != 0)){

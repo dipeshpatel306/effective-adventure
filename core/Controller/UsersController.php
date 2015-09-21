@@ -648,7 +648,9 @@ class UsersController extends AppController {
             }
 
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash('The user has been saved', 'default', array('class' => 'success message'));
+            	if (!$this->request->is('ajax')) {
+                	$this->Session->setFlash('The user has been saved', 'default', array('class' => 'success message'));
+				}
                 
             if($group == 1){
                 if(isset($clientId)){
