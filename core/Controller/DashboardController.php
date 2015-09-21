@@ -151,7 +151,7 @@ class DashboardController extends AppController {
         $this->loadModel('Client');
         $displayRaOrg = $this->Client->find('first', array('conditions' => array(
             'Client.id' => $clientId),
-            'fields' => 'Client.id, Client.display_ra_org',
+            'fields' => 'Client.id, Client.display_ra_org, Client.display_intro_video',
             'recursive' => 0
         ));
         if(isset($displayRaOrg)){

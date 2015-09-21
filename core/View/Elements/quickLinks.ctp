@@ -50,6 +50,10 @@
 		<li><?php echo $this->Html->link($training_name, array('controller' => 'education_center', 'action' => 'training')); ?></li>
 		<li><?php echo $this->Html->link('Security Incidents', array('controller' => 'security_incidents', 'action' => 'index'));?></li>
 	<?php endif; ?>
+	
+	<?php if ($group == 2 && $acct == 'AYCE Training'): ?>
+		<li><a href='#' id='showintro'>Show Introduction Video</a></li>
+	<?php endif; ?>
 
 
 </ul>

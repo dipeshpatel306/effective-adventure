@@ -40,6 +40,17 @@ App::uses('Group', 'Model');
 	<h2><?php echo Configure::read('Theme.dashboard_name'); ?></h2>
 
 	<?php
+		if ($group == Group::MANAGER && $acct == 'AYCE Training' && $displayRaOrg['Client']['display_intro_video']) {
+			$form = $this->Form->create('Client', array('url' => array('controller' => 'clients', 'action' => 'edit', $displayRaOrg['Client']['id'])));
+			$form .= $this->Form->input('Client.display_intro_video',
+										array('label' => 'Do not show again',
+											  'checked' => !$displayRaOrg['Client']['display_intro_video']));
+			$form .= $this->Form->end();
+			echo "<div id='introvideo'>";
+			echo $this->element('video_overlay', compact('form'));
+			echo "</div>";
+		}
+		
 		$ed_center_tile = $this->Html->link(
 			'<div class="dashBox">' .
 			'<div class="dashHead">' .

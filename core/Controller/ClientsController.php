@@ -153,8 +153,10 @@ class ClientsController extends AppController {
         }
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Client->save($this->request->data)) {
-                $this->Session->setFlash('The client has been saved.', 'default', array('class' => 'success message'));
-                $this->redirect(array('action' => 'index'));
+            	if (!$this->request->is('ajax')) {
+            		$this->Session->setFlash('The client has been saved.', 'default', array('class' => 'success message'));
+                	$this->redirect(array('action' => 'index'));
+            	}
             } else {
                 $this->Session->setFlash(__('The client could not be saved. Please, try again.'));
             }

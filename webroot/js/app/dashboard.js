@@ -1,4 +1,4 @@
-require(['jquery', 'jqueryui', 'ckeditor'], function($) {
+require(['jquery', 'app/video', 'jqueryui', 'ckeditor'], function($, videohelper) {
 	$(document).ready(function(){
 		// Mark Risk Assessment Complete. Modal Window
 		$('.markComplete').click(function(){
@@ -18,6 +18,23 @@ require(['jquery', 'jqueryui', 'ckeditor'], function($) {
 			    modal: true,
 			    resizable: false
 			});
+		});
+		
+		$('#introvideo').each(function() {
+			videohelper.showVideo('#introvideo');
+		});
+		
+		// Stop and Close Video Player. Hide pop up region
+		$('.closeVideo').click(videohelper.closeVideo);
+		
+		$('#ClientDisplayIntroVideo').change(function() {
+			var display = this.checked ? '0' : '1';
+			var data = { 'data[Client][display_intro_video]' : display };
+			$.post($('#ClientIndexForm').attr('action'), data);
+		});
+		
+		$('#showintro').click(function() {
+			videohelper.showVideo('#introvideo');
 		});
 	});
 });
