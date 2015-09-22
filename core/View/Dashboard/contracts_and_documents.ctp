@@ -1,285 +1,77 @@
 <?php
+App::uses('Group', 'Model');
 $this->Html->addCrumb('Contracts & Documents');
-
-// Conditionally load buttons based upon user role
-//	$group = $this->Session->read('Auth.User.group_id'); 
-	
-// Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id'); 
-	$acct = $this->Session->read('Auth.User.Client.account_type');
-
-	$approved = '<div class="dashBtn approved">
-						<div class="btnWrapNarrow">
-						<div class="btnText">Click Here</div> 
-						<div class="triangle"></div>
-						</div>
-					</div>';
-	
-	$banned = '<div class="dashBtn denied">
-						<div class="btnWrapWide">
-						<div class="btnText">Subscribers Only!</div> 
-						<div class="triangle"></div>
-						</div>
-					</div>';
-					
-	$noAuth = 	'<div class="dashBtn denied">
-						<div class="btnWrapWide">
-						<div class="btnText">Not Authorized!</div> 
-						<div class="triangle"></div>
-						</div>
-					</div>';	
-	
-	
-/*	if($group == 1){
-		$dashBtn = '<div class="dashBtn approved">
-						<div class="btnWrapNarrow">
-						<div class="btnText">Click Here</div> 
-						<div class="triangle"></div>
-						</div>
-					</div>';
-	} elseif($group == 2){
-		$dashBtn = '<div class="dashBtn denied">
-						<div class="btnWrapWide">
-						<div class="btnText">Subscribers Only!</div> 
-						<div class="triangle"></div>
-						</div>
-					</div>';
-	} elseif($group == 3){
-		$dashBtn = 'User';
-	} else {
-		$dashBtn = 'No Role yet';
-	}*/
-
+$group = $this->Session->read('Auth.User.group_id'); 
+$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="dashboard index">
 	<h2><?php echo __('Contracts & Documents'); ?></h2>
-
 	<?php 
 		$ra_docs_name = Configure::read('Theme.ra_docs_name');
 		// Risk Assessment Documents. If user deny
 		if ($acct == 'Training') {
-		    echo $this->Html->link( 
-                    '<div class="dashBox">' . 
-                    '<div class="dashHead">' .
-                    $this->Html->image('ra_tile.jpg', array(
-                                'class' => 'dashTile', 
-                                'alt' => $ra_docs_name
-                                )) .
-                    '<h3>' . $ra_docs_name . '</h3>' .
-                    '</div>' .
-                    '<div class="dashSum">' . $ra_docs_name .'</div>' . $banned .
-                    '</div>',
-                    array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
-                    array('escape' => false)
-            );
-		} elseif($group == 3){
-			echo $this->Html->link( 
-                    '<div class="dashBox">' . 
-                    '<div class="dashHead">' .
-                    $this->Html->image('ra_tile.jpg', array(
-                                'class' => 'dashTile', 
-                                'alt' => $ra_docs_name
-                                )) .
-                    '<h3>' . $ra_docs_name . '</h3>' .
-                    '</div>' .
-                    '<div class="dashSum">' . $ra_docs_name . '</div>' . $noAuth .
-                    '</div>',
-                    array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
-                    array('escape' => false)
-            );
+		    $ra_ba_btn = 'subscribers';
+		} elseif ($group == Group::USER) {
+			$ra_ba_btn = 'no_auth';
 		} else {
-		echo $this->Html->link( 
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('ra_tile.jpg', array(
-								'class' => 'dashTile', 
-								'alt' => $ra_docs_name
-								)) .
-					'<h3>' . $ra_docs_name . '</h3>' .
-					'</div>' .
-					'<div class="dashSum">' . $ra_docs_name . '</div>' . $approved .
-					'</div>',
-					array('controller' => 'risk_assessment_documents', 'action' => 'index'),
-					array('escape' => false)
-			);			
+			$ra_ba_btn = 'approved';		
 		}
+
+		echo $this->element('tile', array(
+			'img' => array('file' => 'ra_tile.jpg', 'alt' => $ra_docs_name),
+			'heading' => $ra_docs_name,
+			'text' => $ra_docs_name,
+			'button' => $ra_ba_btn,
+			'link' => ($ra_ba_btn == 'aproved' ? array('controller' => 'risk_assessment_documents' , 'action' => 'index') : array('action' => 'contracts_and_documents')) 
+		));
 		
-		// Business Associate Agreements Users are banned
 		$baa_name = Configure::read('Theme.baa_name');
 		$baa_link_name = Configure::read('Theme.baa_link_name');
-		if($group == 3){
-			echo $this->Html->link( 
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('ba_tile.jpg', array(
-								'class' => 'dashTile', 
-								'alt' => $baa_name
-								)) .
-					'<h3>' . $baa_name . '</h3>' .
-					'</div>' .
-					'<div class="dashSum">' . $baa_name . '</div>' . $noAuth .
-					'</div>',
-					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
-					array('escape' => false)
-			);			
-			
-		} else if ($acct == 'Training') {
-		    echo $this->Html->link( 
-                    '<div class="dashBox">' . 
-                    '<div class="dashHead">' .
-                    $this->Html->image('ba_tile.jpg', array(
-                                'class' => 'dashTile', 
-                                'alt' => $baa_name
-                                )) .
-                    '<h3>' . $baa_name . '</h3>' .
-                    '</div>' .
-                    '<div class="dashSum">' . $baa_name . '</div>' . $banned .
-                    '</div>',
-                    array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
-                    array('escape' => false)
-            );
+		echo $this->element('tile', array(
+			'img' => array('file' => 'ba_tile.jpg', 'alt' => $baa_name),
+			'heading' => $baa_name,
+			'text' => $baa_name,
+			'button' => $ra_ba_btn,
+			'link' => ($ra_ba_btn == 'approved' ? array('controller' => $baa_link_name, 'action' => 'index') : array('action' => 'contracts_and_documents'))
+		));
+				
+		// Disaster Recovery Plans. Only Sub Manager can use. Sub User is not authorized. MU is banned
+		if ($acct == 'Meaningful Use' || $acct == 'Training') {
+			$drp_ocnd_btn = 'subscribers';
+		} elseif ($group == Group::USER) {
+			$drp_ocnd_btn = 'no_auth';
 		} else {
-			echo $this->Html->link( 
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('ba_tile.jpg', array(
-								'class' => 'dashTile', 
-								'alt' => $baa_name
-								)) .
-					'<h3>' . $baa_name . '</h3>' .
-					'</div>' .
-					'<div class="dashSum">' . $baa_name . '</div>' . $approved .
-					'</div>',
-					array('controller' => $baa_link_name, 'action' => 'index'),
-					array('escape' => false)
-			);
-			
+			$drp_ocnd_btn = 'approved';
 		}
 		
-		// Disaster Recovery Plans. Only Sub Manager can use. Sub User is not authorized. MU is banned
-		if($acct == 'Meaningful Use' || $acct == 'Training'){ // ban if MU
-			echo $this->Html->link( 
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('dr_tile.bmp', array(
-								'class' => 'dashTile', 
-								'alt' => 'Disaster Recovery Plans'
-								)) .
-					'<h3>Disaster Recovery Plans</h3>' .
-					'</div>' .
-					'<div class="dashSum">Disaster Recovery Plans</div>' . $banned .
-					'</div>',
-					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
-					array('escape' => false)
-			);			
-			
-		} elseif($group == 3 ){ // if sub user
-			echo $this->Html->link( 
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('dr_tile.bmp', array(
-								'class' => 'dashTile', 
-								'alt' => 'Disaster Recovery Plans'
-								)) .
-					'<h3>Disaster Recovery Plans</h3>' .
-					'</div>' .
-					'<div class="dashSum">Disaster Recovery Plans</div>' . $noAuth .
-					'</div>',
-					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
-					array('escape' => false)
-			);			
-		} else {
-			echo $this->Html->link( 
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('dr_tile.bmp', array(
-								'class' => 'dashTile', 
-								'alt' => 'Disaster Recovery Plans'
-								)) .
-					'<h3>Disaster Recovery Plans</h3>' .
-					'</div>' .
-					'<div class="dashSum">Disaster Recovery Plans</div>' . $approved .
-					'</div>',
-					array('controller' => 'disaster_recovery_plans', 'action' => 'index'),
-					array('escape' => false)
-			);
-		}
-			
-		// Other Contracts & Documents . Only SUB Managers can use. Employees is noauth. MU is banned
-			
-		if($acct == 'Meaningful Use' || $acct == 'Training'){
-		echo $this->Html->link( 
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('ocnd_tile.jpg', array(
-								'class' => 'dashTile', 
-								'alt' => 'Other Contracts & Documents'
-								)) .
-					'<h3>Other Contracts & Documents</h3>' .
-					'</div>' .
-					'<div class="dashSum">Other Contracts & Documents</div>' . $banned .
-					'</div>',
-					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
-					array('escape' => false)
-			);			
-			
-		} elseif($group == 3){
-		echo $this->Html->link( 
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('ocnd_tile.jpg', array(
-								'class' => 'dashTile', 
-								'alt' => 'Other Contracts & Documents'
-								)) .
-					'<h3>Other Contracts & Documents</h3>' .
-					'</div>' .
-					'<div class="dashSum">Other Contracts & Documents</div>' . $noAuth .
-					'</div>',
-					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
-					array('escape' => false)
-			);			
-			
-		} else {
-		echo $this->Html->link( 
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('ocnd_tile.jpg', array(
-								'class' => 'dashTile', 
-								'alt' => 'Other Contracts & Documents'
-								)) .
-					'<h3>Other Contracts & Documents</h3>' .
-					'</div>' .
-					'<div class="dashSum">Other Contracts & Documents</div>' . $approved .
-					'</div>',
-					array('controller' => 'other_contracts_and_documents', 'action' => 'index'),
-					array('escape' => false)
-			);			
-		}
+		echo $this->element('tile', array(
+			'img' => array('file' => 'dr_tile.bmp', 'alt' => 'HIPAA Disaster Recovery Plan'),
+			'heading' => 'Disaster Recovery Plans',
+			'text' => 'Disaster Recovery Plans',
+			'button' => $drp_ocnd_btn,
+			'link' => ($drp_ocnd_btn == 'approved' ? array('controller' => 'disaster_recovery_plans', 'action' => 'index') : array('action' => 'contracts_and_documents'))
+		));
+		
+		echo $this->element('tile', array(
+			'img' => array('file' => 'ocnd_tile.jpg', 'alt' => 'HIPAA Other Contracts & Documents'),
+			'heading' => 'Other Contracts & Documents',
+			'text' => 'Other Contracts & Documents',
+			'button' => $drp_ocnd_btn,
+			'link' => ($drp_ocnd_btn == 'approved' ? array('controller' => 'other_contracts_and_documents', 'action' => 'index') : array('action' => 'contracts_and_documents'))
+		));
 
         if (($group == Group::ADMIN) || (($acct == 'Meaningful Use' || $acct == 'Subscription') && $group == Group::MANAGER)) {
-            echo $this->Html->link(
-                '<div class="dashBox">' . 
-                '<div class="dashHead">' .
-                $this->Html->image('templates_tile.png', array(
-                            'class' => 'dashTile', 
-                            'alt' => 'Templates'
-                            )) .
-                '<h3>Templates</h3>' .
-                '</div>' .
-                '<div class="dashSum">Templates</div>' . $approved .
-                '</div>',
-                array('controller' => 'templates', 'action' => 'index'),
-                array('escape' => false)
-            );
+            echo $this->element('tile', array(
+				'img' => array('file' => 'templates_tile.png', 'alt' => 'Templates'),
+				'heading' => 'Templates',
+				'text' => 'Templates',
+				'button' => 'approved',
+				'link' => array('controller' => 'templates', 'action' => 'index')
+			));
         }
-
-
-
 	?>
 
-	
 </div>
 <div class="actions newsFeed">
-
 	<?php echo $this->element('quickLinks'); ?>
 </div>

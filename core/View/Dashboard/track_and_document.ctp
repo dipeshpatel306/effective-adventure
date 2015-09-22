@@ -1,244 +1,72 @@
 <?php
-$this->Html->addCrumb('Track & Document');	
-	
-// Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id'); 
-	$acct = $this->Session->read('Auth.User.Client.account_type');
-
-	$approved = '<div class="dashBtn approved">
-						<div class="btnWrapNarrow">
-						<div class="btnText">Click Here</div> 
-						<div class="triangle"></div>
-						</div>
-					</div>';
-	
-	$banned = '<div class="dashBtn denied">
-						<div class="btnWrapWide">
-						<div class="btnText">Subscribers Only!</div> 
-						<div class="triangle"></div>
-						</div>
-					</div>';
-					
-	$noAuth = 	'<div class="dashBtn denied">
-						<div class="btnWrapWide">
-						<div class="btnText">Not Authorized!</div> 
-						<div class="triangle"></div>
-						</div>
-					</div>';	
-		
-	
-/*	if($group == 1){
-		$dashBtn = '<div class="dashBtn approved">
-						<div class="btnWrapNarrow">
-						<div class="btnText">Click Here</div> 
-						<div class="triangle"></div>
-						</div>
-					</div>';
-	} elseif($group == 2){
-		$dashBtn = '<div class="dashBtn denied">
-						<div class="btnWrapWide">
-						<div class="btnText">Subscribers Only!</div> 
-						<div class="triangle"></div>
-						</div>
-					</div>';
-	} elseif($group == 3){
-		$dashBtn = 'User';
-	} else {
-		$dashBtn = 'No Role yet';
-	}*/
-
+App::uses('Group', 'Model');
+$this->Html->addCrumb('Track & Document');
+$group = $this->Session->read('Auth.User.group_id'); 
+$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="dashboard index">
 	<h2><?php echo __('Track & Document'); ?></h2>
-
 	<?php 
-	
+		$nolink = array('controller' => 'track_and_document');
 		// Security Incidents
 		if ($acct == 'Training') {
-		    echo $this->Html->link( 
-                    '<div class="dashBox">' . 
-                    '<div class="dashHead">' .
-                    $this->Html->image('si_tile.png', array(
-                                'class' => 'dashTile', 
-                                'alt' => 'Security Incidents'
-                                )) .
-                    '<h3>Security Incidents</h3>' .
-                    '</div>' .
-                    '<div class="dashSum">Security Incidents</div>' . $banned .
-                    '</div>',
-                    array('controller' => 'dashboard', 'action' => 'track_and_document'),
-                    array('escape' => false)
-            );
+			$si_btn = 'subscribers';
+			$si_link = $nolink;
 		} else {
-		  echo $this->Html->link( 
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('si_tile.png', array(
-								'class' => 'dashTile', 
-								'alt' => 'Security Incidents'
-								)) .
-					'<h3>Security Incidents</h3>' .
-					'</div>' .
-					'<div class="dashSum">Security Incidents</div>' . $approved .
-					'</div>',
-					array('controller' => 'security_incidents', 'action' => 'index'),
-					array('escape' => false)
-			);
+			$si_btn = 'approved';
+			$si_link = array('controller' => 'security_incidents', 'action' => 'index');
+		}
+		
+		echo $this->element('tile', array(
+			'img' => array('file' => 'si_tile.png', 'alt' => 'Security Incidents'),
+			'heading' => 'Security Incidents',
+			'text' => 'Security Incidents',
+			'button' => $si_btn,
+			'link' => $si_link
+		));
+		
+		if ($acct == 'Meaningful Use' || $acct == 'Training') {
+			$sra_ephi_btn = 'subscribers';
+			$sra_link = $nolink;
+			$ephi_rem_link = $nolink;
+			$ephi_rec_link = $nolink;
+		} elseif ($group == Group::USER) {
+			$sra_ephi_btn = 'no_auth';
+			$sra_link = $nolink;
+			$ephi_rem_link = $nolink;
+			$ephi_rec_link = $nolink;
+		} else {
+			$sra_ephi_btn = 'approved';
+			$sra_link = array('controller' => 'server_room_access', 'action' => 'index');
+			$ephi_rem_link = array('controller' => 'ehpi_removed', 'action' => 'index');
+			$ephi_rec_link = array('controller' => 'ephi_recieved', 'action' => 'index');	
 		}
         
-		// Server Room Access. Only Managers see everything. User is noauth. MU is banned
-		
-		if($acct == 'Meaningful Use' || $acct == 'Training'){
-			echo $this->Html->link( 
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('sra_tile.jpg', array(
-								'class' => 'dashTile', 
-								'alt' => 'Server Room Access'
-								)) .
-					'<h3>Server Room Access</h3>' .
-					'</div>' .
-					'<div class="dashSum">Server Room Access</div>'  . $banned .
-					'</div>',
-					array('controller' => 'dashboard', 'action' => 'track_and_document'),
-					array('escape' => false)
-			);
-		} elseif($group == 3){
-			echo $this->Html->link( 
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('sra_tile.jpg', array(
-								'class' => 'dashTile', 
-								'alt' => 'Server Room Access'
-								)) .
-					'<h3>Server Room Access</h3>' .
-					'</div>' .
-					'<div class="dashSum">Server Room Access</div>'  . $noAuth .
-					'</div>',
-					array('controller' => 'dashboard', 'action' => 'track_and_document'),
-					array('escape' => false)
-			);
-		} else {
-			echo $this->Html->link( 
-					'<div class="dashBox">' . 
-					'<div class="dashHead">' .
-					$this->Html->image('sra_tile.jpg', array(
-								'class' => 'dashTile', 
-								'alt' => 'Server Room Access'
-								)) .
-					'<h3>Server Room Access</h3>' .
-					'</div>' .
-					'<div class="dashSum">Server Room Access</div>'  . $approved .
-					'</div>',
-					array('controller' => 'server_room_access', 'action' => 'index'),
-					array('escape' => false)
-			);
-		}
+		echo $this->element('tile', array(
+			'img' => array('file' => 'sra_tile.jpg', 'alt' => 'Server Room Access'),
+			'heading' => 'Server Room Access',
+			'text' => 'Server Room Access',
+			'button' => $sra_ephi_btn,
+			'link' => $sra_link
+		));
 		
 		if (Configure::read('Theme.display_ephi')) {
-			// ePHI Removed. SU Manager can use. SU User is no auth. MU is banned
-			if($acct == 'Meaningful Use' || $acct == 'Training'){
-			echo $this->Html->link( 
-						'<div class="dashBox">' . 
-						'<div class="dashHead">' .
-						$this->Html->image('ephirem_tile.jpg', array(
-									'class' => 'dashTile', 
-									'alt' => 'ePHI Removed'
-									)) .
-						'<h3>ePHI Removed</h3>' .
-						'</div>' .
-						'<div class="dashSum">ePHI Removed</div>' . $banned .
-						'</div>',
-						array('controller' => 'dashboard', 'action' => 'track_and_document'),
-						array('escape' => false)
-				);
-				
-			} elseif($group == 3){
-				echo $this->Html->link( 
-						'<div class="dashBox">' . 
-						'<div class="dashHead">' .
-						$this->Html->image('ephirem_tile.jpg', array(
-									'class' => 'dashTile', 
-									'alt' => 'ePHI Removed'
-									)) .
-						'<h3>ePHI Removed</h3>' .
-						'</div>' .
-						'<div class="dashSum">ePHI Removed</div>' . $noAuth .
-						'</div>',
-						array('controller' => 'dashboard', 'action' => 'track_and_document'),
-						array('escape' => false)
-				);			
-			} else{
-				echo $this->Html->link( 
-						'<div class="dashBox">' . 
-						'<div class="dashHead">' .
-						$this->Html->image('ephirem_tile.jpg', array(
-									'class' => 'dashTile', 
-									'alt' => 'ePHI Removed'
-									)) .
-						'<h3>ePHI Removed</h3>' .
-						'</div>' .
-						'<div class="dashSum">ePHI Removed</div>' . $approved .
-						'</div>',
-						array('controller' => 'ephi_removed', 'action' => 'index'),
-						array('escape' => false)
-				);
-			}
-	
-			// ePHI Recieved. SU Manager can use. SU User is no auth. MU is banned
-			if($acct == 'Meaningful Use' || $acct == 'Training'){
-			echo $this->Html->link( 
-						'<div class="dashBox">' . 
-						'<div class="dashHead">' .
-						$this->Html->image('ephirec_tile.png', array(
-									'class' => 'dashTile', 
-									'alt' => 'ePHI Recieved'
-									)) .
-						'<h3>ePHI Received</h3>' .
-						'</div>' .
-						'<div class="dashSum">ePHI Received</div>' . $banned .
-						'</div>',
-						array('controller' => 'dashboard', 'action' => 'track_and_document'),
-						array('escape' => false)
-				);			
-				
-			} elseif($group == 3) {
-				echo $this->Html->link( 
-						'<div class="dashBox">' . 
-						'<div class="dashHead">' .
-						$this->Html->image('ephirec_tile.png', array(
-									'class' => 'dashTile', 
-									'alt' => 'ePHI Recieved'
-									)) .
-						'<h3>ePHI Received</h3>' .
-						'</div>' .
-						'<div class="dashSum">ePHI Received</div>' . $noAuth .
-						'</div>',
-						array('controller' => 'dashboard', 'action' => 'track_and_document'),
-						array('escape' => false)
-				);
-				
-			} else {
-						echo $this->Html->link( 
-						'<div class="dashBox">' . 
-						'<div class="dashHead">' .
-						$this->Html->image('ephirec_tile.png', array(
-									'class' => 'dashTile', 
-									'alt' => 'ePHI Recieved'
-									)) .
-						'<h3>ePHI Received</h3>' .
-						'</div>' .
-						'<div class="dashSum">ePHI Received</div>' . $approved .
-						'</div>',
-						array('controller' => 'ephi_received', 'action' => 'index'),
-						array('escape' => false)
-				);
-			}
-		}
-		
+			echo $this->element('tile', array(
+				'img' => array('file' => 'ephirem_tile.jpg', 'alt' => 'ePHI Removed'),
+				'heading' => 'ePHI Removed',
+				'text' => 'ePHI Removed',
+				'button' => $sra_ephi_btn,
+				'link' => $ephi_rem_link
+			));
+			echo $this->element('tile', array(
+				'img' => array('file' => 'ephirec_tile.png', 'alt' => 'ePHI Received'),
+				'heading' => 'ePHI Received',
+				'text' => 'ePHI Received',
+				'button' => $sra_ephi_btn,
+				'link' => $ephi_rec_link
+			));
+		}		
 	?>
-
-	
 </div>
 <div class="actions newsFeed">
 	<?php echo $this->element('quickLinks'); ?>

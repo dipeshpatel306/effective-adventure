@@ -1,44 +1,11 @@
 <?php
 App::uses('Group', 'Model');
-// Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id');
-	$acct = $this->Session->read('Auth.User.Client.account_type');
-
-	$approved = '<div class="dashBtn approved">
-						<div class="btnWrapNarrow">
-						<div class="btnText">Click Here</div>
-						<div class="triangle"></div>
-						</div>
-					</div>';
-
-	$banned = '<div class="dashBtn denied">
-						<div class="btnWrapWide">
-						<div class="btnText">Subscribers Only!</div>
-						<div class="triangle"></div>
-						</div>
-					</div>';
-
-	$noAuth = '<div class="dashBtn denied">
-						<div class="btnWrapWide">
-						<div class="btnText">Not Authorized!</div>
-						<div class="triangle"></div>
-						</div>
-					</div>';
-	
-	$confirmBtn = '<div class="dashBtn approved">
-						<div class="btnWrapComplete">
-						<div class="btnText">Mark Complete</div>
-						<div class="triangle"></div>
-						</div>
-					</div>';
-										
-					
-	
+$group = $this->Session->read('Auth.User.group_id');
+$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 
 <div class="dashboard index">
 	<h2><?php echo Configure::read('Theme.dashboard_name'); ?></h2>
-
 	<?php
 		if ($group == Group::MANAGER && $acct == 'AYCE Training') {
 			$show = $displayIntro['User']['display_intro_video_real'] ? '1' : '0';
@@ -52,82 +19,47 @@ App::uses('Group', 'Model');
 			echo "</div>";
 		}
 		
-		$ed_center_tile = $this->Html->link(
-			'<div class="dashBox">' .
-			'<div class="dashHead">' .
-			$this->Html->image('edcenter.png', array(
-						'class' => 'dashTile',
-						'alt' => 'Education Center'
-						)) .
-			'<h3>Education Center</h3>' .
-			'</div>' .
-			'<div class="dashSum">Videos and Training</div>' . $approved .
-			'</div>',
-			array('controller' => 'education_center', 'action' => 'index'),
-			array('escape' => false)
-		);
+		$ed_center_tile = $this->element('tile', array(
+			'img' => array('file' => 'edcenter.png', 'alt' => 'Education Center'),
+			'heading' => 'Education Center',
+			'text' => 'Videos and Training',
+			'link' => array('controller' => 'education_center', 'action' => 'index'),
+		));
 		
 		if ($group == Group::USER && $acct == 'AYCE Training') {
 			echo $ed_center_tile;
 		}
 	
 		// policies & procedures. everyone sees this
-		echo $this->Html->link(
-					'<div class="dashBox">' .
-					'<div class="dashHead">' .
-					$this->Html->image('pnp_tile.jpg', array(
-								'class' => 'dashTile',
-								'alt' => 'Policies & Procedures'
-								)) .
-					'<h3>Policies & Procedures</h3>' .
-					'</div>' .
-					'<div class="dashSum">Policies and Procedures</div>' . $approved .
-					'</div>',
-					array('controller' => 'dashboard', 'action' => 'policies_and_procedures'),
-					array('escape' => false)
-			);
+		echo $this->element('tile', array(
+			'img' => array('file' => 'pnp_tile.jpg', 'alt' => 'Policies & Procedures'),
+			'heading' => 'Policies & Procedures',
+			'text' => 'Policies and Procedures',
+			'link' => array('action' => 'policies_and_procedures'),
+		));
 
-
-		// 	// contracts and documents. managers see this. Users do not
+		// contracts and documents. managers see this. Users do not
 		$ra_name = Configure::read('Theme.ra_name');
 		$baa_entity_name = Configure::read('Theme.baa_entity_name');
-		if($group == Group::USER && $acct != 'Training'){
-			if ($acct != 'AYCE Training') {
-				echo $this->Html->link(
-					'<div class="dashBox">' .
-					'<div class="dashHead">' .
-					$this->Html->image('cnd_tile.jpg', array(
-								'class' => 'dashTile',
-								'alt' => 'Contracts and Documents'
-								)) .
-					'<h3>Contracts & Documents</h3>' .
-					'</div>' .
-					'<div class="dashSum">' . $ra_name .', ' . $baa_entity_name .', Disaster Recovery</div>' . $noAuth.
-					'</div>',
-					array('controller' => 'dashboard', 'action' => 'index'),
-					array('escape' => false)
-				);
-			}
-		} else{
-			echo $this->Html->link(
-					'<div class="dashBox">' .
-					'<div class="dashHead">' .
-					$this->Html->image('cnd_tile.jpg', array(
-								'class' => 'dashTile',
-								'alt' => 'Contracts and Documents'
-								)) .
-					'<h3>Contracts & Documents</h3>' .
-					'</div>' .
-					'<div class="dashSum">' . $ra_name .', ' . $baa_entity_name .', Disaster Recovery</div>' . $approved.
-					'</div>',
-					array('controller' => 'dashboard', 'action' => 'contracts_and_documents'),
-					array('escape' => false)
-			);
-
+		if ($group == Group::USER && $acct != 'Training') {
+			$cnd_btn = 'no_auth';
+		} elseif ($acct == 'AYCE Training') {
+			$cnd_btn = null;
+		} else {
+			$cnd_btn = 'approved';
 		}
-
-
-		// Track and Document  // Everyone sees
+		
+		if (isset($cnd_btn)) {
+			echo $this->element('tile', array(
+				'img' => array('file' => 'cnd_tile.jpg', 'alt' => 'Contracts and Documents'),
+				'heading' => 'Contracts & Documents',
+				'text' => $ra_name . ', ' . $baa_entity_name . ', Disaster Recovery',
+				'link' => array('action' => ($cnd_btn === 'approved' ? 'contracts_and_documents' : 'index')),
+				'button' => $cnd_btn
+			));
+		}
+		
+		// Track and Document
 		if (Configure::read('Theme.display_ephi')) {
 			$td_title = 'Security Incidents and ePHI Received and Removed';
 		} else {
@@ -135,100 +67,50 @@ App::uses('Group', 'Model');
 		}
 		
 		if ($acct != 'AYCE Training') {
-			echo $this->Html->link(
-				'<div class="dashBox">' .
-				'<div class="dashHead">' .
-				$this->Html->image('tnd_tile.jpg', array(
-									'class' => 'dashTile',
-									'alt' => 'Track and Document'
-									)) .
-				'<h3>Track and Document</h3>' .
-				'</div>' .
-				'<div class="dashSum">' . $td_title . '</div>' . $approved .
-				'</div>',
-				array('controller' => 'dashboard', 'action' => 'track_and_document'),
-				array('escape' => false)
-			);	
+			echo $this->element('tile', array(
+				'img' => array('file' => 'tnd_tile.jpg', 'alt' => 'Track and Document'),
+				'heading' => 'Track and Document',
+				'text' => $td_title,
+				'link' => array('action' => 'track_and_document'),
+				'button' => 'approved'
+			));
 		}
 		
-		if (!($group == Group::USER && $acct = 'AYCE Training')) {
+		if (!($group == Group::USER && $acct == 'AYCE Training')) {
 			echo $ed_center_tile;
 		}
 
 		if (Configure::read('Theme.display_social_center')) {
 			// Social Center Every one sees
-			echo $this->Html->link(
-					'<div class="dashBox">' .
-					'<div class="dashHead">' .
-					$this->Html->image('social.png', array(
-								'class' => 'dashTile',
-								'alt' => 'Social Center'
-								)) .
-					'<h3>Social Center</h3>' .
-					'</div>' .
-					'<div class="dashSum">Facebook and Twitter</div>' . $approved .
-					'</div>',
-					array('controller' => 'dashboard', 'action' => 'social_center'),
-					array('escape' => false)
-			);
+			echo $this->element('tile', array(
+				'img' => array('file' => 'social.png', 'alt' => 'Social Center'),
+				'heading' => 'Social Center',
+				'text' => 'Facebook and Twitter',
+				'link' => array('action' => 'social_center'),
+			));
 		}
 
 		if (Configure::read('Theme.display_information_center')) {
 			// Information Center. Everyone sees
-			echo $this->Html->link(
-						'<div class="dashBox">' .
-						'<div class="dashHead">' .
-						$this->Html->image('infocenter.png', array(
-									'class' => 'dashTile',
-									'alt' => 'Information Center'
-									)) .
-						'<h3>Information Center</h3>' .
-						'</div>' .
-						'<div class="dashSum">Articles and Blog</div>' . $approved .
-						'</div>',
-						array('controller' => 'dashboard', 'action' => 'information_center'),
-						array('escape' => false)
-				);
+			echo $this->element('tile', array(
+				'img' => array('file' => 'infocenter.png', 'alt' => 'HIPAA Information Center'),
+				'heading' => 'Information Center',
+				'text' => 'Articles and Blog',
+				'link' => array('action' => 'information_center')
+			));
 		}
-
-		/*echo $this->Html->link( // SIRP
-					'<div class="dashBox">' .
-					'<div class="dashHead">' .
-					$this->Html->image('sirp.png', array(
-								'class' => 'dashTile',
-								'alt' => 'SIRP'
-								)) .
-					'<h3>SIRP</h3>' .
-					'</div>' .
-					'<div class="dashSum">Security Incident Response Plan</div>' . $dashBtn .
-					'</div>',
-					array('controller' => 'dashboard', 'action' => 'sirp'),
-					array('escape' => false)
-			);*/
 
 		$ra_name = Configure::read('Theme.ra_name');
-		if($group != Group::USER){
-			//pr($displayRaOrg);
-		if(!empty($displayRaOrg) && $displayRaOrg['Client']['display_ra_org'] &&
-			!($group == Group::USER && $acct == 'AYCE Training')){
-		    echo $this->Html->link(
-            '<div class="dashBox">' .
-            '<div class="dashHead">' .
-            $this->Html->image('raq_tile.jpg', array(
-                        'class' => 'dashTile',
-                        'alt' => 'Perform Your ' . $ra_name
-                        )) .
-            '<h3>' . $ra_name . '</h3>' .
-            '</div>' .
-            '<div class="dashSum">Perform Your ' . $ra_name . '</div>' . $approved .
-            '</div>',
-            array('controller' => 'dashboard', 'action' => 'initial'),
-            array('escape' => false)
-        );
-
+		if ($group != Group::USER && $displayRaOrg['Client']['display_ra_org']) {
+			echo $this->element('tile', array(
+				'img' => array('file' => 'raq_tile.jpg', 'alt' => 'Perform Your ' . $ra_name),
+				'heading' => $ra_name,
+				'text' => 'Perform Your ' . $ra_name,
+				'link' => array('action' => 'initial')
+			));
 		}
-		}
-		if(isset($partner)){
+		
+		if (isset($partner)) {
 			$partnerImg = '/files/partner/logo/' . $partner['Partner']['logo_dir'] . '/' . $partner['Partner']['logo'];	
 			if(isset($partner['Partner']['link']) && $partner['Partner']['link'] != 'http://'){
 				$partnerLink = $partner['Partner']['link'];
@@ -236,23 +118,13 @@ App::uses('Group', 'Model');
 				$partnerLink = '/#';
 			}
 			
-			echo $this->Html->link( // Partner Link
-				'<div class="dashBox">' .
-				'<div class="dashHeadLogo">' .
-				$this->Html->image($partnerImg, array(
-							//'class' => 'dashTileLogo',
-							'alt' => 'Partner Link',
-							//'url' => array($partnerImg),
-							'class' => 'partnerImg'
-							)) .
-				//'<h3>' . $partner['Partner']['name'] . '</h3>' .
-				'</div>' .
-				'<div class="dashSum">' . $partner['Partner']['name'] .'</div>' . $approved .
-				'</div>', $partnerLink,
-				array('escape' => false, 'target' => '_blank')
-			);
+			echo $this->element('tile', array(
+				'img' => array('file' => $partnerImg, 'alt' => 'Partner Link', 'class' => 'partnerImg'),
+				'text' => $partner['Partner']['name'],
+				'link' => $partnerLink,
+				'target' => '_blank'
+			));
 		}
-
 	?>
 		<div class='completeBox' title='Mark <?php echo $ra_name; ?> Complete?'>
 			<p>Before you mark the <?php echo $ra_name; ?> Complete, please make sure you have completed the following:</p>

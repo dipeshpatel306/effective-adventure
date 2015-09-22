@@ -1,123 +1,43 @@
 <?php
 $this->Html->addCrumb('Policies & Procedures');
-
-	$pnp_name = Configure::read('Theme.pnp_name');
-
-// Conditionally load buttons based upon user role
-	$group = $this->Session->read('Auth.User.group_id');
-	$acct = $this->Session->read('Auth.User.Client.account_type');
-
-	$approved = '<div class="dashBtn approved">
-						<div class="btnWrapNarrow">
-						<div class="btnText">Click Here</div>
-						<div class="triangle"></div>
-						</div>
-					</div>';
-
-	$banned = '<div class="dashBtn denied">
-						<div class="btnWrapWide">
-						<div class="btnText">Subscribers Only!</div>
-						<div class="triangle"></div>
-						</div>
-					</div>';
-
-	$noAuth = '<div class="dashBtn denied">
-						<div class="btnWrapWide">
-						<div class="btnText">Not Authorized!</div>
-						<div class="triangle"></div>
-						</div>
-					</div>';
-
-	/*if($acct == 'Meaningful Use'){
-		$dashBtn = '<div class="dashBtn denied">
-						<div class="btnWrapWide">
-						<div class="btnText">Subscribers Only!</div>
-						<div class="triangle"></div>
-						</div>
-					</div>';
-	} else {
-		$dashBtn = '<div class="dashBtn approved">
-						<div class="btnWrapNarrow">
-						<div class="btnText">Click Here</div>
-						<div class="triangle"></div>
-						</div>
-					</div>';
-	}*/
+$group = $this->Session->read('Auth.User.group_id');
+$acct = $this->Session->read('Auth.User.Client.account_type');
+$pnp_name = Configure::read('Theme.pnp_name');
 ?>
 
 <div class="dashboard index">
 	<h2><?php echo __($pnp_name); ?></h2>
-
 	<?php
 		// policies & procedures . If Manager allow, If employee read only. MU hidden
-		if($acct == 'Meaningful Use' || $acct == 'Training' || $acct == 'AYCE Training'){ // Ban Meaningful USe
-				echo $this->Html->link(
-					'<div class="dashBox">' .
-					'<div class="dashHead">' .
-					$this->Html->image('pnp_tile.jpg', array(
-								'class' => 'dashTile',
-								'alt' => $pnp_name
-								)) .
-					'<h3>' . $pnp_name .'</h3>' .
-					'</div>' .
-					'<div class="dashSum">' . $pnp_name . '</div>'  . $banned .
-					'</div>',
-					array('controller' => 'dashboard', 'action' => 'policies_and_procedures'),
-					array('escape' => false)
-			);
+		if ($acct == 'Meaningful Use' || $acct == 'Training' || $acct == 'AYCE Training') { // Ban Meaningful USe
+			$pnp_btn = 'subscribers';
 		} else {
-				 // allow subscribers. Users are read only(see controller)
-			echo $this->Html->link(
-					'<div class="dashBox">' .
-					'<div class="dashHead">' .
-					$this->Html->image('pnp_tile.jpg', array(
-								'class' => 'dashTile',
-								'alt' => $pnp_name
-								)) .
-					'<h3>' . $pnp_name . '</h3>' .
-					'</div>' .
-					'<div class="dashSum">' . $pnp_name .'</div>'  . $approved .
-					'</div>',
-					array('controller' => 'policies_and_procedures', 'action' => 'index'),
-					array('escape' => false)
-				);
-
+			$pnp_btn = 'approved';
 		}
+		
+		echo $this->element('tile', array(
+			'img' => array('file' => 'pnp_tile.jpg', 'alt' => $pnp_name),
+			'heading' => $pnp_name,
+			'text' => $pnp_name,
+			'button' => $pnp_btn,
+			'link' => ($pnp_btn == 'approved' ? array('controller' => 'policies_and_procedures', 'action' => 'index') : array('action' => 'policies_and_procedures'))
+		));
+
 		// Other policies & procedures. Subscribers and MU are allowed. Users are read only
 		if ($acct == 'Training' || $acct == 'AYCE Training') {
-		    echo $this->Html->link(
-                    '<div class="dashBox">' .
-                    '<div class="dashHead">' .
-                    $this->Html->image('opnp_tile.jpg', array(
-                                'class' => 'dashTile',
-                                'alt' => 'Other Policies & Procedures'
-                                )) .
-                    '<h3>Other Policies & Procedures</h3>' .
-                    '</div>' .
-                    '<div class="dashSum">Other Policies & Procedures</div>' . $banned .
-                    '</div>',
-                    array('controller' => 'dashboard', 'action' => 'policies_and_procedures'),
-                    array('escape' => false)
-            );
-        } else {
-            echo $this->Html->link(
-                    '<div class="dashBox">' .
-                    '<div class="dashHead">' .
-                    $this->Html->image('opnp_tile.jpg', array(
-                                'class' => 'dashTile',
-                                'alt' => 'Other Policies & Procedures'
-                                )) .
-                    '<h3>Other Policies & Procedures</h3>' .
-                    '</div>' .
-                    '<div class="dashSum">Other Policies & Procedures</div>' . $approved .
-                    '</div>',
-                    array('controller' => 'other_policies_and_procedures', 'action' => 'index'),
-                    array('escape' => false)
-            );
-        }
+			$opnp_btn = 'subscribers';
+		} else {
+			$opnp_btn = 'approved';	
+		}
 
+		echo $this->element('tile', array(
+			'img' => array('file' => 'opnp_tile.jpg', 'alt' => 'Other Policies & Procedures'),
+			'heading' => 'Other Policies & Procedures',
+			'text' => 'Other Policies & Procedures',
+			'button' => $opnp_btn,
+			'link' => ($opnp_btn == 'approved' ? array('controller' => 'other_policies_and_procedures', 'action' => 'index') : array('controller' => 'policies_and_procedures'))
+		));
 	?>
-
 
 </div>
 <div class="actions newsFeed">
