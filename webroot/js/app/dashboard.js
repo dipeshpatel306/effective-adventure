@@ -26,6 +26,10 @@ require(['jquery', 'app/video', 'jqueryui', 'ckeditor'], function($, videohelper
 			}
 		});
 		
+		$('.videoOnClick').click(function() {
+			videohelper.showVideo($(this).attr('id'));
+		});
+		
 		// Stop and Close Video Player. Hide pop up region
 		$('.closeVideo').click(videohelper.closeVideo);
 		

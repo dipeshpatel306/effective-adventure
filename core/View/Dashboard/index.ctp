@@ -41,15 +41,19 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
 		// contracts and documents. managers see this. Users do not
 		$ra_name = Configure::read('Theme.ra_name');
 		$baa_entity_name = Configure::read('Theme.baa_entity_name');
-		if ($group == Group::USER && $acct != 'Training') {
-			$cnd_btn = 'no_auth';
-		} elseif ($acct == 'AYCE Training') {
-			$cnd_btn = null;
+		if ($group == Group::USER) {
+			if ($acct == 'Training') {
+				$cnd_btn = 'approved';
+			} elseif ($acct == 'AYCE Training') {
+				$cnd_btn = null;
+			} else {
+				$cnd_btn = 'no_auth';
+			}
 		} else {
 			$cnd_btn = 'approved';
 		}
-		
-		if (isset($cnd_btn)) {
+
+		if (!is_null($cnd_btn)) {
 			echo $this->element('tile', array(
 				'img' => array('file' => 'cnd_tile.jpg', 'alt' => 'Contracts and Documents'),
 				'heading' => 'Contracts & Documents',
@@ -66,7 +70,7 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
 			$td_title = 'Security Incidents and Server Room Access';
 		}
 		
-		if ($acct != 'AYCE Training') {
+		if (!($group == Group::USER && $acct == 'AYCE Training')) {
 			echo $this->element('tile', array(
 				'img' => array('file' => 'tnd_tile.jpg', 'alt' => 'Track and Document'),
 				'heading' => 'Track and Document',

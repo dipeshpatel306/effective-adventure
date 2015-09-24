@@ -6,7 +6,17 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="dashboard index">
 	<h2><?php echo __('Contracts & Documents'); ?></h2>
-	<?php 
+	<?php
+		if ($acct == 'AYCE Training') {
+			echo $this->element('video_overlay');
+			echo $this->element('tile', array(
+				'img' => array('file' => 'opnp_tile.jpg', 'alt' => 'Learn More About Documents'),
+				'heading' => 'Documents Overview Video',
+				'text' => 'Learn More About Documents',
+				'link' => array('video' => 'documentsOverview')
+			));
+		}
+		
 		$ra_docs_name = Configure::read('Theme.ra_docs_name');
 		// Risk Assessment Documents. If user deny
 		if ($acct == 'Training') {

@@ -29,6 +29,16 @@ if (isset($img) && !isset($img['class'])) {
 	$img['class'] = 'dashTile';
 }
 
+if (is_array($link) && isset($link['video'])) {
+	$id = $link['video'];
+	$link = '#';
+	if (isset($class)) {
+		$class .= ' videoOnClick';	
+	} else {
+		$class = 'videoOnClick';
+	}
+}
+
 echo $this->Html->link(
 		'<div class="dashBox' . (isset($class) ? ' ' . $class : '') . '"' . (isset($id) ? ' id="' . $id . '"' : '') . '>' .
 		'<div class="dashHead">' .

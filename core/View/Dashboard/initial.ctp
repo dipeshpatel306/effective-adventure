@@ -5,22 +5,21 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
 
 $ra_name = Configure::read('Theme.ra_name');
 
-if ($acct == 'Initial' || $acct == 'Subscription' || $acct == 'Admin') {
-	$dashBtn = 'approved';
-} else {
-	$dashBtn = 'subscribers';
-}                   				
+$disabled = !in_array($acct, array('Initial', 'Subscription', 'Admin'));
+$dashBtn = $disabled ? 'subscribers' : 'approved';
+$nolink = ($acct == 'AYCE Training') ? array('video' => 'sraOverview') : '';
 ?>
 
 <div class="dashboard index initial">
 	<h2><?php echo Configure::read('Theme.dashboard_name'); ?></h2>
 	<?php
+		echo $this->element('video_overlay');
 		echo $this->element('initMsg');
 		echo $this->element('tile', array(
 			'class' => 'getStartedDashBox',
 			'heading' => "<center>Let's Get Started</center>",
 			'text' => 'Risk Assessment is a 4 Step Process',
-			'link' => array('action' => 'lets_get_started'),
+			'link' => $disabled ? $nolink : array('action' => 'lets_get_started'),
 			'button' => $dashBtn
 		));
 	?>
@@ -33,14 +32,14 @@ if ($acct == 'Initial' || $acct == 'Subscription' || $acct == 'Admin') {
 				'heading' => 'Organization Profile',
 				'text' => 'Organization Profiles',
 				'button' => $dashBtn,
-				'link' => array('controller' => 'organization_profiles', 'action' => 'add')
+				'link' => $disabled ? $nolink : array('controller' => 'organization_profiles', 'action' => 'add')
 			));
 			echo $this->element('tile', array(
 				'img' => array('file' => 'raq_tile.jpg', 'alt' => $ra_name . ' Questionnaire'),
 				'heading' => $ra_name . ' Questionnaire',
 				'text' => $ra_name . ' Questionnaire',
 				'button' => $dashBtn,
-				'link' => array('controller' => 'risk_assessments', 'action' => 'take_risk_assessment')
+				'link' => $disabled ? $nolink : array('controller' => 'risk_assessments', 'action' => 'take_risk_assessment')
 			));
 		}
 		echo $this->element('tile', array(
@@ -48,7 +47,7 @@ if ($acct == 'Initial' || $acct == 'Subscription' || $acct == 'Admin') {
 			'heading' => 'Upload Existing Policies',
 			'text' => 'Upload Existing Policies',
 			'button' => $dashBtn,
-			'link' => array('controller' => 'other_policies_and_procedures', 'action' => 'index')
+			'link' => $disabled ? $nolink : array('controller' => 'other_policies_and_procedures', 'action' => 'index')
 		));
 		
 		echo $this->element('tile', array(
@@ -56,7 +55,7 @@ if ($acct == 'Initial' || $acct == 'Subscription' || $acct == 'Admin') {
 			'heading' => 'Mark ' . $ra_name . ' Complete',
 			'text' => 'Mark ' . $ra_name . ' Complete',
 			'button' => $dashBtn,
-			'class' => 'markComplete',
+			'class' => $disabled ? '' : 'markComplete',
 			'link' => '#'
 		));
 	?>

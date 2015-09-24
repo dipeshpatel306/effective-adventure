@@ -6,7 +6,17 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 <div class="dashboard index">
 	<h2><?php echo __('Track & Document'); ?></h2>
-	<?php 
+	<?php
+		if ($acct == 'AYCE Training') {
+			echo $this->element('video_overlay');
+			echo $this->element('tile', array(
+				'img' => array('file' => 'opnp_tile.jpg', 'alt' => 'Learn More Tracking'),
+				'heading' => 'Tracking Overview Video',
+				'text' => 'Learn More About Tracking',
+				'link' => array('video' => 'trackingOverview')
+			));
+		}
+		
 		$nolink = array('controller' => 'track_and_document');
 		// Security Incidents
 		if ($acct == 'Training') {
