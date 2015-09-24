@@ -525,7 +525,6 @@ class UsersController extends AppController {
             )); // check if user code exists
             
             if (isset($partner_admin) && !empty($partner_admin)) {
-            	debug($partner_admin);
             	$this->request->data['User']['group_id'] = Group::PARTNER_ADMIN;
             	$this->request->data['User']['partner_id'] = $partner_admin['Partner']['id'];
 				$this->request->data['User']['client_id'] = 1;
