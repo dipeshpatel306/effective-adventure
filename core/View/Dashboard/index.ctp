@@ -114,6 +114,15 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
 			));
 		}
 		
+		if ($group == Group::MANAGER && $acct == 'AYCE Training') {
+			echo $this->element('tile', array(
+				'img' => array('file' => 'raq_tile.jpg', 'alt' => 'Breach Response Services'),
+				'heading' => 'Cyber Protection & Breach Response',
+				'text' => 'Breach Response Services',
+				'link' => array('video' => 'breachResponseOverview')
+			));
+		}
+		
 		if (isset($partner)) {
 			$partnerImg = '/files/partner/logo/' . $partner['Partner']['logo_dir'] . '/' . $partner['Partner']['logo'];	
 			if(isset($partner['Partner']['link']) && $partner['Partner']['link'] != 'http://'){
