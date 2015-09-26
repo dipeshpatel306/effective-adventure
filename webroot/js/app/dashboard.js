@@ -23,6 +23,7 @@ require(['jquery', 'app/video', 'jqueryui', 'ckeditor'], function($, videohelper
 		$('#introvideo').each(function() {
 			if ($(this).attr('show') == 1) {
 				videohelper.showVideo('#introvideo');
+				$('.videoForm').show();
 			}
 		});
 		
@@ -31,7 +32,10 @@ require(['jquery', 'app/video', 'jqueryui', 'ckeditor'], function($, videohelper
 		});
 		
 		// Stop and Close Video Player. Hide pop up region
-		$('.closeVideo').click(videohelper.closeVideo);
+		$('.closeVideo').click(function() {
+			videohelper.closeVideo();
+			$('.videoForm').hide();
+		});
 		
 		$('#UserDisplayIntroVideo').change(function() {
 			var display = this.checked ? '0' : '1';
@@ -41,6 +45,7 @@ require(['jquery', 'app/video', 'jqueryui', 'ckeditor'], function($, videohelper
 		
 		$('#showintro').click(function() {
 			videohelper.showVideo('#introvideo');
+			$('.videoForm').show();
 		});
 	});
 });
