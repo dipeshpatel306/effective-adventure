@@ -23,9 +23,13 @@ class PoliciesAndProceduresDocumentsController extends AppController {
  */
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
-		$partner = $this->Session->read('Auth.User.partner_id');
 		$acct = $this->Session->read('Auth.User.Client.account_type');
+		if ($acct == 'AYCE Training') {
+			$client = Configure::read('__ayce_demo_client');
+		} else {
+			$client = $this->Session->read('Auth.User.client_id');  // Test Client.	
+		}
+		$partner = $this->Session->read('Auth.User.partner_id');
 
 		if ($group == Group::PARTNER_ADMIN) {
 			if (in_array($this->action, array('add', 'batch_add'))) {

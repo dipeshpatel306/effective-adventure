@@ -42,8 +42,12 @@ $this->Html->addCrumb('Server Room Access');
 		<td><?php echo $this->Time->format('m/d/y g:i a', $serverRoomAccess['ServerRoomAccess']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $serverRoomAccess['ServerRoomAccess']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $serverRoomAccess['ServerRoomAccess']['id'])); ?>
-			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Server Room Access', 'id' => $serverRoomAccess['ServerRoomAccess']['id'])); ?>
+			<?php
+				if ($acct != 'AYCE Training') {
+					echo $this->Html->link(__('Edit'), array('action' => 'edit', $serverRoomAccess['ServerRoomAccess']['id']));
+					echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Server Room Access', 'id' => $serverRoomAccess['ServerRoomAccess']['id']));
+				}
+			?> 
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -65,10 +69,9 @@ $this->Html->addCrumb('Server Room Access');
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
+	<?php if ($acct != 'AYCE Training'): ?>
 	<ul>
-
-
 		<li><?php echo $this->Html->link(__('New Server Room Access'), array('action' => 'add')); ?></li>
-
 	</ul>
+	<?php endif; ?>
 </div>

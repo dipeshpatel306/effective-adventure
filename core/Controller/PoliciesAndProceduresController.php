@@ -84,12 +84,16 @@ class PoliciesAndProceduresController extends AppController {
 		
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+		$acct = $this->Session->read('Auth.User.Client.account_type');
 		
 		$this->PoliciesAndProcedure->id = $id;
 		if (!$this->PoliciesAndProcedure->exists()) {
 			throw new NotFoundException(__('Invalid policies and procedure'));
 		}
 		
+		if ($acct == 'AYCE Training') {
+			$client = Configure::read('__ayce_demo_client');
+		}
 	//	if($group == 1 || $group == 2 ){
 			$documents = $this->PoliciesAndProcedure->PoliciesAndProceduresDocument->find('all', array(
 				// /'recursive' => 2,

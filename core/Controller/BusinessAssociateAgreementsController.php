@@ -20,8 +20,13 @@ class BusinessAssociateAgreementsController extends AppController {
  */
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		$acct = $this->Session->read('Auth.User.Client.account_type'); // Get account type
+		if ($acct == 'AYCE Training') {
+			$client = Configure::read('__ayce_demo_client');
+		} else {
+			$client = $this->Session->read('Auth.User.client_id');  // Test Client.	
+		}
+		
 		$partner = $this->Session->read('Auth.User.partner_id');
 		
 		if ($group == Group::PARTNER_ADMIN) {
@@ -64,7 +69,12 @@ class BusinessAssociateAgreementsController extends AppController {
  */
 	public function index() {
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+		$acct = $this->Session->read('Auth.User.Client.account_type');
+		if ($acct == 'AYCE Training') {
+			$client = Configure::read('__ayce_demo_client');
+		} else {
+			$client = $this->Session->read('Auth.User.client_id');  // Test Client.	
+		}
 
 		if($group == 1){
 			$this->BusinessAssociateAgreement->recursive = 0;
@@ -91,25 +101,24 @@ class BusinessAssociateAgreementsController extends AppController {
  */
 	public function view($id = null) {
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+		$acct = $this->Session->read('Auth.User.Client.account_type');
+		if ($acct == 'AYCE Training') {
+			$client = Configure::read('__ayce_demo_client');
+		} else {
+			$client = $this->Session->read('Auth.User.client_id');  // Test Client.	
+		}
 
 		$this->BusinessAssociateAgreement->id = $id;
 		if (!$this->BusinessAssociateAgreement->exists()) {
 			throw new NotFoundException(__('Invalid Business Associate Agreement'));
 		}
 
+		$doc = $this->BusinessAssociateAgreement->read(null, $id);
 		if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
-			$this->set('businessAssociateAgreement', $this->BusinessAssociateAgreement->read(null, $id));
+			$this->set('businessAssociateAgreement', $doc);
 		} elseif($group == Group::MANAGER){
-				$is_authorized = $this->BusinessAssociateAgreement->find('first', array(
-				'conditions' => array(
-					'BusinessAssociateAgreement.id' => $id,
-					'AND' => array('BusinessAssociateAgreement.client_id' => $client)
-				)
-			));
-
-			if($is_authorized){
-				$this->set('businessAssociateAgreement', $this->BusinessAssociateAgreement->read(null, $id));
+			if ($doc['BusinessAssociateAgreement']['client_id'] == $client) {
+				$this->set('businessAssociateAgreement', $doc);
 			} else { // Else Banned!
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));

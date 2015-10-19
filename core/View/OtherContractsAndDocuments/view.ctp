@@ -80,7 +80,7 @@ $this->Html->addCrumb($otherContractsAndDocument['OtherContractsAndDocument']['n
 		<li><?php echo $this->Html->link(__('List Other Contracts And Documents'), array('action' => 'index')); ?> </li>
 		<?php endif; ?>
 
-		<?php if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN || $group == Group::MANAGER): ?>
+		<?php if(($group == Group::ADMIN || $group == Group::PARTNER_ADMIN || $group == Group::MANAGER) && $acct != 'AYCE Training'): ?>
 		<?php if ($group != Group::PARTNER_ADMIN): ?>
 		<li><?php echo $this->Html->link(__('New Other Contracts And Document'), array('action' => 'add')); ?> </li>
 		<?php endif; ?>

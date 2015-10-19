@@ -53,7 +53,7 @@ $this->Html->addCrumb('Other Policies & Procedures');
 		<td><?php echo $this->Time->format('m/d/y g:i a',$otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id'])); ?>
-			<?php if($group == Group::ADMIN || $group == GROUP::MANAGER) {
+			<?php if(($group == Group::ADMIN || $group == GROUP::MANAGER) && $acct != 'AYCE Training') {
 			    echo $this->Html->link(__('Edit'), array('action' => 'edit', $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id']));
                 echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Other Policy & Procedure', 'id' => $otherPoliciesAndProcedure['OtherPoliciesAndProcedure']['id']));
 			} ?>
@@ -80,7 +80,7 @@ $this->Html->addCrumb('Other Policies & Procedures');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<?php if($group == Group::ADMIN || $group == GROUP::MANAGER): ?>
+		<?php if(($group == Group::ADMIN || $group == GROUP::MANAGER) && $acct != 'AYCE Training'): ?>
 		<li><?php echo $this->Html->link(__('New Other Policies And Procedure'), array('action' => 'add')); ?></li>
 		<?php endif; ?>
 

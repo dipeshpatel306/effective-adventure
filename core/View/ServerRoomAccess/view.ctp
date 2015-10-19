@@ -70,6 +70,9 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $serverRoomAccess['Serv
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+		<?php if ($acct == 'AYCE Training'): ?>
+		<li><?php echo $this->Html->link(__('List Server Room Access'), array('action' => 'index')); ?> </li>
+		<?php else: ?>
 		<?php if ($group == Group::PARTNER_ADMIN): ?>
 		<li><?php echo $this->Html->link(__('Back to Client'), array('controller' => 'clients', 'action' => 'view', $serverRoomAccess['ServerRoomAccess']['client_id'])); ?></li>
 		<?php else: ?>
@@ -78,5 +81,6 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $serverRoomAccess['Serv
 		<?php endif; ?>
 		<li><?php echo $this->Html->link(__('Edit Server Room Access'), array('action' => 'edit', $serverRoomAccess['ServerRoomAccess']['id'])); ?> </li>
 		<li><?php echo $this->element('delete_link', array('title' => 'Delete Server Room Access', 'name' => 'Server Room Access', 'id' => $serverRoomAccess['ServerRoomAccess']['id'])); ?></li>
+		<?php endif; ?>
 	</ul>
 </div>

@@ -5,7 +5,8 @@ $this->Html->addCrumb('Policies & Procedures', '/dashboard/policies_and_procedur
 $this->Html->addCrumb($pnp_name, '/policies_and_procedures');
 $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 
-	$group = $this->Session->read('Auth.User.group_id');
+$group = $this->Session->read('Auth.User.group_id');
+$acct = $this->Session->read('Auth.User.Client.account_type');
 ?>
 
 <div class="policiesAndProcedures view">
@@ -64,9 +65,8 @@ $this->Html->addCrumb($policiesAndProcedure['PoliciesAndProcedure']['name']);
 			</td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a',$policiesAndProceduresDocument['PoliciesAndProceduresDocument']['modified']); ?></td>
-		<?php if($group != 3): ?>
+		<?php if($group != 3 && $acct != 'AYCE Training'): ?>
 			<td class="actions">
-				
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'policies_and_procedures_documents', 'action' => 'edit',$policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id'])); ?>
 				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Policy & Procedure Document', 'id' => $policiesAndProceduresDocument['PoliciesAndProceduresDocument']['id'])); ?>
 			</td>

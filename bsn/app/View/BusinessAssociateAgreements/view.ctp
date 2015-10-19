@@ -122,7 +122,7 @@ $this->Html->addCrumb($businessAssociateAgreement['BusinessAssociateAgreement'][
 		<li><?php echo $this->Html->link(__('List Service Provider Contracts'), array('action' => 'index')); ?> </li>
 		<?php endif; ?>
 
-		<?php if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN || $group == Group::MANAGER): ?>
+		<?php if(($group == Group::ADMIN || $group == Group::PARTNER_ADMIN || $group == Group::MANAGER) && $acct != 'AYCE Training'): ?>
 			<?php if ($group != Group::PARTNER_ADMIN): ?>
 		<li><?php echo $this->Html->link(__('New Service Provider Contract'), array('action' => 'add')); ?> </li>
 			<?php endif; ?>

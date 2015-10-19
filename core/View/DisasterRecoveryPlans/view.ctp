@@ -81,7 +81,7 @@ $this->Html->addCrumb($disasterRecoveryPlan['DisasterRecoveryPlan']['name']);
 		<li><?php echo $this->Html->link(__('List Disaster Recovery Plans'), array('action' => 'index')); ?> </li>
 		<?php endif; ?>
 
-		<?php if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN || $group == Group::MANAGER): ?>
+		<?php if(($group == Group::ADMIN || $group == Group::PARTNER_ADMIN || $group == Group::MANAGER) && ($acct != 'AYCE Training')): ?>
 		<?php if ($group != Group::PARTNER_ADMIN): ?>
 		<li><?php echo $this->Html->link(__('New Disaster Recovery Plan'), array('action' => 'add')); ?> </li>
 		<?php endif; ?>

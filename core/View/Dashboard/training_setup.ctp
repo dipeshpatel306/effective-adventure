@@ -14,6 +14,23 @@ $acctType = array('Initial' => 'Initial', 'Subscription' => 'Subscription',
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
+<h3>Demo Clients</h3>
+	<?php if(!empty($demo_clients)): ?>
+	<table>
+	<tr>
+		<th>Name</th>
+		<th class="actions"><?php echo __('Actions'); ?></th>
+	</tr>
+	<?php foreach ($demo_clients as $client) : ?>
+		<tr>
+			<td><?php echo $client['Client']['name']; ?></td>
+			<td class="actions">
+				<?php echo $this->Html->link(__('View'), array('controller' => 'clients', 'action' => 'view', $client['Client']['id'])); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	</table>
+	<?php endif; ?>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>

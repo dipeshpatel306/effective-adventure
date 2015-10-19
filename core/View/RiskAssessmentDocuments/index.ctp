@@ -51,8 +51,10 @@ $this->Html->addCrumb($ra_docs_name);
 
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?>
-			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => Inflector::singularize($ra_docs_name), 'id' => $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?>
+			<?php if ($acct != 'AYCE Training'): ?>
+				<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?>
+				<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => Inflector::singularize($ra_docs_name), 'id' => $riskAssessmentDocument['RiskAssessmentDocument']['id'])); ?>
+			<?php endif; ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -75,7 +77,7 @@ $this->Html->addCrumb($ra_docs_name);
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<?php if($group == 1 || $group == 2): ?>
+		<?php if(($group == 1 || $group == 2) && $acct != 'AYCE Training'): ?>
 		<li><?php echo $this->Html->link(__('New ' . Inflector::singularize($ra_docs_name)), array('action' => 'add')); ?></li>
 		<?php endif; ?>
 

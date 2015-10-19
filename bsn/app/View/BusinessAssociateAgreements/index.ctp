@@ -63,8 +63,12 @@ $this->Html->addCrumb('Service Provider Contracts');
 		<td><?php echo $this->Time->format('m/d/y g:i a', $businessAssociateAgreement['BusinessAssociateAgreement']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $businessAssociateAgreement['BusinessAssociateAgreement']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $businessAssociateAgreement['BusinessAssociateAgreement']['id'])); ?>
-			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Service Provider Contract', 'id' => $businessAssociateAgreement['BusinessAssociateAgreement']['id'])); ?>
+			<?php 
+				if ($acct != 'AYCE Training') {
+					echo $this->Html->link(__('Edit'), array('action' => 'edit', $businessAssociateAgreement['BusinessAssociateAgreement']['id']));	
+					echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Service Provider Contract', 'id' => $businessAssociateAgreement['BusinessAssociateAgreement']['id']));
+				}
+			?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -88,7 +92,7 @@ $this->Html->addCrumb('Service Provider Contracts');
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<?php if($group == 1 || $group == 2): ?>
+		<?php if(($group == 1 || $group == 2) && $acct != 'AYCE Training'): ?>
 		<li><?php echo $this->Html->link(__('New Service Provider Contract'), array('action' => 'add')); ?></li>
 		<?php endif; ?>
 	</ul>

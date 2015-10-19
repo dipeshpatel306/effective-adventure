@@ -22,8 +22,12 @@ class ServerRoomAccessController extends AppController {
  */
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		$acct = $this->Session->read('Auth.User.Client.account_type');
+		if ($acct == 'AYCE Training') {
+			$client = Configure::read('__ayce_demo_client');
+		} else {
+			$client = $this->Session->read('Auth.User.client_id');  // Test Client.	
+		}
 		$partner = $this->Session->read('Auth.User.partner_id');
 		
 		if ($group == Group::PARTNER_ADMIN) {
@@ -70,7 +74,12 @@ class ServerRoomAccessController extends AppController {
 
 	public function index() {
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+		$acct = $this->Session->read('Auth.User.Client.account_type');
+		if ($acct == 'AYCE Training') {
+			$client = Configure::read('__ayce_demo_client');
+		} else {
+			$client = $this->Session->read('Auth.User.client_id');  // Test Client.	
+		}
 
 		if($group == 1){
 			$this->ServerRoomAccess->recursive = 0;
@@ -97,25 +106,24 @@ class ServerRoomAccessController extends AppController {
  */
 	public function view($id = null) {
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+		$acct = $this->Session->read('Auth.User.Client.account_type');
+		if ($acct == 'AYCE Training') {
+			$client = Configure::read('__ayce_demo_client');
+		} else {
+			$client = $this->Session->read('Auth.User.client_id');  // Test Client.	
+		}
 		
 		$this->ServerRoomAccess->id = $id;
 		if (!$this->ServerRoomAccess->exists()) {
 			throw new NotFoundException(__('Invalid Server Room Access'));
 		}
 
+		$sra = $this->ServerRoomAccess->read(null, $id);
 		if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
-			$this->set('serverRoomAccess', $this->ServerRoomAccess->read(null, $id));
+			$this->set('serverRoomAccess', $sra);
 		} elseif($group == Group::MANAGER){
-				$is_authorized = $this->ServerRoomAccess->find('first', array(
-				'conditions' => array(
-					'ServerRoomAccess.id' => $id,
-					'AND' => array('ServerRoomAccess.client_id' => $client)
-				)
-			));
-			
-			if($is_authorized){
-				$this->set('serverRoomAccess', $this->ServerRoomAccess->read(null, $id));
+			if ($sra['ServerRoomAccess']['client_id'] == $client) {
+				$this->set('serverRoomAccess', $sra);
 			} else { // Else Banned!
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));

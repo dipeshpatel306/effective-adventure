@@ -141,15 +141,15 @@ $this->Html->addCrumb($this->Time->format('m/d/y g:i a', $securityIncident['Secu
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<?php if ($group == Group::PARTNER_ADMIN): ?>
+		<?php if ($acct == 'AYCE Training'): ?>
+		<li><?php echo $this->Html->link(__('List Security Incidents'), array('action' => 'index')); ?> </li>
+		<?php elseif ($group == Group::PARTNER_ADMIN): ?>
 		<li><?php echo $this->Html->link(__('Back to Client'), array('controller' => 'clients', 'action' => 'view', $securityIncident['SecurityIncident']['client_id'])); ?></li>
 		<?php else: ?>
 		<li><?php echo $this->Html->link(__('List Security Incidents'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Security Incident'), array('action' => 'add')); ?> </li>
-		<?php endif; ?>
 		<li><?php echo $this->Html->link(__('Edit Security Incident'), array('action' => 'edit', $securityIncident['SecurityIncident']['id'])); ?> </li>
 		<li><?php echo $this->element('delete_link', array('title' => 'Delete Security Incident', 'name' => 'Security Incident', 'id' => $securityIncident['SecurityIncident']['id'])); ?></li>
-
-
+		<?php endif; ?>
 	</ul>
 </div>

@@ -79,7 +79,7 @@ $this->Html->addCrumb($riskAssessmentDocument['RiskAssessmentDocument']['name'])
 		<li><?php echo $this->Html->link(__('List ' . $ra_docs_name), array('action' => 'index')); ?> </li>
 		<?php endif; ?>
 
-		<?php if($group == Group::ADMIN || $group == Group::MANAGER || $group == Group::PARTNER_ADMIN): ?>
+		<?php if(($group == Group::ADMIN || $group == Group::MANAGER || $group == Group::PARTNER_ADMIN) && $acct != 'AYCE Training'): ?>
 			<?php if ($group != Group::PARTNER_ADMIN): ?>
 		<li><?php echo $this->Html->link(__('New ' . $ra_doc_name), array('action' => 'add')); ?> </li>
 			<?php endif; ?>

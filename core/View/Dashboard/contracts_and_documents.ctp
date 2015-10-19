@@ -32,7 +32,7 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
 			'heading' => $ra_docs_name,
 			'text' => $ra_docs_name,
 			'button' => $ra_ba_btn,
-			'link' => ($ra_ba_btn == 'aproved' ? array('controller' => 'risk_assessment_documents' , 'action' => 'index') : array('action' => 'contracts_and_documents')) 
+			'link' => ($ra_ba_btn == 'approved' ? array('controller' => 'risk_assessment_documents' , 'action' => 'index') : array('action' => 'contracts_and_documents')) 
 		));
 		
 		$baa_name = Configure::read('Theme.baa_name');

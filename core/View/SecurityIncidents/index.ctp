@@ -44,8 +44,12 @@ $this->Html->addCrumb('Security Incidents');
 
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $securityIncident['SecurityIncident']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $securityIncident['SecurityIncident']['id'])); ?>
-			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Security Incident', 'id' => $securityIncident['SecurityIncident']['id'])); ?>
+			<?php 
+				if ($acct != 'AYCE Training') {
+					echo $this->Html->link(__('Edit'), array('action' => 'edit', $securityIncident['SecurityIncident']['id']));
+					echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Security Incident', 'id' => $securityIncident['SecurityIncident']['id']));
+				}
+			?> 
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -67,10 +71,9 @@ $this->Html->addCrumb('Security Incidents');
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
+	<?php if ($acct != 'AYCE Training'): ?>
 	<ul>
-
-
 		<li><?php echo $this->Html->link(__('New Security Incident'), array('action' => 'add')); ?></li>
-
 	</ul>
+	<?php endif; ?>
 </div>

@@ -360,6 +360,10 @@ class DashboardController extends AppController {
 			$this->set($setting['Setting']['key'], $setting['Setting']['value']);
 		}
 		$this->loadModel('Client');
+		$this->Client->recursive = 0;
+		$this->set('demo_clients', $this->Client->find('all',
+		 	array('conditions' => array('Client.demo' => true),
+				  'fields' => array('Client.id', 'Client.name'))));
 		$this->set('moodle_courses', $this->Client->getMoodleCourses());
 	}
 

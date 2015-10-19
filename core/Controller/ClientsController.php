@@ -53,12 +53,11 @@ class ClientsController extends AppController {
     	$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		
+		$conditions = array('Client.demo' => false);
 		if ($group == Group::PARTNER_ADMIN) {
-			$conditions = array('Client.partner_id' => $this->Session->read('Auth.User.partner_id'));
-		} else {
-			$conditions = array();
+			$conditions = array_merge($conditions, array('Client.partner_id' => $this->Session->read('Auth.User.partner_id')));
 		}
-		
+
         $this->Client->recursive = 0;
 		$this->Paginator->settings['limit'] = 100;
 		

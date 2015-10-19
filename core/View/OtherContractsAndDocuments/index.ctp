@@ -54,8 +54,12 @@ $this->Html->addCrumb('Other Contracts & Documents');
 
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $otherContractsAndDocument['OtherContractsAndDocument']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $otherContractsAndDocument['OtherContractsAndDocument']['id'])); ?>
-			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Other Contract & Document', 'id' => $otherContractsAndDocument['OtherContractsAndDocument']['id'])); ?>
+			<?php 
+				if ($acct != 'AYCE Training') {
+					echo $this->Html->link(__('Edit'), array('action' => 'edit', $otherContractsAndDocument['OtherContractsAndDocument']['id']));
+					echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Other Contract & Document', 'id' => $otherContractsAndDocument['OtherContractsAndDocument']['id']));
+				}
+			?> 
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -78,7 +82,7 @@ $this->Html->addCrumb('Other Contracts & Documents');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<?php if($group == 1 || $group == 2): ?>
+		<?php if(($group == 1 || $group == 2 ) && $acct != 'AYCE Training'): ?>
 		<li><?php echo $this->Html->link(__('New Other Contracts And Document'), array('action' => 'add')); ?></li>
 		<?php endif; ?>
 

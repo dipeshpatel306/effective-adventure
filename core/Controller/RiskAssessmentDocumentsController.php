@@ -20,8 +20,12 @@ class RiskAssessmentDocumentsController extends AppController {
  */
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		$acct = $this->Session->read('Auth.User.Client.account_type');
+		if ($acct == 'AYCE Training') {
+			$client = Configure::read('__ayce_demo_client');
+		} else {
+			$client = $this->Session->read('Auth.User.client_id');  // Test Client.	
+		}
 		$partner = $this->Session->read('Auth.User.partner_id');
 		
 		if ($group == Group::PARTNER_ADMIN) {
@@ -69,12 +73,16 @@ class RiskAssessmentDocumentsController extends AppController {
 	public function index() {
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+		$acct = $this->Session->read('Auth.User.Client.account_type');
 
 		if($group == 1){
 			$this->RiskAssessmentDocument->recursive = 0;
 			$this->paginate = array('order' => array('RiskAssessmentDocument.client_id' => 'ASC'));
 			$this->set('riskAssessmentDocuments', $this->paginate());
 		}elseif($group == 2) {
+			if ($acct == 'AYCE Training') {
+				$client = Configure::read('__ayce_demo_client');
+			}
 			$this->paginate = array(
 				'conditions' => array('RiskAssessmentDocument.client_id' => $client),
 				'order' => array('RiskAssessmentDocument.name' => 'ASC')
@@ -95,25 +103,24 @@ class RiskAssessmentDocumentsController extends AppController {
  */
 	public function view($id = null) {
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+		$acct = $this->Session->read('Auth.User.Client.account_type');
+		if ($acct == 'AYCE Training') {
+			$client = Configure::read('__ayce_demo_client');
+		} else {
+			$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+		}
 
 		$this->RiskAssessmentDocument->id = $id;
 		if (!$this->RiskAssessmentDocument->exists()) {
 			throw new NotFoundException(__('Invalid Risk Assessment Document'));
 		}
 
+		$raDoc = $this->RiskAssessmentDocument->read(null, $id);
 		if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
-			$this->set('riskAssessmentDocument', $this->RiskAssessmentDocument->read(null, $id));
+			$this->set('riskAssessmentDocument', $raDoc);
 		} elseif($group == Group::MANAGER){
-				$is_authorized = $this->RiskAssessmentDocument->find('first', array(
-				'conditions' => array(
-					'RiskAssessmentDocument.id' => $id,
-					'AND' => array('RiskAssessmentDocument.client_id' => $client)
-				)
-			));
-
-			if($is_authorized){
-				$this->set('riskAssessmentDocument', $this->RiskAssessmentDocument->read(null, $id));
+			if ($raDoc['RiskAssessmentDocument']['client_id'] == $client){
+				$this->set('riskAssessmentDocument', $raDoc);
 			} else { // Else Banned!
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));

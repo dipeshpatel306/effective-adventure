@@ -21,9 +21,13 @@ class OtherPoliciesAndProceduresController extends AppController {
  */
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+ 		$acct = $this->Session->read('Auth.User.Client.account_type');
+		if ($acct == 'AYCE Training') {
+			$client = Configure::read('__ayce_demo_client');
+		} else {
+			$client = $this->Session->read('Auth.User.client_id');  // Test Client.	
+		}
 		$partner = $this->Session->read('Auth.User.partner_id');
-		$acct = $this->Session->read('Auth.User.account_type');
 
 		if ($group == Group::PARTNER_ADMIN) {
 			if (in_array($this->action, array('add'))) {
@@ -66,7 +70,6 @@ class OtherPoliciesAndProceduresController extends AppController {
 				return true;
 			}
 		}
-
 		return parent::isAuthorized($user);
  	}
 
@@ -76,9 +79,13 @@ class OtherPoliciesAndProceduresController extends AppController {
  * @return void
  */
 	public function index() {
-
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+		$acct = $this->Session->read('Auth.User.Client.account_type');
+		if ($acct == 'AYCE Training') {
+			$client = Configure::read('__ayce_demo_client');
+		} else {
+			$client = $this->Session->read('Auth.User.client_id');  // Test Client.	
+		}
 
 		if($group == 1){
 			$this->OtherPoliciesAndProcedure->recursive = 0;
@@ -102,35 +109,33 @@ class OtherPoliciesAndProceduresController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+		$acct = $this->Session->read('Auth.User.Client.account_type');
+		if ($acct == 'AYCE Training') {
+			$client = Configure::read('__ayce_demo_client');
+		} else {
+			$client = $this->Session->read('Auth.User.client_id');  // Test Client.	
+		}
+		
 
 		$this->OtherPoliciesAndProcedure->id = $id;
 		if (!$this->OtherPoliciesAndProcedure->exists()) {
 			throw new NotFoundException(__('Invalid Other policy and procedure'));
 		}
 
+		$opnp = $this->OtherPoliciesAndProcedure->read(null, $id);
 		if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
-			$this->set('otherPoliciesAndProcedure', $this->OtherPoliciesAndProcedure->read(null, $id));
-			
+			$this->set('otherPoliciesAndProcedure', $opnp);
 		} elseif($group == Group::MANAGER || $group == Group::USER){
-			$is_authorized = $this->OtherPoliciesAndProcedure->find('first', array(
-				'conditions' => array(
-					'OtherPoliciesAndProcedure.id' => $id,
-					'AND' => array('OtherPoliciesAndProcedure.client_id' => $client)
-				)
-			));
-				
-			if($is_authorized){
-				$this->set('otherPoliciesAndProcedure', $this->OtherPoliciesAndProcedure->read(null, $id));
+			if ($opnp['OtherPoliciesAndProcedure']['client_id'] == $client) {
+				$this->set('otherPoliciesAndProcedure', $opnp);
 			} else { // Else Banned!
 				$this->Session->setFlash('You are not authorized to view that!');
-				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+				//$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 			}
 		} else { // Else Banned
 			$this->Session->setFlash('You are not authorized to view that!');
-			$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
+			//$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));
 		}
 
 	}

@@ -21,8 +21,13 @@ class DisasterRecoveryPlansController extends AppController {
  */
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		$acct = $this->Session->read('Auth.User.Client.account_type');
+		if ($acct == 'AYCE Training') {
+			$client = Configure::read('__ayce_demo_client');
+		} else {
+			$client = $this->Session->read('Auth.User.client_id');  // Test Client.	
+		}
+		
 		$partner = $this->Session->read('Auth.User.partner_id');
 		
 		if ($group == Group::PARTNER_ADMIN) {
@@ -71,7 +76,12 @@ class DisasterRecoveryPlansController extends AppController {
 
  	public function index() {
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+		$acct = $this->Session->read('Auth.User.Client.account_type');
+		if ($acct == 'AYCE Training') {
+			$client = Configure::read('__ayce_demo_client');
+		} else {
+			$client = $this->Session->read('Auth.User.client_id');  // Test Client.	
+		}
 
 		if($group == 1){
 			$this->DisasterRecoveryPlan->recursive = 0;
@@ -99,25 +109,24 @@ class DisasterRecoveryPlansController extends AppController {
  */
 	public function view($id = null) {
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+		$acct = $this->Session->read('Auth.User.Client.account_type');
+		if ($acct == 'AYCE Training') {
+			$client = Configure::read('__ayce_demo_client');
+		} else {
+			$client = $this->Session->read('Auth.User.client_id');  // Test Client.	
+		}
 
 		$this->DisasterRecoveryPlan->id = $id;
 		if (!$this->DisasterRecoveryPlan->exists()) {
 			throw new NotFoundException(__('Invalid Disaster Recovery Plan'));
 		}
 
+		$doc = $this->DisasterRecoveryPlan->read(null, $id);
 		if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
-			$this->set('disasterRecoveryPlan', $this->DisasterRecoveryPlan->read(null, $id));
+			$this->set('disasterRecoveryPlan', $doc);
 		} elseif($group == Group::MANAGER){
-				$is_authorized = $this->DisasterRecoveryPlan->find('first', array(
-				'conditions' => array(
-					'DisasterRecoveryPlan.id' => $id,
-					'AND' => array('DisasterRecoveryPlan.client_id' => $client)
-				)
-			));
-
-			if($is_authorized){
-				$this->set('disasterRecoveryPlan', $this->DisasterRecoveryPlan->read(null, $id));
+			if($doc['DisasterRecoveryPlan']['client_id'] == $client){
+				$this->set('disasterRecoveryPlan', $doc);
 			} else { // Else Banned!
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));

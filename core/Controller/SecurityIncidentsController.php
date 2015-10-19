@@ -21,8 +21,12 @@ class SecurityIncidentsController extends AppController {
  */
  	public function isAuthorized($user){
  		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client.
 		$acct = $this->Session->read('Auth.User.Client.account_type');
+		if ($acct == 'AYCE Training') {
+			$client = Configure::read('__ayce_demo_client');
+		} else {
+			$client = $this->Session->read('Auth.User.client_id');  // Test Client.
+		}
 		$partner = $this->Session->read('Auth.User.partner_id');
 		
 		if ($group == Group::PARTNER_ADMIN) {
@@ -58,7 +62,12 @@ class SecurityIncidentsController extends AppController {
  */
  	public function index() {
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
+		$acct = $this->Session->read('Auth.User.Client.account_type');
+		if ($acct == 'AYCE Training') {
+			$client = Configure::read('__ayce_demo_client');
+		} else {
+			$client = $this->Session->read('Auth.User.client_id');  // Test Client.	
+		} 
 
 		if($group == 1){
 			$this->SecurityIncident->recursive = 0;
@@ -86,25 +95,24 @@ class SecurityIncidentsController extends AppController {
  */
 	public function view($id = null) {
 		$group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?  
-		$client = $this->Session->read('Auth.User.client_id');  // Test Client. 
-		
+		$acct = $this->Session->read('Auth.User.Client.account_type');
+		if ($acct == 'AYCE Training') {
+			$client = Configure::read('__ayce_demo_client');
+		} else {
+			$client = $this->Session->read('Auth.User.client_id');  // Test Client.	
+		}
+
 		$this->SecurityIncident->id = $id;
 		if (!$this->SecurityIncident->exists()) {
 			throw new NotFoundException(__('Invalid Security Incident'));
 		}
 
+		$security_incident = $this->SecurityIncident->read(null, $id);
 		if($group == Group::ADMIN || $group == Group::PARTNER_ADMIN){
-			$this->set('securityIncident', $this->SecurityIncident->read(null, $id));
+			$this->set('securityIncident', $security_incident);
 		} elseif($group == Group::MANAGER || $group == Group::USER){
-				$is_authorized = $this->SecurityIncident->find('first', array(
-				'conditions' => array(
-					'SecurityIncident.id' => $id,
-					'AND' => array('SecurityIncident.client_id' => $client)
-				)
-			));
-			
-			if($is_authorized){
-				$this->set('securityIncident', $this->SecurityIncident->read(null, $id));
+			if ($security_incident['SecurityIncident']['client_id'] == $client) {
+				$this->set('securityIncident', $security_incident);
 			} else { // Else Banned!
 				$this->Session->setFlash('You are not authorized to view that!');
 				$this->redirect(array('controller' => 'dashboard', 'action' => 'index'));

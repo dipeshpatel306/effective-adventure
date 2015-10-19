@@ -65,8 +65,12 @@ $this->Html->addCrumb('Disaster Recovery Plans');
 
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $disasterRecoveryPlan['DisasterRecoveryPlan']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $disasterRecoveryPlan['DisasterRecoveryPlan']['id'])); ?>
-			<?php echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Disaster Recovery Plan', 'id' => $disasterRecoveryPlan['DisasterRecoveryPlan']['id'])); ?>
+			<?php 
+				if ($acct != 'AYCE Training') {
+					echo $this->Html->link(__('Edit'), array('action' => 'edit', $disasterRecoveryPlan['DisasterRecoveryPlan']['id']));	
+					echo $this->element('delete_link', array('title' => 'Delete', 'name' => 'Disaster Recovery Plan', 'id' => $disasterRecoveryPlan['DisasterRecoveryPlan']['id']));
+				}
+			?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -89,7 +93,7 @@ $this->Html->addCrumb('Disaster Recovery Plans');
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<?php if($group == Group::ADMIN || $group == Group::MANAGER): ?>
+		<?php if(($group == Group::ADMIN || $group == Group::MANAGER) && $acct != 'AYCE Training'): ?>
 		<li><?php echo $this->Html->link(__('New Disaster Recovery Plan'), array('action' => 'add')); ?></li>
 		<?php endif; ?>
 	</ul>

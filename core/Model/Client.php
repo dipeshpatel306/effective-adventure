@@ -258,6 +258,18 @@ class Client extends AppModel {
 		)
 	);
     
+	// public function beforeFind($query) {
+		// parent::beforeFind($query);
+		// if (isset($query['conditions'])) {
+			// if (!isset($query['conditions']['Client.demo'])) {
+				// $query['conditions'] = array_merge($query['conditions'], array('Client.demo' => false));
+			// }
+		// } else {
+			// $query['conditions'] = array('Client.demo' => false);
+		// }
+		// return $query;
+	// }
+	
     public function beforeSave($options=array()) {
         if (isset($this->data['Client']['moodle_course_id'])) {
             $course_id = $this->data['Client']['moodle_course_id'];
