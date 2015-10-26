@@ -288,7 +288,7 @@ class User extends AppModel {
         if(!empty($this->data['User']['password'])){
             $this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
         }
-		if (!$this->id && !isset($this->data[$this->alias][$this->primaryKey])) {
+		if (Configure::read('App.deleteUserFromMoodleOnCreate') && !$this->id && !isset($this->data[$this->alias][$this->primaryKey])) {
 			# delete old portal user from moodle if necessary
 			$email = $this->data['User']['email'];
 			$moodle = ConnectionManager::getDataSource('moodle');

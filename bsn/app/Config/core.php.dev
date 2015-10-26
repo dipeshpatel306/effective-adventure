@@ -207,6 +207,11 @@
     Configure::write('App.trainingUrl', 'http://training.pii-protect.com/login/index.php');
 
 /**
+ * Delete moodle on user create
+ */
+	Configure::write('App.deleteUserFromMoodleOnCreate', false);
+
+/**
  * Email address for admin emails
  */
     //Configure::write('App.adminEmailTo', 'info@hipaasecurenow.com');
