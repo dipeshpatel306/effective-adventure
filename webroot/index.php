@@ -1,4 +1,4 @@
 <?php
-define('APP_BRAND', 'hsn');
+define('APP_BRAND', 'bsn');
 include 'bootstrap.php';
 ?>
