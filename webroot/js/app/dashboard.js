@@ -22,7 +22,7 @@ require(['jquery', 'app/video', 'jqueryui', 'ckeditor'], function($, videohelper
 		
 		$('#introvideo').each(function() {
 			if ($(this).attr('show') == 1) {
-				videohelper.showVideo('#introvideo');
+				videohelper.showVideo('introvideo');
 				$('.videoForm').show();
 			}
 		});
@@ -44,7 +44,7 @@ require(['jquery', 'app/video', 'jqueryui', 'ckeditor'], function($, videohelper
 		});
 		
 		$('#showintro').click(function() {
-			videohelper.showVideo('#introvideo');
+			videohelper.showVideo('introvideo');
 			$('.videoForm').show();
 		});
 	});
