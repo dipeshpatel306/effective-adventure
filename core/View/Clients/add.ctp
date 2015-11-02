@@ -32,7 +32,7 @@ $risk = array('' => '', 'Completed' => 'Completed');
         echo $this->Form->input('account_type', $acct_type_opts);
         echo $this->Form->input('moodle_course_id', $course_opts);
         echo $this->Form->input('active', array('label' => 'Account Active?', 'options' => $active, 'default' => 'Yes'));
-        echo $this->Form->input('display_ra_org', array('label' => 'Display RA/Org?', 'options' => $active, 'default' => true));
+        echo $this->Form->input('display_ra_org', array('div' => array('class' => 'input select display_ra_org'), 'label' => 'Display RA/Org?', 'options' => $active, 'default' => true));
 		if ($group == Group::PARTNER_ADMIN) {
 			echo $this->Form->input('display_intro_video', array('label' => 'Display Introduction Video?', 'options' => $active, 'default' => true));
 		}
