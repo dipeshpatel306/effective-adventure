@@ -21,7 +21,7 @@ require(['jquery', 'app/video', 'jqueryui', 'ckeditor'], function($, videohelper
 		});
 		
 		$('#introvideo').each(function() {
-			if ($(this).attr('show') == 1) {
+			if ($(this).attr('show') == 1 && document.referrer.indexOf('login') >= 0) {
 				videohelper.showVideo('introvideo');
 				$('.videoForm').show();
 			}
