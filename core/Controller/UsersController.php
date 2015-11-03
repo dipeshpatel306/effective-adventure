@@ -33,7 +33,6 @@ class UsersController extends AppController {
     public function beforeValidate(array $options = array()){
         if ($this->request->is('post') || $this->request->is('put')) {
 
-        // bypass email comparison for admin
             $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
             if($group == Group::ADMIN){
                 $this->request->data['User']['email2'] = $this->request->data['User']['email'];
@@ -639,25 +638,20 @@ class UsersController extends AppController {
 			
             $group = $this->Session->read('Auth.User.group_id');  // Test group role. Is admin?
 
-            if($group != 1){
-                $this->request->data['User']['client_id'] = $this->Auth->User('client_id');
-				if (empty($this->request->data['User']['group_id'])) {
-					$this->request->data['User']['group_id'] = $this->Session->read('Auth.User.group_id');
-				}
-            }
-
             if ($this->User->save($this->request->data)) {
             	if (!$this->request->is('ajax')) {
                 	$this->Session->setFlash('The user has been saved', 'default', array('class' => 'success message'));
 				}
                 
-            if($group == 1){
+				
+            if($group == Group::ADMIN){
                 if(isset($clientId)){
                     $this->redirect(array('controller' => 'Clients', 'action' => 'view', $clientId));
                 } else {
                     $this->redirect(array('action' => 'index'));    
                 }
-                
+			} else if ($group == Group::PARTNER_ADMIN) {
+				$this->redirect(array('controller' => 'Clients', 'action' => 'index'));
             } else {    
                 $this->redirect(array('action' => 'index'));
             }

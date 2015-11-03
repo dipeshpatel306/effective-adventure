@@ -253,7 +253,8 @@ class User extends AppModel {
         }
     }
 	public function isOwnedByPartner($id, $partner){
-        return $this->field('id', array('id' => $id, 'partner_id' => $partner)) === $id;
+		$result = $this->find('first', array('fields' => 'User.id', 'conditions' => array('User.id' => $id, 'Client.partner_id' => $partner)));
+		return !empty($result);
     }
 /**
  * Allow user to edit their own profile

@@ -122,6 +122,8 @@ class PartnersController extends AppController {
 	}
 	
 	public function registered_users($id = null) {
-		return;
+		$partner_id = $this->Session->read('Auth.User.partner_id');
+		$partner = $this->Partner->find('first', array('conditions' => array('id' => $partner_id)));
+		$this->set(compact('partner'));
 	}
 }

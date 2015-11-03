@@ -12,14 +12,14 @@ if($group == Group::ADMIN){ // If admin allow creating another Hipaa administrat
 	$usersTypeName = 'Employees';
 }
 
-$this->Html->addCrumb($usersTypeName, '/users');
+if ($group != Group::PARTNER_ADMIN) {
+	$this->Html->addCrumb($usersTypeName, '/users');
+}
 $this->Html->addCrumb('Edit ' . $userTypeName);
 
 
 
 $active = array(true => 'Yes', false => 'No'); // activate / deactivate a user
-
-$client = $this->Session->read('Auth.User.client_id');  // Test Client.  If admin allow client choosing, else hide field and set it to the current client
 
 // Conditionally load buttons based upon user role
 	$group = $this->Session->read('Auth.User.group_id');
@@ -33,8 +33,6 @@ $client = $this->Session->read('Auth.User.client_id');  // Test Client.  If admi
 		//echo $this->Form->input('User.authCode', array('label' => 'Authorization Code'));
 		if($group == 1){  // if admin allow to choose
 			echo $this->Form->input('client_id', array('empty' => 'Please Select'));
-		} else {
-			echo $this->Form->input('client_id', array( 'default' => $client, 'type' => 'hidden'));
 		}
 
 		if($group == 1 || $group == 2){ // activate / deactivate user

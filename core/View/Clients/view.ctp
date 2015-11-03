@@ -183,7 +183,7 @@ $ayce_training = ($client['Client']['account_type'] == 'AYCE Training');
 		<th><?php echo $this->Paginator->sort('User.last_login', 'Last login'); ?></th>
 		<th><?php echo $this->Paginator->sort('User.created', 'Created'); ?></th>
 		<th><?php echo $this->Paginator->sort('User.modified', 'Modified'); ?></th>
-		<?php if ($group == Group::ADMIN): ?>
+		<?php if ($group == Group::ADMIN || $group == Group::PARTNER_ADMIN): ?>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 		<?php endif; ?>
 	</tr>
@@ -198,11 +198,17 @@ $ayce_training = ($client['Client']['account_type'] == 'AYCE Training');
 			<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['last_login']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['created']); ?></td>
 			<td><?php echo $this->Time->format('m/d/y g:i a', $user['User']['modified']); ?></td>
-			<?php if ($group == Group::ADMIN): ?>
+			<?php if ($group == Group::ADMIN || $group == Group::PARTNER_ADMIN): ?>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'users', 'action' => 'admin_edit', $user['User']['id'], $clientId)); ?>
-				<?php echo $this->element('delete_link', array('controller' => 'users', 'title' => 'Delete', 'name' => 'User', 'id' => $user['User']['id'])); ?>
+				<?php 
+					if ($group == Group::PARTNER_ADMIN) {
+						echo $this->Html->link(__('Edit'), array('controller' => 'users', 'action' => 'edit', $user['User']['id']));
+					} else {
+						echo $this->Html->link(__('View'), array('controller' => 'users', 'action' => 'view', $user['User']['id']));
+						echo $this->Html->link(__('Edit'), array('controller' => 'users', 'action' => 'admin_edit', $user['User']['id'], $clientId));
+						echo $this->element('delete_link', array('controller' => 'users', 'title' => 'Delete', 'name' => 'User', 'id' => $user['User']['id']));
+					}
+				?> 
 			</td>
 			<?php endif; ?>
 		</tr>
