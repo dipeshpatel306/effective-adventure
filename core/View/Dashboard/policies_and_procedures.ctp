@@ -26,13 +26,12 @@ $pnp_name = Configure::read('Theme.pnp_name');
 			$pnp_btn = 'approved';
 		}
 		
-		$nolink = ($acct == 'AYCE Training') ? array('video' => 'pnpUserOverview') : array('controller' => 'policies_and_procedures');
 		echo $this->element('tile', array(
 			'img' => array('file' => 'pnp_tile.jpg', 'alt' => $pnp_name),
 			'heading' => $pnp_name,
 			'text' => $pnp_name,
 			'button' => $pnp_btn,
-			'link' => ($pnp_btn == 'approved' ? array('controller' => 'policies_and_procedures', 'action' => 'index') : $nolink)
+			'link' => ($pnp_btn == 'approved' ? array('controller' => 'policies_and_procedures', 'action' => 'index') : '')
 		));
 
 		// Other policies & procedures. Subscribers and MU are allowed. Users are read only
@@ -42,13 +41,12 @@ $pnp_name = Configure::read('Theme.pnp_name');
 			$opnp_btn = 'approved';	
 		}
 
-		$nolink = ($acct == 'AYCE Training') ? array('video' => 'opnpUserOverview') : array('controller' => 'policies_and_procedures');
 		echo $this->element('tile', array(
 			'img' => array('file' => 'opnp_tile.jpg', 'alt' => 'Other Policies & Procedures'),
 			'heading' => 'Other Policies & Procedures',
 			'text' => 'Other Policies & Procedures',
 			'button' => $opnp_btn,
-			'link' => ($opnp_btn == 'approved' ? array('controller' => 'other_policies_and_procedures', 'action' => 'index') : $nolink)
+			'link' => ($opnp_btn == 'approved' ? array('controller' => 'other_policies_and_procedures', 'action' => 'index') : '')
 		));
 	?>
 

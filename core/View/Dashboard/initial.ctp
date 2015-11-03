@@ -7,7 +7,7 @@ $ra_name = Configure::read('Theme.ra_name');
 
 $disabled = !in_array($acct, array('Initial', 'Subscription', 'Admin'));
 $dashBtn = $disabled ? 'subscribers' : 'approved';
-$nolink = ($acct == 'AYCE Training') ? array('video' => 'sraOverview') : '';
+$nolink = ''; //($acct == 'AYCE Training') ? array('video' => 'sraOverview') : '';
 ?>
 
 <div class="dashboard index initial">
