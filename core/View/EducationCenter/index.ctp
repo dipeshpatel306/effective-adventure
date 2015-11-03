@@ -28,7 +28,7 @@ $training_name = Configure::read('Theme.training_name');
 				'img' => array('file' => 'training_tile.jpg', 'alt' => 'Security Tips'),
 				'heading' => 'Security Tips',
 				'text' => 'Security Tips',
-				'link' => ''
+				'link' => 'http://security.pii-protect.com/security-tips-and-reminders/'
 			));
 		}
 		
