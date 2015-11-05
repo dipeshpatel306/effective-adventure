@@ -105,7 +105,7 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
 		}
 
 		$ra_name = Configure::read('Theme.ra_name');
-		if ($group != Group::USER && $displayRaOrg['Client']['display_ra_org']) {
+		if ($group != Group::USER && $acct != 'AYCE Training' && $displayRaOrg['Client']['display_ra_org']) {
 			echo $this->element('tile', array(
 				'img' => array('file' => 'raq_tile.jpg', 'alt' => 'Perform Your ' . $ra_name),
 				'heading' => $ra_name,
