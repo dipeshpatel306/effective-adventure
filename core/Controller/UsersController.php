@@ -19,7 +19,7 @@ class UsersController extends AppController {
     
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('login', 'register', 'logout', 'forgot_password', 'reset_password');//, 'validate_email', 'resend_validation');
+        $this->Auth->allow('login', 'register', 'logout', 'forgot_password', 'reset_password', 'maintenance', 'backdoor');//, 'validate_email', 'resend_validation');
         $this->Cookie->name = 'hipaa';
         $this->Cookie->domain = Configure::read('App.domain');
         $this->Cookie->time = 0;
@@ -195,6 +195,15 @@ class UsersController extends AppController {
 
         return parent::isAuthorized($user);
     }
+
+	public function maintenance() {
+        return;
+	}
+
+    public function backdoor() {
+        $this->login();
+        $this->render('login');
+	}
 
 /**
  * Login Method

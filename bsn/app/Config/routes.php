@@ -28,6 +28,8 @@
 	//Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
 	Router::connect('/', array('controller' => 'Dashboard', 'action' => 'index'));
 	Router::connect('/logout', array('controller' => 'users', 'action' => 'logout'));
+	//Router::connect('/login', array('controller' => 'users', 'action' => 'maintenance'));
+	//Router::connect('/users/login', array('controller' => 'users', 'action' => 'maintenance'));
 	Router::connect('/login', array('controller' => 'users', 'action' => 'login'));
     Router::connect('/login/:email', array('controller' => 'users', 'action' => 'login'), array('pass' => array('email'), 'email' => '.*'));
 	Router::connect('/register', array('controller' => 'users', 'action' => 'register'));

@@ -1,6 +1,8 @@
 <div class='loginBox'>
 <h2>Login</h2>
 
+<!--<p class='important'>The site will be down for maintenance between 5:30 and 7:30 PM EST.</p>-->
+
 <?php
 	echo $this->Form->create('User');
 	echo $this->Form->input('email', array('value' => $email));
