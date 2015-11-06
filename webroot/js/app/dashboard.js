@@ -21,9 +21,12 @@ require(['jquery', 'app/video', 'jqueryui', 'ckeditor'], function($, videohelper
 		});
 		
 		$('#introvideo').each(function() {
-			if ($(this).attr('show') == 1 && (document.referrer.indexOf('login') >= 0 || document.referrer.indexOf('backdoor') >= 0)) {
+			if ($(this).attr('show') == 1 &&
+				$('#page_is_dirty').val() == '0' &&
+			 	(document.referrer.indexOf('login') >= 0 || document.referrer.indexOf('backdoor') >= 0)) {
 				videohelper.showVideo('introvideo');
 				$('.videoForm').show();
+				$('#page_is_dirty').val('1');
 			}
 		});
 		

@@ -159,4 +159,7 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
 <div class="actions">
 	<?php echo $this->element('quickLinks'); ?>
 </div>
+<form>
+	<input tpye="hidden" id="page_is_dirty" name="page_is_dirty" value="0" style="display: none"/>
+</form>
 <?php echo $this->element('newsFeed'); ?>
