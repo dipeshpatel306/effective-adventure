@@ -73,6 +73,7 @@ $ayce_training = ($client['Client']['account_type'] == 'AYCE Training');
 			<?php echo ($client['Client']['user_count']); ?>
 			&nbsp;
 		</dd>
+		<?php if (!($ayce_training && $group == Group::PARTNER_ADMIN)): ?>
 		<dt><?php echo __('Risk Assessment Completed'); ?></dt>
 		<dd <?php echo $completed; ?> >
 		<?php
@@ -82,6 +83,7 @@ $ayce_training = ($client['Client']['account_type'] == 'AYCE Training');
 		?>
 			&nbsp;
 		</dd>
+		<?php endif; ?>
 		<dt><?php echo __('Last Login'); ?></dt>
 		<dd>
 			<?php
@@ -109,6 +111,7 @@ $ayce_training = ($client['Client']['account_type'] == 'AYCE Training');
 			&nbsp;
 		</dd>
 
+		<?php if (!($ayce_training && $group == Group::PARTNER_ADMIN)): ?>
 		<dt><?php echo __('Risk Assessment'); ?></dt>
 		<dd>
 			<?php
@@ -136,6 +139,7 @@ $ayce_training = ($client['Client']['account_type'] == 'AYCE Training');
 				 ?>
 			&nbsp;
 		</dd>
+		<?php endif; ?>
 	</dl>
 		<h2><?php echo __('Details'); ?></h2>
 		<?php echo ($client['Client']['details']); ?>
@@ -721,6 +725,7 @@ $ayce_training = ($client['Client']['account_type'] == 'AYCE Training');
 	</div>
 </div>
 <?php endif; ?>
+<?php endif; ?>
 <div class="related">
 	<h3><?php echo __('Training Reports'); ?></h3>
 	<table>
@@ -741,6 +746,5 @@ $ayce_training = ($client['Client']['account_type'] == 'AYCE Training');
 		<?php endforeach; ?>
 	</table>
 </div>
-<?php endif; ?>
 
 </div>
