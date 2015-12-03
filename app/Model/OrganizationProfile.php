@@ -169,29 +169,6 @@ class OrganizationProfile extends AppModel {
     );
 
 /**
- * hasAndBelongsToMany associations
- *
- * @var array
- */
-	public $hasAndBelongsToMany = array(
-		'OperatingSystem' => array(
-			'className' => 'OperatingSystem',
-			'joinTable' => 'operating_systems_organization_profiles',
-			'foreignKey' => 'organization_profile_id',
-			'associationForeignKey' => 'operating_system_id',
-			'unique' => 'keepExisting',
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		)
-	);
-
-/**
  * Check Client Owner
  */
 	public function isOwnedBy($id, $client){
