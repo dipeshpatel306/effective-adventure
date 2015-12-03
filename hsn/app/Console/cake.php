@@ -20,9 +20,13 @@
 $ds = DIRECTORY_SEPARATOR;
 $dispatcher = 'Cake' . $ds . 'Console' . $ds . 'ShellDispatcher.php';
 
+// hacking here to make cake console work after changing app directory stucture - DGF
+define('APP_BRAND', 'hsn');
+define('APP_CORE_PATH', dirname(dirname(dirname(dirname(__FILE__)))) . $ds . 'core' . $ds);
+
+echo APP_CORE_PATH;
 if (function_exists('ini_set')) {
-	$root = dirname(dirname(dirname(__FILE__)));
-	ini_set('include_path', $root . $ds . 'lib' . PATH_SEPARATOR . ini_get('include_path'));
+	ini_set('include_path', APP_CORE_PATH . ini_get('include_path'));
 }
 
 if (!include ($dispatcher)) {
