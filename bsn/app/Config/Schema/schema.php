@@ -1,141 +1,11 @@
 <?php 
-App::uses('ClassRegistry', 'Utility');
-
 class AppSchema extends CakeSchema {
 
 	public function before($event = array()) {
-		$db = ConnectionManager::getDataSource($this->connection);
-    	$db->cacheSources = false;	
 		return true;
 	}
 
 	public function after($event = array()) {
-		if (isset($event['create'])) {
-			switch ($event['create']) {
-				case 'groups':
-					$groups = array('Administrators', 'Managers', 'Users', 'Pending');
-					$group = ClassRegistry::init('Group', array('ds' => $this->connection));
-					foreach ($groups as $group_name) {
-						$group->create();
-						$group->save(array('name' => $group_name));
-					}
-					break;
-				case 'clients':
-					$client = ClassRegistry::init('Client', array('ds' => $this->connection));
-					$client->create();
-					$client->save(array(
-						'name' => 'HIPAA',
-						'account_type' => 'HIPAA',
-						'active' => true
-					));
-					break;
-				case 'users':
-					$user = ClassRegistry::init('User', array('ds' => $this->connection));
-					$user->create();
-					$user->save(array(
-						'first_name' => 'admin',
-						'last_name' => 'admin',
-						'email' => 'admin@hipaa.com',
-						'email2' => 'admin@hipaa.com',
-						'password' => 'admin',
-						'password2' => 'admin',
-						'active' => true,
-						'group_id' => '1',
-						'client_id' => '1',
-						'email_validated' => true
-					));
-					break;
-				case 'education_center':
-					$data = array(
-						array(
-							'name' => 'What is HIPAA? Part 1',
-							'header' => 'Education Video',
-							'video' => 'WhatIsHIPAAPart1',
-							'video_link' => 'Video'	
-						),
-						array(
-							'name' => 'What is HIPAA? Part 2',
-							'header' => 'Education Video',
-							'video' => 'WhatIsHIPAAPart2',
-							'video_link' => 'Video'
-						),
-						array(
-							'name' => '10 Things you can do to protect patient data',
-							'header' => 'Education Video',
-							'video' => 'BestPracticesforProtectingePHI',
-							'video_link' => 'Video',
-						),
-						array(
-							'name' => 'HIPAA Security Tips and Reminders',
-							'header' => 'Education Video',
-							'link' => 'http://www.hipaasecurenow.com/index.php/security-tips-and-reminders/',
-							'video_link' => 'Link'
-						),
-						array(
-							'name' => 'Service Overview',
-							'header' => 'HIPAA Secure Now! Video',
-							'video' => 'Overview',
-							'video_link' => 'Video'
-						)
-					);
-					$ed = ClassRegistry::init('EducationCenter', array('ds' => $this->connection));
-					$ed->saveMany($data);
-					break;
-				case 'risk_assessment_questions':
-					$header = null;
-					$data = array();
-					$fp = fopen(APP . 'Config/Schema/risk_assessment_questions.csv', 'r');
-					while ($row = fgetcsv($fp, 0, ';')) {
-						if (!$header) {
-							$header = $row;
-						} else {
-							$data[] = array_combine($header, $row);
-						}
-					}
-					fclose($fp);
-					$raq = ClassRegistry::init('RiskAssessmentQuestion', array('ds' => $this->connection));
-					$raq->saveMany($data);
-					break;
-				case 'risk_assessment_question_safeguard_categories':
-					$categories = array('Administrative', 'Physical', 'Techincal');
-					$klass = ClassRegistry::init('RiskAssessmentQuestionSafeguardCategory', array('ds' => $this->connection));
-					foreach ($categories as $cat) {
-						$klass->create();
-						$klass->save(array('name' => $cat));
-					}
-					break;
-				case 'risk_assessment_question_sub_categories':
-					$header = null;
-					$data = array();
-					$fp = fopen(APP . 'Config/Schema/risk_assessment_question_sub_categories.csv', 'r');
-					while ($row = fgetcsv($fp)) {
-						if (!$header) {
-							$header = $row;
-						} else {
-							$data[] = array_combine($header, $row);
-						}
-					}
-					fclose($fp);
-					$klass = ClassRegistry::init('RiskAssessmentQuestionSubCategory', array('ds' => $this->connection));
-					$klass->saveMany($data);
-					break;
-				case 'policies_and_procedures':
-					$header = null;
-					$data = array();
-					$fp = fopen(APP . 'Config/Schema/policies_and_procedures.csv', 'r');
-					while ($row = fgetcsv($fp, 0, ';')) {
-						if (!$header) {
-							$header = $row;
-						} else {
-							$data[] = array_combine($header, $row);
-						}
-					}
-					fclose($fp);
-					$klass = ClassRegistry::init('PoliciesAndProcedure', array('ds' => $this->connection));
-					$klass->saveMany($data);
-					break;
-			}
-		}
 	}
 
 	public $acos = array(
@@ -212,7 +82,9 @@ class AppSchema extends CakeSchema {
 		'email' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 100, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'account_type' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 20, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'active' => array('type' => 'boolean', 'null' => false, 'default' => null),
+		'demo' => array('type' => 'boolean', 'null' => false, 'default' => '0'),
 		'display_ra_org' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 5, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
+		'display_intro_video' => array('type' => 'boolean', 'null' => false, 'default' => '1'),
 		'admin_account' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 10, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'user_account' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 10, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'details' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
@@ -377,7 +249,7 @@ class AppSchema extends CakeSchema {
 		'modified' => array('type' => 'datetime', 'null' => false, 'default' => null),
 		'organization_name' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 100, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'administrator_name' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 50, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
-		'administrator_email' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 30, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
+		'administrator_email' => array('type' => 'string', 'null' => true, 'default' => null, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'administrator_phone' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 50, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'administrator_phone_ext' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 10, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'administrator_phone_alt' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 50, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
@@ -419,6 +291,7 @@ class AppSchema extends CakeSchema {
 		'network_details' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'number_workstations' => array('type' => 'integer', 'null' => true, 'default' => null, 'length' => 10),
 		'phi_on_workstations' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 5, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
+		'os_win10' => array('type' => 'boolean', 'null' => false, 'default' => '0'),
 		'os_win8' => array('type' => 'boolean', 'null' => true, 'default' => null),
 		'os_win7' => array('type' => 'boolean', 'null' => true, 'default' => null),
 		'os_winvista' => array('type' => 'boolean', 'null' => true, 'default' => null),
@@ -529,9 +402,12 @@ class AppSchema extends CakeSchema {
 		'company' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 200, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'name' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 100, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'email' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 50, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
+		'admin_account' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 10, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'logo' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 200, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'logo_dir' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 200, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'link' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 200, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
+		'active' => array('type' => 'boolean', 'null' => true, 'default' => null),
+		'users_limit' => array('type' => 'integer', 'null' => false, 'default' => '500'),
 		'phone' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 50, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'cell' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 50, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'address' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 100, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
@@ -551,6 +427,7 @@ class AppSchema extends CakeSchema {
 		'name' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 200, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'description' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'details' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
+		'has_video' => array('type' => 'boolean', 'null' => false, 'default' => null),
 		'created' => array('type' => 'datetime', 'null' => false, 'default' => null),
 		'modified' => array('type' => 'datetime', 'null' => false, 'default' => null),
 		'indexes' => array(
@@ -783,6 +660,17 @@ class AppSchema extends CakeSchema {
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_unicode_ci', 'engine' => 'InnoDB')
 	);
 
+	public $template_categories = array(
+		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'key' => 'primary'),
+		'name' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 200, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
+		'created' => array('type' => 'datetime', 'null' => false, 'default' => null),
+		'modified' => array('type' => 'datetime', 'null' => false, 'default' => null),
+		'indexes' => array(
+			'PRIMARY' => array('column' => 'id', 'unique' => 1)
+		),
+		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_unicode_ci', 'engine' => 'InnoDB')
+	);
+
 	public $templates = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'key' => 'primary'),
 		'name' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 200, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
@@ -791,10 +679,25 @@ class AppSchema extends CakeSchema {
 		'modified' => array('type' => 'datetime', 'null' => false, 'default' => null),
 		'attachment' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 300, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'attachment_dir' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 200, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
+		'category_id' => array('type' => 'integer', 'null' => true, 'default' => null),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1)
 		),
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_unicode_ci', 'engine' => 'InnoDB')
+	);
+
+	public $training_reports = array(
+		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'key' => 'primary'),
+		'client_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'length' => 30),
+		'course_id' => array('type' => 'integer', 'null' => true, 'default' => null),
+		'course_name' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 250, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+		'course_code' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 40, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
+		'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
+		'indexes' => array(
+			'PRIMARY' => array('column' => 'id', 'unique' => 1)
+		),
+		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
 
 	public $users = array(
@@ -807,10 +710,12 @@ class AppSchema extends CakeSchema {
 		'phone_number' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 30, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'cell_number' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 30, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'active' => array('type' => 'boolean', 'null' => false, 'default' => null),
+		'display_intro_video' => array('type' => 'boolean', 'null' => false, 'default' => '1'),
 		'tokenhash' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 200, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'last_login' => array('type' => 'datetime', 'null' => false, 'default' => null),
 		'group_id' => array('type' => 'integer', 'null' => false, 'default' => null),
 		'client_id' => array('type' => 'integer', 'null' => false, 'default' => null),
+		'partner_id' => array('type' => 'integer', 'null' => true, 'default' => null),
 		'created' => array('type' => 'datetime', 'null' => false, 'default' => null),
 		'modified' => array('type' => 'datetime', 'null' => false, 'default' => null),
 		'email_validated' => array('type' => 'boolean', 'null' => false, 'default' => null),
