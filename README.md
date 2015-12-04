@@ -30,7 +30,7 @@ Do the below to run HSN on the `master` branch:
         $ cd ~/dev
         $ git clone https://github.com/HIPAASecureNow/hsn-core.git
 
-2. Setup to local HSN database:
+2. Setup the local HSN database:
 
         $ cd ~/dev/hsn-core/app
         $ mysql -u root -e "create database hipaadev;"
@@ -39,11 +39,12 @@ Do the below to run HSN on the `master` branch:
 
 3. Start apache with `DocumentRoot` set to `~/dev/hsn-core/app/webroot` (edit it in apache's `httpd.conf`).
 
-4. Access `localhost` in your web browser and you should see the app come up. If you get an error about `_cake_core_ cache` not being able to write a directory, try chaning permissions on `app/tmp` to full rw for all users, e.g.
+4. Access `localhost` in your web browser and you should see the app come up. If you get an error about `_cake_core_ cache` not being able to write a directory, try changing permissions on `app/tmp` to full rw for all users, e.g.
 
         $ chmod -R 777 ~/dev/hsn-core/app/tmp
 
 The local app initializes with just one admin account `admin@hipaa.com/trustno1` and some necessary seed data. From there you can create other clients and add data from inside the app.
+
 
 For running BSN or HSN against the `bsn` branch, do the following:
 
@@ -66,6 +67,9 @@ For running BSN or HSN against the `bsn` branch, do the following:
         $ chmod -R 777 ~/dev/hsn-core/bsn/app/tmp
 
 Admin account login is again `admin@hipaa.com/trustno1`. To toggle between running BSN and HSN replace `~/dev/hsn-core/webroot/index.php` with either `index.php.hsn` or `index.php.bsn` in the same directory.
+
+CakePHP Stuff
+=============
 
 Some Handy Links
 ----------------
@@ -95,6 +99,3 @@ Get Support!
 
 [Lighthouse](http://cakephp.lighthouseapp.com/) - Got issues? Please tell us!
 
-[![Bake Status](https://secure.travis-ci.org/cakephp/cakephp.png?branch=master)](http://travis-ci.org/cakephp/cakephp)
-
-![Cake Power](https://raw.github.com/cakephp/cakephp/master/lib/Cake/Console/Templates/skel/webroot/img/cake.power.gif)
