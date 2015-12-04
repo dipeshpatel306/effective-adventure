@@ -38,7 +38,7 @@
 		<div id="wrapper">
 		<div id="header">
 			<?php 
-				  if (isset($partner)) {
+				  if (isset($partner) && !empty($partner)) {
 				  	$img = '../files/partner/logo/' . $partner['Partner']['logo_dir'] . '/' . $partner['Partner']['logo'];
 				  	echo $this->Html->image($img, array(
 				        'alt' => $partner['Partner']['name'],

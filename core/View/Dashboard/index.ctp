@@ -123,7 +123,7 @@ $acct = $this->Session->read('Auth.User.Client.account_type');
 			));
 		}
 		
-		if (isset($partner)) {
+		if (isset($partner) && !empty($partner)) {
 			$partnerImg = '/files/partner/logo/' . $partner['Partner']['logo_dir'] . '/' . $partner['Partner']['logo'];	
 			if(isset($partner['Partner']['link']) && $partner['Partner']['link'] != 'http://'){
 				$partnerLink = $partner['Partner']['link'];
