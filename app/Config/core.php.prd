@@ -175,7 +175,8 @@
  *
  */
 	Configure::write('Session', array(
-		'defaults' => 'php'
+		'defaults' => 'php',
+		'ini' => array('session.gc_maxlifetime' => 86400) // 24 hours
 	));
 
 /**
