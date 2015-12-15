@@ -204,6 +204,7 @@
  * Training URL
  */
     Configure::write('App.trainingUrl', 'http://training.pii-protect.com/login/index.php');
+    Configure::write('App.trainingInstitutionDBFieldLength', 100);
 
 /**
  * Delete moodle on user create

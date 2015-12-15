@@ -32,7 +32,7 @@ class TrainingReport extends AppModel {
 			$moodle_ids[] = "'n" . $user['User']['id'] . "'";
 		}
 		$moodle_ids = implode(', ', $moodle_ids);
-        $client_name_trunc = substr($client['Client']['name'], 0, 40); // mdl_user.institution is only 40 chars 
+        $client_name_trunc = substr($client['Client']['name'], 0, Configure::read('App.trainingInstitutionDBFieldLength'));
         $moodle = ConnectionManager::getDataSource('moodle');
         $sql = "SELECT mdl_user.firstname, mdl_user.lastname, mdl_quiz_grades.grade, mdl_quiz_grades.timemodified
                 FROM mdl_user, mdl_quiz_grades WHERE mdl_quiz_grades.quiz IN 

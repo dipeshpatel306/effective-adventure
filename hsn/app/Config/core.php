@@ -204,6 +204,7 @@
  * HIPAA Training URL
  */
     Configure::write('App.trainingUrl', 'http://training.hipaasecurenow.com/login/index.php');
+	Configure::write('App.trainingInstitutionDBFieldLength', 40);
 
 /**
  * Delete user from moodle on create
