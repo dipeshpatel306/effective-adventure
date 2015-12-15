@@ -5,7 +5,6 @@ App::import('Vendor', 'constants');
  * OrganizationProfile Model
  *
  * @property Client $Client
- * @property OperatingSystem $OperatingSystem
  */
 class OrganizationProfile extends AppModel {
 

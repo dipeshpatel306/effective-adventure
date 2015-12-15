@@ -121,8 +121,7 @@ class OrganizationProfilesController extends AppController {
 			$this->setReferer();
 		}
 		$clients = $this->OrganizationProfile->Client->find('list');
-		$operatingSystems = $this->OrganizationProfile->OperatingSystem->find('list');
-		$this->set(compact('clients', 'operatingSystems'));
+		$this->set(compact('clients'));
 	}
 
 /**
