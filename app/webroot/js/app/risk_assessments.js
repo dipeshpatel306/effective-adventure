@@ -1,5 +1,13 @@
 require(['jquery', 'app/form', 'app/video', 'tabspaging'], function($, formhelper, videohelper) {
 	$(document).ready(function(){
+		function submit_form($form) {
+			// submit form with ajax
+			$.post($form.attr('action'), $form.serialize())
+				.fail(function(jqXHR, textStatus, errorThrown) {
+					alert('An error occurred and your responses could not be saved.  Please contact support.');
+				});
+		}
+		
 		$('.raTabs').tabs({
 	        activate: function(event, ui) {
 	            $('.raNextTab').show();
@@ -17,14 +25,14 @@ require(['jquery', 'app/form', 'app/video', 'tabspaging'], function($, formhelpe
 	        beforeActivate: function(event, ui) {
 	            if (event.originalEvent !== undefined) {
 	                var $form = $('#RiskAssessmentEditForm');
-	                $.post($form.attr('action'), $form.serialize()); // submit form with ajax
+	                submit_form($form);
 	            }
 	        }
 	    });
 	    
 	    $('.raNextTab').click(function(){
 	        $form = $(this).closest('form');
-	        $.post($form.attr('action'), $form.serialize()); // submit form with ajax
+	        submit_form($form);
 	        var active_outer = $('.raTabs').tabs('option', 'active'); 
 	        var $inner_tab = $('#outerTab' + (active_outer + 1));
 	        var active_inner = $inner_tab.tabs('option', 'active');

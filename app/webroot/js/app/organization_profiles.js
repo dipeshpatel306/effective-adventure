@@ -11,31 +11,27 @@ require(['jquery', 'app/form', 'tabspaging', 'ckeditor'], function($, formhelper
 	
 	// ajax form submission for org prof tabs
 	function submitOrgProf($form) {
-        var success = true;
-        function onSuccess(data) {
-            $('.error-message').remove();
-            $('.error').each(function() {
-                $(this).removeClass('error');
-            });
-            $.each(data, function(field, errors){
-                var $field = $("#OrganizationProfile" + camelize(field));
-                $error_div = $(document.createElement('div')).insertAfter($field);
-                $error_div.addClass('error-message').text(errors[0]);
-                $error_div.parent().addClass('error');
-                $field.focus();
-                success = false;
-            });
-        }
         if ($form[0].checkValidity()) { // check html5 form validation
-            $.ajax({
-                type: 'post',
-                url: $form.attr('action'),
-                data:  $form.serialize(),
-                success: onSuccess,
-                dataType: 'json',
-                async: false
-            });
-            return success;
+			$.ajax($form.attr('action'), {
+				type: 'post',
+				data: $form.serialize(),
+				dataType: 'json'
+			}).done(function(data) {
+    			$('.error-message').remove();
+	            $('.error').each(function() {
+	                $(this).removeClass('error');
+	            });
+	            $.each(data, function(field, errors){
+	                var $field = $("#OrganizationProfile" + camelize(field));
+	                $error_div = $(document.createElement('div')).insertAfter($field);
+	                $error_div.addClass('error-message').text(errors[0]);
+	                $error_div.parent().addClass('error');
+	                $field.focus();
+	            });
+    		}).fail(function(jqXHR, textStatus, errorThrown) {
+				alert('An error occurred and your responses could not be saved.  Please contact support.');
+			});
+            return true;
         } else {
             // click submit here to show html5 form validation errors
             $form.find(':submit').click(); 
