@@ -19,6 +19,10 @@ class TrainingReportsController extends AppController {
 		
 		if ($this->action === 'view') {
 			$id = $this->request->params['pass'][0];
+			if ($group == Group::PARTNER_ADMIN) {
+				$partner = $this->Session->read('Auth.User.partner_id');
+				return $this->TrainingReport->isOwnedByPartner($id, $partner);
+			}
 			return $this->TrainingReport->isOwnedBy($id, $client);
 		}
 
