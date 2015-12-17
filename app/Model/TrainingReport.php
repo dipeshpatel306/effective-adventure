@@ -19,10 +19,6 @@ class TrainingReport extends AppModel {
         )
     );
 	
-	public function isOwnedBy($id, $client) {
-		return $this->field('id', array('id' => $id, 'client_id' => $client)) === $id;
-	}
-	
 	public function getRows() {
 		$data = $this->read();
 		$client = $this->Client->find('first', array('fields' => array('Client.id', 'Client.name'), 'conditions' => array('Client.id' => $data['TrainingReport']['client_id'])));
